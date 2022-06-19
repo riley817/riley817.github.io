@@ -1,0 +1,1184 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories on Riley&#39;s DevLog</title>
+    <link>https://riley817.github.io/categories/</link>
+    <description>Recent content in Categories on Riley&#39;s DevLog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <managingEditor>riley0422@icloud.com (Riley)</managingEditor>
+    <webMaster>riley0422@icloud.com (Riley)</webMaster>
+    <lastBuildDate>Fri, 03 Jun 2022 18:54:00 +0900</lastBuildDate><atom:link href="https://riley817.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[TIL &amp; Issue Note] 20220603</title>
+      <link>https://riley817.github.io/categories/til/20220603/</link>
+      <pubDate>Fri, 03 Jun 2022 18:54:00 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/til/20220603/</guid>
+      <description> ECMAscript 모듈 Scope 관련 문제
+Functions not working when type=&amp;quot;module&amp;quot; or import </description>
+    </item>
+    
+    <item>
+      <title>[시작하세요! 도커/쿠버네티스] Chapter 5. 쿠버네티스 설치</title>
+      <link>https://riley817.github.io/categories/docker-kubernetes/kubernetes/</link>
+      <pubDate>Tue, 24 May 2022 23:34:36 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/docker-kubernetes/kubernetes/</guid>
+      <description>시작하세요! 도커/쿠버네티스 책 정리 🐳🐳🐳</description>
+    </item>
+    
+    <item>
+      <title>[시작하세요! 도커/쿠버네티스] Chapter 2. 도커 엔진 - 도커 네트워크</title>
+      <link>https://riley817.github.io/categories/docker-kubernetes/chapter2-2-docker-engine/</link>
+      <pubDate>Mon, 23 May 2022 23:37:00 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/docker-kubernetes/chapter2-2-docker-engine/</guid>
+      <description>시작하세요! 도커/쿠버네티스 책 정리 🐳🐳🐳
+2.7 도커 네트워크 도커 네트워크 구조 도커는 컨테이너 내부 IP를 순차적으로 할당한다. 이 IP는 컨테이너를 재시작 할 때마다 변경 될 수 있다. 각 컨테이너에 외부와의 네트워크를 제공하기 위해 각 컨테이너마다 가상 네트워크 인터페이스를 호스트에 생성한다. 이름은 veth(virtual eth)로 시작한다. docker0 브리지는 각 veth 인터페이스와 바인딩 되어 호스트의 eth0 인터페이스와 이어주는 역할을 한다. ///
+도커 네트워크 기능 컨테이너를 생성하면 기본적으로 docker0 브릿지를 통해 통신한다. 도커가 자체적으로 제공하는 네트워크로는 bridge, host, none, container, overlay 가 있다.</description>
+    </item>
+    
+    <item>
+      <title>[AWS EKS] 5. 인그레스 컨트롤러 만들기</title>
+      <link>https://riley817.github.io/categories/devops/aws/aws-5-ingress-controller/</link>
+      <pubDate>Sun, 08 May 2022 00:13:03 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/devops/aws/aws-5-ingress-controller/</guid>
+      <description>☁️ Amazon EKS 웹 애플리케이션 구축하기 워크샵을 실습한 내용입니다.
+☁️ AWS Workshop 링크 : https://catalog.us-east-1.prod.workshops.aws/workshops/9c0aa9ab-90a9-44a6-abe1-8dff360ae428/ko-KR/
+인그레스 Ingress 클러스터 내의 서비스에 대한 외부 요청을 어떻게 처리할 것인지 네트워크 7계층 레벨에서 정의하는 쿠버네티스 오브젝트이다.
+인그레스 오브젝트의 기본 기능은 다음과 같다.
+외부 요청의 라우팅 : 특정 경로로 들어온 요청을 어떤 서비스로 전달할지 정의하는 라우터 규칙 설정 가상 호스트 기반의 요청 처리 : 같은 IP에 대해 다른 도메인 이름으로 요청했을 때 어떻게 처리할 것인지 정의 SSL/TLS 보안 연결 처리 : 요청을 라우팅 할 때, 보안 연결을 위한 인증서 적용 인그레스를 사용하는 이유 쿠버네티스 서비스 타입 중 NodePort 혹은 LoadBalancer 타입의 서비스를 사용해도 외부로 노출할 수 있지만, 인그레스 없이 서비스를 사용할 경우 SSL/TLS 보안 연결 등의 상세 옵션을 각각의 서비스와 디플로이먼트에 대해 일일이 설정을 해야 한다.</description>
+    </item>
+    
+    <item>
+      <title>[AWS EKS] 4. Amazon ECR 에 이미지 올리기</title>
+      <link>https://riley817.github.io/categories/devops/aws/aws-4-ecr/</link>
+      <pubDate>Sat, 07 May 2022 23:00:58 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/devops/aws/aws-4-ecr/</guid>
+      <description>☁️ Amazon EKS 웹 애플리케이션 구축하기 워크샵을 실습한 내용입니다.
+☁️ AWS Workshop 링크 : https://catalog.us-east-1.prod.workshops.aws/workshops/9c0aa9ab-90a9-44a6-abe1-8dff360ae428/ko-KR/
+Amazon ECR 리포지토리 생성 및 이미지 올리기 Amazon ECR(Elastic Container Registry) 은 도커 컨테이너의 이미지를 저장하는 Repository 서비스이다. Docker hub의 기능과 동일하다.
+AWS CLI로 이미지 리포지토리 생성 1 2 3 4 aws ecr create-repository \ --repository-name demo-flask-backend \ --image-scanning-configuration scanOnPush=true \ --region ap-northeast-2 명령어가 수행되면 리포지토리에 대한 정보가 출력되며 Amazon ECR 콘솔창에서도 생성된 리포지토리를 확인할 수 있다.</description>
+    </item>
+    
+    <item>
+      <title>Kubernetes context 관리</title>
+      <link>https://riley817.github.io/categories/docker-kubernetes/kubectl-change-context/</link>
+      <pubDate>Sat, 07 May 2022 22:36:55 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/docker-kubernetes/kubectl-change-context/</guid>
+      <description>Kubernetes 서비스 어카운트 인증정보 설정 kubectl 명령어를 사용해 크버네티스 클러스터를 제어할 때는 kubeconfig라고 하는 특수한 설정파일을 통해 인증을 진행한다. kubeconfig 파일에는 기본적으로 클러스터 관리자 권한을 가지는 인증서 정보가 저장되며 아무런 제한 없이 쿠버네티스를 사용할 수 있다.</description>
+    </item>
+    
+    <item>
+      <title>[AWS EKS] 3. EKS Cluster 생성하기</title>
+      <link>https://riley817.github.io/categories/devops/aws/aws-3-eks-cluster/</link>
+      <pubDate>Fri, 06 May 2022 23:10:03 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/devops/aws/aws-3-eks-cluster/</guid>
+      <description>☁️ Amazon EKS 웹 애플리케이션 구축하기 워크샵을 실습한 내용입니다.
+☁️ AWS Workshop 링크 : https://catalog.us-east-1.prod.workshops.aws/workshops/9c0aa9ab-90a9-44a6-abe1-8dff360ae428/ko-KR/
+Amazon EKS 클러스터는 다양한 방식으로 배포할 수 있다.
+AWS 콘솔 창으로 배포 AWS CloudFormation 혹은 AWS CDK 와 같은 IaC(Infrastructure as Code) 도구를 사용해 배포 EKS의 공식 CLI인 eksctl 로 배포 Terraform, Pulumi, Rancher 등으로 배포 eksctl로 Cluster 생성하기 아무 옵션없이 eksctl create cluster 실행하면 default parameter로 클러스터가 배포된다. 그러나 yaml 파일로 작성한 구성 파일을 작성하여 배포하면 구성파일에 명시한 오브젝트들의 바라는 상태(desired state)를 쉽게 파악하고 관리할 수 있는 이점이 있다.</description>
+    </item>
+    
+    <item>
+      <title>[AWS EKS] 2. AWS CLI, eksctl, kubectl 설치 및 설정</title>
+      <link>https://riley817.github.io/categories/devops/aws/aws-2-cli/</link>
+      <pubDate>Thu, 05 May 2022 22:47:55 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/devops/aws/aws-2-cli/</guid>
+      <description>☁️ Amazon EKS 웹 애플리케이션 구축하기 워크샵을 실습한 내용입니다.
+☁️ AWS Workshop 링크 : https://catalog.us-east-1.prod.workshops.aws/workshops/9c0aa9ab-90a9-44a6-abe1-8dff360ae428/ko-KR/ ☁️ 워크샵에는 Cloud9을 구축했지만 나는 따로 구축하지는 않았다&amp;hellip;
+AWS CLI AWS CLI 설치하기 (Mac OS) AWS Command Line Interface는 command-line shell 명령어를 사용하여 AWS 서비스의 EC2, VPC 등과 같은 AWS의 리소스를 프로비저닝 할 수 있다.
+Mac OS는 pkg 파일을 다운로드 하여 설치한다.
+Mac OS : https://awscli.amazonaws.com/AWSCLIV2.pkg 다른 OS에서 AWS CLI 설치하기 1 2 3 $ aws --version aws-cli/2.</description>
+    </item>
+    
+    <item>
+      <title>[AWS EKS] (Optional) AWS Cloud9으로 실습 환경 구축하기</title>
+      <link>https://riley817.github.io/categories/devops/aws/aws-eks-cloud9/</link>
+      <pubDate>Thu, 05 May 2022 22:00:00 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/devops/aws/aws-eks-cloud9/</guid>
+      <description>☁️ Amazon EKS 웹 애플리케이션 구축하기 실습 내용입니다.
+☁️ AWS Workshop 링크 :
+https://catalog.us-east-1.prod.workshops.aws/workshops/9c0aa9ab-90a9-44a6-abe1-8dff360ae428/ko-KR/ AWS Cloud9 AWS Cloud9 은 브라우저만으로 코드를 작성, 실행 및 디버깅할 수 있는 IDE(통합개발환경)이다. 코드 편집기, 디버거 및 터미널 기능을 포함하고 있고 프로그래밍 언어를 위한 필수 도구가 사전에 패키징 되어 제공된다.
+AWS Cloud9 시작하기 AWS Cloud9 IDE 구성 AWS Cloud9 콘솔 접속 후 Create environment 버튼 클릭
+IDE의 Environment 이름 및 설명을 작성한다. 인스턴스 타입을 t3.</description>
+    </item>
+    
+    <item>
+      <title>[AWS EKS] 1. IAM 계정 생성</title>
+      <link>https://riley817.github.io/categories/devops/aws/aws-1-eks-iam/</link>
+      <pubDate>Thu, 05 May 2022 16:51:59 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/devops/aws/aws-1-eks-iam/</guid>
+      <description>☁️ Amazon EKS 웹 애플리케이션 구축하기 워크샵을 실습한 내용입니다.
+☁️ AWS Workshop 링크 : https://catalog.us-east-1.prod.workshops.aws/workshops/9c0aa9ab-90a9-44a6-abe1-8dff360ae428/ko-KR/
+IAM 계정 생성 AWS 계정의 루트사용자로 로그인한다.
+IAM 대시보드에서 액세스 관리 &amp;gt; 사용자 &amp;gt; 사용자 추가를 선택한다. 사용자 이름을 입력 후 Access type에서 암호-AWS 관리 콘솔 액세스 선택 사용자 지정 비밀번호로 비밀번호 생성한다. 기존 정책 직접 연결(Attach existing policies directly) 선택 후 부여하려는 정책을 선택하여 다음:태그(Next:Tags) 버튼을 클릭. 태그 추가(선택 사항) 단계 후 최종 생성 정보를 확인하고 사용자 만들기(Create User) 클릭하여 생성한다.</description>
+    </item>
+    
+    <item>
+      <title>[Tucker의 Go 프로그래밍] 19. Go 인터페이스</title>
+      <link>https://riley817.github.io/categories/tucker-go/chapter19-interface/</link>
+      <pubDate>Wed, 27 Apr 2022 17:51:49 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/tucker-go/chapter19-interface/</guid>
+      <description>Tucker의 Go 언어 프로그래밍 책 내용을 정리하였습니다.
+1. 인터페이스 정의 인터페이스 선언 인터페이스 선언은 type을 쓴 뒤 인터페이스 명을 쓰고 interface 키워드를 쓴다. 그런 뒤 {} 블록 안에 인터페이스에 포함된 메서드 집합을 써준다. 1 2 3 4 type DuckInterface interface { Fly() Walk(distance int) int } 유의사항 메서드는 반드시 메서드명이 있어야한다. 매개변수와 반환이 다르더라도 이름이 같은 메서드는 있을 수 없다. 인터페이스에서는 메서드 구현을 포함하지 않는다. 인터페이스 선언 예제 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 package main import &amp;#34;fmt&amp;#34; type Stringer interface { String() string } type Student struct { Name string Age int } func (s Student) String() string { return fmt.</description>
+    </item>
+    
+    <item>
+      <title>[Tucker의 Go 프로그래밍] 18. 슬라이스</title>
+      <link>https://riley817.github.io/categories/tucker-go/chapter18-slice/</link>
+      <pubDate>Tue, 26 Apr 2022 14:50:36 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/tucker-go/chapter18-slice/</guid>
+      <description>Tucker의 Go 언어 프로그래밍 책 내용을 정리하였습니다.
+슬라이스는 Go에서 제공하는 동적 배열 타입이다. 동적 배열은 실행 도중 배열의 사이즈가 계속 바뀔 수 있다.
+정적, 동적 상수와 변수의 차이를 생각하면 간단하다.
+정적(static) : compile time, build time 시 값이 결정된다. 실행 도중에 절대 바뀔 수 없다. 동적(dynamic) : Runtime. 프로그램 실행 도중에 계속 값이 바뀔 수 있다. 다른언어에서 slice와 비슷한 개념 (동일하지는 않다.) C++ : Vector&amp;lt;int&amp;gt; Java : ArrayList Python : slice Javascript : 기본적으로 동적 배열 1.</description>
+    </item>
+    
+    <item>
+      <title>[시작하세요! 도커/쿠버네티스] Chapter 2. 도커 엔진</title>
+      <link>https://riley817.github.io/categories/docker-kubernetes/chapter2-1-docker-engine/</link>
+      <pubDate>Wed, 20 Apr 2022 16:00:00 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/docker-kubernetes/chapter2-1-docker-engine/</guid>
+      <description>시작하세요! 도커/쿠버네티스 책 정리 🐳🐳🐳
+1 도커 이미지와 컨테이너 도커 엔진에서 사용하는 기본단위는 이미지와 컨테이너이다.
+1.1 도커 이미지 이미지는 컨테이너를 생성할 때 필요한 요소이다. 가상 머신을 생성할 때 사용하는 iso 파일과 비슷한 개념이다. 여러 개의 계층으로 된 바이너리 파일로 존재, 컨테이너를 생성하고 실행할 때 읽기 전용으로 사용된다. 도커 이미지의 구성 도커 이미지 이름은 [저장소 이름]/[이미지 이름]:[태그] 형태로 구성 된다.
+저장소 (Repository) : 이미지가 저장된 장소. 저장소 이름이 명시되지 않은 이미지는 도커에서 기본적으로 제공하는 이미지 저장소인 도커 허브의 공식 이미지.</description>
+    </item>
+    
+    <item>
+      <title>SHA3 라이브러리 조사</title>
+      <link>https://riley817.github.io/categories/javascript/hash3/</link>
+      <pubDate>Sun, 17 Apr 2022 23:04:00 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/javascript/hash3/</guid>
+      <description>개요 Go의 라이브러리에서 사용하는 SHA3-512 해시값과 자바스립트에서 사용하는 CryptoJS의 SHA3-512 해시값이 다른 문제가 발생
+테스트 대상 모듈 hash.js js-sha3 CrytoJS 테스트 방법 Go의 테스트 코드 작성 후 Go에서 생성한 해시값과 Javascript에서 위의 라이브러리로 생성했을 때 해시값이 같은지 비교한다.
+테스트 결과 hash.js : SHA3-512 관련 함수가 없는 것 같았다. js-sha3 : 성공 CrytoJS : 실패 CrytoJS 의 경우 Go에서 사용하는 SHA3-512와 차이가 있는 것 같다. [cryptojs_document(https://cryptojs.gitbook.io/docs/)에 참고 사항이 있었다.
+NOTE: I made a mistake when I named this implementation SHA-3.</description>
+    </item>
+    
+    <item>
+      <title>[TIL &amp; Issue Note] 20220326</title>
+      <link>https://riley817.github.io/categories/til/20220326/</link>
+      <pubDate>Sat, 26 Mar 2022 18:51:55 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/til/20220326/</guid>
+      <description>블록체인과 보안 및 개인정보 1. 블록체인과 보안 해커 해커의 주된 목표 가치있는 정보 탈취로 경제적 이익 추구 -&amp;gt; 정보 자체에 대한 약탈 서비스 중단(Denial of Service)을 통한 시스템의 교란 해커의 공격을 막으려면? 정보 자체가 노출되는 것을 보호 서비스가 중단되지 않도록 보호 블록체인은 해커의 공격에 대해 안전할까? 블록체인은 모든 데이터를 브로드캐스팅을 통해 다른 노드와 공유 정보의 탈취 자체가 필요없을 정도로 정보가 노출됨. 정보 탈취로부터의 안정성은 가지고 있지 못함 암호화 자체가 안전을 보장하지 않음 암호화를 위한 기술적인 문제도 뒤따름 블록체인 보안 서비스 중단 공격이나 기록을 변경시키려는 시도로부터는 현존하는 가장 안전한 시스템 공격이나 기록 변경을 위해서는 모든 노드를 공격해야 함.</description>
+    </item>
+    
+    <item>
+      <title>[TIL &amp; Issue Note] 20220324</title>
+      <link>https://riley817.github.io/categories/til/20220324/</link>
+      <pubDate>Thu, 24 Mar 2022 23:29:35 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/til/20220324/</guid>
+      <description>블록체인 원리(7) - 채굴과 51% 공격 1. 채굴과 블록 생성 블록을 만드는 것 = 채굴 보상금 획득 하는것이 금 획득하는 것과 비슷 채굴 단어의 유래 - Nick Szabo 금이 가치를 갖는 것은 채굴이 어렵기 때문 어떤 문제가 매우 어렵다면 -&amp;gt; 문제의 정답 자체가 어떤 가치를 가지지 않을까? 블록 만듦 -&amp;gt; 해시 퍼즐 풀이 : 어려운 문제이기 때문에 정답 자체가 가치 보유 금을 캐려면 -&amp;gt; 금광에서 채굴 : 힘든 작업이기 때문에 금이 가치 보유 해시 퍼즐 풀이 -&amp;gt;(비유) 금광에서 채굴 채굴 == 블록을 만들다.</description>
+    </item>
+    
+    <item>
+      <title>[TIL &amp; Issue Note] 20220321</title>
+      <link>https://riley817.github.io/categories/til/20220321/</link>
+      <pubDate>Mon, 21 Mar 2022 23:07:39 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/til/20220321/</guid>
+      <description>블록체인 원리 - (5) 비가역성 블록체인 원리 (6) - 하드 포크와 소프트 포크 1. 하드 포크와 소프트 포크의 기본 개념 하드 포크와 소프트 포크 동일한 블록에서 노드가 다른 행동을 하는 이유 중앙화 서버 : 하나의 소프트웨어를 여러 사람이 접속 블록체인 : 각자의 소프트웨어 접속 -&amp;gt; 모든 사람의 소프트웨어 버전이 다르기 때문에 발생 블록체인의 소프트웨어 변경 최신 소프트웨어 사용자 -&amp;gt; 모든 변경이 반영된 상태로 사용 이전 소프트웨어 사용자 -&amp;gt; 변경이 반영되지 않은 형태로 사용 하드포크, 소프트 포크 동일한 블록에 대해 서로 다른 규칙을 적용, 서로 다른 결론에 이르는 현상 규칙이 상충시 발생하는 두 가지 현상 과거에는 유효하던 규칙이 지금은 무효화 과거에는 무효하던 규칙이 지금은 유효화 -&amp;gt; 결국 블록체인 데이터에 영향을 미치게 됨 2.</description>
+    </item>
+    
+    <item>
+      <title>[TIL &amp; Issue Note] 20220317</title>
+      <link>https://riley817.github.io/categories/til/20220317/</link>
+      <pubDate>Thu, 17 Mar 2022 23:46:41 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/til/20220317/</guid>
+      <description>블록체인 원리 - (4) 탈중앙화 합의 및 이중사용 1. 탈중앙화 합의 규칙의 개념 탈중앙화 합의 규칙 규칙 미준수 -&amp;gt; 폐기 규칙 준수 -&amp;gt; 동의 탈중앙화 합의 규칙에는 규칙을 지켰을 때도 퇴출하는 방식이 필요 블록체인의 특징 구성상 P2P 혹은 피어투피어 방식으로 이루어짐 특정 서버가 존재하지 않음 브로드캐스팅을 통해서 자신의 피어를 통한 데이터 전송을 받고 있음 모든 노드는 현재 자신이 가지고 있는 데이터와 피어로부터 전달받은 데이터에 의존해서 모든것을 판단해야 함 중앙서버 중앙 통제 서버가 모든 지시를 내림 -&amp;gt; 노드는 지시에 따름 블록체인 모든 노드가 동등한 권리와 의무를 가짐 -&amp;gt; 지시를 받을 수 없는 구조</description>
+    </item>
+    
+    <item>
+      <title>[TIL &amp; Issue Note] 20220316</title>
+      <link>https://riley817.github.io/categories/til/20220316/</link>
+      <pubDate>Wed, 16 Mar 2022 23:32:16 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/til/20220316/</guid>
+      <description>Getting Started What is React ? 사용자 인터페이스를 구축하기 위한 자바스크립트 라이브러리 모바일 앱처럼 상호작용과 반응성이 높은 사용자 환경을 제공 모바일 앱 화면 전환이 빠르고 사용자 반응성이 높음 웹 전통적인 웹사이트의 전환은 1) 링크,버튼 등 요청 2) 서버에서는 응답을 받고 새로운 HTML을 그림 서버와 요청과 응답 작업으로 인해 상호작용이 투박함 서버에서 처리한 HTML이 로드되는 것을 기다려야 함 자바스크립트 사용자가 보는 것을 조작할 수 있는 프로그래밍 언어 DOM에 접근하고 조작할 수 있다.</description>
+    </item>
+    
+    <item>
+      <title>[TIL &amp; Issue Note] 20220315</title>
+      <link>https://riley817.github.io/categories/til/20220315/</link>
+      <pubDate>Tue, 15 Mar 2022 00:28:23 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/til/20220315/</guid>
+      <description>블록체인 원리 (3) - 작업증명 : 해시 퍼즐과 난이도 1. 블록만들기와 해시 퍼즐 해시 퍼즐 무차별 대입법 -&amp;gt; 특정 값 -&amp;gt; 무한 반복 산수 문제 해시 퍼즐을 푸는 수학적 공식은 없음 무수히 반복되는 산수 문제 해결 해시를 통해 얻게 되는 고유한 값 32 Byte 값 -&amp;gt; SHA-256 - 유효한 블록의 해시값을 찾을 때까지 무한 반복 해시 퍼즐 정답 = 블록 고유 해시값 제네시스 블록 해시값 = 2의 32승 번 값 계산 -&amp;gt; 약 10분동안 계산 해시 퍼즐 풀이 블록 헤더의 넌스값을 0 으로 설정 비트코인 해시 함수를 연속 2번 해싱 (SHA-256) : 임의의 32 Byte 값 블록 전체를 해시함수를 연속 두 번 적용하여 나온 해시값 H와 주어진 목표값 T 값을 비교 주어진 값보다 더 작거나 갖지 않다 -&amp;gt; 넌스 1증가 (1 ~ 32 까지 증가) -&amp;gt; 임의의 32 Byte 값 생성 반복 판단박스 목표 값보다 T보다 작아질 때까지 반복 넌스값 입력의 사소한 변화 32 Byte 충분히 작은 값이 나올 때까지 반복 T(목표값) -&amp;gt; 목표값이 작을 수록 만족 힘듦 작업증명 퍼즐을 이용해서 의도적으로 막대한 에너지를 소모하게 만든 방식 스팸 방지를 위해 개발 의도적으로 막대한 에너지를 소모하게 하여 그 일을 억제 최초 기록 및 변경에 막대한 에너지 소모 -&amp;gt; 반대 급부의 경제적 이득이 없으면 변경 이유 없다 최초의 기록된 노드의 검증 -&amp;gt; 합당한 이유 없다면 정상적 기록을 통한 보상금 -&amp;gt; 합리적 선택 스팸 방지 네트워크 과부하 문제 어떤 작업을 반드시 해야만 되도록 부과 -&amp;gt; 스팸 억제 2.</description>
+    </item>
+    
+    <item>
+      <title>[TIL &amp; Issue Note] 20220314</title>
+      <link>https://riley817.github.io/categories/til/20220314/</link>
+      <pubDate>Mon, 14 Mar 2022 23:47:19 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/til/20220314/</guid>
+      <description>블록체인 원리(2) - 블록의 구조 1. 블록의 이해 블록 (Block) 의미 있는 묶음 = 1 BLOCK 어떤 의미있는 단위를 한 블록으로 정의 특정 데이터를 다루는 단위 비트코인 블록체인 1 MB 까지의 한도 내에서 거래내역을 기록한 단위 (2000 ~ 3000 거래 내역) 비트코인 캐시 (8MB 까지 허용), 비트코인 골드 이더리움 블록체인 이론적인 한도는 없음 비트코인 블록의 구조 블록 헤더 : 데이터의 요약 정보 블록 헤더의 크기 : 80 Byte 항상 일정한 크기를 유지 블록 데이터 : 실제의 데이터를 담는 부분 2.</description>
+    </item>
+    
+    <item>
+      <title>[TIL &amp; Issue Note] 20220310</title>
+      <link>https://riley817.github.io/categories/til/20220310/</link>
+      <pubDate>Thu, 10 Mar 2022 22:23:45 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/til/20220310/</guid>
+      <description>블록체인과 중앙집중 시스템과의 차이점 (2) - 일처리 방식 1. 브로드캐스팅 Broadcasting 네트워크에 참여한 모든 노드에게 모든 데이터를 전달하는 방식 중앙서버 방식 : 중앙 서버와 특정 노드 사이에만 데이터 전달이 일어남 블록체인 : 시간이 흐림에 따라 데이터가 모든 노드에 전달 블록체인에서는 모든 데이터를 브로드캐스팅을 통해 전달 Gossip protocol 귓속말을 하듯 피어를 통해 데이터를 전달한다.
+모든 데이터 -&amp;gt; 모든 노드 -&amp;gt; 블록체인에 참여한 노드는 동일한 데이터를 가지고 있다.
+블록체인의 모든 전송 방식은 브로드 캐스팅에 의존한다.</description>
+    </item>
+    
+    <item>
+      <title>[TIL &amp; Issue Note] 20220308</title>
+      <link>https://riley817.github.io/categories/til/20220309/</link>
+      <pubDate>Tue, 08 Mar 2022 10:51:10 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/til/20220309/</guid>
+      <description>블록체인과 중앙집중 시스템과의 차이점 (1) 1. 중앙화 시스템과 분산 시스템 분산 시스템의 정의 각각의 꼭지점 = 하나의 서버 모드 꼭짓점 = 노드 직접적으로 연결된 노드 = 피어 ![[Pasted image 20220308110403.png]]
+중앙집중 시스템과 분산시스템 중앙집중 시스템 대표적인 예시 은행 -&amp;gt; 은행이 운영하는 웹 서버에 연결 은행 이용자가 모두 동일한 서버를 이용 사용자의 수와 상관없이 사용자가 사용하는 시스템은 동일 특징 설계와 운영이 간편한 중앙집중 시스템 -&amp;gt; 기능 추가 시 별도의 절차 없이 모든 사용자에게 적용.</description>
+    </item>
+    
+    <item>
+      <title>[TIL &amp; Issue Note] 20220307</title>
+      <link>https://riley817.github.io/categories/til/20220307/</link>
+      <pubDate>Mon, 07 Mar 2022 13:43:10 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/til/20220307/</guid>
+      <description>블록체인과 중앙집중 시스템과의 차이점 (1) 1. 중앙화 시스템과 분산 시스템 분산 시스템의 정의 각각의 꼭지점 = 하나의 서버 모드 꼭짓점 = 노드 직접적으로 연결된 노드 = 피어 중앙집중 시스템과 분산시스템 중앙집중 시스템 대표적인 예시 은행 -&amp;gt; 은행이 운영하는 웹 서버에 연결 은행 이용자가 모두 동일한 서버를 이용 사용자의 수와 상관없이 사용자가 사용하는 시스템은 동일 특징 설계와 운영이 간편한 중앙집중 시스템 -&amp;gt; 기능 추가 시 별도의 절차 없이 모든 사용자에게 적용. 서버에 이상이 생길 경우 모든 사용자가 이용 불가 분산 시스템 여러 개의 서버가 일을 나누어 처리 여러 서버가 일을 분담하는 분산 시스템 분산시스템의 장점 일의 효울성이 높다.</description>
+    </item>
+    
+    <item>
+      <title>[TIL &amp; Issue Note] 20220305</title>
+      <link>https://riley817.github.io/categories/til/20220305/</link>
+      <pubDate>Sat, 05 Mar 2022 17:27:58 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/til/20220305/</guid>
+      <description>변수 변수를 만들고 초기화 하는 코드는 다음과 같다.
+1 2 // 변수를 생성하고 초기화 한다. var name = &amp;#39;Bob&amp;#39;; 변수는 참조를 저장한다. name으로 불리는 변수는 &amp;ldquo;Bob&amp;quot;이라는 문자열을 갖는 String 객체의 참조를 포함한다.
+name의 변수 타입은 String으로 유추할 수 있지만 해당 유형을 명시적으로 변경할 수 있다. 객체가 단일 타입으로 제한되지 않은 경우 Object 타입(필요하면 dynamic)으로 지정할 수 있다.
+1 Object name = &amp;#39;Bob&amp;#39;; 유추가능한 명시적인 타입으로 지정할 수도 있다.
+1 String name = &amp;#39;Bob&amp;#39;; 기본값 nullable 타입의 초기값은 null이다.</description>
+    </item>
+    
+    <item>
+      <title>[TIL &amp; Issue Note] 20220304</title>
+      <link>https://riley817.github.io/categories/til/20220304/</link>
+      <pubDate>Fri, 04 Mar 2022 20:40:22 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/til/20220304/</guid>
+      <description>Important concepts 변수에 넣을 수 있는 것은 Object이고, 모든 Object는 Class의 인스턴스이다. numbers, functions, null 조차 객체이다. 모든 객체는 Object 클래스를 상속한다.
+Dart가 강타입 언어이긴하나, 타입을 추론 할 수 있기 때문에 명시는 선택사항이다.
+null-safety를 활성화 하면, 특별히 선언하지 않으면 변수에는 null을 포함할 수 없다.
+nullable한 변수는 타입 뒤에 ? 붙인다. int?는 변수가 integer일 수도 있고 null일 수도 있다. Dart에서 null을 평가하는 것을 동의하지 않는다면 !를 붙여 null이 아님을 명시할 수 있다.</description>
+    </item>
+    
+    <item>
+      <title>[TIL &amp; Issue Note] 20220303</title>
+      <link>https://riley817.github.io/categories/til/20220303/</link>
+      <pubDate>Thu, 03 Mar 2022 22:03:22 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/til/20220303/</guid>
+      <description>1. 블록체인의 탄생 배경 개요 블록체인의 작동원리와 기반 기술 세부기술에 대한 자세한 설명을 통해 블록체인의 정한 효용 초보자와 프로그래머에게 모두 열린 학습 비유를 통한 원리 이해 현업에 발판이 되는 전문 지식 1. 블록체인의 탄생 배경 Cipherpunk 운동 Cipher(암호) + Punk의 합성어 암호로 개인의 프라이버시 보호를 극대화하고자 했던 행동주의자 등장 배경 1980년대 미국, 국가나 대형 기관에 의한 개인의 인권 및 개인정보 침해 심각 개인의 프라이버시 보호하고자 하는 의식 확산 암호화 기술은 국가/군 기관이 점유 -&amp;gt; 개인에게는 허용 불가 1970년 IBM에서 일반인들도 사용할 수 있는 암호화 체계 등장 -&amp;gt; DES (Data Encryption Standard, DES) 1983년, E-cash (David Chaum) 모든 금융 거래의 이체 내역 암호화 은행과의 제휴를 통해 계좌 이체 내역에 대해서만 본인이 알 수 있도록 함.</description>
+    </item>
+    
+    <item>
+      <title>[TIL &amp; Issue Note] 20220302</title>
+      <link>https://riley817.github.io/categories/til/20220302/</link>
+      <pubDate>Wed, 02 Mar 2022 22:30:01 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/til/20220302/</guid>
+      <description>What is React? 사용자 인터페이스를 구축하기 위한 자바스크립트 라이브러리. 모바일 앱과 웹사이트 비교 모바일 앱 모바일 앱은 반응성이 매우 높은 사용자 환경을 제공한다. 화면 전환이 빠르기 때문에 사용하기 좋다. 웹사이트 웹사이트는 사용자 요청이 (링크나, 버튼을 클릭했을 때) 서버로 전송되고 전송된 결과(HTML 페이지)는 브라우저로 다시 전송되어 화면에 띄워지는 구조이다. 이러한 요청과 반응 사이클로 인해 동작이 모바일 앱에 비해서는 투박하고 지연이 있을 수 있다. 자바스크립트 자바스크립트를 통해 Dom을 조작하고 이를 통해 HTML의 요소를 제어할 수 있다.</description>
+    </item>
+    
+    <item>
+      <title>[Think Data Structures] 자바 배열 리스트 구현하기</title>
+      <link>https://riley817.github.io/categories/think-data-structures/think-data-structures-1/</link>
+      <pubDate>Sat, 26 Feb 2022 21:17:12 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/think-data-structures/think-data-structures-1/</guid>
+      <description>목표 자바 배열을 사용하여 요소를 저장하는 List 인터페이스 구현한다. 클래스 정의와 인스턴스 변수, 생성자 1 2 3 4 5 6 7 8 9 public class MyArrayList&amp;lt;T&amp;gt; implements List&amp;lt;T&amp;gt; { int size; // keeps track of the number of elements private T[] array; // stores the elements public MyArrayList() { array = (T[]) new Object[10]; size = 0; } } size 변수는 MyArrayList의 요소 개수를 추적한다. array 변수는 실제로 그 요소들을 저장하는 배열을 의미한다.</description>
+    </item>
+    
+    <item>
+      <title>[TIL &amp; Issue Note] 20220218</title>
+      <link>https://riley817.github.io/categories/til/20220218/</link>
+      <pubDate>Fri, 18 Feb 2022 21:59:10 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/til/20220218/</guid>
+      <description>20220218 Note 도커 비공개 레포지토리를 자체 인증서를 발급 하여 세팅한다. 깃랩 러너를 구성하여 main 브랜치에 머지되었을 때 서버를 구성한다. docker-compose.yml
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 version: &amp;#39;3.8&amp;#39; services: registry: image: registry:2 restart: always volumes: - /home/cherry/devops/docker_repository/images:/var/lib/registry - /home/cherry/devops/docker_repository/certs:/certs ports: - 5000:5000 environment: REGISTRY_HTTP_TLS_CERTIFICATE: /certs/domain.crt REGISTRY_HTTP_TLS_KEY: /certs/domain.key gitlab-runner: container_name: gitlab-runner image: &amp;#39;gitlab/gitlab-runner:latest&amp;#39; restart: always volumes: - .</description>
+    </item>
+    
+    <item>
+      <title>[TIL &amp; Issue Note] 20220217</title>
+      <link>https://riley817.github.io/categories/til/20220217/</link>
+      <pubDate>Thu, 17 Feb 2022 22:06:00 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/til/20220217/</guid>
+      <description>이슈 사내 사이드 프로젝트 배포를 위한 개인 도커 레포지토리를 구축 중이다. 도메인은 godaddy를 통해 구매하였고, repository.XXXXX.com 서브도메인을 구성하였다. 개인 도커 레포지토리를 외부에서 접근하려먼 HTTPS만 지원하기 때문에 openssl을 통해 자체 서명 인증서를 발급했다.
+1 openssl req -newkey rsa:4096 -nodes -sha256 -keyout ./domain.key -x509 -days 365 -out ./domain.crt 위와 같이 발행 후 원격장비에서 도커 레포지토리 장비로 이미지를 푸시하려는데 아래와 같은 메세지와 함께 푸시가 되지 않았다.
+The push refers to repository [repository.XXXXX.com:5000/my-nginx] Get &amp;ldquo;https://repository.</description>
+    </item>
+    
+    <item>
+      <title>CI/CD 서버 구축하기 - 2. docker-compose를 사용하여 Jenkins, GitLab 설치</title>
+      <link>https://riley817.github.io/categories/devops/ci-cd/install-jenkins-gitlab/</link>
+      <pubDate>Mon, 14 Feb 2022 14:55:56 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/devops/ci-cd/install-jenkins-gitlab/</guid>
+      <description>개요 사내 개발 협업을 위한 CI/CD 서버를 구축한다. AWS EC2 인스턴스를 사용중이다. (Ubuntu LTS) docker, docker-compose가 설치되어 있다. Install Docker Engine on Ubuntu Install Docker Compose GitLab의 경우 추후 라이센스 구매를 위해 ce가 아닌 ee 버전으로 설치한다. 설치를 위한 Docker Compose 설정 아래는 GitLab, Jenkins를 컨테이너를 띄우기 위한 docker-compose 설정이다. GitLab 이미지는 단일 컨테이너에서 서비스를 실행하기위한 Monolithic 이미지이며 최소 시스템 요구사항은 아래와 같다.
+GitLab installation minimum requirements docker-compose.yml 파일 준비 작업 디렉터리를 생성한다.</description>
+    </item>
+    
+    <item>
+      <title>CI/CD 서버 구축하기 - 1. 개념</title>
+      <link>https://riley817.github.io/categories/devops/ci-cd/ci-cd/</link>
+      <pubDate>Thu, 10 Feb 2022 23:08:56 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/devops/ci-cd/ci-cd/</guid>
+      <description>요약 CI/CD는 애플리케이션 개발 단계를 자동화하여 애플리케이션을 보다 짧은 주기로 고객에게 제공하는 방법이다. 아래 세 가지 단계로 구분 할 수 있다.
+지속적인 통합 Continuous Integration 지속적인 서비스 제공 Continuous Delivery 지속적인 배포 Continuous Deployment [출처] https://www.redhat.com/ko/topics/devops/what-is-ci-cd
+💡 &amp;ldquo;CD&amp;quot;는 지속적인 서비스 제공(Continuous Delivery) 및/또는 지속적인 배포(Continuous Deployment)를 의미하며 이 두 용어는 상호 교환적으로 사용할 수 있다.
+개념 CI 다수의 개발자가 작성 및 수정한 코드가 지속적으로 통합/테스트(Continuous Integration) 되는 것을 의미한다. CI 작업 순서는 도구, 프로그래밍 언어, 프로젝트 등 기타 여러 요인에 따라 많이 다르지만 일반적으로는 다음과 같다.</description>
+    </item>
+    
+    <item>
+      <title>Webpack5 설정하기 (ESM)</title>
+      <link>https://riley817.github.io/categories/javascript/webpack/</link>
+      <pubDate>Sun, 16 Jan 2022 00:01:00 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/javascript/webpack/</guid>
+      <description>회사에서 Javascript 용 서비스 SDK를 개발하면서 설정했던 webpack5 설정파일을 기록한다. 오래전에 잠깐 접해보았던게 webpack2 버전이었는데 어느새 5까지 나왔다. 알고 사용하는게 아니다보니 쓰면서 애를 먹었다&amp;hellip;🥺🥺🥺
+Webpack5 설정하기 (ESM 사용) 회사에서 개발한 SDK는 CJS(CommonJS)에서 ESM(ECMAScript Module) 모듈 방식을 사용하여 개발했다. ESM 모듈 로더 사용하기 위해 package.json에 아래 설정을 추가했다.
+package.json
+1 &amp;#34;type&amp;#34;: &amp;#34;module&amp;#34; 아래 글에서는 CJS가 기본값이기 때문에 라이브러리의 경우 CJS로 개발하는 것을 추천하고 있다.
+Node Modules at War: Why CommonJS and ES Modules Can’t Get Along 설치 라이브러리 1 npm install --save-dev webpack webpack-cli webpack-merge webpack-stream webpack-merge 웹팩 설정을 하나로 병합해주는 라이브러리.</description>
+    </item>
+    
+    <item>
+      <title>code-server를 이용하여 ipad에서 vscode로 개발하기</title>
+      <link>https://riley817.github.io/categories/etc/code-server/</link>
+      <pubDate>Tue, 11 Jan 2022 18:43:25 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/etc/code-server/</guid>
+      <description> 고가의 ipad 키보드를 샀으니 이제 ipad로 짜세있게 개발을 해봐야겠다.ㅎㅎㅎ
+code-server를 이용하여 ipad에서 vscode 개발하기 VS code-server를 이용하면 외부에서 접속이 가능한 개발환경을 만들 수 있다.
+1. 가상 인스턴스 서버 생성 code-server를 사용하려면 원격 서버가 필요하다. 나는 퍼니오(https://www.fun25.co.kr/)라는 가상서버 호스팅 서비스를 이용하고 있다. 클라우드 무료로 사용할 수 있는건 모두 다 사용해본 관계로&amp;hellip; 퍼니오에서 저렴하게 구매해서 사용하고 있다.
+인스턴스 요구 사항은 다음과 같다.
+웹소켓이 가능한 linux 머신, 1 GB RAN, 2 CPUs </description>
+    </item>
+    
+    <item>
+      <title>Multi Thread</title>
+      <link>https://riley817.github.io/categories/javascript/webworker/</link>
+      <pubDate>Tue, 21 Sep 2021 17:07:00 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/javascript/webworker/</guid>
+      <description>Web worker Web Worker 는 메인 스레드와 분리된 별도의 백그라운드 스레드에서 스크립트를 실행할 수 있는 기술이다. UI 스레드와는 별개의 스레드를 실행시켜 사용자 인터페이스를 방해하지않고 작업을 수행할 수 있다.
+Web worker scope Web worker는 메인 스레드와 별도의 worker 스레드를 갖는다. 메인 스레드에서 window 객체는 GlobalScope 이지만 worker 스레드에서는 별도의 스코프 범위를 갖는다. Worker 종류에 따른 Scope worker 스레드는 메인 스레드 window 객체에 액세스할 수 있는 권한이 없기 때문에 window의 메서드나 DOM을 직접적으로 제어할 수 없다.</description>
+    </item>
+    
+    <item>
+      <title>Go 인터페이스</title>
+      <link>https://riley817.github.io/categories/golang/go-interface/</link>
+      <pubDate>Mon, 23 Aug 2021 17:51:49 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/golang/go-interface/</guid>
+      <description>Tucker의 Go 언어 프로그래밍 책 내용을 정리하였습니다.
+1. 인터페이스 정의 인터페이스 선언 인터페이스 선언은 type을 쓴 뒤 인터페이스 명을 쓰고 interface 키워드를 쓴다. 그런 뒤 {} 블록 안에 인터페이스에 포함된 메서드 집합을 써준다. 1 2 3 4 type DuckInterface interface { Fly() Walk(distance int) int } 유의사항 메서드는 반드시 메서드명이 있어야한다. 매개변수와 반환이 다르더라도 이름이 같은 메서드는 있을 수 없다. 인터페이스에서는 메서드 구현을 포함하지 않는다. 인터페이스 선언 예제 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 package main import &amp;#34;fmt&amp;#34; type Stringer interface { String() string } type Student struct { Name string Age int } func (s Student) String() string { return fmt.</description>
+    </item>
+    
+    <item>
+      <title>[Tucker]Go 개발 환경 설정 - 윈도우즈</title>
+      <link>https://riley817.github.io/categories/golang/tucker-go-section1/</link>
+      <pubDate>Fri, 20 Aug 2021 14:09:30 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/golang/tucker-go-section1/</guid>
+      <description>설치할 것들 Go Git Visual Studio Code </description>
+    </item>
+    
+    <item>
+      <title>Go 문자열 구조</title>
+      <link>https://riley817.github.io/categories/golang/go-string/</link>
+      <pubDate>Fri, 20 Aug 2021 14:09:30 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/golang/go-string/</guid>
+      <description>Tucker의 Go 언어 프로그래밍 책 내용을 정리하였습니다.
+string 구조 string 타입은 Go 언어에서 제공하는 내장 타입으로 그 내부구현은 감추어져 있다. 하지만 reflect 패키지 안의 StringHeader 구조체를 통해 내부구조를 엿볼 수 있다. 1 2 3 4 5 6 7 8 9 10 // StringHeader is the runtime representation of a string. // It cannot be used safely or portably and its representation may // change in a later release. // Moreover, the Data field is not sufficient to guarantee the data // it references will not be garbage collected, so programs must keep // a separate, correctly typed pointer to the underlying data.</description>
+    </item>
+    
+    <item>
+      <title>Go 스택 메모리와 힙 메모리</title>
+      <link>https://riley817.github.io/categories/golang/go-escape-analysis/</link>
+      <pubDate>Thu, 19 Aug 2021 16:32:05 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/golang/go-escape-analysis/</guid>
+      <description>음.. 완벽하게 이해하지는 못했다 😇😇😇
+스택 메모리와 힙 메모리 대부분의 프로그래밍 언어는 메모리를 할당할 때 스택 메모리 영역 또는 힙 메모리 영역을 사용한다. 함수 내부에서만 사용되는 값은 스택 메모리에 할당된다. 함수 외부로 공개되는 메모리 공간은 힙 메모리 영역에 할당된다. C/C++ 언어에서는 malloc() 함수를 직접 호출해서 힙 메모리 공간을 할당한다. 자바의 경우 클래스 타입을 힙에, 기본 타입을 스택에 할당한다. Go 언어는 이스케이프 분석(escape analysis) 을 해서 어느 메모리에 할당할지 결정한다. 이스케이프 분석(escape analysis) GC 컴파일러는 함수와 패키지를 넘어 전역적으로 탈출 검사를 수행한다.</description>
+    </item>
+    
+    <item>
+      <title>Go 상수와 리터럴</title>
+      <link>https://riley817.github.io/categories/golang/go-constant-literal/</link>
+      <pubDate>Thu, 19 Aug 2021 16:24:39 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/golang/go-constant-literal/</guid>
+      <description>Tucker의 Go 언어 프로그래밍 책 내용을 정리하였습니다.
+상수와 리터럴 상수 (Constant) 상수는 변하지 않는 값을 의미한다. 한번 초기화 하면 값을 바꿀 수 없다. 정수, 실수, 문자열 등 기본 타입값들로만 상수로 선언될 수 있다. 구조체, 배열 등 기본 타입이 아닌 타입에는 상수를 사용할 수 없다. 상수로 사용될 수 있는 타입 불리언 룬 정수 실수 복소수 문자열 상수는 값으로만 동작한다. 변수가 값, 이름, 타입, 메모리 주소 4가지 속성을 가지는 반면 상수는 값, 이름, 타입 3가지 속성만 가진다.</description>
+    </item>
+    
+    <item>
+      <title>실수 오차</title>
+      <link>https://riley817.github.io/categories/golang/go-comparison-operator/</link>
+      <pubDate>Wed, 18 Aug 2021 14:42:00 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/golang/go-comparison-operator/</guid>
+      <description>Tucker의 Go 언어 프로그래밍 책 내용을 참고 및 정리해서 작성하였습니다.
+실수 끼리의 비교연산에서 예기치 않은 결과가 나올 때가 있다. 0.1 + 0.2 = 0.3의 결과를 예상하였지만 실제 출력값은 0.30000000000000004가 출력되었다.
+1 2 3 4 5 6 7 8 9 10 11 12 package main import &amp;#34;fmt&amp;#34; func main() { var a float64 = 0.1 var b float64 = 0.2 var c float64 = 0.3 fmt.Printf(&amp;#34;%f + %f == %f : %v\n&amp;#34;, a, b, c, a+b == c) fmt.</description>
+    </item>
+    
+    <item>
+      <title>텔레그램 봇</title>
+      <link>https://riley817.github.io/categories/etc/telegrambot/</link>
+      <pubDate>Fri, 13 Aug 2021 14:46:00 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/etc/telegrambot/</guid>
+      <description>할때마다 까먹는다.
+텔레그램 봇 만들기 1. 봇아빠 채팅방에 접속 https://t.me/BotFather 혹은 @BotFather 검색하여 채팅방 접속 2. BotFather 채팅방에서 봇 생성 명령어를 입력한다. 채팅창에 /newbot을 입력한다. 3. 텔레그램 봇 이름을 입력한다. 이름은 _bot으로 끝나야 한다. 4. 다시 입력 한번 더 bot 이름을 입력하면 봇 주소와 API 토큰 값을 얻을 수 있다. 5. 봇 채팅방 접속 후 시작 버튼 클릭 6. 봇 채팅방 chat id 얻기 봇 채팅방에서 아무 메세지나 입력한다. 브라우저에서 https://api.</description>
+    </item>
+    
+    <item>
+      <title>docker를 사용하여 oracle 12c 세팅하기</title>
+      <link>https://riley817.github.io/categories/docker-kubernetes/docker-oracle/</link>
+      <pubDate>Thu, 12 Aug 2021 17:17:30 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/docker-kubernetes/docker-oracle/</guid>
+      <description>기록쓰 기록쓰 👻👻👻👻
+Oracle 12c 공식 이미지 다운로드 https://hub.docker.com/_/oracle-database-enterprise-edition?tab=resources 공식 이미지를 다운로드 후 Preceed to Checkout 버튼을 클릭하여 동의 정보를 입력한다. 대충 입력쓰&amp;hellip; 도커 이미지 다운로드 후 실행 8080은 많이 사용하니까 각각 8282, 1522로 매핑하였다. 1 2 3 4 5 # docker image pull docker pull store/oracle/database-enterprise:12.2.0.1 # docker run docker run -d -p 8282:8080 -p 1522:1521 --name oracle12c store/oracle/database-enterprise:12.2.0.1 유저 생성 및 권한 부여 sysdba로 sqlplus 접속 1 docker exec -it oracle12c bash -c &amp;#34;source /home/oracle/.</description>
+    </item>
+    
+    <item>
+      <title>Section 12 : 패키지 고급</title>
+      <link>https://riley817.github.io/categories/golang/easy-golang-section12/</link>
+      <pubDate>Fri, 23 Apr 2021 16:44:26 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/golang/easy-golang-section12/</guid>
+      <description>인프런 쉽고 빠르게 끝내는 GO언어 프로그래밍 핵심 기초 입문 과정 강의 정리
+12.1 사용자 패키지 제작 및 문서화 12.1.1 사용자 패키지 작성 및 문서화 go 에서 패키지는 폴더명(디렉토리명)으로 접근한다. → 그러므로 명확하게 지정해야 한다. 사용자 패키지를 문서화 할 때 main 패키지를 제외하고 package 문서에 등록된다. 기본적으로 GOROOT 의 패키지에서 검색 → 없으면 GOPATH 패키지를 검색한다. go install 명령어 : GOPATH/pkg 에 패키지 등록 godoc -http:=6060 으로 본인 패키지 메소드 및 주석을 확인 할 수 있다.</description>
+    </item>
+    
+    <item>
+      <title>Section 11 : Go 파일 입출력</title>
+      <link>https://riley817.github.io/categories/golang/easy-golang-section11/</link>
+      <pubDate>Fri, 23 Apr 2021 15:36:01 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/golang/easy-golang-section11/</guid>
+      <description>인프런 쉽고 빠르게 끝내는 GO언어 프로그래밍 핵심 기초 입문 과정 강의 정리
+11.1 파일 입출력 11.1.1 os 패키지 - 파일 읽기, 쓰기 Go에서 파일을 읽고 쓰기 위해 Go 표준 패키지인 os 패키지를 사용할 수 있다.
+os.Open() : 기존 파일 열기 os.Create() : 새 파일을 생성 os.Close() : 파일 리소스 닫기 파일 읽기 및 탐색 예제 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 package main import ( &amp;#34;fmt&amp;#34; &amp;#34;os&amp;#34; ) // 에러 체크 방식 1 func errCheck1(e error) { if e !</description>
+    </item>
+    
+    <item>
+      <title>Section 10 : 에러 처리</title>
+      <link>https://riley817.github.io/categories/golang/easy-golang-section10/</link>
+      <pubDate>Fri, 23 Apr 2021 13:11:20 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/golang/easy-golang-section10/</guid>
+      <description>인프런 쉽고 빠르게 끝내는 GO언어 프로그래밍 핵심 기초 입문 과정 강의 정리
+10.1 에러처리 10.1.1 Go 에러 소프트웨어의 품질 향상에 가장 중요한 것 → 유형코드 및 에러 정보 등을 남기는 것
+Go 에서는 기본적으로 error 라는 인터페이스 타입을 갖고 있다. 개발자는 이 인터페이스를 구현하는 커스텀 에러 타입을 만들 수 있다. 1 2 3 type error interface { Error() string } 10.1.2 Go 에러처리 Go 함수의 경우 기본적으로 리턴 타입을 두개 갖고 있다.</description>
+    </item>
+    
+    <item>
+      <title>Oracle Scheduler DBMS_SCHEDULER 개념 및 사용법</title>
+      <link>https://riley817.github.io/categories/dbms/oracle-scheduler/</link>
+      <pubDate>Thu, 22 Apr 2021 00:00:00 +0000</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/dbms/oracle-scheduler/</guid>
+      <description>Oracle Scheduler - DBMS_SCHEDULER 오라클에서 정해진 시간에 반복된 작업을 수행하기 위해 DBMS_JOB 패키지를 활용하였지만 Oracle 10g 부터는 좀 더 확장된 기능을 가진 DBMS_SCHEDULER 패키지를 제공하고 있다. DBMS_JOB과의 가장 큰 차이점은 DBMS_JOB에서는 불가능하던 외부스크립트 (프로시저나, 함수 이외에도 OS에서 생성된 각종 유틸, 프로그램 까지) 실행이 가능하다. Class 생성 클래스를 지정하지 않게 되면 DEFAULT_JOB_CLASS 에 포함되는데 이 경우 기본 로깅 정책을 따른다. 기본로깅 정책은 DBMS_SCHEDULER.LOGGING_RUNS 이며 로깅레벨을 별도로 설정하거나 다른 스케쥴잡과 그룹화하여 관리하고 싶을 경우 Class를 생성한다.</description>
+    </item>
+    
+    <item>
+      <title>Section 9 : Go 병행처리</title>
+      <link>https://riley817.github.io/categories/golang/easy-golang-section9/</link>
+      <pubDate>Thu, 15 Apr 2021 00:00:00 +0000</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/golang/easy-golang-section9/</guid>
+      <description>인프런 쉽고 빠르게 끝내는 GO언어 프로그래밍 핵심 기초 입문 과정 강의 정리
+9.1 고루틴 9.1.1 GoRoutine goroutine은 go 런타임이 관리하는 lightweight 논리적(가장적) Thread이다. 생성 방법이 매우 간단하고 리소스를 매우 적게 사용한다. → 수 많은 고루틴을 동시에 생성 및 실행이 가능 Java나 Python의 스레드는 MB단위인 반면에 GO KB 단위이다. 비동기적 asynchronously 함수 루틴을 실행 한다. 채널을 통해 루틴간 통신이 가능하다. 공유 메모리를 사용시에 정확한 동기화 코딩이 필요하다. 싱글 루틴에 비해 항상 빠르지는 않다.</description>
+    </item>
+    
+    <item>
+      <title>Section 8 : Go 객체지향</title>
+      <link>https://riley817.github.io/categories/golang/easy-golang-section8/</link>
+      <pubDate>Tue, 13 Apr 2021 00:00:00 +0000</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/golang/easy-golang-section8/</guid>
+      <description>인프런 쉽고 빠르게 끝내는 GO언어 프로그래밍 핵심 기초 입문 과정 강의 정리
+8.1 인터페이스 8.1.1 인터페이스란 구조체가 필드들의 집합체라면 interface는 메서드들의 집합이다. 인터페이스는 타입이 구현해야 하는 메서드 원형 prototype 을 정의한다. → 추상화를 제공 디자인패턴 측면에서 client의 입장 → 인터페이스에 정의된 메소드의 동작을 보장하므로 정확한 class의 구현방법을 몰라도 된다. 클래스간의 결합도 감소 → 유지보수성 향상, 기능 추가 용이성, 독립적인 프로그래밍 가능 인터페이스를 구현하기 위해서는 해당 타입이 그 인터페이스 메서드들이 모두 구현되어야 한다.</description>
+    </item>
+    
+    <item>
+      <title>Section 7 : Go 함수</title>
+      <link>https://riley817.github.io/categories/golang/easy-golang-section7/</link>
+      <pubDate>Thu, 08 Apr 2021 00:00:00 +0000</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/golang/easy-golang-section7/</guid>
+      <description>인프런 쉽고 빠르게 끝내는 GO언어 프로그래밍 핵심 기초 입문 과정 강의 정리
+7.1 함수 기초 7.1.1 함수 여러 문장을 묶어서 실행하는 코드 블럭 단위 func 키워드를 사용하여 정의한다. 타 언어와 달리 변환 값 return value 다수 가능 1 2 3 4 func 함수명(매개변수) (반환타입 or 반환 값 변수명) : 반환 값 존재 func 함수명() (반환타입 or 반환 값 변수명) : 매개변수 없음, 반환 값 존재 func 함수명(매개변수) : 매개변수 존재, 반환 값 없음 func 함수명() : 매개변수 없음, 반환값 없음 함수 사용 예제 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 package main import ( &amp;#34;fmt&amp;#34; &amp;#34;strconv&amp;#34; ) // 함수 선언 위치는 어느 곳이 든 가능 func helloGoLang() { // 매개변수 X, 반환값 x fmt.</description>
+    </item>
+    
+    <item>
+      <title>Section 6 : 배열, 슬라이스, 맵</title>
+      <link>https://riley817.github.io/categories/golang/easy-golang-section6/</link>
+      <pubDate>Tue, 06 Apr 2021 00:00:00 +0000</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/golang/easy-golang-section6/</guid>
+      <description>인프런 쉽고 빠르게 끝내는 GO언어 프로그래밍 핵심 기초 입문 과정 강의 정리
+6.1 배열 6.2.1 배열 배열은 용량, 길이가 항상 같다. cap() : 배열, 슬라이스 용량 len() : 배열, 슬라이스 길이 대부분은 슬라이스를 많이 사용한다. 배열과 슬라이스 차이점 배열 슬라이스 길이 고정여부 길이가 고정 되어 있다. 길이가 가변이다. 타입 여부 값 타입 참조 타입 전달 방식 값을 복사 전달 참조 값 전달 기타 전체 비교연산자 가능 전체 비교 연산자 사용 불가 배열 선언 예제 - 1 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 var arr1 [5]int var arr2 [5]int = [5]int{1, 2, 3, 4, 5} var arr3 = [5]int{1, 2, 3, 4, 5} arr4 := [5]int{1, 2, 3, 4, 5} arr5 := [5]int{1, 2, 3} arr6 := [.</description>
+    </item>
+    
+    <item>
+      <title>Section 5 : Go 데이터 타입</title>
+      <link>https://riley817.github.io/categories/golang/easy-golang-section5/</link>
+      <pubDate>Mon, 22 Mar 2021 00:00:00 +0000</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/golang/easy-golang-section5/</guid>
+      <description>인프런 쉽고 빠르게 끝내는 GO언어 프로그래밍 핵심 기초 입문 과정 강의 정리
+5.1 Bool boolean 타입 : 참, 거짓 조건부 논리 연산자와 주로 함께 사용한다. !, ||(or) &amp;amp;&amp;amp;(and) 암묵적인 형 변환은 불가능하다. 0, Nil → false 변환 불가능 예제 1 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 var b1 bool = true var b2 bool = false b3 := true // b4 := 1 // Error!</description>
+    </item>
+    
+    <item>
+      <title>nginx 로그를 Elasticsearch Cloud로 수집하기</title>
+      <link>https://riley817.github.io/categories/elasticsearch/nginx-log-es-cloud/</link>
+      <pubDate>Sun, 21 Mar 2021 00:00:00 +0000</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/elasticsearch/nginx-log-es-cloud/</guid>
+      <description>개요 파일비트를 사용하여 웹 서버(nginx) 로그 파일을 수집하고 Elasticsearch Cloud에 전송한다. Cloud에서 생성한 Kibana 사이트에 접속하면 여러 플랫폼에서 데이터를 수집할 수 있는 예시 파일을 참고 할 수 있다.
+파일비트 설치 파일비트는 수집할 로그가 쌓이는 서버에 설치했다.
+1 2 3 4 cd /usr/local/src sudo curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.11.1-linux-x86_64.tar.gz tar xzvf filebeat-7.11.1-linux-x86_64.tar.gz cd filebeat-7.11.1-linux-x86_64 Elastic Cloud 인증정보 설정 Elastic Cloud 접속을 위하여 filebeat.yml의 관련항목의 주석을 해제하고 인증정보를 설정한다. 그 외 필요한 설정 정보는 아래 링크를 참조한다.</description>
+    </item>
+    
+    <item>
+      <title>Section 4 : Go 패키지 기초</title>
+      <link>https://riley817.github.io/categories/golang/easy-golang-section4/</link>
+      <pubDate>Fri, 19 Mar 2021 00:00:00 +0000</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/golang/easy-golang-section4/</guid>
+      <description>인프런 쉽고 빠르게 끝내는 GO언어 프로그래밍 핵심 기초 입문 과정 강의 정리
+4.1 Go 패키지 Go의 패키지는 코드 구조화(모듈화) 및 재사용 기능을 제공한다. 응집도, 결합도를 느슨하게 해야 유지보수가 쉽고 가독성이 좋아진다. 클린코드 Go는 패키지를 사용해서 작은 단위의 컴포넌트를 작성하고 이러한 작은 패키지를 결합해서 프로그램을 작성할 것을 권고하고 있다. 패키지이름 = 디렉토리 이름 같은 패키지 내 소스파일들은 디렉토리명을 패키지명으로 사용한다. 네이밍 규칙 : 소문자 private 대문자 public Go에서 main 패키지는 특별하게 인식된다 → 컴파일러에서는 프로그램의 시작점 start point로 인식한다.</description>
+    </item>
+    
+    <item>
+      <title>Elastic Cloud 이관 작업</title>
+      <link>https://riley817.github.io/categories/elasticsearch/es-cloud/</link>
+      <pubDate>Wed, 17 Mar 2021 00:00:00 +0000</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/elasticsearch/es-cloud/</guid>
+      <description>개요 Elastic Cloud로 데이터 마이그레이션하기 A to Z
+filebeat, logstash 는 데이터 소스가 있는 시스템에 설치하고, Elasticsearch, Kinaba 는 Elastic Cloud 로 세팅하여 사용한다.
+엘라스틱서치 운영 모니터링 까지 Elastic Cloud 에서 모두 지원하기 때문에 따로 구성하지 않아도 된다.
+Elastic Cloud 구조 작업 목표 On-promise로 구성되어 있는 검색어 키워드를 Elastic Cloud 환경으로 이관한다. 추후에 맵으로 시각화 할 수 있도록 기존 데이터에 location(latitude, longitude)를 추가한다. 현재 시스템 구성 현재 구성되어 있는 검색어 키워드 인덱스 명 → wini_srch_kwrd_hist-yyyymm ES_MASTER 서버에서 로그스태시가 매일 09:00 마다 키워드 테이블을 조회하여 엘라스틱서치에 저장시키고 있다.</description>
+    </item>
+    
+    <item>
+      <title>Section 3 : Go 제어문 및 반복문</title>
+      <link>https://riley817.github.io/categories/golang/easy-golang-section3/</link>
+      <pubDate>Wed, 17 Mar 2021 00:00:00 +0000</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/golang/easy-golang-section3/</guid>
+      <description>인프런 쉽고 빠르게 끝내는 GO언어 프로그래밍 핵심 기초 입문 과정 강의 정리
+3.1 조건문 3.1.1 조건문 IF if 문은 반드시 Boolean 형으로 검사해야 한다. 다른 언어처럼 1, 0 으로 조건문을 사용할 수 없다 → 자동 형변환 불가 소괄호는 사용하지 않는다. 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 func main() { var a int = 20 b := 20 if a &amp;gt;= 15 { fmt.</description>
+    </item>
+    
+    <item>
+      <title>Section 2 : Go 기초 문법</title>
+      <link>https://riley817.github.io/categories/golang/easy-golang-section2/</link>
+      <pubDate>Sat, 13 Mar 2021 00:00:00 +0000</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/golang/easy-golang-section2/</guid>
+      <description>인프런 쉽고 빠르게 끝내는 GO언어 프로그래밍 핵심 기초 입문 과정 강의 정리
+2.1 변수 및 상수 변수 선언 GO 언어는 자료형을 정적으로 검사하므로 변수에 자료형이 정해져 있다. 정적 자료형을 지원하지만 자료형 선언 할당하는 번거로움을 벗어나게 해주는 자료형 추론 기능이 있다. 정수 타입 0, 실수 0.0, 문자열 &amp;ldquo;&amp;rdquo;, boolean (true, false) 변수 명의 첫 글자는 숫자로 시작해서는 안된다. 대소문자는 구분하며 문자, 숫자, 밑줄, 특수기호로 변수명 선언이 가능하다. 1 2 3 4 5 6 7 8 9 10 11 12 13 var a int var b string var c, d, e int var f, g, h int = 1, 2, 3 var i float32 = 11.</description>
+    </item>
+    
+    <item>
+      <title>Section 1 : 개발 환경 설정</title>
+      <link>https://riley817.github.io/categories/golang/easy-golang-section1/</link>
+      <pubDate>Mon, 08 Mar 2021 00:00:00 +0000</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/golang/easy-golang-section1/</guid>
+      <description>인프런 쉽고 빠르게 끝내는 GO언어 프로그래밍 핵심 기초 입문 과정 강의 정리
+1. 개발 환경 설정하기 The Go Programming Language
+설치 단계 Golang 설치 하기 (Golang, Git) IDE 툴 설치 (atom) GOPATH Setting 설정 및 프로젝트 디렉토리 생성 Go 설치 확인하기 1.1 Golang 설치하기 https://golang.org/에서 인스톨러로 설치한다. 1.2 IDE 툴 설치 - ATOM https://atom.io 로 Editor 를 설치한다. Shell Commands 를 설정하여 터미널 어디서나 atom 명령어로 atom을 실행 command + i : 실행 opriton + d : go doc을 쉽게 1.</description>
+    </item>
+    
+    <item>
+      <title>docker</title>
+      <link>https://riley817.github.io/categories/devops/docker-compose/</link>
+      <pubDate>Fri, 05 Feb 2021 23:07:41 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/devops/docker-compose/</guid>
+      <description>1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 version: &amp;#39;3.0&amp;#39; services: gitlab: container_name: gitlab image: gitlab/gitlab-ee:latest restart: always hostname: &amp;#34;gitlab.</description>
+    </item>
+    
+    <item>
+      <title>Azure VM에 Elastic Stack 설정</title>
+      <link>https://riley817.github.io/categories/elasticsearch/azure-vm-elastic-stack/</link>
+      <pubDate>Fri, 22 Jan 2021 00:00:00 +0000</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/elasticsearch/azure-vm-elastic-stack/</guid>
+      <description>VM 세팅 리소스 그룹 생성 --location 으로 리젼을 선택할 수 있다. 1 2 3 4 5 # 리젼 코드 조회하기 az account list-locations -o table # elastic Resource Group 생성 az group create --name elastic --location koreasouth VM 생성하기 elastic 그룹에 VM 을 생성한다. 1 2 3 4 5 6 yoon@Azure:~$ az vm create \ &amp;gt; --resource-group elastic \ &amp;gt; --name rileyVM \ &amp;gt; --image UbuntuLTS \ &amp;gt; --admin-username riley \ &amp;gt; --generate-ssh-keys 빠른 시작: Azure CLI를 사용하여 Linux VM 만들기 - Azure Virtual Machines SSH 접속 세팅 VM 생성 시 --generate-ssh-ke 의 옵션을 주어 SSH Key를 생성하였다.</description>
+    </item>
+    
+    <item>
+      <title>Doker로 MySQL 설치하기</title>
+      <link>https://riley817.github.io/categories/docker-kubernetes/docker-mysql/</link>
+      <pubDate>Sat, 30 May 2020 00:00:00 +0000</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/docker-kubernetes/docker-mysql/</guid>
+      <description>docker 다운로드 및 이미지 생성 docker에서 내려 받을 수 있는 mysql 버전 확인 : https://hub.docker.com/_/mysql/ 버전을 명시 하지 않으면 가장 최신 버전을 다운로드하게 됨 1 2 3 4 5 # docker pull sudo docker pull mysql:8 # docker 이미지 확인 sudo docker images docker Mysql 컨테이너 생성 및 실행 1 2 3 4 5 # mysql 컨테이너 생성 및 실행 sudo docker run -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=PASSWORD --name mysql8 -v /usr/riley/datadir:/var/lib/mysql mysql:8 --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci # 실행된 컨테이너 확인 sudo docker ps -a MySql 컨테이너 bash 쉘 접속하여 MySQL 에 접속하기 1 2 3 4 5 # 컨테이너 bash 쉘 접속 sudo docker exec -it mysql8 bash # mysql 접속 mysql -u root -p 데이터베이스의 유저를 생성하고 권한 부여 % : 모든 접속을 허용.</description>
+    </item>
+    
+    <item>
+      <title>git submodule 삭제하기</title>
+      <link>https://riley817.github.io/categories/git/git-submodule/</link>
+      <pubDate>Sun, 24 May 2020 20:07:22 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/git/git-submodule/</guid>
+      <description>git submodule 삭제하기 1. .gitmodules를 열어 해당 서브 모듈이 정의된 부분을 제거하거나 파일을 지운다. .gitmodules에 불필요한 모듈만 제거하거나 .gitmodules 파일이 불필요하다면 아예 삭제해 버린다. 2. .git/config 파일을 열어 불필요한 서브 모듈을 삭제한다. 1 vi PROJECT_ROOT/.git/config 3. 해당 저장소의 캐시를 제거한다. 1 2 # git rm --cached path_to_submodule git rm --cached spring-module-common 4. .git/modules/path_to_submodule 파일을 삭제한다. 1 2 cd PROJECT_ROOT/.git/modules rm --rf spring-module-common 5. 변경된 사항을 커밋 한다. 참고 https://git.wiki.kernel.org/index.php/GitSubmoduleTutorial#Removal </description>
+    </item>
+    
+    <item>
+      <title>gitignore 적용하기</title>
+      <link>https://riley817.github.io/categories/git/git-ignore/</link>
+      <pubDate>Mon, 11 May 2020 22:59:31 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/git/git-ignore/</guid>
+      <description>.gitignore .gitignore에 의도적으로 추적을 원하지 않는 파일을 무시하도록 지정할 수 있다. 그러나 git이 이미 추적을 한 파일은 영향을 받지 않는다. 이미 한번 추적이 된 파일을 .gitignore 파일에 적용하려면 아래와 같이 캐시를 삭제해 주어야 한다. 1 2 3 4 git rm -r --cached . git add . git commit -m &amp;#34;Apply .gitignore&amp;#34; git push </description>
+    </item>
+    
+    <item>
+      <title>nginx 컴파일 설치하기 - centos7</title>
+      <link>https://riley817.github.io/categories/devops/nginx-compile/</link>
+      <pubDate>Wed, 06 May 2020 23:45:11 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/devops/nginx-compile/</guid>
+      <description>nginx 컴파일 설치하기 CentOS 7에서 NGINX를 컴파일 버전으로 설치한다. 컴파일 설치를 하기 위해서는 몇 가지 라이브러리가 필요하다. 필요 의존 라이브러리는 openssl, pcre, zlib 등이 필요하므로 먼저 설치한다. 컴파일을 위한 라이브러리 설치 1 2 3 4 5 6 7 8 9 10 11 # pcre 라이브러리 설치 yum install pcre* # gzip 압축을 사용하기 위해서 설치 yum install zlib zlib-devel # open ssl 설치 yum install openssl openssl-devel # gcc 설치 yum install gcc nginx 소스 파일을 다운로드 최신 버전 경로는 아래 url에 접속하여 원하는 버전 링크를 복사한다.</description>
+    </item>
+    
+    <item>
+      <title>nginx CORS 활성화 하기</title>
+      <link>https://riley817.github.io/categories/devops/nginx-cors/</link>
+      <pubDate>Wed, 06 May 2020 22:11:55 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/devops/nginx-cors/</guid>
+      <description>nginx CORS 활성화 하기 nginx에서 CORS(Cross-Origin Resource Sharing) 설정을 활성화한다. nginx 설정파일 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 # # Wide-open CORS config for nginx # location / { if ($request_method = &amp;#39;OPTIONS&amp;#39;) { add_header &amp;#39;Access-Control-Allow-Origin&amp;#39; &amp;#39;*&amp;#39;; add_header &amp;#39;Access-Control-Allow-Methods&amp;#39; &amp;#39;GET, POST, OPTIONS&amp;#39;; # # Custom headers and headers various browsers *should* be OK with but aren&amp;#39;t # add_header &amp;#39;Access-Control-Allow-Headers&amp;#39; &amp;#39;DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range&amp;#39;; # # Tell client that this pre-flight info is valid for 20 days # add_header &amp;#39;Access-Control-Max-Age&amp;#39; 1728000; add_header &amp;#39;Content-Type&amp;#39; &amp;#39;text/plain; charset=utf-8&amp;#39;; add_header &amp;#39;Content-Length&amp;#39; 0; return 204; } if ($request_method = &amp;#39;POST&amp;#39;) { add_header &amp;#39;Access-Control-Allow-Origin&amp;#39; &amp;#39;*&amp;#39;; add_header &amp;#39;Access-Control-Allow-Methods&amp;#39; &amp;#39;GET, POST, OPTIONS&amp;#39;; add_header &amp;#39;Access-Control-Allow-Headers&amp;#39; &amp;#39;DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range&amp;#39;; add_header &amp;#39;Access-Control-Expose-Headers&amp;#39; &amp;#39;Content-Length,Content-Range&amp;#39;; } if ($request_method = &amp;#39;GET&amp;#39;) { add_header &amp;#39;Access-Control-Allow-Origin&amp;#39; &amp;#39;*&amp;#39;; add_header &amp;#39;Access-Control-Allow-Methods&amp;#39; &amp;#39;GET, POST, OPTIONS&amp;#39;; add_header &amp;#39;Access-Control-Allow-Headers&amp;#39; &amp;#39;DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range&amp;#39;; add_header &amp;#39;Access-Control-Expose-Headers&amp;#39; &amp;#39;Content-Length,Content-Range&amp;#39;; } } </description>
+    </item>
+    
+    <item>
+      <title>Multi Thread</title>
+      <link>https://riley817.github.io/categories/java/thread/</link>
+      <pubDate>Sun, 19 Apr 2020 23:11:21 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/java/thread/</guid>
+      <description>자바 기본 잊지 않게 정리하기! 🤔
+프로세스와 스레드 프로세스(process) : 운영체제에서 실행 중인 하나의 애플리케이션을 의미 멀티 태스킹(multi tasking) 운영 체제에서 두 가지 이상의 다중 작업(프로세스)를 동시에 처리하는 것을 의미. 운영 체제에서는 멀티 태스킹을 할 수 있도록 CPU 및 메모리 자원을 적절히 할당하고 병렬로 실행시킨다. 할당받은 메모리를 가지고 실행하기 때문에 독립적이다. 메인 스레드 자바 애플리케이션은 메인 스레드(main thread)가 main() 메소드를 실행 하면서 시작. 메인 스레드는 필요에 따라 작업 스레드를 만들어 병렬로 실행 가능하다.</description>
+    </item>
+    
+    <item>
+      <title>AWS CentOS7 테스트 서버 구축하기</title>
+      <link>https://riley817.github.io/categories/devops/build-aws-centos7/</link>
+      <pubDate>Fri, 20 Mar 2020 15:55:39 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/devops/build-aws-centos7/</guid>
+      <description>목표 AWS에서 Cent OS 7로 테스트 서버를 구축한다. 콘솔접속경로 1. 콘솔 대시보드에서 인스턴스 시작을 선택한다. 2. Amazon Machine Image(AMI)에서 인스턴스 템플릿을 선택한다. 검색 창에 centos를 검색 후 원하는 버전을 선택한다. 3. 인스턴스 유형 선택 페이지에서 하드웨어 구성을 선택한다. 일단 난 프리티어니깐&amp;hellip; t2.micro를 선택 🤔 4. 🤷🏻‍♀️ 검토 후 시작(Review and Launch) 버튼을 클릭하여 구성을 완료한다. 5. 보안 그룹 구성 6. 인스턴스 시작 검토 페이지에서 시작을 선택한다. 7. 키 페어 생성화면에서 키 페어를 생성한다.</description>
+    </item>
+    
+    <item>
+      <title>H2 설치후 연결시 Database ~ not found, and IFEXISTS=true, so we cant auto-create it [90146-199]</title>
+      <link>https://riley817.github.io/categories/dbms/h2-database-not-found/</link>
+      <pubDate>Fri, 20 Mar 2020 00:00:00 +0000</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/dbms/h2-database-not-found/</guid>
+      <description>이슈 해당 정보를 입력하고 연결정보를 클릭시 아래와 같은 에러가 발생하였다. Database &amp;quot;/Users/riley/test&amp;quot; not found, and IFEXISTS=true, so we cant auto-create it [90146-199] 90146/90146
+문제 해결 단계 아래 링크를 통하여 test 라는 이름의 새로운 데이터베이스를 생성해줌으로써 해결하였다.
+http://www.h2database.com/html/tutorial.html#creating_new_databases 1 2 # 설치경로로 이동 cd /Users/riley/Utils/h2/bin 이동하면 h2-버전명 jar 파일이 있다. h2 쉘을 아래와 같이 실행해준다.
+1 java -cp h2-1.4.199.jar org.h2.tools.Shell URL 은 jdbc:h2:~/test 로 지정하였다. jdbc:h2:~/test 로 접속 URL 을 설정하였지만 어플리케이션에서 접속시 URL 은 jdbc:h2:tcp://localhost/~/test 로 접속해야한다.</description>
+    </item>
+    
+    <item>
+      <title>About LoveIt</title>
+      <link>https://riley817.github.io/categories/docker-kubernetes/chapter1-docker/</link>
+      <pubDate>Fri, 02 Aug 2019 11:04:49 +0800</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/docker-kubernetes/chapter1-docker/</guid>
+      <description>시작하세요! 도커/쿠버네티스 책 정리 🐳🐳🐳
+도커(docker)는 리눅스 컨테이너에 여러 기능을 추가함으로써 애플리케이션을 컨테이너로서 좀 더 쉽게 사용할 수 있게 만들어진 오픈소스 프로젝트이다. GO 언어로 작성되어 있으며 2013년 3월에 첫 번째 릴리스가 발표된 이후 지금까지 꾸준히 개발되고 있다.
+도커와 관련된 프로젝트
+Docker Compose Private Registry Docker Machine Kitematic 도커라고 하면 Docker Engine 혹은 도커와 관련된 모든 프로젝트를 의미한다. 도커 생태계에 있는 여러 프로젝트들은 도커 엔진을 좀 더 효율적으로 사용하기 위한 것에 불과하며 핵심이 되는 것은 도커 엔진이다.</description>
+    </item>
+    
+    <item>
+      <title>[스프링 5.0 마스터] 11.2 Spring Reactive - 2</title>
+      <link>https://riley817.github.io/categories/spring-framework/page-11-3/</link>
+      <pubDate>Wed, 13 Feb 2019 21:10:09 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/spring-framework/page-11-3/</guid>
+      <description>11.2 Spring Reactive - 2 3. 스프링 웹 리액티브 스프링 웹 리액티브는 스프링 프레임워크 5 의 새로운 기능 중 하나이다. 이 기능은 웹 애플리케이션의 리액티브 기능을 제공한다. 스프링 웹 리액티브는 스프링 MVC 와 동일한 기본 프로그래밍 모델을 기반으로 한다.
+3.1 웹 리액티브 스트림 의존성 추가 1 implementation (&amp;#39;org.springframework.boot:spring-boot-starter-webflux&amp;#39;) 3.2 리액티브 컨트롤러 생성 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 @RestController public class StockPriceEventController { @GetMapping(&amp;#34;/stocks/price/{stockCode}&amp;#34;) Flux&amp;lt;String&amp;gt; retrieveStockPriceHardcoded(@PathVariable(&amp;#34;stockCode&amp;#34;) String stockCode) { return Flux.</description>
+    </item>
+    
+    <item>
+      <title>[스프링 5.0 마스터] 11.2 Spring Reactive - 1</title>
+      <link>https://riley817.github.io/categories/spring-framework/page-11-2/</link>
+      <pubDate>Wed, 13 Feb 2019 20:47:18 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/spring-framework/page-11-2/</guid>
+      <description>1. 리액티브 스트림 1.1 리액티브 스트림 의존성 추가 1 2 implementation (&amp;#39;org.reactivestreams:reactive-streams:1.0.2&amp;#39;) implementation (&amp;#39;org.reactivestreams:reactive-streams-tck:1.0.2&amp;#39;) 1.2 리액티브 스트림의 구성요소 Publisher : 데이터 제공자. 구독한 구독자들에게 구독 정보를 토대로 데이터를 제공한다. Subscriber : 데이터 소모자. 제공자로부터 데이터를 받아 소모한다. Subscription : 구독 정보. Subscriber 는 Publisher 를 구독하여 데이터(n) 요청할 수 있다. 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 // Publisher package org.</description>
+    </item>
+    
+    <item>
+      <title>[스프링 5.0 마스터] 11.1 Reactive Programming</title>
+      <link>https://riley817.github.io/categories/spring-framework/page-11-1/</link>
+      <pubDate>Tue, 12 Feb 2019 00:12:17 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/spring-framework/page-11-1/</guid>
+      <description>1. 리액티브 시스템 새로운 디바이스 (모바일, 태블릿 등) real-time data 에 대한 수요 증가
+대량의 프로세스 처리 로드 발생 데이터 볼륨이 기하급수적으로 증가 인프라 유지 보수 비용 증가 1.1 Reactive 시스템 특징 Reactive manifesto : https://www.reactivemanifesto.org/ko Reative Manifesto 는 다음 네 가지 핵심 원칙에 따라 Reactive System의 특성을 개략적으로 설명하고 있다.
+반응성 (Responsive) : 모든 응답은 적시에 빠르고 일관된 대응을 제공하며 신뢰할수 있으며 일관된 서비스 품질을 제공한다. 회복력 (Resilient) : 각각의 구성요소 들이 분리되어 있기 때문에 구성요소 중 하나에 문제가 발생하더라도 전체 시스템이 다운되는 것을 방지하고 복구 할 수 있도록 보장한다.</description>
+    </item>
+    
+    <item>
+      <title>[스프링 5.0 마스터] 6.8 캐싱</title>
+      <link>https://riley817.github.io/categories/spring-framework/page-6-8/</link>
+      <pubDate>Mon, 11 Feb 2019 23:58:07 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/spring-framework/page-6-8/</guid>
+      <description>캐싱 캐싱은 많은 시간이나 연산이 필요한 일데 대한 결과를 저장해 두는 것 이라고 할 수 있다. 서비스의 데이터 캐싱은 어플리케이션의 성능과 확장성을 향상시키는데 중요한 역할을 한다. 스프링은 어노테이션에 기반을 둔 캐싱 추상화를 제공한다. JSR-107(JCahce) 구현체 들은 모두 지원한다. EhCache, Hazelcast, Infinispan, Couchbase, Redis 등이 기본적으로 자동설정에 포함되어 있다. 스프링 부트 프로젝트에 캐싱 적용하기 1. 의존성 추가 spring-boot-starter-cache를 pom.xml 또는 build.gradle에 추가한다. 이 의존모듈을 추가하면 JSR-107 및 스프링 캐싱 어노테이션을 사용하는데 필요한 의존성이 생긴다.</description>
+    </item>
+    
+    <item>
+      <title>[스프링 5.0 마스터] 6.7 국제화</title>
+      <link>https://riley817.github.io/categories/spring-framework/page-6-7/</link>
+      <pubDate>Mon, 11 Feb 2019 22:32:24 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/spring-framework/page-6-7/</guid>
+      <description>국제화 국제화는 다양한 언어 및 문화권에 에서 사용할 수 있는 컨텐츠를 제공할 수 있도록 어플리케이션을 작성하는 것을 의미한다. 국제화(internationalization) 를 I18N이나 i18n으로, 현지화(localization) 를 L10N이나 l10n 등으로 표기하기도 한다. 스프링 부트는 국제화를 위한 지원 기능을 내장하고 있다.
+스프링부트프로젝트에서 국제화 지원설정하기 1.1 Application.java 에 LocaleResolver 추가 1 2 3 4 5 6 7 8 9 10 11 12 13 14 @Bean public SessionLocaleResolver localResolver() { SessionLocaleResolver sessionLocaleResolver = new SessionLocaleResolver(); sessionLocaleResolver.setDefaultLocale(Locale.US); return sessionLocaleResolver; } @Bean public ResourceBundleMessageSource messageSource (){ ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource(); messageSource.</description>
+    </item>
+    
+    <item>
+      <title>[스프링 5.0 마스터] 6.6 Spring Security - OAuth 2.0</title>
+      <link>https://riley817.github.io/categories/spring-framework/page-6-6/</link>
+      <pubDate>Sun, 10 Feb 2019 23:11:57 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/spring-framework/page-6-6/</guid>
+      <description>OAuth2 인증 OAuth 2는 어플리케이션과 Facebook, GitHub 및 DigitalOcean 과 같은 HTTP 서비스의사용자 계정에 대한 제한된 액세스 권한을 얻을 수있게 해주는 인증 프레임 워크이다. 이는 사용자 계정을 호스팅하는 서비스에 사용자 인증을 위임하고 타사 응용 프로그램에 사용자 계정에 대한 액세스 권한을 부여하여 작동하게 된다. OAuth 2는 웹 및 데스크톱 응용 프로그램 및 모바일 장치에 대한 인증 흐름을 제공하게 된다. 다음은 일반적인 OAuth2 교환에 중요한 사용자이다 리소스 소유자 (사용자) : 리소스 소유자는 자신의 계정에 액세스하기 위해 어플리케이션 을 인증하는 사용자 이다.</description>
+    </item>
+    
+    <item>
+      <title>[스프링 5.0 마스터] 6.5 Spring Security - Basic authentication</title>
+      <link>https://riley817.github.io/categories/spring-framework/page-6-5/</link>
+      <pubDate>Thu, 07 Feb 2019 21:13:59 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/spring-framework/page-6-5/</guid>
+      <description>스프링 시큐리티로 REST 서비스 보호 최근에는 서비스 시스템들끼리 REST API 기반의 통신이 많이 이루어지고 있다. 네이티브 앱과 서버 간 통신뿐만 아니라 자바스크립트 웹 클라이언트 와 서버간에도 REST API 통신을 많이 사용하기 때문에 REST 서비스(리소스) 에 대한 보안이 중요해 지고 있다.
+보안에서 중요한 기본 개념 - 인증(Authentication) 과 권한 (Authorization) 소비자(클라이언트) 가 서비스(리소스) 에 접근이 가능한 소비자인지 ? 인증(Authentication) 접근이 가능하지만 해당 작업을 소비자(클라이언트) 에게 허용할것인지 ? 인가/권한부여(Authorization) 인증방식은 다양하며, 전통적인 인증방식으로는 사용자명(Principle)과 비밀번호(Credential) 로 인증하는 Credential 기반 인증 방식 과 OTP 등과 같이 추가적인 인증방식을 도입해 2가지 방법으로 인증하는 이중 인증 방식 과 최근에는 OAuth2 인증방식 도 필수적으로 사용되고 있다.</description>
+    </item>
+    
+    <item>
+      <title>[스프링 5.0 마스터] 6.4 Swagger</title>
+      <link>https://riley817.github.io/categories/spring-framework/page-6-4/</link>
+      <pubDate>Wed, 06 Feb 2019 23:44:42 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/spring-framework/page-6-4/</guid>
+      <description>REST 서비스 문서의 자동화 REST API 심플하게 설계되면 좋겠지만, 소비자의 요구사항 또는 서비스가 커짐에 따라 API 가 점점 복잡해지고 관리해야할 API 개수도 점점 늘게 된다. 협업을 위해서는 API 는 반드시 문서화 되어야 하는데, 소스 변경사항과 동기화 시키기가 매번 번거롭다. 이러한 문제를 해결하기 위해 REST API 서비스 문서(스펙)을 자동화 하는 툴이 등장하게 되었다. 주요 API Spec 자동화 라이브러리 SLATE : https://github.com/lord/slate Swagger : https://swagger.io/ API Blueprint : https://apiblueprint.org/ Swagger2 Swagger 2 는 RESTful API 를 설명하고 문서화하는데 사용되는 오픈소스 라이브러리이다.</description>
+    </item>
+    
+    <item>
+      <title>[스프링 5.0 마스터] 6.3 Bean Validation</title>
+      <link>https://riley817.github.io/categories/spring-framework/page-6-3/</link>
+      <pubDate>Mon, 04 Feb 2019 23:45:11 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/spring-framework/page-6-3/</guid>
+      <description>Bean Validation 데이터 유효성 검증 (Validation) 은 모든계층에서 공통적으로 발생하는 작업이다. 만약 모든 계층에서 동일한 내용의 Validation 로직이 각각의 레이어별로 구현되어 있다면 코드 중복과 함께 각 계층별로 중구난방으로 구현된 검증로직간 불일치로 인하여 오류가 발생하기도 쉽다.
+이러한 Validation 중복을 피하기 위해 도메인의 검증 로직을 도메인 모델 자체에 묶어서 정의하기도 한다. 하지만 도메인 모델에 실제 코드로 Validation 로직을 표현한다면 도메인 모델 자체가 장황하지고 복잡해지게 된다.
+Java 에서는 위와 같은 문제를 해결하기 위해 어노테이션을 통한 Entity 와 Method 를 검증하기 위한 API 를 제공하고 있다.</description>
+    </item>
+    
+    <item>
+      <title>[스프링 5.0 마스터] 6.2 HATEOAS</title>
+      <link>https://riley817.github.io/categories/spring-framework/page-6-2/</link>
+      <pubDate>Sun, 03 Feb 2019 22:15:21 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/spring-framework/page-6-2/</guid>
+      <description>REST 성숙도 모델 (Richardson Maturity Model) Richardson Maturity Model 에서는 Restful Web Service 를 다음의 단계로 나누어 성숙도를 정의하고 있다. Level 0 : 원격 프로시저 호출 (Remote Procedure Invocation) 에 기반한 형태로 resource 구분 없이 설계된 HTTP API
+ex) http://server/getPosts, http://server/deletePosts, http://server/doThis, http://server/doThat 등
+Level 1 : resource 를 URI 통해 나타낸다. (명사 사용) 그러나, HTTP METHOD(GET,POST,PUT,DELETE 등) 사용하지 않는다.
+ex) http://server/accounts, http://server/accounts/10
+Level 2 : resource 를 URI + HTTP Method 를 사용하여 접근한다.</description>
+    </item>
+    
+    <item>
+      <title>[스프링 5.0 마스터] 6.1 예외처리</title>
+      <link>https://riley817.github.io/categories/spring-framework/page-6-1/</link>
+      <pubDate>Sat, 02 Feb 2019 00:13:40 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/spring-framework/page-6-1/</guid>
+      <description>스프링 5.0 마스터 스터디 학습 내용 정리입니다.
+1. 스프링 부트의 기본 예외처리 스프링부트의 기본 예외 형식은 throw 된 예외 메세지 와 함께 JSON 형태로 에러를 리턴한다. 브라우저경우 기본 오류 페이지 (Whilelabel Error Page) 를 출력한다. 1 2 3 4 5 6 7 { &amp;#34;timestamp&amp;#34;: &amp;#34;2018-12-25T05:01:26.483+0000&amp;#34;, &amp;#34;status&amp;#34;: 500, &amp;#34;error&amp;#34;: &amp;#34;Internal Server Error&amp;#34;, &amp;#34;message&amp;#34;: &amp;#34;Some Exception Occurred&amp;#34;, &amp;#34;path&amp;#34;: &amp;#34;/users/dummy-service&amp;#34; } 2. 스프링 사용자 정의 예외처리 스프링에서는 오류에 대한 응답을 사용자가 정의하는 여러 옵션을 제공한다.</description>
+    </item>
+    
+    <item>
+      <title>Chapter 6. Extending Microservices</title>
+      <link>https://riley817.github.io/categories/spring-framework/chapter6/</link>
+      <pubDate>Fri, 01 Feb 2019 23:59:39 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/spring-framework/chapter6/</guid>
+      <description>6. Extending Microservices 1. 예제 프로젝트 생성 Spring Initializr 로 프로젝트 생성하기 https://start.spring.io/ </description>
+    </item>
+    
+    <item>
+      <title>[자바 ORM 표준 JPA 프로그래밍] 6장 다양한 연관관계 매핑 - 일대다</title>
+      <link>https://riley817.github.io/categories/jpa/jpa-programming6-2/</link>
+      <pubDate>Sun, 13 Jan 2019 20:11:00 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/jpa/jpa-programming6-2/</guid>
+      <description>김영한님의 책 자바 ORM 표준 JPA 프로그래밍 학습 내용 정리
+6.2 일대다 일대다 관계는 엔티티를 하나 이상 참조할 수 있으므로 자바 컬렉션 (Collection, List, Set, Map ) 중 하나를 사용한다. 6.2.1 일대다 단방향 [1:N] 일대다 단방향 관계는 JPA 2.0 부터 지원한다. 일대다 단방향의 경우 반대편에서 테이블의 외래키를 관리하는 특이한 모습이 나타난다. Team.java 1 2 3 4 5 6 7 8 9 10 11 12 13 14 @Entity public class Team { @Id @GeneratedValue @Column(name = &amp;#34;TEAM_ID&amp;#34;) private String id; private String name; @OneToMany @JoinColumn (name = &amp;#34;TEAM_ID&amp;#34;) // MEMBER 테이블의 TEAM_ID (FK) private List&amp;lt;Member&amp;gt; members = new ArrayList&amp;lt;Member&amp;gt;(); } Member.</description>
+    </item>
+    
+    <item>
+      <title>[자바 ORM 표준 JPA 프로그래밍] 6장 다양한 연관관계 매핑 - 다대일</title>
+      <link>https://riley817.github.io/categories/jpa/jpa-programming6-1/</link>
+      <pubDate>Thu, 10 Jan 2019 16:20:24 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/jpa/jpa-programming6-1/</guid>
+      <description>김영한님의 책 자바 ORM 표준 JPA 프로그래밍 학습 내용 정리
+다양한 연관관계 다루기 엔티티의 연관관계를 매핑할때 고려할점 다중성 단방향, 양방향 연관관계의 주인 다중성 다대일(@ManyToOne), 일대다(@OneToMany), 일대일(@OneToOne), 다대다(@ManyToMany) 다중성을 판단하기 어려울 때는 반대방향을 생각해보자. 보통 다대일과 일대다 관계를 가장 많이 사용하고 다대다 관계는 실무에서는 거의 사용하지 않음. 단방향, 양방향 객체 관계에서 한쪽만 참고하는 것을 단방향 관계라고하며, 양쪽이 서로 참조하는 것을 양방향 관계라 한다. 연관관계의 주인 외래 키를 가진 테이블과 매핑한 엔티티가 외래키를 관리하는게 효율적이므로 보통 이곳을 연관관계의 주인으로 선택한다.</description>
+    </item>
+    
+    <item>
+      <title>[자바 ORM 표준 JPA 프로그래밍] 5장 연관관계 매핑 기초 - 양방향 연관관계</title>
+      <link>https://riley817.github.io/categories/jpa/jpa-programming5-2/</link>
+      <pubDate>Sun, 30 Dec 2018 15:11:24 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/jpa/jpa-programming5-2/</guid>
+      <description>김영한님의 책 자바 ORM 표준 JPA 프로그래밍 학습 내용 정리 5.3 양방향 연관관계 일대다 관계에서는 여러 건과 연관관계를 맺을 수 있으므로 컬렉션(Collection, Set, Map, List ..) 을 사용한다. 5.3.1 양방향 연관관계 매핑 Member.java 회원 엔티티에는 변경할 사항이 없다. 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 @Entity public class Member { @Id @Column(name = &amp;#34;MEMBER_ID&amp;#34;) private String id; private String username; // 연관관계 매핑 @ManyToOne @JoinColumn(name = &amp;#34;TEAM_ID&amp;#34;) private Team team; // 연관관계 설정 public void setTeam(Team team) { this.</description>
+    </item>
+    
+    <item>
+      <title>[자바 ORM 표준 JPA 프로그래밍] 5장 연관관계 매핑 기초 - 단방향 연관관계</title>
+      <link>https://riley817.github.io/categories/jpa/jpa-programming5-1/</link>
+      <pubDate>Wed, 26 Dec 2018 10:37:22 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/jpa/jpa-programming5-1/</guid>
+      <description>김영한님의 책 자바 ORM 표준 JPA 프로그래밍 학습 내용 정리
+단방향 연관관계 객체는 참조(주소) 를 사용해서 관계를 맺고, 테이블을 외래 키를 사용해서 관계를 맺는다. 방향(Direction) : 단방향과 양방향이 있으며 방향은 객체관계에만 존재하고 테이블 관계는 항상 양방향 이다. 다중성(Multiplicity) : 다대일(N:1), 일대다(1:N), 일대일(1:1), 다대다 (N:N) 연관관계 주인 (owner) : 객체를 양방향 연관관계로 만들면 연관관계의 주인을 정해야 한다. 5.1 단방향 연관관계 객체 연관관계 회원 객체와 팀 객체는 단방향 관계 다. 회원은 Member.team 필드를 통해서 팀을 알 수 있지만 반대로 팀은 회원을 알 수 없다.</description>
+    </item>
+    
+    <item>
+      <title>[자바 ORM 표준 JPA 프로그래밍] 4장 엔티티 매핑</title>
+      <link>https://riley817.github.io/categories/jpa/jpa-programming4/</link>
+      <pubDate>Sun, 23 Dec 2018 23:12:29 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/jpa/jpa-programming4/</guid>
+      <description>김영한님의 책 자바 ORM 표준 JPA 프로그래밍 학습 내용 정리
+JPA 의 매핑 어노테이션 객체와 테이블 매핑 : @Entity, @Table 기본 키 매핑 : @Id 필드와 컬럼 매핑 : @Column 연관관계 매핑 : @ManyToOne, @JoinColumn 4.1 @Entity 테이블을 매핑할때 @Entity 어노테이션을 필수로 붙어야 한다. 속성 기능 기본값 name JPA 에서 사용할 엔티티 이름을 지정한다. 보통 기본값인 클래스 이름을 사용한다. 설정하지 않으면 클래스 이름을 그대로 사용. @Entity 적용시 주의할 점 매개변수가 없는 기본 생성자는 필수.</description>
+    </item>
+    
+    <item>
+      <title>[자바 ORM 표준 JPA 프로그래밍] 3장 영속성 관리 - 플러시, 준영속</title>
+      <link>https://riley817.github.io/categories/jpa/jpa-programming3-2/</link>
+      <pubDate>Tue, 18 Dec 2018 22:30:19 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/jpa/jpa-programming3-2/</guid>
+      <description>김영한님의 책 자바 ORaM 표준 JPA 프로그래밍 학습 내용 정리
+3.5 플러시 플러시(flush()) 는 영속성 컨텍스트의 내용을 데이터베이스에 반영한다. 영속성 컨텍스트의 변경 내용을 데이터베이스와 동기화 하는 것이 플러시이다. 플러시를 실행하면 변경 감지가 동작하여 영속성 컨텍스트에 있는 모든 엔티티를 스냅샷과 비교해서 수정된 엔티티를 찾는다. =&amp;gt; 수전된 엔티티는 수정 쿼리를 만들어 쓰기지연 SQL 저장소에 등록 쓰기 지연 SQL 저장소의 쿼리를 데이터베이스에 전송한다. 플러시 방법 em.flush() 로 직접 호출. 트랜잭션 커밋 시 플러시 자동 호출 JPA 는 트랜잭션을 커밋할 때 플러시를 자동으로 호출한다.</description>
+    </item>
+    
+    <item>
+      <title>[자바 ORM 표준 JPA 프로그래밍] 3장 영속성 관리 - EntityManagerFactory, EntityManager, 영속성컨텍스트, 엔티티 생명주기, 영속성컨텍스트의 특징</title>
+      <link>https://riley817.github.io/categories/jpa/jpa-programming3-1/</link>
+      <pubDate>Mon, 17 Dec 2018 20:43:27 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/jpa/jpa-programming3-1/</guid>
+      <description>김영한님의 책 자바 ORM 표준 JPA 프로그래밍 학습 내용 정리
+JPA 가 제공하는 기능 엔티티와 테이블을 매핑하는 설계 부분 매핑하는 엔티티를 실제 사용하는 부분 3.1 엔티티 매니저 팩토리와 엔티티 매니저 EntityManagerFactory EntityManagerFactory 는 이름 그대로 EntityManager 를 만드는 공장이다. 공장을 만드는 비용은 상당히 크다. 그러므로 한 개만 만들어서 애플리케이션 전체에 공유하도록 설계해야 한다. EntityManagerFactory 는 여러 스레드에서 동시에 접근해도 안전하므로 서로 다른 스레드간 공유해도 된다. JPA 구현체들은 EntityManagerFactory 생성시 커넥션 풀을 만든다.</description>
+    </item>
+    
+    <item>
+      <title>[자바 ORM 표준 JPA 프로그래밍] 2장 JPA 시작</title>
+      <link>https://riley817.github.io/categories/jpa/jpa-programming2/</link>
+      <pubDate>Sat, 15 Dec 2018 10:11:25 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/jpa/jpa-programming2/</guid>
+      <description>김영한님의 책 자바 ORM 표준 JPA 프로그래밍 학습 내용 정리
+2.2 H2 데이터베이스 설치 H2DB 는 자바 기반의 오픈소스 관계형 데이터 베이스이다. 별도의 설치과정이 필요하지 않고 용량도 1.7M 로 가볍다. SQL 문법은 다른 DBMS 와 마찬가지로 표준 SQL 이 대부분 지원된다.
+H2 데이터 베이스 설치방법 아래 링크에서 zip 파일을 내려받아 압축을 푼다.
+링크 - http://www.h2database.com/html/main.html 압축을 푼 곳에서 bin/h2.sh 를 실행한다. 실행이 완료되면 http://localhost:8082 로 접속하면 H2에 접속할 수 있는 화면이 나온다.</description>
+    </item>
+    
+    <item>
+      <title>파이썬의 자료형</title>
+      <link>https://riley817.github.io/categories/python/python-data-type/</link>
+      <pubDate>Fri, 14 Dec 2018 23:15:22 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/python/python-data-type/</guid>
+      <description>파이썬의 변수와 객체 C 와 같은 언어에서 변수는 메모리 상 저장공간에 직접 값을 할당한다면, 파이썬에서 변수는 메모리상에 생성된 객체를 참조 하는 개념이다.
+1 2 3 4 5 6 7 8 9 10 &amp;gt;&amp;gt;&amp;gt; x = 100 &amp;gt;&amp;gt;&amp;gt; y = 100 &amp;gt;&amp;gt;&amp;gt; x is y True # 257 부터는 서로 다른 객체로 생성됨. &amp;gt;&amp;gt;&amp;gt; x = 257 &amp;gt;&amp;gt;&amp;gt; y = 257 &amp;gt;&amp;gt;&amp;gt; x is y False 위의 예제에서는 x 와 y 는 100 이라는 메모리상 같은 객체를 가리키고 있다.</description>
+    </item>
+    
+    <item>
+      <title>pyenv를 이용하여 python 시작하기</title>
+      <link>https://riley817.github.io/categories/python/start-python-using-pyenv/</link>
+      <pubDate>Thu, 13 Dec 2018 19:11:39 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/python/start-python-using-pyenv/</guid>
+      <description>pyenv? pyenv 는 하나의 시스템에서 여러 다양한 버전의 Python 을 관리하기 위한 관리 도구이다. 파이썬 버전을 사용자 단위 혹은 프로젝트별로 각각 다른 버전을 사용할 수 있다. ruby 의 rvm, Node.js 의 nvm 와 같은 역할을 하는 Version Manager 이다. https://github.com/pyenv/pyenv pyenv 설치 python 을 설치하는데 필요한 패키지 설치 1 $ sudo apt install curl git-core gcc make zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev libssl-dev pyenv 소스 다운로드 Gibhub 저장소에서 최신 pyenv 소스를 클론하여 ~/.</description>
+    </item>
+    
+    <item>
+      <title>[자바 ORM 표준 JPA 프로그래밍] 1장 JPA 소개</title>
+      <link>https://riley817.github.io/categories/jpa/jpa-programming1/</link>
+      <pubDate>Sun, 09 Dec 2018 17:53:39 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/jpa/jpa-programming1/</guid>
+      <description>김영한님의 책 자바 ORM 표준 JPA 프로그래밍 학습 내용 정리
+1.1 SQL을 직접 다룰 때 발생하는 문제점 코드의 반복작성 데이터베이스는 객체 구조와는 달리 데이터 중심의 구조를 갖는다. 객체를 데이터베이스에 CRUD 하기 위해서는 너무 많은 SQL 과 JDBC API 를 사용하여 변환작업을 직접 해주어야 한다. SQL 에 의존적인 개발 객체들이 어떤 엔티티를 참조하고 있는지 DAO(데이터 접근 계층) 을 열어 SQL 를 확인해야만 한다. SQL 과 JDBC API 를 DAO 에 은닉화하였지만 논리적으로는 엔티티와 아주 강한 의존관계를 가지고 있다.</description>
+    </item>
+    
+    <item>
+      <title>NPM 기본 저장소 대신 지정한 저장소 사용하기</title>
+      <link>https://riley817.github.io/categories/javascript/change-default-repo-npm/</link>
+      <pubDate>Sun, 09 Dec 2018 17:53:39 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/javascript/change-default-repo-npm/</guid>
+      <description> 👩🏻‍💻
+회사에서는 외부 네트워크 연결이 불가능하도록 망분리가 되어있다. 개발시 npm install을 통해 외부 라이브러리를 설치해야하는 경우 사내 nexus 서버에 npm 기본 저장소를 프록시하도록 설정 후 다음과 같이 npm config 명령어를 통해 저장소 경로를 변경해 주었다. npm repository 다른 저장소로 사용하기 npm config set registry 명령어로 기본 저장소 대신 다른 저장소를 사용할 수 있다.
+1 npm config set registry 다른저장소경로 ~/.npmrc에 변경된 저장소가 다음과 같이 설정되어 있다.
+1 registry=다른저장소경로 </description>
+    </item>
+    
+    <item>
+      <title>NVM을 이용하여 Node.js 설치하기</title>
+      <link>https://riley817.github.io/categories/javascript/install-the-nodejs-with-nvm/</link>
+      <pubDate>Sun, 09 Dec 2018 17:53:39 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/javascript/install-the-nodejs-with-nvm/</guid>
+      <description>Installation and Update 1. NVM 설치 Git Repo의 NVM의 README 파일을 참고한다. https://github.com/nvm-sh/nvm 1 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.1/install.sh | bash 2. NVM 환경설정 .bashrc 혹은 .zshrc 에 추가한다. source ~/.bashrc 로 적용 또는 터미널을 재시작한다. 1 2 export NVM_DIR=&amp;#34;$HOME/.nvm&amp;#34; [ -s &amp;#34;$NVM_DIR/nvm.sh&amp;#34; ] &amp;amp;&amp;amp; . &amp;#34;$NVM_DIR/nvm.sh&amp;#34; # This loads nvm 3. nvm 버전확인 및 설치 가능 Nodejs 리스트 확인 1 2 3 4 5 # nvm 버전 확인 nvm --version # 설치 가능 NodeJs 버전 확인 nvm ls-remote 4.</description>
+    </item>
+    
+    <item>
+      <title>Spring Framework OAuth2 Provider 서버 구성하기(작성중)</title>
+      <link>https://riley817.github.io/categories/spring-framework/build-spring-oauth2-provider/</link>
+      <pubDate>Sun, 09 Dec 2018 17:53:39 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/spring-framework/build-spring-oauth2-provider/</guid>
+      <description>spring-security-oauth2 프로젝트는 deprecated 되었다고 한다. 나는 그냥 적용했다&amp;hellip; OAuth 2.0 Migration Guide 스프링 멀티모듈 프로젝트 구성 module-api를 Resource 서버로 사용하고 특정 API를 요청할때 마다 토큰 인증이 필요하게끔 구성한다. oauth 서버에서는 사용자 인증 처리와 토큰 발급을 한다. 1 2 3 4 spring-demo └─ module-domain : DB 설정, Entity, 공통 Util을 정의. └─ module-api : 클라이언트(회원가입, 주문) 비즈니스 로직과 관련된 Controller / Service / Repository 정의. (Resource Server) └─ oauth : 스프링 시큐리티 / OAuth2 서버 기능을 정의한 모듈 build.</description>
+    </item>
+    
+    <item>
+      <title>3.5 그 외 설정</title>
+      <link>https://riley817.github.io/categories/elasticsearch-lecture/lecture3/elasticsearch-lecture3-5/</link>
+      <pubDate>Mon, 05 Nov 2018 23:38:01 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/elasticsearch-lecture/lecture3/elasticsearch-lecture3-5/</guid>
+      <description>Other Settings /etc/security/limits.conf Elasticsearch 는 많은 파일을 쓰거나 핸들링하게 된다. 열 수 있는 File descriptor가 부족하면 데이터의 손실로 이어질 수 있으며 실행할 수 있는 최대 File Descriptor 를 65,536 개 이상으로 설정하도록 한다.
+vi /etc/security/limits.conf 1 2 elasticsearch soft nofile 65536 elasticsearch hard nofile 65536 Thread 수 Elasticsearch 는 여러 유형의 작업에 대해 많은 Thread Pool을 사용하게 된다.. Elasticsearch 사용자가 만들 수 있는 Thread 가 4096 개 이상인지 확인한다. 1 2 elasticsearch soft noproc 4096 elasticsearch hard noproc 4096 Sysconfig file RPM 또는 Debian 패키지를 사용하여 시스템 설정 및 환경 변수를 지정할 수 있다.</description>
+    </item>
+    
+    <item>
+      <title>3.4 log4j2.properties</title>
+      <link>https://riley817.github.io/categories/elasticsearch-lecture/lecture3/elasticsearch-lecture3-4/</link>
+      <pubDate>Mon, 05 Nov 2018 23:15:23 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/elasticsearch-lecture/lecture3/elasticsearch-lecture3-4/</guid>
+      <description>log4j2.properties Elasticsearch는 로깅을 위해 Log4j2를 사용한다. Log4j2는 log4j2.properties 파일을 사용하여 구성할 수 있다.
+로그참조 파일 ${sys:es.logs.base_path} 로그의 Base 디렉토리 elasticsearch.yml 의 path.log에 설정된 경로 ${sys:es.logs.cluster_name} 클러스트 이름을 나타낸다. elasticsearch.yml 의 cluster.name으로 설정할 수 있다. ${sys:es.logs.node_name} 노드의 이름을 나타냅니다. elasticsearch.yml 의 node.name으로 설정할 수 있다. 1 2 ex) ${sys:es.logs.base_path}${sys:file.separator}${sys:es.logs.cluster_name}.log /var/log/elasticsearch/mycluster.log </description>
+    </item>
+    
+    <item>
+      <title>3.3 jvm.options</title>
+      <link>https://riley817.github.io/categories/elasticsearch-lecture/lecture3/elasticsearch-lecture3-3/</link>
+      <pubDate>Mon, 05 Nov 2018 22:13:59 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/elasticsearch-lecture/lecture3/elasticsearch-lecture3-3/</guid>
+      <description>jvm.options jvm.options 의 설정을 통해 JVM(Java Virtual Machine) 의 옵션을 변경할 수 있다. 설정 파일은 config/jvm.options(tar or zip 배포판) 또는 /etc/elasticsearch/jvm.options(rpm 패키지 설치) 에서 위치하고 있다. JVM Heap Size Configuration Elasticsearch 는 Java 기반이기 때문에 Heap 메모리를 어떻게 설정하느냐에 따라 성능에 큰 영향을 미치게 된다. 기본적으로 Elasticsearch 의 최소, 최대 Heap 사이즈는 2GB로 설정되어 있다. 실제 운영환경에 따라서 Elasticsearch 에서 충분한 Heap 을 사용할 수 있도록 Heap Size 를 구성하는 것이 중요하다.</description>
+    </item>
+    
+    <item>
+      <title>3.2 elasticsearch.yml</title>
+      <link>https://riley817.github.io/categories/elasticsearch-lecture/lecture3/elasticsearch-lecture3-2/</link>
+      <pubDate>Fri, 02 Nov 2018 18:20:19 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/elasticsearch-lecture/lecture3/elasticsearch-lecture3-2/</guid>
+      <description>elasticsearch.yml elasticsearch.yml 은 데이터 파일 위치, 로그파일 위치 등 클러스터의 핵심적인 설정을 할 수 있는 구성 파일이다. 파일 포맷은 YAML 로 되어있다.
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 # path.data : 데이터파일의 위치를 설정 # path.logs : ES 의 로그 파일이 저장될 위치를 설정 path: data: /var/lib/elasticsearch logs: /var/log/elasticsearch # 클러스터를 고유하게 식별할 수 있는 이름 설정 cluster: name: es-cluster # 노드를 고유하게 식별할 수 있는 이름설정 # 보통 호스트명 기준으로 설정하는 것이 운영에 용이 node: name: es-master01 path.</description>
+    </item>
+    
+    <item>
+      <title>3.1 Elasticsearch 구성하기</title>
+      <link>https://riley817.github.io/categories/elasticsearch-lecture/lecture3/elasticsearch-lecture3-1/</link>
+      <pubDate>Fri, 02 Nov 2018 17:11:00 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/elasticsearch-lecture/lecture3/elasticsearch-lecture3-1/</guid>
+      <description>Elasticsearch 는 정적으로 설정을 구성할 수 있을 뿐만 아니라 클러스터 운영중에도 클러스터 세팅 업데이트 API 를 통하여 동적인 설정 구성이 가능하다.
+Static settings Elasticsearch는 노드별로 설정파일을 구성할 수 있다. Elasticsearch 에는 세 개의 구성 파일이 있으며, 이 설정 파일들의 위치는 아카이브 배포판 설치시에는 $ES_HOME/config, 패키지 배포시에는 (RPM 설치 등) /etc/elasticsearch 에 위치한다.
+elasticsearch.yml : Elasticsearch 의 핵심 설정 jvm.options : JVM 옵션 설정 ( heapsize 설정 ) log4j2.properties : Elasticsearch 의 logging 설정 Dynamic settings 클러스터에 REST API 로 호출하여 클러스터를 운영중에도 구성 설정을 변경 할 수 있다.</description>
+    </item>
+    
+    <item>
+      <title>2.5 Elasticsearch 플러그인</title>
+      <link>https://riley817.github.io/categories/elasticsearch-lecture/lecture2/elasticsearch-lecture2-5/</link>
+      <pubDate>Tue, 30 Oct 2018 15:49:11 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/elasticsearch-lecture/lecture2/elasticsearch-lecture2-5/</guid>
+      <description>Elasticsearch 플러그인 플러그인은 사용자 정의 방식에 의해 ES 의 긴능을 향상 시키는 방법이다. 플러그인은 모든 노드에 설치해야 하며 설치 후 클러스터를 재시작 해야 한다. 플러그인 범주 Core Plugins (권고) Elasticsearch 에서 공식적으로 지원하는 플러그인 Elasticsearch 버전이 업데이트 될때마다 버전 업데이트가 지원됨. Community contributed 개인 개발자나 회사에 의해 지원되는 플러그인 참고 Elasticsearch Reference - modules-plugins. </description>
+    </item>
+    
+    <item>
+      <title>2.4 Elastic-HQ</title>
+      <link>https://riley817.github.io/categories/elasticsearch-lecture/lecture2/elasticsearch-lecture2-4/</link>
+      <pubDate>Tue, 30 Oct 2018 15:33:39 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/elasticsearch-lecture/lecture2/elasticsearch-lecture2-4/</guid>
+      <description>Elastic HQ 설치하기 Requirements Python 3.4+ Elasticsearch. Supported versions: 2.x, 5.x, 6.x ElasticHQ Git Repository 에서 클론 혹은 다운로드 한다. 1 2 3 4 # git 이 설치되어 있지 않으면 sudo yum -y install git git clone https://github.com/ElasticHQ/elasticsearch-HQ.git Python 3.4+ 설치한다. (pip 은 파이선 패키지 관리자) 1 2 3 4 # clone 한 디렉터리로 이동 후 cd elasticsearch-HQ/ sudo yum -y install python34 python34-pip Repository 의 의존성 패키지 설치한다. 1 pip install -r requirements.</description>
+    </item>
+    
+    <item>
+      <title>2.3 Head 소개</title>
+      <link>https://riley817.github.io/categories/elasticsearch-lecture/lecture2/elasticsearch-lecture2-3/</link>
+      <pubDate>Mon, 29 Oct 2018 20:31:39 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/elasticsearch-lecture/lecture2/elasticsearch-lecture2-3/</guid>
+      <description>Elasticsearch Head 클러스트들을 한눈에 보기 위한 도구. 직접 서버를 구성하여 설치할 수도 있고 크롬의 브라우저 익스텐션으로도 제공한다.
+Installation ES Head git repository 에서 클론 혹은 다운로드한다. 1 2 3 4 # git 이 설치되어 있지 않으면 sudo yum -y install git git clone https://github.com/mobz/elasticsearch-head.git npm 으로 관련 의존성 모듈 설치 1 2 3 4 5 6 7 cd elasticsearch-head/ sudo yum -y install bzip2 epel-release sudo yum -y install npm # Node 가 설치되어있어야 한다.</description>
+    </item>
+    
+    <item>
+      <title>2.2 플러그인 설치하기</title>
+      <link>https://riley817.github.io/categories/elasticsearch-lecture/lecture2/elasticsearch-lecture2-2/</link>
+      <pubDate>Mon, 29 Oct 2018 19:58:33 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/elasticsearch-lecture/lecture2/elasticsearch-lecture2-2/</guid>
+      <description>플러그인 설치 인터넷이 가능한 환경에서 설치시 1 2 3 4 5 6 $ cd /usr/share/elasticsearch/ $ sudo bin/elasticsearch-plugin install [플러그인이름] # example $ sudo bin/elasticsearch-plugin install analysis-nori 파일서버 등에서 설치시 1 2 3 4 $ sudo bin/elasticsearch-plugin install file://path/to/plugin.zip # 파일서버 $ sudo bin/elasticsearch-plugin install [파일서버URL] 설치된 플러그인 리스트 확인 1 sudo bin/elasticsearch-plugin list 설치된 플러그인 제거 1 sudo bin/elasticsearch-plugin remove [플러그인이름] 참고 Elasticsearch Reference - plugin-management </description>
+    </item>
+    
+    <item>
+      <title>2.1 Elasticsearch 기본 동작</title>
+      <link>https://riley817.github.io/categories/elasticsearch-lecture/lecture2/elasticsearch-lecture2-1/</link>
+      <pubDate>Sat, 27 Oct 2018 13:11:45 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/elasticsearch-lecture/lecture2/elasticsearch-lecture2-1/</guid>
+      <description>Index 생성하기 인덱스를 생성하는 방법
+Index Settings 를 정의한다. Index Mappings 를 정의한다. 사용자 정의된 도큐먼트를 인덱싱한다. Index Settings Static Index Settings index.number_of_shards : 인덱스가 가져야 하는 Primary 샤드의 개수 설정. (기본값 5) Dynamic Index Settings index.number_of_replicas : 각 기본 샤드의 복제본 (Replica 샤드 개수 설정). 기본값은 1 index.refresh_interval : 검색 commit point 를 만드는 refresh interval 설정 (새로 고침 작업수행 빈도). -1 비활성화. 기본값 1s index.routing.allocation.enable : 인덱스의 샤드들의 라우팅 허용 설정 Other Settings Analysis, Mapping, Slowlog &amp;hellip; 인덱스 Settings 로 인덱싱 하기 PUT Method 를 사용 1 2 3 4 5 6 7 8 9 curl -X PUT &amp;#34;localhost:9200/twitter&amp;#34; -H &amp;#39;Content-Type: application/json&amp;#39; -d { &amp;#34;settings&amp;#34; : { &amp;#34;index&amp;#34; : { &amp;#34;number_of_shards&amp;#34; : 3, &amp;#34;number_of_replicas&amp;#34; : 2 } } } CLI 사용 1 curl -X PUT -H &amp;#34;Content-Type:application/json&amp;#34; -d &amp;#39;{&amp;#34;settings&amp;#34; : {&amp;#34;index&amp;#34; : {&amp;#34;number_of_shards&amp;#34; : 3,&amp;#34;number_of_replicas&amp;#34; : 1}}}&amp;#39; http://localhost:9200/twitter2 Index 삭제하기 인덱스 삭제시에는 조심해서 삭제해야 한다.</description>
+    </item>
+    
+    <item>
+      <title>1.7 Installation Kibana</title>
+      <link>https://riley817.github.io/categories/elasticsearch-lecture/lecture1/elasticsearch-lecture1-7/</link>
+      <pubDate>Wed, 24 Oct 2018 00:00:00 +0000</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/elasticsearch-lecture/lecture1/elasticsearch-lecture1-7/</guid>
+      <description>Kibana 는 Elasticsearch 의 오픈 소스 데이터 시각화 플러그인이다. Elasticsearch 클러스터에 인덱싱 된 데이터들을 시각화 하는 기능을 제공한다. 1. yum 으로 Kibana 설치하기 1.1) RPM Repository 등록 vi /etc/yum.repos.d/kibana.repo
+1 2 3 4 5 6 7 8 9 # /etc/yum.repos.d/kibana.repo [kibana-6.x] name=Kibana repository for 6.x packages baseurl=https://artifacts.elastic.co/packages/6.x/yum gpgcheck=1 gpgkey=https://artifacts.elastic.co/GPG-KEY-elasticsearch enabled=1 autorefresh=1 type=rpm-md 1.2) yum 명령어로 install 1 yum install kibana 2. Kibana 설정 Kibana 서버는 시작할 때 kibana.yml 에서 속성을 읽는다.</description>
+    </item>
+    
+    <item>
+      <title>1.6 Installation - .zip/.tar.gz</title>
+      <link>https://riley817.github.io/categories/elasticsearch-lecture/lecture1/elasticsearch-lecture1-6/</link>
+      <pubDate>Tue, 23 Oct 2018 00:00:00 +0000</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/elasticsearch-lecture/lecture1/elasticsearch-lecture1-6/</guid>
+      <description>Elasticsearch는 .zip 또는 .tar.gz 패키지로도 제공된다. 모든 시스템에 제한없이 가장 쉽게 설치할 수 있는 방법이다.
+다른 방법으로 ES 설치하기 최신 버전 다운로드 zip 패키지로 다운로드 및 설치하기 wget 으로 .zip 파일 다운로드 1 wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-6.4.2.zip zip 압축해제 1 unzip elasticsearch-6.4.2.zip tar.gz 패키지로 다운로드 및 설치하기 wget 으로 .zip 파일 다운로드 1 wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-6.4.2.tar.gz tar 압축해제 1 tar -xzf elasticsearch-6.4.2.tar.gz Command Line 에서 실행하기 1 2 3 4 ./bin/elasticsearch # running as a daemon .</description>
+    </item>
+    
+    <item>
+      <title>1.5 Install Elasticsearch - yum, rpm 설치</title>
+      <link>https://riley817.github.io/categories/elasticsearch-lecture/lecture1/elasticsearch-lecture1-5/</link>
+      <pubDate>Sun, 21 Oct 2018 19:20:11 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/elasticsearch-lecture/lecture1/elasticsearch-lecture1-5/</guid>
+      <description>Elasticsearch 는 Java 언어로 이루어진 아파치 Lucene 기반으로 이루어져 있다. 그러므로, 설치를 위해서는 Java 가 먼저 설치되어 있어야 한다. ES 는 여러가지 방법으로 설치가능하지만 그중에서 RPM 패키지 관리자로 설치하는 방법에 대해 정리하였다.
+다른 방법으로 ES 설치하기 yum 으로 설치하기 RPM Repository 등록하기 /etc/yum.repos.d/elasticsearch.repo : yum 저장소에 elastic 저장소를 수동으로 추가 한다.
+1 2 3 4 5 6 7 8 9 # /etc/yum.repos.d/elasticsearch.repo [elasticsearch-6.x] name=Elasticsearch repository for 6.x packages baseurl=https://artifacts.elastic.co/packages/6.x/yum gpgcheck=1 gpgkey=https://artifacts.</description>
+    </item>
+    
+    <item>
+      <title>1.4 개념 및 용어정리 - Inverted Index, Segment</title>
+      <link>https://riley817.github.io/categories/elasticsearch-lecture/lecture1/elasticsearch-lecture1-4/</link>
+      <pubDate>Sat, 20 Oct 2018 19:58:39 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/elasticsearch-lecture/lecture1/elasticsearch-lecture1-4/</guid>
+      <description>Inverted Index 전통적인 데이터베이스는 필드당 하나의 값을 저장하기 때문에 전체 텍스트 검색에는 적합하지 않다. 즉 다중 값을 색인화 할 수 있어야 하는데, Elasticsearch 에서는 Inverted Index 형태의 인덱싱을 통해 Full-text Search 가 가능하도록 했다. 모든 문서에서 발생하는 모든 고유 값 또는 용어의 정렬된 목록을 포함하며, 각 용어에 대해 이를 포함하는 모든 문서 목록을 표시한다.
+Full-text Search (전체 텍스트 검색) 는 요청한 모든 단어를 문서 또는 데이터베이스에서 모든 단어와 비교하는 포괄적 인 검색 방법이다.</description>
+    </item>
+    
+    <item>
+      <title>1.3 클러스터 분산구성 시나리오</title>
+      <link>https://riley817.github.io/categories/elasticsearch-lecture/lecture1/elasticsearch-lecture1-3/</link>
+      <pubDate>Sat, 20 Oct 2018 19:00:11 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/elasticsearch-lecture/lecture1/elasticsearch-lecture1-3/</guid>
+      <description>단일 노드에 3개의 샤드로 클러스터 구성하기 curl 을 통하여 blogs 라는 인덱스에 3 개의 Primary 샤드와 1개의 Replica 샤드가 운용되도록 할당한다.
+1 2 3 4 5 6 7 curl -X PUT &amp;#34;localhost:9200/blogs&amp;#34; -H &amp;#39;Content-Type: application/json&amp;#39; -d { &amp;#34;settings&amp;#34; : { &amp;#34;number_of_shards&amp;#34; : 3, &amp;#34;number_of_replicas&amp;#34; : 1 } } [그림 1] 샤드의 개수는 3이고 레플리카 개수는 1개인 단일 노드 클러스터는 정상적으로 작동되나, 하드웨어의 오류가 발생할 경우 데이터 손실의 위험이 있다. 데이터 적재량이 많을 경우 싱글노드가 허용하는 볼륨을 모두 소진할 수도 있어 더이상 적재가 불가능 할 수도 있다.</description>
+    </item>
+    
+    <item>
+      <title>1.2 개념 및 용어 정리 - Shard</title>
+      <link>https://riley817.github.io/categories/elasticsearch-lecture/lecture1/elasticsearch-lecture1-2/</link>
+      <pubDate>Sat, 20 Oct 2018 18:50:33 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/elasticsearch-lecture/lecture1/elasticsearch-lecture1-2/</guid>
+      <description>Shard Shard 란 인덱스의 데이터를 나누는 단위이다. 인덱스는 무한한 양의 데이터가 저장이 가능하다. 그래서 인덱스 데이터가 단일 노드의 하드웨어의 용량을 초과하여 더이상 데이터를 저장할 수 없거나 혹은 CPU, Memory 의 자원 초과로 인덱싱이나 검색의 성능 저하를 발생시킬 수 있다. 이러한 문제를 해결하기 위하여 인덱스를 수 많은 조각으로 나누어 관리한다.
+샤딩을 함으로써 콘텐츠 볼륨의 수평(Horizontal) 분할 및 확장이 가능하다. 관계형 데이터베이스처럼 컬럼별로 나누는 것이 아닌 횡별로 나누어 샤드에 저장. 여러 샤드에 분산 배치하여 병렬화 함으로써 성능 및 처리량을 늘릴 수 있다.</description>
+    </item>
+    
+    <item>
+      <title>1.1 개념 및 용어 정리 - Document, Index, Type, Cluster, Node</title>
+      <link>https://riley817.github.io/categories/elasticsearch-lecture/lecture1/elasticsearch-lecture1-1/</link>
+      <pubDate>Sat, 20 Oct 2018 17:53:39 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/elasticsearch-lecture/lecture1/elasticsearch-lecture1-1/</guid>
+      <description>Document 도큐먼트는 JSON (Javascript Object Notation) 형태의 Elasticsearch 의 기본 저장단위 이다. 관계형 데이터 베이스의 Row 와 비슷한 개념으로 볼 수 있다. 도큐먼트는 데이터에 적재될 때 Document ID 를 갖는다. Document ID 는 지정하지 않으면 랜덤하게 생성 되며, 사용자가 정의한 값으로도 생성 가능하다. Document ID 는 데이터를 찾아가는 Metadata 로 볼 수 있다. Index Index 는 비슷한 형질을 가지는 도큐먼트 간의 집합이다. 관계형 데이터 베이스의 Database 와 비슷한 개념으로 볼 수 있다.</description>
+    </item>
+    
+    <item>
+      <title>Elasticsearch 강의 정리</title>
+      <link>https://riley817.github.io/categories/elasticsearch-lecture/lecture0/elasticsearch-lecture0/</link>
+      <pubDate>Thu, 18 Oct 2018 14:10:52 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/elasticsearch-lecture/lecture0/elasticsearch-lecture0/</guid>
+      <description>Elasticsearch Elasticsearch 는 Apache Lucene 기반의 Full-Text 검색엔진 이며 분석엔진 이다. 고가용성(High Availability) 의 확장 가능한 오픈 소스이다. HTTP 웹 인터페이스와 스키마에서 자유로운 JSON 문서로 제공된다. 검색 엔진으로서의 Elasticsearch Elasticsearch 는 루씬 기반의 대중적인 엔터프라이즈 검색엔진으로, Apach 2.0 License 에 의거 오픈 소스로 출시 되었다. 또한 대부분의 루씬이 제공하는 기능들을 Eleasticsearch 에서도 제공한다.
+Apache Lucene 정보검색(Information Retrieval, IR) 소프트웨어 검색 라이브러리 Apahce Software 재단의 검색엔진 상위 프로젝트 자바 언어로 개발되어 있다.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://riley817.github.io/categories/devops/ci-cd/set-gitlab-jenkins/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/devops/ci-cd/set-gitlab-jenkins/</guid>
+      <description>ubuntu@ip-172-31-5-67:~/devops$ ssh-keygen -t rsa -C &amp;ldquo;yeonju.yoon@tysystems.com&amp;rdquo; Generating public/private rsa key pair. Enter file in which to save the key (/home/ubuntu/.ssh/id_rsa): /home/ubuntu/.ssh/id_riley Enter passphrase (empty for no passphrase): Enter same passphrase again: Your identification has been saved in /home/ubuntu/.ssh/iid_riley. Your public key has been saved in /home/ubuntu/.ssh/iid_riley.pub. The key fingerprint is: SHA256:pWN3gazEalsETHSURFQtTIRwGpyZNnjKjIX6dk7jU5k yeonju.yoon@tysystems.com The key&amp;rsquo;s randomart image is: +&amp;mdash;[RSA 2048]&amp;mdash;-+ | . **XBB+. | | . o XBo.o.. | | . = +.</description>
+    </item>
+    
+  </channel>
+</rss>

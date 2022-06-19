@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>microservice - Tag - Riley&#39;s DevLog</title>
+        <link>https://riley817.github.io/tags/microservice/</link>
+        <description>microservice - Tag - Riley&#39;s DevLog</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
+            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Fri, 01 Feb 2019 23:59:39 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/tags/microservice/" rel="self" type="application/rss+xml" /><item>
+    <title>Chapter 6. Extending Microservices</title>
+    <link>https://riley817.github.io/categories/spring-framework/chapter6/</link>
+    <pubDate>Fri, 01 Feb 2019 23:59:39 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/categories/spring-framework/chapter6/</guid>
+    <description><![CDATA[6. Extending Microservices 1. 예제 프로젝트 생성 Spring Initializr 로 프로젝트 생성하기 https://start.spring.io/ ]]></description>
+</item>
+</channel>
+</rss>

@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Think Data Structures - Category - Riley&#39;s DevLog</title>
+        <link>https://riley817.github.io/categories/think-data-structures/</link>
+        <description>Think Data Structures - Category - Riley&#39;s DevLog</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
+            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Sat, 26 Feb 2022 21:17:12 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/categories/think-data-structures/" rel="self" type="application/rss+xml" /><item>
+    <title>[Think Data Structures] 자바 배열 리스트 구현하기</title>
+    <link>https://riley817.github.io/categories/think-data-structures/think-data-structures-1/</link>
+    <pubDate>Sat, 26 Feb 2022 21:17:12 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/categories/think-data-structures/think-data-structures-1/</guid>
+    <description><![CDATA[목표 자바 배열을 사용하여 요소를 저장하는 List 인터페이스 구현한다. 클래스 정의와 인스턴스 변수, 생성자 1 2 3 4 5 6 7 8 9 public class MyArrayList&lt;T&gt; implements List&lt;T&gt; { int size; // keeps track of the number of elements private T[] array; // stores the elements public MyArrayList() { array = (T[]) new Object[10]; size = 0; } } size 변수는 MyArrayList의 요소 개수를 추적한다. array 변수는 실제로 그 요소들을 저장하는 배열을 의미한다.]]></description>
+</item>
+</channel>
+</rss>

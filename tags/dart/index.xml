@@ -1,0 +1,31 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>dart - Tag - Riley&#39;s DevLog</title>
+        <link>https://riley817.github.io/tags/dart/</link>
+        <description>dart - Tag - Riley&#39;s DevLog</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
+            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Sat, 05 Mar 2022 17:27:58 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/tags/dart/" rel="self" type="application/rss+xml" /><item>
+    <title>[TIL &amp; Issue Note] 20220305</title>
+    <link>https://riley817.github.io/categories/til/20220305/</link>
+    <pubDate>Sat, 05 Mar 2022 17:27:58 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/categories/til/20220305/</guid>
+    <description><![CDATA[변수 변수를 만들고 초기화 하는 코드는 다음과 같다.
+1 2 // 변수를 생성하고 초기화 한다. var name = &#39;Bob&#39;; 변수는 참조를 저장한다. name으로 불리는 변수는 &ldquo;Bob&quot;이라는 문자열을 갖는 String 객체의 참조를 포함한다.
+name의 변수 타입은 String으로 유추할 수 있지만 해당 유형을 명시적으로 변경할 수 있다. 객체가 단일 타입으로 제한되지 않은 경우 Object 타입(필요하면 dynamic)으로 지정할 수 있다.
+1 Object name = &#39;Bob&#39;; 유추가능한 명시적인 타입으로 지정할 수도 있다.
+1 String name = &#39;Bob&#39;; 기본값 nullable 타입의 초기값은 null이다.]]></description>
+</item>
+<item>
+    <title>[TIL &amp; Issue Note] 20220304</title>
+    <link>https://riley817.github.io/categories/til/20220304/</link>
+    <pubDate>Fri, 04 Mar 2022 20:40:22 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/categories/til/20220304/</guid>
+    <description><![CDATA[Important concepts 변수에 넣을 수 있는 것은 Object이고, 모든 Object는 Class의 인스턴스이다. numbers, functions, null 조차 객체이다. 모든 객체는 Object 클래스를 상속한다.
+Dart가 강타입 언어이긴하나, 타입을 추론 할 수 있기 때문에 명시는 선택사항이다.
+null-safety를 활성화 하면, 특별히 선언하지 않으면 변수에는 null을 포함할 수 없다.
+nullable한 변수는 타입 뒤에 ? 붙인다. int?는 변수가 integer일 수도 있고 null일 수도 있다. Dart에서 null을 평가하는 것을 동의하지 않는다면 !를 붙여 null이 아님을 명시할 수 있다.]]></description>
+</item>
+</channel>
+</rss>

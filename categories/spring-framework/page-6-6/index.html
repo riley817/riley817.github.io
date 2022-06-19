@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>[스프링 5.0 마스터] 6.6 Spring Security - OAuth 2.0 - Riley&#39;s DevLog</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:title" content="[스프링 5.0 마스터] 6.6 Spring Security - OAuth 2.0" />
+<meta property="og:description" content="OAuth2 인증 OAuth 2는 어플리케이션과 Facebook, GitHub 및 DigitalOcean 과 같은 HTTP 서비스의사용자 계정에 대한 제한된 액세스 권한을 얻을 수있게 해주는 인증 프레임 워크이다. 이는 사용자 계정을 호스팅하는 서비스에 사용자 인증을 위임하고 타사 응용 프로그램에 사용자 계정에 대한 액세스 권한을 부여하여 작동하게 된다. OAuth 2는 웹 및 데스크톱 응용 프로그램 및 모바일 장치에 대한 인증 흐름을 제공하게 된다. 다음은 일반적인 OAuth2 교환에 중요한 사용자이다 리소스 소유자 (사용자) : 리소스 소유자는 자신의 계정에 액세스하기 위해 어플리케이션 을 인증하는 사용자 이다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://riley817.github.io/categories/spring-framework/page-6-6/" /><meta property="og:image" content="https://riley817.github.io/icon.png"/><meta property="article:section" content="categories" />
+<meta property="article:published_time" content="2019-02-10T23:11:57+09:00" />
+<meta property="article:modified_time" content="2022-06-19T22:57:41+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://riley817.github.io/icon.png"/>
+
+<meta name="twitter:title" content="[스프링 5.0 마스터] 6.6 Spring Security - OAuth 2.0"/>
+<meta name="twitter:description" content="OAuth2 인증 OAuth 2는 어플리케이션과 Facebook, GitHub 및 DigitalOcean 과 같은 HTTP 서비스의사용자 계정에 대한 제한된 액세스 권한을 얻을 수있게 해주는 인증 프레임 워크이다. 이는 사용자 계정을 호스팅하는 서비스에 사용자 인증을 위임하고 타사 응용 프로그램에 사용자 계정에 대한 액세스 권한을 부여하여 작동하게 된다. OAuth 2는 웹 및 데스크톱 응용 프로그램 및 모바일 장치에 대한 인증 흐름을 제공하게 된다. 다음은 일반적인 OAuth2 교환에 중요한 사용자이다 리소스 소유자 (사용자) : 리소스 소유자는 자신의 계정에 액세스하기 위해 어플리케이션 을 인증하는 사용자 이다."/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://riley817.github.io/categories/spring-framework/page-6-6/" /><link rel="prev" href="https://riley817.github.io/categories/spring-framework/page-6-5/" /><link rel="next" href="https://riley817.github.io/categories/spring-framework/page-6-7/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "[스프링 5.0 마스터] 6.6 Spring Security - OAuth 2.0",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/riley817.github.io\/categories\/spring-framework\/page-6-6\/"
+        },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "categories","keywords": "spring framework, oauth2.0","wordcount":  764 ,
+        "url": "https:\/\/riley817.github.io\/categories\/spring-framework\/page-6-6\/","datePublished": "2019-02-10T23:11:57+09:00","dateModified": "2022-06-19T22:57:41+09:00","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "https:\/\/riley817.github.io\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "riley"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Riley&#39;s DevLog"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i></span>Riley&#39;s DevLog</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Riley&#39;s DevLog"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i></span>Riley&#39;s DevLog</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="page single special"><h1 class="single-title animate__animated animate__pulse animate__faster">[스프링 5.0 마스터] 6.6 Spring Security - OAuth 2.0</h1><div class="content" id="content"><h2 id="oauth2-인증">OAuth2 인증</h2>
+<ul>
+<li>OAuth 2는 어플리케이션과 Facebook, GitHub 및 DigitalOcean 과 같은 <strong>HTTP 서비스의사용자 계정에 대한 제한된 액세스 권한을 얻을 수있게 해주는 인증 프레임 워크</strong>이다.
+이는 사용자 계정을 호스팅하는 서비스에 사용자 인증을 위임하고 타사 응용 프로그램에 사용자 계정에 대한 액세스 권한을 부여하여 작동하게 된다.
+OAuth 2는 웹 및 데스크톱 응용 프로그램 및 모바일 장치에 대한 인증 흐름을 제공하게 된다.</li>
+</ul>
+<h4 id="다음은-일반적인-oauth2-교환에-중요한-사용자이다">다음은 일반적인 OAuth2 교환에 중요한 사용자이다</h4>
+<ul>
+<li><strong>리소스 소유자 (사용자)</strong> : 리소스 소유자는 자신의 계정에 액세스하기 위해 어플리케이션 을 인증하는 사용자 이다. 응용 프로그램의 사용자 계정의 액세스 권한은 부여 된 권한 (예 : 읽기 또는 쓰기 권한) 의 &ldquo;범위&quot;로 제한된다.</li>
+<li><strong>리소스 서버</strong> : 리소스 서버는 사용자의 계정을 호스트하며 보안 유지가 필요한 리소스가 있는 서버이다.</li>
+<li><strong>클라이언트</strong> : 클라이언트는 사용자 계정(사용자 계정을 호스트하는 리소스 서버) 액세스하려는 어플리케이션이다.</li>
+<li><strong>권한 서버</strong> : OAuth 서비스를 제공하며, 사용자의 신원을 인증하며 클라이언트가 리소스 서버에 액세스 할 수 있는 권한을 부여한다.</li>
+</ul>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://assets.digitalocean.com/articles/oauth/abstract_flow.png"
+        data-srcset="https://assets.digitalocean.com/articles/oauth/abstract_flow.png, https://assets.digitalocean.com/articles/oauth/abstract_flow.png 1.5x, https://assets.digitalocean.com/articles/oauth/abstract_flow.png 2x"
+        data-sizes="auto"
+        alt="https://assets.digitalocean.com/articles/oauth/abstract_flow.png"
+        title="oauthflow" /></p>
+<ol>
+<li>어플리케이션은 사용자에게 리소스 서버 자원에 대한 액세스 권한을 요청한다.</li>
+<li>사용자가 액세스 권한을 제공하면 어플리케이션은 권한을 부여 받는다.</li>
+<li>어플리케이션은 사용자 권한 부여 및 자체 클라이언트 권한 정보를 권한 서버에 제공한다.</li>
+<li>인증에 성공하면 인증을 위한 액세스 토큰을 제공한다.</li>
+<li>어플리케이션은 인증을 위해 액세스 토큰을 제공하는 리소스 서버를 호출한다.</li>
+<li>액세스 토큰이 유효하면 리소스 서버는 리소스 세부 정보를 반환한다.</li>
+</ol>
+<h2 id="springboot-oauth-2-인증-구현하기">Springboot OAuth 2 인증 구현하기</h2>
+<h3 id="1-의존성-추가">1. 의존성 추가</h3>
+<p><strong>spring-security-oauth2</strong> 는 스프링 시큐리티에 OAuth2 지원을 제공하기 위한 모듈이다. <strong>pom.xml</strong> 또는 <strong>build.gradle</strong> 에 추가한다.</p>
+<h4 id="pomxml">pom.xml</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;dependency&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;groupId&gt;</span>org.springframework.security.oauth<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;artifactId&gt;</span>spring-security-oauth2<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/dependency&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="buildgradle">build.gradle</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="line"><span class="cl"><span class="n">implementation</span><span class="o">(</span><span class="s1">&#39;org.springframework.security.oauth:spring-security-oauth2:2.3.4.RELEASE&#39;</span><span class="o">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="2-권한-및-리소스-서버-설정하기">2. 권한 및 리소스 서버 설정하기</h3>
+<p>일반적으로 권한 서버와 리소스 서버를 분리하지만, 예제 소스는 권한 서버와 리소스 서버를 동일하게 지정하였다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@EnableResourceServer</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@EnableAuthorizationServer</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@SpringBootApplication</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Chapter06Application</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">SpringApplication</span><span class="o">.</span><span class="na">run</span><span class="o">(</span><span class="n">Chapter06Application</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">args</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">	<span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><strong>@EnableResourceServer</strong> : 들어오는 OAuth 2 토큰을 통해 요청을 인증하는 스프링 시큐리티를 사용하는 OAuth2 리소스 서버에 대한 어노테이션이다.</li>
+<li><strong>@EnableAuthorizationServer</strong> : <strong>DispatcherServlet</strong> 콘텍스트인 현재 어플리케이션 콘텍스트에서 <strong>AuthorizationEndpoint</strong> 및
+<strong>TokenEndPoint</strong>를 사용해 권한 부여 서버를 사용할 수 있도록 하는 어노테이션이다.</li>
+</ul>
+<h3 id="3-권한-서버-세부-정보-구성하기">3. 권한 서버 세부 정보 구성하기</h3>
+<p>예제 소스에는 <strong>application.properties</strong>를 통해 세부 구성을 설정을 하였지만, 자동구성 설정이 잘 되지 않아 <strong>@Configuration</strong>을 통하여 수동 구성으로 작성하였다.</p>
+<ul>
+<li>Spring Boot 2.x 버전에서 OAuth2가 안될때 - <a href="https://hue9010.github.io/spring/OAuth2/" target="_blank" rel="noopener noreffer">https://hue9010.github.io/spring/OAuth2/</a></li>
+<li><strong>AuthorizationServerConfigurerAdapter</strong> 를 상속받아 권한서버의 세부 사항을 구성한다.</li>
+</ul>
+<h5 id="srcmainjavacommasteringspringspringbootconfigoauthconfigurationjava">/src/main/java/com/mastering/spring/springboot/config/OAuthConfiguration.java</h5>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Configuration</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">OAuthConfiguration</span> <span class="kd">extends</span> <span class="n">AuthorizationServerConfigurerAdapter</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Autowired</span> <span class="nd">@Qualifier</span><span class="o">(</span><span class="s">&#34;authenticationManagerBean&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">AuthenticationManager</span> <span class="n">authenticationManager</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Autowired</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">TestUserDetailService</span> <span class="n">clientDetailsService</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">(</span><span class="n">ClientDetailsServiceConfigurer</span> <span class="n">configurer</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">configurer</span><span class="o">.</span><span class="na">inMemory</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">                <span class="o">.</span><span class="na">withClient</span><span class="o">(</span><span class="s">&#34;clientId&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">                <span class="o">.</span><span class="na">secret</span><span class="o">(</span><span class="s">&#34;{noop}clientSecret&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">                <span class="o">.</span><span class="na">authorizedGrantTypes</span><span class="o">(</span><span class="s">&#34;authorization_code&#34;</span><span class="o">,</span> <span class="s">&#34;refresh_token&#34;</span><span class="o">,</span> <span class="s">&#34;password&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">                <span class="o">.</span><span class="na">scopes</span><span class="o">(</span><span class="s">&#34;openid&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">                <span class="o">.</span><span class="na">authorities</span><span class="o">(</span><span class="s">&#34;ROLE_MY_CLIENT&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">(</span><span class="n">AuthorizationServerEndpointsConfigurer</span> <span class="n">endpoints</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">endpoints</span><span class="o">.</span><span class="na">tokenServices</span><span class="o">(</span><span class="n">getDefaultTokenServices</span><span class="o">())</span>
+</span></span><span class="line"><span class="cl">                 <span class="o">.</span><span class="na">authenticationManager</span><span class="o">(</span><span class="n">authenticationManager</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">                 <span class="o">.</span><span class="na">userDetailsService</span><span class="o">(</span><span class="n">clientDetailsService</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Bean</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@Primary</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">DefaultTokenServices</span> <span class="nf">getDefaultTokenServices</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">DefaultTokenServices</span> <span class="n">tokenServices</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DefaultTokenServices</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">tokenServices</span><span class="o">.</span><span class="na">setTokenStore</span><span class="o">(</span><span class="k">new</span> <span class="n">InMemoryTokenStore</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">tokenServices</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><strong>void configure(ClientDetailsServiceConfigurer configurer)</strong> : 클라이언트 ID 와 Secret 자격증명 정보를 메모리에 설정한다.
+<em>Spring Security 5.0.0.RC1</em> 이후 암호변환정책이 변경되었으므로, 기본값인 <strong>DelegatingPasswordEncoder</strong>에는 패드워드 암호화 메소드 접두어가 필요하다. bcrypt/noop/pbkdf2/scrypt/sha256 중 하나를 사용할 수 있으며, 예제는 따로 인코딩을 지정하지 않았기 때문에 {noop} 접두어를 설정함.</li>
+<li><strong>void configure(AuthorizationServerEndpointsConfigurer endpoints)</strong> : /oauth/token 엔드포인트에 대한 상세 서비스를 지정할 수 있다.</li>
+<li><a href="https://java.ihoney.pe.kr/498" target="_blank" rel="noopener noreffer">spring-security5.0 에서 달라진 암호변환정책, DelegatingPasswordEncoder</a></li>
+<li><a href="https://spring.io/blog/2017/11/01/spring-security-5-0-0-rc1-released#password-encoding" target="_blank" rel="noopener noreffer">https://spring.io/blog/2017/11/01/spring-security-5-0-0-rc1-released#password-encoding</a></li>
+</ul>
+<h5 id="srcmainjavacommasteringspringspringbootconfigwebsecurityconfigureradapterjava">/src/main/java/com/mastering/spring/springboot/config/WebSecurityConfigurerAdapter.java</h5>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Configuration</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">WebSecurityConfigurer</span> <span class="kd">extends</span> <span class="n">WebSecurityConfigurerAdapter</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@Bean</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">AuthenticationManager</span> <span class="nf">authenticationManagerBean</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kd">super</span><span class="o">.</span><span class="na">authenticationManagerBean</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h5 id="srcmainjavacommasteringspringspringbootserviceuserdetailsservicejava">src/main/java/com/mastering/spring/springboot/service/UserDetailsService.java</h5>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">TestUserDetailService</span> <span class="kd">implements</span> <span class="n">UserDetailsService</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@Value</span><span class="o">(</span><span class="s">&#34;${spring.security.user.name}&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">String</span> <span class="n">myUserName</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Value</span><span class="o">(</span><span class="s">&#34;${spring.security.user.password}&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">String</span> <span class="n">myUserPassword</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">UserDetails</span> <span class="nf">loadUserByUsername</span><span class="o">(</span><span class="n">String</span> <span class="n">username</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">UsernameNotFoundException</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="o">(!</span><span class="n">myUserName</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">username</span><span class="o">))</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">throw</span> <span class="k">new</span> <span class="n">UsernameNotFoundException</span><span class="o">(</span><span class="s">&#34;UsernameNotFound [&#34;</span> <span class="o">+</span> <span class="n">username</span> <span class="o">+</span> <span class="s">&#34;]&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">PasswordEncoder</span> <span class="n">encoder</span> <span class="o">=</span> <span class="n">PasswordEncoderFactories</span><span class="o">.</span><span class="na">createDelegatingPasswordEncoder</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">User</span><span class="o">.</span><span class="na">UserBuilder</span> <span class="n">userBuilder</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="na">builder</span><span class="o">().</span><span class="na">passwordEncoder</span><span class="o">(</span><span class="n">encoder</span><span class="o">::</span><span class="n">encode</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">UserDetails</span> <span class="n">user</span> <span class="o">=</span> <span class="n">userBuilder</span>
+</span></span><span class="line"><span class="cl">                <span class="o">.</span><span class="na">username</span><span class="o">(</span><span class="n">myUserName</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">                <span class="o">.</span><span class="na">password</span><span class="o">(</span><span class="n">myUserPassword</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">                <span class="o">.</span><span class="na">roles</span><span class="o">(</span><span class="s">&#34;USER&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">                <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">user</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><strong>UserDetailsService</strong> : 실제 DB 나 혹은 사용자 정보를 조회하여 리턴한다. 아래는 <strong>UserDetailsService</strong>를 사용자 정의로 구현하여, 이전 예제에서 설정한
+<strong>application.yml</strong>에 있는 회원정보를 가져와 검증하도록 작성하였다.</li>
+</ul>
+<h3 id="4-oauth-요청-실행">4. OAuth 요청 실행</h3>
+<h4 id="api-에-액세스-하려면-다음-2단계-프로세스가-필요하다">API 에 액세스 하려면 다음 2단계 프로세스가 필요하다.</h4>
+<ol>
+<li>액세스 토큰을 얻는다.</li>
+<li>액세스 토큰을 사용해 요청을 실행한다.</li>
+</ol>
+<h4 id="액세스-토큰-얻기">액세스 토큰 얻기</h4>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/categories/images/mastering-spring5/page6-6-1.png"
+        data-srcset="/categories/images/mastering-spring5/page6-6-1.png, /categories/images/mastering-spring5/page6-6-1.png 1.5x, /categories/images/mastering-spring5/page6-6-1.png 2x"
+        data-sizes="auto"
+        alt="/categories/images/mastering-spring5/page6-6-1.png"
+        title="getaccesstoken" /></p>
+<h4 id="액세스토큰을-이용한-요청-실행">액세스토큰을 이용한 요청 실행</h4>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/categories/images/mastering-spring5/page6-6-2.png"
+        data-srcset="/categories/images/mastering-spring5/page6-6-2.png, /categories/images/mastering-spring5/page6-6-2.png 1.5x, /categories/images/mastering-spring5/page6-6-2.png 2x"
+        data-sizes="auto"
+        alt="/categories/images/mastering-spring5/page6-6-2.png"
+        title="requestaccesstoken" /></p>
+<h3 id="5-통합테스트">5. 통합테스트</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">private</span> <span class="n">OAuth2RestTemplate</span> <span class="nf">getOAuthTemplate</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ResourceOwnerPasswordResourceDetails</span> <span class="n">resource</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ResourceOwnerPasswordResourceDetails</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">resource</span><span class="o">.</span><span class="na">setUsername</span><span class="o">(</span><span class="s">&#34;user-name&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">resource</span><span class="o">.</span><span class="na">setPassword</span><span class="o">(</span><span class="s">&#34;user-password&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">resource</span><span class="o">.</span><span class="na">setAccessTokenUri</span><span class="o">(</span><span class="n">createUrl</span><span class="o">(</span><span class="s">&#34;/oauth/token&#34;</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">    <span class="n">resource</span><span class="o">.</span><span class="na">setClientId</span><span class="o">(</span><span class="s">&#34;clientId&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">resource</span><span class="o">.</span><span class="na">setClientSecret</span><span class="o">(</span><span class="s">&#34;clientSecret&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">resource</span><span class="o">.</span><span class="na">setGrantType</span><span class="o">(</span><span class="s">&#34;password&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">OAuth2RestTemplate</span> <span class="n">oauthTemplate</span> <span class="o">=</span> <span class="k">new</span> <span class="n">OAuth2RestTemplate</span><span class="o">(</span><span class="n">resource</span><span class="o">,</span> <span class="k">new</span> <span class="n">DefaultOAuth2ClientContext</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">oauthTemplate</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nd">@Test</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">retrieveTodo</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">String</span> <span class="n">expected</span> <span class="o">=</span> <span class="s">&#34;{id:1,user:Jack,desc:\&#34;Learn Spring MVC\&#34;,done:false}&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ResponseEntity</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">response</span> <span class="o">=</span> <span class="n">getOAuthTemplate</span><span class="o">().</span><span class="na">getForEntity</span><span class="o">(</span><span class="n">createUrl</span><span class="o">(</span><span class="s">&#34;/users/Jack/todos/1&#34;</span><span class="o">),</span> <span class="n">String</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">JSONAssert</span><span class="o">.</span><span class="na">assertEquals</span><span class="o">(</span><span class="n">expected</span><span class="o">,</span> <span class="n">response</span><span class="o">.</span><span class="na">getBody</span><span class="o">(),</span> <span class="kc">false</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><strong>ResourceOwnerPasswordResourceDetails resource = new ResourceOwnerPasswordResourceDetails()</strong> :
+사용자 자격증명과 클라이언트 자격증명으로 ResourceOwnerPasswordResourceDetails 설정한다.</li>
+<li><strong>resource.setAccessTokenUri(createUrl(&quot;/oauth/token&rdquo;))</strong> : 인증서버의 URL 을 구성한다.</li>
+<li><strong>OAuth2RestTemplate oauthTemplate = new OAuth2RestTemplate(resource, new DefaultOAuth2ClientContext())</strong> :
+<strong>OAuth2RestTemplate</strong>은 OAuth2 프로토콜을 지원하는 <strong>Resttemplate</strong>의 확장이다.</li>
+</ul>
+<h2 id="참고">참고</h2>
+<ul>
+<li><a href="https://oauth.net/2/" target="_blank" rel="noopener noreffer">https://oauth.net/2/</a></li>
+<li><a href="https://www.digitalocean.com/community/tutorials/an-introduction-to-oauth-2" target="_blank" rel="noopener noreffer">https://www.digitalocean.com/community/tutorials/an-introduction-to-oauth-2</a></li>
+</ul>
+</div><div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></div></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.101.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Riley</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/valine@1.4.18/dist/Valine.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.1/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{"valine":{"appId":"QGzwQXOqs5JOhN4RGPOkR2mR-MdYXbMMI","appKey":"WBmoGyJtbqUswvfLh6L8iEBr","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@14.0.0/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"en","pageSize":10,"placeholder":"Your comment ...","recordIP":true,"serverURLs":"https://leancloud.hugoloveit.com","visitor":true}},"search":{"algoliaAppID":"","algoliaIndex":"","algoliaSearchKey":"","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>oauth2.0 - Tag - Riley&#39;s DevLog</title>
+        <link>https://riley817.github.io/tags/oauth2.0/</link>
+        <description>oauth2.0 - Tag - Riley&#39;s DevLog</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
+            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Sun, 10 Feb 2019 23:11:57 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/tags/oauth2.0/" rel="self" type="application/rss+xml" /><item>
+    <title>[스프링 5.0 마스터] 6.6 Spring Security - OAuth 2.0</title>
+    <link>https://riley817.github.io/categories/spring-framework/page-6-6/</link>
+    <pubDate>Sun, 10 Feb 2019 23:11:57 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/categories/spring-framework/page-6-6/</guid>
+    <description><![CDATA[OAuth2 인증 OAuth 2는 어플리케이션과 Facebook, GitHub 및 DigitalOcean 과 같은 HTTP 서비스의사용자 계정에 대한 제한된 액세스 권한을 얻을 수있게 해주는 인증 프레임 워크이다. 이는 사용자 계정을 호스팅하는 서비스에 사용자 인증을 위임하고 타사 응용 프로그램에 사용자 계정에 대한 액세스 권한을 부여하여 작동하게 된다. OAuth 2는 웹 및 데스크톱 응용 프로그램 및 모바일 장치에 대한 인증 흐름을 제공하게 된다. 다음은 일반적인 OAuth2 교환에 중요한 사용자이다 리소스 소유자 (사용자) : 리소스 소유자는 자신의 계정에 액세스하기 위해 어플리케이션 을 인증하는 사용자 이다.]]></description>
+</item>
+</channel>
+</rss>

@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>[시작하세요! 도커/쿠버네티스] Chapter 2. 도커 엔진 - Riley&#39;s DevLog</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:title" content="[시작하세요! 도커/쿠버네티스] Chapter 2. 도커 엔진" />
+<meta property="og:description" content="시작하세요! 도커/쿠버네티스 책 정리 🐳🐳🐳
+1 도커 이미지와 컨테이너 도커 엔진에서 사용하는 기본단위는 이미지와 컨테이너이다.
+1.1 도커 이미지 이미지는 컨테이너를 생성할 때 필요한 요소이다. 가상 머신을 생성할 때 사용하는 iso 파일과 비슷한 개념이다. 여러 개의 계층으로 된 바이너리 파일로 존재, 컨테이너를 생성하고 실행할 때 읽기 전용으로 사용된다. 도커 이미지의 구성 도커 이미지 이름은 [저장소 이름]/[이미지 이름]:[태그] 형태로 구성 된다.
+저장소 (Repository) : 이미지가 저장된 장소. 저장소 이름이 명시되지 않은 이미지는 도커에서 기본적으로 제공하는 이미지 저장소인 도커 허브의 공식 이미지." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://riley817.github.io/categories/docker-kubernetes/chapter2-1-docker-engine/" /><meta property="og:image" content="https://riley817.github.io/icon.png"/><meta property="article:section" content="categories" />
+<meta property="article:published_time" content="2022-04-20T16:00:00+09:00" />
+<meta property="article:modified_time" content="2022-06-19T22:57:41+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://riley817.github.io/icon.png"/>
+
+<meta name="twitter:title" content="[시작하세요! 도커/쿠버네티스] Chapter 2. 도커 엔진"/>
+<meta name="twitter:description" content="시작하세요! 도커/쿠버네티스 책 정리 🐳🐳🐳
+1 도커 이미지와 컨테이너 도커 엔진에서 사용하는 기본단위는 이미지와 컨테이너이다.
+1.1 도커 이미지 이미지는 컨테이너를 생성할 때 필요한 요소이다. 가상 머신을 생성할 때 사용하는 iso 파일과 비슷한 개념이다. 여러 개의 계층으로 된 바이너리 파일로 존재, 컨테이너를 생성하고 실행할 때 읽기 전용으로 사용된다. 도커 이미지의 구성 도커 이미지 이름은 [저장소 이름]/[이미지 이름]:[태그] 형태로 구성 된다.
+저장소 (Repository) : 이미지가 저장된 장소. 저장소 이름이 명시되지 않은 이미지는 도커에서 기본적으로 제공하는 이미지 저장소인 도커 허브의 공식 이미지."/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://riley817.github.io/categories/docker-kubernetes/chapter2-1-docker-engine/" /><link rel="prev" href="https://riley817.github.io/categories/javascript/hash3/" /><link rel="next" href="https://riley817.github.io/categories/tucker-go/chapter18-slice/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "[시작하세요! 도커/쿠버네티스] Chapter 2. 도커 엔진",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/riley817.github.io\/categories\/docker-kubernetes\/chapter2-1-docker-engine\/"
+        },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "categories","keywords": "docker","wordcount":  1501 ,
+        "url": "https:\/\/riley817.github.io\/categories\/docker-kubernetes\/chapter2-1-docker-engine\/","datePublished": "2022-04-20T16:00:00+09:00","dateModified": "2022-06-19T22:57:41+09:00","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "https:\/\/riley817.github.io\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "riley"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Riley&#39;s DevLog"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i></span>Riley&#39;s DevLog</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Riley&#39;s DevLog"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i></span>Riley&#39;s DevLog</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="page single special"><h1 class="single-title animate__animated animate__pulse animate__faster">[시작하세요! 도커/쿠버네티스] Chapter 2. 도커 엔진</h1><div class="content" id="content"><blockquote>
+<p>시작하세요! 도커/쿠버네티스 책 정리 🐳🐳🐳</p>
+</blockquote>
+<h2 id="1-도커-이미지와-컨테이너">1 도커 이미지와 컨테이너</h2>
+<p>도커 엔진에서 사용하는 기본단위는 <strong>이미지</strong>와 <strong>컨테이너</strong>이다.</p>
+<h3 id="11-도커-이미지">1.1 도커 이미지</h3>
+<ul>
+<li>이미지는 컨테이너를 생성할 때 필요한 요소이다.
+<ul>
+<li>가상 머신을 생성할 때 사용하는 <code>iso</code> 파일과 비슷한 개념이다.</li>
+</ul>
+</li>
+<li>여러 개의 계층으로 된 바이너리 파일로 존재, 컨테이너를 생성하고 실행할 때 <strong>읽기 전용</strong>으로 사용된다.</li>
+</ul>
+<h4 id="도커-이미지의-구성">도커 이미지의 구성</h4>
+<p>도커 이미지 이름은 <code><sup>저장소 이름</sup>/<sub>이미지 이름</sub>:[태그]</code> 형태로 구성 된다.</p>
+<ul>
+<li><strong>저장소 (Repository)</strong> : 이미지가 저장된 장소. 저장소 이름이 명시되지 않은 이미지는 도커에서 기본적으로 제공하는 이미지 저장소인 도커 허브의 공식 이미지.</li>
+<li><strong>이미지 이름</strong> : 이미지가 어떤 역할을 하는지 나타냄. 이미지 이름을 생략할 수 없으며 반드시 설정</li>
+<li><strong>태그</strong> : 이미지의 버전 관리, 혹은 리비전 <code>Revision</code> 관리에 사용. 태그를 생략하면 이미지의 <code>latest</code> 로 인식</li>
+</ul>
+<h3 id="12-도커-컨테이너">1.2 도커 컨테이너</h3>
+<ul>
+<li>이미지로 컨테이너를 생성하면 해당 이미지 목적에 맞는 파일이 들어 있는 격리된 시스템 및 자원 네트워크를 사용할 수 있는 <strong>독립된 공간이 생성</strong> 된다.</li>
+<li>컨테이너 이미지를 읽기 전용으로 사용하되 이미지에서 변경된 사항만 저장하므로 원래 이미지는 영향을 받지 않는다.</li>
+<li>생성된 각 컨테이너는 각기 독립된 파일시스템을 제공 받으며 호스트와 분리돼 있으므로 특정 컨테이너에서 어떤 어플리케이션을 삭제해도 다른 컨테이너와 호스트에는 영향을 주지 않는다.</li>
+</ul>
+<h2 id="2-도커-컨테이너-다루기">2. 도커 컨테이너 다루기</h2>
+<h3 id="21-컨테이너-생성">2.1 컨테이너 생성</h3>
+<p>도커는 다양한 기능이 빠르게 업데이트되고 새로운 버전이 배포되므로 설치된 도커 엔진을 먼저 확인해야 한다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo docker -v
+</span></span><span class="line"><span class="cl">Docker version 19.03.12, build 48a66213fe
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="컨테이너-생성-후-접속">컨테이너 생성 후 접속</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo docker run -i -t ubuntu:14.04
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><code>docker run</code>  : 컨테이너를 생성하고 실행하는 역할</li>
+<li><code>-i -t</code> : <code>-i</code> 옵션으로 컨테이너와 상호 <code>interactive</code> 입출력을, <code>-t</code> 옵션으로 <code>tty</code> 를 활성화해서 <code>bash</code> 쉘을 사용하도록 컨테이너를 설정.</li>
+<li>ubuntu:14.04 이미지가 엔진에 존재하지 않는 경우 도커 중앙 이미지 저장소인 도커 허브에서 자동으로 이미지를 내려 받음</li>
+</ul>
+<p>위의 명령어로 실행할 경우 컨테이너 생성과 동시에 도커 환경 내부로 접속된다. 호스트 도커 환경으로 복귀하려면,</p>
+<ol>
+<li><code>exit</code>를 입력한다. 이 방법은 컨테이너 내부에서 빠져나오면서 동시에 컨테이너를 정지한다.</li>
+<li><code>Ctrl + P, Q</code> 입력한다. 단순히 컨테이너의 쉘에서만 빠져나온다.</li>
+</ol>
+<h4 id="create-명령">create 명령</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo docker create -i -t --name mycentos centos:7
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># docker 컨테이너 실행하기</span>
+</span></span><span class="line"><span class="cl">sudo docker start mycentos
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># docker 컨테이너 내부로 들어가기</span>
+</span></span><span class="line"><span class="cl">sudo docker attach mycentos
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="run-명령어와-create-명령어의-차이점">run 명령어와 create 명령어의 차이점</h4>
+<ul>
+<li><strong>run 명령어</strong> : pull, create, start 명령어를 일괄적으로 실행한 attach가 가능한 컨테이너라면 컨테이너 내부로 들어간다.</li>
+<li><strong>create 명령어</strong> : pull 한 뒤 컨테이너만 생성할 start, attach를 실행하지 않는다.</li>
+<li>보통은 <strong>run</strong> 명령어를 더 많이 사용한다.</li>
+</ul>
+<h4 id="도커-이미지-내려받기">도커 이미지 내려받기</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo docker pull centos:7
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="도커-엔진에-존재하는-이미지-조회">도커 엔진에 존재하는 이미지 조회</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo docker images
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">REPOSITORY              TAG                 IMAGE ID            CREATED             SIZE
+</span></span><span class="line"><span class="cl">ubuntu                  18.04               2eb2d388e1a2        <span class="m">10</span> days ago         64.2MB
+</span></span><span class="line"><span class="cl">wordpress               latest              04b52c96c4b6        <span class="m">11</span> days ago         543MB
+</span></span><span class="line"><span class="cl">mysql                   5.7                 8679ced16d20        <span class="m">11</span> days ago         448MB
+</span></span><span class="line"><span class="cl">mysql                   <span class="m">8</span>                   e3fcc9e1cc04        <span class="m">11</span> days ago         544MB
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="22-컨테이너-목록-확인">2.2 컨테이너 목록 확인</h3>
+<h4 id="생성한-컨테이너-목록-확인">생성한 컨테이너 목록 확인</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 정지되지 않은 컨테이너만 출력</span>
+</span></span><span class="line"><span class="cl">sudo docker ps
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 정지된 컨테이너를 포함한 모든 컨테이너 출력</span>
+</span></span><span class="line"><span class="cl">sudo docker ps -a
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/categories/images/docker-kubernetes/_2020-08-03_23.31.58.png"
+        data-srcset="/categories/images/docker-kubernetes/_2020-08-03_23.31.58.png, /categories/images/docker-kubernetes/_2020-08-03_23.31.58.png 1.5x, /categories/images/docker-kubernetes/_2020-08-03_23.31.58.png 2x"
+        data-sizes="auto"
+        alt="/categories/images/docker-kubernetes/_2020-08-03_23.31.58.png"
+        title="_2020-08-03_23.31.58.png" /></p>
+<ul>
+<li><strong>CONTAINER ID</strong> : 컨테이너에게 할당되는 고유한 ID. 위 결과에서는 ID의 일부분 밖에 확인할 수 없지만 컨테이너를 확인하기 위해 <code>docker inspect</code> 명령어를 사용하면 전체 ID를 확인할 수 있다.</li>
+<li><strong>IMAGE</strong> : 컨테이너를 생성할 때 사용된 이미지 이름.</li>
+<li><strong>COMMAND</strong> : 커맨드는 컨테이너가 시작될 때 실행 명령어. 커맨드는 대부분의 이미지에 미리 내장되어 있기 때문에 별도로 설정할 필요가 없다.</li>
+<li><strong>CREATE</strong> : 컨테이너가 생성되고 난 뒤 흐른 시간을 나타냄</li>
+<li><strong>STATUS</strong> : 컨테이너의 상태를 나타낸다. <code>Exited...</code>  는 정지된 상태 나타내며 <code>Up ... seconds</code> 는 실행중인 상태를 나타낸다.</li>
+<li><strong>PORTS</strong> : 컨테이너가 개방한 포트와 호스트에 연결한 포트를 나열.</li>
+<li><strong>NAMES</strong> : 컨테이너의 고유 이름. <code>docker rename</code> 명령어를 통해 컨테이너 이름을 변경할 수도 있다.</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 컨테이너 이름 변경</span>
+</span></span><span class="line"><span class="cl">docker rename angry_morse my_container
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="23-컨테이너-삭제">2.3 컨테이너 삭제</h3>
+<p><code>docker rm</code> 명령어를 통해 컨테이너를 삭제할 수 있다. 한 번 삭제한 컨테이너는 복구할 수 없으므로 신중을 기해야 한다.</p>
+<h4 id="도커-컨테이너-삭제">도커 컨테이너 삭제</h4>
+<p>실행 중인 컨테이너는 삭제할 수 없다. 실행 중인 컨테이너를 종료하거나 강제삭제 옵션을 추가해야한다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 실행 중인 컨테이너 종료 후 삭제</span>
+</span></span><span class="line"><span class="cl">docker stop mycentos
+</span></span><span class="line"><span class="cl">docker rm mycentos
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 강제 옵션을 통한 삭제</span>
+</span></span><span class="line"><span class="cl">docker rm -f mycentos
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="모든-도커-컨테이너-삭제---prune">모든 도커 컨테이너 삭제 - prune</h4>
+<p>prune 명령어를 사용하면 모든 컨테이너를 한번에 삭제할 수 있다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">riley@DESKTOP-XXXXX:~$ docker container prune
+</span></span><span class="line"><span class="cl">WARNING! This will remove all stopped containers.
+</span></span><span class="line"><span class="cl">Are you sure you want to <span class="k">continue</span>? <span class="o">[</span>y/N<span class="o">]</span> y
+</span></span><span class="line"><span class="cl">Total reclaimed space: 0B
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="24-컨테이너를-외부에-노출">2.4 컨테이너를 외부에 노출</h3>
+<ul>
+<li>컨테이너는 가상 머신과 마찬가지로 가상 IP 주소를 할당 받는다.</li>
+<li>기본적으로는 172.17.0.x의 IP를 순차적으로 받게 된다. (나는 WSL2 우분투 사용중이라 네트워크 정보가 조금 다른것 같다.)</li>
+<li><code>ifconfig</code> 명령어를 통해 도커의 NAT IP를 할당받은 eht0 인터페이스와 로컬 lo 인터페이스를 확인 할 수 있다.</li>
+<li>외부에 컨테이너의 애플리케이션을 노출하기 위해서는 eth0의 IP와 포트를 호스트의 IP와 포트에 바인딩 해야 한다.</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># ifconfig</span>
+</span></span><span class="line"><span class="cl">eth0: <span class="nv">flags</span><span class="o">=</span>4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;  mtu <span class="m">1500</span>
+</span></span><span class="line"><span class="cl">        inet 172.21.154.31  netmask 255.255.240.0  broadcast 172.21.159.255
+</span></span><span class="line"><span class="cl">        inet6 fe80::215:5dff:fe81:5ff2  prefixlen <span class="m">64</span>  scopeid 0x20&lt;link&gt;
+</span></span><span class="line"><span class="cl">        ether 00:15:5d:81:5f:f2  txqueuelen <span class="m">1000</span>  <span class="o">(</span>Ethernet<span class="o">)</span>
+</span></span><span class="line"><span class="cl">        RX packets <span class="m">5941</span>  bytes <span class="m">1924948</span> <span class="o">(</span>1.9 MB<span class="o">)</span>
+</span></span><span class="line"><span class="cl">        RX errors <span class="m">0</span>  dropped <span class="m">0</span>  overruns <span class="m">0</span>  frame <span class="m">0</span>
+</span></span><span class="line"><span class="cl">        TX packets <span class="m">146</span>  bytes <span class="m">10909</span> <span class="o">(</span>10.9 KB<span class="o">)</span>
+</span></span><span class="line"><span class="cl">        TX errors <span class="m">0</span>  dropped <span class="m">0</span> overruns <span class="m">0</span>  carrier <span class="m">0</span>  collisions <span class="m">0</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">lo: <span class="nv">flags</span><span class="o">=</span>73&lt;UP,LOOPBACK,RUNNING&gt;  mtu <span class="m">65536</span>
+</span></span><span class="line"><span class="cl">        inet 127.0.0.1  netmask 255.0.0.0
+</span></span><span class="line"><span class="cl">        inet6 ::1  prefixlen <span class="m">128</span>  scopeid 0x10&lt;host&gt;
+</span></span><span class="line"><span class="cl">        loop  txqueuelen <span class="m">1000</span>  <span class="o">(</span>Local Loopback<span class="o">)</span>
+</span></span><span class="line"><span class="cl">        RX packets <span class="m">0</span>  bytes <span class="m">0</span> <span class="o">(</span>0.0 B<span class="o">)</span>
+</span></span><span class="line"><span class="cl">        RX errors <span class="m">0</span>  dropped <span class="m">0</span>  overruns <span class="m">0</span>  frame <span class="m">0</span>
+</span></span><span class="line"><span class="cl">        TX packets <span class="m">0</span>  bytes <span class="m">0</span> <span class="o">(</span>0.0 B<span class="o">)</span>
+</span></span><span class="line"><span class="cl">        TX errors <span class="m">0</span>  dropped <span class="m">0</span> overruns <span class="m">0</span>  carrier <span class="m">0</span>  collisions <span class="m">0</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="도커-컨테이너로-아파치-웹서비스-띄우기">도커 컨테이너로 아파치 웹서비스 띄우기</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker run -i -t --name mywebserver -p 80:80 ubuntu:18.04
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">root@b6e1a96299bb:/# apt-get update
+</span></span><span class="line"><span class="cl">root@b6e1a96299bb:/# apt-get install apache2 -y
+</span></span><span class="line"><span class="cl">root@b6e1a96299bb:/# service apache2 start
+</span></span></code></pre></td></tr></table>
+</div>
+</div><figure><img src="/categories/images/docker-kubernetes/20220420173800.png#center"/>
+</figure>
+
+<ul>
+<li>아파치 웹 서버는 172 대역을 가진 컨테이너의 NAT IP와 80번 포트로 서비스하므로 여기에 접근하려면 172.x.x.x:80 의 주소로 접근해야 한다.</li>
+<li>도커의 포트 포워딩 옵션인 <code>-p</code> 옵션을 통해 호스트와 컨테이너를 연결했으므로 호스트 ip를 통해 172.x.x.x:80에 접근할 수 있다.</li>
+</ul>
+<h3 id="25-컨테이너-어플리케이션-구축">2.5 컨테이너 어플리케이션 구축</h3>
+<ul>
+<li>보통은 여러 에이전트나 데이터베이스 등을 연결하여 하나의 서비스로 동작시킨다. 이런 서비스를 컨테이너화(Containerize)할 때 여러개의 애플리케이션을 하나의 컨테이너에 설치할 수 있다.</li>
+<li>컨테이너에 애플리케이션을 하나만 동작시키면 컨테이너 간 독립성을 보장함을 동시에 애플리케이션의 버전 관리, 소스코드 모듈화 등이 더 쉬워진다.</li>
+<li><strong>도커에서는 한 컨테이너에 하나의 프로세스만 실행하도록 권장한다.</strong></li>
+</ul>
+<h4 id="mysql-이미지로-데이터베이스-컨테이너-생성">MySql 이미지로 데이터베이스 컨테이너 생성</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker run -d <span class="se">\ </span>
+</span></span><span class="line"><span class="cl">--name wordpressdb <span class="se">\ </span>
+</span></span><span class="line"><span class="cl">-e <span class="nv">MYSQL_ROOT_PASSWORD</span><span class="o">=</span>password <span class="se">\ </span>
+</span></span><span class="line"><span class="cl">-e <span class="nv">MYSQL_DATABASE</span><span class="o">=</span>wordpress <span class="se">\ </span>
+</span></span><span class="line"><span class="cl">mysql:5.7
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="워드프레스-이미지로-워드프레스-웹-서비스-컨테이너-생성">워드프레스 이미지로 워드프레스 웹 서비스 컨테이너 생성</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker run -d <span class="se">\ </span>
+</span></span><span class="line"><span class="cl">-e <span class="nv">WORDPRESS_DB_PASSWORD</span><span class="o">=</span>password <span class="se">\ </span>
+</span></span><span class="line"><span class="cl">--name wordpress <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>--link wordpressdb:mysql <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>-p <span class="m">80</span> <span class="se">\ </span>
+</span></span><span class="line"><span class="cl">wordpress
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><code>-d</code> : Detached 모드로 컨테이너를 실행한다. Detached 모드는 백그라운드에서 동작하는 애플리케이션으로써 실행하도록 설정.
+<ul>
+<li>컨테이너 내부에서 프로그램이 foreground로 실행된다.</li>
+</ul>
+</li>
+<li><code>-e</code> : 컨테이너 내부의 환경변수 설정</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker <span class="nb">exec</span> -i -t wordpressdb /bin/bash
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">root@d777facb7e1f:/# <span class="nb">echo</span> <span class="si">${</span><span class="nv">MYSQL_ROOT_PASSWORD</span><span class="si">}</span>
+</span></span><span class="line"><span class="cl">password
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>
+<p><code>exec</code> : 명령어를 사용하면 컨테이너 내부에서 명령어를 실행한 뒤 그 결과값을 반환 받을 수 있다.</p>
+<ul>
+<li><code>-i</code>, <code>-t</code> 옵션을 추가해 <code>/bin/bash</code>로 상호 입출력이 가능한 형태로 exec를 사용할 수 있다.</li>
+</ul>
+</li>
+<li>
+<p><code>--link</code> : deprecated 된 옵션이며 도커 브리지(bridge) 네트워크를 사용하면 link와 동일한 기능을 손쉽게 사용할 수 있다.</p>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker ps -a
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">CONTAINER ID   IMAGE       COMMAND                  CREATED          STATUS          PORTS                   NAMES
+</span></span><span class="line"><span class="cl">0ba1266d50e0   wordpress   <span class="s2">&#34;docker-entrypoint.s…&#34;</span>   <span class="m">3</span> seconds ago    Up <span class="m">2</span> seconds    0.0.0.0:57594-&gt;80/tcp   wordpress
+</span></span><span class="line"><span class="cl">7a8d5ded323e   mysql:5.7   <span class="s2">&#34;docker-entrypoint.s…&#34;</span>   <span class="m">29</span> seconds ago   Up <span class="m">27</span> seconds   3306/tcp, 33060/tcp     wordpressdb
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># wordpress가 사용중인 포트 확인하기</span>
+</span></span><span class="line"><span class="cl">$ docker port wordpress
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">80/tcp -&gt; 0.0.0.0:57594
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>포트 54746과 호스트의 80 포트와 매핑되었다.</li>
+</ul>
+<h3 id="26-도커-볼륨">2.6 도커 볼륨</h3>
+<ul>
+<li>도커 이미지로 컨테이너를 생성하면 <strong>이미지는 읽기 전용이 되고 컨테이너의 변경 사항만 별도 저장하여 컨테이너의 정보를 보존</strong>한다.</li>
+<li>이미 생성된 이미지는 어떠한 경우로도 변경되지 않으며, 컨테이너 계층에 원래 이미지에서 변경된 파일시스템 등을 저장한다.</li>
+<li>생성된 mysql 이미지에는 mysql을 실행하는 데 필요한 애플리케이션 파일이, 컨테이너 계층에는 워드프레스에서 쓴 로그인 정보나 게시글 등과 같은 데이터베이스를 운용하면서 쌓인 데이터가 저장된다.</li>
+</ul>
+<figure><img src="/categories/images/tucker-go/20220428193444.png#center"
+         alt="[그림] 이미지와 컨테이너의 구조" width="500"/><figcaption>
+            <p>[그림] 이미지와 컨테이너의 구조</p>
+        </figcaption>
+</figure>
+
+<p>위의 mysql 컨테이너를 삭제하면 컨테이너 계층에 저장되어 있던 데이터베이스의 정보도 모두 사라진다. 도커는 컨테이너의 생성과 삭제가 매우 쉬으므로 데이터를 영속적(<code>Persistent</code>)로 활용할 수 있는 방법은 아래와 같다.</p>
+<p><strong>볼륨 생성 방법</strong></p>
+<ol>
+<li>호스트 볼륨 공유</li>
+<li>볼륨 컨테이너 활용</li>
+<li>도커가 관리하는 볼륨 이용</li>
+</ol>
+<h4 id="261-호스트-볼륨-공유">2.6.1 호스트 볼륨 공유</h4>
+<ul>
+<li><code>-v</code> 옵션을 통해 <code>~/wordpress_db:/var/lib/mysql</code>로 설정하여 <strong>[호스트 공유 디렉터리]:[컨테이너 공유 디렉터리]</strong> 형태로 디렉토리를 공유한다.</li>
+<li><code>~/wordpress_db</code> 에 mysql 구동에 필요한 파일이 공유된 것을 확인 할 수 있다. 컨테이너의 <code>/var/lib/mysql</code> 디렉터리는 호스트의 <code>~/wordpress_db</code> 디렉터리와 동기화되는 것이 아니라 <strong>완전히 같은 디렉터리</strong>이다.</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker run -d <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>--name wordpressdb_hostvolume <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>-e <span class="nv">MYSQL_ROOT_PASSWORD</span><span class="o">=</span>password <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>-e <span class="nv">MYSQL_DATABASE</span><span class="o">=</span>wordpress <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>-v ~/wordpress_db:/var/lib/mysql mysql:5.7 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker run -d <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>-e <span class="nv">WORDPRESS_DB_PASSWORD</span><span class="o">=</span>password <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>--name wordpress_hostvolume <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>--link wordpressdb_hostvolume:mysql <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>-p <span class="m">80</span> wordpress
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>컨테이너를 삭제해도 호스트 공유 디렉터리(<code>~/wordpress_db</code>)에는 mysql 컨테이너가 사용한 데이터가 그대로 남아 있다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># stop containers</span>
+</span></span><span class="line"><span class="cl">docker stop wordpress_hostvolume wordpressdb_hostvolume
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># remove containers</span>
+</span></span><span class="line"><span class="cl">docker rm wordpress_hostvolume wordpressdb_hostvolume
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p><strong>💡 이미지에 이미 존재하던 디렉터리에 호스트의 볼륨을 공유하면 컨테이너 디렉터리가 덮어씌워진다.</strong></p>
+</blockquote>
+<h4 id="262-볼륨-컨테이너">2.6.2 볼륨 컨테이너</h4>
+<ul>
+<li><code>-v</code> 옵션으로 볼륨을 사용하는 컨테이너를 다른 컨테이너와 공유하는 방법이 있다.</li>
+<li>컨테이너를 생성할 때 <strong>&ndash;volumes-from</strong> 옵션을 설정하면 <code>-v</code> 또는 <code>--volume</code> 옵션을 적용한 컨테이너의 볼륨 디렉터리를 공유할 수 있다.</li>
+<li>호스트에서 볼륨만 공유하고 별도의 역할을 담당하지 않는 <code>볼륨 컨테이너</code>로 활용하는 것이 가능하다.</li>
+</ul>
+<h4 id="263-도커가-관리하는-볼륨이용">2.6.3 도커가 관리하는 볼륨이용</h4>
+<ul>
+<li><code>docker volume</code> 명령어를 사용하여 도커 자체에서 제공하는 볼륨 기능을 활용할 수도 있다.</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker volume create --name myvolume
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>호스트와 볼륨을 공유할 때는 다음과 같은 형식으로 입력한다.</li>
+</ul>
+<blockquote>
+<p>[볼륨이름]:[컨테이너의 공유 디렉터리]</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker run -i -t --name myvolume_1 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>-v myvolume:/root/ <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>ubuntu:18.04
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><code>docker inspect</code> 명령어를 이용하면 볼륨이 실제 어디에 저장되는지 알 수 있다.</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker inspect --type volume myvolume
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div><div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></div></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.101.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Riley</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/valine@1.4.18/dist/Valine.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.1/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{"valine":{"appId":"QGzwQXOqs5JOhN4RGPOkR2mR-MdYXbMMI","appKey":"WBmoGyJtbqUswvfLh6L8iEBr","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@14.0.0/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"en","pageSize":10,"placeholder":"Your comment ...","recordIP":true,"serverURLs":"https://leancloud.hugoloveit.com","visitor":true}},"search":{"algoliaAppID":"","algoliaIndex":"","algoliaSearchKey":"","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

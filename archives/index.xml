@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Archives on Riley&#39;s DevLog</title>
+    <link>https://riley817.github.io/archives/</link>
+    <description>Recent content in Archives on Riley&#39;s DevLog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <managingEditor>riley0422@icloud.com (Riley)</managingEditor>
+    <webMaster>riley0422@icloud.com (Riley)</webMaster><atom:link href="https://riley817.github.io/archives/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title></title>
+      <link>https://riley817.github.io/archives/archives/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/archives/archives/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://riley817.github.io/archives/aws-nosql/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/archives/aws-nosql/</guid>
+      <description>author::riley title:: 대규모 서비스를 위한 AWS의 대표적인 NoSQL Database 서비스 알아보기 date::2022-01-20 10:12:47 tags:: #AWS #NoSQL #데이터베이스
+모던 애플리케이션과 데이터베이스 db-engines.com 인기순이 top 10 NoSQL JSON NoSQL데이터베이스의 확장성 트랜잭션과 보조 인덱스를 흡수하여 단점을 제거 하고 있다 - 릴레이션쉽 오픈 소스 데이터베이스를 더 많이 사용하고 있다. 모던 애플리케이션 사용자 글로벌, 다양한 디바이스와 데이터양이 많아졌다. 빠른 성능요구 빠르게, 무제한으로 확장이 가능 Amazon Prime Day 마이크로 서비스 아키텍처 하나의 모노리틱 서비스가 -&amp;gt; 마이크로 서비스 구조에서는 각 데이터베이스 DevOps 형태로 각 마이크로 서비스 별로 2피자 팀구성 각 데이터베스별로 잘하는 것과 잘 못하는 것이 있다.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://riley817.github.io/archives/ec2/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/archives/ec2/</guid>
+      <description>EC2 목적 EC2를 좀 더 효율적으로 사용하는 방법에 대해 소개 Amazon EC2 기본 개념 container 환경의 오케스트레이션, 서버리스 환경도 제공 2006년 8월 출시 온디맨드 구매 방식만 존재 베어 메탈, ssd, 네트워크 기능 향상 On-demand 외에도 세이빙 플랜등을 통해 비용을 좀더 효율적으로 여러가지 폭 넓은 구매 옵션 Amazon EC2 Mac instances 제공 AWS License Manager 소프트웨어 공급 업체의 라이선스를 보다 쉽게 관리 라이선스를 중앙화하여 관리 온프로미스 라이센스도 제공 Processors and Accelerators 애플리케이션 및 워크로드에 맞는 적합한 프로세서 제공 AWS Gravition Processor 컴퓨팅에 집중된 워크로드 -&amp;gt; 450개가 넘는 인스턴스 타입을 제공하고 있다.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://riley817.github.io/archives/grpc/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/archives/grpc/</guid>
+      <description>gPRC 설정 1 2 3 4 go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest go install google.golang.org/protobuf/cmd/protoc-gen-go@v1.28 go install github.com/envoyproxy/protoc-gen-validate@v0.6.3 1 2 echo &amp;#39;export GOPATH=$HOME/Go&amp;#39; &amp;gt;&amp;gt; $HOME/.zshrc echo &amp;#39;export PATH=$PATH:$GOPATH/bin&amp;#39; &amp;gt;&amp;gt; $HOME/.zshrc </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://riley817.github.io/archives/strategyzer/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/archives/strategyzer/</guid>
+      <description>Strategyzer Over View Strategyzer App
+Training
+도서
+블로그 도서 링크 참고 가치제안 캔버스 - 고객 분석
+가치제안 캔버스 - 제품 분석
+사업 모델 캔버스 -
+가치제안 캔버스 불특정 다수에게 제품이나 서비스를 판매하기 위해 고객의 니즈를 파악 어떠한 고객을 타겟으로 할 건지 파악해야한다. 고객 고객을 이해하는 것 원으로 표현 ex) 겜블러 Job : 용도 - 게임한다 - 돈을 딴다. Gain(보상):
+- 잭팟이 터졌다. Pain(불만): - 온라인 게임은 신뢰할 수 없다. -&amp;gt; 항목이 많아질 경우 우선순위가 높은 것을 원 안으로 -&amp;gt; 가설에 대한 검증을 계속</description>
+    </item>
+    
+  </channel>
+</rss>

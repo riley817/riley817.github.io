@@ -1,0 +1,17 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>ECMAScript - Tag - Riley&#39;s DevLog</title>
+        <link>https://riley817.github.io/tags/ecmascript/</link>
+        <description>ECMAScript - Tag - Riley&#39;s DevLog</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
+            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Fri, 03 Jun 2022 18:54:00 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/tags/ecmascript/" rel="self" type="application/rss+xml" /><item>
+    <title>[TIL &amp; Issue Note] 20220603</title>
+    <link>https://riley817.github.io/categories/til/20220603/</link>
+    <pubDate>Fri, 03 Jun 2022 18:54:00 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/categories/til/20220603/</guid>
+    <description><![CDATA[ ECMAscript 모듈 Scope 관련 문제
+Functions not working when type=&quot;module&quot; or import ]]></description>
+</item>
+</channel>
+</rss>

@@ -1,0 +1,32 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>nginx - Category - Riley&#39;s DevLog</title>
+        <link>https://riley817.github.io/categories/nginx/</link>
+        <description>nginx - Category - Riley&#39;s DevLog</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
+            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Fri, 05 Feb 2021 23:07:41 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/categories/nginx/" rel="self" type="application/rss+xml" /><item>
+    <title>docker</title>
+    <link>https://riley817.github.io/categories/devops/docker-compose/</link>
+    <pubDate>Fri, 05 Feb 2021 23:07:41 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/categories/devops/docker-compose/</guid>
+    <description><![CDATA[1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 version: &#39;3.0&#39; services: gitlab: container_name: gitlab image: gitlab/gitlab-ee:latest restart: always hostname: &#34;gitlab.]]></description>
+</item>
+<item>
+    <title>nginx 컴파일 설치하기 - centos7</title>
+    <link>https://riley817.github.io/categories/devops/nginx-compile/</link>
+    <pubDate>Wed, 06 May 2020 23:45:11 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/categories/devops/nginx-compile/</guid>
+    <description><![CDATA[nginx 컴파일 설치하기 CentOS 7에서 NGINX를 컴파일 버전으로 설치한다. 컴파일 설치를 하기 위해서는 몇 가지 라이브러리가 필요하다. 필요 의존 라이브러리는 openssl, pcre, zlib 등이 필요하므로 먼저 설치한다. 컴파일을 위한 라이브러리 설치 1 2 3 4 5 6 7 8 9 10 11 # pcre 라이브러리 설치 yum install pcre* # gzip 압축을 사용하기 위해서 설치 yum install zlib zlib-devel # open ssl 설치 yum install openssl openssl-devel # gcc 설치 yum install gcc nginx 소스 파일을 다운로드 최신 버전 경로는 아래 url에 접속하여 원하는 버전 링크를 복사한다.]]></description>
+</item>
+<item>
+    <title>nginx CORS 활성화 하기</title>
+    <link>https://riley817.github.io/categories/devops/nginx-cors/</link>
+    <pubDate>Wed, 06 May 2020 22:11:55 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/categories/devops/nginx-cors/</guid>
+    <description><![CDATA[nginx CORS 활성화 하기 nginx에서 CORS(Cross-Origin Resource Sharing) 설정을 활성화한다. nginx 설정파일 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 # # Wide-open CORS config for nginx # location / { if ($request_method = &#39;OPTIONS&#39;) { add_header &#39;Access-Control-Allow-Origin&#39; &#39;*&#39;; add_header &#39;Access-Control-Allow-Methods&#39; &#39;GET, POST, OPTIONS&#39;; # # Custom headers and headers various browsers *should* be OK with but aren&#39;t # add_header &#39;Access-Control-Allow-Headers&#39; &#39;DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range&#39;; # # Tell client that this pre-flight info is valid for 20 days # add_header &#39;Access-Control-Max-Age&#39; 1728000; add_header &#39;Content-Type&#39; &#39;text/plain; charset=utf-8&#39;; add_header &#39;Content-Length&#39; 0; return 204; } if ($request_method = &#39;POST&#39;) { add_header &#39;Access-Control-Allow-Origin&#39; &#39;*&#39;; add_header &#39;Access-Control-Allow-Methods&#39; &#39;GET, POST, OPTIONS&#39;; add_header &#39;Access-Control-Allow-Headers&#39; &#39;DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range&#39;; add_header &#39;Access-Control-Expose-Headers&#39; &#39;Content-Length,Content-Range&#39;; } if ($request_method = &#39;GET&#39;) { add_header &#39;Access-Control-Allow-Origin&#39; &#39;*&#39;; add_header &#39;Access-Control-Allow-Methods&#39; &#39;GET, POST, OPTIONS&#39;; add_header &#39;Access-Control-Allow-Headers&#39; &#39;DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range&#39;; add_header &#39;Access-Control-Expose-Headers&#39; &#39;Content-Length,Content-Range&#39;; } } ]]></description>
+</item>
+</channel>
+</rss>

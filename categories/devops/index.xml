@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>devops - Category - Riley&#39;s DevLog</title>
+        <link>https://riley817.github.io/categories/devops/</link>
+        <description>devops - Category - Riley&#39;s DevLog</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
+            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Fri, 20 Mar 2020 15:55:39 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/categories/devops/" rel="self" type="application/rss+xml" /><item>
+    <title>AWS CentOS7 테스트 서버 구축하기</title>
+    <link>https://riley817.github.io/categories/devops/build-aws-centos7/</link>
+    <pubDate>Fri, 20 Mar 2020 15:55:39 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/categories/devops/build-aws-centos7/</guid>
+    <description><![CDATA[목표 AWS에서 Cent OS 7로 테스트 서버를 구축한다. 콘솔접속경로 1. 콘솔 대시보드에서 인스턴스 시작을 선택한다. 2. Amazon Machine Image(AMI)에서 인스턴스 템플릿을 선택한다. 검색 창에 centos를 검색 후 원하는 버전을 선택한다. 3. 인스턴스 유형 선택 페이지에서 하드웨어 구성을 선택한다. 일단 난 프리티어니깐&hellip; t2.micro를 선택 🤔 4. 🤷🏻‍♀️ 검토 후 시작(Review and Launch) 버튼을 클릭하여 구성을 완료한다. 5. 보안 그룹 구성 6. 인스턴스 시작 검토 페이지에서 시작을 선택한다. 7. 키 페어 생성화면에서 키 페어를 생성한다.]]></description>
+</item>
+</channel>
+</rss>

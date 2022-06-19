@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>[TIL &amp; Issue Note] 20220321 - Riley&#39;s DevLog</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:title" content="[TIL &amp; Issue Note] 20220321" />
+<meta property="og:description" content="블록체인 원리 - (5) 비가역성 블록체인 원리 (6) - 하드 포크와 소프트 포크 1. 하드 포크와 소프트 포크의 기본 개념 하드 포크와 소프트 포크 동일한 블록에서 노드가 다른 행동을 하는 이유 중앙화 서버 : 하나의 소프트웨어를 여러 사람이 접속 블록체인 : 각자의 소프트웨어 접속 -&gt; 모든 사람의 소프트웨어 버전이 다르기 때문에 발생 블록체인의 소프트웨어 변경 최신 소프트웨어 사용자 -&gt; 모든 변경이 반영된 상태로 사용 이전 소프트웨어 사용자 -&gt; 변경이 반영되지 않은 형태로 사용 하드포크, 소프트 포크 동일한 블록에 대해 서로 다른 규칙을 적용, 서로 다른 결론에 이르는 현상 규칙이 상충시 발생하는 두 가지 현상 과거에는 유효하던 규칙이 지금은 무효화 과거에는 무효하던 규칙이 지금은 유효화 -&gt; 결국 블록체인 데이터에 영향을 미치게 됨 2." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://riley817.github.io/categories/til/20220321/" /><meta property="og:image" content="https://riley817.github.io/icon.png"/><meta property="article:section" content="categories" />
+<meta property="article:published_time" content="2022-03-21T23:07:39+09:00" />
+<meta property="article:modified_time" content="2022-06-19T22:57:41+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://riley817.github.io/icon.png"/>
+
+<meta name="twitter:title" content="[TIL &amp; Issue Note] 20220321"/>
+<meta name="twitter:description" content="블록체인 원리 - (5) 비가역성 블록체인 원리 (6) - 하드 포크와 소프트 포크 1. 하드 포크와 소프트 포크의 기본 개념 하드 포크와 소프트 포크 동일한 블록에서 노드가 다른 행동을 하는 이유 중앙화 서버 : 하나의 소프트웨어를 여러 사람이 접속 블록체인 : 각자의 소프트웨어 접속 -&gt; 모든 사람의 소프트웨어 버전이 다르기 때문에 발생 블록체인의 소프트웨어 변경 최신 소프트웨어 사용자 -&gt; 모든 변경이 반영된 상태로 사용 이전 소프트웨어 사용자 -&gt; 변경이 반영되지 않은 형태로 사용 하드포크, 소프트 포크 동일한 블록에 대해 서로 다른 규칙을 적용, 서로 다른 결론에 이르는 현상 규칙이 상충시 발생하는 두 가지 현상 과거에는 유효하던 규칙이 지금은 무효화 과거에는 무효하던 규칙이 지금은 유효화 -&gt; 결국 블록체인 데이터에 영향을 미치게 됨 2."/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://riley817.github.io/categories/til/20220321/" /><link rel="prev" href="https://riley817.github.io/categories/til/20220317/" /><link rel="next" href="https://riley817.github.io/categories/til/20220324/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "[TIL \u0026 Issue Note] 20220321",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/riley817.github.io\/categories\/til\/20220321\/"
+        },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "categories","keywords": "TIL, blockchain, bitcoin","wordcount":  921 ,
+        "url": "https:\/\/riley817.github.io\/categories\/til\/20220321\/","datePublished": "2022-03-21T23:07:39+09:00","dateModified": "2022-06-19T22:57:41+09:00","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "https:\/\/riley817.github.io\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "riley"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Riley&#39;s DevLog"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i></span>Riley&#39;s DevLog</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Riley&#39;s DevLog"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i></span>Riley&#39;s DevLog</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="page single special"><h1 class="single-title animate__animated animate__pulse animate__faster">[TIL &amp; Issue Note] 20220321</h1><div class="content" id="content"><h1 id="블록체인-원리---5-비가역성">블록체인 원리 - (5) 비가역성</h1>
+<h1 id="블록체인-원리-6---하드-포크와-소프트-포크">블록체인 원리 (6) - 하드 포크와 소프트 포크</h1>
+<h2 id="1-하드-포크와-소프트-포크의-기본-개념">1. 하드 포크와 소프트 포크의 기본 개념</h2>
+<h3 id="하드-포크와-소프트-포크">하드 포크와 소프트 포크</h3>
+<h4 id="동일한-블록에서-노드가-다른-행동을-하는-이유">동일한 블록에서 노드가 다른 행동을 하는 이유</h4>
+<ul>
+<li><strong>중앙화 서버</strong> : 하나의 소프트웨어를 여러 사람이 접속</li>
+<li><strong>블록체인</strong> : 각자의 소프트웨어 접속 -&gt; 모든 사람의 소프트웨어 버전이 다르기 때문에 발생</li>
+</ul>
+<h4 id="블록체인의-소프트웨어-변경">블록체인의 소프트웨어 변경</h4>
+<ul>
+<li><strong>최신 소프트웨어 사용자</strong> -&gt; 모든 변경이 반영된 상태로 사용</li>
+<li><strong>이전 소프트웨어 사용자</strong> -&gt; 변경이 반영되지 않은 형태로 사용</li>
+</ul>
+<h4 id="하드포크-소프트-포크">하드포크, 소프트 포크</h4>
+<ul>
+<li>동일한 블록에 대해 서로 다른 규칙을 적용, 서로 다른 결론에 이르는 현상</li>
+</ul>
+<h4 id="규칙이-상충시-발생하는-두-가지-현상">규칙이 상충시 발생하는 두 가지 현상</h4>
+<ol>
+<li>과거에는 유효하던 규칙이 지금은 무효화</li>
+<li>과거에는 무효하던 규칙이 지금은 유효화 -&gt; 결국 블록체인 데이터에 영향을 미치게 됨</li>
+</ol>
+<h2 id="2-하드-포크">2. 하드 포크</h2>
+<h3 id="하드-포크">하드 포크</h3>
+<ul>
+<li>하나의 네트워크 안에 두 개의 블록체인 데이터 생성</li>
+<li>
+<h6 id="이전-소프트웨어-사용-그룹이-모드-업데이트-하기전까지-절대-하나로-합쳐지지-않는-현상">이전 소프트웨어 사용 그룹이 모드 업데이트 하기전까지 절대 하나로 합쳐지지 않는 현상</h6>
+</li>
+<li>갈라진 상태가 그대로 고착</li>
+<li><strong>과거에는 무효이던 규칙이 유효화되는 경우 발생</strong></li>
+</ul>
+<h4 id="하드-포크-예시">하드 포크 예시</h4>
+<p>블록의 크기가 바뀐 경우</p>
+<ol>
+<li>비트코인의 블록의 크기 1MB -&gt; 2MB 경우 무효 및 기각</li>
+<li>소프트웨어 변경으로 2MB 블록 허용한 경우
+<ul>
+<li>이전 버전, 최신 버전 사용자 서로 다른 블록생성</li>
+<li>최신 버전이 사용자가 생성한 블록은 이전 버전 사용자 규칙을 어기게 된 블록</li>
+</ul>
+</li>
+</ol>
+<h3 id="소프트-포크">소프트 포크</h3>
+<ul>
+<li><strong>과거에는 유효이던 규칙이 무효화되는 경우 발생</strong></li>
+<li>과거 사용규칙 -&gt; 심각한 결함을 발견 -&gt; 사용불가 판단</li>
+<li>
+<h6 id="이전-노드는-최신-소프트웨어-블록에-블록체인-데이터-강제적-통일">이전 노드는 최신 소프트웨어 블록에 블록체인 데이터 강제적 통일</h6>
+</li>
+<li>소프트 포크의 성공 여부는 채굴업자의 협조 여부에 달림 -&gt; 최신 버전 사용 채굴업자 소프트 포크 성공 가능성</li>
+</ul>
+<h4 id="유효하던-규칙을-무효화한-소프트웨어를-배포한-경우">유효하던 규칙을 무효화한 소프트웨어를 배포한 경우</h4>
+<h5 id="최신-소프트웨어-사용자">최신 소프트웨어 사용자</h5>
+<ul>
+<li>무효화된 규칙 삭제한 블록 생성</li>
+</ul>
+<h5 id="이전-소프트웨어-사용자">이전 소프트웨어 사용자</h5>
+<ul>
+<li>무효화 된 규칙 포함한 블록 생성</li>
+<li>이전 소프트웨어 사용자 -&gt; 다양한 블록 생성 가능</li>
+</ul>
+<h4 id="소프트웨어를-채굴업자들이-많이-사용하게-하려면">소프트웨어를 채굴업자들이 많이 사용하게 하려면</h4>
+<ul>
+<li>소프트 포크 감행 전 반드시 협조 요청</li>
+</ul>
+<h3 id="하드포크-소프트-포크-비교">하드포크 소프트 포크 비교</h3>
+<h4 id="발생">발생</h4>
+<ul>
+<li>하드포크 : 과거에는 무효이던 규칙이 유효화되는 경우 발생</li>
+<li>소프트포크 : 과거에는 유효이던 규칙이 무효화되는 경우 발생</li>
+</ul>
+<h4 id="예시">예시</h4>
+<ul>
+<li>하드포크 : 1MB -&gt; 2MB 블록크기 허용
+<ul>
+<li>최신 사용자 : 유효</li>
+<li>이전 사용자 : 무효</li>
+</ul>
+</li>
+<li>소프트포크 : 과거 사용한 규칙 -&gt; 결함 -&gt; 미사용 및 삭제
+<ul>
+<li>최신 사용자 : 무효화된 규칙 미사용 -&gt; 이전 사용자 제작 불록 -&gt; 무효함</li>
+<li>이전 사용자 : 무효화된 규칙 사용 -&gt; 최신 사용자 제작 블록  -&gt; 유효함</li>
+</ul>
+</li>
+</ul>
+<h4 id="통일-시점">통일 시점</h4>
+<h5 id="하드-포크-1">하드 포크</h5>
+<ul>
+<li>기존 블록은 유효하지 않으므로 업그레이드 블록을 따라가지 않음</li>
+<li>모든 노드가 새로운 블록체인으로 업그레이드 할 때 하나의 블록체인 데이터로 통일</li>
+</ul>
+<h5 id="소프트-포크-1">소프트 포크</h5>
+<ul>
+<li>기존 블록은 업그레이드 블록이 유효한 블록으로 인정</li>
+<li>최신 소프트웨어 버전의 블록체인 데이터를 <strong>이전 소프트웨어 사용자는 강제적으로 따라감</strong></li>
+</ul>
+<h4 id="프로그램의-업그레이드-및-변경">프로그램의 업그레이드 및 변경</h4>
+<ul>
+<li>블록체인의 경우 일괄 변경 가능성 매우 낮음
+<ul>
+<li>소프트웨어 업그레이드 여부는 노드를 운영하는 사람이 결정</li>
+</ul>
+</li>
+<li>중앙화 서버
+<ul>
+<li>중앙서버만 변경하면 일괄 변경 가능</li>
+</ul>
+</li>
+</ul>
+<h4 id="소프트웨어-메인터넌스-업그레이드">소프트웨어 메인터넌스 업그레이드</h4>
+<ul>
+<li>블록체인에서 가장 어려운 부분</li>
+<li>가급적 자제하는 것이 바람</li>
+<li>채굴업자 사전 협약으로 성공확률 높이는 것 중요</li>
+<li>채굴업자 동의 없이는 블록 생산이 거의 불가능</li>
+</ul>
+<h5 id="블록체인-데이터는-중앙화-서버에-비해-소프트웨어-관리가-어려움">블록체인 데이터는 중앙화 서버에 비해 소프트웨어 관리가 어려움</h5>
+<h2 id="1-비가역성의-의미">1. 비가역성의 의미</h2>
+<h3 id="비가역적-기록">비가역적 기록</h3>
+<ul>
+<li>기록 후 어떠한 경우에서도 변경하지 못하도록 하는 성질</li>
+<li>블록체인은 비가역적 성질을 가지기 위한 방법에 대한 연구와 관련이 있음</li>
+</ul>
+<h6 id="현실적으로-비각역적-기록성을-가진-장치의-제작은-불가능">현실적으로 비각역적 기록성을 가진 장치의 제작은 불가능</h6>
+<ul>
+<li>비가역적 기록장치처럼 제작하는 것은 가능</li>
+<li>대표적인 방법은 작업증명 방식을 사용한 <strong>해시퍼즐</strong></li>
+</ul>
+<h4 id="블록체인">블록체인</h4>
+<ul>
+<li>기록을 하기 힘든 장치</li>
+<li>기록 후 수정이 매우 힘든 장치</li>
+<li>비가역성을 소프트웨어로 구현하기 위한 방식</li>
+<li>
+<h6 id="기록의-무결성-유지-방법--모든-노드가-항상-검증에-참여">기록의 무결성 유지 방법 : 모든 노드가 항상 검증에 참여</h6>
+</li>
+</ul>
+<h4 id="비가역적-기록장치가-존재하지-않는다면">비가역적 기록장치가 존재하지 않는다면</h4>
+<ul>
+<li>주기적으로 기록의 변경여부를 모든 노드가 다시 검증해야 하는 문제점 발생</li>
+</ul>
+<h4 id="비가역적-기록장치의-필요성">비가역적 기록장치의 필요성</h4>
+<ul>
+<li>최초 기록의 정확한 검증 가능</li>
+<li>주기적인 검증 노력 불필요</li>
+<li><strong>검증 과정 단순화를 위해 비가역적 장치 필요</strong></li>
+</ul>
+<h6 id="모든-노드가-연속적으로-검증-반복---비가역적-기록장치-불필요">모든 노드가 연속적으로 검증 반복 -&gt; 비가역적 기록장치 불필요</h6>
+<h6 id="비가역적-장치의-부재---신규-블록-생성에-있어-문제-발생">비가역적 장치의 부재 -&gt; 신규 블록 생성에 있어 문제 발생</h6>
+<h4 id="블록체인의-사이클">블록체인의 사이클</h4>
+<ol>
+<li>누가 기록할 것인지 선발(리더 선출)</li>
+<li>선출 된 리더가 기록</li>
+<li>모든 노드가 기록의 규칙 준수 여부 확인 (검증)</li>
+<li>비가역적 보관 = 동의</li>
+<li>합의</li>
+</ol>
+<p>-&gt; 한 번의 검증을 마치는 문제는 시스템의 현실적 구축과 직결되는 문제가 될 수 있음.
+-&gt; 제대로 된 검증 규칙으로 하나의 블록체인이 형성됨
+-&gt; 비가역적 보관을 할 수 있는 장치가 존재하지 않는 경우 현실적인 에너지 낭비 문제 발생</p>
+<h5 id="기록의-검증--비가역성--기록에-대한-신뢰-생성">기록의 검증 + 비가역성 = 기록에 대한 신뢰 생성</h5>
+<ul>
+<li>재검증 하지 않더라도 영속적으로 이어짐</li>
+</ul>
+<h4 id="사카시-나카모토">사카시 나카모토</h4>
+<ul>
+<li>작업증명 방식으로 비가역성 증명 -&gt; 수시로 재검증을 해야 하는 과정이 반복되면 블록체인은 존재 불가</li>
+</ul>
+<h2 id="2-비가역성의-구현">2. 비가역성의 구현</h2>
+<h3 id="블록체인에서-비가역성을-구현하기-위해-활용">블록체인에서 비가역성을 구현하기 위해 활용</h3>
+<ul>
+<li>해시 함수</li>
+<li>작업증명</li>
+</ul>
+<h3 id="비가역성의-구현-단계">비가역성의 구현 단계</h3>
+<h4 id="1단계--작업증명">1단계 : 작업증명</h4>
+<ul>
+<li>블록체인은 최초 기록과 수정이 어려운 장치</li>
+<li>기록이 항상 작업증명을 거치도록 만들어짐</li>
+<li>블록체인은 최초 기록과 수정에 에너지가 많이 소모됨</li>
+<li>해시 퍼즐 해결을 위해 10분이상 쉬지 않고 해시 함수를 반복</li>
+<li>계산 작업이 10분 안에 이루어질 수 있도록 난이도 조절</li>
+<li>정확한 기록을 위해 소프트웨어를 이용한 기록을 어렵게 만듦</li>
+<li>블록체인에 정보를 기록하기 위해 반드시 해시퍼즐 해결</li>
+<li>블록체인의 기록 시 한 번에 진실을 쓰려고 노력하게 됨</li>
+</ul>
+<h4 id="2단계--연쇄해시를-통한-작업변경의-기하급수적-증가">2단계 : 연쇄해시를 통한 작업변경의 기하급수적 증가</h4>
+<h5 id="해시퍼즐">해시퍼즐</h5>
+<ul>
+<li>일련의 과정을 통해 특정 목표값보다 더 작은 값을 찾는 과정</li>
+<li>블록헤더에는 이전 해시값이 들어있음</li>
+<li>현재 블록의 해시값을 찾을 때 이전 블록 해시값을 포함하여 계산함</li>
+<li>앞에 있는 블록의 값이 변경되는 경우, 이후 블록의 해시값도 변경됨</li>
+</ul>
+<h4 id="연쇄-해시의-효과">연쇄 해시의 효과</h4>
+<h6 id="해시-퍼즐을-미리-풀-수-없음">해시 퍼즐을 미리 풀 수 없음</h6>
+<ul>
+<li>현재의 값 계산을 위해 바로 직전 블록의 해시 값이 존재 해야 하므로 불가능 하다.</li>
+<li>바로 직전에 만들어진 블록의 다음 블록만 생성 가능</li>
+</ul>
+<h5 id="이전-블록의-해시값이-변경-되면-이후-값은-모두-변경됨">이전 블록의 해시값이 변경 되면 이후 값은 모두 변경됨</h5>
+<ul>
+<li>특정 블록의 특정값을 아무도 모르게 변경할 수 없음</li>
+</ul>
+<h4 id="블록체인의-계산">블록체인의 계산</h4>
+<ul>
+<li>현재 블록의 해시값은 연쇄적으로 시작된 모든 해시값이 계산됨</li>
+<li>제네시스 블록이 변경되면 이후의 모든 블록값이 변경됨 -&gt; 모든 블록의 해시값을 다시 계산</li>
+<li>특정값을 변경하기 위해서는 바꾸려는 블록 이후의 모든 블록 해시값을 다시 계산</li>
+<li>블록체인의 작업증명은 오래된 기록이 변경될 수록 작업량이 기하급수적으로 늘어남</li>
+</ul>
+<h4 id="prohibitively-expensive">Prohibitively Expensive</h4>
+<ul>
+<li>엄두도 못 낼 정도의 과도한 비용 소모를 의미</li>
+<li>비가역성 구현 방식은 변경 자체가 거의 불가능한 상태로 만들어졌음을 의미함.</li>
+</ul>
+<h4 id="블록체인은-정말-변경이-불가능한가">블록체인은 정말 변경이 불가능한가</h4>
+<ul>
+<li>방금 만들어진 블록 -&gt; 하나의 해시 퍼즐만 계산하면 변경 가능</li>
+</ul>
+<h4 id="이중사용을-위해-6개의-블록을-만들어라">이중사용을 위해 6개의 블록을 만들어라</h4>
+<ul>
+<li>점차 현재 값의 변경이 어려워짐</li>
+<li><strong>블록의 깊이가 깊어질수록 변경 가능성은 기하급수적으로 낮아짐</strong></li>
+</ul>
+</div><div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></div></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.101.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Riley</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/valine@1.4.18/dist/Valine.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.1/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{"valine":{"appId":"QGzwQXOqs5JOhN4RGPOkR2mR-MdYXbMMI","appKey":"WBmoGyJtbqUswvfLh6L8iEBr","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@14.0.0/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"en","pageSize":10,"placeholder":"Your comment ...","recordIP":true,"serverURLs":"https://leancloud.hugoloveit.com","visitor":true}},"search":{"algoliaAppID":"","algoliaIndex":"","algoliaSearchKey":"","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

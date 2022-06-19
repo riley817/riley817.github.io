@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>kubectl - Tag - Riley&#39;s DevLog</title>
+        <link>https://riley817.github.io/tags/kubectl/</link>
+        <description>kubectl - Tag - Riley&#39;s DevLog</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
+            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Sat, 07 May 2022 22:36:55 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/tags/kubectl/" rel="self" type="application/rss+xml" /><item>
+    <title>Kubernetes context 관리</title>
+    <link>https://riley817.github.io/categories/docker-kubernetes/kubectl-change-context/</link>
+    <pubDate>Sat, 07 May 2022 22:36:55 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/categories/docker-kubernetes/kubectl-change-context/</guid>
+    <description><![CDATA[Kubernetes 서비스 어카운트 인증정보 설정 kubectl 명령어를 사용해 크버네티스 클러스터를 제어할 때는 kubeconfig라고 하는 특수한 설정파일을 통해 인증을 진행한다. kubeconfig 파일에는 기본적으로 클러스터 관리자 권한을 가지는 인증서 정보가 저장되며 아무런 제한 없이 쿠버네티스를 사용할 수 있다.]]></description>
+</item>
+</channel>
+</rss>

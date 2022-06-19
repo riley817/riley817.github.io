@@ -1,0 +1,76 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>javascript - Tag - Riley&#39;s DevLog</title>
+        <link>https://riley817.github.io/tags/javascript/</link>
+        <description>javascript - Tag - Riley&#39;s DevLog</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
+            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Fri, 03 Jun 2022 18:54:00 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/tags/javascript/" rel="self" type="application/rss+xml" /><item>
+    <title>[TIL &amp; Issue Note] 20220603</title>
+    <link>https://riley817.github.io/categories/til/20220603/</link>
+    <pubDate>Fri, 03 Jun 2022 18:54:00 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/categories/til/20220603/</guid>
+    <description><![CDATA[ ECMAscript 모듈 Scope 관련 문제
+Functions not working when type=&quot;module&quot; or import ]]></description>
+</item>
+<item>
+    <title>SHA3 라이브러리 조사</title>
+    <link>https://riley817.github.io/categories/javascript/hash3/</link>
+    <pubDate>Sun, 17 Apr 2022 23:04:00 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/categories/javascript/hash3/</guid>
+    <description><![CDATA[개요 Go의 라이브러리에서 사용하는 SHA3-512 해시값과 자바스립트에서 사용하는 CryptoJS의 SHA3-512 해시값이 다른 문제가 발생
+테스트 대상 모듈 hash.js js-sha3 CrytoJS 테스트 방법 Go의 테스트 코드 작성 후 Go에서 생성한 해시값과 Javascript에서 위의 라이브러리로 생성했을 때 해시값이 같은지 비교한다.
+테스트 결과 hash.js : SHA3-512 관련 함수가 없는 것 같았다. js-sha3 : 성공 CrytoJS : 실패 CrytoJS 의 경우 Go에서 사용하는 SHA3-512와 차이가 있는 것 같다. [cryptojs_document(https://cryptojs.gitbook.io/docs/)에 참고 사항이 있었다.
+NOTE: I made a mistake when I named this implementation SHA-3.]]></description>
+</item>
+<item>
+    <title>[TIL &amp; Issue Note] 20220316</title>
+    <link>https://riley817.github.io/categories/til/20220316/</link>
+    <pubDate>Wed, 16 Mar 2022 23:32:16 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/categories/til/20220316/</guid>
+    <description><![CDATA[Getting Started What is React ? 사용자 인터페이스를 구축하기 위한 자바스크립트 라이브러리 모바일 앱처럼 상호작용과 반응성이 높은 사용자 환경을 제공 모바일 앱 화면 전환이 빠르고 사용자 반응성이 높음 웹 전통적인 웹사이트의 전환은 1) 링크,버튼 등 요청 2) 서버에서는 응답을 받고 새로운 HTML을 그림 서버와 요청과 응답 작업으로 인해 상호작용이 투박함 서버에서 처리한 HTML이 로드되는 것을 기다려야 함 자바스크립트 사용자가 보는 것을 조작할 수 있는 프로그래밍 언어 DOM에 접근하고 조작할 수 있다.]]></description>
+</item>
+<item>
+    <title>Webpack5 설정하기 (ESM)</title>
+    <link>https://riley817.github.io/categories/javascript/webpack/</link>
+    <pubDate>Sun, 16 Jan 2022 00:01:00 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/categories/javascript/webpack/</guid>
+    <description><![CDATA[회사에서 Javascript 용 서비스 SDK를 개발하면서 설정했던 webpack5 설정파일을 기록한다. 오래전에 잠깐 접해보았던게 webpack2 버전이었는데 어느새 5까지 나왔다. 알고 사용하는게 아니다보니 쓰면서 애를 먹었다&hellip;🥺🥺🥺
+Webpack5 설정하기 (ESM 사용) 회사에서 개발한 SDK는 CJS(CommonJS)에서 ESM(ECMAScript Module) 모듈 방식을 사용하여 개발했다. ESM 모듈 로더 사용하기 위해 package.json에 아래 설정을 추가했다.
+package.json
+1 &#34;type&#34;: &#34;module&#34; 아래 글에서는 CJS가 기본값이기 때문에 라이브러리의 경우 CJS로 개발하는 것을 추천하고 있다.
+Node Modules at War: Why CommonJS and ES Modules Can’t Get Along 설치 라이브러리 1 npm install --save-dev webpack webpack-cli webpack-merge webpack-stream webpack-merge 웹팩 설정을 하나로 병합해주는 라이브러리.]]></description>
+</item>
+<item>
+    <title>Multi Thread</title>
+    <link>https://riley817.github.io/categories/javascript/webworker/</link>
+    <pubDate>Tue, 21 Sep 2021 17:07:00 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/categories/javascript/webworker/</guid>
+    <description><![CDATA[Web worker Web Worker 는 메인 스레드와 분리된 별도의 백그라운드 스레드에서 스크립트를 실행할 수 있는 기술이다. UI 스레드와는 별개의 스레드를 실행시켜 사용자 인터페이스를 방해하지않고 작업을 수행할 수 있다.
+Web worker scope Web worker는 메인 스레드와 별도의 worker 스레드를 갖는다. 메인 스레드에서 window 객체는 GlobalScope 이지만 worker 스레드에서는 별도의 스코프 범위를 갖는다. Worker 종류에 따른 Scope worker 스레드는 메인 스레드 window 객체에 액세스할 수 있는 권한이 없기 때문에 window의 메서드나 DOM을 직접적으로 제어할 수 없다.]]></description>
+</item>
+<item>
+    <title>NPM 기본 저장소 대신 지정한 저장소 사용하기</title>
+    <link>https://riley817.github.io/categories/javascript/change-default-repo-npm/</link>
+    <pubDate>Sun, 09 Dec 2018 17:53:39 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/categories/javascript/change-default-repo-npm/</guid>
+    <description><![CDATA[ 👩🏻‍💻
+회사에서는 외부 네트워크 연결이 불가능하도록 망분리가 되어있다. 개발시 npm install을 통해 외부 라이브러리를 설치해야하는 경우 사내 nexus 서버에 npm 기본 저장소를 프록시하도록 설정 후 다음과 같이 npm config 명령어를 통해 저장소 경로를 변경해 주었다. npm repository 다른 저장소로 사용하기 npm config set registry 명령어로 기본 저장소 대신 다른 저장소를 사용할 수 있다.
+1 npm config set registry 다른저장소경로 ~/.npmrc에 변경된 저장소가 다음과 같이 설정되어 있다.
+1 registry=다른저장소경로 ]]></description>
+</item>
+<item>
+    <title>NVM을 이용하여 Node.js 설치하기</title>
+    <link>https://riley817.github.io/categories/javascript/install-the-nodejs-with-nvm/</link>
+    <pubDate>Sun, 09 Dec 2018 17:53:39 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/categories/javascript/install-the-nodejs-with-nvm/</guid>
+    <description><![CDATA[Installation and Update 1. NVM 설치 Git Repo의 NVM의 README 파일을 참고한다. https://github.com/nvm-sh/nvm 1 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.1/install.sh | bash 2. NVM 환경설정 .bashrc 혹은 .zshrc 에 추가한다. source ~/.bashrc 로 적용 또는 터미널을 재시작한다. 1 2 export NVM_DIR=&#34;$HOME/.nvm&#34; [ -s &#34;$NVM_DIR/nvm.sh&#34; ] &amp;&amp; . &#34;$NVM_DIR/nvm.sh&#34; # This loads nvm 3. nvm 버전확인 및 설치 가능 Nodejs 리스트 확인 1 2 3 4 5 # nvm 버전 확인 nvm --version # 설치 가능 NodeJs 버전 확인 nvm ls-remote 4.]]></description>
+</item>
+</channel>
+</rss>
