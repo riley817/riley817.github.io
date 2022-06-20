@@ -7,7 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <managingEditor>riley0422@icloud.com (Riley)</managingEditor>
-    <webMaster>riley0422@icloud.com (Riley)</webMaster><atom:link href="https://riley817.github.io/archives/index.xml" rel="self" type="application/rss+xml" />
+    <webMaster>riley0422@icloud.com (Riley)</webMaster>
+    <lastBuildDate>Mon, 20 Jun 2022 23:41:53 +0900</lastBuildDate><atom:link href="https://riley817.github.io/archives/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title></title>
+      <link>https://riley817.github.io/archives/what-is-a-blockchain/</link>
+      <pubDate>Mon, 20 Jun 2022 23:41:53 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/archives/what-is-a-blockchain/</guid>
+      <description>블록체인 개념의 등장 블록체인은 1991년 Stuart Haber와 W. Scott Stornetta가 1991년에 발표한 논문에서 블록체인의 개념을 처음으로 소개했다. 코인 혹은 블록체인이란 용어는 Satoshi Nakamoto의 논문 이후에 등장했다.
+How to time-stamp a digital document A blockchain is a growing list of records, called blocks, that are securely linked together using cryptography. - Wikipedia
+위키피디아는 블록체인을 지속적으로 증가하는 데이터, 즉 블록이라고 불리는 데이터를 암호학을 통해 보호하고 연결하는 기술이라고 정의한다.
+블록 HASH anders94 해싱 알고리즘 요구사항</description>
+    </item>
+    
     <item>
       <title></title>
       <link>https://riley817.github.io/archives/archives/</link>

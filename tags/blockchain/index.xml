@@ -4,7 +4,18 @@
         <link>https://riley817.github.io/tags/blockchain/</link>
         <description>blockchain - Tag - Riley&#39;s DevLog</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
-            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Sat, 26 Mar 2022 18:51:55 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/tags/blockchain/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Mon, 20 Jun 2022 23:41:53 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/tags/blockchain/" rel="self" type="application/rss+xml" /><item>
+    <title></title>
+    <link>https://riley817.github.io/archives/what-is-a-blockchain/</link>
+    <pubDate>Mon, 20 Jun 2022 23:41:53 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/archives/what-is-a-blockchain/</guid>
+    <description><![CDATA[블록체인 개념의 등장 블록체인은 1991년 Stuart Haber와 W. Scott Stornetta가 1991년에 발표한 논문에서 블록체인의 개념을 처음으로 소개했다. 코인 혹은 블록체인이란 용어는 Satoshi Nakamoto의 논문 이후에 등장했다.
+How to time-stamp a digital document A blockchain is a growing list of records, called blocks, that are securely linked together using cryptography. - Wikipedia
+위키피디아는 블록체인을 지속적으로 증가하는 데이터, 즉 블록이라고 불리는 데이터를 암호학을 통해 보호하고 연결하는 기술이라고 정의한다.
+블록 HASH anders94 해싱 알고리즘 요구사항]]></description>
+</item>
+<item>
     <title>[TIL &amp; Issue Note] 20220326</title>
     <link>https://riley817.github.io/categories/til/20220326/</link>
     <pubDate>Sat, 26 Mar 2022 18:51:55 &#43;0900</pubDate>
@@ -78,14 +89,6 @@
     <author>riley</author>
     <guid>https://riley817.github.io/categories/til/20220307/</guid>
     <description><![CDATA[블록체인과 중앙집중 시스템과의 차이점 (1) 1. 중앙화 시스템과 분산 시스템 분산 시스템의 정의 각각의 꼭지점 = 하나의 서버 모드 꼭짓점 = 노드 직접적으로 연결된 노드 = 피어 중앙집중 시스템과 분산시스템 중앙집중 시스템 대표적인 예시 은행 -&gt; 은행이 운영하는 웹 서버에 연결 은행 이용자가 모두 동일한 서버를 이용 사용자의 수와 상관없이 사용자가 사용하는 시스템은 동일 특징 설계와 운영이 간편한 중앙집중 시스템 -&gt; 기능 추가 시 별도의 절차 없이 모든 사용자에게 적용. 서버에 이상이 생길 경우 모든 사용자가 이용 불가 분산 시스템 여러 개의 서버가 일을 나누어 처리 여러 서버가 일을 분담하는 분산 시스템 분산시스템의 장점 일의 효울성이 높다.]]></description>
-</item>
-<item>
-    <title>[TIL &amp; Issue Note] 20220303</title>
-    <link>https://riley817.github.io/categories/til/20220303/</link>
-    <pubDate>Thu, 03 Mar 2022 22:03:22 &#43;0900</pubDate>
-    <author>riley</author>
-    <guid>https://riley817.github.io/categories/til/20220303/</guid>
-    <description><![CDATA[1. 블록체인의 탄생 배경 개요 블록체인의 작동원리와 기반 기술 세부기술에 대한 자세한 설명을 통해 블록체인의 정한 효용 초보자와 프로그래머에게 모두 열린 학습 비유를 통한 원리 이해 현업에 발판이 되는 전문 지식 1. 블록체인의 탄생 배경 Cipherpunk 운동 Cipher(암호) + Punk의 합성어 암호로 개인의 프라이버시 보호를 극대화하고자 했던 행동주의자 등장 배경 1980년대 미국, 국가나 대형 기관에 의한 개인의 인권 및 개인정보 침해 심각 개인의 프라이버시 보호하고자 하는 의식 확산 암호화 기술은 국가/군 기관이 점유 -&gt; 개인에게는 허용 불가 1970년 IBM에서 일반인들도 사용할 수 있는 암호화 체계 등장 -&gt; DES (Data Encryption Standard, DES) 1983년, E-cash (David Chaum) 모든 금융 거래의 이체 내역 암호화 은행과의 제휴를 통해 계좌 이체 내역에 대해서만 본인이 알 수 있도록 함.]]></description>
 </item>
 </channel>
 </rss>

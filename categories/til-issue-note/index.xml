@@ -4,7 +4,18 @@
         <link>https://riley817.github.io/categories/til-issue-note/</link>
         <description>TIL &amp; Issue Note - Category - Riley&#39;s DevLog</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
-            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Fri, 03 Jun 2022 18:54:00 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/categories/til-issue-note/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Mon, 20 Jun 2022 23:41:53 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/categories/til-issue-note/" rel="self" type="application/rss+xml" /><item>
+    <title></title>
+    <link>https://riley817.github.io/archives/what-is-a-blockchain/</link>
+    <pubDate>Mon, 20 Jun 2022 23:41:53 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/archives/what-is-a-blockchain/</guid>
+    <description><![CDATA[블록체인 개념의 등장 블록체인은 1991년 Stuart Haber와 W. Scott Stornetta가 1991년에 발표한 논문에서 블록체인의 개념을 처음으로 소개했다. 코인 혹은 블록체인이란 용어는 Satoshi Nakamoto의 논문 이후에 등장했다.
+How to time-stamp a digital document A blockchain is a growing list of records, called blocks, that are securely linked together using cryptography. - Wikipedia
+위키피디아는 블록체인을 지속적으로 증가하는 데이터, 즉 블록이라고 불리는 데이터를 암호학을 통해 보호하고 연결하는 기술이라고 정의한다.
+블록 HASH anders94 해싱 알고리즘 요구사항]]></description>
+</item>
+<item>
     <title>[TIL &amp; Issue Note] 20220603</title>
     <link>https://riley817.github.io/categories/til/20220603/</link>
     <pubDate>Fri, 03 Jun 2022 18:54:00 &#43;0900</pubDate>
@@ -78,15 +89,6 @@ Functions not working when type=&quot;module&quot; or import ]]></description>
     <description><![CDATA[블록체인과 중앙집중 시스템과의 차이점 (2) - 일처리 방식 1. 브로드캐스팅 Broadcasting 네트워크에 참여한 모든 노드에게 모든 데이터를 전달하는 방식 중앙서버 방식 : 중앙 서버와 특정 노드 사이에만 데이터 전달이 일어남 블록체인 : 시간이 흐림에 따라 데이터가 모든 노드에 전달 블록체인에서는 모든 데이터를 브로드캐스팅을 통해 전달 Gossip protocol 귓속말을 하듯 피어를 통해 데이터를 전달한다.
 모든 데이터 -&gt; 모든 노드 -&gt; 블록체인에 참여한 노드는 동일한 데이터를 가지고 있다.
 블록체인의 모든 전송 방식은 브로드 캐스팅에 의존한다.]]></description>
-</item>
-<item>
-    <title>[TIL &amp; Issue Note] 20220308</title>
-    <link>https://riley817.github.io/categories/til/20220309/</link>
-    <pubDate>Tue, 08 Mar 2022 10:51:10 &#43;0900</pubDate>
-    <author>riley</author>
-    <guid>https://riley817.github.io/categories/til/20220309/</guid>
-    <description><![CDATA[블록체인과 중앙집중 시스템과의 차이점 (1) 1. 중앙화 시스템과 분산 시스템 분산 시스템의 정의 각각의 꼭지점 = 하나의 서버 모드 꼭짓점 = 노드 직접적으로 연결된 노드 = 피어 ![[Pasted image 20220308110403.png]]
-중앙집중 시스템과 분산시스템 중앙집중 시스템 대표적인 예시 은행 -&gt; 은행이 운영하는 웹 서버에 연결 은행 이용자가 모두 동일한 서버를 이용 사용자의 수와 상관없이 사용자가 사용하는 시스템은 동일 특징 설계와 운영이 간편한 중앙집중 시스템 -&gt; 기능 추가 시 별도의 절차 없이 모든 사용자에게 적용.]]></description>
 </item>
 </channel>
 </rss>
