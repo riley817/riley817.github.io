@@ -8,7 +8,18 @@
     <language>en</language>
     <managingEditor>riley0422@icloud.com (Riley)</managingEditor>
     <webMaster>riley0422@icloud.com (Riley)</webMaster>
-    <lastBuildDate>Mon, 20 Jun 2022 23:41:53 +0900</lastBuildDate><atom:link href="https://riley817.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 27 Jun 2022 23:22:43 +0900</lastBuildDate><atom:link href="https://riley817.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>개발협업 가이드 Sample</title>
+      <link>https://riley817.github.io/categories/til/20220627/</link>
+      <pubDate>Mon, 27 Jun 2022 23:22:43 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/categories/til/20220627/</guid>
+      <description>개발 협업 가이드 우리 팀에서 내부 및 외부 공동 작업자가 개발 협업하기 위한 방법으로 애자일의 Scrum 방법론을 사용합니다. Scrum 관리를 위한 도구로는 GitLab의 이슈 시스템과 칸반보드 기능을 활용합니다. GitLab에 등록되는 이슈(Task)는 시스템 개발과 관련된 작업만 작성하도록 합니다. 프로젝트 계약 등 개발작업이 아닌 작업의 경우 Microsoft Planner의 칸반보드를 사용합니다.
+PBTeam – Microsoft Planner 사용가이드
+GitLab은 Git 원격 저장소 관리, CI/CD, 이슈 관리, 테스트 등 소프트웨어 개발과 운영의 전반적인 라이프사이클을 관리할 수 있는 통합 툴입니다.</description>
+    </item>
+    
     <item>
       <title>[TIL &amp; Issue Note] 20220603</title>
       <link>https://riley817.github.io/categories/til/20220603/</link>
