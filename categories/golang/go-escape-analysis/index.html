@@ -6,18 +6,18 @@
         <meta name="robots" content="noodp" />
         <title>Go 스택 메모리와 힙 메모리 - Riley&#39;s DevLog</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:title" content="Go 스택 메모리와 힙 메모리" />
 <meta property="og:description" content="음.. 완벽하게 이해하지는 못했다 😇😇😇
-스택 메모리와 힙 메모리 대부분의 프로그래밍 언어는 메모리를 할당할 때 스택 메모리 영역 또는 힙 메모리 영역을 사용한다. 함수 내부에서만 사용되는 값은 스택 메모리에 할당된다. 함수 외부로 공개되는 메모리 공간은 힙 메모리 영역에 할당된다. C/C&#43;&#43; 언어에서는 malloc() 함수를 직접 호출해서 힙 메모리 공간을 할당한다. 자바의 경우 클래스 타입을 힙에, 기본 타입을 스택에 할당한다. Go 언어는 이스케이프 분석(escape analysis) 을 해서 어느 메모리에 할당할지 결정한다. 이스케이프 분석(escape analysis) GC 컴파일러는 함수와 패키지를 넘어 전역적으로 탈출 검사를 수행한다." />
+ 스택 메모리와 힙 메모리  대부분의 프로그래밍 언어는 메모리를 할당할 때 스택 메모리 영역 또는 힙 메모리 영역을 사용한다. 함수 내부에서만 사용되는 값은 스택 메모리에 할당된다. 함수 외부로 공개되는 메모리 공간은 힙 메모리 영역에 할당된다. C/C&#43;&#43; 언어에서는 malloc() 함수를 직접 호출해서 힙 메모리 공간을 할당한다. 자바의 경우 클래스 타입을 힙에, 기본 타입을 스택에 할당한다. Go 언어는 이스케이프 분석(escape analysis) 을 해서 어느 메모리에 할당할지 결정한다." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://riley817.github.io/categories/golang/go-escape-analysis/" /><meta property="og:image" content="https://riley817.github.io/icon.png"/><meta property="article:section" content="categories" />
 <meta property="article:published_time" content="2021-08-19T16:32:05+09:00" />
-<meta property="article:modified_time" content="2022-06-28T23:58:42+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
+<meta property="article:modified_time" content="2021-08-20T14:03:45+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://riley817.github.io/icon.png"/>
 
 <meta name="twitter:title" content="Go 스택 메모리와 힙 메모리"/>
 <meta name="twitter:description" content="음.. 완벽하게 이해하지는 못했다 😇😇😇
-스택 메모리와 힙 메모리 대부분의 프로그래밍 언어는 메모리를 할당할 때 스택 메모리 영역 또는 힙 메모리 영역을 사용한다. 함수 내부에서만 사용되는 값은 스택 메모리에 할당된다. 함수 외부로 공개되는 메모리 공간은 힙 메모리 영역에 할당된다. C/C&#43;&#43; 언어에서는 malloc() 함수를 직접 호출해서 힙 메모리 공간을 할당한다. 자바의 경우 클래스 타입을 힙에, 기본 타입을 스택에 할당한다. Go 언어는 이스케이프 분석(escape analysis) 을 해서 어느 메모리에 할당할지 결정한다. 이스케이프 분석(escape analysis) GC 컴파일러는 함수와 패키지를 넘어 전역적으로 탈출 검사를 수행한다."/>
+ 스택 메모리와 힙 메모리  대부분의 프로그래밍 언어는 메모리를 할당할 때 스택 메모리 영역 또는 힙 메모리 영역을 사용한다. 함수 내부에서만 사용되는 값은 스택 메모리에 할당된다. 함수 외부로 공개되는 메모리 공간은 힙 메모리 영역에 할당된다. C/C&#43;&#43; 언어에서는 malloc() 함수를 직접 호출해서 힙 메모리 공간을 할당한다. 자바의 경우 클래스 타입을 힙에, 기본 타입을 스택에 할당한다. Go 언어는 이스케이프 분석(escape analysis) 을 해서 어느 메모리에 할당할지 결정한다."/>
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -33,7 +33,7 @@
             "@type": "WebPage",
             "@id": "https:\/\/riley817.github.io\/categories\/golang\/go-escape-analysis\/"
         },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "categories","keywords": "go, golang","wordcount":  236 ,
-        "url": "https:\/\/riley817.github.io\/categories\/golang\/go-escape-analysis\/","datePublished": "2021-08-19T16:32:05+09:00","dateModified": "2022-06-28T23:58:42+09:00","publisher": {
+        "url": "https:\/\/riley817.github.io\/categories\/golang\/go-escape-analysis\/","datePublished": "2021-08-19T16:32:05+09:00","dateModified": "2021-08-20T14:03:45+09:00","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/riley817.github.io\/images\/avatar.png"},"author": {
                 "@type": "Person",
@@ -201,7 +201,7 @@
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
             </noscript></div></div></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.101.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.98.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
                 </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Riley</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

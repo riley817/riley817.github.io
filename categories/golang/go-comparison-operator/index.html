@@ -6,20 +6,20 @@
         <meta name="robots" content="noodp" />
         <title>실수 오차 - Riley&#39;s DevLog</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:title" content="실수 오차" />
 <meta property="og:description" content="Tucker의 Go 언어 프로그래밍 책 내용을 참고 및 정리해서 작성하였습니다.
-실수 끼리의 비교연산에서 예기치 않은 결과가 나올 때가 있다. 0.1 &#43; 0.2 = 0.3의 결과를 예상하였지만 실제 출력값은 0.30000000000000004가 출력되었다.
-1 2 3 4 5 6 7 8 9 10 11 12 package main import &#34;fmt&#34; func main() { var a float64 = 0.1 var b float64 = 0.2 var c float64 = 0.3 fmt.Printf(&#34;%f &#43; %f == %f : %v\n&#34;, a, b, c, a&#43;b == c) fmt." />
+ 실수 끼리의 비교연산에서 예기치 않은 결과가 나올 때가 있다. 0.1 &#43; 0.2 = 0.3의 결과를 예상하였지만 실제 출력값은 0.30000000000000004가 출력되었다.
+1 2 3 4 5 6 7 8 9 10 11 12  package main import &#34;fmt&#34; func main() { var a float64 = 0.1 var b float64 = 0.2 var c float64 = 0.3 fmt.Printf(&#34;%f &#43; %f == %f : %v\n&#34;, a, b, c, a&#43;b == c) fmt." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://riley817.github.io/categories/golang/go-comparison-operator/" /><meta property="og:image" content="https://riley817.github.io/icon.png"/><meta property="article:section" content="categories" />
 <meta property="article:published_time" content="2021-08-18T14:42:00+09:00" />
-<meta property="article:modified_time" content="2022-06-28T23:58:42+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
+<meta property="article:modified_time" content="2021-08-20T14:03:45+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://riley817.github.io/icon.png"/>
 
 <meta name="twitter:title" content="실수 오차"/>
 <meta name="twitter:description" content="Tucker의 Go 언어 프로그래밍 책 내용을 참고 및 정리해서 작성하였습니다.
-실수 끼리의 비교연산에서 예기치 않은 결과가 나올 때가 있다. 0.1 &#43; 0.2 = 0.3의 결과를 예상하였지만 실제 출력값은 0.30000000000000004가 출력되었다.
-1 2 3 4 5 6 7 8 9 10 11 12 package main import &#34;fmt&#34; func main() { var a float64 = 0.1 var b float64 = 0.2 var c float64 = 0.3 fmt.Printf(&#34;%f &#43; %f == %f : %v\n&#34;, a, b, c, a&#43;b == c) fmt."/>
+ 실수 끼리의 비교연산에서 예기치 않은 결과가 나올 때가 있다. 0.1 &#43; 0.2 = 0.3의 결과를 예상하였지만 실제 출력값은 0.30000000000000004가 출력되었다.
+1 2 3 4 5 6 7 8 9 10 11 12  package main import &#34;fmt&#34; func main() { var a float64 = 0.1 var b float64 = 0.2 var c float64 = 0.3 fmt.Printf(&#34;%f &#43; %f == %f : %v\n&#34;, a, b, c, a&#43;b == c) fmt."/>
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -35,7 +35,7 @@
             "@type": "WebPage",
             "@id": "https:\/\/riley817.github.io\/categories\/golang\/go-comparison-operator\/"
         },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "categories","keywords": "go, golang","wordcount":  887 ,
-        "url": "https:\/\/riley817.github.io\/categories\/golang\/go-comparison-operator\/","datePublished": "2021-08-18T14:42:00+09:00","dateModified": "2022-06-28T23:58:42+09:00","publisher": {
+        "url": "https:\/\/riley817.github.io\/categories\/golang\/go-comparison-operator\/","datePublished": "2021-08-18T14:42:00+09:00","dateModified": "2021-08-20T14:03:45+09:00","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/riley817.github.io\/images\/avatar.png"},"author": {
                 "@type": "Person",
@@ -450,7 +450,7 @@ float64 0.3 : 0.299999999999999988897769753748434595763683319091796875000000</p>
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
             </noscript></div></div></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.101.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.98.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
                 </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Riley</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

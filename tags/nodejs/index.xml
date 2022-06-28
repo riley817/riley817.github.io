@@ -6,10 +6,10 @@
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
             <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Sun, 09 Dec 2018 17:53:39 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/tags/nodejs/" rel="self" type="application/rss+xml" /><item>
     <title>NPM 기본 저장소 대신 지정한 저장소 사용하기</title>
-    <link>https://riley817.github.io/categories/javascript/change-default-repo-npm/</link>
+    <link>https://riley817.github.io/change-default-repo-npm/</link>
     <pubDate>Sun, 09 Dec 2018 17:53:39 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/categories/javascript/change-default-repo-npm/</guid>
+    <guid>https://riley817.github.io/change-default-repo-npm/</guid>
     <description><![CDATA[ 👩🏻‍💻
 회사에서는 외부 네트워크 연결이 불가능하도록 망분리가 되어있다. 개발시 npm install을 통해 외부 라이브러리를 설치해야하는 경우 사내 nexus 서버에 npm 기본 저장소를 프록시하도록 설정 후 다음과 같이 npm config 명령어를 통해 저장소 경로를 변경해 주었다. npm repository 다른 저장소로 사용하기 npm config set registry 명령어로 기본 저장소 대신 다른 저장소를 사용할 수 있다.
 1 npm config set registry 다른저장소경로 ~/.npmrc에 변경된 저장소가 다음과 같이 설정되어 있다.
@@ -17,10 +17,10 @@
 </item>
 <item>
     <title>NVM을 이용하여 Node.js 설치하기</title>
-    <link>https://riley817.github.io/categories/javascript/install-the-nodejs-with-nvm/</link>
+    <link>https://riley817.github.io/install-the-nodejs-with-nvm/</link>
     <pubDate>Sun, 09 Dec 2018 17:53:39 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/categories/javascript/install-the-nodejs-with-nvm/</guid>
+    <guid>https://riley817.github.io/install-the-nodejs-with-nvm/</guid>
     <description><![CDATA[Installation and Update 1. NVM 설치 Git Repo의 NVM의 README 파일을 참고한다. https://github.com/nvm-sh/nvm 1 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.1/install.sh | bash 2. NVM 환경설정 .bashrc 혹은 .zshrc 에 추가한다. source ~/.bashrc 로 적용 또는 터미널을 재시작한다. 1 2 export NVM_DIR=&#34;$HOME/.nvm&#34; [ -s &#34;$NVM_DIR/nvm.sh&#34; ] &amp;&amp; . &#34;$NVM_DIR/nvm.sh&#34; # This loads nvm 3. nvm 버전확인 및 설치 가능 Nodejs 리스트 확인 1 2 3 4 5 # nvm 버전 확인 nvm --version # 설치 가능 NodeJs 버전 확인 nvm ls-remote 4.]]></description>
 </item>
 </channel>

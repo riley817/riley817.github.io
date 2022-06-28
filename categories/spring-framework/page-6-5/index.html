@@ -6,18 +6,18 @@
         <meta name="robots" content="noodp" />
         <title>[스프링 5.0 마스터] 6.5 Spring Security - Basic authentication - Riley&#39;s DevLog</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:title" content="[스프링 5.0 마스터] 6.5 Spring Security - Basic authentication" />
 <meta property="og:description" content="스프링 시큐리티로 REST 서비스 보호 최근에는 서비스 시스템들끼리 REST API 기반의 통신이 많이 이루어지고 있다. 네이티브 앱과 서버 간 통신뿐만 아니라 자바스크립트 웹 클라이언트 와 서버간에도 REST API 통신을 많이 사용하기 때문에 REST 서비스(리소스) 에 대한 보안이 중요해 지고 있다.
-보안에서 중요한 기본 개념 - 인증(Authentication) 과 권한 (Authorization) 소비자(클라이언트) 가 서비스(리소스) 에 접근이 가능한 소비자인지 ? 인증(Authentication) 접근이 가능하지만 해당 작업을 소비자(클라이언트) 에게 허용할것인지 ? 인가/권한부여(Authorization) 인증방식은 다양하며, 전통적인 인증방식으로는 사용자명(Principle)과 비밀번호(Credential) 로 인증하는 Credential 기반 인증 방식 과 OTP 등과 같이 추가적인 인증방식을 도입해 2가지 방법으로 인증하는 이중 인증 방식 과 최근에는 OAuth2 인증방식 도 필수적으로 사용되고 있다." />
+보안에서 중요한 기본 개념 - 인증(Authentication) 과 권한 (Authorization)  소비자(클라이언트) 가 서비스(리소스) 에 접근이 가능한 소비자인지 ? 인증(Authentication) 접근이 가능하지만 해당 작업을 소비자(클라이언트) 에게 허용할것인지 ? 인가/권한부여(Authorization)  인증방식은 다양하며, 전통적인 인증방식으로는 사용자명(Principle)과 비밀번호(Credential) 로 인증하는 Credential 기반 인증 방식 과 OTP 등과 같이 추가적인 인증방식을 도입해 2가지 방법으로 인증하는 이중 인증 방식 과 최근에는 OAuth2 인증방식 도 필수적으로 사용되고 있다." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://riley817.github.io/categories/spring-framework/page-6-5/" /><meta property="og:image" content="https://riley817.github.io/icon.png"/><meta property="article:section" content="categories" />
 <meta property="article:published_time" content="2019-02-07T21:13:59+09:00" />
-<meta property="article:modified_time" content="2022-06-28T23:58:42+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
+<meta property="article:modified_time" content="2022-01-30T16:56:49+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://riley817.github.io/icon.png"/>
 
 <meta name="twitter:title" content="[스프링 5.0 마스터] 6.5 Spring Security - Basic authentication"/>
 <meta name="twitter:description" content="스프링 시큐리티로 REST 서비스 보호 최근에는 서비스 시스템들끼리 REST API 기반의 통신이 많이 이루어지고 있다. 네이티브 앱과 서버 간 통신뿐만 아니라 자바스크립트 웹 클라이언트 와 서버간에도 REST API 통신을 많이 사용하기 때문에 REST 서비스(리소스) 에 대한 보안이 중요해 지고 있다.
-보안에서 중요한 기본 개념 - 인증(Authentication) 과 권한 (Authorization) 소비자(클라이언트) 가 서비스(리소스) 에 접근이 가능한 소비자인지 ? 인증(Authentication) 접근이 가능하지만 해당 작업을 소비자(클라이언트) 에게 허용할것인지 ? 인가/권한부여(Authorization) 인증방식은 다양하며, 전통적인 인증방식으로는 사용자명(Principle)과 비밀번호(Credential) 로 인증하는 Credential 기반 인증 방식 과 OTP 등과 같이 추가적인 인증방식을 도입해 2가지 방법으로 인증하는 이중 인증 방식 과 최근에는 OAuth2 인증방식 도 필수적으로 사용되고 있다."/>
+보안에서 중요한 기본 개념 - 인증(Authentication) 과 권한 (Authorization)  소비자(클라이언트) 가 서비스(리소스) 에 접근이 가능한 소비자인지 ? 인증(Authentication) 접근이 가능하지만 해당 작업을 소비자(클라이언트) 에게 허용할것인지 ? 인가/권한부여(Authorization)  인증방식은 다양하며, 전통적인 인증방식으로는 사용자명(Principle)과 비밀번호(Credential) 로 인증하는 Credential 기반 인증 방식 과 OTP 등과 같이 추가적인 인증방식을 도입해 2가지 방법으로 인증하는 이중 인증 방식 과 최근에는 OAuth2 인증방식 도 필수적으로 사용되고 있다."/>
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -32,8 +32,8 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/riley817.github.io\/categories\/spring-framework\/page-6-5\/"
-        },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "categories","keywords": "spring framework, basic authentication","wordcount":  439 ,
-        "url": "https:\/\/riley817.github.io\/categories\/spring-framework\/page-6-5\/","datePublished": "2019-02-07T21:13:59+09:00","dateModified": "2022-06-28T23:58:42+09:00","publisher": {
+        },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "categories","keywords": "spring framework, basic authentication","wordcount":  433 ,
+        "url": "https:\/\/riley817.github.io\/categories\/spring-framework\/page-6-5\/","datePublished": "2019-02-07T21:13:59+09:00","dateModified": "2022-01-30T16:56:49+09:00","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/riley817.github.io\/images\/avatar.png"},"author": {
                 "@type": "Person",
@@ -283,7 +283,7 @@
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
             </noscript></div></div></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.101.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.98.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
                 </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Riley</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>[자바 ORM 표준 JPA 프로그래밍] 1장 JPA 소개 - Riley&#39;s DevLog</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:title" content="[자바 ORM 표준 JPA 프로그래밍] 1장 JPA 소개" />
+<meta property="og:description" content="김영한님의 책 자바 ORM 표준 JPA 프로그래밍 학습 내용 정리
+1.1 SQL을 직접 다룰 때 발생하는 문제점 코드의 반복작성 데이터베이스는 객체 구조와는 달리 데이터 중심의 구조를 갖는다. 객체를 데이터베이스에 CRUD 하기 위해서는 너무 많은 SQL 과 JDBC API 를 사용하여 변환작업을 직접 해주어야 한다. SQL 에 의존적인 개발 객체들이 어떤 엔티티를 참조하고 있는지 DAO(데이터 접근 계층) 을 열어 SQL 를 확인해야만 한다. SQL 과 JDBC API 를 DAO 에 은닉화하였지만 논리적으로는 엔티티와 아주 강한 의존관계를 가지고 있다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://riley817.github.io/jpa-programming1/" /><meta property="og:image" content="https://riley817.github.io/icon.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2018-12-09T17:53:39+09:00" />
+<meta property="article:modified_time" content="2022-06-29T00:20:54+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://riley817.github.io/icon.png"/>
+
+<meta name="twitter:title" content="[자바 ORM 표준 JPA 프로그래밍] 1장 JPA 소개"/>
+<meta name="twitter:description" content="김영한님의 책 자바 ORM 표준 JPA 프로그래밍 학습 내용 정리
+1.1 SQL을 직접 다룰 때 발생하는 문제점 코드의 반복작성 데이터베이스는 객체 구조와는 달리 데이터 중심의 구조를 갖는다. 객체를 데이터베이스에 CRUD 하기 위해서는 너무 많은 SQL 과 JDBC API 를 사용하여 변환작업을 직접 해주어야 한다. SQL 에 의존적인 개발 객체들이 어떤 엔티티를 참조하고 있는지 DAO(데이터 접근 계층) 을 열어 SQL 를 확인해야만 한다. SQL 과 JDBC API 를 DAO 에 은닉화하였지만 논리적으로는 엔티티와 아주 강한 의존관계를 가지고 있다."/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://riley817.github.io/jpa-programming1/" /><link rel="prev" href="https://riley817.github.io/change-default-repo-npm/" /><link rel="next" href="https://riley817.github.io/start-python-using-pyenv/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "[자바 ORM 표준 JPA 프로그래밍] 1장 JPA 소개",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/riley817.github.io\/jpa-programming1\/"
+        },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "jpa, orm","wordcount":  911 ,
+        "url": "https:\/\/riley817.github.io\/jpa-programming1\/","datePublished": "2018-12-09T17:53:39+09:00","dateModified": "2022-06-29T00:20:54+09:00","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "https:\/\/riley817.github.io\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "riley"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Riley&#39;s DevLog"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i></span>Riley&#39;s DevLog</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Riley&#39;s DevLog"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i></span>Riley&#39;s DevLog</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">[자바 ORM 표준 JPA 프로그래밍] 1장 JPA 소개</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-category">included in <a href="/categories/jpa/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>jpa</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2018-12-09">2018-12-09</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;911 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;5 minutes&nbsp;<span id="/jpa-programming1/" class="leancloud_visitors" data-flag-title="[자바 ORM 표준 JPA 프로그래밍] 1장 JPA 소개">
+                        <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#11-sql을-직접-다룰-때-발생하는-문제점">1.1 SQL을 직접 다룰 때 발생하는 문제점</a>
+      <ul>
+        <li><a href="#코드의-반복작성">코드의 반복작성</a></li>
+        <li><a href="#sql-에-의존적인-개발">SQL 에 의존적인 개발</a></li>
+        <li><a href="#jpa-와-문제해결">JPA 와 문제해결</a>
+          <ul>
+            <li><a href="#jpa-저장기능">JPA 저장기능</a></li>
+            <li><a href="#jpa-조회기능">JPA 조회기능</a></li>
+            <li><a href="#jpa-수정기능">JPA 수정기능</a></li>
+            <li><a href="#연관된-객체-조회">연관된 객체 조회</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#12-패러다임의-불일치">1.2 패러다임의 불일치</a>
+      <ul>
+        <li><a href="#패러다임-불일치-문제들">패러다임 불일치 문제들</a>
+          <ul>
+            <li><a href="#상속">상속</a>
+              <ul>
+                <li><a href="#데이터베이스와-객체모델의-상속-패러다임">데이터베이스와 객체모델의 상속 패러다임</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#연관관계">연관관계</a>
+          <ul>
+            <li><a href="#객체">객체</a></li>
+            <li><a href="#테이블">테이블</a></li>
+            <li><a href="#데이터베스와-객체모델의-연관관계-패러다임">데이터베스와 객체모델의 연관관계 패러다임</a></li>
+          </ul>
+        </li>
+        <li><a href="#객체-그래프-탐색">객체 그래프 탐색</a>
+          <ul>
+            <li><a href="#jpa-와-객체-그래프-탐색">JPA 와 객체 그래프 탐색</a></li>
+          </ul>
+        </li>
+        <li><a href="#비교">비교</a>
+          <ul>
+            <li><a href="#jpa-와-비교">JPA 와 비교</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#정리">정리</a></li>
+    <li><a href="#13-jpa-란-무엇인가">1.3 JPA 란 무엇인가.</a>
+      <ul>
+        <li><a href="#131-jpa-소개">1.3.1 JPA 소개</a></li>
+        <li><a href="#132-jpa-를-사용해야-하는-이유">1.3.2 JPA 를 사용해야 하는 이유</a>
+          <ul>
+            <li><a href="#생산성">생산성</a></li>
+            <li><a href="#유지보수">유지보수</a></li>
+            <li><a href="#패러다임의-불일치-해결">패러다임의 불일치 해결</a></li>
+            <li><a href="#성능">성능</a></li>
+            <li><a href="#데이터-접근-추상화와-벤더-독립성">데이터 접근 추상화와 벤더 독립성</a></li>
+            <li><a href="#표준">표준</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p><em>김영한님의 책 자바 ORM 표준 JPA 프로그래밍 학습 내용 정리</em></p>
+<h2 id="11-sql을-직접-다룰-때-발생하는-문제점">1.1 SQL을 직접 다룰 때 발생하는 문제점</h2>
+<h3 id="코드의-반복작성">코드의 반복작성</h3>
+<ul>
+<li>데이터베이스는 객체 구조와는 달리 데이터 중심의 구조를 갖는다.</li>
+<li>객체를 데이터베이스에 CRUD 하기 위해서는 너무 많은 SQL 과 JDBC API 를 사용하여 변환작업을 직접 해주어야 한다.</li>
+</ul>
+<h3 id="sql-에-의존적인-개발">SQL 에 의존적인 개발</h3>
+<ul>
+<li>객체들이 어떤 엔티티를 참조하고 있는지 DAO(데이터 접근 계층) 을 열어 SQL 를 확인해야만 한다.</li>
+<li>SQL 과 JDBC API 를 DAO 에 은닉화하였지만 논리적으로는 엔티티와 아주 강한 의존관계를 가지고 있다.</li>
+</ul>
+<h3 id="jpa-와-문제해결">JPA 와 문제해결</h3>
+<p>JPA 를 사용하면 객체를 데이터베이스에 저장하고 관리할 때, 개발자가 직접 SQL 을 작성하는 것이 아닌 JPA 가 제공하는 API 를 사용하면 된다.</p>
+<h4 id="jpa-저장기능">JPA 저장기능</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">jpa</span><span class="o">.</span><span class="na">persist</span><span class="o">(</span><span class="n">member</span><span class="o">);</span> <span class="c1">// 저장
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="jpa-조회기능">JPA 조회기능</h4>
+<p>JPA 는 객체와 매핑정보를 보고 적절한 SELECT SQL 을 생성하여 데이터베이스에 전달하고 그 결과를 Member 객체를 생성하여 반환한다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">String</span> <span class="n">memberId</span> <span class="o">=</span> <span class="s">&#34;id0001&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"> <span class="n">Member</span> <span class="n">member</span> <span class="o">=</span> <span class="n">jpa</span><span class="o">.</span><span class="na">find</span><span class="o">(</span><span class="n">Member</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">memberId</span><span class="o">);</span> <span class="c1">// 조회
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="jpa-수정기능">JPA 수정기능</h4>
+<p>JPA 는 별도의 수정 메소드를 제공하지 않으며, 객체를 조회하여 값을 변경하면 트랜잭션을 커밋할때 데이터베이스에 적절한 UPDATE SQL 구문을 전달한다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Member</span> <span class="n">member</span> <span class="o">=</span> <span class="n">jpa</span><span class="o">.</span><span class="na">find</span><span class="o">(</span><span class="n">Member</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">memberId</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"> <span class="n">member</span><span class="o">.</span><span class="na">setName</span><span class="o">(</span><span class="s">&#34;이름변경&#34;</span><span class="o">);</span> <span class="c1">// 수정
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="연관된-객체-조회">연관된 객체 조회</h4>
+<p>JPA 는 연관된 객체를 사용하는 시점에 적절한 SELECT SQL 을 실행한다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Member</span> <span class="n">member</span> <span class="o">=</span> <span class="n">jpa</span><span class="o">.</span><span class="na">find</span><span class="o">(</span><span class="n">Member</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">memberId</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"> <span class="n">Team</span> <span class="n">team</span> <span class="o">=</span> <span class="n">member</span><span class="o">.</span><span class="na">getTeam</span><span class="o">();</span> <span class="c1">// 연관된 객체 조회
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="12-패러다임의-불일치">1.2 패러다임의 불일치</h2>
+<ul>
+<li>관계형 데이터 베이스는 데이터 중심으로 구조화되어 있고, 집합적인 사고를 요구한다. 그리고 객체지향의 추상화, 상속, 다형성 같은 개념이 없다.</li>
+<li>객체와 관계형 데이터베이스는 지향하는 목적이 서로 다르며 기능과 표현방법도 다르다. 이것을 <code>객체와 관계형 데이터베이스의 패러다임 불일치 문제</code>라 한다.</li>
+<li>패러다임 불일치 문제로 객체 구조를 테이블 구조에 저장하는 데에는 한계가 있다.</li>
+</ul>
+<h3 id="패러다임-불일치-문제들">패러다임 불일치 문제들</h3>
+<h4 id="상속">상속</h4>
+<ul>
+<li>객체는 상속이라는 기능을 갖고 있지만 테이블은 상속이라는 기능이 없다.</li>
+<li>데이터베이스 모델링에서 슈퍼타입 서비타입 관계를 사용하면 객체 상속과 유사한 형태로 테이블을 설계 할 수 있다.</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// 객체 모델 코드 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">Item</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Long</span> <span class="n">id</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">price</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">Album</span> <span class="kd">extends</span> <span class="n">Item</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">String</span> <span class="n">artist</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">Movie</span> <span class="kd">extends</span> <span class="n">Item</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">String</span> <span class="n">director</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">String</span> <span class="n">actor</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">Book</span> <span class="kd">extends</span> <span class="n">Item</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">String</span> <span class="n">author</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">String</span> <span class="n">isbn</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h5 id="데이터베이스와-객체모델의-상속-패러다임">데이터베이스와 객체모델의 상속 패러다임</h5>
+<ul>
+<li><code>Album</code> 객체를 저장하려면 <code>Item</code> 과 <code>Album</code> 객체에 대한 INSERT SQL 를 작성해야 하며 슈퍼타입 서브타입 모델링의 경우 부모객체에 자식타입을 저장해야한다.</li>
+<li><code>Album</code> 조회하려면 <code>Item</code> 과 <code>Album</code> 을 조인하여 조회 후 그 결과로 <code>Album</code> 를 생성해야 한다.</li>
+<li><strong>JPA 에서는 자바 컬렉션에 객체를 저장하듯이 JPA 에게 객체를 저장하면된다.</strong></li>
+</ul>
+<h3 id="연관관계">연관관계</h3>
+<h4 id="객체">객체</h4>
+<ul>
+<li><code>참조</code>에 접근하여 연관된 객체를 조회한다.</li>
+<li>객체는 <strong>참조가 있는 방향으로만 조회</strong> 할 수 있다.</li>
+</ul>
+<h4 id="테이블">테이블</h4>
+<ul>
+<li><code>외래키와 조인</code>을 사용하여 다른 테이블과 연관관계를 가지고 조인을 사용하여 연관된 테이블을 조회한다.</li>
+</ul>
+<h4 id="데이터베스와-객체모델의-연관관계-패러다임">데이터베스와 객체모델의 연관관계 패러다임</h4>
+<ul>
+<li>JPA 개발자가 연관관계를 설정하면 JPA 에서 참조를 외래키를 변환하여 데이터베이스에 전달한다.</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// 회원과 팀 연관관계를 설정
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">member</span><span class="o">.</span><span class="na">setTime</span><span class="o">(</span><span class="n">team</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">jpa</span><span class="o">.</span><span class="na">persist</span><span class="o">(</span><span class="n">member</span><span class="o">);</span> <span class="c1">// 회원과 연관관계 함께 저장
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="객체-그래프-탐색">객체 그래프 탐색</h3>
+<ul>
+<li>SQL 을 직접 다루면 실행하는 SQL 에 따라 객체 그래프를 어디까지 탐색할 수 있는지 정해진다.</li>
+<li>모든 연관 객체 그래프를 조회하여 메모르에 올려두는 것 또한 현실성이 없으므로 회원을 조회하는 메소드를 상황에 따라 여러벌 작성해야 한다.</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// 객체 그래프를 탐색할 수 있을지 없을 시 코드만 보고는 예측할 수 없다.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">class</span> <span class="nc">MemberService</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="o">...</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">process</span> <span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Member</span> <span class="n">member</span> <span class="o">=</span> <span class="n">memberDAO</span><span class="o">.</span><span class="na">find</span><span class="o">(</span><span class="n">memberId</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">memberId</span><span class="o">.</span><span class="na">getTema</span><span class="o">();</span> <span class="c1">// member-&gt;team 객체 그래프 탐색이 가능한가?
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">member</span><span class="o">.</span><span class="na">getOrder</span><span class="o">().</span><span class="na">getDelivery</span><span class="o">()</span> <span class="c1">// ???
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="o">}</span>    
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 상황에 따라 여러벌 작성해야 한다.?!!
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">memberDAO</span><span class="o">.</span><span class="na">getMember</span><span class="o">();</span>  <span class="c1">// Member 조회
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">memberDAO</span><span class="o">.</span><span class="na">getMemberWithTeam</span><span class="o">();</span> <span class="c1">// Member 와 Team 조회
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">memberDAO</span><span class="o">.</span><span class="na">getMemberWithOrderWithDeliver</span><span class="o">();</span> <span class="c1">// Member 와 Order 와 Delivery 조회
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="jpa-와-객체-그래프-탐색">JPA 와 객체 그래프 탐색</h4>
+<ul>
+<li>JPA 는 연관된 객체를 사용하는 시점에 적절한 SELECT SQL 을 실행한다. 실제 객체를 사용하는 시점까지 조회를 미룬다고 하여 <code>지연로딩</code> 이라 한다.</li>
+<li>JPA 는 지연 로딩을 <code>투명(transparent)</code> 하게 처리한다.</li>
+<li>JPA 는 연관 객체를 즉시 함께 조회할 것인지 사용되는 시점에서 지연하여 조회할지 간단하게 설정할 수 있다.</li>
+</ul>
+<h3 id="비교">비교</h3>
+<ul>
+<li><code>동일성 비교(idnetity)</code> : == 비교이며, 객체 인스턴스의 참조 값(주소)을 비교한다.</li>
+<li><code>동등성 비교(equals)</code> : 메서드를 사용하여 객체 내부의 값을 비교한다.</li>
+</ul>
+<h4 id="jpa-와-비교">JPA 와 비교</h4>
+<ul>
+<li>JPA 는 같은 트랜잭션일 때 같은 객체가 조회되는 것을 보장한다.</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// JPA 비교
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">String</span> <span class="n">memberId</span> <span class="o">=</span> <span class="s">&#34;100&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">Member</span> <span class="n">member1</span> <span class="o">=</span> <span class="n">jpa</span><span class="o">.</span><span class="na">find</span><span class="o">(</span><span class="n">memberId</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">Member</span> <span class="n">member2</span> <span class="o">=</span> <span class="n">jpa</span><span class="o">.</span><span class="na">find</span><span class="o">(</span><span class="n">memberId</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">member1</span> <span class="o">==</span> <span class="n">member2</span><span class="o">;</span> <span class="c1">// 같다.
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="정리">정리</h2>
+<ul>
+<li>객체 모델과 관계형 데이터베이스 모델은 지향하는 패러다임이 서로 다르다.</li>
+<li>JPA 는 이러한 패러다임의 불일치 문제를 해결해주고 정교한 객체 모델링을 유지하게 도와준다</li>
+</ul>
+<h2 id="13-jpa-란-무엇인가">1.3 JPA 란 무엇인가.</h2>
+<ul>
+<li><strong>JPA <code>Java Persistence API</code></strong> 는 자바 진영의 ORM 기술 표준이다.</li>
+<li><strong>ORM <code>Object-Relationship Mapping</code></strong> 은 객체와 관계형 데이터베이스를 매핑하며, 단순히 CRUD 를 제공하는 것 뿐만아니라 ORM 프레임워크는 <em>객체와 테이블을 매핑해서 패러다임의 불일치 문제를 개발자 대신 해결</em> 해준다.</li>
+</ul>
+<h3 id="131-jpa-소개">1.3.1 JPA 소개</h3>
+<ul>
+<li>JPA 는 자바 ORM 기술에 대한 API 표준 명세이다. (쉽게 말하면, 인터페이스를 모아 둔 것)</li>
+<li>JPA 2.1 을 구현한 구현체로는 <code>Hibernate</code>, <code>EclipseLink</code>, <code>DataNucleus</code> 이며 이중 <code>Hibernate</code> 가 가장 대중적이다.</li>
+</ul>
+<h3 id="132-jpa-를-사용해야-하는-이유">1.3.2 JPA 를 사용해야 하는 이유</h3>
+<h4 id="생산성">생산성</h4>
+<ul>
+<li>SQL 을 작성하고 JDBC API 를 사용하는 지루하고 반복적인 CRUD SQL 을 개발자가 직접 작성하지 않아도 된다.</li>
+</ul>
+<h4 id="유지보수">유지보수</h4>
+<ul>
+<li>필드 추가나 수정 삭제 시에도 개발자가 작성해야 했던 SQL 과 JDBC API 코드를 JPA 가 대신 처리함으로 유지보수 해야하는 코드 수가 줄어든다.</li>
+<li>객체 지향 모델의 장점들을 활용하여 유연하고 유지보수하기 좋은 도메인 모델을 설계할 수 있다.</li>
+</ul>
+<h4 id="패러다임의-불일치-해결">패러다임의 불일치 해결</h4>
+<ul>
+<li>JPA 는 객체와 관계형 모델 간 패러다임의 불일치 (상속, 연관관계, 객체 그래프 탐색, 비교) 문제를 해결</li>
+</ul>
+<h4 id="성능">성능</h4>
+<ul>
+<li>JPA 는 어플리케이션과 데이터베이스 사이에 다양한 성능 최적화 기능을 제공한다.</li>
+<li>하이버네이트의 경우 SQL 힌트를 넣을 수 있는 기능도 제공한다.</li>
+</ul>
+<h4 id="데이터-접근-추상화와-벤더-독립성">데이터 접근 추상화와 벤더 독립성</h4>
+<ul>
+<li>관계형 데이터베이스는 같은 기능도 벤더마다 사용법이 다른 경우가 존재한다. JPA 는 애플리케이션과 데이터 베이스 사이에 추상화된 데이터 접근 계층을 제공하여, 특정 DBMS 에 종속되지 않도록 한다.</li>
+</ul>
+<h4 id="표준">표준</h4>
+<ul>
+<li>JPA 는 자바 진영의 ORM 기술 표준으로, 표준을 사용하면 다른 구현 기술로 손쉽게 변경할 수 있다.</li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2022-06-29&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/7ea1a4fafc9a5b2548567da3be96cbb9fb4ff5d8" target="_blank" title="commit by riley(riley0422@icloud.com) 7ea1a4fafc9a5b2548567da3be96cbb9fb4ff5d8: 20220629002051">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>7ea1a4f</a></span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/jpa-programming1/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://riley817.github.io/jpa-programming1/" data-title="[자바 ORM 표준 JPA 프로그래밍] 1장 JPA 소개" data-hashtags="jpa,orm"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://riley817.github.io/jpa-programming1/" data-hashtag="jpa"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://riley817.github.io/jpa-programming1/" data-title="[자바 ORM 표준 JPA 프로그래밍] 1장 JPA 소개"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://riley817.github.io/jpa-programming1/" data-title="[자바 ORM 표준 JPA 프로그래밍] 1장 JPA 소개"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.0.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://riley817.github.io/jpa-programming1/" data-title="[자바 ORM 표준 JPA 프로그래밍] 1장 JPA 소개"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/jpa/">jpa</a>,&nbsp;<a href="/tags/orm/">orm</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/change-default-repo-npm/" class="prev" rel="prev" title="NPM 기본 저장소 대신 지정한 저장소 사용하기"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>NPM 기본 저장소 대신 지정한 저장소 사용하기</a>
+            <a href="/start-python-using-pyenv/" class="next" rel="next" title="pyenv를 이용하여 python 시작하기">pyenv를 이용하여 python 시작하기<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.101.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Riley</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/valine@1.4.18/dist/Valine.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.1/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{"valine":{"appId":"QGzwQXOqs5JOhN4RGPOkR2mR-MdYXbMMI","appKey":"WBmoGyJtbqUswvfLh6L8iEBr","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@14.0.0/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"en","pageSize":10,"placeholder":"Your comment ...","recordIP":true,"serverURLs":"https://leancloud.hugoloveit.com","visitor":true}},"search":{"algoliaAppID":"","algoliaIndex":"","algoliaSearchKey":"","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

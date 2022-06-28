@@ -6,18 +6,18 @@
         <meta name="robots" content="noodp" />
         <title>[자바 ORM 표준 JPA 프로그래밍] 6장 다양한 연관관계 매핑 - 다대일 - Riley&#39;s DevLog</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:title" content="[자바 ORM 표준 JPA 프로그래밍] 6장 다양한 연관관계 매핑 - 다대일" />
 <meta property="og:description" content="김영한님의 책 자바 ORM 표준 JPA 프로그래밍 학습 내용 정리
-다양한 연관관계 다루기 엔티티의 연관관계를 매핑할때 고려할점 다중성 단방향, 양방향 연관관계의 주인 다중성 다대일(@ManyToOne), 일대다(@OneToMany), 일대일(@OneToOne), 다대다(@ManyToMany) 다중성을 판단하기 어려울 때는 반대방향을 생각해보자. 보통 다대일과 일대다 관계를 가장 많이 사용하고 다대다 관계는 실무에서는 거의 사용하지 않음. 단방향, 양방향 객체 관계에서 한쪽만 참고하는 것을 단방향 관계라고하며, 양쪽이 서로 참조하는 것을 양방향 관계라 한다. 연관관계의 주인 외래 키를 가진 테이블과 매핑한 엔티티가 외래키를 관리하는게 효율적이므로 보통 이곳을 연관관계의 주인으로 선택한다." />
+다양한 연관관계 다루기 엔티티의 연관관계를 매핑할때 고려할점  다중성 단방향, 양방향 연관관계의 주인  다중성  다대일(@ManyToOne), 일대다(@OneToMany), 일대일(@OneToOne), 다대다(@ManyToMany) 다중성을 판단하기 어려울 때는 반대방향을 생각해보자. 보통 다대일과 일대다 관계를 가장 많이 사용하고 다대다 관계는 실무에서는 거의 사용하지 않음.  단방향, 양방향  객체 관계에서 한쪽만 참고하는 것을 단방향 관계라고하며, 양쪽이 서로 참조하는 것을 양방향 관계라 한다.  연관관계의 주인  외래 키를 가진 테이블과 매핑한 엔티티가 외래키를 관리하는게 효율적이므로 보통 이곳을 연관관계의 주인으로 선택한다." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://riley817.github.io/categories/jpa/jpa-programming6-1/" /><meta property="og:image" content="https://riley817.github.io/icon.png"/><meta property="article:section" content="categories" />
 <meta property="article:published_time" content="2019-01-10T16:20:24+09:00" />
-<meta property="article:modified_time" content="2022-06-28T23:58:42+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
+<meta property="article:modified_time" content="2021-07-17T14:42:28+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://riley817.github.io/icon.png"/>
 
 <meta name="twitter:title" content="[자바 ORM 표준 JPA 프로그래밍] 6장 다양한 연관관계 매핑 - 다대일"/>
 <meta name="twitter:description" content="김영한님의 책 자바 ORM 표준 JPA 프로그래밍 학습 내용 정리
-다양한 연관관계 다루기 엔티티의 연관관계를 매핑할때 고려할점 다중성 단방향, 양방향 연관관계의 주인 다중성 다대일(@ManyToOne), 일대다(@OneToMany), 일대일(@OneToOne), 다대다(@ManyToMany) 다중성을 판단하기 어려울 때는 반대방향을 생각해보자. 보통 다대일과 일대다 관계를 가장 많이 사용하고 다대다 관계는 실무에서는 거의 사용하지 않음. 단방향, 양방향 객체 관계에서 한쪽만 참고하는 것을 단방향 관계라고하며, 양쪽이 서로 참조하는 것을 양방향 관계라 한다. 연관관계의 주인 외래 키를 가진 테이블과 매핑한 엔티티가 외래키를 관리하는게 효율적이므로 보통 이곳을 연관관계의 주인으로 선택한다."/>
+다양한 연관관계 다루기 엔티티의 연관관계를 매핑할때 고려할점  다중성 단방향, 양방향 연관관계의 주인  다중성  다대일(@ManyToOne), 일대다(@OneToMany), 일대일(@OneToOne), 다대다(@ManyToMany) 다중성을 판단하기 어려울 때는 반대방향을 생각해보자. 보통 다대일과 일대다 관계를 가장 많이 사용하고 다대다 관계는 실무에서는 거의 사용하지 않음.  단방향, 양방향  객체 관계에서 한쪽만 참고하는 것을 단방향 관계라고하며, 양쪽이 서로 참조하는 것을 양방향 관계라 한다.  연관관계의 주인  외래 키를 가진 테이블과 매핑한 엔티티가 외래키를 관리하는게 효율적이므로 보통 이곳을 연관관계의 주인으로 선택한다."/>
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -33,7 +33,7 @@
             "@type": "WebPage",
             "@id": "https:\/\/riley817.github.io\/categories\/jpa\/jpa-programming6-1\/"
         },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "categories","keywords": "jpa, orm","wordcount":  394 ,
-        "url": "https:\/\/riley817.github.io\/categories\/jpa\/jpa-programming6-1\/","datePublished": "2019-01-10T16:20:24+09:00","dateModified": "2022-06-28T23:58:42+09:00","publisher": {
+        "url": "https:\/\/riley817.github.io\/categories\/jpa\/jpa-programming6-1\/","datePublished": "2019-01-10T16:20:24+09:00","dateModified": "2021-07-17T14:42:28+09:00","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/riley817.github.io\/images\/avatar.png"},"author": {
                 "@type": "Person",
@@ -315,7 +315,7 @@
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
             </noscript></div></div></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.101.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.98.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
                 </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Riley</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

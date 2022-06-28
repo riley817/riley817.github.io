@@ -10,7 +10,7 @@
     <pubDate>Wed, 06 Feb 2019 23:44:42 &#43;0900</pubDate>
     <author>riley</author>
     <guid>https://riley817.github.io/categories/spring-framework/page-6-4/</guid>
-    <description><![CDATA[REST 서비스 문서의 자동화 REST API 심플하게 설계되면 좋겠지만, 소비자의 요구사항 또는 서비스가 커짐에 따라 API 가 점점 복잡해지고 관리해야할 API 개수도 점점 늘게 된다. 협업을 위해서는 API 는 반드시 문서화 되어야 하는데, 소스 변경사항과 동기화 시키기가 매번 번거롭다. 이러한 문제를 해결하기 위해 REST API 서비스 문서(스펙)을 자동화 하는 툴이 등장하게 되었다. 주요 API Spec 자동화 라이브러리 SLATE : https://github.com/lord/slate Swagger : https://swagger.io/ API Blueprint : https://apiblueprint.org/ Swagger2 Swagger 2 는 RESTful API 를 설명하고 문서화하는데 사용되는 오픈소스 라이브러리이다.]]></description>
+    <description><![CDATA[REST 서비스 문서의 자동화  REST API 심플하게 설계되면 좋겠지만, 소비자의 요구사항 또는 서비스가 커짐에 따라 API 가 점점 복잡해지고 관리해야할 API 개수도 점점 늘게 된다. 협업을 위해서는 API 는 반드시 문서화 되어야 하는데, 소스 변경사항과 동기화 시키기가 매번 번거롭다. 이러한 문제를 해결하기 위해 REST API 서비스 문서(스펙)을 자동화 하는 툴이 등장하게 되었다.  주요 API Spec 자동화 라이브러리  SLATE : https://github.com/lord/slate Swagger : https://swagger.io/ API Blueprint : https://apiblueprint.org/  Swagger2 Swagger 2 는 RESTful API 를 설명하고 문서화하는데 사용되는 오픈소스 라이브러리이다.]]></description>
 </item>
 </channel>
 </rss>

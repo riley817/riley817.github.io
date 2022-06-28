@@ -6,18 +6,18 @@
         <meta name="robots" content="noodp" />
         <title>[자바 ORM 표준 JPA 프로그래밍] 4장 엔티티 매핑 - Riley&#39;s DevLog</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:title" content="[자바 ORM 표준 JPA 프로그래밍] 4장 엔티티 매핑" />
 <meta property="og:description" content="김영한님의 책 자바 ORM 표준 JPA 프로그래밍 학습 내용 정리
-JPA 의 매핑 어노테이션 객체와 테이블 매핑 : @Entity, @Table 기본 키 매핑 : @Id 필드와 컬럼 매핑 : @Column 연관관계 매핑 : @ManyToOne, @JoinColumn 4.1 @Entity 테이블을 매핑할때 @Entity 어노테이션을 필수로 붙어야 한다. 속성 기능 기본값 name JPA 에서 사용할 엔티티 이름을 지정한다. 보통 기본값인 클래스 이름을 사용한다. 설정하지 않으면 클래스 이름을 그대로 사용. @Entity 적용시 주의할 점 매개변수가 없는 기본 생성자는 필수." />
+JPA 의 매핑 어노테이션  객체와 테이블 매핑 : @Entity, @Table 기본 키 매핑 : @Id 필드와 컬럼 매핑 : @Column 연관관계 매핑 : @ManyToOne, @JoinColumn  4.1 @Entity  테이블을 매핑할때 @Entity 어노테이션을 필수로 붙어야 한다.     속성 기능 기본값     name JPA 에서 사용할 엔티티 이름을 지정한다. 보통 기본값인 클래스 이름을 사용한다. 설정하지 않으면 클래스 이름을 그대로 사용." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://riley817.github.io/categories/jpa/jpa-programming4/" /><meta property="og:image" content="https://riley817.github.io/icon.png"/><meta property="article:section" content="categories" />
 <meta property="article:published_time" content="2018-12-23T23:12:29+09:00" />
-<meta property="article:modified_time" content="2022-06-28T23:58:42+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
+<meta property="article:modified_time" content="2021-07-17T14:42:28+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://riley817.github.io/icon.png"/>
 
 <meta name="twitter:title" content="[자바 ORM 표준 JPA 프로그래밍] 4장 엔티티 매핑"/>
 <meta name="twitter:description" content="김영한님의 책 자바 ORM 표준 JPA 프로그래밍 학습 내용 정리
-JPA 의 매핑 어노테이션 객체와 테이블 매핑 : @Entity, @Table 기본 키 매핑 : @Id 필드와 컬럼 매핑 : @Column 연관관계 매핑 : @ManyToOne, @JoinColumn 4.1 @Entity 테이블을 매핑할때 @Entity 어노테이션을 필수로 붙어야 한다. 속성 기능 기본값 name JPA 에서 사용할 엔티티 이름을 지정한다. 보통 기본값인 클래스 이름을 사용한다. 설정하지 않으면 클래스 이름을 그대로 사용. @Entity 적용시 주의할 점 매개변수가 없는 기본 생성자는 필수."/>
+JPA 의 매핑 어노테이션  객체와 테이블 매핑 : @Entity, @Table 기본 키 매핑 : @Id 필드와 컬럼 매핑 : @Column 연관관계 매핑 : @ManyToOne, @JoinColumn  4.1 @Entity  테이블을 매핑할때 @Entity 어노테이션을 필수로 붙어야 한다.     속성 기능 기본값     name JPA 에서 사용할 엔티티 이름을 지정한다. 보통 기본값인 클래스 이름을 사용한다. 설정하지 않으면 클래스 이름을 그대로 사용."/>
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -32,8 +32,8 @@ JPA 의 매핑 어노테이션 객체와 테이블 매핑 : @Entity, @Table 기�
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/riley817.github.io\/categories\/jpa\/jpa-programming4\/"
-        },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "categories","keywords": "jpa, orm","wordcount":  1350 ,
-        "url": "https:\/\/riley817.github.io\/categories\/jpa\/jpa-programming4\/","datePublished": "2018-12-23T23:12:29+09:00","dateModified": "2022-06-28T23:58:42+09:00","publisher": {
+        },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "categories","keywords": "jpa, orm","wordcount":  1316 ,
+        "url": "https:\/\/riley817.github.io\/categories\/jpa\/jpa-programming4\/","datePublished": "2018-12-23T23:12:29+09:00","dateModified": "2021-07-17T14:42:28+09:00","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/riley817.github.io\/images\/avatar.png"},"author": {
                 "@type": "Person",
@@ -683,7 +683,7 @@ JPA 의 매핑 어노테이션 객체와 테이블 매핑 : @Entity, @Table 기�
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
             </noscript></div></div></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.101.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.98.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
                 </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Riley</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

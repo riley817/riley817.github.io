@@ -5,17 +5,17 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
         <title>git submodule 삭제하기 - Riley&#39;s DevLog</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:title" content="git submodule 삭제하기" />
-<meta property="og:description" content="git submodule 삭제하기 1. .gitmodules를 열어 해당 서브 모듈이 정의된 부분을 제거하거나 파일을 지운다. .gitmodules에 불필요한 모듈만 제거하거나 .gitmodules 파일이 불필요하다면 아예 삭제해 버린다. 2. .git/config 파일을 열어 불필요한 서브 모듈을 삭제한다. 1 vi PROJECT_ROOT/.git/config 3. 해당 저장소의 캐시를 제거한다. 1 2 # git rm --cached path_to_submodule git rm --cached spring-module-common 4. .git/modules/path_to_submodule 파일을 삭제한다. 1 2 cd PROJECT_ROOT/.git/modules rm --rf spring-module-common 5. 변경된 사항을 커밋 한다. 참고 https://git.wiki.kernel.org/index.php/GitSubmoduleTutorial#Removal " />
+<meta property="og:description" content="git submodule 삭제하기 1. .gitmodules를 열어 해당 서브 모듈이 정의된 부분을 제거하거나 파일을 지운다. .gitmodules에 불필요한 모듈만 제거하거나 .gitmodules 파일이 불필요하다면 아예 삭제해 버린다. 2. .git/config 파일을 열어 불필요한 서브 모듈을 삭제한다. 1  vi PROJECT_ROOT/.git/config   3. 해당 저장소의 캐시를 제거한다. 1 2  # git rm --cached path_to_submodule git rm --cached spring-module-common   4. .git/modules/path_to_submodule 파일을 삭제한다. 1 2  cd PROJECT_ROOT/.git/modules rm --rf spring-module-common   5." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://riley817.github.io/categories/git/git-submodule/" /><meta property="og:image" content="https://riley817.github.io/icon.png"/><meta property="article:section" content="categories" />
 <meta property="article:published_time" content="2020-05-24T20:07:22+09:00" />
-<meta property="article:modified_time" content="2022-06-28T23:58:42+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
+<meta property="article:modified_time" content="2021-07-30T19:16:44+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://riley817.github.io/icon.png"/>
 
 <meta name="twitter:title" content="git submodule 삭제하기"/>
-<meta name="twitter:description" content="git submodule 삭제하기 1. .gitmodules를 열어 해당 서브 모듈이 정의된 부분을 제거하거나 파일을 지운다. .gitmodules에 불필요한 모듈만 제거하거나 .gitmodules 파일이 불필요하다면 아예 삭제해 버린다. 2. .git/config 파일을 열어 불필요한 서브 모듈을 삭제한다. 1 vi PROJECT_ROOT/.git/config 3. 해당 저장소의 캐시를 제거한다. 1 2 # git rm --cached path_to_submodule git rm --cached spring-module-common 4. .git/modules/path_to_submodule 파일을 삭제한다. 1 2 cd PROJECT_ROOT/.git/modules rm --rf spring-module-common 5. 변경된 사항을 커밋 한다. 참고 https://git.wiki.kernel.org/index.php/GitSubmoduleTutorial#Removal "/>
+<meta name="twitter:description" content="git submodule 삭제하기 1. .gitmodules를 열어 해당 서브 모듈이 정의된 부분을 제거하거나 파일을 지운다. .gitmodules에 불필요한 모듈만 제거하거나 .gitmodules 파일이 불필요하다면 아예 삭제해 버린다. 2. .git/config 파일을 열어 불필요한 서브 모듈을 삭제한다. 1  vi PROJECT_ROOT/.git/config   3. 해당 저장소의 캐시를 제거한다. 1 2  # git rm --cached path_to_submodule git rm --cached spring-module-common   4. .git/modules/path_to_submodule 파일을 삭제한다. 1 2  cd PROJECT_ROOT/.git/modules rm --rf spring-module-common   5."/>
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -31,7 +31,7 @@
             "@type": "WebPage",
             "@id": "https:\/\/riley817.github.io\/categories\/git\/git-submodule\/"
         },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "categories","keywords": "git, git submodule","wordcount":  69 ,
-        "url": "https:\/\/riley817.github.io\/categories\/git\/git-submodule\/","datePublished": "2020-05-24T20:07:22+09:00","dateModified": "2022-06-28T23:58:42+09:00","publisher": {
+        "url": "https:\/\/riley817.github.io\/categories\/git\/git-submodule\/","datePublished": "2020-05-24T20:07:22+09:00","dateModified": "2021-07-30T19:16:44+09:00","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/riley817.github.io\/images\/avatar.png"},"author": {
                 "@type": "Person",
@@ -151,7 +151,7 @@
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
             </noscript></div></div></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.101.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.98.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
                 </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Riley</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>nginx 로그를 Elasticsearch Cloud로 수집하기 - Riley&#39;s DevLog</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:title" content="nginx 로그를 Elasticsearch Cloud로 수집하기" />
+<meta property="og:description" content="개요 파일비트를 사용하여 웹 서버(nginx) 로그 파일을 수집하고 Elasticsearch Cloud에 전송한다. Cloud에서 생성한 Kibana 사이트에 접속하면 여러 플랫폼에서 데이터를 수집할 수 있는 예시 파일을 참고 할 수 있다.
+파일비트 설치 파일비트는 수집할 로그가 쌓이는 서버에 설치했다.
+1 2 3 4 cd /usr/local/src sudo curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.11.1-linux-x86_64.tar.gz tar xzvf filebeat-7.11.1-linux-x86_64.tar.gz cd filebeat-7.11.1-linux-x86_64 Elastic Cloud 인증정보 설정 Elastic Cloud 접속을 위하여 filebeat.yml의 관련항목의 주석을 해제하고 인증정보를 설정한다. 그 외 필요한 설정 정보는 아래 링크를 참조한다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://riley817.github.io/nginx-log-es-cloud/" /><meta property="og:image" content="https://riley817.github.io/icon.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-03-21T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-06-29T00:20:54+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://riley817.github.io/icon.png"/>
+
+<meta name="twitter:title" content="nginx 로그를 Elasticsearch Cloud로 수집하기"/>
+<meta name="twitter:description" content="개요 파일비트를 사용하여 웹 서버(nginx) 로그 파일을 수집하고 Elasticsearch Cloud에 전송한다. Cloud에서 생성한 Kibana 사이트에 접속하면 여러 플랫폼에서 데이터를 수집할 수 있는 예시 파일을 참고 할 수 있다.
+파일비트 설치 파일비트는 수집할 로그가 쌓이는 서버에 설치했다.
+1 2 3 4 cd /usr/local/src sudo curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.11.1-linux-x86_64.tar.gz tar xzvf filebeat-7.11.1-linux-x86_64.tar.gz cd filebeat-7.11.1-linux-x86_64 Elastic Cloud 인증정보 설정 Elastic Cloud 접속을 위하여 filebeat.yml의 관련항목의 주석을 해제하고 인증정보를 설정한다. 그 외 필요한 설정 정보는 아래 링크를 참조한다."/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://riley817.github.io/nginx-log-es-cloud/" /><link rel="prev" href="https://riley817.github.io/easy-golang-section4/" /><link rel="next" href="https://riley817.github.io/easy-golang-section5/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "nginx 로그를 Elasticsearch Cloud로 수집하기",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/riley817.github.io\/nginx-log-es-cloud\/"
+        },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "elasticsearch, elasticsearch cloud, filebeat","wordcount":  688 ,
+        "url": "https:\/\/riley817.github.io\/nginx-log-es-cloud\/","datePublished": "2021-03-21T00:00:00+00:00","dateModified": "2022-06-29T00:20:54+09:00","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "https:\/\/riley817.github.io\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "riley"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Riley&#39;s DevLog"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i></span>Riley&#39;s DevLog</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Riley&#39;s DevLog"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i></span>Riley&#39;s DevLog</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">nginx 로그를 Elasticsearch Cloud로 수집하기</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-category">included in <a href="/categories/elasticsearch/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>elasticsearch</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2021-03-21">2021-03-21</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;688 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;4 minutes&nbsp;<span id="/nginx-log-es-cloud/" class="leancloud_visitors" data-flag-title="nginx 로그를 Elasticsearch Cloud로 수집하기">
+                        <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#개요">개요</a>
+      <ul>
+        <li><a href="#파일비트-설치">파일비트 설치</a></li>
+        <li><a href="#elastic-cloud-인증정보-설정">Elastic Cloud 인증정보 설정</a>
+          <ul>
+            <li><a href="#filebeatyml">filebeat.yml</a></li>
+          </ul>
+        </li>
+        <li><a href="#filebeat-input-설정">filebeat input 설정</a>
+          <ul>
+            <li><a href="#filebeatyml-1">filebeat.yml</a></li>
+          </ul>
+        </li>
+        <li><a href="#output-설정">Output 설정</a>
+          <ul>
+            <li><a href="#filebeatyml-2">filebeat.yml</a></li>
+          </ul>
+        </li>
+        <li><a href="#filebeat-설정-적용-및-실행">filebeat 설정 적용 및 실행</a>
+          <ul>
+            <li><a href="#filebeat-nginx-모듈-활성화">filebeat nginx 모듈 활성화</a></li>
+            <li><a href="#filebeat-실행">filebeat 실행</a></li>
+            <li><a href="#403-error-일-경우">403 ERROR 일 경우</a></li>
+          </ul>
+        </li>
+        <li><a href="#kibana-실행">Kibana 실행</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="개요">개요</h2>
+<p>파일비트를 사용하여 웹 서버(nginx) 로그 파일을 수집하고 Elasticsearch Cloud에 전송한다.
+Cloud에서 생성한 Kibana 사이트에 접속하면 여러 플랫폼에서 데이터를 수집할 수 있는 예시 파일을 참고 할 수 있다.</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/categories/images/045200.png"
+        data-srcset="/categories/images/045200.png, /categories/images/045200.png 1.5x, /categories/images/045200.png 2x"
+        data-sizes="auto"
+        alt="/categories/images/045200.png"
+        title="images" /></p>
+<h3 id="파일비트-설치">파일비트 설치</h3>
+<p>파일비트는 수집할 로그가 쌓이는 서버에 설치했다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">cd</span> /usr/local/src
+</span></span><span class="line"><span class="cl">sudo curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.11.1-linux-x86_64.tar.gz
+</span></span><span class="line"><span class="cl">tar xzvf filebeat-7.11.1-linux-x86_64.tar.gz
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> filebeat-7.11.1-linux-x86_64
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="elastic-cloud-인증정보-설정">Elastic Cloud 인증정보 설정</h3>
+<p>Elastic Cloud 접속을 위하여 <code>filebeat.yml</code>의 관련항목의 주석을 해제하고 인증정보를 설정한다. 그 외 필요한 설정 정보는 아래 링크를 참조한다.</p>
+<ul>
+<li><a href="https://www.elastic.co/guide/en/beats/filebeat/current/configuring-howto-filebeat.html#configuring-howto-filebeat" target="_blank" rel="noopener noreffer">Configuration filebeat.yml</a></li>
+</ul>
+<h4 id="filebeatyml">filebeat.yml</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># =============================== Elastic Cloud ================================</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># These settings simplify using Filebeat with the Elastic Cloud (https://cloud.elastic.co/).</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># The cloud.id setting overwrites the `output.elasticsearch.hosts` and</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># `setup.kibana.host` options.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># You can find the `cloud.id` in the Elastic Cloud web UI.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">cloud.id</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;&lt;CLOUD_ID&gt;&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># The cloud.auth setting overwrites the `output.elasticsearch.username` and</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># `output.elasticsearch.password` settings. The format is `&lt;user&gt;:&lt;pass&gt;`.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">cloud.auth</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;&lt;CLOUD_USER&gt;:&lt;CLOUD_PASS&gt;&#34;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><strong>cloud.id</strong> : 연결하려는 elastic cloud 아이디를 복사하여 넣는다. cloud id는 메인화면에서 확인 가능하다.</li>
+<li><strong>cloud.auth</strong> : 항목에는 <strong>&ldquo;user:pass&rdquo;</strong> 형태로 basic authentication 형태로 작성한다.</li>
+</ul>
+<h3 id="filebeat-input-설정">filebeat input 설정</h3>
+<ul>
+<li>엘라스틱서치로 전송할 input 파일 정보를 설정한다.</li>
+<li>특별한 설정을 하지 않고 filebeat의 nginx 모듈을 활성화 한 경우 nginx의 기본 로그 폴더가 자동으로 설정된다.
+<ul>
+<li>(/var/log/nginx/access.log*, /var/log/nginx/error.log* 등)</li>
+</ul>
+</li>
+<li>특정 로그 디렉토리를 설정하려면 직접 input 설정에 경로를 지정해야 한다.</li>
+</ul>
+<h4 id="filebeatyml-1">filebeat.yml</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># ============================== Filebeat inputs ===============================</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">filebeat.inputs</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># Each - is an input. Most options can be set at the input level, so</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># you can use different inputs for various configurations.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># Below are the input specific configurations.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">log</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c"># Change to true to enable this input configuration.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c"># Paths that should be crawled and fetched. Glob based paths.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">paths</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">/home/riley/logs/*.log</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">/home/riley/logs/tomcat/*.log</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c">#- c:\programdata\elasticsearch\logs\*</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c"># Exclude lines. A list of regular expressions to match. It drops the lines that are</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c"># matching any regular expression from the list.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c">#exclude_lines: [&#39;^DBG&#39;]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c"># Include lines. A list of regular expressions to match. It exports the lines that are</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c"># matching any regular expression from the list.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c">#include_lines: [&#39;^ERR&#39;, &#39;^WARN&#39;]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c"># Exclude files. A list of regular expressions to match. Filebeat drops the files that</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c"># are matching any regular expression from the list. By default, no files are dropped.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c">#exclude_files: [&#39;.gz$&#39;]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c"># Optional additional fields. These fields can be freely picked</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c"># to add additional information to the crawled log files for filtering</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c">#fields:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c">#  level: debug</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c">#  review: 1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c">### Multiline options</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c"># Multiline can be used for log messages spanning multiple lines. This is common</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c"># for Java Stack Traces or C-Line Continuation</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c"># The regexp Pattern that has to be matched. The example pattern matches all lines starting with [</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c">#multiline.pattern: ^\[</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c"># Defines if the pattern set under pattern should be negated or not. Default is false.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c">#multiline.negate: false</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c"># Match can be set to &#34;after&#34; or &#34;before&#34;. It is used to define if lines should be append to a pattern</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c"># that was (not) matched before or after or as long as a pattern is not matched based on negate.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c"># Note: After is the equivalent to previous and before is the equivalent to to next in Logstash</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c">#multiline.match: after</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><strong>filebeat.inputs.enabled</strong> : true 로 설정</li>
+<li><strong>filebeat.inputs.path</strong> : 사용자 지정 nginx 로그 경로 형식을 작성한다.</li>
+</ul>
+<h3 id="output-설정">Output 설정</h3>
+<h4 id="filebeatyml-2">filebeat.yml</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># ================================== Outputs ===================================</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># Configure what output to use when sending the data collected by the beat.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># ---------------------------- Elasticsearch Output ----------------------------</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">output.elasticsearch</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c"># Array of hosts to connect to.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">hosts</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&#34;&lt;ENDPOINT&gt;&#34;</span><span class="p">]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c"># Protocol - either `http` (default) or `https`.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;https&#34;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>파일은 Elasticsearch Cloud로 전송할 것이기 때문에 Elasticsearch 정보를 설정한다.</li>
+<li><strong>host</strong> : Elasticsearch cloud의 endpoint</li>
+<li><strong>protocol</strong> : endpoint가 ssl이 적용되어있는 경우 https로 설정한다.</li>
+</ul>
+<h3 id="filebeat-설정-적용-및-실행">filebeat 설정 적용 및 실행</h3>
+<h4 id="filebeat-nginx-모듈-활성화">filebeat nginx 모듈 활성화</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo ./filebeat modules <span class="nb">enable</span> nginx
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/categories/images/061016.png"
+        data-srcset="/categories/images/061016.png, /categories/images/061016.png 1.5x, /categories/images/061016.png 2x"
+        data-sizes="auto"
+        alt="/categories/images/061016.png"
+        title="enable_nginx" /></p>
+<h4 id="filebeat-실행">filebeat 실행</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo ./filebeat -e
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="403-error-일-경우">403 ERROR 일 경우</h4>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/categories/images/61327.png"
+        data-srcset="/categories/images/61327.png, /categories/images/61327.png 1.5x, /categories/images/61327.png 2x"
+        data-sizes="auto"
+        alt="/categories/images/61327.png"
+        title="ip_setting" /></p>
+<h3 id="kibana-실행">Kibana 실행</h3>
+<ul>
+<li>Cloud에 있는 Kibana를 실행하게 되면 파일비트로 전송된 nginx Log를 확인 할 수 있다.</li>
+<li><code>filebeat-*</code> 형식으로 인덱스 패턴이 자동으로 등록된다.</li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2022-06-29&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/7ea1a4fafc9a5b2548567da3be96cbb9fb4ff5d8" target="_blank" title="commit by riley(riley0422@icloud.com) 7ea1a4fafc9a5b2548567da3be96cbb9fb4ff5d8: 20220629002051">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>7ea1a4f</a></span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/nginx-log-es-cloud/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://riley817.github.io/nginx-log-es-cloud/" data-title="nginx 로그를 Elasticsearch Cloud로 수집하기" data-hashtags="elasticsearch,elasticsearch cloud,filebeat"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://riley817.github.io/nginx-log-es-cloud/" data-hashtag="elasticsearch"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://riley817.github.io/nginx-log-es-cloud/" data-title="nginx 로그를 Elasticsearch Cloud로 수집하기"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://riley817.github.io/nginx-log-es-cloud/" data-title="nginx 로그를 Elasticsearch Cloud로 수집하기"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.0.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://riley817.github.io/nginx-log-es-cloud/" data-title="nginx 로그를 Elasticsearch Cloud로 수집하기"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/elasticsearch/">elasticsearch</a>,&nbsp;<a href="/tags/elasticsearch-cloud/">elasticsearch cloud</a>,&nbsp;<a href="/tags/filebeat/">filebeat</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/easy-golang-section4/" class="prev" rel="prev" title="Section 4 : Go 패키지 기초"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Section 4 : Go 패키지 기초</a>
+            <a href="/easy-golang-section5/" class="next" rel="next" title="Section 5 : Go 데이터 타입">Section 5 : Go 데이터 타입<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.101.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Riley</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/valine@1.4.18/dist/Valine.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.1/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{"valine":{"appId":"QGzwQXOqs5JOhN4RGPOkR2mR-MdYXbMMI","appKey":"WBmoGyJtbqUswvfLh6L8iEBr","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@14.0.0/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"en","pageSize":10,"placeholder":"Your comment ...","recordIP":true,"serverURLs":"https://leancloud.hugoloveit.com","visitor":true}},"search":{"algoliaAppID":"","algoliaIndex":"","algoliaSearchKey":"","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

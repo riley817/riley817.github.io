@@ -6,18 +6,18 @@
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
             <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Thu, 22 Apr 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://riley817.github.io/tags/database/" rel="self" type="application/rss+xml" /><item>
     <title>Oracle Scheduler DBMS_SCHEDULER 개념 및 사용법</title>
-    <link>https://riley817.github.io/categories/dbms/oracle-scheduler/</link>
+    <link>https://riley817.github.io/oracle-scheduler/</link>
     <pubDate>Thu, 22 Apr 2021 00:00:00 &#43;0000</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/categories/dbms/oracle-scheduler/</guid>
+    <guid>https://riley817.github.io/oracle-scheduler/</guid>
     <description><![CDATA[Oracle Scheduler - DBMS_SCHEDULER 오라클에서 정해진 시간에 반복된 작업을 수행하기 위해 DBMS_JOB 패키지를 활용하였지만 Oracle 10g 부터는 좀 더 확장된 기능을 가진 DBMS_SCHEDULER 패키지를 제공하고 있다. DBMS_JOB과의 가장 큰 차이점은 DBMS_JOB에서는 불가능하던 외부스크립트 (프로시저나, 함수 이외에도 OS에서 생성된 각종 유틸, 프로그램 까지) 실행이 가능하다. Class 생성 클래스를 지정하지 않게 되면 DEFAULT_JOB_CLASS 에 포함되는데 이 경우 기본 로깅 정책을 따른다. 기본로깅 정책은 DBMS_SCHEDULER.LOGGING_RUNS 이며 로깅레벨을 별도로 설정하거나 다른 스케쥴잡과 그룹화하여 관리하고 싶을 경우 Class를 생성한다.]]></description>
 </item>
 <item>
     <title>H2 설치후 연결시 Database ~ not found, and IFEXISTS=true, so we cant auto-create it [90146-199]</title>
-    <link>https://riley817.github.io/categories/dbms/h2-database-not-found/</link>
+    <link>https://riley817.github.io/h2-database-not-found/</link>
     <pubDate>Fri, 20 Mar 2020 00:00:00 &#43;0000</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/categories/dbms/h2-database-not-found/</guid>
+    <guid>https://riley817.github.io/h2-database-not-found/</guid>
     <description><![CDATA[이슈 해당 정보를 입력하고 연결정보를 클릭시 아래와 같은 에러가 발생하였다. Database &quot;/Users/riley/test&quot; not found, and IFEXISTS=true, so we cant auto-create it [90146-199] 90146/90146
 문제 해결 단계 아래 링크를 통하여 test 라는 이름의 새로운 데이터베이스를 생성해줌으로써 해결하였다.
 http://www.h2database.com/html/tutorial.html#creating_new_databases 1 2 # 설치경로로 이동 cd /Users/riley/Utils/h2/bin 이동하면 h2-버전명 jar 파일이 있다. h2 쉘을 아래와 같이 실행해준다.

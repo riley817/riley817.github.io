@@ -6,22 +6,22 @@
         <meta name="robots" content="noodp" />
         <title>[Tucker의 Go 프로그래밍] 18. 슬라이스 - Riley&#39;s DevLog</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:title" content="[Tucker의 Go 프로그래밍] 18. 슬라이스" />
 <meta property="og:description" content="Tucker의 Go 언어 프로그래밍 책 내용을 정리하였습니다.
-슬라이스는 Go에서 제공하는 동적 배열 타입이다. 동적 배열은 실행 도중 배열의 사이즈가 계속 바뀔 수 있다.
+ 슬라이스는 Go에서 제공하는 동적 배열 타입이다. 동적 배열은 실행 도중 배열의 사이즈가 계속 바뀔 수 있다.
 정적, 동적 상수와 변수의 차이를 생각하면 간단하다.
-정적(static) : compile time, build time 시 값이 결정된다. 실행 도중에 절대 바뀔 수 없다. 동적(dynamic) : Runtime. 프로그램 실행 도중에 계속 값이 바뀔 수 있다. 다른언어에서 slice와 비슷한 개념 (동일하지는 않다.) C&#43;&#43; : Vector&lt;int&gt; Java : ArrayList Python : slice Javascript : 기본적으로 동적 배열 1." />
+ 정적(static) : compile time, build time 시 값이 결정된다. 실행 도중에 절대 바뀔 수 없다. 동적(dynamic) : Runtime. 프로그램 실행 도중에 계속 값이 바뀔 수 있다.  다른언어에서 slice와 비슷한 개념 (동일하지는 않다.)  C&#43;&#43; : Vector&lt;int&gt; Java : ArrayList Python : slice Javascript : 기본적으로 동적 배열  1." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://riley817.github.io/categories/tucker-go/chapter18-slice/" /><meta property="og:image" content="https://riley817.github.io/icon.png"/><meta property="article:section" content="categories" />
 <meta property="article:published_time" content="2022-04-26T14:50:36+09:00" />
-<meta property="article:modified_time" content="2022-06-28T23:58:42+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
+<meta property="article:modified_time" content="2022-04-27T00:59:51+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://riley817.github.io/icon.png"/>
 
 <meta name="twitter:title" content="[Tucker의 Go 프로그래밍] 18. 슬라이스"/>
 <meta name="twitter:description" content="Tucker의 Go 언어 프로그래밍 책 내용을 정리하였습니다.
-슬라이스는 Go에서 제공하는 동적 배열 타입이다. 동적 배열은 실행 도중 배열의 사이즈가 계속 바뀔 수 있다.
+ 슬라이스는 Go에서 제공하는 동적 배열 타입이다. 동적 배열은 실행 도중 배열의 사이즈가 계속 바뀔 수 있다.
 정적, 동적 상수와 변수의 차이를 생각하면 간단하다.
-정적(static) : compile time, build time 시 값이 결정된다. 실행 도중에 절대 바뀔 수 없다. 동적(dynamic) : Runtime. 프로그램 실행 도중에 계속 값이 바뀔 수 있다. 다른언어에서 slice와 비슷한 개념 (동일하지는 않다.) C&#43;&#43; : Vector&lt;int&gt; Java : ArrayList Python : slice Javascript : 기본적으로 동적 배열 1."/>
+ 정적(static) : compile time, build time 시 값이 결정된다. 실행 도중에 절대 바뀔 수 없다. 동적(dynamic) : Runtime. 프로그램 실행 도중에 계속 값이 바뀔 수 있다.  다른언어에서 slice와 비슷한 개념 (동일하지는 않다.)  C&#43;&#43; : Vector&lt;int&gt; Java : ArrayList Python : slice Javascript : 기본적으로 동적 배열  1."/>
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -37,7 +37,7 @@
             "@type": "WebPage",
             "@id": "https:\/\/riley817.github.io\/categories\/tucker-go\/chapter18-slice\/"
         },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "categories","keywords": "go, golang","wordcount":  2277 ,
-        "url": "https:\/\/riley817.github.io\/categories\/tucker-go\/chapter18-slice\/","datePublished": "2022-04-26T14:50:36+09:00","dateModified": "2022-06-28T23:58:42+09:00","publisher": {
+        "url": "https:\/\/riley817.github.io\/categories\/tucker-go\/chapter18-slice\/","datePublished": "2022-04-26T14:50:36+09:00","dateModified": "2022-04-27T00:59:51+09:00","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/riley817.github.io\/images\/avatar.png"},"author": {
                 "@type": "Person",
@@ -993,7 +993,7 @@ slice :  [100 500] 2 4</p>
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
             </noscript></div></div></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.101.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.98.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
                 </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Riley</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

@@ -6,10 +6,10 @@
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
             <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Fri, 20 Mar 2020 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://riley817.github.io/tags/h2/" rel="self" type="application/rss+xml" /><item>
     <title>H2 설치후 연결시 Database ~ not found, and IFEXISTS=true, so we cant auto-create it [90146-199]</title>
-    <link>https://riley817.github.io/categories/dbms/h2-database-not-found/</link>
+    <link>https://riley817.github.io/h2-database-not-found/</link>
     <pubDate>Fri, 20 Mar 2020 00:00:00 &#43;0000</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/categories/dbms/h2-database-not-found/</guid>
+    <guid>https://riley817.github.io/h2-database-not-found/</guid>
     <description><![CDATA[이슈 해당 정보를 입력하고 연결정보를 클릭시 아래와 같은 에러가 발생하였다. Database &quot;/Users/riley/test&quot; not found, and IFEXISTS=true, so we cant auto-create it [90146-199] 90146/90146
 문제 해결 단계 아래 링크를 통하여 test 라는 이름의 새로운 데이터베이스를 생성해줌으로써 해결하였다.
 http://www.h2database.com/html/tutorial.html#creating_new_databases 1 2 # 설치경로로 이동 cd /Users/riley/Utils/h2/bin 이동하면 h2-버전명 jar 파일이 있다. h2 쉘을 아래와 같이 실행해준다.

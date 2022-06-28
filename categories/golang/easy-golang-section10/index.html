@@ -6,20 +6,20 @@
         <meta name="robots" content="noodp" />
         <title>Section 10 : 에러 처리 - Riley&#39;s DevLog</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:title" content="Section 10 : 에러 처리" />
 <meta property="og:description" content="인프런 쉽고 빠르게 끝내는 GO언어 프로그래밍 핵심 기초 입문 과정 강의 정리
-10.1 에러처리 10.1.1 Go 에러 소프트웨어의 품질 향상에 가장 중요한 것 → 유형코드 및 에러 정보 등을 남기는 것
-Go 에서는 기본적으로 error 라는 인터페이스 타입을 갖고 있다. 개발자는 이 인터페이스를 구현하는 커스텀 에러 타입을 만들 수 있다. 1 2 3 type error interface { Error() string } 10.1.2 Go 에러처리 Go 함수의 경우 기본적으로 리턴 타입을 두개 갖고 있다." />
+ 10.1 에러처리 10.1.1 Go 에러 소프트웨어의 품질 향상에 가장 중요한 것 → 유형코드 및 에러 정보 등을 남기는 것
+ Go 에서는 기본적으로 error 라는 인터페이스 타입을 갖고 있다. 개발자는 이 인터페이스를 구현하는 커스텀 에러 타입을 만들 수 있다.  1 2 3  type error interface { Error() string }   10.1.2 Go 에러처리  Go 함수의 경우 기본적으로 리턴 타입을 두개 갖고 있다." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://riley817.github.io/categories/golang/easy-golang-section10/" /><meta property="og:image" content="https://riley817.github.io/icon.png"/><meta property="article:section" content="categories" />
 <meta property="article:published_time" content="2021-04-23T13:11:20+09:00" />
-<meta property="article:modified_time" content="2022-06-28T23:58:42+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
+<meta property="article:modified_time" content="2021-08-10T12:07:32+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://riley817.github.io/icon.png"/>
 
 <meta name="twitter:title" content="Section 10 : 에러 처리"/>
 <meta name="twitter:description" content="인프런 쉽고 빠르게 끝내는 GO언어 프로그래밍 핵심 기초 입문 과정 강의 정리
-10.1 에러처리 10.1.1 Go 에러 소프트웨어의 품질 향상에 가장 중요한 것 → 유형코드 및 에러 정보 등을 남기는 것
-Go 에서는 기본적으로 error 라는 인터페이스 타입을 갖고 있다. 개발자는 이 인터페이스를 구현하는 커스텀 에러 타입을 만들 수 있다. 1 2 3 type error interface { Error() string } 10.1.2 Go 에러처리 Go 함수의 경우 기본적으로 리턴 타입을 두개 갖고 있다."/>
+ 10.1 에러처리 10.1.1 Go 에러 소프트웨어의 품질 향상에 가장 중요한 것 → 유형코드 및 에러 정보 등을 남기는 것
+ Go 에서는 기본적으로 error 라는 인터페이스 타입을 갖고 있다. 개발자는 이 인터페이스를 구현하는 커스텀 에러 타입을 만들 수 있다.  1 2 3  type error interface { Error() string }   10.1.2 Go 에러처리  Go 함수의 경우 기본적으로 리턴 타입을 두개 갖고 있다."/>
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -35,7 +35,7 @@ Go 에서는 기본적으로 error 라는 인터페이스 타입을 갖고 있�
             "@type": "WebPage",
             "@id": "https:\/\/riley817.github.io\/categories\/golang\/easy-golang-section10\/"
         },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "categories","keywords": "go, golang","wordcount":  673 ,
-        "url": "https:\/\/riley817.github.io\/categories\/golang\/easy-golang-section10\/","datePublished": "2021-04-23T13:11:20+09:00","dateModified": "2022-06-28T23:58:42+09:00","publisher": {
+        "url": "https:\/\/riley817.github.io\/categories\/golang\/easy-golang-section10\/","datePublished": "2021-04-23T13:11:20+09:00","dateModified": "2021-08-10T12:07:32+09:00","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/riley817.github.io\/images\/avatar.png"},"author": {
                 "@type": "Person",
@@ -455,7 +455,7 @@ Go 에서는 기본적으로 error 라는 인터페이스 타입을 갖고 있�
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
             </noscript></div></div></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.101.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.98.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
                 </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Riley</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

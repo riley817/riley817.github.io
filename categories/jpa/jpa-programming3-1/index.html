@@ -6,18 +6,18 @@
         <meta name="robots" content="noodp" />
         <title>[자바 ORM 표준 JPA 프로그래밍] 3장 영속성 관리 - EntityManagerFactory, EntityManager, 영속성컨텍스트, 엔티티 생명주기, 영속성컨텍스트의 특징 - Riley&#39;s DevLog</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:title" content="[자바 ORM 표준 JPA 프로그래밍] 3장 영속성 관리 - EntityManagerFactory, EntityManager, 영속성컨텍스트, 엔티티 생명주기, 영속성컨텍스트의 특징" />
 <meta property="og:description" content="김영한님의 책 자바 ORM 표준 JPA 프로그래밍 학습 내용 정리
-JPA 가 제공하는 기능 엔티티와 테이블을 매핑하는 설계 부분 매핑하는 엔티티를 실제 사용하는 부분 3.1 엔티티 매니저 팩토리와 엔티티 매니저 EntityManagerFactory EntityManagerFactory 는 이름 그대로 EntityManager 를 만드는 공장이다. 공장을 만드는 비용은 상당히 크다. 그러므로 한 개만 만들어서 애플리케이션 전체에 공유하도록 설계해야 한다. EntityManagerFactory 는 여러 스레드에서 동시에 접근해도 안전하므로 서로 다른 스레드간 공유해도 된다. JPA 구현체들은 EntityManagerFactory 생성시 커넥션 풀을 만든다." />
+JPA 가 제공하는 기능  엔티티와 테이블을 매핑하는 설계 부분 매핑하는 엔티티를 실제 사용하는 부분  3.1 엔티티 매니저 팩토리와 엔티티 매니저 EntityManagerFactory  EntityManagerFactory 는 이름 그대로 EntityManager 를 만드는 공장이다. 공장을 만드는 비용은 상당히 크다. 그러므로 한 개만 만들어서 애플리케이션 전체에 공유하도록 설계해야 한다. EntityManagerFactory 는 여러 스레드에서 동시에 접근해도 안전하므로 서로 다른 스레드간 공유해도 된다. JPA 구현체들은 EntityManagerFactory 생성시 커넥션 풀을 만든다." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://riley817.github.io/categories/jpa/jpa-programming3-1/" /><meta property="og:image" content="https://riley817.github.io/icon.png"/><meta property="article:section" content="categories" />
 <meta property="article:published_time" content="2018-12-17T20:43:27+09:00" />
-<meta property="article:modified_time" content="2022-06-28T23:58:42+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
+<meta property="article:modified_time" content="2021-07-17T14:42:28+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://riley817.github.io/icon.png"/>
 
 <meta name="twitter:title" content="[자바 ORM 표준 JPA 프로그래밍] 3장 영속성 관리 - EntityManagerFactory, EntityManager, 영속성컨텍스트, 엔티티 생명주기, 영속성컨텍스트의 특징"/>
 <meta name="twitter:description" content="김영한님의 책 자바 ORM 표준 JPA 프로그래밍 학습 내용 정리
-JPA 가 제공하는 기능 엔티티와 테이블을 매핑하는 설계 부분 매핑하는 엔티티를 실제 사용하는 부분 3.1 엔티티 매니저 팩토리와 엔티티 매니저 EntityManagerFactory EntityManagerFactory 는 이름 그대로 EntityManager 를 만드는 공장이다. 공장을 만드는 비용은 상당히 크다. 그러므로 한 개만 만들어서 애플리케이션 전체에 공유하도록 설계해야 한다. EntityManagerFactory 는 여러 스레드에서 동시에 접근해도 안전하므로 서로 다른 스레드간 공유해도 된다. JPA 구현체들은 EntityManagerFactory 생성시 커넥션 풀을 만든다."/>
+JPA 가 제공하는 기능  엔티티와 테이블을 매핑하는 설계 부분 매핑하는 엔티티를 실제 사용하는 부분  3.1 엔티티 매니저 팩토리와 엔티티 매니저 EntityManagerFactory  EntityManagerFactory 는 이름 그대로 EntityManager 를 만드는 공장이다. 공장을 만드는 비용은 상당히 크다. 그러므로 한 개만 만들어서 애플리케이션 전체에 공유하도록 설계해야 한다. EntityManagerFactory 는 여러 스레드에서 동시에 접근해도 안전하므로 서로 다른 스레드간 공유해도 된다. JPA 구현체들은 EntityManagerFactory 생성시 커넥션 풀을 만든다."/>
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -33,7 +33,7 @@ JPA 가 제공하는 기능 엔티티와 테이블을 매핑하는 설계 부분
             "@type": "WebPage",
             "@id": "https:\/\/riley817.github.io\/categories\/jpa\/jpa-programming3-1\/"
         },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "categories","keywords": "jpa, orm","wordcount":  1011 ,
-        "url": "https:\/\/riley817.github.io\/categories\/jpa\/jpa-programming3-1\/","datePublished": "2018-12-17T20:43:27+09:00","dateModified": "2022-06-28T23:58:42+09:00","publisher": {
+        "url": "https:\/\/riley817.github.io\/categories\/jpa\/jpa-programming3-1\/","datePublished": "2018-12-17T20:43:27+09:00","dateModified": "2021-07-17T14:42:28+09:00","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/riley817.github.io\/images\/avatar.png"},"author": {
                 "@type": "Person",
@@ -510,7 +510,7 @@ JPA 가 제공하는 기능 엔티티와 테이블을 매핑하는 설계 부분
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
             </noscript></div></div></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.101.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.98.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
                 </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Riley</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

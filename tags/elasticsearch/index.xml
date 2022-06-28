@@ -6,20 +6,20 @@
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
             <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Sun, 21 Mar 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://riley817.github.io/tags/elasticsearch/" rel="self" type="application/rss+xml" /><item>
     <title>nginx 로그를 Elasticsearch Cloud로 수집하기</title>
-    <link>https://riley817.github.io/categories/elasticsearch/nginx-log-es-cloud/</link>
+    <link>https://riley817.github.io/nginx-log-es-cloud/</link>
     <pubDate>Sun, 21 Mar 2021 00:00:00 &#43;0000</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/categories/elasticsearch/nginx-log-es-cloud/</guid>
+    <guid>https://riley817.github.io/nginx-log-es-cloud/</guid>
     <description><![CDATA[개요 파일비트를 사용하여 웹 서버(nginx) 로그 파일을 수집하고 Elasticsearch Cloud에 전송한다. Cloud에서 생성한 Kibana 사이트에 접속하면 여러 플랫폼에서 데이터를 수집할 수 있는 예시 파일을 참고 할 수 있다.
 파일비트 설치 파일비트는 수집할 로그가 쌓이는 서버에 설치했다.
 1 2 3 4 cd /usr/local/src sudo curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.11.1-linux-x86_64.tar.gz tar xzvf filebeat-7.11.1-linux-x86_64.tar.gz cd filebeat-7.11.1-linux-x86_64 Elastic Cloud 인증정보 설정 Elastic Cloud 접속을 위하여 filebeat.yml의 관련항목의 주석을 해제하고 인증정보를 설정한다. 그 외 필요한 설정 정보는 아래 링크를 참조한다.]]></description>
 </item>
 <item>
     <title>Elastic Cloud 이관 작업</title>
-    <link>https://riley817.github.io/categories/elasticsearch/es-cloud/</link>
+    <link>https://riley817.github.io/es-cloud/</link>
     <pubDate>Wed, 17 Mar 2021 00:00:00 &#43;0000</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/categories/elasticsearch/es-cloud/</guid>
+    <guid>https://riley817.github.io/es-cloud/</guid>
     <description><![CDATA[개요 Elastic Cloud로 데이터 마이그레이션하기 A to Z
 filebeat, logstash 는 데이터 소스가 있는 시스템에 설치하고, Elasticsearch, Kinaba 는 Elastic Cloud 로 세팅하여 사용한다.
 엘라스틱서치 운영 모니터링 까지 Elastic Cloud 에서 모두 지원하기 때문에 따로 구성하지 않아도 된다.
@@ -27,71 +27,71 @@ Elastic Cloud 구조 작업 목표 On-promise로 구성되어 있는 검색어 �
 </item>
 <item>
     <title>Azure VM에 Elastic Stack 설정</title>
-    <link>https://riley817.github.io/categories/elasticsearch/azure-vm-elastic-stack/</link>
+    <link>https://riley817.github.io/azure-vm-elastic-stack/</link>
     <pubDate>Fri, 22 Jan 2021 00:00:00 &#43;0000</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/categories/elasticsearch/azure-vm-elastic-stack/</guid>
+    <guid>https://riley817.github.io/azure-vm-elastic-stack/</guid>
     <description><![CDATA[VM 세팅 리소스 그룹 생성 --location 으로 리젼을 선택할 수 있다. 1 2 3 4 5 # 리젼 코드 조회하기 az account list-locations -o table # elastic Resource Group 생성 az group create --name elastic --location koreasouth VM 생성하기 elastic 그룹에 VM 을 생성한다. 1 2 3 4 5 6 yoon@Azure:~$ az vm create \ &gt; --resource-group elastic \ &gt; --name rileyVM \ &gt; --image UbuntuLTS \ &gt; --admin-username riley \ &gt; --generate-ssh-keys 빠른 시작: Azure CLI를 사용하여 Linux VM 만들기 - Azure Virtual Machines SSH 접속 세팅 VM 생성 시 --generate-ssh-ke 의 옵션을 주어 SSH Key를 생성하였다.]]></description>
 </item>
 <item>
     <title>3.5 그 외 설정</title>
-    <link>https://riley817.github.io/categories/elasticsearch-lecture/lecture3/elasticsearch-lecture3-5/</link>
+    <link>https://riley817.github.io/elasticsearch-lecture3-5/</link>
     <pubDate>Mon, 05 Nov 2018 23:38:01 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/categories/elasticsearch-lecture/lecture3/elasticsearch-lecture3-5/</guid>
+    <guid>https://riley817.github.io/elasticsearch-lecture3-5/</guid>
     <description><![CDATA[Other Settings /etc/security/limits.conf Elasticsearch 는 많은 파일을 쓰거나 핸들링하게 된다. 열 수 있는 File descriptor가 부족하면 데이터의 손실로 이어질 수 있으며 실행할 수 있는 최대 File Descriptor 를 65,536 개 이상으로 설정하도록 한다.
 vi /etc/security/limits.conf 1 2 elasticsearch soft nofile 65536 elasticsearch hard nofile 65536 Thread 수 Elasticsearch 는 여러 유형의 작업에 대해 많은 Thread Pool을 사용하게 된다.. Elasticsearch 사용자가 만들 수 있는 Thread 가 4096 개 이상인지 확인한다. 1 2 elasticsearch soft noproc 4096 elasticsearch hard noproc 4096 Sysconfig file RPM 또는 Debian 패키지를 사용하여 시스템 설정 및 환경 변수를 지정할 수 있다.]]></description>
 </item>
 <item>
     <title>3.4 log4j2.properties</title>
-    <link>https://riley817.github.io/categories/elasticsearch-lecture/lecture3/elasticsearch-lecture3-4/</link>
+    <link>https://riley817.github.io/elasticsearch-lecture3-4/</link>
     <pubDate>Mon, 05 Nov 2018 23:15:23 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/categories/elasticsearch-lecture/lecture3/elasticsearch-lecture3-4/</guid>
+    <guid>https://riley817.github.io/elasticsearch-lecture3-4/</guid>
     <description><![CDATA[log4j2.properties Elasticsearch는 로깅을 위해 Log4j2를 사용한다. Log4j2는 log4j2.properties 파일을 사용하여 구성할 수 있다.
 로그참조 파일 ${sys:es.logs.base_path} 로그의 Base 디렉토리 elasticsearch.yml 의 path.log에 설정된 경로 ${sys:es.logs.cluster_name} 클러스트 이름을 나타낸다. elasticsearch.yml 의 cluster.name으로 설정할 수 있다. ${sys:es.logs.node_name} 노드의 이름을 나타냅니다. elasticsearch.yml 의 node.name으로 설정할 수 있다. 1 2 ex) ${sys:es.logs.base_path}${sys:file.separator}${sys:es.logs.cluster_name}.log /var/log/elasticsearch/mycluster.log ]]></description>
 </item>
 <item>
     <title>3.3 jvm.options</title>
-    <link>https://riley817.github.io/categories/elasticsearch-lecture/lecture3/elasticsearch-lecture3-3/</link>
+    <link>https://riley817.github.io/elasticsearch-lecture3-3/</link>
     <pubDate>Mon, 05 Nov 2018 22:13:59 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/categories/elasticsearch-lecture/lecture3/elasticsearch-lecture3-3/</guid>
+    <guid>https://riley817.github.io/elasticsearch-lecture3-3/</guid>
     <description><![CDATA[jvm.options jvm.options 의 설정을 통해 JVM(Java Virtual Machine) 의 옵션을 변경할 수 있다. 설정 파일은 config/jvm.options(tar or zip 배포판) 또는 /etc/elasticsearch/jvm.options(rpm 패키지 설치) 에서 위치하고 있다. JVM Heap Size Configuration Elasticsearch 는 Java 기반이기 때문에 Heap 메모리를 어떻게 설정하느냐에 따라 성능에 큰 영향을 미치게 된다. 기본적으로 Elasticsearch 의 최소, 최대 Heap 사이즈는 2GB로 설정되어 있다. 실제 운영환경에 따라서 Elasticsearch 에서 충분한 Heap 을 사용할 수 있도록 Heap Size 를 구성하는 것이 중요하다.]]></description>
 </item>
 <item>
     <title>3.2 elasticsearch.yml</title>
-    <link>https://riley817.github.io/categories/elasticsearch-lecture/lecture3/elasticsearch-lecture3-2/</link>
+    <link>https://riley817.github.io/elasticsearch-lecture3-2/</link>
     <pubDate>Fri, 02 Nov 2018 18:20:19 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/categories/elasticsearch-lecture/lecture3/elasticsearch-lecture3-2/</guid>
+    <guid>https://riley817.github.io/elasticsearch-lecture3-2/</guid>
     <description><![CDATA[elasticsearch.yml elasticsearch.yml 은 데이터 파일 위치, 로그파일 위치 등 클러스터의 핵심적인 설정을 할 수 있는 구성 파일이다. 파일 포맷은 YAML 로 되어있다.
 1 2 3 4 5 6 7 8 9 10 11 12 13 14 # path.data : 데이터파일의 위치를 설정 # path.logs : ES 의 로그 파일이 저장될 위치를 설정 path: data: /var/lib/elasticsearch logs: /var/log/elasticsearch # 클러스터를 고유하게 식별할 수 있는 이름 설정 cluster: name: es-cluster # 노드를 고유하게 식별할 수 있는 이름설정 # 보통 호스트명 기준으로 설정하는 것이 운영에 용이 node: name: es-master01 path.]]></description>
 </item>
 <item>
     <title>3.1 Elasticsearch 구성하기</title>
-    <link>https://riley817.github.io/categories/elasticsearch-lecture/lecture3/elasticsearch-lecture3-1/</link>
+    <link>https://riley817.github.io/elasticsearch-lecture3-1/</link>
     <pubDate>Fri, 02 Nov 2018 17:11:00 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/categories/elasticsearch-lecture/lecture3/elasticsearch-lecture3-1/</guid>
+    <guid>https://riley817.github.io/elasticsearch-lecture3-1/</guid>
     <description><![CDATA[Elasticsearch 는 정적으로 설정을 구성할 수 있을 뿐만 아니라 클러스터 운영중에도 클러스터 세팅 업데이트 API 를 통하여 동적인 설정 구성이 가능하다.
 Static settings Elasticsearch는 노드별로 설정파일을 구성할 수 있다. Elasticsearch 에는 세 개의 구성 파일이 있으며, 이 설정 파일들의 위치는 아카이브 배포판 설치시에는 $ES_HOME/config, 패키지 배포시에는 (RPM 설치 등) /etc/elasticsearch 에 위치한다.
 elasticsearch.yml : Elasticsearch 의 핵심 설정 jvm.options : JVM 옵션 설정 ( heapsize 설정 ) log4j2.properties : Elasticsearch 의 logging 설정 Dynamic settings 클러스터에 REST API 로 호출하여 클러스터를 운영중에도 구성 설정을 변경 할 수 있다.]]></description>
 </item>
 <item>
     <title>2.5 Elasticsearch 플러그인</title>
-    <link>https://riley817.github.io/categories/elasticsearch-lecture/lecture2/elasticsearch-lecture2-5/</link>
+    <link>https://riley817.github.io/elasticsearch-lecture2-5/</link>
     <pubDate>Tue, 30 Oct 2018 15:49:11 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/categories/elasticsearch-lecture/lecture2/elasticsearch-lecture2-5/</guid>
+    <guid>https://riley817.github.io/elasticsearch-lecture2-5/</guid>
     <description><![CDATA[Elasticsearch 플러그인 플러그인은 사용자 정의 방식에 의해 ES 의 긴능을 향상 시키는 방법이다. 플러그인은 모든 노드에 설치해야 하며 설치 후 클러스터를 재시작 해야 한다. 플러그인 범주 Core Plugins (권고) Elasticsearch 에서 공식적으로 지원하는 플러그인 Elasticsearch 버전이 업데이트 될때마다 버전 업데이트가 지원됨. Community contributed 개인 개발자나 회사에 의해 지원되는 플러그인 참고 Elasticsearch Reference - modules-plugins. ]]></description>
 </item>
 <item>
     <title>2.4 Elastic-HQ</title>
-    <link>https://riley817.github.io/categories/elasticsearch-lecture/lecture2/elasticsearch-lecture2-4/</link>
+    <link>https://riley817.github.io/elasticsearch-lecture2-4/</link>
     <pubDate>Tue, 30 Oct 2018 15:33:39 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/categories/elasticsearch-lecture/lecture2/elasticsearch-lecture2-4/</guid>
+    <guid>https://riley817.github.io/elasticsearch-lecture2-4/</guid>
     <description><![CDATA[Elastic HQ 설치하기 Requirements Python 3.4+ Elasticsearch. Supported versions: 2.x, 5.x, 6.x ElasticHQ Git Repository 에서 클론 혹은 다운로드 한다. 1 2 3 4 # git 이 설치되어 있지 않으면 sudo yum -y install git git clone https://github.com/ElasticHQ/elasticsearch-HQ.git Python 3.4+ 설치한다. (pip 은 파이선 패키지 관리자) 1 2 3 4 # clone 한 디렉터리로 이동 후 cd elasticsearch-HQ/ sudo yum -y install python34 python34-pip Repository 의 의존성 패키지 설치한다. 1 pip install -r requirements.]]></description>
 </item>
 </channel>

@@ -6,36 +6,36 @@
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
             <webMaster>riley0422@icloud.com (Riley)</webMaster><atom:link href="https://riley817.github.io/categories/docker/kubernetes/" rel="self" type="application/rss+xml" /><item>
     <title>[시작하세요! 도커/쿠버네티스] Chapter 5. 쿠버네티스 설치</title>
-    <link>https://riley817.github.io/categories/docker-kubernetes/kubernetes/</link>
+    <link>https://riley817.github.io/kubernetes/</link>
     <pubDate>Tue, 24 May 2022 23:34:36 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/categories/docker-kubernetes/kubernetes/</guid>
+    <guid>https://riley817.github.io/kubernetes/</guid>
     <description><![CDATA[시작하세요! 도커/쿠버네티스 책 정리 🐳🐳🐳]]></description>
 </item>
 <item>
     <title>[시작하세요! 도커/쿠버네티스] Chapter 2. 도커 엔진 - 도커 네트워크</title>
-    <link>https://riley817.github.io/categories/docker-kubernetes/chapter2-2-docker-engine/</link>
+    <link>https://riley817.github.io/chapter2-2-docker-engine/</link>
     <pubDate>Mon, 23 May 2022 23:37:00 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/categories/docker-kubernetes/chapter2-2-docker-engine/</guid>
+    <guid>https://riley817.github.io/chapter2-2-docker-engine/</guid>
     <description><![CDATA[시작하세요! 도커/쿠버네티스 책 정리 🐳🐳🐳
 2.7 도커 네트워크 도커 네트워크 구조 도커는 컨테이너 내부 IP를 순차적으로 할당한다. 이 IP는 컨테이너를 재시작 할 때마다 변경 될 수 있다. 각 컨테이너에 외부와의 네트워크를 제공하기 위해 각 컨테이너마다 가상 네트워크 인터페이스를 호스트에 생성한다. 이름은 veth(virtual eth)로 시작한다. docker0 브리지는 각 veth 인터페이스와 바인딩 되어 호스트의 eth0 인터페이스와 이어주는 역할을 한다. ///
 도커 네트워크 기능 컨테이너를 생성하면 기본적으로 docker0 브릿지를 통해 통신한다. 도커가 자체적으로 제공하는 네트워크로는 bridge, host, none, container, overlay 가 있다.]]></description>
 </item>
 <item>
     <title>Kubernetes context 관리</title>
-    <link>https://riley817.github.io/categories/docker-kubernetes/kubectl-change-context/</link>
+    <link>https://riley817.github.io/kubectl-change-context/</link>
     <pubDate>Sat, 07 May 2022 22:36:55 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/categories/docker-kubernetes/kubectl-change-context/</guid>
+    <guid>https://riley817.github.io/kubectl-change-context/</guid>
     <description><![CDATA[Kubernetes 서비스 어카운트 인증정보 설정 kubectl 명령어를 사용해 크버네티스 클러스터를 제어할 때는 kubeconfig라고 하는 특수한 설정파일을 통해 인증을 진행한다. kubeconfig 파일에는 기본적으로 클러스터 관리자 권한을 가지는 인증서 정보가 저장되며 아무런 제한 없이 쿠버네티스를 사용할 수 있다.]]></description>
 </item>
 <item>
     <title>[시작하세요! 도커/쿠버네티스] Chapter 2. 도커 엔진</title>
-    <link>https://riley817.github.io/categories/docker-kubernetes/chapter2-1-docker-engine/</link>
+    <link>https://riley817.github.io/chapter2-1-docker-engine/</link>
     <pubDate>Wed, 20 Apr 2022 16:00:00 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/categories/docker-kubernetes/chapter2-1-docker-engine/</guid>
+    <guid>https://riley817.github.io/chapter2-1-docker-engine/</guid>
     <description><![CDATA[시작하세요! 도커/쿠버네티스 책 정리 🐳🐳🐳
 1 도커 이미지와 컨테이너 도커 엔진에서 사용하는 기본단위는 이미지와 컨테이너이다.
 1.1 도커 이미지 이미지는 컨테이너를 생성할 때 필요한 요소이다. 가상 머신을 생성할 때 사용하는 iso 파일과 비슷한 개념이다. 여러 개의 계층으로 된 바이너리 파일로 존재, 컨테이너를 생성하고 실행할 때 읽기 전용으로 사용된다. 도커 이미지의 구성 도커 이미지 이름은 <sup>저장소 이름</sup>/<sub>이미지 이름</sub>:[태그] 형태로 구성 된다.
@@ -43,19 +43,19 @@
 </item>
 <item>
     <title>docker를 사용하여 oracle 12c 세팅하기</title>
-    <link>https://riley817.github.io/categories/docker-kubernetes/docker-oracle/</link>
+    <link>https://riley817.github.io/docker-oracle/</link>
     <pubDate>Thu, 12 Aug 2021 17:17:30 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/categories/docker-kubernetes/docker-oracle/</guid>
+    <guid>https://riley817.github.io/docker-oracle/</guid>
     <description><![CDATA[기록쓰 기록쓰 👻👻👻👻
 Oracle 12c 공식 이미지 다운로드 https://hub.docker.com/_/oracle-database-enterprise-edition?tab=resources 공식 이미지를 다운로드 후 Preceed to Checkout 버튼을 클릭하여 동의 정보를 입력한다. 대충 입력쓰&hellip; 도커 이미지 다운로드 후 실행 8080은 많이 사용하니까 각각 8282, 1522로 매핑하였다. 1 2 3 4 5 # docker image pull docker pull store/oracle/database-enterprise:12.2.0.1 # docker run docker run -d -p 8282:8080 -p 1522:1521 --name oracle12c store/oracle/database-enterprise:12.2.0.1 유저 생성 및 권한 부여 sysdba로 sqlplus 접속 1 docker exec -it oracle12c bash -c &#34;source /home/oracle/.]]></description>
 </item>
 <item>
     <title>Doker로 MySQL 설치하기</title>
-    <link>https://riley817.github.io/categories/docker-kubernetes/docker-mysql/</link>
+    <link>https://riley817.github.io/docker-mysql/</link>
     <pubDate>Sat, 30 May 2020 00:00:00 &#43;0000</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/categories/docker-kubernetes/docker-mysql/</guid>
+    <guid>https://riley817.github.io/docker-mysql/</guid>
     <description><![CDATA[docker 다운로드 및 이미지 생성 docker에서 내려 받을 수 있는 mysql 버전 확인 : https://hub.docker.com/_/mysql/ 버전을 명시 하지 않으면 가장 최신 버전을 다운로드하게 됨 1 2 3 4 5 # docker pull sudo docker pull mysql:8 # docker 이미지 확인 sudo docker images docker Mysql 컨테이너 생성 및 실행 1 2 3 4 5 # mysql 컨테이너 생성 및 실행 sudo docker run -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=PASSWORD --name mysql8 -v /usr/riley/datadir:/var/lib/mysql mysql:8 --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci # 실행된 컨테이너 확인 sudo docker ps -a MySql 컨테이너 bash 쉘 접속하여 MySQL 에 접속하기 1 2 3 4 5 # 컨테이너 bash 쉘 접속 sudo docker exec -it mysql8 bash # mysql 접속 mysql -u root -p 데이터베이스의 유저를 생성하고 권한 부여 % : 모든 접속을 허용.]]></description>
 </item>
 </channel>

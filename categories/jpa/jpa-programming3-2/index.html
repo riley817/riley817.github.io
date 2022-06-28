@@ -6,18 +6,18 @@
         <meta name="robots" content="noodp" />
         <title>[자바 ORM 표준 JPA 프로그래밍] 3장 영속성 관리 - 플러시, 준영속 - Riley&#39;s DevLog</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:title" content="[자바 ORM 표준 JPA 프로그래밍] 3장 영속성 관리 - 플러시, 준영속" />
 <meta property="og:description" content="김영한님의 책 자바 ORaM 표준 JPA 프로그래밍 학습 내용 정리
-3.5 플러시 플러시(flush()) 는 영속성 컨텍스트의 내용을 데이터베이스에 반영한다. 영속성 컨텍스트의 변경 내용을 데이터베이스와 동기화 하는 것이 플러시이다. 플러시를 실행하면 변경 감지가 동작하여 영속성 컨텍스트에 있는 모든 엔티티를 스냅샷과 비교해서 수정된 엔티티를 찾는다. =&gt; 수전된 엔티티는 수정 쿼리를 만들어 쓰기지연 SQL 저장소에 등록 쓰기 지연 SQL 저장소의 쿼리를 데이터베이스에 전송한다. 플러시 방법 em.flush() 로 직접 호출. 트랜잭션 커밋 시 플러시 자동 호출 JPA 는 트랜잭션을 커밋할 때 플러시를 자동으로 호출한다." />
+3.5 플러시  플러시(flush()) 는 영속성 컨텍스트의 내용을 데이터베이스에 반영한다. 영속성 컨텍스트의 변경 내용을 데이터베이스와 동기화 하는 것이 플러시이다.  플러시를 실행하면  변경 감지가 동작하여 영속성 컨텍스트에 있는 모든 엔티티를 스냅샷과 비교해서 수정된 엔티티를 찾는다. =&gt; 수전된 엔티티는 수정 쿼리를 만들어 쓰기지연 SQL 저장소에 등록 쓰기 지연 SQL 저장소의 쿼리를 데이터베이스에 전송한다.  플러시 방법  em.flush() 로 직접 호출." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://riley817.github.io/categories/jpa/jpa-programming3-2/" /><meta property="og:image" content="https://riley817.github.io/icon.png"/><meta property="article:section" content="categories" />
 <meta property="article:published_time" content="2018-12-18T22:30:19+09:00" />
-<meta property="article:modified_time" content="2022-06-28T23:58:42+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
+<meta property="article:modified_time" content="2021-07-17T14:42:28+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://riley817.github.io/icon.png"/>
 
 <meta name="twitter:title" content="[자바 ORM 표준 JPA 프로그래밍] 3장 영속성 관리 - 플러시, 준영속"/>
 <meta name="twitter:description" content="김영한님의 책 자바 ORaM 표준 JPA 프로그래밍 학습 내용 정리
-3.5 플러시 플러시(flush()) 는 영속성 컨텍스트의 내용을 데이터베이스에 반영한다. 영속성 컨텍스트의 변경 내용을 데이터베이스와 동기화 하는 것이 플러시이다. 플러시를 실행하면 변경 감지가 동작하여 영속성 컨텍스트에 있는 모든 엔티티를 스냅샷과 비교해서 수정된 엔티티를 찾는다. =&gt; 수전된 엔티티는 수정 쿼리를 만들어 쓰기지연 SQL 저장소에 등록 쓰기 지연 SQL 저장소의 쿼리를 데이터베이스에 전송한다. 플러시 방법 em.flush() 로 직접 호출. 트랜잭션 커밋 시 플러시 자동 호출 JPA 는 트랜잭션을 커밋할 때 플러시를 자동으로 호출한다."/>
+3.5 플러시  플러시(flush()) 는 영속성 컨텍스트의 내용을 데이터베이스에 반영한다. 영속성 컨텍스트의 변경 내용을 데이터베이스와 동기화 하는 것이 플러시이다.  플러시를 실행하면  변경 감지가 동작하여 영속성 컨텍스트에 있는 모든 엔티티를 스냅샷과 비교해서 수정된 엔티티를 찾는다. =&gt; 수전된 엔티티는 수정 쿼리를 만들어 쓰기지연 SQL 저장소에 등록 쓰기 지연 SQL 저장소의 쿼리를 데이터베이스에 전송한다.  플러시 방법  em.flush() 로 직접 호출."/>
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -33,7 +33,7 @@
             "@type": "WebPage",
             "@id": "https:\/\/riley817.github.io\/categories\/jpa\/jpa-programming3-2\/"
         },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "categories","keywords": "jpa, orm","wordcount":  397 ,
-        "url": "https:\/\/riley817.github.io\/categories\/jpa\/jpa-programming3-2\/","datePublished": "2018-12-18T22:30:19+09:00","dateModified": "2022-06-28T23:58:42+09:00","publisher": {
+        "url": "https:\/\/riley817.github.io\/categories\/jpa\/jpa-programming3-2\/","datePublished": "2018-12-18T22:30:19+09:00","dateModified": "2021-07-17T14:42:28+09:00","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/riley817.github.io\/images\/avatar.png"},"author": {
                 "@type": "Person",
@@ -234,7 +234,7 @@
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
             </noscript></div></div></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.101.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.98.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
                 </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Riley</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

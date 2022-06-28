@@ -6,10 +6,10 @@
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
             <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Sun, 08 May 2022 00:13:03 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/tags/aws/" rel="self" type="application/rss+xml" /><item>
     <title>[AWS EKS] 5. 인그레스 컨트롤러 만들기</title>
-    <link>https://riley817.github.io/categories/devops/aws/aws-5-ingress-controller/</link>
+    <link>https://riley817.github.io/aws-5-ingress-controller/</link>
     <pubDate>Sun, 08 May 2022 00:13:03 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/categories/devops/aws/aws-5-ingress-controller/</guid>
+    <guid>https://riley817.github.io/aws-5-ingress-controller/</guid>
     <description><![CDATA[☁️ Amazon EKS 웹 애플리케이션 구축하기 워크샵을 실습한 내용입니다.
 ☁️ AWS Workshop 링크 : https://catalog.us-east-1.prod.workshops.aws/workshops/9c0aa9ab-90a9-44a6-abe1-8dff360ae428/ko-KR/
 인그레스 Ingress 클러스터 내의 서비스에 대한 외부 요청을 어떻게 처리할 것인지 네트워크 7계층 레벨에서 정의하는 쿠버네티스 오브젝트이다.
@@ -18,10 +18,10 @@
 </item>
 <item>
     <title>[AWS EKS] 4. Amazon ECR 에 이미지 올리기</title>
-    <link>https://riley817.github.io/categories/devops/aws/aws-4-ecr/</link>
+    <link>https://riley817.github.io/aws-4-ecr/</link>
     <pubDate>Sat, 07 May 2022 23:00:58 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/categories/devops/aws/aws-4-ecr/</guid>
+    <guid>https://riley817.github.io/aws-4-ecr/</guid>
     <description><![CDATA[☁️ Amazon EKS 웹 애플리케이션 구축하기 워크샵을 실습한 내용입니다.
 ☁️ AWS Workshop 링크 : https://catalog.us-east-1.prod.workshops.aws/workshops/9c0aa9ab-90a9-44a6-abe1-8dff360ae428/ko-KR/
 Amazon ECR 리포지토리 생성 및 이미지 올리기 Amazon ECR(Elastic Container Registry) 은 도커 컨테이너의 이미지를 저장하는 Repository 서비스이다. Docker hub의 기능과 동일하다.
@@ -29,10 +29,10 @@ AWS CLI로 이미지 리포지토리 생성 1 2 3 4 aws ecr create-repository \ 
 </item>
 <item>
     <title>[AWS EKS] 3. EKS Cluster 생성하기</title>
-    <link>https://riley817.github.io/categories/devops/aws/aws-3-eks-cluster/</link>
+    <link>https://riley817.github.io/aws-3-eks-cluster/</link>
     <pubDate>Fri, 06 May 2022 23:10:03 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/categories/devops/aws/aws-3-eks-cluster/</guid>
+    <guid>https://riley817.github.io/aws-3-eks-cluster/</guid>
     <description><![CDATA[☁️ Amazon EKS 웹 애플리케이션 구축하기 워크샵을 실습한 내용입니다.
 ☁️ AWS Workshop 링크 : https://catalog.us-east-1.prod.workshops.aws/workshops/9c0aa9ab-90a9-44a6-abe1-8dff360ae428/ko-KR/
 Amazon EKS 클러스터는 다양한 방식으로 배포할 수 있다.
@@ -40,10 +40,10 @@ AWS 콘솔 창으로 배포 AWS CloudFormation 혹은 AWS CDK 와 같은 IaC(Inf
 </item>
 <item>
     <title>[AWS EKS] 2. AWS CLI, eksctl, kubectl 설치 및 설정</title>
-    <link>https://riley817.github.io/categories/devops/aws/aws-2-cli/</link>
+    <link>https://riley817.github.io/aws-2-cli/</link>
     <pubDate>Thu, 05 May 2022 22:47:55 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/categories/devops/aws/aws-2-cli/</guid>
+    <guid>https://riley817.github.io/aws-2-cli/</guid>
     <description><![CDATA[☁️ Amazon EKS 웹 애플리케이션 구축하기 워크샵을 실습한 내용입니다.
 ☁️ AWS Workshop 링크 : https://catalog.us-east-1.prod.workshops.aws/workshops/9c0aa9ab-90a9-44a6-abe1-8dff360ae428/ko-KR/ ☁️ 워크샵에는 Cloud9을 구축했지만 나는 따로 구축하지는 않았다&hellip;
 AWS CLI AWS CLI 설치하기 (Mac OS) AWS Command Line Interface는 command-line shell 명령어를 사용하여 AWS 서비스의 EC2, VPC 등과 같은 AWS의 리소스를 프로비저닝 할 수 있다.
@@ -52,10 +52,10 @@ Mac OS : https://awscli.amazonaws.com/AWSCLIV2.pkg 다른 OS에서 AWS CLI 설�
 </item>
 <item>
     <title>[AWS EKS] (Optional) AWS Cloud9으로 실습 환경 구축하기</title>
-    <link>https://riley817.github.io/categories/devops/aws/aws-eks-cloud9/</link>
+    <link>https://riley817.github.io/aws-eks-cloud9/</link>
     <pubDate>Thu, 05 May 2022 22:00:00 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/categories/devops/aws/aws-eks-cloud9/</guid>
+    <guid>https://riley817.github.io/aws-eks-cloud9/</guid>
     <description><![CDATA[☁️ Amazon EKS 웹 애플리케이션 구축하기 실습 내용입니다.
 ☁️ AWS Workshop 링크 :
 https://catalog.us-east-1.prod.workshops.aws/workshops/9c0aa9ab-90a9-44a6-abe1-8dff360ae428/ko-KR/ AWS Cloud9 AWS Cloud9 은 브라우저만으로 코드를 작성, 실행 및 디버깅할 수 있는 IDE(통합개발환경)이다. 코드 편집기, 디버거 및 터미널 기능을 포함하고 있고 프로그래밍 언어를 위한 필수 도구가 사전에 패키징 되어 제공된다.
@@ -64,10 +64,10 @@ IDE의 Environment 이름 및 설명을 작성한다. 인스턴스 타입을 t3.
 </item>
 <item>
     <title>[AWS EKS] 1. IAM 계정 생성</title>
-    <link>https://riley817.github.io/categories/devops/aws/aws-1-eks-iam/</link>
+    <link>https://riley817.github.io/aws-1-eks-iam/</link>
     <pubDate>Thu, 05 May 2022 16:51:59 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/categories/devops/aws/aws-1-eks-iam/</guid>
+    <guid>https://riley817.github.io/aws-1-eks-iam/</guid>
     <description><![CDATA[☁️ Amazon EKS 웹 애플리케이션 구축하기 워크샵을 실습한 내용입니다.
 ☁️ AWS Workshop 링크 : https://catalog.us-east-1.prod.workshops.aws/workshops/9c0aa9ab-90a9-44a6-abe1-8dff360ae428/ko-KR/
 IAM 계정 생성 AWS 계정의 루트사용자로 로그인한다.
@@ -75,10 +75,10 @@ IAM 대시보드에서 액세스 관리 &gt; 사용자 &gt; 사용자 추가를 
 </item>
 <item>
     <title>AWS CentOS7 테스트 서버 구축하기</title>
-    <link>https://riley817.github.io/categories/devops/build-aws-centos7/</link>
+    <link>https://riley817.github.io/build-aws-centos7/</link>
     <pubDate>Fri, 20 Mar 2020 15:55:39 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/categories/devops/build-aws-centos7/</guid>
+    <guid>https://riley817.github.io/build-aws-centos7/</guid>
     <description><![CDATA[목표 AWS에서 Cent OS 7로 테스트 서버를 구축한다. 콘솔접속경로 1. 콘솔 대시보드에서 인스턴스 시작을 선택한다. 2. Amazon Machine Image(AMI)에서 인스턴스 템플릿을 선택한다. 검색 창에 centos를 검색 후 원하는 버전을 선택한다. 3. 인스턴스 유형 선택 페이지에서 하드웨어 구성을 선택한다. 일단 난 프리티어니깐&hellip; t2.micro를 선택 🤔 4. 🤷🏻‍♀️ 검토 후 시작(Review and Launch) 버튼을 클릭하여 구성을 완료한다. 5. 보안 그룹 구성 6. 인스턴스 시작 검토 페이지에서 시작을 선택한다. 7. 키 페어 생성화면에서 키 페어를 생성한다.]]></description>
 </item>
 </channel>

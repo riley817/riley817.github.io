@@ -11,7 +11,7 @@
     <author>riley</author>
     <guid>https://riley817.github.io/categories/spring-framework/page-6-5/</guid>
     <description><![CDATA[스프링 시큐리티로 REST 서비스 보호 최근에는 서비스 시스템들끼리 REST API 기반의 통신이 많이 이루어지고 있다. 네이티브 앱과 서버 간 통신뿐만 아니라 자바스크립트 웹 클라이언트 와 서버간에도 REST API 통신을 많이 사용하기 때문에 REST 서비스(리소스) 에 대한 보안이 중요해 지고 있다.
-보안에서 중요한 기본 개념 - 인증(Authentication) 과 권한 (Authorization) 소비자(클라이언트) 가 서비스(리소스) 에 접근이 가능한 소비자인지 ? 인증(Authentication) 접근이 가능하지만 해당 작업을 소비자(클라이언트) 에게 허용할것인지 ? 인가/권한부여(Authorization) 인증방식은 다양하며, 전통적인 인증방식으로는 사용자명(Principle)과 비밀번호(Credential) 로 인증하는 Credential 기반 인증 방식 과 OTP 등과 같이 추가적인 인증방식을 도입해 2가지 방법으로 인증하는 이중 인증 방식 과 최근에는 OAuth2 인증방식 도 필수적으로 사용되고 있다.]]></description>
+보안에서 중요한 기본 개념 - 인증(Authentication) 과 권한 (Authorization)  소비자(클라이언트) 가 서비스(리소스) 에 접근이 가능한 소비자인지 ? 인증(Authentication) 접근이 가능하지만 해당 작업을 소비자(클라이언트) 에게 허용할것인지 ? 인가/권한부여(Authorization)  인증방식은 다양하며, 전통적인 인증방식으로는 사용자명(Principle)과 비밀번호(Credential) 로 인증하는 Credential 기반 인증 방식 과 OTP 등과 같이 추가적인 인증방식을 도입해 2가지 방법으로 인증하는 이중 인증 방식 과 최근에는 OAuth2 인증방식 도 필수적으로 사용되고 있다.]]></description>
 </item>
 </channel>
 </rss>

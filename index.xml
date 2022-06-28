@@ -7,12 +7,107 @@
             <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Mon, 27 Jun 2022 23:22:43 &#43;0900</lastBuildDate>
             <atom:link href="https://riley817.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
-    <title>Basic Markdown Syntax</title>
-    <link>https://riley817.github.io/basic-markdown-syntax/</link>
-    <pubDate>Sun, 01 Dec 2019 21:57:40 &#43;0800</pubDate>
-    <author>Dillon</author>
-    <guid>https://riley817.github.io/basic-markdown-syntax/</guid>
-    <description><![CDATA[This article shows the basic Markdown syntax and format.]]></description>
+    <title>개발협업 가이드 Sample</title>
+    <link>https://riley817.github.io/20220627/</link>
+    <pubDate>Mon, 27 Jun 2022 23:22:43 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/20220627/</guid>
+    <description><![CDATA[개발 협업 가이드 우리 팀에서 내부 및 외부 공동 작업자가 개발 협업하기 위한 방법으로 애자일의 Scrum 방법론을 사용합니다. Scrum 관리를 위한 도구로는 GitLab의 이슈 시스템과 칸반보드 기능을 활용합니다. GitLab에 등록되는 이슈(Task)는 시스템 개발과 관련된 작업만 작성하도록 합니다. 프로젝트 계약 등 개발작업이 아닌 작업의 경우 Microsoft Planner의 칸반보드를 사용합니다.
+PBTeam – Microsoft Planner 사용가이드
+GitLab은 Git 원격 저장소 관리, CI/CD, 이슈 관리, 테스트 등 소프트웨어 개발과 운영의 전반적인 라이프사이클을 관리할 수 있는 통합 툴입니다.]]></description>
+</item>
+<item>
+    <title>[TIL &amp; Issue Note] 20220603</title>
+    <link>https://riley817.github.io/20220603/</link>
+    <pubDate>Fri, 03 Jun 2022 18:54:00 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/20220603/</guid>
+    <description><![CDATA[ ECMAscript 모듈 Scope 관련 문제
+Functions not working when type=&quot;module&quot; or import ]]></description>
+</item>
+<item>
+    <title>[시작하세요! 도커/쿠버네티스] Chapter 5. 쿠버네티스 설치</title>
+    <link>https://riley817.github.io/kubernetes/</link>
+    <pubDate>Tue, 24 May 2022 23:34:36 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/kubernetes/</guid>
+    <description><![CDATA[시작하세요! 도커/쿠버네티스 책 정리 🐳🐳🐳]]></description>
+</item>
+<item>
+    <title>[시작하세요! 도커/쿠버네티스] Chapter 2. 도커 엔진 - 도커 네트워크</title>
+    <link>https://riley817.github.io/chapter2-2-docker-engine/</link>
+    <pubDate>Mon, 23 May 2022 23:37:00 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/chapter2-2-docker-engine/</guid>
+    <description><![CDATA[시작하세요! 도커/쿠버네티스 책 정리 🐳🐳🐳
+2.7 도커 네트워크 도커 네트워크 구조 도커는 컨테이너 내부 IP를 순차적으로 할당한다. 이 IP는 컨테이너를 재시작 할 때마다 변경 될 수 있다. 각 컨테이너에 외부와의 네트워크를 제공하기 위해 각 컨테이너마다 가상 네트워크 인터페이스를 호스트에 생성한다. 이름은 veth(virtual eth)로 시작한다. docker0 브리지는 각 veth 인터페이스와 바인딩 되어 호스트의 eth0 인터페이스와 이어주는 역할을 한다. ///
+도커 네트워크 기능 컨테이너를 생성하면 기본적으로 docker0 브릿지를 통해 통신한다. 도커가 자체적으로 제공하는 네트워크로는 bridge, host, none, container, overlay 가 있다.]]></description>
+</item>
+<item>
+    <title>[AWS EKS] 5. 인그레스 컨트롤러 만들기</title>
+    <link>https://riley817.github.io/aws-5-ingress-controller/</link>
+    <pubDate>Sun, 08 May 2022 00:13:03 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/aws-5-ingress-controller/</guid>
+    <description><![CDATA[☁️ Amazon EKS 웹 애플리케이션 구축하기 워크샵을 실습한 내용입니다.
+☁️ AWS Workshop 링크 : https://catalog.us-east-1.prod.workshops.aws/workshops/9c0aa9ab-90a9-44a6-abe1-8dff360ae428/ko-KR/
+인그레스 Ingress 클러스터 내의 서비스에 대한 외부 요청을 어떻게 처리할 것인지 네트워크 7계층 레벨에서 정의하는 쿠버네티스 오브젝트이다.
+인그레스 오브젝트의 기본 기능은 다음과 같다.
+외부 요청의 라우팅 : 특정 경로로 들어온 요청을 어떤 서비스로 전달할지 정의하는 라우터 규칙 설정 가상 호스트 기반의 요청 처리 : 같은 IP에 대해 다른 도메인 이름으로 요청했을 때 어떻게 처리할 것인지 정의 SSL/TLS 보안 연결 처리 : 요청을 라우팅 할 때, 보안 연결을 위한 인증서 적용 인그레스를 사용하는 이유 쿠버네티스 서비스 타입 중 NodePort 혹은 LoadBalancer 타입의 서비스를 사용해도 외부로 노출할 수 있지만, 인그레스 없이 서비스를 사용할 경우 SSL/TLS 보안 연결 등의 상세 옵션을 각각의 서비스와 디플로이먼트에 대해 일일이 설정을 해야 한다.]]></description>
+</item>
+<item>
+    <title>[AWS EKS] 4. Amazon ECR 에 이미지 올리기</title>
+    <link>https://riley817.github.io/aws-4-ecr/</link>
+    <pubDate>Sat, 07 May 2022 23:00:58 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/aws-4-ecr/</guid>
+    <description><![CDATA[☁️ Amazon EKS 웹 애플리케이션 구축하기 워크샵을 실습한 내용입니다.
+☁️ AWS Workshop 링크 : https://catalog.us-east-1.prod.workshops.aws/workshops/9c0aa9ab-90a9-44a6-abe1-8dff360ae428/ko-KR/
+Amazon ECR 리포지토리 생성 및 이미지 올리기 Amazon ECR(Elastic Container Registry) 은 도커 컨테이너의 이미지를 저장하는 Repository 서비스이다. Docker hub의 기능과 동일하다.
+AWS CLI로 이미지 리포지토리 생성 1 2 3 4 aws ecr create-repository \ --repository-name demo-flask-backend \ --image-scanning-configuration scanOnPush=true \ --region ap-northeast-2 명령어가 수행되면 리포지토리에 대한 정보가 출력되며 Amazon ECR 콘솔창에서도 생성된 리포지토리를 확인할 수 있다.]]></description>
+</item>
+<item>
+    <title>Kubernetes context 관리</title>
+    <link>https://riley817.github.io/kubectl-change-context/</link>
+    <pubDate>Sat, 07 May 2022 22:36:55 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/kubectl-change-context/</guid>
+    <description><![CDATA[Kubernetes 서비스 어카운트 인증정보 설정 kubectl 명령어를 사용해 크버네티스 클러스터를 제어할 때는 kubeconfig라고 하는 특수한 설정파일을 통해 인증을 진행한다. kubeconfig 파일에는 기본적으로 클러스터 관리자 권한을 가지는 인증서 정보가 저장되며 아무런 제한 없이 쿠버네티스를 사용할 수 있다.]]></description>
+</item>
+<item>
+    <title>[AWS EKS] 3. EKS Cluster 생성하기</title>
+    <link>https://riley817.github.io/aws-3-eks-cluster/</link>
+    <pubDate>Fri, 06 May 2022 23:10:03 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/aws-3-eks-cluster/</guid>
+    <description><![CDATA[☁️ Amazon EKS 웹 애플리케이션 구축하기 워크샵을 실습한 내용입니다.
+☁️ AWS Workshop 링크 : https://catalog.us-east-1.prod.workshops.aws/workshops/9c0aa9ab-90a9-44a6-abe1-8dff360ae428/ko-KR/
+Amazon EKS 클러스터는 다양한 방식으로 배포할 수 있다.
+AWS 콘솔 창으로 배포 AWS CloudFormation 혹은 AWS CDK 와 같은 IaC(Infrastructure as Code) 도구를 사용해 배포 EKS의 공식 CLI인 eksctl 로 배포 Terraform, Pulumi, Rancher 등으로 배포 eksctl로 Cluster 생성하기 아무 옵션없이 eksctl create cluster 실행하면 default parameter로 클러스터가 배포된다. 그러나 yaml 파일로 작성한 구성 파일을 작성하여 배포하면 구성파일에 명시한 오브젝트들의 바라는 상태(desired state)를 쉽게 파악하고 관리할 수 있는 이점이 있다.]]></description>
+</item>
+<item>
+    <title>[AWS EKS] 2. AWS CLI, eksctl, kubectl 설치 및 설정</title>
+    <link>https://riley817.github.io/aws-2-cli/</link>
+    <pubDate>Thu, 05 May 2022 22:47:55 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/aws-2-cli/</guid>
+    <description><![CDATA[☁️ Amazon EKS 웹 애플리케이션 구축하기 워크샵을 실습한 내용입니다.
+☁️ AWS Workshop 링크 : https://catalog.us-east-1.prod.workshops.aws/workshops/9c0aa9ab-90a9-44a6-abe1-8dff360ae428/ko-KR/ ☁️ 워크샵에는 Cloud9을 구축했지만 나는 따로 구축하지는 않았다&hellip;
+AWS CLI AWS CLI 설치하기 (Mac OS) AWS Command Line Interface는 command-line shell 명령어를 사용하여 AWS 서비스의 EC2, VPC 등과 같은 AWS의 리소스를 프로비저닝 할 수 있다.
+Mac OS는 pkg 파일을 다운로드 하여 설치한다.
+Mac OS : https://awscli.amazonaws.com/AWSCLIV2.pkg 다른 OS에서 AWS CLI 설치하기 1 2 3 $ aws --version aws-cli/2.]]></description>
+</item>
+<item>
+    <title>[AWS EKS] (Optional) AWS Cloud9으로 실습 환경 구축하기</title>
+    <link>https://riley817.github.io/aws-eks-cloud9/</link>
+    <pubDate>Thu, 05 May 2022 22:00:00 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/aws-eks-cloud9/</guid>
+    <description><![CDATA[☁️ Amazon EKS 웹 애플리케이션 구축하기 실습 내용입니다.
+☁️ AWS Workshop 링크 :
+https://catalog.us-east-1.prod.workshops.aws/workshops/9c0aa9ab-90a9-44a6-abe1-8dff360ae428/ko-KR/ AWS Cloud9 AWS Cloud9 은 브라우저만으로 코드를 작성, 실행 및 디버깅할 수 있는 IDE(통합개발환경)이다. 코드 편집기, 디버거 및 터미널 기능을 포함하고 있고 프로그래밍 언어를 위한 필수 도구가 사전에 패키징 되어 제공된다.
+AWS Cloud9 시작하기 AWS Cloud9 IDE 구성 AWS Cloud9 콘솔 접속 후 Create environment 버튼 클릭
+IDE의 Environment 이름 및 설명을 작성한다. 인스턴스 타입을 t3.]]></description>
 </item>
 </channel>
 </rss>

@@ -6,10 +6,10 @@
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
             <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Sun, 16 Jan 2022 00:01:00 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/tags/cjs/" rel="self" type="application/rss+xml" /><item>
     <title>Webpack5 설정하기 (ESM)</title>
-    <link>https://riley817.github.io/categories/javascript/webpack/</link>
+    <link>https://riley817.github.io/webpack/</link>
     <pubDate>Sun, 16 Jan 2022 00:01:00 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/categories/javascript/webpack/</guid>
+    <guid>https://riley817.github.io/webpack/</guid>
     <description><![CDATA[회사에서 Javascript 용 서비스 SDK를 개발하면서 설정했던 webpack5 설정파일을 기록한다. 오래전에 잠깐 접해보았던게 webpack2 버전이었는데 어느새 5까지 나왔다. 알고 사용하는게 아니다보니 쓰면서 애를 먹었다&hellip;🥺🥺🥺
 Webpack5 설정하기 (ESM 사용) 회사에서 개발한 SDK는 CJS(CommonJS)에서 ESM(ECMAScript Module) 모듈 방식을 사용하여 개발했다. ESM 모듈 로더 사용하기 위해 package.json에 아래 설정을 추가했다.
 package.json

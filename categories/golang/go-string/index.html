@@ -6,18 +6,18 @@
         <meta name="robots" content="noodp" />
         <title>Go 문자열 구조 - Riley&#39;s DevLog</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:title" content="Go 문자열 구조" />
 <meta property="og:description" content="Tucker의 Go 언어 프로그래밍 책 내용을 정리하였습니다.
-string 구조 string 타입은 Go 언어에서 제공하는 내장 타입으로 그 내부구현은 감추어져 있다. 하지만 reflect 패키지 안의 StringHeader 구조체를 통해 내부구조를 엿볼 수 있다. 1 2 3 4 5 6 7 8 9 10 // StringHeader is the runtime representation of a string. // It cannot be used safely or portably and its representation may // change in a later release. // Moreover, the Data field is not sufficient to guarantee the data // it references will not be garbage collected, so programs must keep // a separate, correctly typed pointer to the underlying data." />
+ string 구조  string 타입은 Go 언어에서 제공하는 내장 타입으로 그 내부구현은 감추어져 있다. 하지만 reflect 패키지 안의 StringHeader 구조체를 통해 내부구조를 엿볼 수 있다.  1 2 3 4 5 6 7 8 9 10  // StringHeader is the runtime representation of a string. // It cannot be used safely or portably and its representation may // change in a later release." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://riley817.github.io/categories/golang/go-string/" /><meta property="og:image" content="https://riley817.github.io/icon.png"/><meta property="article:section" content="categories" />
 <meta property="article:published_time" content="2021-08-20T14:09:30+09:00" />
-<meta property="article:modified_time" content="2022-06-28T23:58:42+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
+<meta property="article:modified_time" content="2021-08-25T13:08:30+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://riley817.github.io/icon.png"/>
 
 <meta name="twitter:title" content="Go 문자열 구조"/>
 <meta name="twitter:description" content="Tucker의 Go 언어 프로그래밍 책 내용을 정리하였습니다.
-string 구조 string 타입은 Go 언어에서 제공하는 내장 타입으로 그 내부구현은 감추어져 있다. 하지만 reflect 패키지 안의 StringHeader 구조체를 통해 내부구조를 엿볼 수 있다. 1 2 3 4 5 6 7 8 9 10 // StringHeader is the runtime representation of a string. // It cannot be used safely or portably and its representation may // change in a later release. // Moreover, the Data field is not sufficient to guarantee the data // it references will not be garbage collected, so programs must keep // a separate, correctly typed pointer to the underlying data."/>
+ string 구조  string 타입은 Go 언어에서 제공하는 내장 타입으로 그 내부구현은 감추어져 있다. 하지만 reflect 패키지 안의 StringHeader 구조체를 통해 내부구조를 엿볼 수 있다.  1 2 3 4 5 6 7 8 9 10  // StringHeader is the runtime representation of a string. // It cannot be used safely or portably and its representation may // change in a later release."/>
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -33,7 +33,7 @@ string 구조 string 타입은 Go 언어에서 제공하는 내장 타입으로 
             "@type": "WebPage",
             "@id": "https:\/\/riley817.github.io\/categories\/golang\/go-string\/"
         },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "categories","keywords": "go, golang","wordcount":  606 ,
-        "url": "https:\/\/riley817.github.io\/categories\/golang\/go-string\/","datePublished": "2021-08-20T14:09:30+09:00","dateModified": "2022-06-28T23:58:42+09:00","publisher": {
+        "url": "https:\/\/riley817.github.io\/categories\/golang\/go-string\/","datePublished": "2021-08-20T14:09:30+09:00","dateModified": "2021-08-25T13:08:30+09:00","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/riley817.github.io\/images\/avatar.png"},"author": {
                 "@type": "Person",
@@ -373,7 +373,7 @@ addr3:  c00011a000</p>
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
             </noscript></div></div></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.101.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.98.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
                 </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Riley</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

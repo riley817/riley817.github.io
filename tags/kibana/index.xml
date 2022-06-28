@@ -6,10 +6,10 @@
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
             <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Wed, 24 Oct 2018 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://riley817.github.io/tags/kibana/" rel="self" type="application/rss+xml" /><item>
     <title>1.7 Installation Kibana</title>
-    <link>https://riley817.github.io/categories/elasticsearch-lecture/lecture1/elasticsearch-lecture1-7/</link>
+    <link>https://riley817.github.io/elasticsearch-lecture1-7/</link>
     <pubDate>Wed, 24 Oct 2018 00:00:00 &#43;0000</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/categories/elasticsearch-lecture/lecture1/elasticsearch-lecture1-7/</guid>
+    <guid>https://riley817.github.io/elasticsearch-lecture1-7/</guid>
     <description><![CDATA[Kibana 는 Elasticsearch 의 오픈 소스 데이터 시각화 플러그인이다. Elasticsearch 클러스터에 인덱싱 된 데이터들을 시각화 하는 기능을 제공한다. 1. yum 으로 Kibana 설치하기 1.1) RPM Repository 등록 vi /etc/yum.repos.d/kibana.repo
 1 2 3 4 5 6 7 8 9 # /etc/yum.repos.d/kibana.repo [kibana-6.x] name=Kibana repository for 6.x packages baseurl=https://artifacts.elastic.co/packages/6.x/yum gpgcheck=1 gpgkey=https://artifacts.elastic.co/GPG-KEY-elasticsearch enabled=1 autorefresh=1 type=rpm-md 1.2) yum 명령어로 install 1 yum install kibana 2. Kibana 설정 Kibana 서버는 시작할 때 kibana.yml 에서 속성을 읽는다.]]></description>
 </item>

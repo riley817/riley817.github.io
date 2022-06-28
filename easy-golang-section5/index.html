@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Section 5 : Go 데이터 타입 - Riley&#39;s DevLog</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:title" content="Section 5 : Go 데이터 타입" />
+<meta property="og:description" content="인프런 쉽고 빠르게 끝내는 GO언어 프로그래밍 핵심 기초 입문 과정 강의 정리
+5.1 Bool boolean 타입 : 참, 거짓 조건부 논리 연산자와 주로 함께 사용한다. !, ||(or) &amp;&amp;(and) 암묵적인 형 변환은 불가능하다. 0, Nil → false 변환 불가능 예제 1 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 var b1 bool = true var b2 bool = false b3 := true // b4 := 1 // Error!" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://riley817.github.io/easy-golang-section5/" /><meta property="og:image" content="https://riley817.github.io/icon.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-03-22T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-06-29T00:20:54+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://riley817.github.io/icon.png"/>
+
+<meta name="twitter:title" content="Section 5 : Go 데이터 타입"/>
+<meta name="twitter:description" content="인프런 쉽고 빠르게 끝내는 GO언어 프로그래밍 핵심 기초 입문 과정 강의 정리
+5.1 Bool boolean 타입 : 참, 거짓 조건부 논리 연산자와 주로 함께 사용한다. !, ||(or) &amp;&amp;(and) 암묵적인 형 변환은 불가능하다. 0, Nil → false 변환 불가능 예제 1 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 var b1 bool = true var b2 bool = false b3 := true // b4 := 1 // Error!"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://riley817.github.io/easy-golang-section5/" /><link rel="prev" href="https://riley817.github.io/nginx-log-es-cloud/" /><link rel="next" href="https://riley817.github.io/easy-golang-section6/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Section 5 : Go 데이터 타입",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/riley817.github.io\/easy-golang-section5\/"
+        },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "go, golang","wordcount":  2208 ,
+        "url": "https:\/\/riley817.github.io\/easy-golang-section5\/","datePublished": "2021-03-22T00:00:00+00:00","dateModified": "2022-06-29T00:20:54+09:00","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "https:\/\/riley817.github.io\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "riley"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Riley&#39;s DevLog"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i></span>Riley&#39;s DevLog</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Riley&#39;s DevLog"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i></span>Riley&#39;s DevLog</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Section 5 : Go 데이터 타입</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-category">included in <a href="/categories/easy-go/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Easy Go</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2021-03-22">2021-03-22</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2208 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;11 minutes&nbsp;<span id="/easy-golang-section5/" class="leancloud_visitors" data-flag-title="Section 5 : Go 데이터 타입">
+                        <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#51-bool">5.1 Bool</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#예제-1">예제 1</a></li>
+            <li><a href="#예제-2">예제 2</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#52-numeric-type">5.2 numeric type</a>
+      <ul>
+        <li><a href="#521-numeric-기초">5.2.1 numeric 기초</a>
+          <ul>
+            <li><a href="#example-1">Example 1</a></li>
+            <li><a href="#example-2--정수형-문자-출력">Example 2 : 정수형 문자 출력</a></li>
+            <li><a href="#ascii-영문">ASCII 영문</a></li>
+            <li><a href="#unicode-한글">Unicode 한글</a></li>
+          </ul>
+        </li>
+        <li><a href="#522-실수---부동소수점">5.2.2 실수 - 부동소수점</a></li>
+        <li><a href="#523-복소수">5.2.3 복소수</a>
+          <ul>
+            <li><a href="#example-1-1">Example 1</a></li>
+            <li><a href="#example-2">Example 2</a></li>
+          </ul>
+        </li>
+        <li><a href="#524-숫자-연산">5.2.4 숫자 연산</a>
+          <ul>
+            <li><a href="#example-1-2">Example 1</a></li>
+            <li><a href="#example-2-1">Example 2</a></li>
+          </ul>
+        </li>
+        <li><a href="#525-산술연산">5.2.5 산술연산</a>
+          <ul>
+            <li><a href="#example-2-2">Example 2</a></li>
+            <li><a href="#산술-연산---error-case">산술 연산 - Error Case</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#53-문자열">5.3 문자열</a>
+      <ul>
+        <li><a href="#531-문자열">5.3.1 문자열</a>
+          <ul>
+            <li><a href="#srcsection5string1go">src/section5/string1.go</a></li>
+          </ul>
+        </li>
+        <li><a href="#532-문자열-표현">5.3.2 문자열 표현</a>
+          <ul>
+            <li><a href="#srcsection5string2go">src/section5/string2.go</a></li>
+          </ul>
+        </li>
+        <li><a href="#533-문자열-연산">5.3.3 문자열 연산</a>
+          <ul>
+            <li><a href="#문자열-추출">문자열 추출</a></li>
+            <li><a href="#문자열-비교">문자열 비교</a></li>
+            <li><a href="#문자열-결합">문자열 결합</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><blockquote>
+<p>인프런 쉽고 빠르게 끝내는 GO언어 프로그래밍 핵심 기초 입문 과정 강의 정리</p>
+</blockquote>
+<h2 id="51-bool">5.1 Bool</h2>
+<ul>
+<li><strong>boolean</strong> 타입 : 참, 거짓</li>
+<li>조건부 논리 연산자와 주로 함께 사용한다. <code>!</code>, <code>||(or)</code> <code>&amp;&amp;(and)</code></li>
+<li>암묵적인 형 변환은 불가능하다.
+<ul>
+<li>0, Nil → false 변환 불가능</li>
+</ul>
+</li>
+</ul>
+<h4 id="예제-1">예제 1</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">b1</span> <span class="kt">bool</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">b2</span> <span class="kt">bool</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl"><span class="nx">b3</span> <span class="o">:=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// b4 := 1 // Error!
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;############ Example 1 ############&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;b1 : &#34;</span><span class="p">,</span> <span class="nx">b1</span><span class="p">)</span>  <span class="c1">// true
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;b2 : &#34;</span><span class="p">,</span> <span class="nx">b2</span><span class="p">)</span>  <span class="c1">// false
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;b3 : &#34;</span><span class="p">,</span> <span class="nx">b3</span><span class="p">)</span>  <span class="c1">// true
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;b3 == b3 :&#34;</span><span class="p">,</span> <span class="nx">b3</span> <span class="o">==</span> <span class="nx">b3</span><span class="p">)</span> <span class="c1">// true
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;b1 &amp;&amp; b3 :&#34;</span><span class="p">,</span> <span class="nx">b1</span> <span class="o">&amp;&amp;</span> <span class="nx">b3</span><span class="p">)</span> <span class="c1">// true
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;b1 || b2 :&#34;</span><span class="p">,</span> <span class="nx">b1</span> <span class="o">||</span> <span class="nx">b2</span><span class="p">)</span> <span class="c1">// true
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;!b1 :&#34;</span><span class="p">,</span> <span class="p">!</span><span class="nx">b1</span><span class="p">)</span>           <span class="c1">// false
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 암묵적인 형 변환은 일어나지 않는다.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cm">/*if b4 {
+</span></span></span><span class="line"><span class="cl"><span class="cm">	fmt.Println(&#34;Example &#34;, b4)
+</span></span></span><span class="line"><span class="cl"><span class="cm">}*/</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="예제-2">예제 2</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="c1">// 논리연산자
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;############ Example 1 ############&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="kc">true</span> <span class="o">&amp;&amp;</span> <span class="kc">true</span><span class="p">)</span>    <span class="c1">// true
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="kc">true</span> <span class="o">&amp;&amp;</span> <span class="kc">false</span><span class="p">)</span>   <span class="c1">// false
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="kc">false</span> <span class="o">&amp;&amp;</span> <span class="kc">false</span><span class="p">)</span>  <span class="c1">// false
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="kc">true</span> <span class="o">||</span> <span class="kc">true</span><span class="p">)</span>    <span class="c1">// true
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="kc">true</span> <span class="o">||</span> <span class="kc">false</span><span class="p">)</span>   <span class="c1">// true
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="kc">false</span> <span class="o">||</span> <span class="kc">false</span><span class="p">)</span>  <span class="c1">// false
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span> <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(!</span><span class="kc">true</span><span class="p">)</span>          <span class="c1">// false
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(!</span><span class="kc">false</span><span class="p">)</span>          <span class="c1">// true
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// Example 2 비교연산자
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">num1</span> <span class="o">:=</span> <span class="mi">15</span>
+</span></span><span class="line"><span class="cl"><span class="nx">num2</span> <span class="o">:=</span> <span class="mi">37</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;############ Example 2 ############&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">num1</span> <span class="p">&lt;</span> <span class="nx">num2</span><span class="p">)</span>     <span class="c1">// true
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">num1</span> <span class="p">&gt;</span> <span class="nx">num2</span><span class="p">)</span>     <span class="c1">// flase
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">num1</span> <span class="o">&gt;=</span> <span class="nx">num2</span><span class="p">)</span>    <span class="c1">// false
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">num1</span> <span class="o">&lt;=</span> <span class="nx">num2</span><span class="p">)</span>    <span class="c1">// true
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">num1</span> <span class="o">==</span> <span class="nx">num2</span><span class="p">)</span>    <span class="c1">// false
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">num1</span> <span class="o">!=</span> <span class="nx">num2</span><span class="p">)</span>    <span class="c1">// true
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="52-numeric-type">5.2 numeric type</h2>
+<h3 id="521-numeric-기초">5.2.1 numeric 기초</h3>
+<ul>
+<li>정수, 실수, 복소수</li>
+<li><strong>32bit</strong>, <strong>64bit</strong>, <strong>unsigned</strong></li>
+<li>정수 : 8진수 <code>0</code> , 16진수 <code>0x</code>, 10진수</li>
+</ul>
+<h4 id="example-1">Example 1</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">num1</span> <span class="kt">int</span> <span class="p">=</span> <span class="mi">17</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">num2</span> <span class="kt">int</span> <span class="p">=</span> <span class="o">-</span><span class="mi">68</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">num3</span> <span class="kt">int</span> <span class="p">=</span> <span class="mo">0631</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">num4</span> <span class="kt">int</span> <span class="p">=</span> <span class="mh">0x32fa2c75</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;ex1 : &#34;</span><span class="p">,</span> <span class="nx">num1</span><span class="p">)</span> <span class="c1">// 17
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;ex1 : &#34;</span><span class="p">,</span> <span class="nx">num2</span><span class="p">)</span> <span class="c1">// -68
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;ex1 : &#34;</span><span class="p">,</span> <span class="nx">num3</span><span class="p">)</span> <span class="c1">// 409
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;ex1 : &#34;</span><span class="p">,</span> <span class="nx">num4</span><span class="p">)</span> <span class="c1">// 855256181
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="example-2--정수형-문자-출력">Example 2 : 정수형 문자 출력</h4>
+<ul>
+<li><strong>fmt.Printf</strong> : 포맷 출력
+<ul>
+<li><strong>%c</strong> : 문자</li>
+<li><strong>%d</strong> : decimal</li>
+<li><strong>%o</strong> : 8진수</li>
+<li><strong>%x</strong> : 16진</li>
+</ul>
+</li>
+</ul>
+<h4 id="ascii-영문">ASCII 영문</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">char1</span> <span class="kt">byte</span> <span class="p">=</span> <span class="mi">72</span> <span class="c1">// byte (=uint8)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">var</span> <span class="nx">char2</span> <span class="kt">byte</span> <span class="p">=</span> <span class="mo">0110</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">char3</span> <span class="kt">byte</span> <span class="p">=</span> <span class="mh">0x48</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;%c %c %c\n&#34;</span><span class="p">,</span> <span class="nx">char1</span><span class="p">,</span> <span class="nx">char2</span><span class="p">,</span> <span class="nx">char3</span><span class="p">)</span>	<span class="c1">// H H H
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;%d %d %d\n&#34;</span><span class="p">,</span> <span class="nx">char1</span><span class="p">,</span> <span class="nx">char2</span><span class="p">,</span> <span class="nx">char3</span><span class="p">)</span> <span class="c1">// 72 72 72
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;%d %o %x\n&#34;</span><span class="p">,</span> <span class="nx">char1</span><span class="p">,</span> <span class="nx">char2</span><span class="p">,</span> <span class="nx">char3</span><span class="p">)</span> <span class="c1">// 72 110 48
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="unicode-한글">Unicode 한글</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">char4</span> <span class="kt">rune</span> <span class="p">=</span> <span class="mi">50556</span> 		<span class="c1">// 유니코드
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">var</span> <span class="nx">char5</span> <span class="kt">rune</span> <span class="p">=</span> <span class="mo">0142574</span>	<span class="c1">// 44032(8진수)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">var</span> <span class="nx">char6</span> <span class="kt">rune</span> <span class="p">=</span> <span class="mh">0xC57C</span>		<span class="c1">// 44032(16진수)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;%c %c %c\n&#34;</span><span class="p">,</span> <span class="nx">char4</span><span class="p">,</span> <span class="nx">char5</span><span class="p">,</span> <span class="nx">char6</span><span class="p">)</span> <span class="c1">// 야 야 야
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;%d %d %d\n&#34;</span><span class="p">,</span> <span class="nx">char4</span><span class="p">,</span> <span class="nx">char5</span><span class="p">,</span> <span class="nx">char6</span><span class="p">)</span> <span class="c1">// 50556 50556 50556 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;%d %o %x\n&#34;</span><span class="p">,</span> <span class="nx">char4</span><span class="p">,</span> <span class="nx">char5</span><span class="p">,</span> <span class="nx">char6</span><span class="p">)</span> <span class="c1">// 50556 142574 c57c
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="522-실수---부동소수점">5.2.2 실수 - 부동소수점</h3>
+<ul>
+<li><strong>float32</strong> : 7자리</li>
+<li><strong>float64</strong> : 15자리</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">num1</span> <span class="kt">float32</span> <span class="p">=</span> <span class="mf">0.14</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">num2</span> <span class="kt">float32</span> <span class="p">=</span> <span class="mf">.75647</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">num3</span> <span class="kt">float32</span> <span class="p">=</span> <span class="mf">442.0378373</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">num4</span> <span class="kt">float32</span> <span class="p">=</span> <span class="mf">10.0</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 지수 표기법
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">var</span> <span class="nx">num5</span> <span class="kt">float32</span> <span class="p">=</span> <span class="mf">14e6</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">num6</span> <span class="kt">float64</span> <span class="p">=</span> <span class="mf">.156875E+3</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">num7</span> <span class="kt">float64</span> <span class="p">=</span> <span class="mf">5.32521e-10</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Example 1 : &#34;</span><span class="p">,</span> <span class="nx">num1</span><span class="p">)</span> <span class="c1">// 0.14
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Example 1 : &#34;</span><span class="p">,</span> <span class="nx">num2</span><span class="p">)</span> <span class="c1">// 0.75647
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Example 1 : &#34;</span><span class="p">,</span> <span class="nx">num3</span><span class="p">)</span> <span class="c1">// 442.03784
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Example 1 : &#34;</span><span class="p">,</span> <span class="nx">num4</span><span class="p">)</span> <span class="c1">// 10
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Example 1 : &#34;</span><span class="p">,</span> <span class="nx">num4</span> <span class="o">-</span> <span class="mf">0.1</span><span class="p">)</span>           <span class="c1">// 9.9
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Example 1 : &#34;</span><span class="p">,</span> <span class="nb">float32</span><span class="p">(</span><span class="nx">num4</span> <span class="o">-</span> <span class="mf">0.1</span><span class="p">))</span>  <span class="c1">// 9.9
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Example 1 : &#34;</span><span class="p">,</span> <span class="nb">float64</span><span class="p">(</span><span class="nx">num4</span> <span class="o">-</span> <span class="mf">0.1</span><span class="p">))</span>  <span class="c1">// 9.899999618530273 주의!
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Example 1 : &#34;</span><span class="p">,</span> <span class="nx">num5</span><span class="p">)</span> <span class="c1">// 1.4e+07
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Example 1 : &#34;</span><span class="p">,</span> <span class="nx">num6</span><span class="p">)</span> <span class="c1">// 156.875
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Example 1 : &#34;</span><span class="p">,</span> <span class="nx">num7</span><span class="p">)</span> <span class="c1">// 5.32521e-10
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="523-복소수">5.2.3 복소수</h3>
+<ul>
+<li>복소수 형 (complex number)</li>
+<li><strong>complex64</strong> : 32bit 실수 + 허수</li>
+<li><strong>complex128</strong> : 64bit 실수 + 허수</li>
+</ul>
+<h4 id="example-1-1">Example 1</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">num1</span> <span class="kt">complex64</span> <span class="p">=</span> <span class="mi">5</span> <span class="o">+</span> <span class="m">7i</span>
+</span></span><span class="line"><span class="cl"><span class="nx">num2</span> <span class="o">:=</span> <span class="mi">8</span> <span class="o">+</span> <span class="m">1i</span>
+</span></span><span class="line"><span class="cl"><span class="nx">num3</span> <span class="o">:=</span> <span class="nb">complex</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="c1">//complex128
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">var</span> <span class="nx">num4</span> <span class="kt">complex128</span> <span class="p">=</span> <span class="mi">9</span> <span class="o">+</span> <span class="m">3i</span>
+</span></span><span class="line"><span class="cl"><span class="nx">num5</span> <span class="o">:=</span> <span class="nb">complex64</span><span class="p">(</span><span class="mi">2</span> <span class="o">+</span> <span class="m">3i</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;ex1 : &#34;</span><span class="p">,</span> <span class="nx">num1</span><span class="p">)</span> <span class="c1">// (5+7i)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;ex1 : &#34;</span><span class="p">,</span> <span class="nx">num2</span><span class="p">)</span> <span class="c1">// (8+1i)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;ex1 : &#34;</span><span class="p">,</span> <span class="nx">num3</span><span class="p">)</span> <span class="c1">// (3+2i)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;ex1 : &#34;</span><span class="p">,</span> <span class="nx">num4</span><span class="p">)</span> <span class="c1">// (9+3i)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;ex1 : &#34;</span><span class="p">,</span> <span class="nx">num5</span><span class="p">)</span> <span class="c1">// (2+3i)
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="example-2">Example 2</h4>
+<ul>
+<li><strong>real()</strong> : 실수부 출력</li>
+<li><strong>imag()</strong> : 허수부 출력</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;ex2 : &#34;</span><span class="p">,</span> <span class="nx">num1</span><span class="p">,</span> <span class="nb">real</span><span class="p">(</span><span class="nx">num1</span><span class="p">),</span> <span class="nb">imag</span><span class="p">(</span><span class="nx">num1</span><span class="p">))</span> <span class="c1">// (5+7i) 5 7
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;ex2 : &#34;</span><span class="p">,</span> <span class="nx">num2</span><span class="p">,</span> <span class="nb">real</span><span class="p">(</span><span class="nx">num2</span><span class="p">),</span> <span class="nb">imag</span><span class="p">(</span><span class="nx">num2</span><span class="p">))</span> <span class="c1">// (8+1i) 8 1
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;ex2 : &#34;</span><span class="p">,</span> <span class="nx">num3</span><span class="p">,</span> <span class="nb">real</span><span class="p">(</span><span class="nx">num3</span><span class="p">),</span> <span class="nb">imag</span><span class="p">(</span><span class="nx">num3</span><span class="p">))</span> <span class="c1">// (3+2i) 3 2
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;ex2 : &#34;</span><span class="p">,</span> <span class="nx">num4</span><span class="p">,</span> <span class="nb">real</span><span class="p">(</span><span class="nx">num4</span><span class="p">),</span> <span class="nb">imag</span><span class="p">(</span><span class="nx">num4</span><span class="p">))</span> <span class="c1">// (9+3i) 9 3
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;ex2 : &#34;</span><span class="p">,</span> <span class="nx">num5</span><span class="p">,</span> <span class="nb">real</span><span class="p">(</span><span class="nx">num5</span><span class="p">),</span> <span class="nb">imag</span><span class="p">(</span><span class="nx">num5</span><span class="p">))</span> <span class="c1">// (2+3i) 2 3
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="524-숫자-연산">5.2.4 숫자 연산</h3>
+<ul>
+<li>숫자 연산에는 산술연산, 비교연산이 있다.</li>
+<li><strong>타입이 같아야 연산이 가능하다 → 다른 타입끼리는 반드시 형 변환하여 형을 맞춘 후 연산을 해야 한다.</strong></li>
+<li>형 변환이 없을 경우는 예외가 발생한다.</li>
+<li>연산자 : <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>%</code>, <code>&lt;&lt;</code>, <code>&gt;&gt;</code>, <code>&amp;</code>, <code>^</code></li>
+</ul>
+<h4 id="example-1-2">Example 1</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;fmt&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;math&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Example 1
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">var</span> <span class="nx">n1</span> <span class="kt">uint8</span> <span class="p">=</span> <span class="nx">math</span><span class="p">.</span><span class="nx">MaxUint8</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nx">n2</span> <span class="kt">uint16</span> <span class="p">=</span> <span class="nx">math</span><span class="p">.</span><span class="nx">MaxUint16</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nx">n3</span> <span class="kt">uint32</span> <span class="p">=</span> <span class="nx">math</span><span class="p">.</span><span class="nx">MaxUint32</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nx">n4</span> <span class="kt">uint64</span> <span class="p">=</span> <span class="nx">math</span><span class="p">.</span><span class="nx">MaxUint64</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Example 1 &#34;</span><span class="p">,</span> <span class="nx">n1</span><span class="p">)</span> <span class="c1">// 255
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Example 1 &#34;</span><span class="p">,</span> <span class="nx">n2</span><span class="p">)</span> <span class="c1">// 65535
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Example 1 &#34;</span><span class="p">,</span> <span class="nx">n3</span><span class="p">)</span> <span class="c1">// 4294967295
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Example 1 &#34;</span><span class="p">,</span> <span class="nx">n4</span><span class="p">)</span> <span class="c1">// 18446744073709551615
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Example 1 &#34;</span><span class="p">,</span> <span class="nx">math</span><span class="p">.</span><span class="nx">MaxInt8</span><span class="p">)</span>   <span class="c1">// 127
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Example 1 &#34;</span><span class="p">,</span> <span class="nx">math</span><span class="p">.</span><span class="nx">MaxInt16</span><span class="p">)</span>  <span class="c1">// 32767
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Example 1 &#34;</span><span class="p">,</span> <span class="nx">math</span><span class="p">.</span><span class="nx">MaxInt32</span><span class="p">)</span>  <span class="c1">// 2147483647
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Example 1 &#34;</span><span class="p">,</span> <span class="nx">math</span><span class="p">.</span><span class="nx">MaxInt64</span><span class="p">)</span>  <span class="c1">// 9223372036854775807
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Example 1 &#34;</span><span class="p">,</span> <span class="nx">math</span><span class="p">.</span><span class="nx">MaxFloat32</span><span class="p">)</span> <span class="c1">// 3.4028234663852886e+38 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Example 1 &#34;</span><span class="p">,</span> <span class="nx">math</span><span class="p">.</span><span class="nx">MaxFloat64</span><span class="p">)</span> <span class="c1">// 1.7976931348623157e+308
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="example-2-1">Example 2</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">n5</span> <span class="o">:=</span> <span class="mi">100000</span> <span class="c1">// int
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">n6</span> <span class="o">:=</span> <span class="nb">int16</span><span class="p">(</span><span class="mi">10000</span><span class="p">)</span> <span class="c1">// int16으로 형변환이 일어남
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">n7</span> <span class="o">:=</span> <span class="nb">uint8</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//n7 := uint8(300)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 예외발생
+</span></span></span><span class="line"><span class="cl"><span class="c1">// fmt.Println(&#34;Example 2: &#34;, n5 + n6) // ./numeric4.go:40:32: invalid operation: n5 + n6 (mismatched types int and int16)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Example 2 : &#34;</span><span class="p">,</span> <span class="nx">n5</span> <span class="o">+</span> <span class="nb">int</span><span class="p">(</span><span class="nx">n6</span><span class="p">))</span>    <span class="c1">// 110000
+</span></span></span><span class="line"><span class="cl"><span class="c1">// fmt.Println(&#34;Example 2 : &#34;, n6 + n7)     
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Example 2 : &#34;</span><span class="p">,</span> <span class="nx">n6</span> <span class="o">+</span> <span class="nb">int16</span><span class="p">(</span><span class="nx">n7</span><span class="p">))</span>  <span class="c1">// 10100
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Example 2 : &#34;</span><span class="p">,</span> <span class="nx">n6</span> <span class="p">&gt;</span> <span class="nb">int16</span><span class="p">(</span><span class="nx">n7</span><span class="p">))</span>  <span class="c1">// true 비교 연산자도 타입이 같아야 한다.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Example 2 : &#34;</span><span class="p">,</span> <span class="nx">n6</span> <span class="o">-</span> <span class="nb">int16</span><span class="p">(</span><span class="nx">n7</span><span class="p">)</span> <span class="p">&gt;</span> <span class="mi">5000</span><span class="p">)</span> <span class="c1">// true
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="525-산술연산">5.2.5 산술연산</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kn">import</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">   <span class="s">&#34;fmt&#34;</span>
+</span></span><span class="line"><span class="cl">   <span class="s">&#34;math&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nx">n1</span> <span class="kt">uint8</span> <span class="p">=</span> <span class="mi">125</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nx">n2</span> <span class="kt">uint8</span> <span class="p">=</span> <span class="mi">90</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Example 1 :&#34;</span><span class="p">,</span> <span class="nx">n1</span> <span class="o">+</span> <span class="nx">n2</span><span class="p">)</span> <span class="c1">//215
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Example 1 :&#34;</span><span class="p">,</span> <span class="nx">n1</span> <span class="o">-</span> <span class="nx">n2</span><span class="p">)</span> <span class="c1">// 35
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Example 1 :&#34;</span><span class="p">,</span> <span class="nx">n1</span> <span class="o">*</span> <span class="nx">n2</span><span class="p">)</span> <span class="c1">// 242
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Example 1 :&#34;</span><span class="p">,</span> <span class="nx">n1</span> <span class="o">/</span> <span class="nx">n2</span><span class="p">)</span> <span class="c1">// 1
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Example 1 :&#34;</span><span class="p">,</span> <span class="nx">n1</span> <span class="o">%</span> <span class="nx">n2</span><span class="p">)</span> <span class="c1">// 35 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Example 1 :&#34;</span><span class="p">,</span> <span class="nx">n1</span> <span class="o">&lt;&lt;</span> <span class="mi">2</span><span class="p">)</span> <span class="c1">// 244
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Example 1 :&#34;</span><span class="p">,</span> <span class="nx">n1</span> <span class="o">&gt;&gt;</span> <span class="mi">2</span><span class="p">)</span> <span class="c1">// 31
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Example 1 :&#34;</span><span class="p">,</span> <span class="p">^</span><span class="nx">n1</span><span class="p">)</span> <span class="c1">// 130
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="example-2-2">Example 2</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">   <span class="s">&#34;fmt&#34;</span>
+</span></span><span class="line"><span class="cl">   <span class="s">&#34;math&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span>  <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nx">n3</span> <span class="kt">int</span> <span class="p">=</span> <span class="mi">12</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nx">n4</span> <span class="kt">float32</span> <span class="p">=</span> <span class="mf">8.2</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nx">n5</span> <span class="kt">uint16</span> <span class="p">=</span> <span class="mi">1024</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nx">n6</span> <span class="kt">uint32</span> <span class="p">=</span> <span class="mi">120000</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1">//정수형과 실수형 연산시 실수형에 맞추어 계산하는 것이 더 안전하다.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// fmt.Println(&#34;Example 2 : &#34;, n3 + n4 )
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Example 2 : &#34;</span><span class="p">,</span> <span class="nb">float32</span><span class="p">(</span><span class="nx">n3</span><span class="p">)</span> <span class="o">+</span> <span class="nx">n4</span> <span class="p">)</span> <span class="c1">// 20.2
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Example 2 : &#34;</span><span class="p">,</span> <span class="nx">n3</span> <span class="o">+</span> <span class="nb">int</span><span class="p">(</span><span class="nx">n4</span><span class="p">)</span> <span class="p">)</span>     <span class="c1">// 20
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Example 2 : &#34;</span><span class="p">,</span> <span class="nx">n5</span> <span class="o">+</span> <span class="nb">uint16</span><span class="p">(</span><span class="nx">n6</span><span class="p">))</span>   <span class="c1">// 55488
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="산술-연산---error-case">산술 연산 - Error Case</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Example 1 (overflows Error : 범위 초과)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">var</span> <span class="nx">n1</span> <span class="kt">uint8</span> <span class="p">=</span> <span class="nx">math</span><span class="p">.</span><span class="nx">MaxUint8</span> <span class="o">+</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nx">n2</span> <span class="kt">uint16</span> <span class="p">=</span> <span class="nx">math</span><span class="p">.</span><span class="nx">MaxUint16</span> <span class="o">+</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nx">n3</span> <span class="kt">uint32</span> <span class="p">=</span> <span class="nx">math</span><span class="p">.</span><span class="nx">MaxUint32</span> <span class="o">+</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nx">n4</span> <span class="kt">uint64</span> <span class="p">=</span> <span class="nx">math</span><span class="p">.</span><span class="nx">MaxUint64</span> <span class="o">+</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1">// Example 2 (overflows Error : 범위 초과)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">var</span> <span class="nx">n5</span> <span class="kt">uint8</span> <span class="p">=</span> <span class="o">-</span><span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nx">n6</span> <span class="kt">uint16</span> <span class="p">=</span> <span class="o">-</span><span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nx">n7</span> <span class="kt">uint32</span> <span class="p">=</span> <span class="o">-</span><span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nx">n8</span> <span class="kt">uint64</span> <span class="p">=</span> <span class="o">-</span><span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="53-문자열">5.3 문자열</h2>
+<h3 id="531-문자열">5.3.1 문자열</h3>
+<ul>
+<li>큰 따옴표 <strong>&quot;&quot;</strong>, 백스쿼트 <strong>```</strong></li>
+<li>char 타입은 존재 하지 않는다 → **rune(int32)**로 문자 코드 값으로 표현한다.</li>
+<li>&rsquo;&rsquo; 로 작성 가능하다</li>
+<li>자주 사용하는 escape : <code>\\</code>, <code>\'</code>, <code>\&quot;</code>, <code>\a(콘솔벨)</code>, <code>\b(백스페이스)</code>, <code>\f(쪽바꿈)</code>, <code>\n(줄바꿈)</code>,<code>\r(복귀)</code>,<code>\t(탭)</code> - 역슬래시 이후에 등장하는 문자를 그대로 출력할 때</li>
+</ul>
+<h4 id="srcsection5string1go">src/section5/string1.go</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;fmt&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;unicode/utf8&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nx">str1</span> <span class="kt">string</span> <span class="p">=</span> <span class="s">&#34;c:\\go_study\\src\\&#34;</span>	<span class="c1">// c:\go_study\src\
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">str2</span> <span class="o">:=</span> <span class="s">`c:\go_study\src\`</span> 				      <span class="c1">// escape 를 사용하지 않아도 된다.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;##################################&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Example 1 : &#34;</span><span class="p">,</span> <span class="nx">str1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Example 1 : &#34;</span><span class="p">,</span> <span class="nx">str2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nx">str3</span> <span class="kt">string</span> <span class="p">=</span> <span class="s">&#34;Hello, world!&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nx">str4</span> <span class="kt">string</span> <span class="p">=</span> <span class="s">&#34;안녕하세요!&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nx">str5</span> <span class="kt">string</span> <span class="p">=</span> <span class="s">&#34;\ud55c\uae00&#34;</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;############################&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Example 2 : &#34;</span><span class="p">,</span> <span class="nx">str3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Example 2 : &#34;</span><span class="p">,</span> <span class="nx">str4</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Example 2 : &#34;</span><span class="p">,</span> <span class="nx">str5</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1">// 길이(Byte 수),
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;############################&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Example 3 : &#34;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nx">str3</span><span class="p">))</span>	<span class="c1">// 13 byte
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Example 3 : &#34;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nx">str4</span><span class="p">))</span>  <span class="c1">// 16 byte
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    
+</span></span><span class="line"><span class="cl">    <span class="c1">// 길이(실제 길이)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;############################&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Example 4 : &#34;</span><span class="p">,</span> <span class="nx">utf8</span><span class="p">.</span><span class="nf">RuneCountInString</span><span class="p">(</span><span class="nx">str3</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Example 4 : &#34;</span><span class="p">,</span> <span class="nx">utf8</span><span class="p">.</span><span class="nf">RuneCountInString</span><span class="p">(</span><span class="nx">str4</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Example 4 : &#34;</span><span class="p">,</span> <span class="nb">len</span><span class="p">([]</span><span class="nb">rune</span><span class="p">(</span><span class="nx">str4</span><span class="p">)))</span>	<span class="c1">// utf8 패키지를 사용하지 않고도 문자열 길이를 구할 수 있다.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>// result<br>
+#############################<br>
+Example 1 :  c:\go_study\src<br>
+Example 1 :  c:\go_study\src<br>
+############################<br>
+Example 2 :  Hello, world!<br>
+Example 2 :  안녕하세요!<br>
+Example 2 :  한글<br>
+############################<br>
+Example 3 :  13<br>
+Example 3 :  16<br>
+############################<br>
+Example 4 :  13<br>
+Example 4 :  6<br>
+Example 4 :  6\</p>
+</blockquote>
+<h3 id="532-문자열-표현">5.3.2 문자열 표현</h3>
+<ul>
+<li>golang에서 문자열은 <strong>UTF-8 인코딩(유니코드 문자 집합)이며 한글 바이트는 3byte</strong>이다.</li>
+</ul>
+<h4 id="srcsection5string2go">src/section5/string2.go</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="s">&#34;fmt&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nx">str1</span> <span class="kt">string</span> <span class="p">=</span> <span class="s">&#34;Golang&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nx">str2</span> <span class="kt">string</span> <span class="p">=</span> <span class="s">&#34;World&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nx">str3</span> <span class="kt">string</span> <span class="p">=</span> <span class="s">&#34;고프로그래밍&#34;</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Example 1 : &#34;</span><span class="p">,</span> <span class="nx">str1</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nx">str1</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="nx">str1</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="nx">str1</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="nx">str1</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="nx">str1</span><span class="p">[</span><span class="mi">5</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Example 1 : &#34;</span><span class="p">,</span> <span class="nx">str2</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nx">str2</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="nx">str2</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="nx">str2</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="nx">str2</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Example 1 : &#34;</span><span class="p">,</span> <span class="nx">str3</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nx">str3</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="nx">str3</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="nx">str3</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="nx">str3</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="nx">str3</span><span class="p">[</span><span class="mi">5</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1">// Example 2
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;########################################&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;Example 2 : %c %c %c %c %c %c\n&#34;</span><span class="p">,</span> <span class="nx">str1</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nx">str1</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="nx">str1</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="nx">str1</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="nx">str1</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="nx">str1</span><span class="p">[</span><span class="mi">5</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;Example 2 : %c %c %c %c %c\n&#34;</span><span class="p">,</span> <span class="nx">str2</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nx">str2</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="nx">str2</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="nx">str2</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="nx">str2</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;Example 2 : %c %c %c %c %c %c\n&#34;</span><span class="p">,</span> <span class="nx">str3</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nx">str3</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="nx">str3</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="nx">str3</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="nx">str3</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="nx">str3</span><span class="p">[</span><span class="mi">5</span><span class="p">])</span> <span class="c1">// 한글깨짐
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    
+</span></span><span class="line"><span class="cl">    <span class="nx">conStr</span> <span class="o">:=</span> <span class="p">[]</span><span class="nb">rune</span><span class="p">(</span><span class="nx">str3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;Example 2 : %c %c %c %c %c %c\n&#34;</span><span class="p">,</span> <span class="nx">conStr</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nx">conStr</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="nx">conStr</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="nx">conStr</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="nx">conStr</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="nx">conStr</span><span class="p">[</span><span class="mi">5</span><span class="p">])</span> <span class="c1">// 한글 정상 출력
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    
+</span></span><span class="line"><span class="cl">    <span class="c1">// Example 3
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;########################################&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">char</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">str1</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;Example 3 : %c(%d)\t&#34;</span><span class="p">,</span> <span class="nx">char</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;########################################&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">char</span> <span class="o">:=</span> <span class="k">range</span>  <span class="nx">str2</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;Example 4 : %c(%d)\t&#34;</span><span class="p">,</span> <span class="nx">char</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>Example 1 :  71 111 108 97 110 103<br>
+Example 1 :  87 111 114 108 100<br>
+Example 1 :  234 179 160 237 148 132<br>
+########################################<br>
+Example 2 : G o l a n g<br>
+Example 2 : W o r l d<br>
+Example 2 : ê ³   í\<br>
+Example 2 : 고 프 로 그 래 밍<br>
+########################################<br>
+Example 3 : G(0)        Example 3 : o(1)        Example 3 : l(2)        Example 3 : a(3)        Example 3 : n(4)        Example 3 : g(5)\     <br>
+########################################<br>
+Example 4 : W(0)        Example 4 : o(1)        Example 4 : r(2)        Example 4 : l(3)        Example 4 : d(4)        %\</p>
+</blockquote>
+<h3 id="533-문자열-연산">5.3.3 문자열 연산</h3>
+<h4 id="문자열-추출">문자열 추출</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="s">&#34;fmt&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nx">str1</span> <span class="kt">string</span> <span class="p">=</span> <span class="s">&#34;Golang&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nx">str2</span> <span class="kt">string</span> <span class="p">=</span> <span class="s">&#34;World&#34;</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Example 1 : &#34;</span><span class="p">,</span> <span class="nx">str1</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">],</span> <span class="nx">str1</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Example 1 : &#34;</span><span class="p">,</span> <span class="nx">str2</span><span class="p">[</span><span class="mi">3</span><span class="p">:],</span> <span class="nx">str2</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Example 1 : &#34;</span><span class="p">,</span> <span class="nx">str2</span><span class="p">[:</span><span class="mi">4</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Example 1 : &#34;</span><span class="p">,</span> <span class="nx">str1</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>Example 1 :  Go 71<br>
+Example 1 :  ld 87<br>
+Example 1 :  Worl<br>
+Example 1 :  ol</p>
+</blockquote>
+<h4 id="문자열-비교">문자열 비교</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="s">&#34;fmt&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">str1</span> <span class="o">:=</span> <span class="s">&#34;Golang&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">str2</span> <span class="o">:=</span> <span class="s">&#34;World&#34;</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Example 1 : &#34;</span><span class="p">,</span> <span class="nx">str1</span> <span class="o">==</span> <span class="nx">str2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Example 2 : &#34;</span><span class="p">,</span> <span class="nx">str1</span> <span class="o">!=</span> <span class="nx">str2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Example 3 : &#34;</span><span class="p">,</span> <span class="nx">str1</span> <span class="p">&gt;</span> <span class="nx">str2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Example 4 : &#34;</span><span class="p">,</span> <span class="nx">str1</span> <span class="p">&lt;</span> <span class="nx">str2</span><span class="p">)</span> <span class="c1">// Go 문자열 -&gt; 아스키 코드에 대한 사전식 비교
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>Example 1 :  false<br>
+Example 2 :  true<br>
+Example 3 :  false<br>
+Example 4 :  true</p>
+</blockquote>
+<h4 id="문자열-결합">문자열 결합</h4>
+<ul>
+<li>문자열 결합연산은 java와 비슷하다. (일반연산보다 <code>StringBuffer</code> 를 쓰는 것 처럼)</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;fmt&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;strings&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Example 1 (결합 : 일반연산)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// Java 와 비슷 - Java의 경우에도 문자열 일반연산보다 StrnigBuffer 쓰는거와 비
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">str1</span> <span class="o">:=</span> <span class="s">&#34;This document demonstrates the development of a simple Go package inside a module and introduces the go tool&#34;</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">        <span class="s">&#34;the standard way to fetch, build, and install Go modules, packages, and commands.\n\n&#34;</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">        <span class="s">&#34;Note: This document assumes that you are using Go 1.13 or later and the GO111MODULE environment variable is not set. If you are looking for the older,&#34;</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">        <span class="s">&#34;pre-modules version of this document, it is archived here.&#34;</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="nx">str2</span> <span class="o">:=</span> <span class="s">&#34;This document demonstrates the development of a simple Go package&#34;</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Example &#34;</span><span class="p">,</span> <span class="nx">str1</span> <span class="o">+</span> <span class="nx">str2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nx">strSet</span> <span class="p">[]</span><span class="kt">string</span> <span class="c1">//슬라이스 선언
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">strSet</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">strSet</span><span class="p">,</span> <span class="nx">str1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">strSet</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">strSet</span><span class="p">,</span> <span class="nx">str2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Example 2 :&#34;</span><span class="p">,</span> <span class="nx">strings</span><span class="p">.</span><span class="nf">Join</span><span class="p">(</span><span class="nx">strSet</span><span class="p">,</span> <span class="s">&#34;-----&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2022-06-29&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/7ea1a4fafc9a5b2548567da3be96cbb9fb4ff5d8" target="_blank" title="commit by riley(riley0422@icloud.com) 7ea1a4fafc9a5b2548567da3be96cbb9fb4ff5d8: 20220629002051">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>7ea1a4f</a></span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/easy-golang-section5/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://riley817.github.io/easy-golang-section5/" data-title="Section 5 : Go 데이터 타입" data-hashtags="go,golang"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://riley817.github.io/easy-golang-section5/" data-hashtag="go"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://riley817.github.io/easy-golang-section5/" data-title="Section 5 : Go 데이터 타입"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://riley817.github.io/easy-golang-section5/" data-title="Section 5 : Go 데이터 타입"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.0.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://riley817.github.io/easy-golang-section5/" data-title="Section 5 : Go 데이터 타입"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/go/">go</a>,&nbsp;<a href="/tags/golang/">golang</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/nginx-log-es-cloud/" class="prev" rel="prev" title="nginx 로그를 Elasticsearch Cloud로 수집하기"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>nginx 로그를 Elasticsearch Cloud로 수집하기</a>
+            <a href="/easy-golang-section6/" class="next" rel="next" title="Section 6 : 배열, 슬라이스, 맵">Section 6 : 배열, 슬라이스, 맵<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.101.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Riley</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/valine@1.4.18/dist/Valine.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.1/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{"valine":{"appId":"QGzwQXOqs5JOhN4RGPOkR2mR-MdYXbMMI","appKey":"WBmoGyJtbqUswvfLh6L8iEBr","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@14.0.0/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"en","pageSize":10,"placeholder":"Your comment ...","recordIP":true,"serverURLs":"https://leancloud.hugoloveit.com","visitor":true}},"search":{"algoliaAppID":"","algoliaIndex":"","algoliaSearchKey":"","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

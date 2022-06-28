@@ -6,10 +6,10 @@
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
             <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Tue, 21 Sep 2021 17:07:00 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/tags/web/" rel="self" type="application/rss+xml" /><item>
     <title>Multi Thread</title>
-    <link>https://riley817.github.io/categories/javascript/webworker/</link>
+    <link>https://riley817.github.io/webworker/</link>
     <pubDate>Tue, 21 Sep 2021 17:07:00 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/categories/javascript/webworker/</guid>
+    <guid>https://riley817.github.io/webworker/</guid>
     <description><![CDATA[Web worker Web Worker 는 메인 스레드와 분리된 별도의 백그라운드 스레드에서 스크립트를 실행할 수 있는 기술이다. UI 스레드와는 별개의 스레드를 실행시켜 사용자 인터페이스를 방해하지않고 작업을 수행할 수 있다.
 Web worker scope Web worker는 메인 스레드와 별도의 worker 스레드를 갖는다. 메인 스레드에서 window 객체는 GlobalScope 이지만 worker 스레드에서는 별도의 스코프 범위를 갖는다. Worker 종류에 따른 Scope worker 스레드는 메인 스레드 window 객체에 액세스할 수 있는 권한이 없기 때문에 window의 메서드나 DOM을 직접적으로 제어할 수 없다.]]></description>
 </item>

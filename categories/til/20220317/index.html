@@ -5,17 +5,17 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
         <title>[TIL &amp; Issue Note] 20220317 - Riley&#39;s DevLog</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:title" content="[TIL &amp; Issue Note] 20220317" />
-<meta property="og:description" content="블록체인 원리 - (4) 탈중앙화 합의 및 이중사용 1. 탈중앙화 합의 규칙의 개념 탈중앙화 합의 규칙 규칙 미준수 -&gt; 폐기 규칙 준수 -&gt; 동의 탈중앙화 합의 규칙에는 규칙을 지켰을 때도 퇴출하는 방식이 필요 블록체인의 특징 구성상 P2P 혹은 피어투피어 방식으로 이루어짐 특정 서버가 존재하지 않음 브로드캐스팅을 통해서 자신의 피어를 통한 데이터 전송을 받고 있음 모든 노드는 현재 자신이 가지고 있는 데이터와 피어로부터 전달받은 데이터에 의존해서 모든것을 판단해야 함 중앙서버 중앙 통제 서버가 모든 지시를 내림 -&gt; 노드는 지시에 따름 블록체인 모든 노드가 동등한 권리와 의무를 가짐 -&gt; 지시를 받을 수 없는 구조" />
+<meta property="og:description" content="블록체인 원리 - (4) 탈중앙화 합의 및 이중사용 1. 탈중앙화 합의 규칙의 개념 탈중앙화 합의 규칙  규칙 미준수 -&gt; 폐기 규칙 준수 -&gt; 동의  탈중앙화 합의 규칙에는 규칙을 지켰을 때도 퇴출하는 방식이 필요   블록체인의 특징  구성상 P2P 혹은 피어투피어 방식으로 이루어짐 특정 서버가 존재하지 않음 브로드캐스팅을 통해서 자신의 피어를 통한 데이터 전송을 받고 있음  모든 노드는 현재 자신이 가지고 있는 데이터와 피어로부터 전달받은 데이터에 의존해서 모든것을 판단해야 함   중앙서버  중앙 통제 서버가 모든 지시를 내림 -&gt; 노드는 지시에 따름  블록체인 모든 노드가 동등한 권리와 의무를 가짐 -&gt; 지시를 받을 수 없는 구조" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://riley817.github.io/categories/til/20220317/" /><meta property="og:image" content="https://riley817.github.io/icon.png"/><meta property="article:section" content="categories" />
 <meta property="article:published_time" content="2022-03-17T23:46:41+09:00" />
-<meta property="article:modified_time" content="2022-06-28T23:58:42+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
+<meta property="article:modified_time" content="2022-03-17T23:47:09+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://riley817.github.io/icon.png"/>
 
 <meta name="twitter:title" content="[TIL &amp; Issue Note] 20220317"/>
-<meta name="twitter:description" content="블록체인 원리 - (4) 탈중앙화 합의 및 이중사용 1. 탈중앙화 합의 규칙의 개념 탈중앙화 합의 규칙 규칙 미준수 -&gt; 폐기 규칙 준수 -&gt; 동의 탈중앙화 합의 규칙에는 규칙을 지켰을 때도 퇴출하는 방식이 필요 블록체인의 특징 구성상 P2P 혹은 피어투피어 방식으로 이루어짐 특정 서버가 존재하지 않음 브로드캐스팅을 통해서 자신의 피어를 통한 데이터 전송을 받고 있음 모든 노드는 현재 자신이 가지고 있는 데이터와 피어로부터 전달받은 데이터에 의존해서 모든것을 판단해야 함 중앙서버 중앙 통제 서버가 모든 지시를 내림 -&gt; 노드는 지시에 따름 블록체인 모든 노드가 동등한 권리와 의무를 가짐 -&gt; 지시를 받을 수 없는 구조"/>
+<meta name="twitter:description" content="블록체인 원리 - (4) 탈중앙화 합의 및 이중사용 1. 탈중앙화 합의 규칙의 개념 탈중앙화 합의 규칙  규칙 미준수 -&gt; 폐기 규칙 준수 -&gt; 동의  탈중앙화 합의 규칙에는 규칙을 지켰을 때도 퇴출하는 방식이 필요   블록체인의 특징  구성상 P2P 혹은 피어투피어 방식으로 이루어짐 특정 서버가 존재하지 않음 브로드캐스팅을 통해서 자신의 피어를 통한 데이터 전송을 받고 있음  모든 노드는 현재 자신이 가지고 있는 데이터와 피어로부터 전달받은 데이터에 의존해서 모든것을 판단해야 함   중앙서버  중앙 통제 서버가 모든 지시를 내림 -&gt; 노드는 지시에 따름  블록체인 모든 노드가 동등한 권리와 의무를 가짐 -&gt; 지시를 받을 수 없는 구조"/>
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -31,7 +31,7 @@
             "@type": "WebPage",
             "@id": "https:\/\/riley817.github.io\/categories\/til\/20220317\/"
         },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "categories","keywords": "TIL, blockchain, bitcoin","wordcount":  353 ,
-        "url": "https:\/\/riley817.github.io\/categories\/til\/20220317\/","datePublished": "2022-03-17T23:46:41+09:00","dateModified": "2022-06-28T23:58:42+09:00","publisher": {
+        "url": "https:\/\/riley817.github.io\/categories\/til\/20220317\/","datePublished": "2022-03-17T23:46:41+09:00","dateModified": "2022-03-17T23:47:09+09:00","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/riley817.github.io\/images\/avatar.png"},"author": {
                 "@type": "Person",
@@ -195,7 +195,7 @@
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
             </noscript></div></div></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.101.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.98.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
                 </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Riley</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

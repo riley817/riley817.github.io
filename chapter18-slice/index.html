@@ -1,0 +1,1134 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>[Tucker의 Go 프로그래밍] 18. 슬라이스 - Riley&#39;s DevLog</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:title" content="[Tucker의 Go 프로그래밍] 18. 슬라이스" />
+<meta property="og:description" content="Tucker의 Go 언어 프로그래밍 책 내용을 정리하였습니다.
+슬라이스는 Go에서 제공하는 동적 배열 타입이다. 동적 배열은 실행 도중 배열의 사이즈가 계속 바뀔 수 있다.
+정적, 동적 상수와 변수의 차이를 생각하면 간단하다.
+정적(static) : compile time, build time 시 값이 결정된다. 실행 도중에 절대 바뀔 수 없다. 동적(dynamic) : Runtime. 프로그램 실행 도중에 계속 값이 바뀔 수 있다. 다른언어에서 slice와 비슷한 개념 (동일하지는 않다.) C&#43;&#43; : Vector&lt;int&gt; Java : ArrayList Python : slice Javascript : 기본적으로 동적 배열 1." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://riley817.github.io/chapter18-slice/" /><meta property="og:image" content="https://riley817.github.io/icon.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-04-26T14:50:36+09:00" />
+<meta property="article:modified_time" content="2022-06-29T00:20:54+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://riley817.github.io/icon.png"/>
+
+<meta name="twitter:title" content="[Tucker의 Go 프로그래밍] 18. 슬라이스"/>
+<meta name="twitter:description" content="Tucker의 Go 언어 프로그래밍 책 내용을 정리하였습니다.
+슬라이스는 Go에서 제공하는 동적 배열 타입이다. 동적 배열은 실행 도중 배열의 사이즈가 계속 바뀔 수 있다.
+정적, 동적 상수와 변수의 차이를 생각하면 간단하다.
+정적(static) : compile time, build time 시 값이 결정된다. 실행 도중에 절대 바뀔 수 없다. 동적(dynamic) : Runtime. 프로그램 실행 도중에 계속 값이 바뀔 수 있다. 다른언어에서 slice와 비슷한 개념 (동일하지는 않다.) C&#43;&#43; : Vector&lt;int&gt; Java : ArrayList Python : slice Javascript : 기본적으로 동적 배열 1."/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://riley817.github.io/chapter18-slice/" /><link rel="prev" href="https://riley817.github.io/chapter2-1-docker-engine/" /><link rel="next" href="https://riley817.github.io/chapter19-interface/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "[Tucker의 Go 프로그래밍] 18. 슬라이스",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/riley817.github.io\/chapter18-slice\/"
+        },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "go, golang","wordcount":  2277 ,
+        "url": "https:\/\/riley817.github.io\/chapter18-slice\/","datePublished": "2022-04-26T14:50:36+09:00","dateModified": "2022-06-29T00:20:54+09:00","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "https:\/\/riley817.github.io\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "riley"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Riley&#39;s DevLog"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i></span>Riley&#39;s DevLog</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Riley&#39;s DevLog"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i></span>Riley&#39;s DevLog</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">[Tucker의 Go 프로그래밍] 18. 슬라이스</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-category">included in <a href="/categories/tucker-go/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>tucker-go</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-04-26">2022-04-26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2277 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;11 minutes&nbsp;<span id="/chapter18-slice/" class="leancloud_visitors" data-flag-title="[Tucker의 Go 프로그래밍] 18. 슬라이스">
+                        <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#정적-동적">정적, 동적</a></li>
+            <li><a href="#다른언어에서-slice와-비슷한-개념-동일하지는-않다">다른언어에서 slice와 비슷한 개념 (동일하지는 않다.)</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#1-슬라이스">1. 슬라이스</a>
+      <ul>
+        <li><a href="#11-슬라이스-선언">1.1 슬라이스 선언</a>
+          <ul>
+            <li><a href="#--를-이용해-초기화하기"><code>{ }</code> 를 이용해 초기화하기</a></li>
+            <li><a href="#make를-이용한-초기화">make()를 이용한 초기화</a></li>
+          </ul>
+        </li>
+        <li><a href="#12-슬라이스-요소-접근">1.2 슬라이스 요소 접근</a></li>
+        <li><a href="#13-슬라이스-순회-방법">1.3 슬라이스 순회 방법</a></li>
+        <li><a href="#14-슬라이스-요소-추가---append">1.4 슬라이스 요소 추가 - <code>append()</code></a></li>
+      </ul>
+    </li>
+    <li><a href="#2-슬라이스의-동작-원리">2. 슬라이스의 동작 원리</a>
+      <ul>
+        <li><a href="#21-make-함수를-사용해서-선언">2.1 Make() 함수를 사용해서 선언</a></li>
+        <li><a href="#22-슬라이스와-배열의-동작-차이">2.2 슬라이스와 배열의 동작 차이</a></li>
+        <li><a href="#23-동작-차이의-원인">2.3 동작 차이의 원인</a>
+          <ul>
+            <li><a href="#changearrayarr-5int"><code>changeArray(arr [5]int)</code></a></li>
+            <li><a href="#changesliceslice-int"><code>changeSlice(slice []int)</code></a></li>
+          </ul>
+        </li>
+        <li><a href="#24-append를-사용할-때-발생할-수-있는-예기치-못한-문제---1">2.4 append()를 사용할 때 발생할 수 있는 예기치 못한 문제 - 1</a></li>
+        <li><a href="#25-append를-사용할-때-발생할-수-있는-예기치-못한-문제---2">2.5 append()를 사용할 때 발생할 수 있는 예기치 못한 문제 - 2</a>
+          <ul>
+            <li><a href="#정리">정리</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#3-슬라이싱-slicing">3. 슬라이싱 <code>slicing</code></a>
+      <ul>
+        <li><a href="#31-슬라이싱으로-배열-일부를-가르키는-슬라이스-만들기">3.1 슬라이싱으로 배열 일부를 가르키는 슬라이스 만들기</a></li>
+        <li><a href="#32-슬라이스를-슬라이싱-하기">3.2 슬라이스를 슬라이싱 하기</a>
+          <ul>
+            <li><a href="#처음부터-슬라이싱">처음부터 슬라이싱</a></li>
+            <li><a href="#끝까지-슬라이싱">끝까지 슬라이싱</a></li>
+            <li><a href="#전체-슬라이싱">전체 슬라이싱</a></li>
+            <li><a href="#인덱스-3개로-슬라이싱하여-cap-크기를-조절">인덱스 3개로 슬라이싱하여 cap 크기를 조절</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#4-유용한-슬라이싱-기능-활용">4. 유용한 슬라이싱 기능 활용</a>
+      <ul>
+        <li><a href="#41-슬라이스-복제">4.1 슬라이스 복제</a>
+          <ul>
+            <li><a href="#반복문을-이용한-값-복제">반복문을 이용한 값 복제</a></li>
+            <li><a href="#append-함수를-이용한-값-복제">append() 함수를 이용한 값 복제</a></li>
+            <li><a href="#copy-함수를-이용한-값-복제">copy() 함수를 이용한 값 복제</a></li>
+          </ul>
+        </li>
+        <li><a href="#42-요소-삭제하기">4.2 요소 삭제하기</a>
+          <ul>
+            <li><a href="#append-함수-이용">append() 함수 이용</a></li>
+          </ul>
+        </li>
+        <li><a href="#43-요소-추가">4.3 요소 추가</a>
+          <ul>
+            <li><a href="#append-함수로-코드-개선">append() 함수로 코드 개선</a></li>
+            <li><a href="#불필요한-메모리-사용이-없도록-코드-개선">불필요한 메모리 사용이 없도록 코드 개선</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#5-슬라이스-정렬">5 슬라이스 정렬</a>
+      <ul>
+        <li><a href="#51-int-슬라이스-정렬">5.1 int 슬라이스 정렬</a></li>
+        <li><a href="#52-구조체-슬라이스-정렬">5.2 구조체 슬라이스 정렬</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><blockquote>
+<p>Tucker의 Go 언어 프로그래밍 책 내용을 정리하였습니다.</p>
+</blockquote>
+<p>슬라이스는 Go에서 제공하는 동적 배열 타입이다. 동적 배열은 실행 도중 배열의 사이즈가 계속 바뀔 수 있다.</p>
+<h4 id="정적-동적">정적, 동적</h4>
+<p>상수와 변수의 차이를 생각하면 간단하다.</p>
+<ul>
+<li>정적(static) : compile time, build time 시 값이 결정된다. 실행 도중에 절대 바뀔 수 없다.</li>
+<li>동적(dynamic) : Runtime. 프로그램 실행 도중에 계속 값이 바뀔 수 있다.</li>
+</ul>
+<h4 id="다른언어에서-slice와-비슷한-개념-동일하지는-않다">다른언어에서 slice와 비슷한 개념 (동일하지는 않다.)</h4>
+<ul>
+<li><strong>C++</strong> : <code>Vector&lt;int&gt;</code></li>
+<li><strong>Java</strong> : <code>ArrayList</code></li>
+<li><strong>Python</strong> : <code>slice</code></li>
+<li><strong>Javascript</strong> : 기본적으로 동적 배열</li>
+</ul>
+<h2 id="1-슬라이스">1. 슬라이스</h2>
+<p>배열과 비슷하지만 <code>[]</code>에 배열의 개수를 적지 않고 선언한다.</p>
+<h3 id="11-슬라이스-선언">1.1 슬라이스 선언</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">slice</span> <span class="p">[]</span><span class="kt">int</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="--를-이용해-초기화하기"><code>{ }</code> 를 이용해 초기화하기</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">slice1</span> <span class="p">=</span> <span class="p">[]</span><span class="kt">int</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">}</span> <span class="c1">// 대괄호 안에 길이를 넣지 않는 것을 주의
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">var</span> <span class="nx">slice2</span> <span class="p">=</span> <span class="p">[]</span><span class="kt">int</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="p">:</span><span class="mi">3</span><span class="p">}</span> <span class="c1">// [1 0 0 0 0 2 0 0 0 0 3]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">array</span> <span class="p">=</span> <span class="p">[</span><span class="o">...</span><span class="p">]</span><span class="kt">int</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">}</span> <span class="c1">// 배열 선언
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">var</span> <span class="nx">slice</span> <span class="p">=</span> <span class="p">[]</span><span class="kt">int</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">}</span> <span class="c1">// 슬라이스 선언
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="make를-이용한-초기화">make()를 이용한 초기화</h4>
+<p>내장함수인 <code>make()</code>를 사용하여 초기화 할 수 있다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">slice</span> <span class="p">=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">int</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="c1">// 3개의 길이를 갖는 int 슬라이스
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 결과
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">[</span><span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span><span class="p">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="12-슬라이스-요소-접근">1.2 슬라이스 요소 접근</h3>
+<p>슬라이스 요소에 접근하는 방법은 배열과 동일하다. 대괄호 사이에 인덱스를 써서 요소에 접근한다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">slice</span> <span class="p">=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">int</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nx">slice</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="p">=</span> <span class="mi">5</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="13-슬라이스-순회-방법">1.3 슬라이스 순회 방법</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">slice</span> <span class="p">=</span> <span class="p">[]</span><span class="kt">int</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// for loop
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="nx">slice</span><span class="p">);</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// for range
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">for</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">v</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">slice</span> <span class="p">{}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="14-슬라이스-요소-추가---append">1.4 슬라이스 요소 추가 - <code>append()</code></h3>
+<p><code>append()</code>는 첫 번째 인수로 들어온 슬라이스에 <strong>요소가 추가된 새로운 슬라이스를 반환</strong>한다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">slice</span> <span class="p">=</span> <span class="p">[]</span><span class="kt">int</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nx">slice</span> <span class="o">:=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">slice</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>하나 이상 값도 추가가 가능하다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">slice</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">slice</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="2-슬라이스의-동작-원리">2. 슬라이스의 동작 원리</h2>
+<p>슬라이스는 내장 타입으로 내부 구현이 감추어져있지만 <code>reflect</code> 패키지의 <code>SliceHeader 구조체</code>를 사용해 내부 구현을 볼 수 있다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">type</span> <span class="nx">SliceHeader</span> <span class="kd">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">Data</span> <span class="kt">uintptr</span>	<span class="c1">// 실제 배열을 가리키는 포인터
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">Len</span>  <span class="kt">int</span>		<span class="c1">// 요소 개수
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">Cap</span>  <span class="kt">int</span>		<span class="c1">// 실제 배열의 길이0
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><figure><img src="/categories/images/tucker-go/20220426122621.png#center"
+         alt="[그림]  SliceHeader 구조체" width="500"/><figcaption>
+            <p>[그림]  SliceHeader 구조체</p>
+        </figcaption>
+</figure>
+
+<h3 id="21-make-함수를-사용해서-선언">2.1 Make() 함수를 사용해서 선언</h3>
+<p>make() 함수로 슬라이스를 생성할 때 인수값에 따라 배열길이와 배열의 최대 크기를 지정할 수 있다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">slice</span> <span class="p">=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">int</span> <span class="mi">3</span><span class="p">)</span> <span class="c1">// len:3, cap:3 (요소개수 3, 최대길이 3)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">var</span> <span class="nx">slice2</span> <span class="p">=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">int</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span> <span class="c1">// len:3, cap:5 (요소개수 3, 최대길이 5)
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="22-슬라이스와-배열의-동작-차이">2.2 슬라이스와 배열의 동작 차이</h3>
+<p><code>SliceHeader</code> 구조체에서 <code>Data</code>는 실제 배열을 참조하고 있다. 그렇기 때문에 배열과 동작에서 차이가 있으며 사용법이 비슷하다고 해서 똑같이 사용했을 경우 예기치 못한 버그를 만날 수 있다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="s">&#34;fmt&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">changeArray</span><span class="p">(</span><span class="nx">arr</span> <span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">arr</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="p">=</span> <span class="mi">200</span> <span class="c1">// 서로 다른 메모리 공간
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">changeSlice</span><span class="p">(</span><span class="nx">slice</span> <span class="p">[]</span><span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">slice</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="p">=</span> <span class="mi">200</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">arr</span> <span class="o">:=</span> <span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="kt">int</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">slice</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">int</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nf">changeArray</span><span class="p">(</span><span class="nx">arr</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">changeSlice</span><span class="p">(</span><span class="nx">slice</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;배열 : &#34;</span><span class="p">,</span> <span class="nx">arr</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;슬라이스 : &#34;</span><span class="p">,</span> <span class="nx">slice</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>결과 <br>
+배열 :  [1 2 3 4 5] <br>
+슬라이스 :  [1 2 200 4 5]</p>
+</blockquote>
+<h3 id="23-동작-차이의-원인">2.3 동작 차이의 원인</h3>
+<ul>
+<li>Go 언어에서 대입연산은 값을 복사하는 것이다. 포인터는 포인터의 값이 메모리값 주소가 복사, 구조체는 구조체의 모든 필드 값이 복사된다.</li>
+<li>함수의 매개변수는 값 복사가 발생한다.</li>
+</ul>
+<h4 id="changearrayarr-5int"><code>changeArray(arr [5]int)</code></h4>
+<ul>
+<li>함수의 매개변수 <code>arr</code>은 배열이므로 int 5개짜리 배열의 값이 복사되어 <code>main()</code> 함수의 <code>arr</code>와는 별개의 인스턴스가 된다. (총 8byte * 5= 40 byte)</li>
+</ul>
+<h4 id="changesliceslice-int"><code>changeSlice(slice []int)</code></h4>
+<ul>
+<li>함수의 매개변수 <code>slice []int</code>는 실제 배열을 가리키는 포인터, len, cap 세 개의 필드로 구성된 구조체이다. 구조체의 값이 그대로 복사되므로 실제 배열을 가리키는 포인터의 메모리 주소도 함께 복사되어 사용된다. (8byte * 3 = 24 byte)</li>
+</ul>
+<h3 id="24-append를-사용할-때-발생할-수-있는-예기치-못한-문제---1">2.4 append()를 사용할 때 발생할 수 있는 예기치 못한 문제 - 1</h3>
+<p><strong>빈 공간이 충분할 때</strong></p>
+<p><code>append()</code> 함수가 호출되면 먼저 슬라이스에 값을 추가할 수 있는 빈공간이 있는지 확인한다. 남은공간은 실제 배열 길이 cap에서 슬라이스 요소개수 len을 뺀 값을 의미한다.</p>
+<blockquote>
+<p><strong>남은공간 = cap - len</strong></p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="s">&#34;fmt&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">slice1</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">int</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>  <span class="c1">// 1) 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">slice2</span> <span class="o">:=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">slice1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span> <span class="c1">// 2)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;slice1 : &#34;</span><span class="p">,</span> <span class="nx">slice1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nx">slice1</span><span class="p">),</span> <span class="nb">cap</span><span class="p">(</span><span class="nx">slice1</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;slice2 : &#34;</span><span class="p">,</span> <span class="nx">slice2</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nx">slice2</span><span class="p">),</span> <span class="nb">cap</span><span class="p">(</span><span class="nx">slice2</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">slice1</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="p">=</span> <span class="mi">100</span> <span class="c1">// 3)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;After change second element&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;slice1 : &#34;</span><span class="p">,</span> <span class="nx">slice1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nx">slice1</span><span class="p">),</span> <span class="nb">cap</span><span class="p">(</span><span class="nx">slice1</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;slice2 : &#34;</span><span class="p">,</span> <span class="nx">slice2</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nx">slice2</span><span class="p">),</span> <span class="nb">cap</span><span class="p">(</span><span class="nx">slice2</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">slice1</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">slice1</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span> <span class="c1">// 4)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;After change second element&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;slice1 : &#34;</span><span class="p">,</span> <span class="nx">slice1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nx">slice1</span><span class="p">),</span> <span class="nb">cap</span><span class="p">(</span><span class="nx">slice1</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;slice2 : &#34;</span><span class="p">,</span> <span class="nx">slice2</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nx">slice2</span><span class="p">),</span> <span class="nb">cap</span><span class="p">(</span><span class="nx">slice2</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>결과 <br>
+slice1 :  [0 0 0] 3 5 <br>
+slice2 :  [0 0 0 4 5] 5 5 <br>
+After change second element <br>
+slice1 :  [0 100 0] 3 5 <br>
+slice2 :  [0 100 0 4 5] 5 5 <br>
+After change second element <br>
+slice1 :  [0 100 0 500] 4 5 <br>
+slice2 :  [0 100 0 500 5] 5 5</p>
+</blockquote>
+<ul>
+<li><code>1)</code> 요소개수 3, 최대길이 5의 슬라이스 구조체가 생성된다. 이때 남은 길이는 5-3 = 2개이다.</li>
+<li><code>2)</code> append() 함수가 호출되면 slice1의 배열에 빈공간이 있는지 확인한다. 두 개의 빈공간이 있으므로 4, 5를 추가할 수 있다.
+<ul>
+<li><code>append()는</code> 빈 공간에 값을 추가하고 요소 값이 2개 증가 된 슬라이스 구조체 (slice2)를 반환한다.</li>
+<li>같은 구조체 값이 복사되었으므로 slice1과 slice2가 참조하는 배열의 주소값은 같다.</li>
+</ul>
+</li>
+<li><code>3)</code> 같은 배열 주소를 참조하므로 변경된 값이 동일하게 적용되었다.</li>
+<li><code>4)</code> append() 함수를 통해 slice1에 빈공간이 있는지 확인하고 slice1[len] 자리에 500을 쓰고 len 값을 1 증가 시킨다.</li>
+</ul>
+<h3 id="25-append를-사용할-때-발생할-수-있는-예기치-못한-문제---2">2.5 append()를 사용할 때 발생할 수 있는 예기치 못한 문제 - 2</h3>
+<p><strong>빈 공간이 충분하지 않을 때</strong></p>
+<ol>
+<li>append() 함수 실행시 <strong>빈 공간이 충분하지 않으면 더 큰 새 배열을 생성</strong> 한다. (일반적으로 두배 크기로 마련한다.)</li>
+<li>그 다음 기존의 배열의 모든 요소를 새로운 배열에 복사한다.</li>
+<li>cap은 새로운 배열의 길, len은 기존 길이에 추구한 요소 개수만큼 더한 값이 된다. 포인터는 새로 생성한 배열을 가리키는 슬라이스 구조를 갖는다.</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="s">&#34;fmt&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">slice1</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">int</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">}</span> <span class="c1">// 1)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">slice2</span> <span class="o">:=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">slice1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span> <span class="c1">// 2)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;slice1 : &#34;</span><span class="p">,</span> <span class="nx">slice1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nx">slice1</span><span class="p">),</span> <span class="nb">cap</span><span class="p">(</span><span class="nx">slice1</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;slice2 : &#34;</span><span class="p">,</span> <span class="nx">slice2</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nx">slice2</span><span class="p">),</span> <span class="nb">cap</span><span class="p">(</span><span class="nx">slice2</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">slice1</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="p">=</span> <span class="mi">100</span> <span class="c1">// 3)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;After change second element&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;slice1 : &#34;</span><span class="p">,</span> <span class="nx">slice1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nx">slice1</span><span class="p">),</span> <span class="nb">cap</span><span class="p">(</span><span class="nx">slice1</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;slice2 : &#34;</span><span class="p">,</span> <span class="nx">slice2</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nx">slice2</span><span class="p">),</span> <span class="nb">cap</span><span class="p">(</span><span class="nx">slice2</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">slice1</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">slice1</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span> <span class="c1">// 4)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;After change second element&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;slice1 : &#34;</span><span class="p">,</span> <span class="nx">slice1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nx">slice1</span><span class="p">),</span> <span class="nb">cap</span><span class="p">(</span><span class="nx">slice1</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;slice2 : &#34;</span><span class="p">,</span> <span class="nx">slice2</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nx">slice2</span><span class="p">),</span> <span class="nb">cap</span><span class="p">(</span><span class="nx">slice2</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>결과 <br>
+slice1 :  [1 2 3] 3 3 <br>
+slice2 :  [1 2 3 4 5] 5 6 <br>
+After change second element <br>
+slice1 :  [1 100 3] 3 3 <br>
+slice2 :  [1 2 3 4 5] 5 6 <br>
+After change second element <br>
+slice1 :  [1 100 3 500] 4 6 <br>
+slice2 :  [1 2 3 4 5] 5 6</p>
+</blockquote>
+<ul>
+<li><code>1)</code> 1,2,3 len:3 cap:3인 슬라이스가 생성</li>
+<li><code>2)</code> append() 함수가 호출 되었을 때 4,5를 추가할 빈공간이 없으므로 새료운 배열을 생성하고 4,5를 추가 후 len:5, cap:6을 갖는 새로운 슬라이스를 반환한다.</li>
+<li><code>3)</code>, <code>4)</code> slice2의 경우 capacity가 늘어난 새로운 배열을 참조하므로 slice1만 변경된다.</li>
+</ul>
+<h4 id="정리">정리</h4>
+<ul>
+<li>append()는 슬라이스가 가리키고 있는 배열의 capacity가 충분하면 값을 추가하고 그 배열을 참조값을 갖는 슬라이스 구조체를 리턴한다.</li>
+<li>capacity가 충분하지 않으면 더 큰 배열을 생성하고 생성된 새로운 배열을 참조하는 슬라이스 구조체를 리턴한다.</li>
+</ul>
+<h2 id="3-슬라이싱-slicing">3. 슬라이싱 <code>slicing</code></h2>
+<ul>
+<li>슬라이싱은 배열의 일부를 집어내는 기능이다.</li>
+<li>슬라이싱하면 그 결과로 배열 일부를 가리키는 슬라이스를 반환한다. 새로운 배열이 만들어지는게 아니라 <strong>배열의 일부를 포인터로 가리키는 슬라이스를 반환</strong>하게 된다.</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">array</span><span class="p">[</span><span class="nx">startIndex</span><span class="p">:</span><span class="nx">endIndex</span><span class="p">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><figure><img src="/categories/images/tucker-go/IMG_729788D09D55-1.jpeg#center" width="500"/>
+</figure>
+
+<h3 id="31-슬라이싱으로-배열-일부를-가르키는-슬라이스-만들기">3.1 슬라이싱으로 배열 일부를 가르키는 슬라이스 만들기</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="s">&#34;fmt&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">arr</span> <span class="o">:=</span> <span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="kt">int</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">slice</span> <span class="o">:=</span> <span class="nx">arr</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span> <span class="c1">// 1)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;array : &#34;</span><span class="p">,</span> <span class="nx">arr</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;slice : &#34;</span><span class="p">,</span> <span class="nx">slice</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nx">slice</span><span class="p">),</span> <span class="nb">cap</span><span class="p">(</span><span class="nx">slice</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">arr</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="p">=</span> <span class="mi">100</span> <span class="c1">// 2)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;After change second element&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;array : &#34;</span><span class="p">,</span> <span class="nx">arr</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;slice : &#34;</span><span class="p">,</span> <span class="nx">slice</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nx">slice</span><span class="p">),</span> <span class="nb">cap</span><span class="p">(</span><span class="nx">slice</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">slice</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">slice</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span> <span class="c1">// 3)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;After append 500&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;array : &#34;</span><span class="p">,</span> <span class="nx">arr</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;slice : &#34;</span><span class="p">,</span> <span class="nx">slice</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nx">slice</span><span class="p">),</span> <span class="nb">cap</span><span class="p">(</span><span class="nx">slice</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>결과 <br>
+array :  [1 2 3 4 5] <br>
+slice :  [2] 1 4 <br>
+After change second element <br>
+array :  [1 100 3 4 5] <br>
+slice :  [100] 1 4 <br>
+After append 500 <br>
+array :  [1 100 500 4 5] <br>
+slice :  [100 500] 2 4</p>
+</blockquote>
+<ul>
+<li><code>1)</code> array 배열의 시작 인덱스 1 끝 인덱스 이전 인덱스 범위의만 집어낸다. (len:1, capacity:4)</li>
+<li><code>2)</code> slice가 array의 두번째 값을 가리키기 때문에 array의 값이 바뀌면 slice값도 바뀐다.</li>
+<li><code>3)</code> slice의 capacity가 4이므로 새로운 배열을 만들지 않고 array의 인덱스 2의 값을 변경하게 된다.</li>
+</ul>
+<h3 id="32-슬라이스를-슬라이싱-하기">3.2 슬라이스를 슬라이싱 하기</h3>
+<p>슬라이싱 기능은 배열 뿐만 아니라 슬라이스 일부를 집어낼 때도 사용할 수 있다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">arr</span> <span class="o">:=</span> <span class="p">[</span><span class="mi">100</span><span class="p">]</span><span class="kt">int</span><span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">99</span><span class="p">:</span> <span class="mi">100</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">slice1</span> <span class="o">:=</span> <span class="nx">arr</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">10</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">slice2</span> <span class="o">:=</span> <span class="nx">slice1</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">99</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">slice1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">slice2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>결과 <br>
+[1 2 0 0 0 0 0 0 0] <br>
+[0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 100]</p>
+</blockquote>
+<h4 id="처음부터-슬라이싱">처음부터 슬라이싱</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">slice1</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">int</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nx">slice2</span> <span class="o">:=</span> <span class="nx">slice</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 생략 가능
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">slice2</span> <span class="o">:=</span> <span class="nx">slice</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="끝까지-슬라이싱">끝까지 슬라이싱</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">slice1</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">int</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nx">slice2</span> <span class="o">:=</span> <span class="nx">slice1</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="nb">len</span><span class="p">(</span><span class="nx">slice1</span><span class="p">)]</span> <span class="c1">// [3, 4, 5]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 생략 가능
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">slice2</span> <span class="o">:=</span> <span class="nx">slice1</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span> <span class="c1">// [3, 4, 5]
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="전체-슬라이싱">전체 슬라이싱</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">array</span> <span class="o">:=</span> <span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="kt">int</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nx">slice</span> <span class="o">:=</span> <span class="nx">array</span><span class="p">[:]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="인덱스-3개로-슬라이싱하여-cap-크기를-조절">인덱스 3개로 슬라이싱하여 cap 크기를 조절</h4>
+<ul>
+<li>인덱스를 2개만 사용할 경우 cap은 <code>배열의 전체 길이 - 시작인덱스</code>를 뺀 값이 된다.</li>
+<li>인덱스 3개를 사용하면 cap 값을 조절할 수 있다.</li>
+</ul>
+<blockquote>
+<p>slice[시작인덱스 : 끝인덱스 : 최대인덱스]</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">slice1</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">int</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nx">slice2</span> <span class="o">:=</span> <span class="nx">slice1</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="4-유용한-슬라이싱-기능-활용">4. 유용한 슬라이싱 기능 활용</h2>
+<h3 id="41-슬라이스-복제">4.1 슬라이스 복제</h3>
+<ul>
+<li>슬라이스를 그대로 복사해서 새로운 슬라이스를 만들면 두 슬라이스가 서로 영향을 주지 않는다.</li>
+<li>슬라이스를 복제하는 방법은 여러가지 이며 성능상 차이는 없기 때문에 편한 방법을 이용한다.</li>
+</ul>
+<h4 id="반복문을-이용한-값-복제">반복문을 이용한 값 복제</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">slice1</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">int</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">slice2</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">int</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nx">slice1</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">v</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">slice1</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">slice2</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="p">=</span> <span class="nx">v</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">slice2</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="p">=</span> <span class="mi">100</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;slice1 : &#34;</span><span class="p">,</span> <span class="nx">slice1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;slice2 : &#34;</span><span class="p">,</span> <span class="nx">slice2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="append-함수를-이용한-값-복제">append() 함수를 이용한 값 복제</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">slice1</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">int</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nx">slice2</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">int</span><span class="p">{},</span> <span class="nx">slice1</span><span class="o">...</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="copy-함수를-이용한-값-복제">copy() 함수를 이용한 값 복제</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">slice1</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">int</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nx">slice2</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">int</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nx">slice1</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">copy</span><span class="p">(</span><span class="nx">slice1</span><span class="p">,</span> <span class="nx">slice2</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="42-요소-삭제하기">4.2 요소 삭제하기</h3>
+<p>슬라이스 중간의 요소를 삭제하는 방법이다.</p>
+<ol>
+<li>중간에 위치한 삭제 요소 이후의 값을 앞당겨서 삭제된 요소를 채운다.</li>
+<li>마지막 값을 지워준다.</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="s">&#34;fmt&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">slice1</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">int</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">idx</span> <span class="o">:=</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="nx">idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="nx">slice1</span><span class="p">);</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">slice1</span><span class="p">[</span><span class="nx">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="p">=</span> <span class="nx">slice1</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">slice1</span> <span class="p">=</span> <span class="nx">slice1</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="nx">slice1</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">slice1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="append-함수-이용">append() 함수 이용</h4>
+<ul>
+<li>처음 요소 부터 삭제할 요소의 이전 요소 슬라이스와 삭제할 요소 이후 부터 끝까지 슬라이싱 된 슬라이스를 append()한다.</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">slice1</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">slice1</span><span class="p">[:</span><span class="nx">idx</span><span class="p">],</span> <span class="nx">slice1</span><span class="p">[</span><span class="nx">idx</span><span class="o">+</span><span class="mi">1</span><span class="p">:]</span><span class="o">...</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="43-요소-추가">4.3 요소 추가</h3>
+<p>슬라이스 중간에 요소를 추가한다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="s">&#34;fmt&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">slice</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">int</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">idx</span> <span class="o">:=</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">slice</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">slice</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="c1">// 1. 맨 뒤에 요소 추가
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// 2. 맨 뒤의 인덱스부터 삽입하려는 위치까지 한 칸씩 뒤로 밀어준다.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="nb">len</span><span class="p">(</span><span class="nx">slice</span><span class="p">)</span> <span class="o">-</span> <span class="mi">2</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&gt;=</span> <span class="nx">idx</span><span class="p">;</span> <span class="nx">i</span><span class="o">--</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">slice</span><span class="p">[</span><span class="nx">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="p">=</span> <span class="nx">slice</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// 3. 값 변경
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">slice</span><span class="p">[</span><span class="nx">idx</span><span class="p">]</span> <span class="p">=</span> <span class="mi">100</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">slice</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol>
+<li>슬라이스 맨 뒤에 요소를 추가한다.</li>
+<li>맨 뒤값부터 삽입하려는 위치까지 한 칸씩 뒤로 밀어준다.</li>
+<li>삽입하는 위치의 값을 바꿔준다.</li>
+</ol>
+<h4 id="append-함수로-코드-개선">append() 함수로 코드 개선</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">slice</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">slice</span><span class="p">[:</span><span class="nx">idx</span><span class="p">],</span> <span class="nb">append</span><span class="p">([]</span><span class="kt">int</span><span class="p">{</span><span class="mi">100</span><span class="p">},</span> <span class="nx">slice</span><span class="p">[</span><span class="nx">idx</span><span class="p">:]</span><span class="o">...</span><span class="p">)</span><span class="o">...</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="불필요한-메모리-사용이-없도록-코드-개선">불필요한 메모리 사용이 없도록 코드 개선</h4>
+<ul>
+<li>위에서 append() 구문으로 생성한 [100, 3, 4, 5, 6] 슬라이스는 임시 버퍼 슬라이스 이다.</li>
+<li>연산을 위해 임시로 생성되었으며 나중에 사라지기는 하나 불필요한 메모리 자원이 사용되었다.</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">slice</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">slice</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="c1">// 1. 맨 뒤에 요소 추가
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nb">copy</span><span class="p">(</span><span class="nx">slice</span><span class="p">[</span><span class="nx">idx</span><span class="o">+</span><span class="mi">1</span><span class="p">:],</span> <span class="nx">slice</span><span class="p">[</span><span class="nx">idx</span><span class="p">:])</span> <span class="c1">// 2. 하나씩 뒤로 복사
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="5-슬라이스-정렬">5 슬라이스 정렬</h2>
+<h3 id="51-int-슬라이스-정렬">5.1 int 슬라이스 정렬</h3>
+<ul>
+<li><code>sort</code> 패키지의 <code>Ints()</code> 함수를 이용하여 정렬</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;fmt&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;sort&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">slice</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">int</span><span class="p">{</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">}</span> <span class="c1">// 1. 정렬되지 않은 슬라이스
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">sort</span><span class="p">.</span><span class="nf">Ints</span><span class="p">(</span><span class="nx">slice</span><span class="p">)</span> <span class="c1">// 2. 정렬
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">slice</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="52-구조체-슬라이스-정렬">5.2 구조체 슬라이스 정렬</h3>
+<ul>
+<li><code>Sort()</code> 함수를 이용하기 위해서는 <code>Len()</code>, <code>Less()</code>, <code>Swap()</code> 메서드를 구현해야 한다.</li>
+<li>이를 이용하면 우리가 정의한 구조체도 정렬을 할 수 있다.
+<ul>
+<li><a href="https://pkg.go.dev/sort#Sort" target="_blank" rel="noopener noreffer">https://pkg.go.dev/sort#Sort</a></li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;fmt&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;sort&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">type</span> <span class="nx">Student</span> <span class="kd">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">Name</span> <span class="kt">string</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">Age</span>  <span class="kt">int</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">type</span> <span class="nx">Students</span> <span class="p">[]</span><span class="nx">Student</span> <span class="c1">// 1)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 2) 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">func</span> <span class="p">(</span><span class="nx">s</span> <span class="nx">Students</span><span class="p">)</span> <span class="nf">Len</span><span class="p">()</span> <span class="kt">int</span>           <span class="p">{</span> <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="nx">s</span><span class="p">)</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">s</span> <span class="nx">Students</span><span class="p">)</span> <span class="nf">Less</span><span class="p">(</span><span class="nx">i</span><span class="p">,</span> <span class="nx">j</span> <span class="kt">int</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">s</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">Age</span> <span class="p">&lt;</span> <span class="nx">s</span><span class="p">[</span><span class="nx">j</span><span class="p">].</span><span class="nx">Age</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">s</span> <span class="nx">Students</span><span class="p">)</span> <span class="nf">Swap</span><span class="p">(</span><span class="nx">i</span><span class="p">,</span> <span class="nx">j</span> <span class="kt">int</span><span class="p">)</span>      <span class="p">{</span> <span class="nx">s</span><span class="p">[</span><span class="nx">i</span><span class="p">],</span> <span class="nx">s</span><span class="p">[</span><span class="nx">j</span><span class="p">]</span> <span class="p">=</span> <span class="nx">s</span><span class="p">[</span><span class="nx">j</span><span class="p">],</span> <span class="nx">s</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">s</span> <span class="o">:=</span> <span class="p">[]</span><span class="nx">Student</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="p">{</span><span class="s">&#34;화랑&#34;</span><span class="p">,</span> <span class="mi">31</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">		<span class="p">{</span><span class="s">&#34;백두산&#34;</span><span class="p">,</span> <span class="mi">52</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">		<span class="p">{</span><span class="s">&#34;류&#34;</span><span class="p">,</span> <span class="mi">42</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">		<span class="p">{</span><span class="s">&#34;켄&#34;</span><span class="p">,</span> <span class="mi">38</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">		<span class="p">{</span><span class="s">&#34;송하나&#34;</span><span class="p">,</span> <span class="mi">18</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">sort</span><span class="p">.</span><span class="nf">Sort</span><span class="p">(</span><span class="nf">Students</span><span class="p">(</span><span class="nx">s</span><span class="p">))</span> <span class="c1">// 3)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">s</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>결과 <br>
+[{송하나 18} {화랑 31} {켄 38} {류 42} {백두산 52}]</p>
+</blockquote>
+<ul>
+<li><code>1)</code> []Student 별칭 타입 Students 생성</li>
+<li><code>2)</code> Len(), Less(), Swap() 메서드 구현하여 <code>sort.Interface</code>를 사용할 수 있게 해준다.</li>
+<li><code>3)</code> []Student를 Students 타입으로 변환한 뒤 <code>sort.Sort()</code> 함수를 호출
+<ul>
+<li>Students는 이미 sort.Interface 메서드를 포함하고 있기 때문에 sort.Sort() 인수로 사용할 수 있다.</li>
+</ul>
+</li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2022-06-29&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/7ea1a4fafc9a5b2548567da3be96cbb9fb4ff5d8" target="_blank" title="commit by riley(riley0422@icloud.com) 7ea1a4fafc9a5b2548567da3be96cbb9fb4ff5d8: 20220629002051">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>7ea1a4f</a></span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/chapter18-slice/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://riley817.github.io/chapter18-slice/" data-title="[Tucker의 Go 프로그래밍] 18. 슬라이스" data-hashtags="go,golang"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://riley817.github.io/chapter18-slice/" data-hashtag="go"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://riley817.github.io/chapter18-slice/" data-title="[Tucker의 Go 프로그래밍] 18. 슬라이스"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://riley817.github.io/chapter18-slice/" data-title="[Tucker의 Go 프로그래밍] 18. 슬라이스"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.0.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://riley817.github.io/chapter18-slice/" data-title="[Tucker의 Go 프로그래밍] 18. 슬라이스"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/go/">go</a>,&nbsp;<a href="/tags/golang/">golang</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/chapter2-1-docker-engine/" class="prev" rel="prev" title="[시작하세요! 도커/쿠버네티스] Chapter 2. 도커 엔진"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>[시작하세요! 도커/쿠버네티스] Chapter 2. 도커 엔진</a>
+            <a href="/chapter19-interface/" class="next" rel="next" title="[Tucker의 Go 프로그래밍] 19. Go 인터페이스">[Tucker의 Go 프로그래밍] 19. Go 인터페이스<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.101.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Riley</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/valine@1.4.18/dist/Valine.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.1/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{"valine":{"appId":"QGzwQXOqs5JOhN4RGPOkR2mR-MdYXbMMI","appKey":"WBmoGyJtbqUswvfLh6L8iEBr","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@14.0.0/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"en","pageSize":10,"placeholder":"Your comment ...","recordIP":true,"serverURLs":"https://leancloud.hugoloveit.com","visitor":true}},"search":{"algoliaAppID":"","algoliaIndex":"","algoliaSearchKey":"","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
