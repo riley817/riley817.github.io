@@ -1,0 +1,19 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Elasticsearch 검색 엔진 구축 강의 정리 - Category - Riley&#39;s DevLog</title>
+        <link>https://riley817.github.io/categories/elasticsearch-%EA%B2%80%EC%83%89-%EC%97%94%EC%A7%84-%EA%B5%AC%EC%B6%95-%EA%B0%95%EC%9D%98-%EC%A0%95%EB%A6%AC/</link>
+        <description>Elasticsearch 검색 엔진 구축 강의 정리 - Category - Riley&#39;s DevLog</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
+            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Thu, 18 Oct 2018 14:10:52 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/categories/elasticsearch-%EA%B2%80%EC%83%89-%EC%97%94%EC%A7%84-%EA%B5%AC%EC%B6%95-%EA%B0%95%EC%9D%98-%EC%A0%95%EB%A6%AC/" rel="self" type="application/rss+xml" /><item>
+    <title>Elasticsearch 시작하기</title>
+    <link>https://riley817.github.io/elasticsearch-lecture0/</link>
+    <pubDate>Thu, 18 Oct 2018 14:10:52 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/elasticsearch-lecture0/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/posts/images/elastic/9SyGqYLhMmYxEJyNUf.png" referrerpolicy="no-referrer">
+            </div>1. Elasticsearch Elasticsearch 는 Apache Lucene 기반의 Full-Text 검색엔진 이며 분석엔진 이다. 고가용성(High Availability) 의 확장 가능한 오픈 소스이다. HTTP 웹 인터페이스와 스키마에서 자유로운 JSON 문서로 제공된다. 1.1 검색 엔진으로서의 Elasticsearch Elasticsearch 는 루씬 기반의 대중적인 엔터프라이즈 검색엔진으로, Apach 2.0 License 에 의거 오픈 소스로 출시 되었다. 또한 대부분의 루씬이 제공하는 기능들을 Eleasticsearch 에서도 제공한다. HTTP Web Interface와 Schema에 자유로운 JSON 형태의 도규먼트를 지원하는 준 실시간 분산형 검색엔진이다.
+Apache Lucene 정보검색(Information Retrieval, IR) 소프트웨어 검색 라이브러리 Apahce Software 재단의 검색엔진 상위 프로젝트 자바 언어로 개발되어 있다.]]></description>
+</item>
+</channel>
+</rss>

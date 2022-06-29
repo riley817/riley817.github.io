@@ -4,19 +4,19 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>Elasticsearch 강의 정리 - Riley&#39;s DevLog</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:title" content="Elasticsearch 강의 정리" />
-<meta property="og:description" content="Elasticsearch Elasticsearch 는 Apache Lucene 기반의 Full-Text 검색엔진 이며 분석엔진 이다. 고가용성(High Availability) 의 확장 가능한 오픈 소스이다. HTTP 웹 인터페이스와 스키마에서 자유로운 JSON 문서로 제공된다. 검색 엔진으로서의 Elasticsearch Elasticsearch 는 루씬 기반의 대중적인 엔터프라이즈 검색엔진으로, Apach 2.0 License 에 의거 오픈 소스로 출시 되었다. 또한 대부분의 루씬이 제공하는 기능들을 Eleasticsearch 에서도 제공한다.
+        <title>Elasticsearch 시작하기 - Riley&#39;s DevLog</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:title" content="Elasticsearch 시작하기" />
+<meta property="og:description" content="1. Elasticsearch Elasticsearch 는 Apache Lucene 기반의 Full-Text 검색엔진 이며 분석엔진 이다. 고가용성(High Availability) 의 확장 가능한 오픈 소스이다. HTTP 웹 인터페이스와 스키마에서 자유로운 JSON 문서로 제공된다. 1.1 검색 엔진으로서의 Elasticsearch Elasticsearch 는 루씬 기반의 대중적인 엔터프라이즈 검색엔진으로, Apach 2.0 License 에 의거 오픈 소스로 출시 되었다. 또한 대부분의 루씬이 제공하는 기능들을 Eleasticsearch 에서도 제공한다. HTTP Web Interface와 Schema에 자유로운 JSON 형태의 도규먼트를 지원하는 준 실시간 분산형 검색엔진이다.
 Apache Lucene 정보검색(Information Retrieval, IR) 소프트웨어 검색 라이브러리 Apahce Software 재단의 검색엔진 상위 프로젝트 자바 언어로 개발되어 있다." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://riley817.github.io/elasticsearch-lecture0/" /><meta property="og:image" content="https://riley817.github.io/icon.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2018-10-18T14:10:52+09:00" />
-<meta property="article:modified_time" content="2022-06-29T00:20:54+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
+<meta property="article:modified_time" content="2022-06-30T00:40:56+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://riley817.github.io/icon.png"/>
 
-<meta name="twitter:title" content="Elasticsearch 강의 정리"/>
-<meta name="twitter:description" content="Elasticsearch Elasticsearch 는 Apache Lucene 기반의 Full-Text 검색엔진 이며 분석엔진 이다. 고가용성(High Availability) 의 확장 가능한 오픈 소스이다. HTTP 웹 인터페이스와 스키마에서 자유로운 JSON 문서로 제공된다. 검색 엔진으로서의 Elasticsearch Elasticsearch 는 루씬 기반의 대중적인 엔터프라이즈 검색엔진으로, Apach 2.0 License 에 의거 오픈 소스로 출시 되었다. 또한 대부분의 루씬이 제공하는 기능들을 Eleasticsearch 에서도 제공한다.
+<meta name="twitter:title" content="Elasticsearch 시작하기"/>
+<meta name="twitter:description" content="1. Elasticsearch Elasticsearch 는 Apache Lucene 기반의 Full-Text 검색엔진 이며 분석엔진 이다. 고가용성(High Availability) 의 확장 가능한 오픈 소스이다. HTTP 웹 인터페이스와 스키마에서 자유로운 JSON 문서로 제공된다. 1.1 검색 엔진으로서의 Elasticsearch Elasticsearch 는 루씬 기반의 대중적인 엔터프라이즈 검색엔진으로, Apach 2.0 License 에 의거 오픈 소스로 출시 되었다. 또한 대부분의 루씬이 제공하는 기능들을 Eleasticsearch 에서도 제공한다. HTTP Web Interface와 Schema에 자유로운 JSON 형태의 도규먼트를 지원하는 준 실시간 분산형 검색엔진이다.
 Apache Lucene 정보검색(Information Retrieval, IR) 소프트웨어 검색 라이브러리 Apahce Software 재단의 검색엔진 상위 프로젝트 자바 언어로 개발되어 있다."/>
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
@@ -27,13 +27,13 @@ Apache Lucene 정보검색(Information Retrieval, IR) 소프트웨어 검색 라
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "Elasticsearch 강의 정리",
+        "headline": "Elasticsearch 시작하기",
         "inLanguage": "en",
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/riley817.github.io\/elasticsearch-lecture0\/"
-        },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "elasticsearch","wordcount":  146 ,
-        "url": "https:\/\/riley817.github.io\/elasticsearch-lecture0\/","datePublished": "2018-10-18T14:10:52+09:00","dateModified": "2022-06-29T00:20:54+09:00","publisher": {
+        },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "elasticsearch","wordcount":  299 ,
+        "url": "https:\/\/riley817.github.io\/elasticsearch-lecture0\/","datePublished": "2018-10-18T14:10:52+09:00","dateModified": "2022-06-30T00:40:56+09:00","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/riley817.github.io\/images\/avatar.png"},"author": {
                 "@type": "Person",
@@ -105,52 +105,64 @@ Apache Lucene 정보검색(Information Retrieval, IR) 소프트웨어 검색 라
                 <div class="container"><div class="toc" id="toc-auto">
             <h2 class="toc-title">Contents</h2>
             <div class="toc-content" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Elasticsearch 강의 정리</h1><div class="post-meta">
-            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-category">included in <a href="/categories/elasticsearch-lecture/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>elasticsearch lecture</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2018-10-18">2018-10-18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;146 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;One minute&nbsp;<span id="/elasticsearch-lecture0/" class="leancloud_visitors" data-flag-title="Elasticsearch 강의 정리">
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Elasticsearch 시작하기</h1><h2 class="single-subtitle">Elasticsearch 검색 엔진 구축 강의 정리</h2><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-category">included in <a href="/categories/elasticsearch-%EA%B2%80%EC%83%89-%EC%97%94%EC%A7%84-%EA%B5%AC%EC%B6%95-%EA%B0%95%EC%9D%98-%EC%A0%95%EB%A6%AC/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Elasticsearch 검색 엔진 구축 강의 정리</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2018-10-18">2018-10-18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;299 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;2 minutes&nbsp;<span id="/elasticsearch-lecture0/" class="leancloud_visitors" data-flag-title="Elasticsearch 시작하기">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
                     </span>&nbsp;</div>
-        </div><div class="details toc" id="toc-static"  data-kept="">
+        </div><div class="featured-image"><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/posts/images/elastic/9SyGqYLhMmYxEJyNUf.png"
+        data-srcset="/posts/images/elastic/9SyGqYLhMmYxEJyNUf.png, /posts/images/elastic/9SyGqYLhMmYxEJyNUf.png 1.5x, /posts/images/elastic/9SyGqYLhMmYxEJyNUf.png 2x"
+        data-sizes="auto"
+        alt="/posts/images/elastic/9SyGqYLhMmYxEJyNUf.png"
+        title="/posts/images/elastic/9SyGqYLhMmYxEJyNUf.png" /></div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
                     <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
-    <li><a href="#elasticsearch">Elasticsearch</a>
+    <li><a href="#1-elasticsearch">1. Elasticsearch</a>
       <ul>
-        <li><a href="#검색-엔진으로서의-elasticsearch">검색 엔진으로서의 Elasticsearch</a></li>
-        <li><a href="#apache-lucene">Apache Lucene</a></li>
-        <li><a href="#분석-엔진으로서의-elasticsearch">분석 엔진으로서의 Elasticsearch</a></li>
-        <li><a href="#관련솔루션">관련솔루션</a>
+        <li><a href="#11-검색-엔진으로서의-elasticsearch">1.1 검색 엔진으로서의 Elasticsearch</a>
           <ul>
-            <li><a href="#kibana">Kibana</a></li>
-            <li><a href="#beats">Beats</a></li>
-            <li><a href="#logstash">Logstash</a></li>
+            <li><a href="#apache-lucene">Apache Lucene</a></li>
+          </ul>
+        </li>
+        <li><a href="#12-분석-엔진으로서의-elasticsearch">1.2 분석 엔진으로서의 Elasticsearch</a>
+          <ul>
+            <li><a href="#관련-솔루션">관련 솔루션</a>
+              <ul>
+                <li><a href="#kibana">Kibana</a></li>
+                <li><a href="#beats">Beats</a></li>
+                <li><a href="#logstash">Logstash</a></li>
+              </ul>
+            </li>
           </ul>
         </li>
       </ul>
     </li>
+    <li><a href="#2-elasticsearch의-용어-및-개념-정리">2. Elasticsearch의 용어 및 개념 정리</a>
+      <ul>
+        <li><a href="#document">Document</a></li>
+        <li><a href="#index">Index</a></li>
+        <li><a href="#type">Type</a></li>
+      </ul>
+    </li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><p><img
-        class="lazyload"
-        src="/svg/loading.min.svg"
-        data-src="/categories/images/elastic/9SyGqYLhMmYxEJyNUf.png"
-        data-srcset="/categories/images/elastic/9SyGqYLhMmYxEJyNUf.png, /categories/images/elastic/9SyGqYLhMmYxEJyNUf.png 1.5x, /categories/images/elastic/9SyGqYLhMmYxEJyNUf.png 2x"
-        data-sizes="auto"
-        alt="/categories/images/elastic/9SyGqYLhMmYxEJyNUf.png"
-        title="elasticsearch" /></p>
-<h2 id="elasticsearch">Elasticsearch</h2>
+            </div><div class="content" id="content"><h2 id="1-elasticsearch">1. Elasticsearch</h2>
 <ul>
 <li><code>Elasticsearch</code> 는 <code>Apache Lucene</code> 기반의 Full-Text 검색엔진 이며 분석엔진 이다.</li>
 <li><code>고가용성(High Availability)</code> 의 확장 가능한 <code>오픈 소스</code>이다.</li>
 <li>HTTP 웹 인터페이스와 스키마에서 자유로운 JSON 문서로 제공된다.</li>
 </ul>
-<h3 id="검색-엔진으로서의-elasticsearch">검색 엔진으로서의 Elasticsearch</h3>
-<p>Elasticsearch 는 루씬 기반의 대중적인 엔터프라이즈 검색엔진으로, Apach 2.0 License 에 의거 오픈 소스로 출시 되었다. 또한 <strong>대부분의 루씬이 제공하는 기능들을 Eleasticsearch 에서도 제공</strong>한다.</p>
-<h3 id="apache-lucene">Apache Lucene</h3>
+<h3 id="11-검색-엔진으로서의-elasticsearch">1.1 검색 엔진으로서의 Elasticsearch</h3>
+<p>Elasticsearch 는 루씬 기반의 대중적인 엔터프라이즈 검색엔진으로, Apach 2.0 License 에 의거 오픈 소스로 출시 되었다. 또한 <strong>대부분의 루씬이 제공하는 기능들을 Eleasticsearch 에서도 제공</strong>한다. <code>HTTP Web Interface</code>와 <code>Schema</code>에 자유로운 <strong>JSON</strong> 형태의 도규먼트를 지원하는 준 실시간 분산형 검색엔진이다.</p>
+<h4 id="apache-lucene">Apache Lucene</h4>
 <ul>
 <li><code>정보검색(Information Retrieval, IR)</code> 소프트웨어 검색 라이브러리</li>
 <li>Apahce Software 재단의 검색엔진 상위 프로젝트</li>
@@ -166,42 +178,59 @@ Apache Lucene 정보검색(Information Retrieval, IR) 소프트웨어 검색 라
 </ul>
 </li>
 </ul>
-<h3 id="분석-엔진으로서의-elasticsearch">분석 엔진으로서의 Elasticsearch</h3>
+<h3 id="12-분석-엔진으로서의-elasticsearch">1.2 분석 엔진으로서의 Elasticsearch</h3>
 <p>Elasticsearch 는 검색엔진으로 단독으로 서비스 하지만, 몇 가지 솔루션을 추가하여 분석엔진으로서도 활용이 가능하다.</p>
-<p><img
-        class="lazyload"
-        src="/svg/loading.min.svg"
-        data-src="/categories/images/elastic/beats-platform.png"
-        data-srcset="/categories/images/elastic/beats-platform.png, /categories/images/elastic/beats-platform.png 1.5x, /categories/images/elastic/beats-platform.png 2x"
-        data-sizes="auto"
-        alt="/categories/images/elastic/beats-platform.png"
-        title="image" /></p>
-<h3 id="관련솔루션">관련솔루션</h3>
-<h4 id="kibana">Kibana</h4>
+<h4 id="관련-솔루션">관련 솔루션</h4>
+<figure><img src="/posts/images/elastic/beats-platform.png"/>
+</figure>
+
+<h5 id="kibana">Kibana</h5>
 <ul>
-<li>Elasticsearch 에 존재하는 데이터를 실시간으로 분석 및 시각화.</li>
+<li>Elasticsearch로 수집된 데이터를 통계 및 집계하여 시각화</li>
 </ul>
-<h4 id="beats">Beats</h4>
+<h5 id="beats">Beats</h5>
 <ul>
-<li>데이터 수집기. 서버 혹은 단말에 Agent 형태로 Elasticsearch 나 Logstash 로 데이터를 전달</li>
+<li>데이터 수집기. 서버 혹은 단말에 Agent 형태로 로그나 데이터 원본을 Elasticsearch로 전달</li>
 </ul>
-<h4 id="logstash">Logstash</h4>
+<h5 id="logstash">Logstash</h5>
 <ul>
 <li>직접 로그를 전달하거나 Beats 에서 데이터를 전달받아 파싱 혹은 필터링 하여 Elasticsearch 로 전달</li>
+</ul>
+<h2 id="2-elasticsearch의-용어-및-개념-정리">2. Elasticsearch의 용어 및 개념 정리</h2>
+<h3 id="document">Document</h3>
+<ul>
+<li>도큐먼트는 <code>JSON (Javascript Object Notation)</code> 형태의 Elasticsearch 의 기본 저장단위 이다.</li>
+<li>관계형 데이터 베이스의 <code>Row</code> 와 비슷한 개념으로 볼 수 있다.</li>
+<li>도큐먼트는 데이터에 적재될 때 <code>Document ID</code> 를 갖는다.</li>
+<li><strong>Document ID 는 지정하지 않으면 랜덤하게 생성</strong> 되며, 사용자가 정의한 값으로도 생성 가능하다.</li>
+<li>Document ID 는 데이터를 찾아가는 Metadata 로 볼 수 있다.</li>
+</ul>
+<h3 id="index">Index</h3>
+<ul>
+<li>Index 는 비슷한 형질을 가지는 도큐먼트 간의 집합이다.</li>
+<li>관계형 데이터 베이스의 <code>Database</code> 와 비슷한 개념으로 볼 수 있다.</li>
+<li>여러 도큐멘트들이 하나의 인덱스에 적재된다.</li>
+<li>인덱스 이름은 문서에 대한 인덱싱/검색/갱신/삭제 등을 수행할 때 참조값으로 사용된다.</li>
+<li>인덱스는 사전에 정의되어야 할 데이터 타입이나, 특정한 구조가 필요하지 않다면 최초 데이터가 인입될 때 생성 된다.</li>
+<li>ex) 고객정보, 제품카탈로그, 주문정보 등&hellip;</li>
+</ul>
+<h3 id="type">Type</h3>
+<ul>
+<li>관계형 데이터 베이스의 <code>Table</code> 과 비슷한 개념으로 볼 수 있다.</li>
+<li>타입은 인덱스의 파티션으로 사용 된다.</li>
+<li>하나의 인덱스에 도큐먼트를 저장할때 타입을 분리해서 인덱싱이 가능하다.</li>
 </ul>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 2022-06-29&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/7ea1a4fafc9a5b2548567da3be96cbb9fb4ff5d8" target="_blank" title="commit by riley(riley0422@icloud.com) 7ea1a4fafc9a5b2548567da3be96cbb9fb4ff5d8: 20220629002051">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>7ea1a4f</a></span>
+                <span>Updated on 2022-06-30&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/504fc3012ba09373a1b28204fb76edc1d068b962" target="_blank" title="commit by riley(riley0422@icloud.com) 504fc3012ba09373a1b28204fb76edc1d068b962: 20220630004053">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>504fc30</a></span>
             </div></div>
         <div class="post-info-line">
-            <div class="post-info-md"><span>
-                            <a class="link-to-markdown" href="/elasticsearch-lecture0/index.md" target="_blank">Read Markdown</a>
-                        </span></div>
+            <div class="post-info-md"></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://riley817.github.io/elasticsearch-lecture0/" data-title="Elasticsearch 강의 정리" data-hashtags="elasticsearch"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://riley817.github.io/elasticsearch-lecture0/" data-hashtag="elasticsearch"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://riley817.github.io/elasticsearch-lecture0/" data-title="Elasticsearch 강의 정리"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://riley817.github.io/elasticsearch-lecture0/" data-title="Elasticsearch 강의 정리"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.0.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://riley817.github.io/elasticsearch-lecture0/" data-title="Elasticsearch 강의 정리"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+                <span></span>
             </div>
         </div>
     </div>
@@ -230,5 +259,5 @@ Apache Lucene 정보검색(Information Retrieval, IR) 소프트웨어 검색 라
             </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
                 <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
             </a>
-        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/valine@1.4.18/dist/Valine.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.1/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{"valine":{"appId":"QGzwQXOqs5JOhN4RGPOkR2mR-MdYXbMMI","appKey":"WBmoGyJtbqUswvfLh6L8iEBr","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@14.0.0/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"en","pageSize":10,"placeholder":"Your comment ...","recordIP":true,"serverURLs":"https://leancloud.hugoloveit.com","visitor":true}},"search":{"algoliaAppID":"","algoliaIndex":"","algoliaSearchKey":"","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/valine@1.4.18/dist/Valine.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.1/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{"valine":{"appId":"QGzwQXOqs5JOhN4RGPOkR2mR-MdYXbMMI","appKey":"WBmoGyJtbqUswvfLh6L8iEBr","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@14.0.0/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"en","pageSize":10,"placeholder":"Your comment ...","recordIP":true,"serverURLs":"https://leancloud.hugoloveit.com","visitor":true}},"search":{"algoliaAppID":"","algoliaIndex":"","algoliaSearchKey":"","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
 </html>
