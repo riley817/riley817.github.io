@@ -4,7 +4,18 @@
         <link>https://riley817.github.io/categories/elasticsearch-%EA%B2%80%EC%83%89-%EC%97%94%EC%A7%84-%EA%B5%AC%EC%B6%95-%EA%B0%95%EC%9D%98-%EC%A0%95%EB%A6%AC/</link>
         <description>Elasticsearch 검색 엔진 구축 강의 정리 - Category - Riley&#39;s DevLog</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
-            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Thu, 18 Oct 2018 14:10:52 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/categories/elasticsearch-%EA%B2%80%EC%83%89-%EC%97%94%EC%A7%84-%EA%B5%AC%EC%B6%95-%EA%B0%95%EC%9D%98-%EC%A0%95%EB%A6%AC/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Sat, 20 Oct 2018 19:00:11 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/categories/elasticsearch-%EA%B2%80%EC%83%89-%EC%97%94%EC%A7%84-%EA%B5%AC%EC%B6%95-%EA%B0%95%EC%9D%98-%EC%A0%95%EB%A6%AC/" rel="self" type="application/rss+xml" /><item>
+    <title>Elasticsearch 클러스터 분산구성 시나리오</title>
+    <link>https://riley817.github.io/elasticsearch-lecture1-3/</link>
+    <pubDate>Sat, 20 Oct 2018 19:00:11 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/elasticsearch-lecture1-3/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/posts/images/elastic/9SyGqYLhMmYxEJyNUf.png" referrerpolicy="no-referrer">
+            </div>2. Elasticsearch 클러스터 분산구성 시나리오 2.1 단일 노드에 3개의 샤드로 클러스터 구성하기 blogs라는 인덱스에 3개의 primary 샤드와 1개의 replica 샤드가 운용되도록 할당한다.
+1 2 3 4 5 6 7 curl -X PUT &#34;localhost:9200/blogs&#34; -H &#39;Content-Type: application/json&#39; -d { &#34;settings&#34; : { &#34;number_of_shards&#34; : 3, &#34;number_of_replicas&#34; : 1 } } [그림1] 샤드의 개수는 3이고 레플리카 개수는 1개인 단일 노드 클러스터는 정상적으로 작동되나 하드웨어의 오류가 발생할 경우 데이터 손실의 위험이 있다. 데이터 적재량이 많을 경우 싱글노드가 허용하는 볼륨을 모두 소진할 수도 있어 더이상 적재가 불가능 할 수도 있다.]]></description>
+</item>
+<item>
     <title>Elasticsearch 시작하기</title>
     <link>https://riley817.github.io/elasticsearch-lecture0/</link>
     <pubDate>Thu, 18 Oct 2018 14:10:52 &#43;0900</pubDate>

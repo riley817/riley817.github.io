@@ -119,23 +119,40 @@
 Full-text Search (전체 텍스트 검색) 는 요청한 모든 단어를 문서 또는 데이터베이스에서 모든 단어와 비교하는 포괄적 인 검색 방법이다.</div><div class="post-footer">
         <a href="/elasticsearch-lecture1-4/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/elasticsearch/">elasticsearch</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/elasticsearch-lecture1-3/">1.3 클러스터 분산구성 시나리오</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2018-10-20">2018-10-20</time></span>&nbsp;<span class="post-category">included in <a href="/categories/elasticsearch-lecture/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>elasticsearch lecture</a></span></div><div class="content">단일 노드에 3개의 샤드로 클러스터 구성하기 curl 을 통하여 blogs 라는 인덱스에 3 개의 Primary 샤드와 1개의 Replica 샤드가 운용되도록 할당한다.
-1 2 3 4 5 6 7 curl -X PUT &#34;localhost:9200/blogs&#34; -H &#39;Content-Type: application/json&#39; -d { &#34;settings&#34; : { &#34;number_of_shards&#34; : 3, &#34;number_of_replicas&#34; : 1 } } [그림 1] 샤드의 개수는 3이고 레플리카 개수는 1개인 단일 노드 클러스터는 정상적으로 작동되나, 하드웨어의 오류가 발생할 경우 데이터 손실의 위험이 있다. 데이터 적재량이 많을 경우 싱글노드가 허용하는 볼륨을 모두 소진할 수도 있어 더이상 적재가 불가능 할 수도 있다.</div><div class="post-footer">
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><div class="featured-image-preview">
+            <a href="/elasticsearch-lecture1-3/"><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/posts/images/elastic/9SyGqYLhMmYxEJyNUf.png"
+        data-srcset="/posts/images/elastic/9SyGqYLhMmYxEJyNUf.png, /posts/images/elastic/9SyGqYLhMmYxEJyNUf.png 1.5x, /posts/images/elastic/9SyGqYLhMmYxEJyNUf.png 2x"
+        data-sizes="auto"
+        alt="/posts/images/elastic/9SyGqYLhMmYxEJyNUf.png"
+        title="/posts/images/elastic/9SyGqYLhMmYxEJyNUf.png" /></a>
+        </div><h1 class="single-title" itemprop="name headline">
+        <a href="/elasticsearch-lecture1-3/">Elasticsearch 클러스터 분산구성 시나리오</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2018-10-20">2018-10-20</time></span>&nbsp;<span class="post-category">included in <a href="/categories/elasticsearch-%EA%B2%80%EC%83%89-%EC%97%94%EC%A7%84-%EA%B5%AC%EC%B6%95-%EA%B0%95%EC%9D%98-%EC%A0%95%EB%A6%AC/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Elasticsearch 검색 엔진 구축 강의 정리</a></span></div><div class="content">2. Elasticsearch 클러스터 분산구성 시나리오 2.1 단일 노드에 3개의 샤드로 클러스터 구성하기 blogs라는 인덱스에 3개의 primary 샤드와 1개의 replica 샤드가 운용되도록 할당한다.
+1 2 3 4 5 6 7 curl -X PUT &#34;localhost:9200/blogs&#34; -H &#39;Content-Type: application/json&#39; -d { &#34;settings&#34; : { &#34;number_of_shards&#34; : 3, &#34;number_of_replicas&#34; : 1 } } [그림1] 샤드의 개수는 3이고 레플리카 개수는 1개인 단일 노드 클러스터는 정상적으로 작동되나 하드웨어의 오류가 발생할 경우 데이터 손실의 위험이 있다. 데이터 적재량이 많을 경우 싱글노드가 허용하는 볼륨을 모두 소진할 수도 있어 더이상 적재가 불가능 할 수도 있다.</div><div class="post-footer">
         <a href="/elasticsearch-lecture1-3/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/elasticsearch/">elasticsearch</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/elasticsearch-lecture1-2/">1.2 개념 및 용어 정리 - Shard</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2018-10-20">2018-10-20</time></span>&nbsp;<span class="post-category">included in <a href="/categories/elasticsearch-lecture/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>elasticsearch lecture</a></span></div><div class="content">Shard Shard 란 인덱스의 데이터를 나누는 단위이다. 인덱스는 무한한 양의 데이터가 저장이 가능하다. 그래서 인덱스 데이터가 단일 노드의 하드웨어의 용량을 초과하여 더이상 데이터를 저장할 수 없거나 혹은 CPU, Memory 의 자원 초과로 인덱싱이나 검색의 성능 저하를 발생시킬 수 있다. 이러한 문제를 해결하기 위하여 인덱스를 수 많은 조각으로 나누어 관리한다.
-샤딩을 함으로써 콘텐츠 볼륨의 수평(Horizontal) 분할 및 확장이 가능하다. 관계형 데이터베이스처럼 컬럼별로 나누는 것이 아닌 횡별로 나누어 샤드에 저장. 여러 샤드에 분산 배치하여 병렬화 함으로써 성능 및 처리량을 늘릴 수 있다.</div><div class="post-footer">
-        <a href="/elasticsearch-lecture1-2/">Read More</a><div class="post-tags">
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><div class="featured-image-preview">
+            <a href="/elasticsearch-lecture0/"><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/posts/images/elastic/9SyGqYLhMmYxEJyNUf.png"
+        data-srcset="/posts/images/elastic/9SyGqYLhMmYxEJyNUf.png, /posts/images/elastic/9SyGqYLhMmYxEJyNUf.png 1.5x, /posts/images/elastic/9SyGqYLhMmYxEJyNUf.png 2x"
+        data-sizes="auto"
+        alt="/posts/images/elastic/9SyGqYLhMmYxEJyNUf.png"
+        title="/posts/images/elastic/9SyGqYLhMmYxEJyNUf.png" /></a>
+        </div><h1 class="single-title" itemprop="name headline">
+        <a href="/elasticsearch-lecture0/">Elasticsearch 시작하기</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2018-10-18">2018-10-18</time></span>&nbsp;<span class="post-category">included in <a href="/categories/elasticsearch-%EA%B2%80%EC%83%89-%EC%97%94%EC%A7%84-%EA%B5%AC%EC%B6%95-%EA%B0%95%EC%9D%98-%EC%A0%95%EB%A6%AC/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Elasticsearch 검색 엔진 구축 강의 정리</a></span></div><div class="content">1. Elasticsearch Elasticsearch 는 Apache Lucene 기반의 Full-Text 검색엔진 이며 분석엔진 이다. 고가용성(High Availability) 의 확장 가능한 오픈 소스이다. HTTP 웹 인터페이스와 스키마에서 자유로운 JSON 문서로 제공된다. 1.1 검색 엔진으로서의 Elasticsearch Elasticsearch 는 루씬 기반의 대중적인 엔터프라이즈 검색엔진으로, Apach 2.0 License 에 의거 오픈 소스로 출시 되었다. 또한 대부분의 루씬이 제공하는 기능들을 Eleasticsearch 에서도 제공한다. HTTP Web Interface와 Schema에 자유로운 JSON 형태의 도규먼트를 지원하는 준 실시간 분산형 검색엔진이다.
+Apache Lucene 정보검색(Information Retrieval, IR) 소프트웨어 검색 라이브러리 Apahce Software 재단의 검색엔진 상위 프로젝트 자바 언어로 개발되어 있다.</div><div class="post-footer">
+        <a href="/elasticsearch-lecture0/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/elasticsearch/">elasticsearch</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/elasticsearch-lecture1-1/">1.1 개념 및 용어 정리 - Document, Index, Type, Cluster, Node</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2018-10-20">2018-10-20</time></span>&nbsp;<span class="post-category">included in <a href="/categories/elasticsearch-lecture/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>elasticsearch lecture</a></span></div><div class="content">Document 도큐먼트는 JSON (Javascript Object Notation) 형태의 Elasticsearch 의 기본 저장단위 이다. 관계형 데이터 베이스의 Row 와 비슷한 개념으로 볼 수 있다. 도큐먼트는 데이터에 적재될 때 Document ID 를 갖는다. Document ID 는 지정하지 않으면 랜덤하게 생성 되며, 사용자가 정의한 값으로도 생성 가능하다. Document ID 는 데이터를 찾아가는 Metadata 로 볼 수 있다. Index Index 는 비슷한 형질을 가지는 도큐먼트 간의 집합이다. 관계형 데이터 베이스의 Database 와 비슷한 개념으로 볼 수 있다.</div><div class="post-footer">
-        <a href="/elasticsearch-lecture1-1/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/elasticsearch/">elasticsearch</a></div></div>
+        <a href="/set-gitlab-jenkins/"></a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="0001-01-01">0001-01-01</time></span></div><div class="content">ubuntu@ip-172-31-5-67:~/devops$ ssh-keygen -t rsa -C &ldquo;yeonju.yoon@tysystems.com&rdquo; Generating public/private rsa key pair. Enter file in which to save the key (/home/ubuntu/.ssh/id_rsa): /home/ubuntu/.ssh/id_riley Enter passphrase (empty for no passphrase): Enter same passphrase again: Your identification has been saved in /home/ubuntu/.ssh/iid_riley. Your public key has been saved in /home/ubuntu/.ssh/iid_riley.pub. The key fingerprint is: SHA256:pWN3gazEalsETHSURFQtTIRwGpyZNnjKjIX6dk7jU5k yeonju.yoon@tysystems.com The key&rsquo;s randomart image is: +&mdash;[RSA 2048]&mdash;-+ | . **XBB+. | | . o XBo.o.. | | . = +.</div><div class="post-footer">
+        <a href="/set-gitlab-jenkins/">Read More</a></div>
 </article><ul class="pagination"><li class="page-item ">
                     <span class="page-link">
                         <a href="/">1</a>
@@ -153,10 +170,6 @@ Full-text Search (전체 텍스트 검색) 는 요청한 모든 단어를 문서
                 </li><li class="page-item active">
                     <span class="page-link">
                         <a href="/page/17/">17</a>
-                    </span>
-                </li><li class="page-item ">
-                    <span class="page-link">
-                        <a href="/page/18/">18</a>
                     </span>
                 </li></ul></div></div>
             </main><footer class="footer">
