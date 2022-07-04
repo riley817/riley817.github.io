@@ -10,7 +10,7 @@ Apache Lucene 정보검색(Information Retrieval, IR) 소프트웨어 검색 라
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://riley817.github.io/elasticsearch-lecture0/" /><meta property="og:image" content="https://riley817.github.io/icon.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2018-10-18T14:10:52+09:00" />
-<meta property="article:modified_time" content="2022-06-30T00:40:56+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
+<meta property="article:modified_time" content="2022-07-04T23:52:52+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://riley817.github.io/icon.png"/>
@@ -32,8 +32,8 @@ Apache Lucene 정보검색(Information Retrieval, IR) 소프트웨어 검색 라
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/riley817.github.io\/elasticsearch-lecture0\/"
-        },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "elasticsearch","wordcount":  299 ,
-        "url": "https:\/\/riley817.github.io\/elasticsearch-lecture0\/","datePublished": "2018-10-18T14:10:52+09:00","dateModified": "2022-06-30T00:40:56+09:00","publisher": {
+        },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "elasticsearch","wordcount":  425 ,
+        "url": "https:\/\/riley817.github.io\/elasticsearch-lecture0\/","datePublished": "2018-10-18T14:10:52+09:00","dateModified": "2022-07-04T23:52:52+09:00","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/riley817.github.io\/images\/avatar.png"},"author": {
                 "@type": "Person",
@@ -107,7 +107,7 @@ Apache Lucene 정보검색(Information Retrieval, IR) 소프트웨어 검색 라
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Elasticsearch 시작하기</h1><h2 class="single-subtitle">Elasticsearch 검색 엔진 구축 강의 정리</h2><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-category">included in <a href="/categories/elasticsearch-%EA%B2%80%EC%83%89-%EC%97%94%EC%A7%84-%EA%B5%AC%EC%B6%95-%EA%B0%95%EC%9D%98-%EC%A0%95%EB%A6%AC/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Elasticsearch 검색 엔진 구축 강의 정리</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2018-10-18">2018-10-18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;299 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2018-10-18">2018-10-18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;425 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;2 minutes&nbsp;<span id="/elasticsearch-lecture0/" class="leancloud_visitors" data-flag-title="Elasticsearch 시작하기">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
                     </span>&nbsp;</div>
@@ -152,6 +152,8 @@ Apache Lucene 정보검색(Information Retrieval, IR) 소프트웨어 검색 라
         <li><a href="#type">Type</a></li>
       </ul>
     </li>
+    <li><a href="#cluster">Cluster</a></li>
+    <li><a href="#node">Node</a></li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><h2 id="1-elasticsearch">1. Elasticsearch</h2>
@@ -220,12 +222,37 @@ Apache Lucene 정보검색(Information Retrieval, IR) 소프트웨어 검색 라
 <li>타입은 인덱스의 파티션으로 사용 된다.</li>
 <li>하나의 인덱스에 도큐먼트를 저장할때 타입을 분리해서 인덱싱이 가능하다.</li>
 </ul>
+<div class="details admonition tip open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw" aria-hidden="true"></i>Note<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">ES 6.0.0 버전 부터는 Multi Type 을 지정이 <code>deprecated</code> 되었으며, 하나의 인덱스에는 단일 타입으로만 지정하도록 권고하고 있다.</div>
+        </div>
+    </div>
+<h2 id="cluster">Cluster</h2>
+<ul>
+<li><strong>Elasticsearch는 클러스터로 구성</strong>되어 있다.</li>
+<li>클러스는 전체 데이터 (모든 노드) 간 통합 인덱싱 및 검색이 가능한 1개 이상의 노드(서버) 의 집합이다.</li>
+<li>사용자는 이 클러스터를 통해 데이터를 저장하고 검색 요청을 할 수 있다.</li>
+<li>클러스터는 고유의 <code>cluster_name</code> 과 <code>cluster_uuid</code> 를 갖는다.</li>
+<li>클러스터 이름은 따로 지정하지 않으면 유니크한 이름으로 생성된다.</li>
+</ul>
+<h2 id="node">Node</h2>
+<ul>
+<li>노드는 클러스터를 구성하는 단일 서버로써, 서로 헬스 체크를 하거나 혹은 데이터를 저장하고 클러스터에 참여하여 인덱싱과 검색 역할을 수행한다.</li>
+<li>노드는 각자의 노드 이름을 갖으며 노드가 기동될때 랜덤 UUID 를 갖는다.</li>
+<li>노드는 역할에 따라 <code>master node</code>, <code>data node</code>, <code>all node</code>, <code>client node</code> 등으로 구성할 수 있다.</li>
+</ul>
+<blockquote>
+<p>모든 노드는 클러스터의 다른 모든 노드에 대해 알고 있으며, 클라이언트 요청을 해당 노드로 전달할 수 있다.</p>
+</blockquote>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 2022-06-30&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/504fc3012ba09373a1b28204fb76edc1d068b962" target="_blank" title="commit by riley(riley0422@icloud.com) 504fc3012ba09373a1b28204fb76edc1d068b962: 20220630004053">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>504fc30</a></span>
+                <span>Updated on 2022-07-04&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/fc491abb6d1df4d7a1a1230e4266faefd6e0f2f9" target="_blank" title="commit by riley(riley0422@icloud.com) fc491abb6d1df4d7a1a1230e4266faefd6e0f2f9: 20220704235250">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>fc491ab</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>
