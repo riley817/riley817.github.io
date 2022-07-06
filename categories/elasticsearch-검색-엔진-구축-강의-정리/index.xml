@@ -6,10 +6,10 @@
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
             <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Sat, 20 Oct 2018 19:00:11 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/categories/elasticsearch-%EA%B2%80%EC%83%89-%EC%97%94%EC%A7%84-%EA%B5%AC%EC%B6%95-%EA%B0%95%EC%9D%98-%EC%A0%95%EB%A6%AC/" rel="self" type="application/rss+xml" /><item>
     <title>Elasticsearch 클러스터 분산구성 시나리오</title>
-    <link>https://riley817.github.io/elasticsearch-lecture1-3/</link>
+    <link>https://riley817.github.io/elasticsearch-lecture1/</link>
     <pubDate>Sat, 20 Oct 2018 19:00:11 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/elasticsearch-lecture1-3/</guid>
+    <guid>https://riley817.github.io/elasticsearch-lecture1/</guid>
     <description><![CDATA[<div class="featured-image">
                 <img src="/posts/images/elastic/9SyGqYLhMmYxEJyNUf.png" referrerpolicy="no-referrer">
             </div>2. Elasticsearch 클러스터 분산구성 시나리오 2.1 단일 노드에 3개의 샤드로 클러스터 구성하기 blogs라는 인덱스에 3개의 primary 샤드와 1개의 replica 샤드가 운용되도록 할당한다.
