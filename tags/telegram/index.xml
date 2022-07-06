@@ -6,10 +6,10 @@
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
             <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Fri, 13 Aug 2021 14:46:00 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/tags/telegram/" rel="self" type="application/rss+xml" /><item>
     <title>텔레그램 봇</title>
-    <link>https://riley817.github.io/telegrambot/</link>
+    <link>https://riley817.github.io/archives/etc/telegrambot/</link>
     <pubDate>Fri, 13 Aug 2021 14:46:00 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/telegrambot/</guid>
+    <guid>https://riley817.github.io/archives/etc/telegrambot/</guid>
     <description><![CDATA[할때마다 까먹는다.
 텔레그램 봇 만들기 1. 봇아빠 채팅방에 접속 https://t.me/BotFather 혹은 @BotFather 검색하여 채팅방 접속 2. BotFather 채팅방에서 봇 생성 명령어를 입력한다. 채팅창에 /newbot을 입력한다. 3. 텔레그램 봇 이름을 입력한다. 이름은 _bot으로 끝나야 한다. 4. 다시 입력 한번 더 bot 이름을 입력하면 봇 주소와 API 토큰 값을 얻을 수 있다. 5. 봇 채팅방 접속 후 시작 버튼 클릭 6. 봇 채팅방 chat id 얻기 봇 채팅방에서 아무 메세지나 입력한다. 브라우저에서 https://api.]]></description>
 </item>

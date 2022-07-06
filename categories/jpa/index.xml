@@ -6,72 +6,72 @@
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
             <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Sun, 13 Jan 2019 20:11:00 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/categories/jpa/" rel="self" type="application/rss+xml" /><item>
     <title>[자바 ORM 표준 JPA 프로그래밍] 6장 다양한 연관관계 매핑 - 일대다</title>
-    <link>https://riley817.github.io/jpa-programming6-2/</link>
+    <link>https://riley817.github.io/archives/dbms/jpa/jpa-programming6-2/</link>
     <pubDate>Sun, 13 Jan 2019 20:11:00 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/jpa-programming6-2/</guid>
+    <guid>https://riley817.github.io/archives/dbms/jpa/jpa-programming6-2/</guid>
     <description><![CDATA[김영한님의 책 자바 ORM 표준 JPA 프로그래밍 학습 내용 정리
 6.2 일대다 일대다 관계는 엔티티를 하나 이상 참조할 수 있으므로 자바 컬렉션 (Collection, List, Set, Map ) 중 하나를 사용한다. 6.2.1 일대다 단방향 [1:N] 일대다 단방향 관계는 JPA 2.0 부터 지원한다. 일대다 단방향의 경우 반대편에서 테이블의 외래키를 관리하는 특이한 모습이 나타난다. Team.java 1 2 3 4 5 6 7 8 9 10 11 12 13 14 @Entity public class Team { @Id @GeneratedValue @Column(name = &#34;TEAM_ID&#34;) private String id; private String name; @OneToMany @JoinColumn (name = &#34;TEAM_ID&#34;) // MEMBER 테이블의 TEAM_ID (FK) private List&lt;Member&gt; members = new ArrayList&lt;Member&gt;(); } Member.]]></description>
 </item>
 <item>
     <title>[자바 ORM 표준 JPA 프로그래밍] 6장 다양한 연관관계 매핑 - 다대일</title>
-    <link>https://riley817.github.io/jpa-programming6-1/</link>
+    <link>https://riley817.github.io/archives/dbms/jpa/jpa-programming6-1/</link>
     <pubDate>Thu, 10 Jan 2019 16:20:24 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/jpa-programming6-1/</guid>
+    <guid>https://riley817.github.io/archives/dbms/jpa/jpa-programming6-1/</guid>
     <description><![CDATA[김영한님의 책 자바 ORM 표준 JPA 프로그래밍 학습 내용 정리
 다양한 연관관계 다루기 엔티티의 연관관계를 매핑할때 고려할점 다중성 단방향, 양방향 연관관계의 주인 다중성 다대일(@ManyToOne), 일대다(@OneToMany), 일대일(@OneToOne), 다대다(@ManyToMany) 다중성을 판단하기 어려울 때는 반대방향을 생각해보자. 보통 다대일과 일대다 관계를 가장 많이 사용하고 다대다 관계는 실무에서는 거의 사용하지 않음. 단방향, 양방향 객체 관계에서 한쪽만 참고하는 것을 단방향 관계라고하며, 양쪽이 서로 참조하는 것을 양방향 관계라 한다. 연관관계의 주인 외래 키를 가진 테이블과 매핑한 엔티티가 외래키를 관리하는게 효율적이므로 보통 이곳을 연관관계의 주인으로 선택한다.]]></description>
 </item>
 <item>
     <title>[자바 ORM 표준 JPA 프로그래밍] 5장 연관관계 매핑 기초 - 양방향 연관관계</title>
-    <link>https://riley817.github.io/jpa-programming5-2/</link>
+    <link>https://riley817.github.io/archives/dbms/jpa/jpa-programming5-2/</link>
     <pubDate>Sun, 30 Dec 2018 15:11:24 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/jpa-programming5-2/</guid>
+    <guid>https://riley817.github.io/archives/dbms/jpa/jpa-programming5-2/</guid>
     <description><![CDATA[김영한님의 책 자바 ORM 표준 JPA 프로그래밍 학습 내용 정리 5.3 양방향 연관관계 일대다 관계에서는 여러 건과 연관관계를 맺을 수 있으므로 컬렉션(Collection, Set, Map, List ..) 을 사용한다. 5.3.1 양방향 연관관계 매핑 Member.java 회원 엔티티에는 변경할 사항이 없다. 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 @Entity public class Member { @Id @Column(name = &#34;MEMBER_ID&#34;) private String id; private String username; // 연관관계 매핑 @ManyToOne @JoinColumn(name = &#34;TEAM_ID&#34;) private Team team; // 연관관계 설정 public void setTeam(Team team) { this.]]></description>
 </item>
 <item>
     <title>[자바 ORM 표준 JPA 프로그래밍] 5장 연관관계 매핑 기초 - 단방향 연관관계</title>
-    <link>https://riley817.github.io/jpa-programming5-1/</link>
+    <link>https://riley817.github.io/archives/dbms/jpa/jpa-programming5-1/</link>
     <pubDate>Wed, 26 Dec 2018 10:37:22 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/jpa-programming5-1/</guid>
+    <guid>https://riley817.github.io/archives/dbms/jpa/jpa-programming5-1/</guid>
     <description><![CDATA[김영한님의 책 자바 ORM 표준 JPA 프로그래밍 학습 내용 정리
 단방향 연관관계 객체는 참조(주소) 를 사용해서 관계를 맺고, 테이블을 외래 키를 사용해서 관계를 맺는다. 방향(Direction) : 단방향과 양방향이 있으며 방향은 객체관계에만 존재하고 테이블 관계는 항상 양방향 이다. 다중성(Multiplicity) : 다대일(N:1), 일대다(1:N), 일대일(1:1), 다대다 (N:N) 연관관계 주인 (owner) : 객체를 양방향 연관관계로 만들면 연관관계의 주인을 정해야 한다. 5.1 단방향 연관관계 객체 연관관계 회원 객체와 팀 객체는 단방향 관계 다. 회원은 Member.team 필드를 통해서 팀을 알 수 있지만 반대로 팀은 회원을 알 수 없다.]]></description>
 </item>
 <item>
     <title>[자바 ORM 표준 JPA 프로그래밍] 4장 엔티티 매핑</title>
-    <link>https://riley817.github.io/jpa-programming4/</link>
+    <link>https://riley817.github.io/archives/dbms/jpa/jpa-programming4/</link>
     <pubDate>Sun, 23 Dec 2018 23:12:29 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/jpa-programming4/</guid>
+    <guid>https://riley817.github.io/archives/dbms/jpa/jpa-programming4/</guid>
     <description><![CDATA[김영한님의 책 자바 ORM 표준 JPA 프로그래밍 학습 내용 정리
 JPA 의 매핑 어노테이션 객체와 테이블 매핑 : @Entity, @Table 기본 키 매핑 : @Id 필드와 컬럼 매핑 : @Column 연관관계 매핑 : @ManyToOne, @JoinColumn 4.1 @Entity 테이블을 매핑할때 @Entity 어노테이션을 필수로 붙어야 한다. 속성 기능 기본값 name JPA 에서 사용할 엔티티 이름을 지정한다. 보통 기본값인 클래스 이름을 사용한다. 설정하지 않으면 클래스 이름을 그대로 사용. @Entity 적용시 주의할 점 매개변수가 없는 기본 생성자는 필수.]]></description>
 </item>
 <item>
     <title>[자바 ORM 표준 JPA 프로그래밍] 3장 영속성 관리 - 플러시, 준영속</title>
-    <link>https://riley817.github.io/jpa-programming3-2/</link>
+    <link>https://riley817.github.io/archives/dbms/jpa/jpa-programming3-2/</link>
     <pubDate>Tue, 18 Dec 2018 22:30:19 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/jpa-programming3-2/</guid>
+    <guid>https://riley817.github.io/archives/dbms/jpa/jpa-programming3-2/</guid>
     <description><![CDATA[김영한님의 책 자바 ORaM 표준 JPA 프로그래밍 학습 내용 정리
 3.5 플러시 플러시(flush()) 는 영속성 컨텍스트의 내용을 데이터베이스에 반영한다. 영속성 컨텍스트의 변경 내용을 데이터베이스와 동기화 하는 것이 플러시이다. 플러시를 실행하면 변경 감지가 동작하여 영속성 컨텍스트에 있는 모든 엔티티를 스냅샷과 비교해서 수정된 엔티티를 찾는다. =&gt; 수전된 엔티티는 수정 쿼리를 만들어 쓰기지연 SQL 저장소에 등록 쓰기 지연 SQL 저장소의 쿼리를 데이터베이스에 전송한다. 플러시 방법 em.flush() 로 직접 호출. 트랜잭션 커밋 시 플러시 자동 호출 JPA 는 트랜잭션을 커밋할 때 플러시를 자동으로 호출한다.]]></description>
 </item>
 <item>
     <title>[자바 ORM 표준 JPA 프로그래밍] 3장 영속성 관리 - EntityManagerFactory, EntityManager, 영속성컨텍스트, 엔티티 생명주기, 영속성컨텍스트의 특징</title>
-    <link>https://riley817.github.io/jpa-programming3-1/</link>
+    <link>https://riley817.github.io/archives/dbms/jpa/jpa-programming3-1/</link>
     <pubDate>Mon, 17 Dec 2018 20:43:27 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/jpa-programming3-1/</guid>
+    <guid>https://riley817.github.io/archives/dbms/jpa/jpa-programming3-1/</guid>
     <description><![CDATA[김영한님의 책 자바 ORM 표준 JPA 프로그래밍 학습 내용 정리
 JPA 가 제공하는 기능 엔티티와 테이블을 매핑하는 설계 부분 매핑하는 엔티티를 실제 사용하는 부분 3.1 엔티티 매니저 팩토리와 엔티티 매니저 EntityManagerFactory EntityManagerFactory 는 이름 그대로 EntityManager 를 만드는 공장이다. 공장을 만드는 비용은 상당히 크다. 그러므로 한 개만 만들어서 애플리케이션 전체에 공유하도록 설계해야 한다. EntityManagerFactory 는 여러 스레드에서 동시에 접근해도 안전하므로 서로 다른 스레드간 공유해도 된다. JPA 구현체들은 EntityManagerFactory 생성시 커넥션 풀을 만든다.]]></description>
 </item>
 <item>
     <title>[자바 ORM 표준 JPA 프로그래밍] 2장 JPA 시작</title>
-    <link>https://riley817.github.io/jpa-programming2/</link>
+    <link>https://riley817.github.io/archives/dbms/jpa/jpa-programming2/</link>
     <pubDate>Sat, 15 Dec 2018 10:11:25 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/jpa-programming2/</guid>
+    <guid>https://riley817.github.io/archives/dbms/jpa/jpa-programming2/</guid>
     <description><![CDATA[김영한님의 책 자바 ORM 표준 JPA 프로그래밍 학습 내용 정리
 2.2 H2 데이터베이스 설치 H2DB 는 자바 기반의 오픈소스 관계형 데이터 베이스이다. 별도의 설치과정이 필요하지 않고 용량도 1.7M 로 가볍다. SQL 문법은 다른 DBMS 와 마찬가지로 표준 SQL 이 대부분 지원된다.
 H2 데이터 베이스 설치방법 아래 링크에서 zip 파일을 내려받아 압축을 푼다.
@@ -79,10 +79,10 @@ H2 데이터 베이스 설치방법 아래 링크에서 zip 파일을 내려받�
 </item>
 <item>
     <title>[자바 ORM 표준 JPA 프로그래밍] 1장 JPA 소개</title>
-    <link>https://riley817.github.io/jpa-programming1/</link>
+    <link>https://riley817.github.io/archives/dbms/jpa/jpa-programming1/</link>
     <pubDate>Sun, 09 Dec 2018 17:53:39 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/jpa-programming1/</guid>
+    <guid>https://riley817.github.io/archives/dbms/jpa/jpa-programming1/</guid>
     <description><![CDATA[김영한님의 책 자바 ORM 표준 JPA 프로그래밍 학습 내용 정리
 1.1 SQL을 직접 다룰 때 발생하는 문제점 코드의 반복작성 데이터베이스는 객체 구조와는 달리 데이터 중심의 구조를 갖는다. 객체를 데이터베이스에 CRUD 하기 위해서는 너무 많은 SQL 과 JDBC API 를 사용하여 변환작업을 직접 해주어야 한다. SQL 에 의존적인 개발 객체들이 어떤 엔티티를 참조하고 있는지 DAO(데이터 접근 계층) 을 열어 SQL 를 확인해야만 한다. SQL 과 JDBC API 를 DAO 에 은닉화하였지만 논리적으로는 엔티티와 아주 강한 의존관계를 가지고 있다.]]></description>
 </item>

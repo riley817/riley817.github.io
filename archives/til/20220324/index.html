@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>[TIL &amp; Issue Note] 20220324 - Riley&#39;s DevLog</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:title" content="[TIL &amp; Issue Note] 20220324" />
+<meta property="og:description" content="블록체인 원리(7) - 채굴과 51% 공격 1. 채굴과 블록 생성 블록을 만드는 것 = 채굴 보상금 획득 하는것이 금 획득하는 것과 비슷 채굴 단어의 유래 - Nick Szabo 금이 가치를 갖는 것은 채굴이 어렵기 때문 어떤 문제가 매우 어렵다면 -&gt; 문제의 정답 자체가 어떤 가치를 가지지 않을까? 블록 만듦 -&gt; 해시 퍼즐 풀이 : 어려운 문제이기 때문에 정답 자체가 가치 보유 금을 캐려면 -&gt; 금광에서 채굴 : 힘든 작업이기 때문에 금이 가치 보유 해시 퍼즐 풀이 -&gt;(비유) 금광에서 채굴 채굴 == 블록을 만들다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://riley817.github.io/archives/til/20220324/" /><meta property="og:image" content="https://riley817.github.io/icon.png"/><meta property="article:section" content="archives" />
+<meta property="article:published_time" content="2022-03-24T23:29:35+09:00" />
+<meta property="article:modified_time" content="2022-07-06T23:50:02+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://riley817.github.io/icon.png"/>
+
+<meta name="twitter:title" content="[TIL &amp; Issue Note] 20220324"/>
+<meta name="twitter:description" content="블록체인 원리(7) - 채굴과 51% 공격 1. 채굴과 블록 생성 블록을 만드는 것 = 채굴 보상금 획득 하는것이 금 획득하는 것과 비슷 채굴 단어의 유래 - Nick Szabo 금이 가치를 갖는 것은 채굴이 어렵기 때문 어떤 문제가 매우 어렵다면 -&gt; 문제의 정답 자체가 어떤 가치를 가지지 않을까? 블록 만듦 -&gt; 해시 퍼즐 풀이 : 어려운 문제이기 때문에 정답 자체가 가치 보유 금을 캐려면 -&gt; 금광에서 채굴 : 힘든 작업이기 때문에 금이 가치 보유 해시 퍼즐 풀이 -&gt;(비유) 금광에서 채굴 채굴 == 블록을 만들다."/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://riley817.github.io/archives/til/20220324/" /><link rel="prev" href="https://riley817.github.io/archives/til/20220321/" /><link rel="next" href="https://riley817.github.io/archives/til/20220326/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "[TIL \u0026 Issue Note] 20220324",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/riley817.github.io\/archives\/til\/20220324\/"
+        },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "archives","keywords": "TIL, blockchain, bitcoin","wordcount":  1343 ,
+        "url": "https:\/\/riley817.github.io\/archives\/til\/20220324\/","datePublished": "2022-03-24T23:29:35+09:00","dateModified": "2022-07-06T23:50:02+09:00","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "https:\/\/riley817.github.io\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "riley"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Riley&#39;s DevLog"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i></span>Riley&#39;s DevLog</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Riley&#39;s DevLog"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i></span>Riley&#39;s DevLog</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="page single special"><h1 class="single-title animate__animated animate__pulse animate__faster">[TIL &amp; Issue Note] 20220324</h1><div class="content" id="content"><h1 id="블록체인-원리7---채굴과-51-공격">블록체인 원리(7) - 채굴과 51% 공격</h1>
+<h2 id="1-채굴과-블록-생성">1. 채굴과 블록 생성</h2>
+<h3 id="블록을-만드는-것--채굴">블록을 만드는 것 = 채굴</h3>
+<ul>
+<li>보상금 획득 하는것이 금 획득하는 것과 비슷</li>
+<li><strong>채굴</strong> 단어의 유래 - Nick Szabo
+<ul>
+<li>금이 가치를 갖는 것은 채굴이 어렵기 때문</li>
+<li><strong>어떤 문제가 매우 어렵다면 -&gt; 문제의 정답 자체가 어떤 가치를 가지지 않을까?</strong></li>
+</ul>
+</li>
+<li>블록 만듦 -&gt; 해시 퍼즐 풀이 : 어려운 문제이기 때문에 정답 자체가 가치 보유</li>
+<li>금을 캐려면 -&gt; 금광에서 채굴 : 힘든 작업이기 때문에 금이 가치 보유</li>
+<li>해시 퍼즐 풀이 -&gt;(비유) 금광에서 채굴</li>
+<li>채굴 == 블록을 만들다.</li>
+</ul>
+<h3 id="블록을-왜-만들었을까">블록을 왜 만들었을까?</h3>
+<ul>
+<li>블럭을 생성해야 거래내역을 기록할 수 있다.</li>
+<li>해시 퍼즐 및 연쇄 -&gt; 비가역성 보유</li>
+<li>비가역성 거래내역을 기록하기 위해</li>
+</ul>
+<h3 id="해시퍼즐">해시퍼즐</h3>
+<ul>
+<li>무작위로 해시함수 계산, 특정 패턴이 나올 때까지 무한 반복</li>
+<li>풀이에 많은 에너지 필요</li>
+<li>보조금 삭감 -&gt; 시세 하락 -&gt; 채굴업자에게 영향</li>
+<li>채굴 시 소모 에너지 &gt; 채굴 보상금 -&gt; 채굴이 완전히 멈추는 현상 발생</li>
+</ul>
+<h3 id="채굴업자가-더-이상-채굴하지-않을-경우">채굴업자가 더 이상 채굴하지 않을 경우</h3>
+<ul>
+<li>거래내역을 담을 수 없게 됨 -&gt; <strong>더 이상 블록체인이 움직이지 않음</strong></li>
+<li>채굴의 목적 -&gt; 경제적 수익</li>
+<li>채굴 비용 &gt; 채굴 수익 -&gt; 블록체인 거래가 불가능하게 됨</li>
+</ul>
+<h3 id="채굴이-갑자기-멈추지-않는-이유">채굴이 갑자기 멈추지 않는 이유</h3>
+<ul>
+<li>이미 채굴한 양이 많기 때문</li>
+<li>한계점이 이상을 지나면 멈추는 시점이 찾아옴</li>
+</ul>
+<h3 id="발행량-반감---시세-하락---블록체인-안정도와-직접-영향">발행량 반감 -&gt; 시세 하락 -&gt; 블록체인 안정도와 직접 영향</h3>
+<h2 id="2-51-공격">2. 51% 공격</h2>
+<h3 id="51-공격">51% 공격</h3>
+<ul>
+<li>누군가 엄청난 하드웨어를 소유했다면?</li>
+<li>단 한명이 나머지 사람들의 하드웨어보다 더 많은 자원을 가지는 현상</li>
+<li>자원 및 계산량이 많으므로 -&gt; 블록을 만들 가능성이 높아짐</li>
+<li>블록을 만들 확률 51%</li>
+<li>블록을 만들지 못할 확률 49%</li>
+<li><strong>특정한 노드가 높은 확률로 계속 블록을 만드는 현상 발생</strong></li>
+</ul>
+<h3 id="51-시스템에-미치는-영향">51% 시스템에 미치는 영향</h3>
+<ul>
+<li>거래내역 기록 -&gt; 블록 생성자가 결정</li>
+<li>높은 수수료 거래내역 먼저 처리</li>
+<li><strong>자기 임의대로 거래내역 작성</strong></li>
+<li><strong>시스템 교란 목적으로 거래내역 미작성</strong> -&gt; 시스템 마비</li>
+<li>누군가가 소유하고 있는 계산력 -&gt; 해시파워</li>
+</ul>
+<h3 id="해시파워">해시파워</h3>
+<ul>
+<li>해시 퍼즐을 풀 수 있는 능력</li>
+<li>시스템 계산량 51% = 해시 파워 51% 독점</li>
+<li>52%의 해시 파워로 다른 노드 보다 항상 더 높은 확률로 블록 생성</li>
+</ul>
+<h3 id="블록-생산권-독점-시-악의적-상황">블록 생산권 독점 시 악의적 상황</h3>
+<h4 id="거래내역-미작성">거래내역 미작성</h4>
+<ul>
+<li>서비스 자체가 방해되어 블록체인 서비스 비활성화</li>
+<li>자신이 원하는 거래내역만 기록</li>
+</ul>
+<h4 id="수수료-인상">수수료 인상</h4>
+<ul>
+<li>트랜잭션 처리 선택은 블록 생산자에게 달림</li>
+<li>특정 수수료 지급 전까지 트랜잭션 미처리</li>
+<li><strong>블록 생산자가 원하는 수수료를 지불</strong>할 수 밖에 없음</li>
+</ul>
+<h4 id="이중-사용">이중 사용</h4>
+<ul>
+<li>동일한 비트코인을 두 번 이상 사용하려는 시도</li>
+<li>상충된 지급내역이 브로드캐스팅 되어 네트워크에 확산</li>
+<li>독점권 소유자가 <strong>자신에게 되돌아오는 거래내역만 처리</strong>
+<ul>
+<li>이중사용 항상 성공</li>
+</ul>
+</li>
+<li>자기 자신이 블록을 결정</li>
+</ul>
+<h4 id="긴-블록-생성-후-기존-블록-퇴출">긴 블록 생성 후 기존 블록 퇴출</h4>
+<ul>
+<li>긴 블록체인 생성 후 기존 블록 퇴출</li>
+<li>시스템 자체의 안전성을 저해</li>
+</ul>
+<h3 id="51-공격-1">51% 공격</h3>
+<ul>
+<li><strong>특정 노드가 해시 파워 독점, 시스템 전체를 교란시키는 공격</strong></li>
+<li>과반수 이상을 차지한 상징적 경우 의미</li>
+<li>이클립스 공격, 이기적인 채굴자 공격 -&gt; 과반수 해시 파워 없이 시스템 교란 가능</li>
+<li>25% 시스템 독점 시 시스템 교란 가능 입증</li>
+</ul>
+<h3 id="51-공격-실제로-일어날까">51% 공격, 실제로 일어날까?</h3>
+<ul>
+<li>상위 10개 채굴 업체가 보유 -&gt; 전체 해시 파워 55% 장악</li>
+<li>언제든 51% 공격 가능</li>
+<li><strong>공격 확률은 낮다 -&gt; 경제적 이득이 적음</strong></li>
+</ul>
+<h3 id="51-공격자가-이득을-얻는-경우">51% 공격자가 이득을 얻는 경우</h3>
+<ul>
+<li>디지털 서명, 비대칭 암호화 기법, 해시 함수 -&gt; 원천적으로 불가능</li>
+<li><strong>타인의 비트코인 약탈 불가능</strong></li>
+<li>이득을 얻는 유일한 방법은 이중사용</li>
+</ul>
+<h4 id="이중-사용-1">이중 사용</h4>
+<ul>
+<li>물건을 건내 준 사람이 무한정 기다리면 무조건 실패</li>
+<li>타인이 비트코인이 아닌 자신의 비트코인 두 번 사용
+<ul>
+<li>타인의 비트코인 약탈 불가능</li>
+</ul>
+</li>
+<li><strong>51% 공격을 감행해서 가치를 떨어뜨리는 것보다 가치를 유지하면서 더 많은 보상금을 획득하는 것이 나음</strong></li>
+</ul>
+<h3 id="현재-블록체인-구조">현재 블록체인 구조</h3>
+<ul>
+<li>정상적 블록 생성이 경제적으로 더 이득</li>
+<li>51% 공격 발생 확률 높지 않음</li>
+<li>랜덤화를 통해 투명성을 이끌었던 블록체인의 기본정신 훼손</li>
+<li>상위 3개 업체가 과반 이상의 블록 생성</li>
+<li>10% 업체가 전체 90% 블록 생산</li>
+<li>99.9999% -&gt;의존 0.0001%</li>
+<li>블록체인 존립에 심각한 위협 요소</li>
+<li>단 10개의 노드가 채굴 중지 시 더 이상 거래 불가능</li>
+</ul>
+<h3 id="비트코인-블록체인">비트코인 블록체인</h3>
+<ul>
+<li>채굴자원의 독점 심화, 심각한 위협</li>
+</ul>
+<hr>
+<h2 id="채굴과-블록-생성">채굴과 블록 생성</h2>
+<ul>
+<li>채굴은 블록 만들기의 다른 이름임</li>
+<li>블록을 만든다는 의미는 거래내역을 보관한다는 의미임</li>
+</ul>
+<h2 id="51-공격-2">51% 공격</h2>
+<ul>
+<li>51% 공격이란 특정 노드가 시스템 해시자원 51% 이상을 독점한 상황을 상징적으로 나타내는 말을 뜻함</li>
+<li>시스템 자원을 51% 독점하게 되면 블록 생산권을 독점하게 되고, 이에 따라 다양한 형태로 시스템 공격이 가능함</li>
+<li>51% 공격은 경제적 이득보다는 주로 시스템 교란에 의한 서비스 단절이 주된 위협임</li>
+</ul>
+<h1 id="중개인이-없는-거래---스마트-계약-개념-및-이더리움-구현-방식">중개인이 없는 거래 - 스마트 계약 개념 및 이더리움 구현 방식</h1>
+<h2 id="1-중개인이-없는-거래">1. 중개인이 없는 거래</h2>
+<h3 id="상거래에서의-제-3자-이용">상거래에서의 제 3자 이용</h3>
+<ul>
+<li>은행이라는 제 3자를 두고 계좌이체하는 것</li>
+<li>이때 은행은 중앙 서버역할 수행 및 수수료 획득</li>
+</ul>
+<h3 id="제-3자를-활용한-거래의-단점">제 3자를 활용한 거래의 단점</h3>
+<ul>
+<li>임의 기록 수정</li>
+<li>악의적 의도 기록 변경</li>
+<li>불필요한 수수료 발생</li>
+</ul>
+<h3 id="중개인이-없는-거래가-가능하다면">중개인이 없는 거래가 가능하다면</h3>
+<ul>
+<li>불필요한 수수료 절감</li>
+</ul>
+<h3 id="블록체인-거래">블록체인 거래</h3>
+<ul>
+<li><strong>중앙 서버 없이도 안심하고 거래할 수 있는 환경 구축</strong></li>
+<li>해시파워를 제일 먼저 해결한 노드가 기록함 -&gt; 다만, 모든 참여자의 검증</li>
+<li>중앙서버에 비해 높은 안정성 보유</li>
+<li>별도 수수료 지급하지 않음</li>
+<li><strong>직거래 시스템 구축 가능</strong>
+<ul>
+<li>응용분야 : 중고 물품 거래, 중고차 거래</li>
+<li>기대 : 수수료 절감</li>
+</ul>
+</li>
+</ul>
+<h3 id="중개인이-없는-거래의-이면">중개인이 없는 거래의 이면</h3>
+<ul>
+<li>항상 좋은 것일까?</li>
+<li>비트코인을 사용하다가 비밀번호를 잊어버리면 ?</li>
+<li>비트코인 키를 저장한 장치를 훼손하게 되면?</li>
+<li>잘못된 주소로 비트코인을 전송하게 되면?</li>
+</ul>
+<h3 id="금융거래-중개인">금융거래 중개인</h3>
+<ul>
+<li>은행의 비밀번호를 잊어버리면?</li>
+<li>은행 공인인증서를 훼손하게 되면다면?
+<ul>
+<li>은행에 중재 요청하여 해결 가능</li>
+</ul>
+</li>
+</ul>
+<h3 id="중개인이-없는-거래-수수료가-절감-되는가">중개인이 없는 거래 수수료가 절감 되는가?</h3>
+<ul>
+<li>채굴업자에게 지급하는 수수료가 더 적은지는 알 수 없음</li>
+</ul>
+<h3 id="절대-익명의-거래">절대 익명의 거래</h3>
+<ul>
+<li>많은 문제점 발생, 중재자 필요</li>
+</ul>
+<h4 id="중고차를-익명으로-거래한-경우">중고차를 익명으로 거래한 경우</h4>
+<ul>
+<li>이득 -&gt; 수수료 절감</li>
+<li><strong>단점 -&gt; 중고차를 구매인은 하자 발생 시 중재자 없음</strong></li>
+</ul>
+<h4 id="블록체인을-통한-중고차-직거래">블록체인을 통한 중고차 직거래?</h4>
+<ul>
+<li>아직은 희망사항일 뿐, 해결해야하는 문제 다수 존재</li>
+<li>개인정보 보호 문제 해결</li>
+</ul>
+<h4 id="브로드캐스팅">브로드캐스팅</h4>
+<ul>
+<li>모든 노드가 블록체인 데이터 확인 가능</li>
+<li>개인정보가 담기게 된다면 -&gt; 모든 노드가 개인정보 확인 가능</li>
+<li>브로드캐스팅을 사용하는 한 개인정보를 담아서는 안 됨</li>
+</ul>
+<h4 id="블록체인을-이용한-거래">블록체인을 이용한 거래</h4>
+<ul>
+<li>개인 정보 불필요한 거래 성사 전까지 해결 요소 많음</li>
+</ul>
+<h2 id="2-스마트-계약">2. 스마트 계약</h2>
+<h3 id="스마트-계약">스마트 계약</h3>
+<ul>
+<li>
+<p>법률가 Nick Szabo -&gt; 1990년대 자신의 아이디어</p>
+</li>
+<li>
+<p>제 3자의 개입 없이도 스스로 계약을 집행할 수 없을까?</p>
+</li>
+<li>
+<p>디지털 환경을 잘 꾸미면 제 3자 개입 없이 계약을 집행할 수 있을 거라 생각</p>
+</li>
+<li>
+<p><strong>제 3가 개입하지 않아도 계약 집행 가능</strong></p>
+</li>
+</ul>
+<h3 id="대부분의-계약">대부분의 계약</h3>
+<ul>
+<li>공증을 위한 변리사, 법무사, 변호사</li>
+</ul>
+<h3 id="nick-szabo-스마트-계약">Nick Szabo 스마트 계약</h3>
+<ul>
+<li><strong>스스로 디지털화 되어 집행하는 계약</strong></li>
+<li>블록체인의 직접 거래와 같은 맥락</li>
+</ul>
+<h3 id="비트코인-블록체인에-기록할-수-있는-것">비트코인 블록체인에 기록할 수 있는 것</h3>
+<ul>
+<li>정적인 내용</li>
+<li>비트코인 거래 기록 외 다른 기록을 하기 위해서는 프로그램 자체를 수정해야 한다.</li>
+<li><strong>프로그램을 수정하지 않고 다른 용도로 블록체인을 사용할 방법이 없을까 -&gt; 동적인 데이터를 담으면 어떨까?</strong></li>
+</ul>
+<h3 id="블록에-담긴-내용이-컴퓨터-프로그래밍이라면">블록에 담긴 내용이 컴퓨터 프로그래밍이라면?</h3>
+<ul>
+<li>프로그램을 통해 명시한 조건에 따라 다른 결과 도출</li>
+<li>디지털 환경을 통한 스마트 계약 -&gt; Nick Szabo 아이디어 동일</li>
+<li>프로그램을 호출하여 계약을 집행</li>
+<li>프로그램 -&gt; 계약내용 , 저장장치 -&gt; 프로그램을 불러오는 장치</li>
+<li>닉 사보의 스마트 계약이 실행 될지도 모름</li>
+</ul>
+<h3 id="smart-contract">Smart contract</h3>
+<ul>
+<li>정적인 거래내역 이외에 거래내역 자체를 컴퓨터 프로그램으로 기술하는 방식</li>
+<li><strong>호출이 가능하여 호출 때마다 실행</strong></li>
+<li>메세지를 통한 매개 변수에 따라 서로 다른 작용</li>
+<li>동적으로 여러가지 다른 용도 사용 가능</li>
+</ul>
+<h3 id="비트코인-블록체인의-스마트-컨트랙트">비트코인 블록체인의 스마트 컨트랙트</h3>
+<ul>
+<li>아주 기초적으로 구현되어 있음</li>
+<li>사카시 나카모토도 스마트 컨트랙트를 구현해둠 -&gt; 실행을 위한 도구는 미제공</li>
+</ul>
+<h3 id="이더리움">이더리움</h3>
+<ul>
+<li>스마트 컨트랙트 모습을 완전히 갖춘 최초의 블럭체인</li>
+</ul>
+<h3 id="계약과-컨트랙트contract">계약과 컨트랙트(Contract)</h3>
+<ul>
+<li>계약 : 금융, 결제에 국한. 국한적 의미</li>
+<li>컨트랙트 : 금융, 결제 외 광범위한 의미. 범용적 의미</li>
+<li>거래내역, 계약, 컨트랙트는 기본적으로 같은 의미</li>
+</ul>
+<h2 id="3-이더리움에서의-스마트-계약">3. 이더리움에서의 스마트 계약</h2>
+<h3 id="이더리움에-구현된-스마트-계약">이더리움에 구현된 스마트 계약</h3>
+<ul>
+<li>스마트 계약 : 제3자의 개입없이 스스로 집행하는 계약의 구상</li>
+</ul>
+<h4 id="스마트-계약-구현-방법">스마트 계약 구현 방법</h4>
+<ul>
+<li>
+<p>정적인 기록이 아닌 프로그램 기록</p>
+</li>
+<li>
+<p><strong>이더리움에서는 프로그램화 된 내용을 블록에 쉽게 담을 수 있는 환경을 제공</strong> -&gt; IDE(Integrated development Environment)</p>
+</li>
+<li>
+<p>원하는 프로그램 작성 -&gt; 컴파일 -&gt; 이더리움에 불러오도록 저장</p>
+</li>
+<li>
+<p>기존비트코인(정적인 기록 저장) &lt;-&gt; IDE(프로그램 저장)</p>
+</li>
+<li>
+<p>사용자가 작성 프로그램 결정 -&gt; 그 방식에 따라 무한가지 용도</p>
+</li>
+</ul>
+<h4 id="솔리더티">솔리더티</h4>
+<ul>
+<li>이더리움에 사용되는 언어</li>
+<li>솔리더티를 사용하여 프로그램 -&gt; 컴파일 -&gt; 코드저장</li>
+<li>언제든 호출 가능하고 호출되면 프로그램 실행, 결과는 블록체인에 저장</li>
+<li>같은 기록이라도 실행될 때의 매개 변수, 컨디션에 따라 다른 겨로가 도출</li>
+</ul>
+<h3 id="프로그램을-통한-암호화폐-전달-기능">프로그램을 통한 암호화폐 전달 기능</h3>
+<h4 id="비트코인을-통해-축구-내기를-한-경우">비트코인을 통해 축구 내기를 한 경우</h4>
+<ul>
+<li>제3자가 필요</li>
+<li>승자에게 비트코인 전달이 제대로 이루어졌는지 중재해야함</li>
+</ul>
+<h4 id="이더리움을-통해-축구-내기를-한-경우">이더리움을 통해 축구 내기를 한 경우</h4>
+<ul>
+<li>축구 내기 프로그래밍</li>
+<li>당사자가 만날 필요 없음</li>
+<li>승자에게 자동으로 이더리움 전송</li>
+</ul>
+<ol>
+<li>내기 프로그래밍 하기</li>
+<li>스마트 컨트랙트 호출, 내기 참여</li>
+<li>결과에 따라 이더리움 전송 기다리기</li>
+</ol>
+<h3 id="컴퓨터를-범용기계라고-하는-이유">컴퓨터를 범용기계라고 하는 이유</h3>
+<ul>
+<li>게임 소프트웨어 설치 : 게임기</li>
+<li>스프레드 시트 사용 : 회계용도</li>
+<li>어떤 프로그램을 구동하느냐에 따라 용도 변경</li>
+</ul>
+<h4 id="비트코인">비트코인</h4>
+<ul>
+<li>하나의 용도만 가진 기계</li>
+</ul>
+<h4 id="이더리움-1">이더리움</h4>
+<ul>
+<li>최초의 범용 블록체인</li>
+<li>용도 무한대 가능</li>
+</ul>
+<h3 id="스마트계약-해결애햐할-문제">스마트계약 해결애햐할 문제</h3>
+<ul>
+<li>이더리움을 이용한 스마트 계약 -&gt; 여전히 해결해야 할 문제 다수</li>
+</ul>
+<hr>
+<h2 id="중개인이-없는-거래">중개인이 없는 거래</h2>
+<ul>
+<li>제 3자의 개입 없이 블록체인 거래</li>
+<li>필요 없는 수수료 절감과 함께, 한 번 기록되면 변경되지 않는 플랫폼을 구축하는 것을 목표로 함</li>
+</ul>
+<h2 id="스마트-계약-1">스마트 계약</h2>
+<ul>
+<li>스마트 컨트랙트는 제 3자의 개입 없이도 계약을 실행할 수 있는 디지털 환경에 대한 개념</li>
+<li>이더리움에 의해 블록체인에 구현</li>
+</ul>
+<h2 id="이더리움에서의-스마트-계약">이더리움에서의 스마트 계약</h2>
+<ul>
+<li>이더리움에서는 솔리더티 등의 언어로 프로그램을 작성할 수 있는 통합 환경 제공</li>
+<li>프로그램을 통해 여러 조건을 정의 할 수 있음</li>
+<li>프로그램은 컴파일 된 후 블록에 저장되고 호출되어 실행 됨</li>
+<li></li>
+</ul>
+</div><div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></div></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.101.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Riley</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/valine@1.4.18/dist/Valine.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.1/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{"valine":{"appId":"QGzwQXOqs5JOhN4RGPOkR2mR-MdYXbMMI","appKey":"WBmoGyJtbqUswvfLh6L8iEBr","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@14.0.0/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"en","pageSize":10,"placeholder":"Your comment ...","recordIP":true,"serverURLs":"https://leancloud.hugoloveit.com","visitor":true}},"search":{"algoliaAppID":"","algoliaIndex":"","algoliaSearchKey":"","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

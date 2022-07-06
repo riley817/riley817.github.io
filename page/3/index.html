@@ -101,44 +101,73 @@
         alt="/images/avatar.png"
         title="/images/avatar.png" /></a></div><div class="home-subtitle"><div id="id-1" class="typeit"></div></div><div class="links"><a href="https://github.com/https://github.com/riley817" title="GitHub" target="_blank" rel="noopener noreffer me"><i class="fab fa-github-alt fa-fw" aria-hidden="true"></i></a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/chapter18-slice/">[Tucker의 Go 프로그래밍] 18. 슬라이스</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-04-26">2022-04-26</time></span>&nbsp;<span class="post-category">included in <a href="/categories/tucker-go/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>tucker-go</a></span></div><div class="content">Tucker의 Go 언어 프로그래밍 책 내용을 정리하였습니다.
-슬라이스는 Go에서 제공하는 동적 배열 타입이다. 동적 배열은 실행 도중 배열의 사이즈가 계속 바뀔 수 있다.
-정적, 동적 상수와 변수의 차이를 생각하면 간단하다.
-정적(static) : compile time, build time 시 값이 결정된다. 실행 도중에 절대 바뀔 수 없다. 동적(dynamic) : Runtime. 프로그램 실행 도중에 계속 값이 바뀔 수 있다. 다른언어에서 slice와 비슷한 개념 (동일하지는 않다.) C++ : Vector&lt;int&gt; Java : ArrayList Python : slice Javascript : 기본적으로 동적 배열 1.</div><div class="post-footer">
-        <a href="/chapter18-slice/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/go/">go</a>,&nbsp;<a href="/tags/golang/">golang</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/chapter2-1-docker-engine/">[시작하세요! 도커/쿠버네티스] Chapter 2. 도커 엔진</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-04-20">2022-04-20</time></span>&nbsp;<span class="post-category">included in <a href="/categories/docker/kubernetes/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>docker/kubernetes</a></span></div><div class="content">시작하세요! 도커/쿠버네티스 책 정리 🐳🐳🐳
-1 도커 이미지와 컨테이너 도커 엔진에서 사용하는 기본단위는 이미지와 컨테이너이다.
-1.1 도커 이미지 이미지는 컨테이너를 생성할 때 필요한 요소이다. 가상 머신을 생성할 때 사용하는 iso 파일과 비슷한 개념이다. 여러 개의 계층으로 된 바이너리 파일로 존재, 컨테이너를 생성하고 실행할 때 읽기 전용으로 사용된다. 도커 이미지의 구성 도커 이미지 이름은 <sup>저장소 이름</sup>/<sub>이미지 이름</sub>:[태그] 형태로 구성 된다.
-저장소 (Repository) : 이미지가 저장된 장소. 저장소 이름이 명시되지 않은 이미지는 도커에서 기본적으로 제공하는 이미지 저장소인 도커 허브의 공식 이미지.</div><div class="post-footer">
-        <a href="/chapter2-1-docker-engine/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/docker/">docker</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/hash3/">SHA3 라이브러리 조사</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-04-17">2022-04-17</time></span>&nbsp;<span class="post-category">included in <a href="/categories/javascript/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>javascript</a></span></div><div class="content">개요 Go의 라이브러리에서 사용하는 SHA3-512 해시값과 자바스립트에서 사용하는 CryptoJS의 SHA3-512 해시값이 다른 문제가 발생
-테스트 대상 모듈 hash.js js-sha3 CrytoJS 테스트 방법 Go의 테스트 코드 작성 후 Go에서 생성한 해시값과 Javascript에서 위의 라이브러리로 생성했을 때 해시값이 같은지 비교한다.
-테스트 결과 hash.js : SHA3-512 관련 함수가 없는 것 같았다. js-sha3 : 성공 CrytoJS : 실패 CrytoJS 의 경우 Go에서 사용하는 SHA3-512와 차이가 있는 것 같다. [cryptojs_document(https://cryptojs.gitbook.io/docs/)에 참고 사항이 있었다.
-NOTE: I made a mistake when I named this implementation SHA-3.</div><div class="post-footer">
-        <a href="/hash3/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/javascript/">javascript</a>,&nbsp;<a href="/tags/sha3/">sha3</a>,&nbsp;<a href="/tags/keccak/">keccak</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/20220326/">[TIL & Issue Note] 20220326</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-03-26">2022-03-26</time></span>&nbsp;<span class="post-category">included in <a href="/categories/til-issue-note/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>TIL & Issue Note</a></span></div><div class="content">블록체인과 보안 및 개인정보 1. 블록체인과 보안 해커 해커의 주된 목표 가치있는 정보 탈취로 경제적 이익 추구 -&gt; 정보 자체에 대한 약탈 서비스 중단(Denial of Service)을 통한 시스템의 교란 해커의 공격을 막으려면? 정보 자체가 노출되는 것을 보호 서비스가 중단되지 않도록 보호 블록체인은 해커의 공격에 대해 안전할까? 블록체인은 모든 데이터를 브로드캐스팅을 통해 다른 노드와 공유 정보의 탈취 자체가 필요없을 정도로 정보가 노출됨. 정보 탈취로부터의 안정성은 가지고 있지 못함 암호화 자체가 안전을 보장하지 않음 암호화를 위한 기술적인 문제도 뒤따름 블록체인 보안 서비스 중단 공격이나 기록을 변경시키려는 시도로부터는 현존하는 가장 안전한 시스템 공격이나 기록 변경을 위해서는 모든 노드를 공격해야 함.</div><div class="post-footer">
-        <a href="/20220326/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/til/">TIL</a>,&nbsp;<a href="/tags/blockchain/">blockchain</a>,&nbsp;<a href="/tags/bitcoin/">bitcoin</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/20220324/">[TIL & Issue Note] 20220324</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-03-24">2022-03-24</time></span>&nbsp;<span class="post-category">included in <a href="/categories/til-issue-note/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>TIL & Issue Note</a></span></div><div class="content">블록체인 원리(7) - 채굴과 51% 공격 1. 채굴과 블록 생성 블록을 만드는 것 = 채굴 보상금 획득 하는것이 금 획득하는 것과 비슷 채굴 단어의 유래 - Nick Szabo 금이 가치를 갖는 것은 채굴이 어렵기 때문 어떤 문제가 매우 어렵다면 -&gt; 문제의 정답 자체가 어떤 가치를 가지지 않을까? 블록 만듦 -&gt; 해시 퍼즐 풀이 : 어려운 문제이기 때문에 정답 자체가 가치 보유 금을 캐려면 -&gt; 금광에서 채굴 : 힘든 작업이기 때문에 금이 가치 보유 해시 퍼즐 풀이 -&gt;(비유) 금광에서 채굴 채굴 == 블록을 만들다.</div><div class="post-footer">
-        <a href="/20220324/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/til/">TIL</a>,&nbsp;<a href="/tags/blockchain/">blockchain</a>,&nbsp;<a href="/tags/bitcoin/">bitcoin</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/20220321/">[TIL & Issue Note] 20220321</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-03-21">2022-03-21</time></span>&nbsp;<span class="post-category">included in <a href="/categories/til-issue-note/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>TIL & Issue Note</a></span></div><div class="content">블록체인 원리 - (5) 비가역성 블록체인 원리 (6) - 하드 포크와 소프트 포크 1. 하드 포크와 소프트 포크의 기본 개념 하드 포크와 소프트 포크 동일한 블록에서 노드가 다른 행동을 하는 이유 중앙화 서버 : 하나의 소프트웨어를 여러 사람이 접속 블록체인 : 각자의 소프트웨어 접속 -&gt; 모든 사람의 소프트웨어 버전이 다르기 때문에 발생 블록체인의 소프트웨어 변경 최신 소프트웨어 사용자 -&gt; 모든 변경이 반영된 상태로 사용 이전 소프트웨어 사용자 -&gt; 변경이 반영되지 않은 형태로 사용 하드포크, 소프트 포크 동일한 블록에 대해 서로 다른 규칙을 적용, 서로 다른 결론에 이르는 현상 규칙이 상충시 발생하는 두 가지 현상 과거에는 유효하던 규칙이 지금은 무효화 과거에는 무효하던 규칙이 지금은 유효화 -&gt; 결국 블록체인 데이터에 영향을 미치게 됨 2.</div><div class="post-footer">
-        <a href="/20220321/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/til/">TIL</a>,&nbsp;<a href="/tags/blockchain/">blockchain</a>,&nbsp;<a href="/tags/bitcoin/">bitcoin</a></div></div>
+        <a href="/elasticsearch-lecture1-5/">1.5 Install Elasticsearch - yum, rpm 설치</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2018-10-21">2018-10-21</time></span>&nbsp;<span class="post-category">included in <a href="/categories/elasticsearch-lecture/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>elasticsearch lecture</a></span></div><div class="content">Elasticsearch 는 Java 언어로 이루어진 아파치 Lucene 기반으로 이루어져 있다. 그러므로, 설치를 위해서는 Java 가 먼저 설치되어 있어야 한다. ES 는 여러가지 방법으로 설치가능하지만 그중에서 RPM 패키지 관리자로 설치하는 방법에 대해 정리하였다.
+다른 방법으로 ES 설치하기 yum 으로 설치하기 RPM Repository 등록하기 /etc/yum.repos.d/elasticsearch.repo : yum 저장소에 elastic 저장소를 수동으로 추가 한다.
+1 2 3 4 5 6 7 8 9 # /etc/yum.repos.d/elasticsearch.repo [elasticsearch-6.x] name=Elasticsearch repository for 6.x packages baseurl=https://artifacts.elastic.co/packages/6.x/yum gpgcheck=1 gpgkey=https://artifacts.</div><div class="post-footer">
+        <a href="/elasticsearch-lecture1-5/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/elasticsearch/">elasticsearch</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><div class="featured-image-preview">
+            <a href="/elasticsearch-lecture3/"><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/posts/images/elastic/9SyGqYLhMmYxEJyNUf.png"
+        data-srcset="/posts/images/elastic/9SyGqYLhMmYxEJyNUf.png, /posts/images/elastic/9SyGqYLhMmYxEJyNUf.png 1.5x, /posts/images/elastic/9SyGqYLhMmYxEJyNUf.png 2x"
+        data-sizes="auto"
+        alt="/posts/images/elastic/9SyGqYLhMmYxEJyNUf.png"
+        title="/posts/images/elastic/9SyGqYLhMmYxEJyNUf.png" /></a>
+        </div><h1 class="single-title" itemprop="name headline">
+        <a href="/elasticsearch-lecture3/">Elasticsearch 설치</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2018-10-21">2018-10-21</time></span>&nbsp;<span class="post-category">included in <a href="/categories/elasticsearch-%EA%B2%80%EC%83%89-%EC%97%94%EC%A7%84-%EA%B5%AC%EC%B6%95-%EA%B0%95%EC%9D%98-%EC%A0%95%EB%A6%AC/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Elasticsearch 검색 엔진 구축 강의 정리</a></span></div><div class="content">Elasticsearch 는 Java 언어로 이루어진 아파치 Lucene 기반으로 이루어져 있다. 그러므로 설치를 위해서는 Java 가 먼저 설치되어 있어야 한다. ES 는 여러가지 방법으로 설치가능하지만 그중에서 RPM 패키지 관리자로 설치하는 방법에 대해 정리하였다.
+다른 방법으로 ES 설치하기 yum 으로 설치하기 RPM Repository 등록하기 /etc/yum.repos.d/elasticsearch.repo elastic 저장소를 수동으로 추가 한다.
+1 2 3 4 5 6 7 8 9 # /etc/yum.repos.d/elasticsearch.repo [elasticsearch-6.x] name=Elasticsearch repository for 6.x packages baseurl=https://artifacts.elastic.co/packages/6.x/yum gpgcheck=1 gpgkey=https://artifacts.elastic.co/GPG-KEY-elasticsearch enabled=1 autorefresh=1 type=rpm-md 1 sudo yum install elasticsearch RPM Download 하여 설치하기 Elasticsearch RPM 다운로드 후 설치한다.</div><div class="post-footer">
+        <a href="/elasticsearch-lecture3/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/elasticsearch/">elasticsearch</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><div class="featured-image-preview">
+            <a href="/elasticsearch-lecture2/"><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/posts/images/elastic/9SyGqYLhMmYxEJyNUf.png"
+        data-srcset="/posts/images/elastic/9SyGqYLhMmYxEJyNUf.png, /posts/images/elastic/9SyGqYLhMmYxEJyNUf.png 1.5x, /posts/images/elastic/9SyGqYLhMmYxEJyNUf.png 2x"
+        data-sizes="auto"
+        alt="/posts/images/elastic/9SyGqYLhMmYxEJyNUf.png"
+        title="/posts/images/elastic/9SyGqYLhMmYxEJyNUf.png" /></a>
+        </div><h1 class="single-title" itemprop="name headline">
+        <a href="/elasticsearch-lecture2/">Elasticsearch 개념 및 용어정리 - Inverted Index, Segment</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2018-10-20">2018-10-20</time></span>&nbsp;<span class="post-category">included in <a href="/categories/elasticsearch-%EA%B2%80%EC%83%89-%EC%97%94%EC%A7%84-%EA%B5%AC%EC%B6%95-%EA%B0%95%EC%9D%98-%EC%A0%95%EB%A6%AC/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Elasticsearch 검색 엔진 구축 강의 정리</a></span></div><div class="content">Inverted Index 전통적인 데이터베이스는 필드당 하나의 값을 저장하기 때문에 전체 텍스트 검색에는 적합하지 않다. 즉 다중 값을 색인화 할 수 있어야 하는데, Elasticsearch 에서는 Inverted Index 형태의 인덱싱을 통해 Full-text Search 가 가능하도록 했다. 모든 문서에서 발생하는 모든 고유 값 또는 용어의 정렬된 목록을 포함하며, 각 용어에 대해 이를 포함하는 모든 문서 목록을 표시한다.
+Full-text Search (전체 텍스트 검색) 는 요청한 모든 단어를 문서 또는 데이터베이스에서 모든 단어와 비교하는 포괄적 인 검색 방법이다.</div><div class="post-footer">
+        <a href="/elasticsearch-lecture2/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/elasticsearch/">elasticsearch</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><div class="featured-image-preview">
+            <a href="/elasticsearch-lecture1/"><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/posts/images/elastic/9SyGqYLhMmYxEJyNUf.png"
+        data-srcset="/posts/images/elastic/9SyGqYLhMmYxEJyNUf.png, /posts/images/elastic/9SyGqYLhMmYxEJyNUf.png 1.5x, /posts/images/elastic/9SyGqYLhMmYxEJyNUf.png 2x"
+        data-sizes="auto"
+        alt="/posts/images/elastic/9SyGqYLhMmYxEJyNUf.png"
+        title="/posts/images/elastic/9SyGqYLhMmYxEJyNUf.png" /></a>
+        </div><h1 class="single-title" itemprop="name headline">
+        <a href="/elasticsearch-lecture1/">Elasticsearch 클러스터 분산구성 시나리오</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2018-10-20">2018-10-20</time></span>&nbsp;<span class="post-category">included in <a href="/categories/elasticsearch-%EA%B2%80%EC%83%89-%EC%97%94%EC%A7%84-%EA%B5%AC%EC%B6%95-%EA%B0%95%EC%9D%98-%EC%A0%95%EB%A6%AC/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Elasticsearch 검색 엔진 구축 강의 정리</a></span></div><div class="content">Elasticsearch 클러스터 분산구성 시나리오 단일 노드에 3개의 샤드로 클러스터 구성하기 blogs라는 인덱스에 3개의 primary 샤드와 1개의 replica 샤드가 운용되도록 할당한다.
+1 2 3 4 5 6 7 curl -X PUT &#34;localhost:9200/blogs&#34; -H &#39;Content-Type: application/json&#39; -d { &#34;settings&#34; : { &#34;number_of_shards&#34; : 3, &#34;number_of_replicas&#34; : 1 } } [그림1] 샤드의 개수는 3이고 레플리카 개수는 1개인 단일 노드 클러스터는 정상적으로 작동되나 하드웨어의 오류가 발생할 경우 데이터 손실의 위험이 있다. 데이터 적재량이 많을 경우 싱글노드가 허용하는 볼륨을 모두 소진할 수도 있어 더이상 적재가 불가능 할 수도 있다.</div><div class="post-footer">
+        <a href="/elasticsearch-lecture1/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/elasticsearch/">elasticsearch</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><div class="featured-image-preview">
+            <a href="/elasticsearch-lecture0/"><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/posts/images/elastic/9SyGqYLhMmYxEJyNUf.png"
+        data-srcset="/posts/images/elastic/9SyGqYLhMmYxEJyNUf.png, /posts/images/elastic/9SyGqYLhMmYxEJyNUf.png 1.5x, /posts/images/elastic/9SyGqYLhMmYxEJyNUf.png 2x"
+        data-sizes="auto"
+        alt="/posts/images/elastic/9SyGqYLhMmYxEJyNUf.png"
+        title="/posts/images/elastic/9SyGqYLhMmYxEJyNUf.png" /></a>
+        </div><h1 class="single-title" itemprop="name headline">
+        <a href="/elasticsearch-lecture0/">Elasticsearch 시작하기</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2018-10-18">2018-10-18</time></span>&nbsp;<span class="post-category">included in <a href="/categories/elasticsearch-%EA%B2%80%EC%83%89-%EC%97%94%EC%A7%84-%EA%B5%AC%EC%B6%95-%EA%B0%95%EC%9D%98-%EC%A0%95%EB%A6%AC/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Elasticsearch 검색 엔진 구축 강의 정리</a></span></div><div class="content">Elasticsearch Elasticsearch 는 Apache Lucene 기반의 Full-Text 검색엔진 이며 분석엔진 이다. 고가용성(High Availability) 의 확장 가능한 오픈 소스이다. HTTP 웹 인터페이스와 스키마에서 자유로운 JSON 문서로 제공된다. 검색 엔진으로서의 Elasticsearch Elasticsearch 는 루씬 기반의 대중적인 엔터프라이즈 검색엔진으로, Apach 2.0 License 에 의거 오픈 소스로 출시 되었다. 또한 대부분의 루씬이 제공하는 기능들을 Eleasticsearch 에서도 제공한다. HTTP Web Interface와 Schema에 자유로운 JSON 형태의 도규먼트를 지원하는 준 실시간 분산형 검색엔진이다.
+Apache Lucene 정보검색(Information Retrieval, IR) 소프트웨어 검색 라이브러리 Apahce Software 재단의 검색엔진 상위 프로젝트 자바 언어로 개발되어 있다.</div><div class="post-footer">
+        <a href="/elasticsearch-lecture0/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/elasticsearch/">elasticsearch</a></div></div>
 </article><ul class="pagination"><li class="page-item ">
                     <span class="page-link">
                         <a href="/">1</a>
@@ -150,20 +179,6 @@ NOTE: I made a mistake when I named this implementation SHA-3.</div><div class="
                 </li><li class="page-item active">
                     <span class="page-link">
                         <a href="/page/3/">3</a>
-                    </span>
-                </li><li class="page-item ">
-                    <span class="page-link">
-                        <a href="/page/4/">4</a>
-                    </span>
-                </li><li class="page-item ">
-                    <span class="page-link">
-                        <a href="/page/5/">5</a>
-                    </span>
-                </li><li class="page-item ">
-                    <span class="page-link" aria-hidden="true">&hellip;</span>
-                </li><li class="page-item ">
-                    <span class="page-link">
-                        <a href="/page/17/">17</a>
                     </span>
                 </li></ul></div></div>
             </main><footer class="footer">

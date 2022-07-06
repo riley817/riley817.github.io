@@ -6,85 +6,85 @@
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
             <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Sat, 26 Mar 2022 18:51:55 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/tags/bitcoin/" rel="self" type="application/rss+xml" /><item>
     <title>[TIL &amp; Issue Note] 20220326</title>
-    <link>https://riley817.github.io/20220326/</link>
+    <link>https://riley817.github.io/archives/til/20220326/</link>
     <pubDate>Sat, 26 Mar 2022 18:51:55 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/20220326/</guid>
+    <guid>https://riley817.github.io/archives/til/20220326/</guid>
     <description><![CDATA[블록체인과 보안 및 개인정보 1. 블록체인과 보안 해커 해커의 주된 목표 가치있는 정보 탈취로 경제적 이익 추구 -&gt; 정보 자체에 대한 약탈 서비스 중단(Denial of Service)을 통한 시스템의 교란 해커의 공격을 막으려면? 정보 자체가 노출되는 것을 보호 서비스가 중단되지 않도록 보호 블록체인은 해커의 공격에 대해 안전할까? 블록체인은 모든 데이터를 브로드캐스팅을 통해 다른 노드와 공유 정보의 탈취 자체가 필요없을 정도로 정보가 노출됨. 정보 탈취로부터의 안정성은 가지고 있지 못함 암호화 자체가 안전을 보장하지 않음 암호화를 위한 기술적인 문제도 뒤따름 블록체인 보안 서비스 중단 공격이나 기록을 변경시키려는 시도로부터는 현존하는 가장 안전한 시스템 공격이나 기록 변경을 위해서는 모든 노드를 공격해야 함.]]></description>
 </item>
 <item>
     <title>[TIL &amp; Issue Note] 20220324</title>
-    <link>https://riley817.github.io/20220324/</link>
+    <link>https://riley817.github.io/archives/til/20220324/</link>
     <pubDate>Thu, 24 Mar 2022 23:29:35 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/20220324/</guid>
+    <guid>https://riley817.github.io/archives/til/20220324/</guid>
     <description><![CDATA[블록체인 원리(7) - 채굴과 51% 공격 1. 채굴과 블록 생성 블록을 만드는 것 = 채굴 보상금 획득 하는것이 금 획득하는 것과 비슷 채굴 단어의 유래 - Nick Szabo 금이 가치를 갖는 것은 채굴이 어렵기 때문 어떤 문제가 매우 어렵다면 -&gt; 문제의 정답 자체가 어떤 가치를 가지지 않을까? 블록 만듦 -&gt; 해시 퍼즐 풀이 : 어려운 문제이기 때문에 정답 자체가 가치 보유 금을 캐려면 -&gt; 금광에서 채굴 : 힘든 작업이기 때문에 금이 가치 보유 해시 퍼즐 풀이 -&gt;(비유) 금광에서 채굴 채굴 == 블록을 만들다.]]></description>
 </item>
 <item>
     <title>[TIL &amp; Issue Note] 20220321</title>
-    <link>https://riley817.github.io/20220321/</link>
+    <link>https://riley817.github.io/archives/til/20220321/</link>
     <pubDate>Mon, 21 Mar 2022 23:07:39 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/20220321/</guid>
+    <guid>https://riley817.github.io/archives/til/20220321/</guid>
     <description><![CDATA[블록체인 원리 - (5) 비가역성 블록체인 원리 (6) - 하드 포크와 소프트 포크 1. 하드 포크와 소프트 포크의 기본 개념 하드 포크와 소프트 포크 동일한 블록에서 노드가 다른 행동을 하는 이유 중앙화 서버 : 하나의 소프트웨어를 여러 사람이 접속 블록체인 : 각자의 소프트웨어 접속 -&gt; 모든 사람의 소프트웨어 버전이 다르기 때문에 발생 블록체인의 소프트웨어 변경 최신 소프트웨어 사용자 -&gt; 모든 변경이 반영된 상태로 사용 이전 소프트웨어 사용자 -&gt; 변경이 반영되지 않은 형태로 사용 하드포크, 소프트 포크 동일한 블록에 대해 서로 다른 규칙을 적용, 서로 다른 결론에 이르는 현상 규칙이 상충시 발생하는 두 가지 현상 과거에는 유효하던 규칙이 지금은 무효화 과거에는 무효하던 규칙이 지금은 유효화 -&gt; 결국 블록체인 데이터에 영향을 미치게 됨 2.]]></description>
 </item>
 <item>
     <title>[TIL &amp; Issue Note] 20220317</title>
-    <link>https://riley817.github.io/20220317/</link>
+    <link>https://riley817.github.io/archives/til/20220317/</link>
     <pubDate>Thu, 17 Mar 2022 23:46:41 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/20220317/</guid>
+    <guid>https://riley817.github.io/archives/til/20220317/</guid>
     <description><![CDATA[블록체인 원리 - (4) 탈중앙화 합의 및 이중사용 1. 탈중앙화 합의 규칙의 개념 탈중앙화 합의 규칙 규칙 미준수 -&gt; 폐기 규칙 준수 -&gt; 동의 탈중앙화 합의 규칙에는 규칙을 지켰을 때도 퇴출하는 방식이 필요 블록체인의 특징 구성상 P2P 혹은 피어투피어 방식으로 이루어짐 특정 서버가 존재하지 않음 브로드캐스팅을 통해서 자신의 피어를 통한 데이터 전송을 받고 있음 모든 노드는 현재 자신이 가지고 있는 데이터와 피어로부터 전달받은 데이터에 의존해서 모든것을 판단해야 함 중앙서버 중앙 통제 서버가 모든 지시를 내림 -&gt; 노드는 지시에 따름 블록체인 모든 노드가 동등한 권리와 의무를 가짐 -&gt; 지시를 받을 수 없는 구조]]></description>
 </item>
 <item>
     <title>[TIL &amp; Issue Note] 20220315</title>
-    <link>https://riley817.github.io/20220315/</link>
+    <link>https://riley817.github.io/archives/til/20220315/</link>
     <pubDate>Tue, 15 Mar 2022 00:28:23 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/20220315/</guid>
+    <guid>https://riley817.github.io/archives/til/20220315/</guid>
     <description><![CDATA[블록체인 원리 (3) - 작업증명 : 해시 퍼즐과 난이도 1. 블록만들기와 해시 퍼즐 해시 퍼즐 무차별 대입법 -&gt; 특정 값 -&gt; 무한 반복 산수 문제 해시 퍼즐을 푸는 수학적 공식은 없음 무수히 반복되는 산수 문제 해결 해시를 통해 얻게 되는 고유한 값 32 Byte 값 -&gt; SHA-256 - 유효한 블록의 해시값을 찾을 때까지 무한 반복 해시 퍼즐 정답 = 블록 고유 해시값 제네시스 블록 해시값 = 2의 32승 번 값 계산 -&gt; 약 10분동안 계산 해시 퍼즐 풀이 블록 헤더의 넌스값을 0 으로 설정 비트코인 해시 함수를 연속 2번 해싱 (SHA-256) : 임의의 32 Byte 값 블록 전체를 해시함수를 연속 두 번 적용하여 나온 해시값 H와 주어진 목표값 T 값을 비교 주어진 값보다 더 작거나 갖지 않다 -&gt; 넌스 1증가 (1 ~ 32 까지 증가) -&gt; 임의의 32 Byte 값 생성 반복 판단박스 목표 값보다 T보다 작아질 때까지 반복 넌스값 입력의 사소한 변화 32 Byte 충분히 작은 값이 나올 때까지 반복 T(목표값) -&gt; 목표값이 작을 수록 만족 힘듦 작업증명 퍼즐을 이용해서 의도적으로 막대한 에너지를 소모하게 만든 방식 스팸 방지를 위해 개발 의도적으로 막대한 에너지를 소모하게 하여 그 일을 억제 최초 기록 및 변경에 막대한 에너지 소모 -&gt; 반대 급부의 경제적 이득이 없으면 변경 이유 없다 최초의 기록된 노드의 검증 -&gt; 합당한 이유 없다면 정상적 기록을 통한 보상금 -&gt; 합리적 선택 스팸 방지 네트워크 과부하 문제 어떤 작업을 반드시 해야만 되도록 부과 -&gt; 스팸 억제 2.]]></description>
 </item>
 <item>
     <title>[TIL &amp; Issue Note] 20220314</title>
-    <link>https://riley817.github.io/20220314/</link>
+    <link>https://riley817.github.io/archives/til/20220314/</link>
     <pubDate>Mon, 14 Mar 2022 23:47:19 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/20220314/</guid>
+    <guid>https://riley817.github.io/archives/til/20220314/</guid>
     <description><![CDATA[블록체인 원리(2) - 블록의 구조 1. 블록의 이해 블록 (Block) 의미 있는 묶음 = 1 BLOCK 어떤 의미있는 단위를 한 블록으로 정의 특정 데이터를 다루는 단위 비트코인 블록체인 1 MB 까지의 한도 내에서 거래내역을 기록한 단위 (2000 ~ 3000 거래 내역) 비트코인 캐시 (8MB 까지 허용), 비트코인 골드 이더리움 블록체인 이론적인 한도는 없음 비트코인 블록의 구조 블록 헤더 : 데이터의 요약 정보 블록 헤더의 크기 : 80 Byte 항상 일정한 크기를 유지 블록 데이터 : 실제의 데이터를 담는 부분 2.]]></description>
 </item>
 <item>
     <title>[TIL &amp; Issue Note] 20220310</title>
-    <link>https://riley817.github.io/20220310/</link>
+    <link>https://riley817.github.io/archives/til/20220310/</link>
     <pubDate>Thu, 10 Mar 2022 22:23:45 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/20220310/</guid>
+    <guid>https://riley817.github.io/archives/til/20220310/</guid>
     <description><![CDATA[블록체인과 중앙집중 시스템과의 차이점 (2) - 일처리 방식 1. 브로드캐스팅 Broadcasting 네트워크에 참여한 모든 노드에게 모든 데이터를 전달하는 방식 중앙서버 방식 : 중앙 서버와 특정 노드 사이에만 데이터 전달이 일어남 블록체인 : 시간이 흐림에 따라 데이터가 모든 노드에 전달 블록체인에서는 모든 데이터를 브로드캐스팅을 통해 전달 Gossip protocol 귓속말을 하듯 피어를 통해 데이터를 전달한다.
 모든 데이터 -&gt; 모든 노드 -&gt; 블록체인에 참여한 노드는 동일한 데이터를 가지고 있다.
 블록체인의 모든 전송 방식은 브로드 캐스팅에 의존한다.]]></description>
 </item>
 <item>
     <title>[TIL &amp; Issue Note] 20220308</title>
-    <link>https://riley817.github.io/20220309/</link>
+    <link>https://riley817.github.io/archives/til/20220309/</link>
     <pubDate>Tue, 08 Mar 2022 10:51:10 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/20220309/</guid>
+    <guid>https://riley817.github.io/archives/til/20220309/</guid>
     <description><![CDATA[블록체인과 중앙집중 시스템과의 차이점 (1) 1. 중앙화 시스템과 분산 시스템 분산 시스템의 정의 각각의 꼭지점 = 하나의 서버 모드 꼭짓점 = 노드 직접적으로 연결된 노드 = 피어 ![[Pasted image 20220308110403.png]]
 중앙집중 시스템과 분산시스템 중앙집중 시스템 대표적인 예시 은행 -&gt; 은행이 운영하는 웹 서버에 연결 은행 이용자가 모두 동일한 서버를 이용 사용자의 수와 상관없이 사용자가 사용하는 시스템은 동일 특징 설계와 운영이 간편한 중앙집중 시스템 -&gt; 기능 추가 시 별도의 절차 없이 모든 사용자에게 적용.]]></description>
 </item>
 <item>
     <title>[TIL &amp; Issue Note] 20220307</title>
-    <link>https://riley817.github.io/20220307/</link>
+    <link>https://riley817.github.io/archives/til/20220307/</link>
     <pubDate>Mon, 07 Mar 2022 13:43:10 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/20220307/</guid>
+    <guid>https://riley817.github.io/archives/til/20220307/</guid>
     <description><![CDATA[블록체인과 중앙집중 시스템과의 차이점 (1) 1. 중앙화 시스템과 분산 시스템 분산 시스템의 정의 각각의 꼭지점 = 하나의 서버 모드 꼭짓점 = 노드 직접적으로 연결된 노드 = 피어 중앙집중 시스템과 분산시스템 중앙집중 시스템 대표적인 예시 은행 -&gt; 은행이 운영하는 웹 서버에 연결 은행 이용자가 모두 동일한 서버를 이용 사용자의 수와 상관없이 사용자가 사용하는 시스템은 동일 특징 설계와 운영이 간편한 중앙집중 시스템 -&gt; 기능 추가 시 별도의 절차 없이 모든 사용자에게 적용. 서버에 이상이 생길 경우 모든 사용자가 이용 불가 분산 시스템 여러 개의 서버가 일을 나누어 처리 여러 서버가 일을 분담하는 분산 시스템 분산시스템의 장점 일의 효울성이 높다.]]></description>
 </item>
 <item>
     <title>[TIL &amp; Issue Note] 20220303</title>
-    <link>https://riley817.github.io/20220303/</link>
+    <link>https://riley817.github.io/archives/til/20220303/</link>
     <pubDate>Thu, 03 Mar 2022 22:03:22 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/20220303/</guid>
+    <guid>https://riley817.github.io/archives/til/20220303/</guid>
     <description><![CDATA[1. 블록체인의 탄생 배경 개요 블록체인의 작동원리와 기반 기술 세부기술에 대한 자세한 설명을 통해 블록체인의 정한 효용 초보자와 프로그래머에게 모두 열린 학습 비유를 통한 원리 이해 현업에 발판이 되는 전문 지식 1. 블록체인의 탄생 배경 Cipherpunk 운동 Cipher(암호) + Punk의 합성어 암호로 개인의 프라이버시 보호를 극대화하고자 했던 행동주의자 등장 배경 1980년대 미국, 국가나 대형 기관에 의한 개인의 인권 및 개인정보 침해 심각 개인의 프라이버시 보호하고자 하는 의식 확산 암호화 기술은 국가/군 기관이 점유 -&gt; 개인에게는 허용 불가 1970년 IBM에서 일반인들도 사용할 수 있는 암호화 체계 등장 -&gt; DES (Data Encryption Standard, DES) 1983년, E-cash (David Chaum) 모든 금융 거래의 이체 내역 암호화 은행과의 제휴를 통해 계좌 이체 내역에 대해서만 본인이 알 수 있도록 함.]]></description>
 </item>
 </channel>

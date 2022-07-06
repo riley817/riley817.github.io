@@ -6,20 +6,20 @@
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
             <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Sun, 21 Mar 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://riley817.github.io/tags/elasticsearch-cloud/" rel="self" type="application/rss+xml" /><item>
     <title>nginx 로그를 Elasticsearch Cloud로 수집하기</title>
-    <link>https://riley817.github.io/nginx-log-es-cloud/</link>
+    <link>https://riley817.github.io/archives/elasticsearch/nginx-log-es-cloud/</link>
     <pubDate>Sun, 21 Mar 2021 00:00:00 &#43;0000</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/nginx-log-es-cloud/</guid>
+    <guid>https://riley817.github.io/archives/elasticsearch/nginx-log-es-cloud/</guid>
     <description><![CDATA[개요 파일비트를 사용하여 웹 서버(nginx) 로그 파일을 수집하고 Elasticsearch Cloud에 전송한다. Cloud에서 생성한 Kibana 사이트에 접속하면 여러 플랫폼에서 데이터를 수집할 수 있는 예시 파일을 참고 할 수 있다.
 파일비트 설치 파일비트는 수집할 로그가 쌓이는 서버에 설치했다.
 1 2 3 4 cd /usr/local/src sudo curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.11.1-linux-x86_64.tar.gz tar xzvf filebeat-7.11.1-linux-x86_64.tar.gz cd filebeat-7.11.1-linux-x86_64 Elastic Cloud 인증정보 설정 Elastic Cloud 접속을 위하여 filebeat.yml의 관련항목의 주석을 해제하고 인증정보를 설정한다. 그 외 필요한 설정 정보는 아래 링크를 참조한다.]]></description>
 </item>
 <item>
     <title>Elastic Cloud 이관 작업</title>
-    <link>https://riley817.github.io/es-cloud/</link>
+    <link>https://riley817.github.io/archives/elasticsearch/es-cloud/</link>
     <pubDate>Wed, 17 Mar 2021 00:00:00 &#43;0000</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/es-cloud/</guid>
+    <guid>https://riley817.github.io/archives/elasticsearch/es-cloud/</guid>
     <description><![CDATA[개요 Elastic Cloud로 데이터 마이그레이션하기 A to Z
 filebeat, logstash 는 데이터 소스가 있는 시스템에 설치하고, Elasticsearch, Kinaba 는 Elastic Cloud 로 세팅하여 사용한다.
 엘라스틱서치 운영 모니터링 까지 Elastic Cloud 에서 모두 지원하기 때문에 따로 구성하지 않아도 된다.
@@ -27,10 +27,10 @@ Elastic Cloud 구조 작업 목표 On-promise로 구성되어 있는 검색어 �
 </item>
 <item>
     <title>Azure VM에 Elastic Stack 설정</title>
-    <link>https://riley817.github.io/azure-vm-elastic-stack/</link>
+    <link>https://riley817.github.io/archives/elasticsearch/azure-vm-elastic-stack/</link>
     <pubDate>Fri, 22 Jan 2021 00:00:00 &#43;0000</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/azure-vm-elastic-stack/</guid>
+    <guid>https://riley817.github.io/archives/elasticsearch/azure-vm-elastic-stack/</guid>
     <description><![CDATA[VM 세팅 리소스 그룹 생성 --location 으로 리젼을 선택할 수 있다. 1 2 3 4 5 # 리젼 코드 조회하기 az account list-locations -o table # elastic Resource Group 생성 az group create --name elastic --location koreasouth VM 생성하기 elastic 그룹에 VM 을 생성한다. 1 2 3 4 5 6 yoon@Azure:~$ az vm create \ &gt; --resource-group elastic \ &gt; --name rileyVM \ &gt; --image UbuntuLTS \ &gt; --admin-username riley \ &gt; --generate-ssh-keys 빠른 시작: Azure CLI를 사용하여 Linux VM 만들기 - Azure Virtual Machines SSH 접속 세팅 VM 생성 시 --generate-ssh-ke 의 옵션을 주어 SSH Key를 생성하였다.]]></description>
 </item>
 </channel>

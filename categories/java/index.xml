@@ -6,10 +6,10 @@
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
             <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Sun, 19 Apr 2020 23:11:21 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/categories/java/" rel="self" type="application/rss+xml" /><item>
     <title>Multi Thread</title>
-    <link>https://riley817.github.io/thread/</link>
+    <link>https://riley817.github.io/archives/java/thread/</link>
     <pubDate>Sun, 19 Apr 2020 23:11:21 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/thread/</guid>
+    <guid>https://riley817.github.io/archives/java/thread/</guid>
     <description><![CDATA[자바 기본 잊지 않게 정리하기! 🤔
 프로세스와 스레드 프로세스(process) : 운영체제에서 실행 중인 하나의 애플리케이션을 의미 멀티 태스킹(multi tasking) 운영 체제에서 두 가지 이상의 다중 작업(프로세스)를 동시에 처리하는 것을 의미. 운영 체제에서는 멀티 태스킹을 할 수 있도록 CPU 및 메모리 자원을 적절히 할당하고 병렬로 실행시킨다. 할당받은 메모리를 가지고 실행하기 때문에 독립적이다. 메인 스레드 자바 애플리케이션은 메인 스레드(main thread)가 main() 메소드를 실행 하면서 시작. 메인 스레드는 필요에 따라 작업 스레드를 만들어 병렬로 실행 가능하다.]]></description>
 </item>

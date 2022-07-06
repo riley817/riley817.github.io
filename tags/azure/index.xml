@@ -6,10 +6,10 @@
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
             <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Fri, 22 Jan 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://riley817.github.io/tags/azure/" rel="self" type="application/rss+xml" /><item>
     <title>Azure VM에 Elastic Stack 설정</title>
-    <link>https://riley817.github.io/azure-vm-elastic-stack/</link>
+    <link>https://riley817.github.io/archives/elasticsearch/azure-vm-elastic-stack/</link>
     <pubDate>Fri, 22 Jan 2021 00:00:00 &#43;0000</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/azure-vm-elastic-stack/</guid>
+    <guid>https://riley817.github.io/archives/elasticsearch/azure-vm-elastic-stack/</guid>
     <description><![CDATA[VM 세팅 리소스 그룹 생성 --location 으로 리젼을 선택할 수 있다. 1 2 3 4 5 # 리젼 코드 조회하기 az account list-locations -o table # elastic Resource Group 생성 az group create --name elastic --location koreasouth VM 생성하기 elastic 그룹에 VM 을 생성한다. 1 2 3 4 5 6 yoon@Azure:~$ az vm create \ &gt; --resource-group elastic \ &gt; --name rileyVM \ &gt; --image UbuntuLTS \ &gt; --admin-username riley \ &gt; --generate-ssh-keys 빠른 시작: Azure CLI를 사용하여 Linux VM 만들기 - Azure Virtual Machines SSH 접속 세팅 VM 생성 시 --generate-ssh-ke 의 옵션을 주어 SSH Key를 생성하였다.]]></description>
 </item>
 </channel>

@@ -4,108 +4,92 @@
         <link>https://riley817.github.io/posts/</link>
         <description>All Posts | Riley&#39;s DevLog</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
-            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Mon, 27 Jun 2022 23:22:43 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/posts/" rel="self" type="application/rss+xml" /><item>
-    <title>개발협업 가이드 Sample</title>
-    <link>https://riley817.github.io/20220627/</link>
-    <pubDate>Mon, 27 Jun 2022 23:22:43 &#43;0900</pubDate>
+            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Mon, 05 Nov 2018 23:38:01 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>3.5 그 외 설정</title>
+    <link>https://riley817.github.io/elasticsearch-lecture3-5/</link>
+    <pubDate>Mon, 05 Nov 2018 23:38:01 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/20220627/</guid>
-    <description><![CDATA[개발 협업 가이드 우리 팀에서 내부 및 외부 공동 작업자가 개발 협업하기 위한 방법으로 애자일의 Scrum 방법론을 사용합니다. Scrum 관리를 위한 도구로는 GitLab의 이슈 시스템과 칸반보드 기능을 활용합니다. GitLab에 등록되는 이슈(Task)는 시스템 개발과 관련된 작업만 작성하도록 합니다. 프로젝트 계약 등 개발작업이 아닌 작업의 경우 Microsoft Planner의 칸반보드를 사용합니다.
-PBTeam – Microsoft Planner 사용가이드
-GitLab은 Git 원격 저장소 관리, CI/CD, 이슈 관리, 테스트 등 소프트웨어 개발과 운영의 전반적인 라이프사이클을 관리할 수 있는 통합 툴입니다.]]></description>
+    <guid>https://riley817.github.io/elasticsearch-lecture3-5/</guid>
+    <description><![CDATA[Other Settings /etc/security/limits.conf Elasticsearch 는 많은 파일을 쓰거나 핸들링하게 된다. 열 수 있는 File descriptor가 부족하면 데이터의 손실로 이어질 수 있으며 실행할 수 있는 최대 File Descriptor 를 65,536 개 이상으로 설정하도록 한다.
+vi /etc/security/limits.conf 1 2 elasticsearch soft nofile 65536 elasticsearch hard nofile 65536 Thread 수 Elasticsearch 는 여러 유형의 작업에 대해 많은 Thread Pool을 사용하게 된다.. Elasticsearch 사용자가 만들 수 있는 Thread 가 4096 개 이상인지 확인한다. 1 2 elasticsearch soft noproc 4096 elasticsearch hard noproc 4096 Sysconfig file RPM 또는 Debian 패키지를 사용하여 시스템 설정 및 환경 변수를 지정할 수 있다.]]></description>
 </item>
 <item>
-    <title>[TIL &amp; Issue Note] 20220603</title>
-    <link>https://riley817.github.io/20220603/</link>
-    <pubDate>Fri, 03 Jun 2022 18:54:00 &#43;0900</pubDate>
+    <title>3.4 log4j2.properties</title>
+    <link>https://riley817.github.io/elasticsearch-lecture3-4/</link>
+    <pubDate>Mon, 05 Nov 2018 23:15:23 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/20220603/</guid>
-    <description><![CDATA[ ECMAscript 모듈 Scope 관련 문제
-Functions not working when type=&quot;module&quot; or import ]]></description>
+    <guid>https://riley817.github.io/elasticsearch-lecture3-4/</guid>
+    <description><![CDATA[log4j2.properties Elasticsearch는 로깅을 위해 Log4j2를 사용한다. Log4j2는 log4j2.properties 파일을 사용하여 구성할 수 있다.
+로그참조 파일 ${sys:es.logs.base_path} 로그의 Base 디렉토리 elasticsearch.yml 의 path.log에 설정된 경로 ${sys:es.logs.cluster_name} 클러스트 이름을 나타낸다. elasticsearch.yml 의 cluster.name으로 설정할 수 있다. ${sys:es.logs.node_name} 노드의 이름을 나타냅니다. elasticsearch.yml 의 node.name으로 설정할 수 있다. 1 2 ex) ${sys:es.logs.base_path}${sys:file.separator}${sys:es.logs.cluster_name}.log /var/log/elasticsearch/mycluster.log ]]></description>
 </item>
 <item>
-    <title>[시작하세요! 도커/쿠버네티스] Chapter 5. 쿠버네티스 설치</title>
-    <link>https://riley817.github.io/kubernetes/</link>
-    <pubDate>Tue, 24 May 2022 23:34:36 &#43;0900</pubDate>
+    <title>3.3 jvm.options</title>
+    <link>https://riley817.github.io/elasticsearch-lecture3-3/</link>
+    <pubDate>Mon, 05 Nov 2018 22:13:59 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/kubernetes/</guid>
-    <description><![CDATA[시작하세요! 도커/쿠버네티스 책 정리 🐳🐳🐳]]></description>
+    <guid>https://riley817.github.io/elasticsearch-lecture3-3/</guid>
+    <description><![CDATA[jvm.options jvm.options 의 설정을 통해 JVM(Java Virtual Machine) 의 옵션을 변경할 수 있다. 설정 파일은 config/jvm.options(tar or zip 배포판) 또는 /etc/elasticsearch/jvm.options(rpm 패키지 설치) 에서 위치하고 있다. JVM Heap Size Configuration Elasticsearch 는 Java 기반이기 때문에 Heap 메모리를 어떻게 설정하느냐에 따라 성능에 큰 영향을 미치게 된다. 기본적으로 Elasticsearch 의 최소, 최대 Heap 사이즈는 2GB로 설정되어 있다. 실제 운영환경에 따라서 Elasticsearch 에서 충분한 Heap 을 사용할 수 있도록 Heap Size 를 구성하는 것이 중요하다.]]></description>
 </item>
 <item>
-    <title>[시작하세요! 도커/쿠버네티스] Chapter 2. 도커 엔진 - 도커 네트워크</title>
-    <link>https://riley817.github.io/chapter2-2-docker-engine/</link>
-    <pubDate>Mon, 23 May 2022 23:37:00 &#43;0900</pubDate>
+    <title>3.2 elasticsearch.yml</title>
+    <link>https://riley817.github.io/elasticsearch-lecture3-2/</link>
+    <pubDate>Fri, 02 Nov 2018 18:20:19 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/chapter2-2-docker-engine/</guid>
-    <description><![CDATA[시작하세요! 도커/쿠버네티스 책 정리 🐳🐳🐳
-2.7 도커 네트워크 도커 네트워크 구조 도커는 컨테이너 내부 IP를 순차적으로 할당한다. 이 IP는 컨테이너를 재시작 할 때마다 변경 될 수 있다. 각 컨테이너에 외부와의 네트워크를 제공하기 위해 각 컨테이너마다 가상 네트워크 인터페이스를 호스트에 생성한다. 이름은 veth(virtual eth)로 시작한다. docker0 브리지는 각 veth 인터페이스와 바인딩 되어 호스트의 eth0 인터페이스와 이어주는 역할을 한다. ///
-도커 네트워크 기능 컨테이너를 생성하면 기본적으로 docker0 브릿지를 통해 통신한다. 도커가 자체적으로 제공하는 네트워크로는 bridge, host, none, container, overlay 가 있다.]]></description>
+    <guid>https://riley817.github.io/elasticsearch-lecture3-2/</guid>
+    <description><![CDATA[elasticsearch.yml elasticsearch.yml 은 데이터 파일 위치, 로그파일 위치 등 클러스터의 핵심적인 설정을 할 수 있는 구성 파일이다. 파일 포맷은 YAML 로 되어있다.
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 # path.data : 데이터파일의 위치를 설정 # path.logs : ES 의 로그 파일이 저장될 위치를 설정 path: data: /var/lib/elasticsearch logs: /var/log/elasticsearch # 클러스터를 고유하게 식별할 수 있는 이름 설정 cluster: name: es-cluster # 노드를 고유하게 식별할 수 있는 이름설정 # 보통 호스트명 기준으로 설정하는 것이 운영에 용이 node: name: es-master01 path.]]></description>
 </item>
 <item>
-    <title>[AWS EKS] 5. 인그레스 컨트롤러 만들기</title>
-    <link>https://riley817.github.io/aws-5-ingress-controller/</link>
-    <pubDate>Sun, 08 May 2022 00:13:03 &#43;0900</pubDate>
+    <title>3.1 Elasticsearch 구성하기</title>
+    <link>https://riley817.github.io/elasticsearch-lecture3-1/</link>
+    <pubDate>Fri, 02 Nov 2018 17:11:00 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/aws-5-ingress-controller/</guid>
-    <description><![CDATA[☁️ Amazon EKS 웹 애플리케이션 구축하기 워크샵을 실습한 내용입니다.
-☁️ AWS Workshop 링크 : https://catalog.us-east-1.prod.workshops.aws/workshops/9c0aa9ab-90a9-44a6-abe1-8dff360ae428/ko-KR/
-인그레스 Ingress 클러스터 내의 서비스에 대한 외부 요청을 어떻게 처리할 것인지 네트워크 7계층 레벨에서 정의하는 쿠버네티스 오브젝트이다.
-인그레스 오브젝트의 기본 기능은 다음과 같다.
-외부 요청의 라우팅 : 특정 경로로 들어온 요청을 어떤 서비스로 전달할지 정의하는 라우터 규칙 설정 가상 호스트 기반의 요청 처리 : 같은 IP에 대해 다른 도메인 이름으로 요청했을 때 어떻게 처리할 것인지 정의 SSL/TLS 보안 연결 처리 : 요청을 라우팅 할 때, 보안 연결을 위한 인증서 적용 인그레스를 사용하는 이유 쿠버네티스 서비스 타입 중 NodePort 혹은 LoadBalancer 타입의 서비스를 사용해도 외부로 노출할 수 있지만, 인그레스 없이 서비스를 사용할 경우 SSL/TLS 보안 연결 등의 상세 옵션을 각각의 서비스와 디플로이먼트에 대해 일일이 설정을 해야 한다.]]></description>
+    <guid>https://riley817.github.io/elasticsearch-lecture3-1/</guid>
+    <description><![CDATA[Elasticsearch 는 정적으로 설정을 구성할 수 있을 뿐만 아니라 클러스터 운영중에도 클러스터 세팅 업데이트 API 를 통하여 동적인 설정 구성이 가능하다.
+Static settings Elasticsearch는 노드별로 설정파일을 구성할 수 있다. Elasticsearch 에는 세 개의 구성 파일이 있으며, 이 설정 파일들의 위치는 아카이브 배포판 설치시에는 $ES_HOME/config, 패키지 배포시에는 (RPM 설치 등) /etc/elasticsearch 에 위치한다.
+elasticsearch.yml : Elasticsearch 의 핵심 설정 jvm.options : JVM 옵션 설정 ( heapsize 설정 ) log4j2.properties : Elasticsearch 의 logging 설정 Dynamic settings 클러스터에 REST API 로 호출하여 클러스터를 운영중에도 구성 설정을 변경 할 수 있다.]]></description>
 </item>
 <item>
-    <title>[AWS EKS] 4. Amazon ECR 에 이미지 올리기</title>
-    <link>https://riley817.github.io/aws-4-ecr/</link>
-    <pubDate>Sat, 07 May 2022 23:00:58 &#43;0900</pubDate>
+    <title>2.5 Elasticsearch 플러그인</title>
+    <link>https://riley817.github.io/elasticsearch-lecture2-5/</link>
+    <pubDate>Tue, 30 Oct 2018 15:49:11 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/aws-4-ecr/</guid>
-    <description><![CDATA[☁️ Amazon EKS 웹 애플리케이션 구축하기 워크샵을 실습한 내용입니다.
-☁️ AWS Workshop 링크 : https://catalog.us-east-1.prod.workshops.aws/workshops/9c0aa9ab-90a9-44a6-abe1-8dff360ae428/ko-KR/
-Amazon ECR 리포지토리 생성 및 이미지 올리기 Amazon ECR(Elastic Container Registry) 은 도커 컨테이너의 이미지를 저장하는 Repository 서비스이다. Docker hub의 기능과 동일하다.
-AWS CLI로 이미지 리포지토리 생성 1 2 3 4 aws ecr create-repository \ --repository-name demo-flask-backend \ --image-scanning-configuration scanOnPush=true \ --region ap-northeast-2 명령어가 수행되면 리포지토리에 대한 정보가 출력되며 Amazon ECR 콘솔창에서도 생성된 리포지토리를 확인할 수 있다.]]></description>
+    <guid>https://riley817.github.io/elasticsearch-lecture2-5/</guid>
+    <description><![CDATA[Elasticsearch 플러그인 플러그인은 사용자 정의 방식에 의해 ES 의 긴능을 향상 시키는 방법이다. 플러그인은 모든 노드에 설치해야 하며 설치 후 클러스터를 재시작 해야 한다. 플러그인 범주 Core Plugins (권고) Elasticsearch 에서 공식적으로 지원하는 플러그인 Elasticsearch 버전이 업데이트 될때마다 버전 업데이트가 지원됨. Community contributed 개인 개발자나 회사에 의해 지원되는 플러그인 참고 Elasticsearch Reference - modules-plugins. ]]></description>
 </item>
 <item>
-    <title>Kubernetes context 관리</title>
-    <link>https://riley817.github.io/kubectl-change-context/</link>
-    <pubDate>Sat, 07 May 2022 22:36:55 &#43;0900</pubDate>
+    <title>2.4 Elastic-HQ</title>
+    <link>https://riley817.github.io/elasticsearch-lecture2-4/</link>
+    <pubDate>Tue, 30 Oct 2018 15:33:39 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/kubectl-change-context/</guid>
-    <description><![CDATA[Kubernetes 서비스 어카운트 인증정보 설정 kubectl 명령어를 사용해 크버네티스 클러스터를 제어할 때는 kubeconfig라고 하는 특수한 설정파일을 통해 인증을 진행한다. kubeconfig 파일에는 기본적으로 클러스터 관리자 권한을 가지는 인증서 정보가 저장되며 아무런 제한 없이 쿠버네티스를 사용할 수 있다.]]></description>
+    <guid>https://riley817.github.io/elasticsearch-lecture2-4/</guid>
+    <description><![CDATA[Elastic HQ 설치하기 Requirements Python 3.4+ Elasticsearch. Supported versions: 2.x, 5.x, 6.x ElasticHQ Git Repository 에서 클론 혹은 다운로드 한다. 1 2 3 4 # git 이 설치되어 있지 않으면 sudo yum -y install git git clone https://github.com/ElasticHQ/elasticsearch-HQ.git Python 3.4+ 설치한다. (pip 은 파이선 패키지 관리자) 1 2 3 4 # clone 한 디렉터리로 이동 후 cd elasticsearch-HQ/ sudo yum -y install python34 python34-pip Repository 의 의존성 패키지 설치한다. 1 pip install -r requirements.]]></description>
 </item>
 <item>
-    <title>[AWS EKS] 3. EKS Cluster 생성하기</title>
-    <link>https://riley817.github.io/aws-3-eks-cluster/</link>
-    <pubDate>Fri, 06 May 2022 23:10:03 &#43;0900</pubDate>
+    <title>2.3 Head 소개</title>
+    <link>https://riley817.github.io/elasticsearch-lecture2-3/</link>
+    <pubDate>Mon, 29 Oct 2018 20:31:39 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/aws-3-eks-cluster/</guid>
-    <description><![CDATA[☁️ Amazon EKS 웹 애플리케이션 구축하기 워크샵을 실습한 내용입니다.
-☁️ AWS Workshop 링크 : https://catalog.us-east-1.prod.workshops.aws/workshops/9c0aa9ab-90a9-44a6-abe1-8dff360ae428/ko-KR/
-Amazon EKS 클러스터는 다양한 방식으로 배포할 수 있다.
-AWS 콘솔 창으로 배포 AWS CloudFormation 혹은 AWS CDK 와 같은 IaC(Infrastructure as Code) 도구를 사용해 배포 EKS의 공식 CLI인 eksctl 로 배포 Terraform, Pulumi, Rancher 등으로 배포 eksctl로 Cluster 생성하기 아무 옵션없이 eksctl create cluster 실행하면 default parameter로 클러스터가 배포된다. 그러나 yaml 파일로 작성한 구성 파일을 작성하여 배포하면 구성파일에 명시한 오브젝트들의 바라는 상태(desired state)를 쉽게 파악하고 관리할 수 있는 이점이 있다.]]></description>
+    <guid>https://riley817.github.io/elasticsearch-lecture2-3/</guid>
+    <description><![CDATA[Elasticsearch Head 클러스트들을 한눈에 보기 위한 도구. 직접 서버를 구성하여 설치할 수도 있고 크롬의 브라우저 익스텐션으로도 제공한다.
+Installation ES Head git repository 에서 클론 혹은 다운로드한다. 1 2 3 4 # git 이 설치되어 있지 않으면 sudo yum -y install git git clone https://github.com/mobz/elasticsearch-head.git npm 으로 관련 의존성 모듈 설치 1 2 3 4 5 6 7 cd elasticsearch-head/ sudo yum -y install bzip2 epel-release sudo yum -y install npm # Node 가 설치되어있어야 한다.]]></description>
 </item>
 <item>
-    <title>[AWS EKS] 2. AWS CLI, eksctl, kubectl 설치 및 설정</title>
-    <link>https://riley817.github.io/aws-2-cli/</link>
-    <pubDate>Thu, 05 May 2022 22:47:55 &#43;0900</pubDate>
+    <title>2.2 플러그인 설치하기</title>
+    <link>https://riley817.github.io/elasticsearch-lecture2-2/</link>
+    <pubDate>Mon, 29 Oct 2018 19:58:33 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/aws-2-cli/</guid>
-    <description><![CDATA[☁️ Amazon EKS 웹 애플리케이션 구축하기 워크샵을 실습한 내용입니다.
-☁️ AWS Workshop 링크 : https://catalog.us-east-1.prod.workshops.aws/workshops/9c0aa9ab-90a9-44a6-abe1-8dff360ae428/ko-KR/ ☁️ 워크샵에는 Cloud9을 구축했지만 나는 따로 구축하지는 않았다&hellip;
-AWS CLI AWS CLI 설치하기 (Mac OS) AWS Command Line Interface는 command-line shell 명령어를 사용하여 AWS 서비스의 EC2, VPC 등과 같은 AWS의 리소스를 프로비저닝 할 수 있다.
-Mac OS는 pkg 파일을 다운로드 하여 설치한다.
-Mac OS : https://awscli.amazonaws.com/AWSCLIV2.pkg 다른 OS에서 AWS CLI 설치하기 1 2 3 $ aws --version aws-cli/2.]]></description>
+    <guid>https://riley817.github.io/elasticsearch-lecture2-2/</guid>
+    <description><![CDATA[플러그인 설치 인터넷이 가능한 환경에서 설치시 1 2 3 4 5 6 $ cd /usr/share/elasticsearch/ $ sudo bin/elasticsearch-plugin install [플러그인이름] # example $ sudo bin/elasticsearch-plugin install analysis-nori 파일서버 등에서 설치시 1 2 3 4 $ sudo bin/elasticsearch-plugin install file://path/to/plugin.zip # 파일서버 $ sudo bin/elasticsearch-plugin install [파일서버URL] 설치된 플러그인 리스트 확인 1 sudo bin/elasticsearch-plugin list 설치된 플러그인 제거 1 sudo bin/elasticsearch-plugin remove [플러그인이름] 참고 Elasticsearch Reference - plugin-management ]]></description>
 </item>
 <item>
-    <title>[AWS EKS] (Optional) AWS Cloud9으로 실습 환경 구축하기</title>
-    <link>https://riley817.github.io/aws-eks-cloud9/</link>
-    <pubDate>Thu, 05 May 2022 22:00:00 &#43;0900</pubDate>
+    <title>2.1 Elasticsearch 기본 동작</title>
+    <link>https://riley817.github.io/elasticsearch-lecture2-1/</link>
+    <pubDate>Sat, 27 Oct 2018 13:11:45 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/aws-eks-cloud9/</guid>
-    <description><![CDATA[☁️ Amazon EKS 웹 애플리케이션 구축하기 실습 내용입니다.
-☁️ AWS Workshop 링크 :
-https://catalog.us-east-1.prod.workshops.aws/workshops/9c0aa9ab-90a9-44a6-abe1-8dff360ae428/ko-KR/ AWS Cloud9 AWS Cloud9 은 브라우저만으로 코드를 작성, 실행 및 디버깅할 수 있는 IDE(통합개발환경)이다. 코드 편집기, 디버거 및 터미널 기능을 포함하고 있고 프로그래밍 언어를 위한 필수 도구가 사전에 패키징 되어 제공된다.
-AWS Cloud9 시작하기 AWS Cloud9 IDE 구성 AWS Cloud9 콘솔 접속 후 Create environment 버튼 클릭
-IDE의 Environment 이름 및 설명을 작성한다. 인스턴스 타입을 t3.]]></description>
+    <guid>https://riley817.github.io/elasticsearch-lecture2-1/</guid>
+    <description><![CDATA[Index 생성하기 인덱스를 생성하는 방법
+Index Settings 를 정의한다. Index Mappings 를 정의한다. 사용자 정의된 도큐먼트를 인덱싱한다. Index Settings Static Index Settings index.number_of_shards : 인덱스가 가져야 하는 Primary 샤드의 개수 설정. (기본값 5) Dynamic Index Settings index.number_of_replicas : 각 기본 샤드의 복제본 (Replica 샤드 개수 설정). 기본값은 1 index.refresh_interval : 검색 commit point 를 만드는 refresh interval 설정 (새로 고침 작업수행 빈도). -1 비활성화. 기본값 1s index.routing.allocation.enable : 인덱스의 샤드들의 라우팅 허용 설정 Other Settings Analysis, Mapping, Slowlog &hellip; 인덱스 Settings 로 인덱싱 하기 PUT Method 를 사용 1 2 3 4 5 6 7 8 9 curl -X PUT &#34;localhost:9200/twitter&#34; -H &#39;Content-Type: application/json&#39; -d { &#34;settings&#34; : { &#34;index&#34; : { &#34;number_of_shards&#34; : 3, &#34;number_of_replicas&#34; : 2 } } } CLI 사용 1 curl -X PUT -H &#34;Content-Type:application/json&#34; -d &#39;{&#34;settings&#34; : {&#34;index&#34; : {&#34;number_of_shards&#34; : 3,&#34;number_of_replicas&#34; : 1}}}&#39; http://localhost:9200/twitter2 Index 삭제하기 인덱스 삭제시에는 조심해서 삭제해야 한다.]]></description>
 </item>
 </channel>
 </rss>

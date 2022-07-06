@@ -6,10 +6,10 @@
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
             <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Sun, 24 May 2020 20:07:22 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/tags/git-submodule/" rel="self" type="application/rss+xml" /><item>
     <title>git submodule 삭제하기</title>
-    <link>https://riley817.github.io/git-submodule/</link>
+    <link>https://riley817.github.io/archives/git/git-submodule/</link>
     <pubDate>Sun, 24 May 2020 20:07:22 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/git-submodule/</guid>
+    <guid>https://riley817.github.io/archives/git/git-submodule/</guid>
     <description><![CDATA[git submodule 삭제하기 1. .gitmodules를 열어 해당 서브 모듈이 정의된 부분을 제거하거나 파일을 지운다. .gitmodules에 불필요한 모듈만 제거하거나 .gitmodules 파일이 불필요하다면 아예 삭제해 버린다. 2. .git/config 파일을 열어 불필요한 서브 모듈을 삭제한다. 1 vi PROJECT_ROOT/.git/config 3. 해당 저장소의 캐시를 제거한다. 1 2 # git rm --cached path_to_submodule git rm --cached spring-module-common 4. .git/modules/path_to_submodule 파일을 삭제한다. 1 2 cd PROJECT_ROOT/.git/modules rm --rf spring-module-common 5. 변경된 사항을 커밋 한다. 참고 https://git.wiki.kernel.org/index.php/GitSubmoduleTutorial#Removal ]]></description>
 </item>
 </channel>
