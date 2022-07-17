@@ -1,0 +1,18 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>IAM - Tag - Riley&#39;s DevLog</title>
+        <link>https://riley817.github.io/tags/iam/</link>
+        <description>IAM - Tag - Riley&#39;s DevLog</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
+            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Sun, 17 Jul 2022 18:27:40 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/tags/iam/" rel="self" type="application/rss+xml" /><item>
+    <title>AWS IAM</title>
+    <link>https://riley817.github.io/archives/devops/aws/aws/aws-iam/</link>
+    <pubDate>Sun, 17 Jul 2022 18:27:40 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/archives/devops/aws/aws/aws-iam/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/posts/images/aws/aws-logo.png" referrerpolicy="no-referrer">
+            </div>IAM:Identity and Access Management Global Service로 리전 상관없이 설정함 사용자Users는 조직내 사용자이며 그룹화 할 수 있다. 그룹Group는 오직 사용자users만 포함할 수 있고 다른 그룹은 포함할 수 없다. 사용자는 그룹에 속하지 않을수도 있고 여러 그룹에 속할 수도 있다. Permissions AWS 서비스 및 리소스를 액세스하고 사용하도록 허용하기 위해서는 권한을 부여해야한다. 사용자 또는 그룹에 정책policies이라고 하는 JSON 문서를 지정하게 된다. 정책은 사용자의 권한permissions을 정의한다. AWS에서는 최소 권한 원칙(least privilege principle)을 적용한다. 사용자에게 필요 이상의 권한을 부여하지 않는 것을 권장한다.]]></description>
+</item>
+</channel>
+</rss>
