@@ -118,11 +118,11 @@ Network / Cloud 환경의 샤드 노드가 오프라인 상태가 되거나 혹�
 + 인덱싱 시 Primary Shard 의 복제를 하는 과정이 추가된다.
 
 
-{{< image src="/posts/images/eshaed.png" caption="ES 플러그인 인 Head 로 각 노드에 샤드 dashboard를 확인 할 수 있다."  >}}
+{{<image src="/posts/images/eshaed.png" caption="ES 플러그인 인 Head 로 각 노드에 샤드 dashboard를 확인 할 수 있다."  >}}
 
 {{<admonition type=info >}}
-- Elasticsearch 의 샤드는 
-**Lucene 의 인덱스이며, 단일 Lucene 인덱스가 포함할 수 있는 도큐먼트의 최대 개수는 **2,147,483,519** 개 이다
-- Replica Shard 가 있기 때문에 샤드/노드 오류가 발생하더라도 Elasticsearch 클러스터의 고가용성이 유지된다.
-- 모든 Replica Shard 에서 병렬 방식으로 검색을 실행할 수 있으므로 검색 처리량 확장 가능하다.
+- Elasticsearch의 샤드는 
+**Lucene 의 인덱스이며, 단일 Lucene 인덱스가 포함할 수 있는 도큐먼트의 최대 개수는 2,147,483,519** 개 이다
+- Replica Shard 가 있기 때문에 샤드 혹은 노드의 오류가 발생하더라도 Elasticsearch 클러스터의 고가용성이 유지된다.
+- 모든 Replica Shard에서 병렬 방식으로 검색을 실행할 수 있으므로 검색 처리량 확장 가능하다.
 {{</admonition>}}

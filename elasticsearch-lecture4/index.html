@@ -4,36 +4,34 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>Elasticsearch 개념 및 용어정리 - Inverted Index, Segment - Riley&#39;s DevLog</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:title" content="Elasticsearch 개념 및 용어정리 - Inverted Index, Segment" />
-<meta property="og:description" content="Inverted Index 전통적인 데이터베이스는 필드당 하나의 값을 저장하기 때문에 전체 텍스트 검색에는 적합하지 않다. 즉 다중 값을 색인화 할 수 있어야 하는데, Elasticsearch 에서는 Inverted Index 형태의 인덱싱을 통해 Full-text Search 가 가능하도록 했다. 모든 문서에서 발생하는 모든 고유 값 또는 용어의 정렬된 목록을 포함하며, 각 용어에 대해 이를 포함하는 모든 문서 목록을 표시한다.
-Full-text Search (전체 텍스트 검색) 는 요청한 모든 단어를 문서 또는 데이터베이스에서 모든 단어와 비교하는 포괄적 인 검색 방법이다." />
+        <title>Elasticsearch 기본 동작 - Riley&#39;s DevLog</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:title" content="Elasticsearch 기본 동작" />
+<meta property="og:description" content="인덱스 생성, 삭제 및 조회하기 1. 인덱스 생성하기 인덱스는 문서document의 모음이다. 인덱스를 생성하는 방법 Index Settings를 정의한다. Index Mappings를 정의한다. 사용자 정의된 도큐먼트를 인덱싱한다. 2. 인덱스의 settings Static Index Settings index.number_of_shards : 인덱스가 가져야 하는 Primary 샤드의 개수 설정. 기본값 5 Dynamic Index Settings index.number_of_replicas : 각 기본 샤드의 복제본 (Replica 샤드 개수 설정). 기본값은 1 index.refresh_interval : 검색 commit point 를 만드는 refresh interval 설정 (새로 고침 작업수행 빈도). -1 비활성화." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://riley817.github.io/elasticsearch-lecture2/" /><meta property="og:image" content="https://riley817.github.io/icon.png"/><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2018-10-20T19:58:39+09:00" />
+<meta property="og:url" content="https://riley817.github.io/elasticsearch-lecture4/" /><meta property="og:image" content="https://riley817.github.io/icon.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2018-10-27T13:11:45+09:00" />
 <meta property="article:modified_time" content="2022-07-23T01:53:26+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://riley817.github.io/icon.png"/>
 
-<meta name="twitter:title" content="Elasticsearch 개념 및 용어정리 - Inverted Index, Segment"/>
-<meta name="twitter:description" content="Inverted Index 전통적인 데이터베이스는 필드당 하나의 값을 저장하기 때문에 전체 텍스트 검색에는 적합하지 않다. 즉 다중 값을 색인화 할 수 있어야 하는데, Elasticsearch 에서는 Inverted Index 형태의 인덱싱을 통해 Full-text Search 가 가능하도록 했다. 모든 문서에서 발생하는 모든 고유 값 또는 용어의 정렬된 목록을 포함하며, 각 용어에 대해 이를 포함하는 모든 문서 목록을 표시한다.
-Full-text Search (전체 텍스트 검색) 는 요청한 모든 단어를 문서 또는 데이터베이스에서 모든 단어와 비교하는 포괄적 인 검색 방법이다."/>
+<meta name="twitter:title" content="Elasticsearch 기본 동작"/>
+<meta name="twitter:description" content="인덱스 생성, 삭제 및 조회하기 1. 인덱스 생성하기 인덱스는 문서document의 모음이다. 인덱스를 생성하는 방법 Index Settings를 정의한다. Index Mappings를 정의한다. 사용자 정의된 도큐먼트를 인덱싱한다. 2. 인덱스의 settings Static Index Settings index.number_of_shards : 인덱스가 가져야 하는 Primary 샤드의 개수 설정. 기본값 5 Dynamic Index Settings index.number_of_replicas : 각 기본 샤드의 복제본 (Replica 샤드 개수 설정). 기본값은 1 index.refresh_interval : 검색 commit point 를 만드는 refresh interval 설정 (새로 고침 작업수행 빈도). -1 비활성화."/>
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://riley817.github.io/elasticsearch-lecture2/" /><link rel="prev" href="https://riley817.github.io/elasticsearch-lecture1/" /><link rel="next" href="https://riley817.github.io/elasticsearch-lecture3/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://riley817.github.io/elasticsearch-lecture4/" /><link rel="prev" href="https://riley817.github.io/elasticsearch-lecture3/" /><link rel="next" href="https://riley817.github.io/elasticsearch-lecture2-2/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "Elasticsearch 개념 및 용어정리 - Inverted Index, Segment",
+        "headline": "Elasticsearch 기본 동작",
         "inLanguage": "en",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "https:\/\/riley817.github.io\/elasticsearch-lecture2\/"
-        },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "elasticsearch","wordcount":  459 ,
-        "url": "https:\/\/riley817.github.io\/elasticsearch-lecture2\/","datePublished": "2018-10-20T19:58:39+09:00","dateModified": "2022-07-23T01:53:26+09:00","publisher": {
+            "@id": "https:\/\/riley817.github.io\/elasticsearch-lecture4\/"
+        },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "elasticsearch","wordcount":  358 ,
+        "url": "https:\/\/riley817.github.io\/elasticsearch-lecture4\/","datePublished": "2018-10-27T13:11:45+09:00","dateModified": "2022-07-23T01:53:26+09:00","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/riley817.github.io\/images\/avatar.png"},"author": {
                 "@type": "Person",
@@ -105,10 +103,10 @@ Full-text Search (전체 텍스트 검색) 는 요청한 모든 단어를 문서
                 <div class="container"><div class="toc" id="toc-auto">
             <h2 class="toc-title">Contents</h2>
             <div class="toc-content" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Elasticsearch 개념 및 용어정리 - Inverted Index, Segment</h1><h2 class="single-subtitle">Elasticsearch 검색 엔진 구축 강의 정리</h2><div class="post-meta">
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Elasticsearch 기본 동작</h1><h2 class="single-subtitle">Elasticsearch 검색 엔진 구축 강의 정리</h2><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-category">included in <a href="/categories/elasticsearch-%EA%B2%80%EC%83%89-%EC%97%94%EC%A7%84-%EA%B5%AC%EC%B6%95-%EA%B0%95%EC%9D%98-%EC%A0%95%EB%A6%AC/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Elasticsearch 검색 엔진 구축 강의 정리</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2018-10-20">2018-10-20</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;459 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;3 minutes&nbsp;<span id="/elasticsearch-lecture2/" class="leancloud_visitors" data-flag-title="Elasticsearch 개념 및 용어정리 - Inverted Index, Segment">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2018-10-27">2018-10-27</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;358 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;2 minutes&nbsp;<span id="/elasticsearch-lecture4/" class="leancloud_visitors" data-flag-title="Elasticsearch 기본 동작">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
                     </span>&nbsp;</div>
         </div><div class="featured-image"><img
@@ -125,30 +123,216 @@ Full-text Search (전체 텍스트 검색) 는 요청한 모든 단어를 문서
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
-    <li><a href="#inverted-index">Inverted Index</a>
+    <li><a href="#인덱스-생성-삭제-및-조회하기">인덱스 생성, 삭제 및 조회하기</a>
       <ul>
-        <li><a href="#immutable-불변성">Immutable (불변성)</a>
+        <li><a href="#1-인덱스-생성하기">1. 인덱스 생성하기</a></li>
+        <li><a href="#2-인덱스의-settings">2. 인덱스의 settings</a>
           <ul>
-            <li><a href="#불변성의-이점">불변성의 이점</a></li>
-            <li><a href="#불변성의-단점">불변성의 단점</a></li>
+            <li><a href="#static-index-settings">Static Index Settings</a></li>
+            <li><a href="#dynamic-index-settings">Dynamic Index Settings</a></li>
+            <li><a href="#other-settings">Other Settings</a></li>
+          </ul>
+        </li>
+        <li><a href="#3-인덱스-생성">3. 인덱스 생성</a>
+          <ul>
+            <li><a href="#인덱스-settings로-인덱싱-하기">인덱스 Settings로 인덱싱 하기</a></li>
+            <li><a href="#cli-사용">CLI 사용</a></li>
+          </ul>
+        </li>
+        <li><a href="#4-인덱스-삭제하기">4. 인덱스 삭제하기</a>
+          <ul>
+            <li><a href="#read-only로-삭제-방지-truenull로-설정해제">Read only로 삭제 방지, true/null로 설정/해제</a></li>
+          </ul>
+        </li>
+        <li><a href="#5-인덱스-조회">5. 인덱스 조회</a>
+          <ul>
+            <li><a href="#인덱스-세팅-확인하기">인덱스 세팅 확인하기</a></li>
+            <li><a href="#인덱스-상태를-확인">인덱스 상태를 확인</a></li>
+            <li><a href="#인덱스-샤드-및-세그먼트-정보-확인">인덱스 샤드 및 세그먼트 정보 확인</a></li>
+            <li><a href="#인덱스-요약-정보">인덱스 요약 정보</a></li>
+          </ul>
+        </li>
+        <li><a href="#문서-색인-및-조회">문서 색인 및 조회</a>
+          <ul>
+            <li><a href="#인덱싱의-필수-조건">인덱싱의 필수 조건</a></li>
+            <li><a href="#인덱스-api">인덱스 API</a></li>
           </ul>
         </li>
       </ul>
     </li>
-    <li><a href="#segment">Segment</a></li>
-    <li><a href="#참조">참조</a></li>
+    <li><a href="#참고">참고</a></li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><h2 id="inverted-index">Inverted Index</h2>
-<p>전통적인 데이터베이스는 필드당 하나의 값을 저장하기 때문에 전체 텍스트 검색에는 적합하지 않다.
-즉 다중 값을 색인화 할 수 있어야 하는데, Elasticsearch 에서는 <code>Inverted Index</code> 형태의 인덱싱을 통해 <code>Full-text Search</code> 가 가능하도록 했다. 모든 문서에서 발생하는 모든 고유 값 또는 용어의 정렬된 목록을 포함하며, 각 용어에 대해 이를 포함하는 모든 문서 목록을 표시한다.</p>
-<p><strong>Full-text Search (전체 텍스트 검색)</strong> 는 요청한 모든 단어를 문서 또는 데이터베이스에서 모든 단어와 비교하는 포괄적 인 검색 방법이다. 전체 텍스트 쿼리에는 간단한 단어와 구 또는 여러 형식의 단어나 구가 포함될 수 있으며, 텍스트 쿼리는 일치 항목이 하나 이상 있는 문서를 모두 반환한다.</p>
-<div class="details admonition note open">
+            </div><div class="content" id="content"><h2 id="인덱스-생성-삭제-및-조회하기">인덱스 생성, 삭제 및 조회하기</h2>
+<h3 id="1-인덱스-생성하기">1. 인덱스 생성하기</h3>
+<ul>
+<li>인덱스는 문서<code>document</code>의 모음이다.</li>
+</ul>
+<div class="details admonition tip open">
         <div class="details-summary admonition-title">
-            <i class="icon fas fa-pencil-alt fa-fw" aria-hidden="true"></i>Inverted Index<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+            <i class="icon fas fa-lightbulb fa-fw" aria-hidden="true"></i>인덱스를 생성하는 방법<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
         </div>
         <div class="details-content">
-            <div class="admonition-content"><div class="highlight"><div class="chroma">
+            <div class="admonition-content"><ul>
+<li><strong>Index Settings를 정의한다.</strong></li>
+<li>Index Mappings를 정의한다.</li>
+<li><strong>사용자 정의된 도큐먼트를 인덱싱한다.</strong></li>
+</ul>
+</div>
+        </div>
+    </div>
+<h3 id="2-인덱스의-settings">2. 인덱스의 settings</h3>
+<h4 id="static-index-settings">Static Index Settings</h4>
+<ul>
+<li><code>index.number_of_shards</code> : 인덱스가 가져야 하는 Primary 샤드의 개수 설정. 기본값 5</li>
+</ul>
+<h4 id="dynamic-index-settings">Dynamic Index Settings</h4>
+<ul>
+<li><code>index.number_of_replicas</code> : 각 기본 샤드의 복제본 (Replica 샤드 개수 설정). 기본값은 1</li>
+<li><code>index.refresh_interval</code> : 검색 commit point 를 만드는 refresh interval 설정 (새로 고침 작업수행 빈도). -1 비활성화. 기본값 1s</li>
+<li><code>index.routing.allocation.enable</code> : 인덱스의 샤드들의 라우팅 허용 설정</li>
+</ul>
+<h4 id="other-settings">Other Settings</h4>
+<ul>
+<li>Analysis, Mapping, Slowlog &hellip;</li>
+</ul>
+<h3 id="3-인덱스-생성">3. 인덱스 생성</h3>
+<h4 id="인덱스-settings로-인덱싱-하기">인덱스 Settings로 인덱싱 하기</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># PUT 메소드를 이용한다.</span>
+</span></span><span class="line"><span class="cl">curl -X PUT <span class="s2">&#34;localhost:9200/twitter&#34;</span> -H <span class="s1">&#39;Content-Type: application/json&#39;</span> -d
+</span></span><span class="line"><span class="cl"><span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;settings&#34;</span> : <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;index&#34;</span> : <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;number_of_shards&#34;</span> : 3, 
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;number_of_replicas&#34;</span> : <span class="m">2</span> 
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="cli-사용">CLI 사용</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">curl -X PUT -H <span class="s2">&#34;Content-Type:application/json&#34;</span> -d <span class="s1">&#39;{&#34;settings&#34; : {&#34;index&#34; : {&#34;number_of_shards&#34; : 3,&#34;number_of_replicas&#34; : 1}}}&#39;</span> http://localhost:9200/twitter2
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="4-인덱스-삭제하기">4. 인덱스 삭제하기</h3>
+<p>DELETE 메소드를 사용한다. 인덱스 삭제시는 조심해서 삭제해야 한다. 주로 nginx와 같은 웹서버를 앞단에 두어 특정 IP 에서만 DELETE Method를 요청할 수 있도록 설정하거나 혹은 Index의 Read only 설정을 사용하여 아예 삭제 할 수 없도록 설정하는 것이 좋다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">curl -X DELETE -H <span class="s1">&#39;Content-Type: application/json&#39;</span> http://<span class="o">{</span>ES_URL<span class="o">}</span>:9200/<span class="o">{</span>index<span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="read-only로-삭제-방지-truenull로-설정해제">Read only로 삭제 방지, true/null로 설정/해제</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">PUT twitter/_settings 
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">    &#34;index.blocks.read_only_allow_delete&#34;: true 
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="5-인덱스-조회">5. 인덱스 조회</h3>
+<h4 id="인덱스-세팅-확인하기">인덱스 세팅 확인하기</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">GET twitter/_settings
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="인덱스-상태를-확인">인덱스 상태를 확인</h4>
+<ul>
+<li>인덱스의 사이즈, Document 개수, 실행된 명령 정보들 확인하기</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">GET twitter/_stats
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="인덱스-샤드-및-세그먼트-정보-확인">인덱스 샤드 및 세그먼트 정보 확인</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">GET twitter/_segments
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="인덱스-요약-정보">인덱스 요약 정보</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">GET _cat/indices?v
+</span></span><span class="line"><span class="cl">GET _cat/indices/twitter?v
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="문서-색인-및-조회">문서 색인 및 조회</h3>
+<ul>
+<li>인덱스는 미리 정의된 샤드 개수에 의해 나누어짐</li>
+<li><strong>한 번 설정한 샤드 개수는 변경 불가</strong></li>
+<li>문서는 인덱싱 할 때 랜덤한 string을 Document ID로 할당받거나 사용자가 정의한 Document ID로 생성된다.</li>
+<li>사용자는 생성된 Document ID로 Document를 조회 할 수 있다.</li>
+</ul>
+<div class="details admonition info open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-info-circle fa-fw" aria-hidden="true"></i>샤드 할당 알고리즘<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><ul>
+<li>shard = hash(routing) % number_of_primary_shards</li>
+</ul>
+</div>
+        </div>
+    </div>
+<h4 id="인덱싱의-필수-조건">인덱싱의 필수 조건</h4>
+<ul>
+<li>primary shard가 항상 제일 먼저 <code>writing</code>되어야 한다.</li>
+<li>primary shard가 <code>writing</code>이 전부 완료된 이후에 replica shard로 복제한다.</li>
+</ul>
+<h4 id="인덱스-api">인덱스 API</h4>
+<div class="details admonition tip open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw" aria-hidden="true"></i>샤드 할당 알고리즘<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><ul>
+<li>PUT /&lt;target&gt;/_doc/&lt;_id&gt;</li>
+</ul>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -158,82 +342,20 @@ Full-text Search (전체 텍스트 검색) 는 요청한 모든 단어를 문서
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Term  | Doc 1 | Doc 2 | Doc 3 | ...
-</span></span><span class="line"><span class="cl">------------------------------------
-</span></span><span class="line"><span class="cl">brown |   X   |       |  X    | ...
-</span></span><span class="line"><span class="cl">fox   |   X   |   X   |  X    | ...
-</span></span><span class="line"><span class="cl">quick |   X   |   X   |       | ...
-</span></span><span class="line"><span class="cl">the   |   X   |       |  X    | ...
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">PUT twitter/_doc/1 
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">    &#34;user&#34; : &#34;kimchy&#34;,
+</span></span><span class="line"><span class="cl">    &#34;post_date&#34; : &#34;2009-11-15T14:12:12&#34;, 
+</span></span><span class="line"><span class="cl">    &#34;message&#34; : &#34;trying out Elasticsearch&#34;
+</span></span><span class="line"><span class="cl">}
 </span></span></code></pre></td></tr></table>
 </div>
 </div></div>
         </div>
     </div>
+<h2 id="참고">참고</h2>
 <ul>
-<li><code>Inverted Index</code>는 단어가 포함된 문서 목록 뿐만아니라 <strong><a href="https://www.elastic.co/guide/en/elasticsearch/guide/current/relevance-intro.html" target="_blank" rel="noopener noreffer">단어의 관련성 혹은 유사성</a></strong> ( 각 단어를 포함하는 문서의 수, 특정 문서에 단어가 나타나는 횟수, 각 문서의 단어 순서, 각 문서의 길이, 모든 문서의 평균 길이 등) 의 정보를을 저장할 수 있으며 이러한 통계를 통해 <strong>중요도 혹은 어떤 문서(document)가 중요한지 결정</strong>할 수 있다.</li>
-<li>초기에는 하나의 거대한 <code>Inverted Index</code>가 전체 문서 모음을 위해 디스크에 쓰여진다. 새 색인이 준비되게 되면 이전 색인이 바뀌고 최근 변경사항을 검색 할 수 있게 된다.</li>
-</ul>
-<h3 id="immutable-불변성">Immutable (불변성)</h3>
-<ul>
-<li>디스크에 쓰여진 Inverted Index 는 변경이 불가한 <code>불변의(Immutable)</code> 특성을 갖고 있다.</li>
-</ul>
-<h4 id="불변성의-이점">불변성의 이점</h4>
-<ul>
-<li><strong>Data lock 을 걸 필요없이 일관성을 유지할 수 있다.</strong> : 동시에 변경을 시도하는 여러 프로세스에 대해 주의할 필요 없음.</li>
-<li>전체 Index 가 버퍼 캐시에 로드 가능하다면, 변경이 없는 경우 항상 메모리에 로드된 상태이며 이는 File I/O 가 아닌 <strong>메모리 캐시를 통해 접근되므로 성능이 향상</strong> 된다.</li>
-<li>Inverted Index 를 작성하게 되면 데이터를 압축 할 수 있으므로 리소스 소모가 높은 디스크 I/O 를 줄이고 캐시하는데 필요한 RAM 의 용량을 줄일 수 있다.</li>
-</ul>
-<h4 id="불변성의-단점">불변성의 단점</h4>
-<ul>
-<li>말그대로 Update 가 불가능하다.</li>
-<li>새 문서를 검색 가능하게 하려면 전체 색인을 다시 작성해야 한다.</li>
-<li>다시 작성해야 하기 때문에 인덱스에 포함 할 수 있는 데이터 양이나 업데이트 빈도에 상당한 제한이 있다.</li>
-</ul>
-<div class="details admonition note open">
-        <div class="details-summary admonition-title">
-            <i class="icon fas fa-pencil-alt fa-fw" aria-hidden="true"></i>어떻게 불변성의 이점을 잃지 않고 Inverted Index를 갱신할 수 있을까?<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
-        </div>
-        <div class="details-content">
-            <div class="admonition-content"><ul>
-<li>전체 <code>Inverted Index</code>를 재작성하는 대신 변화된 데이터를 나타내는 새로운 보조 인덱스를 추가한다.</li>
-<li>검색 요청이 발생하면, 가장 오래된 인덱스부터 시작하여 결과를 조합하여 리턴한다.</li>
-</ul>
-</div>
-        </div>
-    </div>
-<h2 id="segment">Segment</h2>
-<ul>
-<li><code>shard</code>는 다시 <code>segment</code>로 이루어진다.</li>
-<li><code>document</code>가 인덱싱될 때 데이터는 시스템 버퍼 캐시 영역으로 적재되며 이후 디스크의 <code>segment</code>에 기록하게 된다.</li>
-<li>이 과정에서 <code>refresh</code>를 거쳐야 <code>commit point</code>를 생성하며 검색 가능한 상태로 전환되게 된다.</li>
-</ul>
-<figure><a class="lightgallery" href="https://www.elastic.co/guide/en/elasticsearch/guide/current/images/elas_1102.png" title="https://www.elastic.co/guide/en/elasticsearch/guide/current/images/elas_1102.png" data-thumbnail="https://www.elastic.co/guide/en/elasticsearch/guide/current/images/elas_1102.png" data-sub-html="<h2>[그림1] Document 가 인덱싱 될 때 시스템 버퍼 캐시에 먼저 적재된다.</h2>">
-        <img
-            class="lazyload"
-            src="/svg/loading.min.svg"
-            data-src="https://www.elastic.co/guide/en/elasticsearch/guide/current/images/elas_1102.png"
-            data-srcset="https://www.elastic.co/guide/en/elasticsearch/guide/current/images/elas_1102.png, https://www.elastic.co/guide/en/elasticsearch/guide/current/images/elas_1102.png 1.5x, https://www.elastic.co/guide/en/elasticsearch/guide/current/images/elas_1102.png 2x"
-            data-sizes="auto"
-            alt="https://www.elastic.co/guide/en/elasticsearch/guide/current/images/elas_1102.png" />
-    </a><figcaption class="image-caption">[그림1] Document 가 인덱싱 될 때 시스템 버퍼 캐시에 먼저 적재된다.</figcaption>
-    </figure>
-<figure><a class="lightgallery" href="https://www.elastic.co/guide/en/elasticsearch/guide/current/images/elas_1103.png" title="https://www.elastic.co/guide/en/elasticsearch/guide/current/images/elas_1103.png" data-thumbnail="https://www.elastic.co/guide/en/elasticsearch/guide/current/images/elas_1103.png" data-sub-html="<h2>[그림2] 이후, 디스크의 Segment 에 기록된다. 이 상태에서 refresh 를 거쳐야 commit point 가 생성되어 검색 가능한(searchable) 상태로 전환된다.</h2>">
-        <img
-            class="lazyload"
-            src="/svg/loading.min.svg"
-            data-src="https://www.elastic.co/guide/en/elasticsearch/guide/current/images/elas_1103.png"
-            data-srcset="https://www.elastic.co/guide/en/elasticsearch/guide/current/images/elas_1103.png, https://www.elastic.co/guide/en/elasticsearch/guide/current/images/elas_1103.png 1.5x, https://www.elastic.co/guide/en/elasticsearch/guide/current/images/elas_1103.png 2x"
-            data-sizes="auto"
-            alt="https://www.elastic.co/guide/en/elasticsearch/guide/current/images/elas_1103.png" />
-    </a><figcaption class="image-caption">[그림2] 이후, 디스크의 Segment 에 기록된다. 이 상태에서 refresh 를 거쳐야 commit point 가 생성되어 검색 가능한(searchable) 상태로 전환된다.</figcaption>
-    </figure>
-<ul>
-<li>Segment 는 하나의 <code>Inverted Index</code>를 의미하지만, <code>commit point</code>를 갖는 모든 추가된 <code>Inverted Index</code>를 의미한다.</li>
-</ul>
-<h2 id="참조">참조</h2>
-<ul>
-<li><a href="https://www.elastic.co/guide/en/elasticsearch/guide/current/inside-a-shard.html" target="_blank" rel="noopener noreffer">Elasticsearch Reference - inside-a-shard</a></li>
-<li><a href="https://www.elastic.co/guide/en/elasticsearch/guide/current/dynamic-indices.html#img-memory-buffer" target="_blank" rel="noopener noreffer">Elasticsearch Reference - dynamic-indices </a></li>
+<li><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/index-modules.html#index-modules-settings" target="_blank" rel="noopener noreffer">Elasticsearch Reference - index modules</a></li>
 </ul>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
@@ -257,8 +379,8 @@ Full-text Search (전체 텍스트 검색) 는 요청한 모든 단어를 문서
         </section>
     </div>
 
-    <div class="post-nav"><a href="/elasticsearch-lecture1/" class="prev" rel="prev" title="Elasticsearch 클러스터 분산구성 시나리오"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Elasticsearch 클러스터 분산구성 시나리오</a>
-            <a href="/elasticsearch-lecture3/" class="next" rel="next" title="Elasticsearch 및 Kibana 설치">Elasticsearch 및 Kibana 설치<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+    <div class="post-nav"><a href="/elasticsearch-lecture3/" class="prev" rel="prev" title="Elasticsearch 및 Kibana 설치"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Elasticsearch 및 Kibana 설치</a>
+            <a href="/elasticsearch-lecture2-2/" class="next" rel="next" title="2.2 플러그인 설치하기">2.2 플러그인 설치하기<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
 </div>
 <div id="comments"><div id="valine" class="comment"></div><noscript>
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.

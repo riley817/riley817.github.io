@@ -85,13 +85,14 @@ Installation ES Head git repository 에서 클론 혹은 다운로드한다. 1 2
     <description><![CDATA[플러그인 설치 인터넷이 가능한 환경에서 설치시 1 2 3 4 5 6 $ cd /usr/share/elasticsearch/ $ sudo bin/elasticsearch-plugin install [플러그인이름] # example $ sudo bin/elasticsearch-plugin install analysis-nori 파일서버 등에서 설치시 1 2 3 4 $ sudo bin/elasticsearch-plugin install file://path/to/plugin.zip # 파일서버 $ sudo bin/elasticsearch-plugin install [파일서버URL] 설치된 플러그인 리스트 확인 1 sudo bin/elasticsearch-plugin list 설치된 플러그인 제거 1 sudo bin/elasticsearch-plugin remove [플러그인이름] 참고 Elasticsearch Reference - plugin-management ]]></description>
 </item>
 <item>
-    <title>2.1 Elasticsearch 기본 동작</title>
-    <link>https://riley817.github.io/elasticsearch-lecture2-1/</link>
+    <title>Elasticsearch 기본 동작</title>
+    <link>https://riley817.github.io/elasticsearch-lecture4/</link>
     <pubDate>Sat, 27 Oct 2018 13:11:45 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/elasticsearch-lecture2-1/</guid>
-    <description><![CDATA[Index 생성하기 인덱스를 생성하는 방법
-Index Settings 를 정의한다. Index Mappings 를 정의한다. 사용자 정의된 도큐먼트를 인덱싱한다. Index Settings Static Index Settings index.number_of_shards : 인덱스가 가져야 하는 Primary 샤드의 개수 설정. (기본값 5) Dynamic Index Settings index.number_of_replicas : 각 기본 샤드의 복제본 (Replica 샤드 개수 설정). 기본값은 1 index.refresh_interval : 검색 commit point 를 만드는 refresh interval 설정 (새로 고침 작업수행 빈도). -1 비활성화. 기본값 1s index.routing.allocation.enable : 인덱스의 샤드들의 라우팅 허용 설정 Other Settings Analysis, Mapping, Slowlog &hellip; 인덱스 Settings 로 인덱싱 하기 PUT Method 를 사용 1 2 3 4 5 6 7 8 9 curl -X PUT &#34;localhost:9200/twitter&#34; -H &#39;Content-Type: application/json&#39; -d { &#34;settings&#34; : { &#34;index&#34; : { &#34;number_of_shards&#34; : 3, &#34;number_of_replicas&#34; : 2 } } } CLI 사용 1 curl -X PUT -H &#34;Content-Type:application/json&#34; -d &#39;{&#34;settings&#34; : {&#34;index&#34; : {&#34;number_of_shards&#34; : 3,&#34;number_of_replicas&#34; : 1}}}&#39; http://localhost:9200/twitter2 Index 삭제하기 인덱스 삭제시에는 조심해서 삭제해야 한다.]]></description>
+    <guid>https://riley817.github.io/elasticsearch-lecture4/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/posts/images/elastic/9SyGqYLhMmYxEJyNUf.png" referrerpolicy="no-referrer">
+            </div>인덱스 생성, 삭제 및 조회하기 1. 인덱스 생성하기 인덱스는 문서document의 모음이다. 인덱스를 생성하는 방법 Index Settings를 정의한다. Index Mappings를 정의한다. 사용자 정의된 도큐먼트를 인덱싱한다. 2. 인덱스의 settings Static Index Settings index.number_of_shards : 인덱스가 가져야 하는 Primary 샤드의 개수 설정. 기본값 5 Dynamic Index Settings index.number_of_replicas : 각 기본 샤드의 복제본 (Replica 샤드 개수 설정). 기본값은 1 index.refresh_interval : 검색 commit point 를 만드는 refresh interval 설정 (새로 고침 작업수행 빈도). -1 비활성화.]]></description>
 </item>
 </channel>
 </rss>
