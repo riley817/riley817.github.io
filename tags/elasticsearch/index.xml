@@ -4,7 +4,15 @@
         <link>https://riley817.github.io/tags/elasticsearch/</link>
         <description>elasticsearch - Tag - Riley&#39;s DevLog</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
-            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Sun, 21 Mar 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://riley817.github.io/tags/elasticsearch/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Mon, 01 Aug 2022 22:26:38 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/tags/elasticsearch/" rel="self" type="application/rss+xml" /><item>
+    <title>Amazon S3</title>
+    <link>https://riley817.github.io/aws-s3/</link>
+    <pubDate>Mon, 01 Aug 2022 22:26:38 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/aws-s3/</guid>
+    <description><![CDATA[Amazon S3 Amazon S3은 AWS의 주요한 서비스 중 하나이다. 무한 확장infinitely scaling 가능한 storage 많은 웹사이트에서 Amazon S3을 backbone으로 사용한다. AWS의 다수의 서비스에서도 Amazon S3 통합하여 사용할 수 있다. Amazon S3 Overview Buckets Amazon S3에서는 object(files) 을 buckets(directories) 에 저장할 수 있다. 버켓은 반드시 전역적으로 유일globally unique name 해야 한다. 버켓은 region level 정의된다. (S3는 전역서비스지만 버켓은 리전리소스) Naming convention 대문자 불가 _ 불가 길이는 3~63 자리 IP 주소가 아닐 것 반드시 소문자로 또는 숫자로 시작 Objects Object는 파일이며 키를 가짐 key는 전체경로full path를 나타낸다 s3://my-bucket/my_file.]]></description>
+</item>
+<item>
     <title>nginx 로그를 Elasticsearch Cloud로 수집하기</title>
     <link>https://riley817.github.io/archives/elasticsearch/nginx-log-es-cloud/</link>
     <pubDate>Sun, 21 Mar 2021 00:00:00 &#43;0000</pubDate>
@@ -85,14 +93,6 @@ elasticsearch.yml : Elasticsearch 의 핵심 설정 jvm.options : JVM 옵션 설
     <author>riley</author>
     <guid>https://riley817.github.io/elasticsearch-lecture2-5/</guid>
     <description><![CDATA[Elasticsearch 플러그인 플러그인은 사용자 정의 방식에 의해 ES 의 긴능을 향상 시키는 방법이다. 플러그인은 모든 노드에 설치해야 하며 설치 후 클러스터를 재시작 해야 한다. 플러그인 범주 Core Plugins (권고) Elasticsearch 에서 공식적으로 지원하는 플러그인 Elasticsearch 버전이 업데이트 될때마다 버전 업데이트가 지원됨. Community contributed 개인 개발자나 회사에 의해 지원되는 플러그인 참고 Elasticsearch Reference - modules-plugins. ]]></description>
-</item>
-<item>
-    <title>2.4 Elastic-HQ</title>
-    <link>https://riley817.github.io/elasticsearch-lecture2-4/</link>
-    <pubDate>Tue, 30 Oct 2018 15:33:39 &#43;0900</pubDate>
-    <author>riley</author>
-    <guid>https://riley817.github.io/elasticsearch-lecture2-4/</guid>
-    <description><![CDATA[Elastic HQ 설치하기 Requirements Python 3.4+ Elasticsearch. Supported versions: 2.x, 5.x, 6.x ElasticHQ Git Repository 에서 클론 혹은 다운로드 한다. 1 2 3 4 # git 이 설치되어 있지 않으면 sudo yum -y install git git clone https://github.com/ElasticHQ/elasticsearch-HQ.git Python 3.4+ 설치한다. (pip 은 파이선 패키지 관리자) 1 2 3 4 # clone 한 디렉터리로 이동 후 cd elasticsearch-HQ/ sudo yum -y install python34 python34-pip Repository 의 의존성 패키지 설치한다. 1 pip install -r requirements.]]></description>
 </item>
 </channel>
 </rss>

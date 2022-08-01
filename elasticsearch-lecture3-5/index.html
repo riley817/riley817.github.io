@@ -10,7 +10,7 @@ vi /etc/security/limits.conf 1 2 elasticsearch soft nofile 65536 elasticsearch h
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://riley817.github.io/elasticsearch-lecture3-5/" /><meta property="og:image" content="https://riley817.github.io/icon.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2018-11-05T23:38:01+09:00" />
-<meta property="article:modified_time" content="2022-07-23T01:53:26+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
+<meta property="article:modified_time" content="2022-08-01T23:52:18+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://riley817.github.io/icon.png"/>
@@ -21,7 +21,7 @@ vi /etc/security/limits.conf 1 2 elasticsearch soft nofile 65536 elasticsearch h
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://riley817.github.io/elasticsearch-lecture3-5/" /><link rel="prev" href="https://riley817.github.io/elasticsearch-lecture3-4/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://riley817.github.io/elasticsearch-lecture3-5/" /><link rel="prev" href="https://riley817.github.io/elasticsearch-lecture3-4/" /><link rel="next" href="https://riley817.github.io/aws-s3/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
     {
@@ -33,7 +33,7 @@ vi /etc/security/limits.conf 1 2 elasticsearch soft nofile 65536 elasticsearch h
             "@type": "WebPage",
             "@id": "https:\/\/riley817.github.io\/elasticsearch-lecture3-5\/"
         },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "elasticsearch","wordcount":  169 ,
-        "url": "https:\/\/riley817.github.io\/elasticsearch-lecture3-5\/","datePublished": "2018-11-05T23:38:01+09:00","dateModified": "2022-07-23T01:53:26+09:00","publisher": {
+        "url": "https:\/\/riley817.github.io\/elasticsearch-lecture3-5\/","datePublished": "2018-11-05T23:38:01+09:00","dateModified": "2022-08-01T23:52:18+09:00","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/riley817.github.io\/images\/avatar.png"},"author": {
                 "@type": "Person",
@@ -208,8 +208,8 @@ vi /etc/security/limits.conf 1 2 elasticsearch soft nofile 65536 elasticsearch h
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 2022-07-23&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/6c55c2e973925b88e47818b96805a369fe3937bc" target="_blank" title="commit by riley(riley0422@icloud.com) 6c55c2e973925b88e47818b96805a369fe3937bc: 20220723015320">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>6c55c2e</a></span>
+                <span>Updated on 2022-08-01&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/94bf98f415d6347c447be7aef3414737bcdcc5e3" target="_blank" title="commit by riley(riley0422@icloud.com) 94bf98f415d6347c447be7aef3414737bcdcc5e3: 20220801235216">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>94bf98f</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"><span>
@@ -228,7 +228,8 @@ vi /etc/security/limits.conf 1 2 elasticsearch soft nofile 65536 elasticsearch h
         </section>
     </div>
 
-    <div class="post-nav"><a href="/elasticsearch-lecture3-4/" class="prev" rel="prev" title="3.4 log4j2.properties"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>3.4 log4j2.properties</a></div>
+    <div class="post-nav"><a href="/elasticsearch-lecture3-4/" class="prev" rel="prev" title="3.4 log4j2.properties"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>3.4 log4j2.properties</a>
+            <a href="/aws-s3/" class="next" rel="next" title="Amazon S3">Amazon S3<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
 </div>
 <div id="comments"><div id="valine" class="comment"></div><noscript>
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
