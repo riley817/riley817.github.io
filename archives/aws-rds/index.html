@@ -5,9 +5,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
         <title> - Riley&#39;s DevLog</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:title" content="" />
-<meta property="og:description" content="EC2 목적 EC2를 좀 더 효율적으로 사용하는 방법에 대해 소개 Amazon EC2 기본 개념 container 환경의 오케스트레이션, 서버리스 환경도 제공 2006년 8월 출시 온디맨드 구매 방식만 존재 베어 메탈, ssd, 네트워크 기능 향상 On-demand 외에도 세이빙 플랜등을 통해 비용을 좀더 효율적으로 여러가지 폭 넓은 구매 옵션 Amazon EC2 Mac instances 제공 AWS License Manager 소프트웨어 공급 업체의 라이선스를 보다 쉽게 관리 라이선스를 중앙화하여 관리 온프로미스 라이센스도 제공 Processors and Accelerators 애플리케이션 및 워크로드에 맞는 적합한 프로세서 제공 AWS Gravition Processor 컴퓨팅에 집중된 워크로드 -&gt; 450개가 넘는 인스턴스 타입을 제공하고 있다." />
+<meta property="og:description" content="9. RDS, Aurora &amp; ElastiCache AWS RDS RDS는 관계형 데이터 베이스 서비스 Relational Database Service 를 나타내며 SQL 쿼리 언어를 사용하는 데이터베이스를 위한 서비스이다.
+RDS에서 제공하는 데이터베이스 Postgres MySQL MariaDB Oracle Microsoft SQL Server Aurora - AWS Proprietary database EC2에 DB를 운용하지 않고 RDS 사용했을 때 이점 AWS RDS 데이터서비스 뿐만 아니라 여러 기타 서비스를 포함하고 있다.
+프로비저닝 및 OS 패치 자동화 지속적 백업과 특정 timestamp 기준 복구 Point Time Restore 대시보드 모니터링 읽기 성능 향상을 위한 읽기 전용 레플리카 재해복구 DZ(Disaster Recovery) 를 위한 Multi AZ 셋업 가능 업그레이드를 위한 유지보수 확장성 (vertical and horizontal) EBS 스토리지 백업 (gp2 or io1) **⚠️ 그러나 인스턴스에 SSH를 따로 가질 수는 없다." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://riley817.github.io/archives/ec2/" /><meta property="og:image" content="https://riley817.github.io/icon.png"/><meta property="article:section" content="archives" />
+<meta property="og:url" content="https://riley817.github.io/archives/aws-rds/" /><meta property="og:image" content="https://riley817.github.io/icon.png"/><meta property="article:section" content="archives" />
 
 <meta property="article:modified_time" content="2022-08-03T23:49:21+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
 
@@ -15,11 +17,13 @@
 <meta name="twitter:image" content="https://riley817.github.io/icon.png"/>
 
 <meta name="twitter:title" content=""/>
-<meta name="twitter:description" content="EC2 목적 EC2를 좀 더 효율적으로 사용하는 방법에 대해 소개 Amazon EC2 기본 개념 container 환경의 오케스트레이션, 서버리스 환경도 제공 2006년 8월 출시 온디맨드 구매 방식만 존재 베어 메탈, ssd, 네트워크 기능 향상 On-demand 외에도 세이빙 플랜등을 통해 비용을 좀더 효율적으로 여러가지 폭 넓은 구매 옵션 Amazon EC2 Mac instances 제공 AWS License Manager 소프트웨어 공급 업체의 라이선스를 보다 쉽게 관리 라이선스를 중앙화하여 관리 온프로미스 라이센스도 제공 Processors and Accelerators 애플리케이션 및 워크로드에 맞는 적합한 프로세서 제공 AWS Gravition Processor 컴퓨팅에 집중된 워크로드 -&gt; 450개가 넘는 인스턴스 타입을 제공하고 있다."/>
+<meta name="twitter:description" content="9. RDS, Aurora &amp; ElastiCache AWS RDS RDS는 관계형 데이터 베이스 서비스 Relational Database Service 를 나타내며 SQL 쿼리 언어를 사용하는 데이터베이스를 위한 서비스이다.
+RDS에서 제공하는 데이터베이스 Postgres MySQL MariaDB Oracle Microsoft SQL Server Aurora - AWS Proprietary database EC2에 DB를 운용하지 않고 RDS 사용했을 때 이점 AWS RDS 데이터서비스 뿐만 아니라 여러 기타 서비스를 포함하고 있다.
+프로비저닝 및 OS 패치 자동화 지속적 백업과 특정 timestamp 기준 복구 Point Time Restore 대시보드 모니터링 읽기 성능 향상을 위한 읽기 전용 레플리카 재해복구 DZ(Disaster Recovery) 를 위한 Multi AZ 셋업 가능 업그레이드를 위한 유지보수 확장성 (vertical and horizontal) EBS 스토리지 백업 (gp2 or io1) **⚠️ 그러나 인스턴스에 SSH를 따로 가질 수는 없다."/>
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://riley817.github.io/archives/ec2/" /><link rel="prev" href="https://riley817.github.io/archives/grpc/" /><link rel="next" href="https://riley817.github.io/archives/devops/ci-cd/set-gitlab-jenkins/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://riley817.github.io/archives/aws-rds/" /><link rel="prev" href="https://riley817.github.io/archives/devops/ci-cd/set-gitlab-jenkins/" /><link rel="next" href="https://riley817.github.io/archives/aws-nosql/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
     {
@@ -29,9 +33,9 @@
         "inLanguage": "en",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "https:\/\/riley817.github.io\/archives\/ec2\/"
-        },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "archives","wordcount":  200 ,
-        "url": "https:\/\/riley817.github.io\/archives\/ec2\/","dateModified": "2022-08-03T23:49:21+09:00","publisher": {
+            "@id": "https:\/\/riley817.github.io\/archives\/aws-rds\/"
+        },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "archives","wordcount":  124 ,
+        "url": "https:\/\/riley817.github.io\/archives\/aws-rds\/","dateModified": "2022-08-03T23:49:21+09:00","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/riley817.github.io\/images\/avatar.png"},"author": {
                 "@type": "Person",
@@ -100,82 +104,40 @@
     <div class="search-dropdown mobile">
         <div id="search-dropdown-mobile"></div>
     </div><main class="main">
-                <div class="container"><div class="page single special"><h1 class="single-title animate__animated animate__pulse animate__faster"></h1><div class="content" id="content"><h1 id="ec2">EC2</h1>
-<h2 id="목적">목적</h2>
+                <div class="container"><div class="page single special"><h1 class="single-title animate__animated animate__pulse animate__faster"></h1><div class="content" id="content"><h1 id="9-rds-aurora--elasticache">9. <strong>RDS, Aurora &amp; ElastiCache</strong></h1>
+<hr>
+<h2 id="aws-rds">AWS RDS</h2>
+<p>RDS는 관계형 데이터 베이스 서비스 <code>Relational Database Service</code> 를 나타내며 SQL 쿼리 언어를 사용하는 데이터베이스를 위한 서비스이다.</p>
+<h3 id="rds에서-제공하는-데이터베이스">RDS에서 제공하는 데이터베이스</h3>
 <ul>
-<li>EC2를  좀 더 효율적으로 사용하는 방법에 대해 소개</li>
+<li>Postgres</li>
+<li>MySQL</li>
+<li>MariaDB</li>
+<li>Oracle</li>
+<li>Microsoft SQL Server</li>
+<li>Aurora - AWS Proprietary database</li>
 </ul>
-<h2 id="amazon-ec2-기본-개념">Amazon EC2 기본 개념</h2>
+<h3 id="ec2에-db를-운용하지-않고-rds-사용했을-때-이점">EC2에 DB를 운용하지 않고 RDS 사용했을 때 이점</h3>
+<p>AWS RDS 데이터서비스 뿐만 아니라 여러 기타 서비스를 포함하고 있다.</p>
 <ul>
-<li>container 환경의 오케스트레이션, 서버리스 환경도 제공</li>
-<li>2006년 8월 출시</li>
-<li>온디맨드 구매 방식만 존재</li>
-<li>베어 메탈, ssd, 네트워크 기능 향상</li>
-<li>On-demand 외에도 세이빙 플랜등을 통해 비용을 좀더 효율적으로</li>
-<li>여러가지 폭 넓은 구매 옵션</li>
+<li>프로비저닝 및 OS 패치 자동화</li>
+<li>지속적 백업과 특정 timestamp 기준 복구 <code>Point Time Restore</code></li>
+<li>대시보드 모니터링</li>
+<li>읽기 성능 향상을 위한 읽기 전용 레플리카</li>
+<li>재해복구 <code>DZ(Disaster Recovery)</code> 를 위한 Multi AZ 셋업 가능</li>
+<li>업그레이드를 위한 유지보수</li>
+<li>확장성 (vertical and horizontal)</li>
+<li>EBS 스토리지 백업 (<code>gp2 or io1</code>)</li>
 </ul>
-<h3 id="amazon-ec2-mac-instances-제공">Amazon EC2 Mac instances 제공</h3>
-<h3 id="aws-license-manager">AWS License Manager</h3>
+<blockquote>
+<p>**<strong><a href="https://emojipedia.org/warning/" target="_blank" rel="noopener noreffer">⚠️</a></strong> 그러나 인스턴스에 SSH를 따로 가질 수는 없다.</p>
+</blockquote>
+<h2 id="rds-backup">RDS Backup</h2>
+<p>RDS에서는 자동으로 백업이 실행된다.</p>
+<h3 id="rds-자동백업">RDS 자동백업</h3>
 <ul>
-<li>소프트웨어 공급 업체의 라이선스를 보다 쉽게 관리</li>
-<li>라이선스를 중앙화하여 관리</li>
-<li>온프로미스 라이센스도 제공</li>
+<li>매일 수행되는 데이터베이스 전체에 대한 백업</li>
 </ul>
-<h3 id="processors-and-accelerators">Processors and Accelerators</h3>
-<ul>
-<li>애플리케이션 및 워크로드에 맞는 적합한 프로세서 제공</li>
-</ul>
-<h3 id="aws-gravition-processor">AWS Gravition Processor</h3>
-<ul>
-<li>컴퓨팅에 집중된 워크로드
--&gt; 450개가 넘는 인스턴스 타입을 제공하고 있다.</li>
-</ul>
-<h3 id="amazon-ec2-수명주기">Amazon EC2 수명주기</h3>
-<h2 id="나의-워크로드에-적합한-ec2-인스턴스-선택하기">나의 워크로드에 적합한 EC2 인스턴스 선택하기</h2>
-<p>EC2 인스턴스의 경우 지속적으로 모니터링하고 최적화</p>
-<ul>
-<li>
-<p>M 특정워크로드 - M의 경우</p>
-</li>
-<li>
-<p>6 인스턴스세대 - 세대가 올라갈 수록 더 높은 성능 제공</p>
-</li>
-<li>
-<p>d 추가기능 - d의 경우 disk 성능</p>
-</li>
-<li>
-<p>인스턴스 크기 : xlarge  vcpu</p>
-</li>
-<li>
-<p>T타입의 경우 크레딧을 통해 -&gt;</p>
-</li>
-</ul>
-<h2 id="ec2-인스턴스-타입에-대한-지속적인-최적화">EC2 인스턴스 타입에 대한 지속적인 최적화</h2>
-<ul>
-<li>비용효율적으로 EC2 자원을 효율적으로 사용하고 있는가</li>
-<li>사용하고 있는 EC2자원이 워크로드 요구사항에 적합한가</li>
-</ul>
-<h3 id="aws-compute-optimizer">AWS Compute Optimizer</h3>
-<ul>
-<li>비용을 줄이고 비용 및 성능 향상을 위한 권장 사항제공</li>
-<li>EC2</li>
-</ul>
-<h2 id="스팟-인스턴스를-통한-유연한-확장">스팟 인스턴스를 통한 유연한 확장</h2>
-<ul>
-<li>auto scaling
-<ul>
-<li>I/O CPU 자원사용율에 따라 EC2 인스턴스수를</li>
-</ul>
-</li>
-</ul>
-<h2 id="heading"></h2>
-<ul>
-<li>EBS - SSD &gt; general purpse, st/sc</li>
-<li>네트워크 기반으로 API를 통해 생성,</li>
-<li>EC2가 삭제되어도</li>
-<li></li>
-</ul>
-<p>![[알아두면 쓸모 있는 EC2 이야기.pdf]]</p>
 </div><div id="comments"><div id="valine" class="comment"></div><noscript>
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
             </noscript></div></div></div>
