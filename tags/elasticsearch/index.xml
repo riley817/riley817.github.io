@@ -4,7 +4,18 @@
         <link>https://riley817.github.io/tags/elasticsearch/</link>
         <description>elasticsearch - Tag - Riley&#39;s DevLog</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
-            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Mon, 01 Aug 2022 22:26:38 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/tags/elasticsearch/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Sat, 06 Aug 2022 17:41:51 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/tags/elasticsearch/" rel="self" type="application/rss+xml" /><item>
+    <title>Amazon RDS, Aurora &amp; ElastiCache</title>
+    <link>https://riley817.github.io/aws-rds/</link>
+    <pubDate>Sat, 06 Aug 2022 17:41:51 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/aws-rds/</guid>
+    <description><![CDATA[AWS RDS RDS는 관계형 데이터 베이스 서비스 Relational Database Service 를 나타내며 SQL 쿼리 언어를 사용하는 데이터베이스를 위한 서비스이다.
+RDS에서 제공하는 데이터베이스
+Postgres MySQL MariaDB Oracle Microsoft SQL Server Aurora - AWS Proprietary database EC2에 DB를 운용하지 않고 RDS 사용했을 때 이점
+프로비저닝 및 OS 패치 자동화 지속적 백업과 특정 timestamp 기준 복구 (Point Time Restore) 대시보드 모니터링 읽기 성능 향상을 위한 읽기 전용 복제본 재해복구 DZ(Disaster Recovery)를 위한 Multi AZ 셋업 가능 업그레이드를 위한 유지보수 확장성 (vertical and horizontal) EBS 스토리지 백업 (gp2 or io1) Warning 그러나 인스턴스에 SSH를 따로 가질 수는 없다.]]></description>
+</item>
+<item>
     <title>Amazon S3</title>
     <link>https://riley817.github.io/aws-s3/</link>
     <pubDate>Mon, 01 Aug 2022 22:26:38 &#43;0900</pubDate>
@@ -85,14 +96,6 @@ vi /etc/security/limits.conf 1 2 elasticsearch soft nofile 65536 elasticsearch h
     <description><![CDATA[Elasticsearch 는 정적으로 설정을 구성할 수 있을 뿐만 아니라 클러스터 운영중에도 클러스터 세팅 업데이트 API 를 통하여 동적인 설정 구성이 가능하다.
 Static settings Elasticsearch는 노드별로 설정파일을 구성할 수 있다. Elasticsearch 에는 세 개의 구성 파일이 있으며, 이 설정 파일들의 위치는 아카이브 배포판 설치시에는 $ES_HOME/config, 패키지 배포시에는 (RPM 설치 등) /etc/elasticsearch 에 위치한다.
 elasticsearch.yml : Elasticsearch 의 핵심 설정 jvm.options : JVM 옵션 설정 ( heapsize 설정 ) log4j2.properties : Elasticsearch 의 logging 설정 Dynamic settings 클러스터에 REST API 로 호출하여 클러스터를 운영중에도 구성 설정을 변경 할 수 있다.]]></description>
-</item>
-<item>
-    <title>2.5 Elasticsearch 플러그인</title>
-    <link>https://riley817.github.io/elasticsearch-lecture2-5/</link>
-    <pubDate>Tue, 30 Oct 2018 15:49:11 &#43;0900</pubDate>
-    <author>riley</author>
-    <guid>https://riley817.github.io/elasticsearch-lecture2-5/</guid>
-    <description><![CDATA[Elasticsearch 플러그인 플러그인은 사용자 정의 방식에 의해 ES 의 긴능을 향상 시키는 방법이다. 플러그인은 모든 노드에 설치해야 하며 설치 후 클러스터를 재시작 해야 한다. 플러그인 범주 Core Plugins (권고) Elasticsearch 에서 공식적으로 지원하는 플러그인 Elasticsearch 버전이 업데이트 될때마다 버전 업데이트가 지원됨. Community contributed 개인 개발자나 회사에 의해 지원되는 플러그인 참고 Elasticsearch Reference - modules-plugins. ]]></description>
 </item>
 </channel>
 </rss>

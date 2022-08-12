@@ -4,13 +4,40 @@
         <link>https://riley817.github.io/posts/</link>
         <description>All Posts | Riley&#39;s DevLog</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
-            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Mon, 01 Aug 2022 22:26:38 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Sat, 06 Aug 2022 17:41:51 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>Amazon RDS, Aurora &amp; ElastiCache</title>
+    <link>https://riley817.github.io/aws-rds/</link>
+    <pubDate>Sat, 06 Aug 2022 17:41:51 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/aws-rds/</guid>
+    <description><![CDATA[AWS RDS RDS는 관계형 데이터 베이스 서비스 Relational Database Service 를 나타내며 SQL 쿼리 언어를 사용하는 데이터베이스를 위한 서비스이다.
+RDS에서 제공하는 데이터베이스
+Postgres MySQL MariaDB Oracle Microsoft SQL Server Aurora - AWS Proprietary database EC2에 DB를 운용하지 않고 RDS 사용했을 때 이점
+프로비저닝 및 OS 패치 자동화 지속적 백업과 특정 timestamp 기준 복구 (Point Time Restore) 대시보드 모니터링 읽기 성능 향상을 위한 읽기 전용 복제본 재해복구 DZ(Disaster Recovery)를 위한 Multi AZ 셋업 가능 업그레이드를 위한 유지보수 확장성 (vertical and horizontal) EBS 스토리지 백업 (gp2 or io1) Warning 그러나 인스턴스에 SSH를 따로 가질 수는 없다.]]></description>
+</item>
+<item>
     <title>Amazon S3</title>
     <link>https://riley817.github.io/aws-s3/</link>
     <pubDate>Mon, 01 Aug 2022 22:26:38 &#43;0900</pubDate>
     <author>riley</author>
     <guid>https://riley817.github.io/aws-s3/</guid>
     <description><![CDATA[Amazon S3 Amazon S3은 AWS의 주요한 서비스 중 하나이다. 무한 확장infinitely scaling 가능한 storage 많은 웹사이트에서 Amazon S3을 backbone으로 사용한다. AWS의 다수의 서비스에서도 Amazon S3 통합하여 사용할 수 있다. Amazon S3 Overview Buckets Amazon S3에서는 object(files) 을 buckets(directories) 에 저장할 수 있다. 버켓은 반드시 전역적으로 유일globally unique name 해야 한다. 버켓은 region level 정의된다. (S3는 전역서비스지만 버켓은 리전리소스) Naming convention 대문자 불가 _ 불가 길이는 3~63 자리 IP 주소가 아닐 것 반드시 소문자로 또는 숫자로 시작 Objects Object는 파일이며 키를 가짐 key는 전체경로full path를 나타낸다 s3://my-bucket/my_file.]]></description>
+</item>
+<item>
+    <title>AWS Elastic Compute Cloud (EC2)</title>
+    <link>https://riley817.github.io/aws-ec2/</link>
+    <pubDate>Wed, 13 Jul 2022 01:10:49 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/aws-ec2/</guid>
+    <description><![CDATA[Amazon EC2 EC2는 AWS에서 제공하는 가장 인기있는 서비스 Elastic Compute Cloud = Infrastructure as a service 구성할 수 있는 기능 가상 머신 임대 (EC2) 가상 드라이브에 데이터를 저장 (EBS) 시스템 간 부하 분산 (ELB) auto-scaling group(ASG)를 사용하여 서비스 확장 EC2 sizing &amp; configuration options Operating System(OS) : Linux, Windows or Mac OS 컴퓨터 성능과 코어양 선택 가능 (CPU) random-access memory (RAM) 스토리지 용량 Network-attached (EBS &amp; EFS) hardware (EC2 Instance Store) Network card: 네트워크 카드 속도, 공용 IP 주소 방화벽 규칙 : security group Bootstrap script (configure at first launch): EC2 User Data EC2 User Data EC2 User Data를 사용하여 인스턴스를 부트스트랩 가능 bootstrapping이란 머신을 시작할 때 명령을 실행하는 것을 의미한다.]]></description>
+</item>
+<item>
+    <title>AWS Identity and Access Management</title>
+    <link>https://riley817.github.io/aws-iam/</link>
+    <pubDate>Wed, 13 Jul 2022 01:10:49 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/aws-iam/</guid>
+    <description><![CDATA[Users &amp; Groups IAM = Identity and Access Management → Global 서비스 Root 계정으로 생성 Users 는 조직의 사용자이며 그룹으로 묶을 수 있다. Groups는 user를 포함할 수 있고 다른 그룹은 포함할 수 없다. user는 여러 그룹에 속할 수 있다. Permissions Users or Groups 은 JSON 문서형태로 정책을 할당 정책 polices는 사용자의 permissions을 정의 AWS에서는 최소 권한 원칙을 적용한다 → 사용자가 필요로 하는 것보다 더 많은 권한을 부여하지 않는다. IAM Policies inheritance 인라인 정책 : 그룹에 속해있지 않아도 정책을 바로 사용자에게 연결 가능 IAM Policies Structure 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 { &#34;Version&#34;: &#34;2012-10-17&#34;, &#34;Statement&#34;: [ { &#34;Effect&#34;: &#34;Allow&#34;, &#34;Action&#34;: &#34;ec2:Describe*&#34;, &#34;Resource&#34;: &#34;*&#34; }, { &#34;Effect&#34;: &#34;Allow&#34;, &#34;Action&#34;: &#34;elasticloadbalancing:Describe*&#34;, &#34;Resource&#34;: &#34;* }, { &#34;Effect&#34;: &#34;Allow&#34;, &#34;Action&#34;: [ &#34;cloudwatch:ListMetrics&#34;, &#34;cloudwatch:GetMetricStatistics&#34;, &#34;cloudwatch:Describe*&#34; ], &#34;Resource&#34;: &#34;*&#34; } ] } 요소 Version : 정책 버전 Id : 정책을 식별할 수 있는 식별자 - 옵션 Statement : 하나 혹은 여러개 (필수사항) Statements 요소 Sid : statement 의 식별자 (옵션) Effect : 특정 statement에 접근은 허용 여부 (Allow 또는 Deny)를 나타냄 Principal : 정책이 적용 될 대상 (계정, 사용자, 역할) Action : 정책의 허용 또는 거부되는 호출 리스트 목록 Resource : 정책이 적용될 리소스 목록 Condition : statement가 언제적용될지 결정 (옵션) IAM Password Policy 강력한 비밀번호 → 계정에 대한 높은 보안 AWS에서는 설정가능한 패스워드 정책 패스워드 최소 길이 특수문자 포함 필수 입력 : 대소문자, 숫자, 특수문자 IAM 계정 사용자들의 패스워드 변경 허용 또는 금지 패스워드 만료 지정 패스워드 재사용 금지 MFA - Multi Factor Authentication MFA = 패스워드(사용자만 알고있는) + 보안 장비(사용자가 소유하고 있는) MFA devices options in AWS Virtual MFA device 하나의 디바이스에서 여러 토큰을 지원 Google Authenticator → phone only Authy → Multi device Universal 2nd Factor(U2F) Security Key YubiKey 하나의 키로 루트 그리고 IAM 사용자 지원 기타 Hardware Key Fob MFA Device Hardware Key Fob MFA Device for AWS GovCloud (US) AWS 액세스 하는 방법 AWS 액세스하는 방법 AWS Management Console : 패스워드 + MFA 사용 AWS Command Line Interface CLI : access key 사용 AWS Software Developer Kit SDK : access key 사용 Access Key는 AWS 콘솔을 통해 생성할 수 있다.]]></description>
 </item>
 <item>
     <title>3.5 그 외 설정</title>
@@ -64,31 +91,6 @@ elasticsearch.yml : Elasticsearch 의 핵심 설정 jvm.options : JVM 옵션 설
     <author>riley</author>
     <guid>https://riley817.github.io/elasticsearch-lecture2-5/</guid>
     <description><![CDATA[Elasticsearch 플러그인 플러그인은 사용자 정의 방식에 의해 ES 의 긴능을 향상 시키는 방법이다. 플러그인은 모든 노드에 설치해야 하며 설치 후 클러스터를 재시작 해야 한다. 플러그인 범주 Core Plugins (권고) Elasticsearch 에서 공식적으로 지원하는 플러그인 Elasticsearch 버전이 업데이트 될때마다 버전 업데이트가 지원됨. Community contributed 개인 개발자나 회사에 의해 지원되는 플러그인 참고 Elasticsearch Reference - modules-plugins. ]]></description>
-</item>
-<item>
-    <title>2.4 Elastic-HQ</title>
-    <link>https://riley817.github.io/elasticsearch-lecture2-4/</link>
-    <pubDate>Tue, 30 Oct 2018 15:33:39 &#43;0900</pubDate>
-    <author>riley</author>
-    <guid>https://riley817.github.io/elasticsearch-lecture2-4/</guid>
-    <description><![CDATA[Elastic HQ 설치하기 Requirements Python 3.4+ Elasticsearch. Supported versions: 2.x, 5.x, 6.x ElasticHQ Git Repository 에서 클론 혹은 다운로드 한다. 1 2 3 4 # git 이 설치되어 있지 않으면 sudo yum -y install git git clone https://github.com/ElasticHQ/elasticsearch-HQ.git Python 3.4+ 설치한다. (pip 은 파이선 패키지 관리자) 1 2 3 4 # clone 한 디렉터리로 이동 후 cd elasticsearch-HQ/ sudo yum -y install python34 python34-pip Repository 의 의존성 패키지 설치한다. 1 pip install -r requirements.]]></description>
-</item>
-<item>
-    <title>2.3 Head 소개</title>
-    <link>https://riley817.github.io/elasticsearch-lecture2-3/</link>
-    <pubDate>Mon, 29 Oct 2018 20:31:39 &#43;0900</pubDate>
-    <author>riley</author>
-    <guid>https://riley817.github.io/elasticsearch-lecture2-3/</guid>
-    <description><![CDATA[Elasticsearch Head 클러스트들을 한눈에 보기 위한 도구. 직접 서버를 구성하여 설치할 수도 있고 크롬의 브라우저 익스텐션으로도 제공한다.
-Installation ES Head git repository 에서 클론 혹은 다운로드한다. 1 2 3 4 # git 이 설치되어 있지 않으면 sudo yum -y install git git clone https://github.com/mobz/elasticsearch-head.git npm 으로 관련 의존성 모듈 설치 1 2 3 4 5 6 7 cd elasticsearch-head/ sudo yum -y install bzip2 epel-release sudo yum -y install npm # Node 가 설치되어있어야 한다.]]></description>
-</item>
-<item>
-    <title>2.2 플러그인 설치하기</title>
-    <link>https://riley817.github.io/elasticsearch-lecture2-2/</link>
-    <pubDate>Mon, 29 Oct 2018 19:58:33 &#43;0900</pubDate>
-    <author>riley</author>
-    <guid>https://riley817.github.io/elasticsearch-lecture2-2/</guid>
-    <description><![CDATA[플러그인 설치 인터넷이 가능한 환경에서 설치시 1 2 3 4 5 6 $ cd /usr/share/elasticsearch/ $ sudo bin/elasticsearch-plugin install [플러그인이름] # example $ sudo bin/elasticsearch-plugin install analysis-nori 파일서버 등에서 설치시 1 2 3 4 $ sudo bin/elasticsearch-plugin install file://path/to/plugin.zip # 파일서버 $ sudo bin/elasticsearch-plugin install [파일서버URL] 설치된 플러그인 리스트 확인 1 sudo bin/elasticsearch-plugin list 설치된 플러그인 제거 1 sudo bin/elasticsearch-plugin remove [플러그인이름] 참고 Elasticsearch Reference - plugin-management ]]></description>
 </item>
 </channel>
 </rss>

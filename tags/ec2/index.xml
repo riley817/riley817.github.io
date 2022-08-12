@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>ec2 - Tag - Riley&#39;s DevLog</title>
+        <link>https://riley817.github.io/tags/ec2/</link>
+        <description>ec2 - Tag - Riley&#39;s DevLog</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
+            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Wed, 13 Jul 2022 01:10:49 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/tags/ec2/" rel="self" type="application/rss+xml" /><item>
+    <title>AWS Elastic Compute Cloud (EC2)</title>
+    <link>https://riley817.github.io/aws-ec2/</link>
+    <pubDate>Wed, 13 Jul 2022 01:10:49 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/aws-ec2/</guid>
+    <description><![CDATA[Amazon EC2 EC2는 AWS에서 제공하는 가장 인기있는 서비스 Elastic Compute Cloud = Infrastructure as a service 구성할 수 있는 기능 가상 머신 임대 (EC2) 가상 드라이브에 데이터를 저장 (EBS) 시스템 간 부하 분산 (ELB) auto-scaling group(ASG)를 사용하여 서비스 확장 EC2 sizing &amp; configuration options Operating System(OS) : Linux, Windows or Mac OS 컴퓨터 성능과 코어양 선택 가능 (CPU) random-access memory (RAM) 스토리지 용량 Network-attached (EBS &amp; EFS) hardware (EC2 Instance Store) Network card: 네트워크 카드 속도, 공용 IP 주소 방화벽 규칙 : security group Bootstrap script (configure at first launch): EC2 User Data EC2 User Data EC2 User Data를 사용하여 인스턴스를 부트스트랩 가능 bootstrapping이란 머신을 시작할 때 명령을 실행하는 것을 의미한다.]]></description>
+</item>
+</channel>
+</rss>
