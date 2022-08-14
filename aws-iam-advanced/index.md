@@ -1,4 +1,4 @@
-# AWS Identity and Access Management
+# AWS Identity and Access Management - Advanced
 
 
 ## STS - Security Token Service
