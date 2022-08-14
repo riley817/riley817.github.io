@@ -101,6 +101,11 @@
         alt="/images/avatar.png"
         title="/images/avatar.png" /></a></div><div class="home-subtitle"><div id="id-1" class="typeit"></div></div><div class="links"><a href="https://github.com/https://github.com/riley817" title="GitHub" target="_blank" rel="noopener noreffer me"><i class="fab fa-github-alt fa-fw" aria-hidden="true"></i></a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/aws-iam-advanced/">AWS Identity and Access Management</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-08-14">2022-08-14</time></span>&nbsp;<span class="post-category">included in <a href="/categories/aws-certified-saa-c02-%EC%8B%9C%ED%97%98%EC%A4%80%EB%B9%84/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>AWS Certified SAA-C02 시험준비</a></span></div><div class="content">STS - Security Token Service AWS 리소스에 대한 제한적이고 일시적인 액세스 권한을 허용 토큰은 1 시간까지 유효 (새로고침 필요) STS API STS API 설명 AssumeRole - 개인 계정 내에서: 보안을 강화하기 위해 사용 - 계정 간 : 대상 계정에 역할을 수임하여 작업을 수행 AssumeRoleWithSAML - SAML으로 로그인한 사용자의 자격증명을 반환 AssumeRoleWithWebIdentity - IdP(Identity Provider - Facebook Login, Google Login, OIDC Compatible&hellip;) 로그인 사용자의 자격증명을 반환 - 이것보다는 AWS Cognito 추천함 GetSessionToken - AWS 루트 계정 또는 사용자에 대한 MFA 인증 STS를 통해 역할을 수임받기 IAM 계정 내 혹은 계정 간 IAM 역할(Role)을 정의한다.</div><div class="post-footer">
+        <a href="/aws-iam-advanced/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/aws/">aws</a>,&nbsp;<a href="/tags/iam/">IAM</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/aws-rds/">Amazon RDS, Aurora & ElastiCache</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-08-06">2022-08-06</time></span>&nbsp;<span class="post-category">included in <a href="/categories/aws-certified-saa-c02-%EC%8B%9C%ED%97%98%EC%A4%80%EB%B9%84/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>AWS Certified SAA-C02 시험준비</a></span></div><div class="content">AWS RDS RDS는 관계형 데이터 베이스 서비스 Relational Database Service 를 나타내며 SQL 쿼리 언어를 사용하는 데이터베이스를 위한 서비스이다.
 RDS에서 제공하는 데이터베이스
@@ -129,12 +134,6 @@ Postgres MySQL MariaDB Oracle Microsoft SQL Server Aurora - AWS Proprietary data
 vi /etc/security/limits.conf 1 2 elasticsearch soft nofile 65536 elasticsearch hard nofile 65536 Thread 수 Elasticsearch 는 여러 유형의 작업에 대해 많은 Thread Pool을 사용하게 된다.. Elasticsearch 사용자가 만들 수 있는 Thread 가 4096 개 이상인지 확인한다. 1 2 elasticsearch soft noproc 4096 elasticsearch hard noproc 4096 Sysconfig file RPM 또는 Debian 패키지를 사용하여 시스템 설정 및 환경 변수를 지정할 수 있다.</div><div class="post-footer">
         <a href="/elasticsearch-lecture3-5/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/elasticsearch/">elasticsearch</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/elasticsearch-lecture3-4/">3.4 log4j2.properties</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2018-11-05">2018-11-05</time></span>&nbsp;<span class="post-category">included in <a href="/categories/elasticsearch-lecture/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>elasticsearch lecture</a></span></div><div class="content">log4j2.properties Elasticsearch는 로깅을 위해 Log4j2를 사용한다. Log4j2는 log4j2.properties 파일을 사용하여 구성할 수 있다.
-로그참조 파일 ${sys:es.logs.base_path} 로그의 Base 디렉토리 elasticsearch.yml 의 path.log에 설정된 경로 ${sys:es.logs.cluster_name} 클러스트 이름을 나타낸다. elasticsearch.yml 의 cluster.name으로 설정할 수 있다. ${sys:es.logs.node_name} 노드의 이름을 나타냅니다. elasticsearch.yml 의 node.name으로 설정할 수 있다. 1 2 ex) ${sys:es.logs.base_path}${sys:file.separator}${sys:es.logs.cluster_name}.log /var/log/elasticsearch/mycluster.log </div><div class="post-footer">
-        <a href="/elasticsearch-lecture3-4/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/elasticsearch/">elasticsearch</a></div></div>
 </article><ul class="pagination"><li class="page-item active">
                     <span class="page-link">
                         <a href="/">1</a>
@@ -146,6 +145,10 @@ vi /etc/security/limits.conf 1 2 elasticsearch soft nofile 65536 elasticsearch h
                 </li><li class="page-item ">
                     <span class="page-link">
                         <a href="/page/3/">3</a>
+                    </span>
+                </li><li class="page-item ">
+                    <span class="page-link">
+                        <a href="/page/4/">4</a>
                     </span>
                 </li></ul></div></div>
             </main><footer class="footer">

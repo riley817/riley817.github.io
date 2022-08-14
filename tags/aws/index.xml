@@ -4,7 +4,15 @@
         <link>https://riley817.github.io/tags/aws/</link>
         <description>aws - Tag - Riley&#39;s DevLog</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
-            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Sun, 17 Jul 2022 18:27:40 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/tags/aws/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Sun, 14 Aug 2022 16:14:49 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/tags/aws/" rel="self" type="application/rss+xml" /><item>
+    <title>AWS Identity and Access Management</title>
+    <link>https://riley817.github.io/aws-iam-advanced/</link>
+    <pubDate>Sun, 14 Aug 2022 16:14:49 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/aws-iam-advanced/</guid>
+    <description><![CDATA[STS - Security Token Service AWS 리소스에 대한 제한적이고 일시적인 액세스 권한을 허용 토큰은 1 시간까지 유효 (새로고침 필요) STS API STS API 설명 AssumeRole - 개인 계정 내에서: 보안을 강화하기 위해 사용 - 계정 간 : 대상 계정에 역할을 수임하여 작업을 수행 AssumeRoleWithSAML - SAML으로 로그인한 사용자의 자격증명을 반환 AssumeRoleWithWebIdentity - IdP(Identity Provider - Facebook Login, Google Login, OIDC Compatible&hellip;) 로그인 사용자의 자격증명을 반환 - 이것보다는 AWS Cognito 추천함 GetSessionToken - AWS 루트 계정 또는 사용자에 대한 MFA 인증 STS를 통해 역할을 수임받기 IAM 계정 내 혹은 계정 간 IAM 역할(Role)을 정의한다.]]></description>
+</item>
+<item>
     <title>AWS IAM</title>
     <link>https://riley817.github.io/archives/devops/aws/aws/aws-iam/</link>
     <pubDate>Sun, 17 Jul 2022 18:27:40 &#43;0900</pubDate>
@@ -97,17 +105,6 @@ Mac OS : https://awscli.amazonaws.com/AWSCLIV2.pkg 다른 OS에서 AWS CLI 설�
 https://catalog.us-east-1.prod.workshops.aws/workshops/9c0aa9ab-90a9-44a6-abe1-8dff360ae428/ko-KR/ AWS Cloud9 AWS Cloud9 은 브라우저만으로 코드를 작성, 실행 및 디버깅할 수 있는 IDE(통합개발환경)이다. 코드 편집기, 디버거 및 터미널 기능을 포함하고 있고 프로그래밍 언어를 위한 필수 도구가 사전에 패키징 되어 제공된다.
 AWS Cloud9 시작하기 AWS Cloud9 IDE 구성 AWS Cloud9 콘솔 접속 후 Create environment 버튼 클릭
 IDE의 Environment 이름 및 설명을 작성한다. 인스턴스 타입을 t3.]]></description>
-</item>
-<item>
-    <title>[AWS EKS] 1. IAM 계정 생성</title>
-    <link>https://riley817.github.io/archives/devops/aws/aws-1-eks-iam/</link>
-    <pubDate>Thu, 05 May 2022 16:51:59 &#43;0900</pubDate>
-    <author>riley</author>
-    <guid>https://riley817.github.io/archives/devops/aws/aws-1-eks-iam/</guid>
-    <description><![CDATA[☁️ Amazon EKS 웹 애플리케이션 구축하기 워크샵을 실습한 내용입니다.
-☁️ AWS Workshop 링크 : https://catalog.us-east-1.prod.workshops.aws/workshops/9c0aa9ab-90a9-44a6-abe1-8dff360ae428/ko-KR/
-IAM 계정 생성 AWS 계정의 루트사용자로 로그인한다.
-IAM 대시보드에서 액세스 관리 &gt; 사용자 &gt; 사용자 추가를 선택한다. 사용자 이름을 입력 후 Access type에서 암호-AWS 관리 콘솔 액세스 선택 사용자 지정 비밀번호로 비밀번호 생성한다. 기존 정책 직접 연결(Attach existing policies directly) 선택 후 부여하려는 정책을 선택하여 다음:태그(Next:Tags) 버튼을 클릭. 태그 추가(선택 사항) 단계 후 최종 생성 정보를 확인하고 사용자 만들기(Create User) 클릭하여 생성한다.]]></description>
 </item>
 </channel>
 </rss>

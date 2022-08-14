@@ -101,6 +101,12 @@
         alt="/images/avatar.png"
         title="/images/avatar.png" /></a></div><div class="home-subtitle"><div id="id-1" class="typeit"></div></div><div class="links"><a href="https://github.com/https://github.com/riley817" title="GitHub" target="_blank" rel="noopener noreffer me"><i class="fab fa-github-alt fa-fw" aria-hidden="true"></i></a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/elasticsearch-lecture3-4/">3.4 log4j2.properties</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2018-11-05">2018-11-05</time></span>&nbsp;<span class="post-category">included in <a href="/categories/elasticsearch-lecture/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>elasticsearch lecture</a></span></div><div class="content">log4j2.properties Elasticsearch는 로깅을 위해 Log4j2를 사용한다. Log4j2는 log4j2.properties 파일을 사용하여 구성할 수 있다.
+로그참조 파일 ${sys:es.logs.base_path} 로그의 Base 디렉토리 elasticsearch.yml 의 path.log에 설정된 경로 ${sys:es.logs.cluster_name} 클러스트 이름을 나타낸다. elasticsearch.yml 의 cluster.name으로 설정할 수 있다. ${sys:es.logs.node_name} 노드의 이름을 나타냅니다. elasticsearch.yml 의 node.name으로 설정할 수 있다. 1 2 ex) ${sys:es.logs.base_path}${sys:file.separator}${sys:es.logs.cluster_name}.log /var/log/elasticsearch/mycluster.log </div><div class="post-footer">
+        <a href="/elasticsearch-lecture3-4/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/elasticsearch/">elasticsearch</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/elasticsearch-lecture3-3/">3.3 jvm.options</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2018-11-05">2018-11-05</time></span>&nbsp;<span class="post-category">included in <a href="/categories/elasticsearch-lecture/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>elasticsearch lecture</a></span></div><div class="content">jvm.options jvm.options 의 설정을 통해 JVM(Java Virtual Machine) 의 옵션을 변경할 수 있다. 설정 파일은 config/jvm.options(tar or zip 배포판) 또는 /etc/elasticsearch/jvm.options(rpm 패키지 설치) 에서 위치하고 있다. JVM Heap Size Configuration Elasticsearch 는 Java 기반이기 때문에 Heap 메모리를 어떻게 설정하느냐에 따라 성능에 큰 영향을 미치게 된다. 기본적으로 Elasticsearch 의 최소, 최대 Heap 사이즈는 2GB로 설정되어 있다. 실제 운영환경에 따라서 Elasticsearch 에서 충분한 Heap 을 사용할 수 있도록 Heap Size 를 구성하는 것이 중요하다.</div><div class="post-footer">
         <a href="/elasticsearch-lecture3-3/">Read More</a><div class="post-tags">
@@ -128,12 +134,6 @@ elasticsearch.yml : Elasticsearch 의 핵심 설정 jvm.options : JVM 옵션 설
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2018-10-30">2018-10-30</time></span>&nbsp;<span class="post-category">included in <a href="/categories/elasticsearch-lecture/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>elasticsearch lecture</a></span></div><div class="content">Elastic HQ 설치하기 Requirements Python 3.4+ Elasticsearch. Supported versions: 2.x, 5.x, 6.x ElasticHQ Git Repository 에서 클론 혹은 다운로드 한다. 1 2 3 4 # git 이 설치되어 있지 않으면 sudo yum -y install git git clone https://github.com/ElasticHQ/elasticsearch-HQ.git Python 3.4+ 설치한다. (pip 은 파이선 패키지 관리자) 1 2 3 4 # clone 한 디렉터리로 이동 후 cd elasticsearch-HQ/ sudo yum -y install python34 python34-pip Repository 의 의존성 패키지 설치한다. 1 pip install -r requirements.</div><div class="post-footer">
         <a href="/elasticsearch-lecture2-4/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/elasticsearch/">elasticsearch</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/elasticsearch-lecture2-3/">2.3 Head 소개</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2018-10-29">2018-10-29</time></span>&nbsp;<span class="post-category">included in <a href="/categories/elasticsearch-lecture/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>elasticsearch lecture</a></span></div><div class="content">Elasticsearch Head 클러스트들을 한눈에 보기 위한 도구. 직접 서버를 구성하여 설치할 수도 있고 크롬의 브라우저 익스텐션으로도 제공한다.
-Installation ES Head git repository 에서 클론 혹은 다운로드한다. 1 2 3 4 # git 이 설치되어 있지 않으면 sudo yum -y install git git clone https://github.com/mobz/elasticsearch-head.git npm 으로 관련 의존성 모듈 설치 1 2 3 4 5 6 7 cd elasticsearch-head/ sudo yum -y install bzip2 epel-release sudo yum -y install npm # Node 가 설치되어있어야 한다.</div><div class="post-footer">
-        <a href="/elasticsearch-lecture2-3/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/elasticsearch/">elasticsearch</a></div></div>
 </article><ul class="pagination"><li class="page-item ">
                     <span class="page-link">
                         <a href="/">1</a>
@@ -145,6 +145,10 @@ Installation ES Head git repository 에서 클론 혹은 다운로드한다. 1 2
                 </li><li class="page-item ">
                     <span class="page-link">
                         <a href="/page/3/">3</a>
+                    </span>
+                </li><li class="page-item ">
+                    <span class="page-link">
+                        <a href="/page/4/">4</a>
                     </span>
                 </li></ul></div></div>
             </main><footer class="footer">
