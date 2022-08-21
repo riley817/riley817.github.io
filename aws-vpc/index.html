@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>AWS Virtual Private Cloud(VPC) - Riley&#39;s DevLog</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:title" content="AWS Virtual Private Cloud(VPC)" />
+<meta property="og:description" content="CIDR - IPv4 Classless Inter-Domain Routing - IP 주소 할당 방법 Security Groups 규칙 및 AWS 네트워킹에 일반적으로 사용 Base IP : 범위에 포함된 IP를 나타냄 Example) 10.0.0.0, 192.168.0.0 &hellip; Subnet Mask : IP에서 변경할 수 있는 비트 수를 정의 Example) /0, /24, /32 /8 : 255.0.0.0 /16 : 255.255.0.0 /24 : 255.255.255.0 /32 : 255.255.255.255 Subnet Mask Subnet Mask 사용하면 기본적으로 기본IP에서 다음 값을 추가로 가져올 수 있다.
+IPLocationTools IP/Subnet Mask 192." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://riley817.github.io/aws-vpc/" /><meta property="og:image" content="https://riley817.github.io/icon.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-08-15T17:26:41+09:00" />
+<meta property="article:modified_time" content="2022-08-21T23:41:26+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://riley817.github.io/icon.png"/>
+
+<meta name="twitter:title" content="AWS Virtual Private Cloud(VPC)"/>
+<meta name="twitter:description" content="CIDR - IPv4 Classless Inter-Domain Routing - IP 주소 할당 방법 Security Groups 규칙 및 AWS 네트워킹에 일반적으로 사용 Base IP : 범위에 포함된 IP를 나타냄 Example) 10.0.0.0, 192.168.0.0 &hellip; Subnet Mask : IP에서 변경할 수 있는 비트 수를 정의 Example) /0, /24, /32 /8 : 255.0.0.0 /16 : 255.255.0.0 /24 : 255.255.255.0 /32 : 255.255.255.255 Subnet Mask Subnet Mask 사용하면 기본적으로 기본IP에서 다음 값을 추가로 가져올 수 있다.
+IPLocationTools IP/Subnet Mask 192."/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://riley817.github.io/aws-vpc/" /><link rel="prev" href="https://riley817.github.io/aws-security-encryption/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "AWS Virtual Private Cloud(VPC)",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/riley817.github.io\/aws-vpc\/"
+        },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "aws, vpc","wordcount":  1125 ,
+        "url": "https:\/\/riley817.github.io\/aws-vpc\/","datePublished": "2022-08-15T17:26:41+09:00","dateModified": "2022-08-21T23:41:26+09:00","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "https:\/\/riley817.github.io\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "riley"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Riley&#39;s DevLog"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i></span>Riley&#39;s DevLog</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Riley&#39;s DevLog"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i></span>Riley&#39;s DevLog</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">AWS Virtual Private Cloud(VPC)</h1><h2 class="single-subtitle">AWS Certified SAA-C02 시험준비</h2><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-category">included in <a href="/categories/aws-certified-saa-c02-%EC%8B%9C%ED%97%98%EC%A4%80%EB%B9%84/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>AWS Certified SAA-C02 시험준비</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-08-15">2022-08-15</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1125 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;6 minutes&nbsp;<span id="/aws-vpc/" class="leancloud_visitors" data-flag-title="AWS Virtual Private Cloud(VPC)">
+                        <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#cidr---ipv4">CIDR - IPv4</a></li>
+    <li><a href="#public-vs-private-ip-ipv4">Public vs Private IP (IPv4)</a></li>
+    <li><a href="#default-vpc">Default VPC</a></li>
+    <li><a href="#vpc-in-aws">VPC in AWS</a>
+      <ul>
+        <li><a href="#subnet">Subnet</a></li>
+        <li><a href="#internet-gateway-igw">Internet Gateway (IGW)</a></li>
+        <li><a href="#bastion-hosts">Bastion Hosts</a></li>
+        <li><a href="#nat-instance-outdated-시험에는-나옴">NAT Instance (outdated, 시험에는 나옴)</a></li>
+        <li><a href="#nat-gateway">NAT Gateway</a>
+          <ul>
+            <li><a href="#nat-gateway-with-high-availability">NAT Gateway with High Availability</a></li>
+          </ul>
+        </li>
+        <li><a href="#nat-gateway-vs-nat-instance">NAT Gateway vs NAT Instance</a></li>
+      </ul>
+    </li>
+    <li><a href="#dns-resolution-in-vpc">DNS Resolution in VPC</a>
+      <ul>
+        <li><a href="#dns-resolution-enablednssupport">DNS Resolution (enableDnsSupport)</a></li>
+        <li><a href="#dns-hostname-enablednshostnames">DNS Hostname (enableDnsHostnames)</a></li>
+      </ul>
+    </li>
+    <li><a href="#security-groups--nacls">Security Groups &amp; NACLs</a>
+      <ul>
+        <li><a href="#network-access-control-list-nacl">Network Access Control List (NACL)</a>
+          <ul>
+            <li><a href="#nacl-규칙">NACL 규칙</a></li>
+            <li><a href="#default-nacl">Default NACL</a></li>
+            <li><a href="#ephemeral-ports">Ephemeral Ports</a></li>
+          </ul>
+        </li>
+        <li><a href="#security-group-vs-nacls">Security Group vs. NACLs</a></li>
+        <li><a href="#vpc--reachability-analyzer">VPC – Reachability Analyzer</a>
+          <ul>
+            <li><a href="#대상에-따른-분석">대상에 따른 분석</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="cidr---ipv4">CIDR - IPv4</h2>
+<ul>
+<li><strong>Classless Inter-Domain Routing</strong> - IP 주소 할당 방법</li>
+<li><strong>Security Groups</strong> 규칙 및 AWS 네트워킹에 일반적으로 사용</li>
+<li><strong>Base IP</strong> :
+<ul>
+<li>범위에 포함된 IP를 나타냄</li>
+<li>Example) 10.0.0.0, 192.168.0.0 &hellip;</li>
+</ul>
+</li>
+<li><strong>Subnet Mask</strong> :
+<ul>
+<li>IP에서 변경할 수 있는 비트 수를 정의</li>
+<li>Example) /0, /24, /32
+<ul>
+<li><strong>/8</strong> : 255.0.0.0</li>
+<li><strong>/16</strong> : 255.255.0.0</li>
+<li><strong>/24</strong> : 255.255.255.0</li>
+<li><strong>/32</strong> : 255.255.255.255</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="details admonition tip open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw" aria-hidden="true"></i>Subnet Mask<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><p>Subnet Mask 사용하면 기본적으로 기본IP에서 다음 값을 추가로 가져올 수 있다.</p>
+<ul>
+<li><a href="https://www.ipaddressguide.com/cidr" target="_blank" rel="noopener noreffer">IPLocationTools</a></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>IP/Subnet Mask</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>192.168.0.0/32</td>
+<td>allows for 1 IP(2<sup>0</sup>)</td>
+<td>192.168.0.0</td>
+</tr>
+<tr>
+<td>192.168.0.0/31</td>
+<td>allows for 2 IP(2<sup>1</sup>)</td>
+<td>192.168.0.0 ~ 192.168.0.1</td>
+</tr>
+<tr>
+<td>192.168.0.0/30</td>
+<td>allows for 4 IP(2<sup>2</sup>)</td>
+<td>192.168.0.0 ~ 192.168.0.3</td>
+</tr>
+<tr>
+<td>192.168.0.0/29</td>
+<td>allows for 8 IP(2<sup>3</sup>)</td>
+<td>192.168.0.0 ~ 192.168.0.7</td>
+</tr>
+<tr>
+<td>192.168.0.0/28</td>
+<td>allows for 16 IP(2<sup>4</sup>)</td>
+<td>192.168.0.0 ~ 192.168.0.15</td>
+</tr>
+<tr>
+<td>192.168.0.0/27</td>
+<td>allows for 32 IP(2<sup>5</sup>)</td>
+<td>192.168.0.0 ~ 192.168.0.31</td>
+</tr>
+<tr>
+<td>192.168.0.0/26</td>
+<td>allows for 64 IP(2<sup>6</sup>)</td>
+<td>192.168.0.0 ~ 192.168.0.65</td>
+</tr>
+<tr>
+<td>192.168.0.0/25</td>
+<td>allows for 128 IP(2<sup>7</sup>)</td>
+<td>192.168.0.0 ~ 192.168.0.127</td>
+</tr>
+<tr>
+<td>192.168.0.0/24</td>
+<td>allows for 256 IP(2<sup>8</sup>)</td>
+<td>192.168.0.0 ~ 192.168.0.255</td>
+</tr>
+<tr>
+<td>192.168.0.0/16</td>
+<td>allows for 65,536IP(2<sup>16</sup>)</td>
+<td>192.168.0.0 ~ 192.168.255.255</td>
+</tr>
+<tr>
+<td>192.168.0.0/0</td>
+<td>allows for All IP</td>
+<td>0.0.0.0 ~ 255.255.255.255</td>
+</tr>
+</tbody>
+</table>
+</div>
+        </div>
+    </div>
+<h2 id="public-vs-private-ip-ipv4">Public vs Private IP (IPv4)</h2>
+<ul>
+<li>IANA(Internet Assigned Number Authority)은 개인(LAN) 및 공용(Internet) 주소 사용을 위해 IPv4 주소의 특정 블록을 설정함</li>
+<li><strong>Private IP는 특정 값만 허용 가능</strong>
+<ul>
+<li><code>10.0.0.0 – 10.255.255.255 (10.0.0.0/8)</code> : big networks</li>
+<li><code>172.16.0.0 – 172.31.255.255 (172.16.0.0/12)</code> : AWS defaultVPC in that range</li>
+<li><code>192.168.0.0 – 192.168.255.255 (192.168.0.0/16)</code> : e.g., home networks</li>
+</ul>
+</li>
+<li>인터넷에 있는 나머지 IP는 모두 public IP</li>
+</ul>
+<h2 id="default-vpc">Default VPC</h2>
+<ul>
+<li>모든 AWS 계정은 default VPC를 갖는다.</li>
+<li>새로운 EC2 인스턴스는 subnet을 지정하지 않으면 기본 VPC로 시작</li>
+<li>기본 VPC는 인터넷에 연결되어 있고 public IPv4 주소를 가지고 있음</li>
+<li>public 및 private IPv4 와 DNS 이름을 얻을 수 있음</li>
+</ul>
+<h2 id="vpc-in-aws">VPC in AWS</h2>
+<ul>
+<li>Virtual Private Cloud (VPC)</li>
+<li>AWS 리전에 여러 VPC를 만들 수 있다. (리전당 VPC는 최대 5개)</li>
+<li>VPC당 CIDR
+<ul>
+<li>Min size /28 (16 IP Address)</li>
+<li>Max Size /16 (65,536 IP Address)</li>
+</ul>
+</li>
+<li><strong>VPC 비공개 전용이므로 Private IPv4 범위만 허용</strong>
+<ul>
+<li>10.0.0.0 – 10.255.255.255 (10.0.0.0/8)</li>
+<li>172.16.0.0 – 172.31.255.255 (172.16.0.0/12)</li>
+<li>192.168.0.0 – 192.168.255.255 (192.168.0.0/16)</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>VPC CIDR는 다른 네트워크(e.g., corporate)와 겹치지 않아야 한다.</p>
+</blockquote>
+<h3 id="subnet">Subnet</h3>
+<ul>
+<li>AWS는 <strong>각 서브넷에 5개의 IP 주소를 예약(처음 4개 &amp; 마지막 1개)</strong></li>
+<li>위 IP는 사용할 수 없으며 EC 인스턴스 할당 불가</li>
+</ul>
+<div class="details admonition tip open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw" aria-hidden="true"></i>서브넷 예약 IP<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><ul>
+<li><strong>10.0.0.0</strong> – Network Address</li>
+<li><strong>10.0.0.1</strong> – AWS에 의해 VPC Router 용으로 예약</li>
+<li><strong>10.0.0.2</strong> – Amazon가 제공하는 DNS에 매핑하기 위해 AWS에 의해 예약</li>
+<li><strong>10.0.0.3</strong> – 나중에 사용을 위한</li>
+<li><strong>10.0.0.255</strong> - Network Broadcast Address. AWS는 VPC에서 브로드캐스드를 지원하지 않으므로 해당 주소가 예약되어있음</li>
+</ul>
+</div>
+        </div>
+    </div>
+<div class="details admonition success open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-check-circle fa-fw" aria-hidden="true"></i>Exam Tip: EC2 인스턴스에 29개의 IP 주소가 필요한 경우<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><ul>
+<li>크기가 /27인 서브넷은 선택할 수 없다 (/27 -&gt; 2<sup>5</sup>=32 - 5 = 27 -&gt; 27 &lt; 29)</li>
+<li>크기가 /26인 서브넷을 선택해야 한다. (/26 -&gt; 2<sup>6</sup>=64 - 5 = 59 -&gt; 59 &gt; 29)</li>
+</ul>
+</div>
+        </div>
+    </div>
+<h3 id="internet-gateway-igw">Internet Gateway (IGW)</h3>
+<ul>
+<li>VPC 리소스(e.g., EC2 인스턴스)를 인터넷에 연결할 수 있다.</li>
+<li>수평으로 확장 가능하며 높은 가용성과 이중화<code>redundant</code> 제공</li>
+<li><strong>VPC와 별도로 생성해야 한다.</strong></li>
+<li>하나의 VPC는 하나의 IGW에만 연결할 수 있다. (그 반대의 경우도 마찬가지)</li>
+<li><strong>인터넷 게이트 웨이 자체에서도 인터넷 액세스를 허용하지 않는다 - Route Tables을 반드시 수정해야 한다.</strong></li>
+</ul>
+<h3 id="bastion-hosts">Bastion Hosts</h3>
+<ul>
+<li><code>Bastion Host</code>를 사용하여 Private EC2 인스턴스로 SSH 할 수 있다.</li>
+<li>Bastion은 public 서브넷에 위치하며 다른 모든 private 서브넷과 연결 된다.</li>
+<li><strong>Bastion Host의 security group은 매우 엄격해야한다</strong></li>
+</ul>
+<div class="details admonition tip open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw" aria-hidden="true"></i>Exam Tip<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><ul>
+<li>다른 EC2 인스턴스 Security Group이 아닌 사용자가 필요한 IP 주소의 포트 22만 Bastion host에서 가능한지 확인합니다.</li>
+</ul>
+</div>
+        </div>
+    </div>
+<h3 id="nat-instance-outdated-시험에는-나옴">NAT Instance (outdated, 시험에는 나옴)</h3>
+<a class="lightgallery" href="/posts/images/aws/nat-instance.jpg" title="/posts/images/aws/nat-instance.jpg" data-thumbnail="/posts/images/aws/nat-instance.jpg">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/posts/images/aws/nat-instance.jpg"
+            data-srcset="/posts/images/aws/nat-instance.jpg, /posts/images/aws/nat-instance.jpg 1.5x, /posts/images/aws/nat-instance.jpg 2x"
+            data-sizes="auto"
+            alt="/posts/images/aws/nat-instance.jpg" />
+    </a>
+<ul>
+<li><strong>NAT (Network Address Translation)</strong></li>
+<li>private 서브넷의 EC2 인스턴스를 인터넷에 연결하게 할 수 있다.</li>
+<li>반드시 public 서브넷에서 실행</li>
+<li><strong>반드시 NAT EC2 생성 시 해당 체크 해제 -&gt; Source/destination</strong></li>
+<li>Elastic IP가 연결되어 있어야 한다.</li>
+<li>private 서브넷에서 NAT 인스턴스로 라우팅하도록 Route Tables 구성해야 한다.</li>
+<li>미리 구성된 Amazon Linux AMI를 사용할 수 있음</li>
+<li>2020년 12월 31일 지원 종료</li>
+<li>가용성이 높지 않고 초기화 설정으로 복원 불가능
+<ul>
+<li>Multi AZ에 대한 ASG 생성 + 복원되는 사용자 데이터 스크립트 필요</li>
+</ul>
+</li>
+<li>인터넷 트래픽 대역폭은 EC2 인스턴스 유형에 따라 다름</li>
+<li>Security Group &amp; rules 관리
+<ul>
+<li><strong>인바운드</strong>
+<ul>
+<li>HTTP/HTTPS: Private Subnet 허용</li>
+<li>SSH: 홈 네트워크(Internet Gateway를 통해 액세스 제공)</li>
+</ul>
+</li>
+<li><strong>아웃바운드</strong>
+<ul>
+<li>인터넷에 대한 모든 HTTP/HTTPS 트래픽 허용</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="nat-gateway">NAT Gateway</h3>
+<a class="lightgallery" href="/posts/images/aws/nat-gateway.jpg" title="/posts/images/aws/nat-gateway.jpg" data-thumbnail="/posts/images/aws/nat-gateway.jpg">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/posts/images/aws/nat-gateway.jpg"
+            data-srcset="/posts/images/aws/nat-gateway.jpg, /posts/images/aws/nat-gateway.jpg 1.5x, /posts/images/aws/nat-gateway.jpg 2x"
+            data-sizes="auto"
+            alt="/posts/images/aws/nat-gateway.jpg" />
+    </a>
+<ul>
+<li>AWS에서 관리되며 높은 대역폭, 높은 가용성, 관리가 필요없음</li>
+<li>사용량 및 대역폭에 따라 시간당 비용지불</li>
+<li><code>NATGW</code>는 특정 AZ에 생성되며 Elastic IP를 사용</li>
+<li>동일한 서브넷의 EC2 인스턴스에서는 사용할 수 없음 (오직 다른 서브넷에서만)</li>
+<li><strong>Internet Gateway가 필요 (Private subnet =&gt; NAT Gateway =&gt; Internet Gateway)</strong></li>
+<li>5Gpbs 대역폭 최대 45Gbps 까지 자동 확장</li>
+<li>Security Groups 관리가 필요 없음</li>
+</ul>
+<h4 id="nat-gateway-with-high-availability">NAT Gateway with High Availability</h4>
+<a class="lightgallery" href="/posts/images/aws/nat-gateway-ha.jpg" title="/posts/images/aws/nat-gateway-ha.jpg" data-thumbnail="/posts/images/aws/nat-gateway-ha.jpg">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/posts/images/aws/nat-gateway-ha.jpg"
+            data-srcset="/posts/images/aws/nat-gateway-ha.jpg, /posts/images/aws/nat-gateway-ha.jpg 1.5x, /posts/images/aws/nat-gateway-ha.jpg 2x"
+            data-sizes="auto"
+            alt="/posts/images/aws/nat-gateway-ha.jpg" />
+    </a>
+<ul>
+<li><strong>NAT Gateway는 단일 AZ내에서 탄력적임</strong></li>
+<li><strong><code>fault-tolerance</code>을 위해 multiple AZ에 multiple NAT Gateways를 구성</strong></li>
+<li>AZ가 중단될 경우 NAT가 필요하지 않으므로 AZ failover가 필요하지 않음</li>
+</ul>
+<h3 id="nat-gateway-vs-nat-instance">NAT Gateway vs NAT Instance</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>NAT Gateway</th>
+<th>NAT Instance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Availability</strong><br/>가용성</td>
+<td>AZ내 높은 가용성(다른 AZ생성)</td>
+<td>스크립트를 사용하여 인스턴스간 failover 관리(가용성이 높진않음)</td>
+</tr>
+<tr>
+<td><strong>Bandwidth</strong></td>
+<td>Up to 45 Gbps</td>
+<td>EC2 타입에 의존</td>
+</tr>
+<tr>
+<td><strong>Maintenance</strong></td>
+<td>AWS에서 관리</td>
+<td>사용자가 관리 (e.g., software, OS patches &hellip;)</td>
+</tr>
+<tr>
+<td><strong>Cost</strong></td>
+<td>시간 당 &amp; 전송된 데이터 양</td>
+<td>시간 당, 인스턴스 타입에 따른 사이즈 + 네트워크 $</td>
+</tr>
+<tr>
+<td><strong>Public IPv4</strong></td>
+<td>O</td>
+<td>O</td>
+</tr>
+<tr>
+<td><strong>Private IPv4</strong></td>
+<td>O</td>
+<td>O</td>
+</tr>
+<tr>
+<td><strong>Security Groups</strong></td>
+<td>X</td>
+<td>O</td>
+</tr>
+<tr>
+<td><strong>Use as Bastion Host?</strong></td>
+<td>X</td>
+<td>O</td>
+</tr>
+</tbody>
+</table>
+<h2 id="dns-resolution-in-vpc">DNS Resolution in VPC</h2>
+<h3 id="dns-resolution-enablednssupport">DNS Resolution (enableDnsSupport)</h3>
+<a class="lightgallery" href="/posts/images/aws/dns-resolution.png" title="/posts/images/aws/dns-resolution.png" data-thumbnail="/posts/images/aws/dns-resolution.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/posts/images/aws/dns-resolution.png"
+            data-srcset="/posts/images/aws/dns-resolution.png, /posts/images/aws/dns-resolution.png 1.5x, /posts/images/aws/dns-resolution.png 2x"
+            data-sizes="auto"
+            alt="/posts/images/aws/dns-resolution.png" />
+    </a>
+<ul>
+<li>VPC에 대해 Route 53 Resolver server의 DNS 확인(DNS Resolution)이 지원되는지 여부를 결정</li>
+<li>기본값 : True
+<ul>
+<li>Amazon이 제공하는 DNS 서버(169.254.169.253) 또는 VPC IPv4 reserved IP (x.x.x.2)를 쿼리하게 된다.</li>
+</ul>
+</li>
+</ul>
+<h3 id="dns-hostname-enablednshostnames">DNS Hostname (enableDnsHostnames)</h3>
+<ul>
+<li>기본적으로
+<ul>
+<li>True : default VPC</li>
+<li>False : 새로 생성된 VPC</li>
+</ul>
+</li>
+<li><code>enableDnsSupport=true</code> : 아무것도 하지 않음</li>
+<li><code>enableDnsHostnames=true</code> : EC2 인스턴스에 공용 IPv4가 있는 경우 공용 호스트 이름을 할당</li>
+</ul>
+<div class="details admonition tip open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw" aria-hidden="true"></i>Tip<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">Route 53의 <code>Private Hosted Zone</code>에서 사용자 지정 DNS 도메인 이름을 사용하는 경우 두모든 속성을 true로 지정 <code>enableDnsSupport=true</code> &amp; <code>enableDnsHostname=true</code></div>
+        </div>
+    </div>
+<h2 id="security-groups--nacls">Security Groups &amp; NACLs</h2>
+<h3 id="network-access-control-list-nacl">Network Access Control List (NACL)</h3>
+<ul>
+<li>NACL은 서브넷에서 송수신되는 트래픽을 제어하는 방화벽과 같다.</li>
+<li><strong>서브넷 당 하나의 NACL, 새로운 서브넷은 Default NACL에 할당된다.</strong></li>
+<li>새로 생성된 NACL은 모든 것을 거부</li>
+<li>NACL은 서브넷 수준에서 특정 IP 주소를 차단하는 좋은 방법</li>
+</ul>
+<h4 id="nacl-규칙">NACL 규칙</h4>
+<ul>
+<li>규칙에는 숫자(1-32766). 낮은 숫자가 우선순위가 높다.
+<div class="details admonition tip open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw" aria-hidden="true"></i>Tip<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><p>10.0.0.10 해당 주소는 ALLOW</p>
+<ul>
+<li>#100 ALLOW 10.0.0.10/32</li>
+<li>#200 DENY 10.0.0.10/32</li>
+</ul>
+</div>
+        </div>
+    </div></li>
+<li>마지막 규칙은 asterisk(*)이며 규칙이 매칭되지 않는 경우 요청을 거부</li>
+<li>AWS는 100 단위로 규칙을 증가하는 것을 추천</li>
+</ul>
+<h4 id="default-nacl">Default NACL</h4>
+<ul>
+<li>연결된 서브넷과 함께 모든 인바운드/아웃바운드를 수락</li>
+<li>절대 Default NACL을 수정하지 말고 사용자 정의 NACL을 작성할 것</li>
+</ul>
+<h4 id="ephemeral-ports">Ephemeral Ports</h4>
+<ul>
+<li>두 endpoint 연결을 설정하려면 포트를 사용해야 한다.</li>
+<li>클라이언트는 <strong>정의된 포트</strong>에 연결하고 <code>ephemeral port</code>로 응답값을 받기를 원한다.</li>
+<li>운영체제에 따라 포트범위가 다르다
+<ul>
+<li><strong>IANA &amp; MSWindows10</strong> : 49152 - 65535</li>
+<li><strong>Many Linux Kernels</strong> : 32768 - 60999</li>
+</ul>
+</li>
+</ul>
+<h3 id="security-group-vs-nacls">Security Group vs. NACLs</h3>
+<table>
+<thead>
+<tr>
+<th>Security Group</th>
+<th>NACL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>인스턴스 수준에서 작동</td>
+<td>서브넷 수준에서 작동</td>
+</tr>
+<tr>
+<td>허용 규칙만 지원</td>
+<td>allow, deny 규칙 지원</td>
+</tr>
+<tr>
+<td><strong>Stateful</strong>:반환 트래픽은 규칙과 관계없이 자동으로 허용</td>
+<td><strong>Stateless</strong>:반환 트래픽은 규칙에 의해 병시적으로 허용 - think of ephemeral ports</td>
+</tr>
+<tr>
+<td>트래픽을 허용할지 여부를 결정하기 전에 모든 규칙 평가</td>
+<td>트래픽 허용 여부를 결정할 때 규칙을 순서대로 평가(우선순위가 높은 첫번째 일치가 적용)</td>
+</tr>
+<tr>
+<td>다른 사용자가 지정한 경우 EC2 인스턴스에 적용</td>
+<td>연결된 서브넷의 모든 EC2 인스턴스에 자동으로 적용</td>
+</tr>
+</tbody>
+</table>
+<h3 id="vpc--reachability-analyzer">VPC – Reachability Analyzer</h3>
+<ul>
+<li>VPC 두 endpoint 간 네트워크 연결 문제를 해결하는 네트워크 진단 도구</li>
+<li>네트워크 구성의 모델을 만든 다음 이러한 구성을 기반으로 도달 가능성을 확인 <strong>(패킷 전송은 하지 않음)</strong></li>
+<li>사용 사례 : 연결문제 해결, 네트워크 구성이 의도대로인지 확인 등&hellip;</li>
+</ul>
+<h4 id="대상에-따른-분석">대상에 따른 분석</h4>
+<ul>
+<li><strong>Reachable</strong> : 가상 네트워크 경로에 대한 <code>hop-by-hop</code> 세부 정보 생성</li>
+<li><strong>Not reachable</strong> : 차단 구성요소 (e.g., SG, NACL, Route Tables 구성 문제)를 식별</li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2022-08-21&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/45c4a24bb91c38593a9076efbb106e51768779ff" target="_blank" title="commit by riley(riley0422@icloud.com) 45c4a24bb91c38593a9076efbb106e51768779ff: 20220821234223">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>45c4a24</a></span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/aws/">aws</a>,&nbsp;<a href="/tags/vpc/">vpc</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/aws-security-encryption/" class="prev" rel="prev" title="AWS Security &amp; Encryption"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>AWS Security & Encryption</a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.101.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Riley</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/valine@1.4.18/dist/Valine.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.1/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{"valine":{"appId":"QGzwQXOqs5JOhN4RGPOkR2mR-MdYXbMMI","appKey":"WBmoGyJtbqUswvfLh6L8iEBr","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@14.0.0/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"en","pageSize":10,"placeholder":"Your comment ...","recordIP":true,"serverURLs":"https://leancloud.hugoloveit.com","visitor":true}},"search":{"algoliaAppID":"","algoliaIndex":"","algoliaSearchKey":"","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
