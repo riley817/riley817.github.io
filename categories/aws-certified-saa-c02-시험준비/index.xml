@@ -42,6 +42,15 @@ Postgres MySQL MariaDB Oracle Microsoft SQL Server Aurora - AWS Proprietary data
 </item>
 <item>
     <title>Amazon S3</title>
+    <link>https://riley817.github.io/aws-integration-messaging/</link>
+    <pubDate>Tue, 02 Aug 2022 09:16:41 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/aws-integration-messaging/</guid>
+    <description><![CDATA[Application communication Application communication 두 가지 패턴 Synchronous communications (application to application) Synchronous는 요청량이 급증하면 애플리케이션간 여러 문제를 유발시킬 수 있다. Asynchronous / Event based (application to queue to application) 애플리케이션 의존관계decouple를 낮추는 사례 아래 서비스들을 사용하여 즉각적으로 애플리케이션을 확장가능 하다.
+SQS 사용 : Queue 모델 SNS 사용 : pub/sub 모델 Kinesis : 실시간 스트리밍 모델 Amazon SQS Amazon SQS - Standard Queue AWS에서 가장 오래된 서비스. 애플리케이션을 decoupling하기 위해 서비스를 관리 중복 메세지를 갖을 수 있다.]]></description>
+</item>
+<item>
+    <title>Amazon S3</title>
     <link>https://riley817.github.io/aws-s3/</link>
     <pubDate>Mon, 01 Aug 2022 22:26:38 &#43;0900</pubDate>
     <author>riley</author>

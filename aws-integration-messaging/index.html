@@ -5,21 +5,23 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
         <title>Amazon S3 - Riley&#39;s DevLog</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:title" content="Amazon S3" />
-<meta property="og:description" content="Amazon S3 Amazon S3은 AWS의 주요한 서비스 중 하나이다. 무한 확장infinitely scaling 가능한 storage 많은 웹사이트에서 Amazon S3을 backbone으로 사용한다. AWS의 다수의 서비스에서도 Amazon S3 통합하여 사용할 수 있다. Amazon S3 Overview Buckets Amazon S3에서는 object(files) 을 buckets(directories) 에 저장할 수 있다. 버켓은 반드시 전역적으로 유일globally unique name 해야 한다. 버켓은 region level 정의된다. (S3는 전역서비스지만 버켓은 리전리소스) Naming convention 대문자 불가 _ 불가 길이는 3~63 자리 IP 주소가 아닐 것 반드시 소문자로 또는 숫자로 시작 Objects Object는 파일이며 키를 가짐 key는 전체경로full path를 나타낸다 s3://my-bucket/my_file." />
+<meta property="og:description" content="Application communication Application communication 두 가지 패턴 Synchronous communications (application to application) Synchronous는 요청량이 급증하면 애플리케이션간 여러 문제를 유발시킬 수 있다. Asynchronous / Event based (application to queue to application) 애플리케이션 의존관계decouple를 낮추는 사례 아래 서비스들을 사용하여 즉각적으로 애플리케이션을 확장가능 하다.
+SQS 사용 : Queue 모델 SNS 사용 : pub/sub 모델 Kinesis : 실시간 스트리밍 모델 Amazon SQS Amazon SQS - Standard Queue AWS에서 가장 오래된 서비스. 애플리케이션을 decoupling하기 위해 서비스를 관리 중복 메세지를 갖을 수 있다." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://riley817.github.io/aws-s3/" /><meta property="og:image" content="https://riley817.github.io/icon.png"/><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2022-08-01T22:26:38+09:00" />
+<meta property="og:url" content="https://riley817.github.io/aws-integration-messaging/" /><meta property="og:image" content="https://riley817.github.io/icon.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-08-02T09:16:41+09:00" />
 <meta property="article:modified_time" content="2022-08-24T08:13:35+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://riley817.github.io/icon.png"/>
 
 <meta name="twitter:title" content="Amazon S3"/>
-<meta name="twitter:description" content="Amazon S3 Amazon S3은 AWS의 주요한 서비스 중 하나이다. 무한 확장infinitely scaling 가능한 storage 많은 웹사이트에서 Amazon S3을 backbone으로 사용한다. AWS의 다수의 서비스에서도 Amazon S3 통합하여 사용할 수 있다. Amazon S3 Overview Buckets Amazon S3에서는 object(files) 을 buckets(directories) 에 저장할 수 있다. 버켓은 반드시 전역적으로 유일globally unique name 해야 한다. 버켓은 region level 정의된다. (S3는 전역서비스지만 버켓은 리전리소스) Naming convention 대문자 불가 _ 불가 길이는 3~63 자리 IP 주소가 아닐 것 반드시 소문자로 또는 숫자로 시작 Objects Object는 파일이며 키를 가짐 key는 전체경로full path를 나타낸다 s3://my-bucket/my_file."/>
+<meta name="twitter:description" content="Application communication Application communication 두 가지 패턴 Synchronous communications (application to application) Synchronous는 요청량이 급증하면 애플리케이션간 여러 문제를 유발시킬 수 있다. Asynchronous / Event based (application to queue to application) 애플리케이션 의존관계decouple를 낮추는 사례 아래 서비스들을 사용하여 즉각적으로 애플리케이션을 확장가능 하다.
+SQS 사용 : Queue 모델 SNS 사용 : pub/sub 모델 Kinesis : 실시간 스트리밍 모델 Amazon SQS Amazon SQS - Standard Queue AWS에서 가장 오래된 서비스. 애플리케이션을 decoupling하기 위해 서비스를 관리 중복 메세지를 갖을 수 있다."/>
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://riley817.github.io/aws-s3/" /><link rel="prev" href="https://riley817.github.io/aws-ec2/" /><link rel="next" href="https://riley817.github.io/aws-integration-messaging/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://riley817.github.io/aws-integration-messaging/" /><link rel="prev" href="https://riley817.github.io/aws-s3/" /><link rel="next" href="https://riley817.github.io/aws-rds/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
     {
@@ -29,9 +31,9 @@
         "inLanguage": "en",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "https:\/\/riley817.github.io\/aws-s3\/"
-        },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "elasticsearch","wordcount":  554 ,
-        "url": "https:\/\/riley817.github.io\/aws-s3\/","datePublished": "2022-08-01T22:26:38+09:00","dateModified": "2022-08-24T08:13:35+09:00","publisher": {
+            "@id": "https:\/\/riley817.github.io\/aws-integration-messaging\/"
+        },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "elasticsearch","wordcount":  256 ,
+        "url": "https:\/\/riley817.github.io\/aws-integration-messaging\/","datePublished": "2022-08-02T09:16:41+09:00","dateModified": "2022-08-24T08:13:35+09:00","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/riley817.github.io\/images\/avatar.png"},"author": {
                 "@type": "Person",
@@ -105,8 +107,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Amazon S3</h1><h2 class="single-subtitle">AWS Certified SAA-C02 시험준비</h2><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-category">included in <a href="/categories/aws-certified-saa-c02-%EC%8B%9C%ED%97%98%EC%A4%80%EB%B9%84/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>AWS Certified SAA-C02 시험준비</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-08-01">2022-08-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;554 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;3 minutes&nbsp;<span id="/aws-s3/" class="leancloud_visitors" data-flag-title="Amazon S3">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-08-02">2022-08-02</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;256 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;2 minutes&nbsp;<span id="/aws-integration-messaging/" class="leancloud_visitors" data-flag-title="Amazon S3">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -116,235 +118,115 @@
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
-    <li><a href="#amazon-s3">Amazon S3</a></li>
-    <li><a href="#amazon-s3-overview">Amazon S3 Overview</a>
+    <li><a href="#application-communication">Application communication</a>
       <ul>
-        <li><a href="#buckets">Buckets</a></li>
-        <li><a href="#objects">Objects</a></li>
-        <li><a href="#versioning">Versioning</a>
+        <li><a href="#application-communication-두-가지-패턴">Application communication 두 가지 패턴</a>
           <ul>
-            <li><a href="#버켓에-버전을-지정해야-하는-이유">버켓에 버전을 지정해야 하는 이유</a></li>
+            <li><a href="#애플리케이션-의존관계decouple를-낮추는-사례">애플리케이션 의존관계<code>decouple</code>를 낮추는 사례</a></li>
           </ul>
         </li>
       </ul>
     </li>
-    <li><a href="#s3-object의-암호화">S3 Object의 암호화</a>
+    <li><a href="#amazon-sqs">Amazon SQS</a>
       <ul>
-        <li><a href="#s3-object-암호화-방식">S3 Object 암호화 방식</a>
+        <li><a href="#amazon-sqs---standard-queue">Amazon SQS - Standard Queue</a>
           <ul>
-            <li><a href="#sse-s3">SSE-S3</a>
-              <ul>
-                <li><a href="#sse-s3-암호화-과정">SSE-S3 암호화 과정</a></li>
-              </ul>
-            </li>
-            <li><a href="#sse-kms">SSE-KMS</a>
-              <ul>
-                <li><a href="#sse-kms-암호화-과정">SSE-KMS 암호화 과정</a></li>
-              </ul>
-            </li>
-            <li><a href="#sse-c">SSE-C</a>
-              <ul>
-                <li><a href="#sse-c-암호화-과정">SSE-C 암호화 과정</a></li>
-              </ul>
-            </li>
-            <li><a href="#client-side-encryption">Client Side Encryption</a></li>
+            <li><a href="#특징">특징</a></li>
+            <li><a href="#produing-message">Produing Message</a></li>
+            <li><a href="#consuming-message">Consuming Message</a></li>
           </ul>
         </li>
-      </ul>
-    </li>
-    <li><a href="#전송-암호화-encryption-in-transit-ssltls">전송 암호화 <code>Encryption in transit</code> (SSL/TLS)</a>
-      <ul>
-        <li>
+        <li><a href="#multiple-ec2-인스턴스-컨슈머">Multiple EC2 인스턴스 컨슈머</a></li>
+        <li><a href="#sqs-with-auto-scaling-group-asg">SQS with Auto Scaling Group (ASG)</a></li>
+        <li><a href="#sqs-to-decouple-between-application-tiers">SQS to decouple between application tiers</a></li>
+        <li><a href="#sqs-보안">SQS 보안</a>
           <ul>
-            <li><a href="#amazon-s3-endpoint">Amazon S3 endpoint</a></li>
+            <li><a href="#암호화">암호화</a></li>
+            <li><a href="#접근제한">접근제한</a></li>
           </ul>
         </li>
       </ul>
     </li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><h2 id="amazon-s3">Amazon S3</h2>
+            </div><div class="content" id="content"><h2 id="application-communication">Application communication</h2>
+<h3 id="application-communication-두-가지-패턴">Application communication 두 가지 패턴</h3>
+<ol>
+<li>Synchronous communications (application to application)
 <ul>
-<li><code>Amazon S3</code>은 AWS의 주요한 서비스 중 하나이다.</li>
-<li><strong>무한 확장<code>infinitely scaling</code></strong> 가능한 storage</li>
-<li>많은 웹사이트에서 <code>Amazon S3</code>을 backbone으로 사용한다.</li>
-<li>AWS의 다수의 서비스에서도 <code>Amazon S3</code> 통합하여 사용할 수 있다.</li>
-</ul>
-<h2 id="amazon-s3-overview">Amazon S3 Overview</h2>
-<h3 id="buckets">Buckets</h3>
-<ul>
-<li><code>Amazon S3</code>에서는 <strong>object(files)</strong> 을  <strong>buckets(directories)</strong> 에 저장할 수 있다.</li>
-<li>버켓은 반드시 <strong>전역적으로 유일<code>globally unique name</code></strong> 해야 한다.</li>
-<li>버켓은 <code>region level</code> 정의된다. (S3는 전역서비스지만 버켓은 리전리소스)</li>
-<li>Naming convention
-<ul>
-<li>대문자 불가</li>
-<li><code>_</code> 불가</li>
-<li>길이는 3~63 자리</li>
-<li>IP 주소가 아닐 것</li>
-<li>반드시 소문자로 또는 숫자로 시작</li>
+<li>Synchronous는 요청량이 급증하면 애플리케이션간 여러 문제를 유발시킬 수 있다.</li>
 </ul>
 </li>
-</ul>
-<h3 id="objects">Objects</h3>
+<li>Asynchronous / Event based (application to queue to application)</li>
+</ol>
+<h4 id="애플리케이션-의존관계decouple를-낮추는-사례">애플리케이션 의존관계<code>decouple</code>를 낮추는 사례</h4>
+<p>아래 서비스들을 사용하여 즉각적으로 애플리케이션을 확장가능 하다.</p>
 <ul>
-<li><code>Object</code>는 파일이며 키를 가짐</li>
-<li><strong>key는 전체경로<code>full path</code>를 나타낸다</strong>
-<ul>
-<li>s3://my-bucket/<code>my_file.txt</code> : <code>my_file.txt</code>이 키 값을 나타낸다.</li>
-<li>s3://my-bucket/<code>my_folder1/another_folder/my_file.txt</code> : <code>my_folder1/another_folder/my_file.txt</code>전체 경로가 키 값을 나타낸다.</li>
+<li>SQS 사용 : Queue 모델</li>
+<li>SNS 사용 : pub/sub 모델</li>
+<li>Kinesis : 실시간 스트리밍 모델</li>
 </ul>
-</li>
-<li>키는 <strong>prefix + object name</strong>으로 구성되어있음.
+<h2 id="amazon-sqs">Amazon SQS</h2>
+<h3 id="amazon-sqs---standard-queue">Amazon SQS - Standard Queue</h3>
 <ul>
-<li>s3://my-bucket/my_folder1/another_folder/my_file.txt</li>
-<li><strong>prefix</strong> : <code>my_folder1/another_folder/</code></li>
-<li><strong>object name</strong> : <code>my_file.txt</code></li>
+<li>AWS에서 가장 오래된 서비스.</li>
+<li>애플리케이션을 decoupling하기 위해 서비스를 관리</li>
+<li>중복 메세지를 갖을 수 있다. -&gt; 적어도 한번은 전송 된다.</li>
+<li>Can have out of order messages (best effort ordering)</li>
 </ul>
-</li>
-<li>버켓에는 디렉토리 개념이 없다. (UI만 그럴뿐)</li>
-<li>슬래시(&quot;/&quot;)가 포함된 긴 이름만 키로 사용가능하다.</li>
-<li>Object의 값은 컨텐츠의 내용을 나타낸다.
+<h4 id="특징">특징</h4>
 <ul>
-<li>최대 Object 크기는 5TB(5000GB)</li>
-<li><strong>5GB 이상 업로드하는 경우 <code>Multi-part 업로드</code>를 사용해야 한다.</strong></li>
+<li><strong>큐에 적재할 수 있는 메세지 및 처리량에 제한이 없다 <code>unlimited throughput</code>.</strong></li>
+<li>기본 4일에서 최대 14일까지 큐에 메세지를 보존할 수 있다.</li>
+<li>낮은 지연</li>
+<li>메세지의 크기는 256KB로 제한</li>
 </ul>
-</li>
-<li><strong>Metadata</strong> : 키/값 쌍으로 정의된 리스트. 시스템 또는 사용자 메타데이터로 사용</li>
-<li><strong>Tags</strong> : Unicode 키/값 쌍. 최대 10개까지 정의. 보안, lifecycle 정보를 지정시 유용</li>
-<li><strong>Version ID</strong> : versioning을 활성화 한 경우 Object의 버전별로 ID로 관리</li>
-</ul>
-<h3 id="versioning">Versioning</h3>
+<h4 id="produing-message">Produing Message</h4>
 <ul>
-<li><code>Amazon S3</code>은 파일에 버전을 설정할 수 있다.</li>
-<li>버켓 수준에서 활성화 가능</li>
-<li>같은 키로 object를 overwrite 했을 때 버전이 증가된다.</li>
-<li>버켓에는 버전을 지정하는 것을 권장한다.</li>
-</ul>
-<h4 id="버켓에-버전을-지정해야-하는-이유">버켓에 버전을 지정해야 하는 이유</h4>
-<ul>
-<li>의도하지 않은 삭제로부터 보호. <strong>버전 복원 가능</strong></li>
-<li>이전 버전으로 쉽게 롤백이 가능하다.</li>
+<li>SDK의 <code>SendMessage API</code>를 통해 SQS 메세지를 생산</li>
+<li>메세지는 consumer가 삭제하기 전까지 SQS에 유지된다.</li>
+<li>메세지 보존기간 : 기본 4 days ~ 14 days</li>
 </ul>
 <div class="details admonition note open">
         <div class="details-summary admonition-title">
-            <i class="icon fas fa-pencil-alt fa-fw" aria-hidden="true"></i>Note<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+            <i class="icon fas fa-pencil-alt fa-fw" aria-hidden="true"></i>example<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
         </div>
         <div class="details-content">
-            <div class="admonition-content"><ul>
-<li>versioning을 활성화하기 전 저장되어 버전이 지정되지 않은 파일의 경우 버전은 &ldquo;null&quot;이다.</li>
-<li>버전 관리를 일시 중단해도 이전 버전은 삭제되지 않음.</li>
+            <div class="admonition-content"><p>예시) 주문정보를 전송한다.</p>
+<ul>
+<li>Order Id</li>
+<li>Customer Id</li>
+<li>다른 속성 값들&hellip;</li>
 </ul>
 </div>
         </div>
     </div>
-<h2 id="s3-object의-암호화">S3 Object의 암호화</h2>
-<h3 id="s3-object-암호화-방식">S3 Object 암호화 방식</h3>
+<h4 id="consuming-message">Consuming Message</h4>
 <ul>
-<li><code>Amazon S3</code>에 업로드 된 object는 AWS 서버내에 존재하므로 객체로 접근이 불가능하게 보호해야 한다.</li>
-<li>object의 암호화를 통해 보안을 강화할 수 있다.</li>
+<li>consumers : 운용중인 EC2 인스턴스, 서버 또는 AWS 람다 서비스 등</li>
+<li><strong>Poll SQS for message</strong> : 매 10초마다 메세지를 폴링 한다.</li>
+<li><strong>Process the message</strong> :  ex) RDS 데이터베이스에 메세지를 저장</li>
+<li><code>DeleteMessage API</code>를 사용하여 처리가 완료되면 메세지를 삭제해야 한다.</li>
 </ul>
-<table>
-<thead>
-<tr>
-<th>방법</th>
-<th>설명</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>SSE-S3</strong></td>
-<td>AWS에서 objects에서 사용하는 키를 처리 및 관리</td>
-</tr>
-<tr>
-<td><strong>SSE-KMS</strong></td>
-<td>AWS Key Management Service를 통해 암호화 키를 관리</td>
-</tr>
-<tr>
-<td><strong>SSE-C</strong></td>
-<td>사용자가 자신의 암호화 키를 관리</td>
-</tr>
-<tr>
-<td><strong>Client Side Encryption</strong></td>
-<td>클라이언트에서 암호화 처리</td>
-</tr>
-</tbody>
-</table>
-<h4 id="sse-s3">SSE-S3</h4>
+<h3 id="multiple-ec2-인스턴스-컨슈머">Multiple EC2 인스턴스 컨슈머</h3>
 <ul>
-<li><code>Amazon S3</code>가 암호화 시 사용할 키를 처리 및 관리</li>
-<li>Object는 서버 측에서 암호화 된다.</li>
-<li>유형은 <strong>AES-256</strong> 알고리즘을 사용</li>
-<li><code>SSE-S3</code> 암호화를 사용하려면 아래 헤더를 반드시 설정해야 한다.
-<ul>
-<li><strong>“x-amz-server-side-encryption&quot;: &ldquo;AES256&rdquo;</strong></li>
+<li>컨슈머들은 메세지를 수신 받고 병렬로 처리할 수 있다.</li>
+<li>적어도 한번은 전송이 된다.</li>
+<li>컨슈머는 처리가 완료되면 메세지를 삭제한다.</li>
+<li>컨슈머를 병렬로 확장하여 프로세스 처리량을 증가시킬 수 있다.</li>
 </ul>
-</li>
-<li>암호화 키는 S3가 소유하고 S3가 관리한다.</li>
-</ul>
-<h5 id="sse-s3-암호화-과정">SSE-S3 암호화 과정</h5>
-<ol>
-<li>Object HTTP/S로 헤더값을 지정하여 업로드</li>
-<li>헤더를 통해 Amazon S3가 관리하는 데이터키를 통해 object를 encryption하여 버켓에 저장</li>
-</ol>
-<h4 id="sse-kms">SSE-KMS</h4>
+<h3 id="sqs-with-auto-scaling-group-asg">SQS with Auto Scaling Group (ASG)</h3>
+<h3 id="sqs-to-decouple-between-application-tiers">SQS to decouple between application tiers</h3>
+<h3 id="sqs-보안">SQS 보안</h3>
+<h4 id="암호화">암호화</h4>
 <ul>
-<li><code>AWS Key Management Service(KMS)</code>가 암호화 시 사용할 키를 처리 및 관리한다.</li>
-<li>KMS에서 사용자 제어 및 감시를 추적한다.</li>
-<li>Object는 서버 측에서 암호화 된다.</li>
-<li><code>SSE-KMS</code> 암호화를 사용하려면 아래 헤더를 반드시 설정해야 한다.
-<ul>
-<li><strong>“x-amz-server-side-encryption&quot;: ”aws:kms&quot;</strong></li>
+<li>HTTPS API를 통한 전송중 암호화</li>
+<li>KMS 키를 통한 <code>At-rest</code> 암호화</li>
+<li>클라이언트 원하는대로 암/복호화를 클라이언트 측에서 가능</li>
 </ul>
-</li>
-</ul>
-<h5 id="sse-kms-암호화-과정">SSE-KMS 암호화 과정</h5>
-<ol>
-<li>Object HTTP/S로 헤더값을 지정하여 업로드</li>
-<li>헤더를 통해 Amazon S3에서는 KMS의 사용자의 마스터키를 사용</li>
-<li>KMS에서 가져오느 사용자의 마스터키로 object를 encryption하여 버켓에 저장</li>
-</ol>
-<h4 id="sse-c">SSE-C</h4>
+<h4 id="접근제한">접근제한</h4>
 <ul>
-<li>AWS 밖에서 고객이 관리하는 키를 사용하여 서버측에서 데이터를 암호화</li>
-<li>고객이 제공하는 암호화 키를 Amazon S3에서는 저장하지 않음</li>
-<li><strong>HTTPS</strong>를 반드시 사용</li>
-<li>암호화 키는 매 요청시 마다 HTTP 헤더에 반드시 추가하여 전송</li>
-</ul>
-<h5 id="sse-c-암호화-과정">SSE-C 암호화 과정</h5>
-<ol>
-<li>Object는 반드시 HTTPS 만 가능하며 헤더에는 고객이 관리하는 암호화 키를 포함</li>
-<li>사용자가 제공한 암호화 키로 Object를 암호화 하여 버켓에 저장</li>
-<li>버켓에서 obejct를 가져올 때에는 저장당시 암호화 했던 키를 제공</li>
-</ol>
-<h4 id="client-side-encryption">Client Side Encryption</h4>
-<ul>
-<li>Amazon S3 Encryption Client와 같은 라이브러리를 사용하여 클라이언트 측에서 암호화.</li>
-<li>S3로 전송하기 전에 클라이언트가 직접 데이터를 암호화해야 한다.</li>
-<li>데이터를 검색할 때 클라이언트가 직접 데이터를 복호화해야 한다.</li>
-<li>고객은 모든 키와 암호화 싸이클은 직접 관리 해야한다.</li>
-</ul>
-<h2 id="전송-암호화-encryption-in-transit-ssltls">전송 암호화 <code>Encryption in transit</code> (SSL/TLS)</h2>
-<h4 id="amazon-s3-endpoint">Amazon S3 endpoint</h4>
-<ul>
-<li>
-<p><strong>HTTP endpoint</strong> : 암호화되지 않음</p>
-</li>
-<li>
-<p><strong>HTTPS endpoint</strong> : encryption in flight</p>
-</li>
-<li>
-<p>원하는 endpoint를 자유롭게 선택할 수 있지만 HTTPS를 사용하는 것을 권장</p>
-</li>
-<li>
-<p>대부분의 클라이언트는 <code>HTTPS</code> endpoint를 기본으로 사용한다.</p>
-</li>
-<li>
-<p><code>SSE-C</code> 방식에서는 반드시 HTTPS가 필수사항</p>
-</li>
-<li>
-<p>전송계층 상의 암호화를 <strong>SSL/TLS</strong> 라고 한다.</p>
-</li>
+<li><code>IAM</code> 정책을</li>
 </ul>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
@@ -368,8 +250,8 @@
         </section>
     </div>
 
-    <div class="post-nav"><a href="/aws-ec2/" class="prev" rel="prev" title="AWS Elastic Compute Cloud (EC2)"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>AWS Elastic Compute Cloud (EC2)</a>
-            <a href="/aws-integration-messaging/" class="next" rel="next" title="Amazon S3">Amazon S3<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+    <div class="post-nav"><a href="/aws-s3/" class="prev" rel="prev" title="Amazon S3"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Amazon S3</a>
+            <a href="/aws-rds/" class="next" rel="next" title="Amazon RDS, Aurora &amp; ElastiCache">Amazon RDS, Aurora & ElastiCache<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
 </div>
 <div id="comments"><div id="valine" class="comment"></div><noscript>
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
