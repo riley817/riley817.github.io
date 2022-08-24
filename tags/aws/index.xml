@@ -4,7 +4,15 @@
         <link>https://riley817.github.io/tags/aws/</link>
         <description>aws - Tag - Riley&#39;s DevLog</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
-            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Mon, 15 Aug 2022 17:26:41 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/tags/aws/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Mon, 22 Aug 2022 08:19:49 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/tags/aws/" rel="self" type="application/rss+xml" /><item>
+    <title>AWS Elastic Compute Cloud (EC2) - Associate</title>
+    <link>https://riley817.github.io/aws-ec2-associate/</link>
+    <pubDate>Mon, 22 Aug 2022 08:19:49 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/aws-ec2-associate/</guid>
+    <description><![CDATA[Private vs Public IP (IPv4) 네트워크는 두가지 종류의 IP가 존재. IPv4, IPv6 IPv4 : 1.160.10.240 IPv6 : 3ffe:1900:4545:3:200:f8ff:fe21:67cf IPv4 대부분 온라인에서 범용적으로 사용 IPv6 사물인터넷(IoT) 문제를 해결하기 위해 새로 등장함 IPv4는 퍼블릭 영역에서 37억개의 서로 다른 주소를 허용 IPv4:[0-255].[0-255].[0-255].[0-255] Private vs Public IP 차이점 Public IP Public IP는 컴퓨터가 인터넷상(WWW)에서 식별될 수 있음을 의미 전체 웹에서 고유해야 한다. (두 개의 머신이 같은 public IP를 갖을 수 없다) 쉽게 지리적 위치를 찾을 수 있음 Private IP Private IP는 컴퓨터가 사설 네트워크망에서만 식별될 수 있음을 의미 IP는 사설 네트워크에서 고유해야 한다.]]></description>
+</item>
+<item>
     <title>AWS Virtual Private Cloud(VPC)</title>
     <link>https://riley817.github.io/aws-vpc/</link>
     <pubDate>Mon, 15 Aug 2022 17:26:41 &#43;0900</pubDate>
@@ -87,17 +95,6 @@ IPLocationTools IP/Subnet Mask 192.]]></description>
 ☁️ AWS Workshop 링크 : https://catalog.us-east-1.prod.workshops.aws/workshops/9c0aa9ab-90a9-44a6-abe1-8dff360ae428/ko-KR/
 Amazon ECR 리포지토리 생성 및 이미지 올리기 Amazon ECR(Elastic Container Registry) 은 도커 컨테이너의 이미지를 저장하는 Repository 서비스이다. Docker hub의 기능과 동일하다.
 AWS CLI로 이미지 리포지토리 생성 1 2 3 4 aws ecr create-repository \ --repository-name demo-flask-backend \ --image-scanning-configuration scanOnPush=true \ --region ap-northeast-2 명령어가 수행되면 리포지토리에 대한 정보가 출력되며 Amazon ECR 콘솔창에서도 생성된 리포지토리를 확인할 수 있다.]]></description>
-</item>
-<item>
-    <title>[AWS EKS] 3. EKS Cluster 생성하기</title>
-    <link>https://riley817.github.io/archives/devops/aws/aws-3-eks-cluster/</link>
-    <pubDate>Fri, 06 May 2022 23:10:03 &#43;0900</pubDate>
-    <author>riley</author>
-    <guid>https://riley817.github.io/archives/devops/aws/aws-3-eks-cluster/</guid>
-    <description><![CDATA[☁️ Amazon EKS 웹 애플리케이션 구축하기 워크샵을 실습한 내용입니다.
-☁️ AWS Workshop 링크 : https://catalog.us-east-1.prod.workshops.aws/workshops/9c0aa9ab-90a9-44a6-abe1-8dff360ae428/ko-KR/
-Amazon EKS 클러스터는 다양한 방식으로 배포할 수 있다.
-AWS 콘솔 창으로 배포 AWS CloudFormation 혹은 AWS CDK 와 같은 IaC(Infrastructure as Code) 도구를 사용해 배포 EKS의 공식 CLI인 eksctl 로 배포 Terraform, Pulumi, Rancher 등으로 배포 eksctl로 Cluster 생성하기 아무 옵션없이 eksctl create cluster 실행하면 default parameter로 클러스터가 배포된다. 그러나 yaml 파일로 작성한 구성 파일을 작성하여 배포하면 구성파일에 명시한 오브젝트들의 바라는 상태(desired state)를 쉽게 파악하고 관리할 수 있는 이점이 있다.]]></description>
 </item>
 </channel>
 </rss>

@@ -4,9 +4,17 @@
         <link>https://riley817.github.io/</link>
         <description>Riley&#39;s DevLog</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
-            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Mon, 15 Aug 2022 17:26:41 &#43;0900</lastBuildDate>
+            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Mon, 22 Aug 2022 08:19:49 &#43;0900</lastBuildDate>
             <atom:link href="https://riley817.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>AWS Elastic Compute Cloud (EC2) - Associate</title>
+    <link>https://riley817.github.io/aws-ec2-associate/</link>
+    <pubDate>Mon, 22 Aug 2022 08:19:49 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/aws-ec2-associate/</guid>
+    <description><![CDATA[Private vs Public IP (IPv4) 네트워크는 두가지 종류의 IP가 존재. IPv4, IPv6 IPv4 : 1.160.10.240 IPv6 : 3ffe:1900:4545:3:200:f8ff:fe21:67cf IPv4 대부분 온라인에서 범용적으로 사용 IPv6 사물인터넷(IoT) 문제를 해결하기 위해 새로 등장함 IPv4는 퍼블릭 영역에서 37억개의 서로 다른 주소를 허용 IPv4:[0-255].[0-255].[0-255].[0-255] Private vs Public IP 차이점 Public IP Public IP는 컴퓨터가 인터넷상(WWW)에서 식별될 수 있음을 의미 전체 웹에서 고유해야 한다. (두 개의 머신이 같은 public IP를 갖을 수 없다) 쉽게 지리적 위치를 찾을 수 있음 Private IP Private IP는 컴퓨터가 사설 네트워크망에서만 식별될 수 있음을 의미 IP는 사설 네트워크에서 고유해야 한다.]]></description>
+</item>
+<item>
     <title>AWS Virtual Private Cloud(VPC)</title>
     <link>https://riley817.github.io/aws-vpc/</link>
     <pubDate>Mon, 15 Aug 2022 17:26:41 &#43;0900</pubDate>
@@ -83,15 +91,6 @@ SQS 사용 : Queue 모델 SNS 사용 : pub/sub 모델 Kinesis : 실시간 스트
     <guid>https://riley817.github.io/elasticsearch-lecture3-5/</guid>
     <description><![CDATA[Other Settings /etc/security/limits.conf Elasticsearch 는 많은 파일을 쓰거나 핸들링하게 된다. 열 수 있는 File descriptor가 부족하면 데이터의 손실로 이어질 수 있으며 실행할 수 있는 최대 File Descriptor 를 65,536 개 이상으로 설정하도록 한다.
 vi /etc/security/limits.conf 1 2 elasticsearch soft nofile 65536 elasticsearch hard nofile 65536 Thread 수 Elasticsearch 는 여러 유형의 작업에 대해 많은 Thread Pool을 사용하게 된다.. Elasticsearch 사용자가 만들 수 있는 Thread 가 4096 개 이상인지 확인한다. 1 2 elasticsearch soft noproc 4096 elasticsearch hard noproc 4096 Sysconfig file RPM 또는 Debian 패키지를 사용하여 시스템 설정 및 환경 변수를 지정할 수 있다.]]></description>
-</item>
-<item>
-    <title>3.4 log4j2.properties</title>
-    <link>https://riley817.github.io/elasticsearch-lecture3-4/</link>
-    <pubDate>Mon, 05 Nov 2018 23:15:23 &#43;0900</pubDate>
-    <author>riley</author>
-    <guid>https://riley817.github.io/elasticsearch-lecture3-4/</guid>
-    <description><![CDATA[log4j2.properties Elasticsearch는 로깅을 위해 Log4j2를 사용한다. Log4j2는 log4j2.properties 파일을 사용하여 구성할 수 있다.
-로그참조 파일 ${sys:es.logs.base_path} 로그의 Base 디렉토리 elasticsearch.yml 의 path.log에 설정된 경로 ${sys:es.logs.cluster_name} 클러스트 이름을 나타낸다. elasticsearch.yml 의 cluster.name으로 설정할 수 있다. ${sys:es.logs.node_name} 노드의 이름을 나타냅니다. elasticsearch.yml 의 node.name으로 설정할 수 있다. 1 2 ex) ${sys:es.logs.base_path}${sys:file.separator}${sys:es.logs.cluster_name}.log /var/log/elasticsearch/mycluster.log ]]></description>
 </item>
 </channel>
 </rss>
