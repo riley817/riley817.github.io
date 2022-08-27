@@ -167,7 +167,7 @@
             <div>
                 <ul type="disc">
                     <li><p>Sub-millisecond latency</p></li>
-                    <li><p>Sustained IOPS performance</p></li>
+                    <li><p>지속적인 IOPS 성능</p></li>
                     <li>
                         <p>More than 64,000 IOPS or 1,000 MiB/s of throughput</p>
                     </li>
@@ -200,7 +200,7 @@
     </tr>
     <tr>
         <td><b>Amazon EBS Multi-attach</b></td>
-        <td colspan="3">Supported</td>
+        <td colspan="3"><b>Supported</b></td>
     </tr>
     <tr>
         <td><b>Boot volume</b></td>
@@ -210,17 +210,132 @@
 
 
 
-|              volume type             |   |
-|------------------------------------|---|
-| **io1/io2 (4GiB~16TiB)**             |· **Max PIOPS:** Nitro EC2 인스턴스의 경우 64,000 개, 기타 인스턴스 32,000 개<br/>· 스토리지 크기와 관계없이 PIOPS 증가 가능<br/>· io2 내구성 및 GiB당 IOPS 향상(io1과 동일한 가격)     |
-| **io2 Block Express (4Gib ~ 64TiB)** |· Sub-millisecond latency<br/>· Max PIOPS: 256,000, IOPS: GiB 비율 1,000:1 |
-
 ### Hard Disk Drives(HDD)
 - 부팅 볼륨으로 사용할 수 없음
-- 125 GiB ~ 16 TiB
 
-| volume type                        |                                           |
-|------------------------------------|-------------------------------------------|
-| **Throughput Optimized HDD (st1)** |· Big Data, Data Warehouses, Log Processing<br/>· **Max throughput 500 MiB/s - max IOPS 500** |
-| **Cold HDD (sc1)**                 |· 자주 액세스하지 않는 데이터<br/>· 최저 비용이 중요한 경우<br/>· **Max throughput 250 MiB/s – max IOPS 250** |
+<table>
+    <thead>
+        <tr>
+            <th></th>
+            <th>Throughput Optimized HDD</th>
+            <th>Cold HDD</th>
+        </tr>
+    </thead>
+    <tr>
+        <td><b>Volume type</b></td>
+        <td><code class="code">st1</code></td>
+        <td><code class="code">sc1</code></td>
+    </tr>
+    <tr>
+        <td><b>Durability</b></td>
+        <td>99.8% - 99.9% durability (0.1% - 0.2% annual failure rate)</td>
+        <td>99.8% - 99.9% durability (0.1% - 0.2% annual failure rate)</td>
+    </tr>
+    <tr>
+        <td><b>Use cases</b></td>
+        <td>
+            <div>
+                <ul type="disc">
+                    <li><p>Big data</p></li>
+                    <li><p>Data warehouses</p></li>
+                    <li><p>Log processing</p></li>
+                </ul>
+            </div>
+        </td>
+        <td>
+            <div>
+                <ul type="disc">
+                    <li><p>액세스 빈도가 낮은 데이터를 처리하기 위한 throughput-oriented 스토리지</p></li>
+                    <li><p>가장 낮은 스토리지 비용이 중요한 시나리오</p></li>
+                </ul>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td><b>Volume size</b></td>
+        <td>125 GiB - 16 TiB</td>
+        <td>125 GiB - 16 TiB </td>
+    </tr>
+    <tr>
+        <td><b>Max IOPS per volume</b> (1 MiB I/O)</td>
+        <td>500</td>
+        <td>250</td>
+    </tr>
+    <tr>
+        <td><b>Max throughput per volume</b></td>
+        <td>500 MiB/s</td>
+        <td>250 MiB/s</td>
+    </tr>
+    <tr>
+        <td><b>Amazon EBS Multi-attach</b></td>
+        <td>Not supported</td>
+        <td>Not supported</td>
+    </tr>
+    <tr>
+        <td><b>Boot volume</b></td>
+        <td>Not supported</td>
+        <td>Not supported</td>
+    </tr>
+</table>
+
+## EBS Multi-Attach – io1/io2 family
+- 동일한 AZ의 여러 EC2 인스턴스에 동일한 EBS 볼륨 연결
+- 각 인스턴스에는 볼륨에 대한 전체 읽기 및 쓰기 권한 있음
+- 클러스터 인식 파일 시스템을 사용해야 함(XFS, EX4는 사용할 수 없음)
+{{<admonition tip "Use case">}}
+<center><image src="/posts/images/aws/ebs-multi-attach.png" width="300px">
+</center>
+
+- 클러스터링 된 리눅스 애플리케이션에서 애플리케이션 가용성 향상 (example: Teradata)
+- 애플리케이션은 동시 쓰기 작업을 관리해야 하는 경우
+{{</admonition>}}
+
+## EBS Encryption
+{{<admonition success "EBS 볼륨 생성시">}}
+- 저장된 데이터는 볼륨 내부에서 암호화 된다.
+- 인스턴스와 볼륨 사이를 이동하는 이동중인 모든 데이터가 암호화 된다.
+- 모든 스냅샷이 암호화 된다.
+- 스냅샷에서 생성된 모든 볼륨
+{{</admonition>}}
+
+- 암호화 및 복호화가 알아서 처리된다. (사용자는 할일이 없음)
+- 암호화는 대기 시간에 미치는 영향을 최소화 한다.
+- EBS 암호화는 KMS 키를 활용한다. (AES-256)
+- 암호화되지 않은 스냅샷은 복사하면 암호화가 가능
+- 암호화된 불륨의 스냅샷이 암호화됨
+
+### 암호화되지 않은 EBS 볼륨을 암호화하기
+- EBS 볼륨의 스냅샷을 생성한다.
+- EBS 스냅샷을 암호화한다. (using copy)
+- 생성한 스냅샷에서 새로운 EBS 볼륨을 만든다. (만든 볼륨은 암호화)
+- 암호화된 볼륨을 원래 인스턴스에 연결
+
+## Amazon EFS – Elastic File System
+- 여러 EC2에 마운트 할 수 있는 관리형 NFS(`network file system`)
+- EFS는 멀티 AZ의 EC2 인스턴스와 함께 작용한다.
+- 고 가용성, 확장성, expensive(3x gp2), 사용당 지불
+- **Use cases:** 컨텐츠 고나리, web serving, 데이터 쉐어링, Wordpress
+- `NFSv4.1 protocol` 사용
+- 보안 그룹을 통해 EFS 액세스를 컨트롤
+- **Linux 기반 AMI 호환 (윈도우즈 아님)**
+- KMS를 사용한 at-rest 암호화
+- 표준 파일 API가 있는 POSIX 파일 시스템 (Linux)
+- 파일 시스템 자동 확장, 사용량별 지불, 용량 계획 없음
+
+### EFS 성능 및 스토리지 Classes
+| Performance & Storage Classes|                                           |
+|-------------------------------------------------|-------------------------------------------|
+| **EFS Scale**                                   | · 1,000대의 NFS 동시 클라이언트 : 10 GB+/s 처리량<br/>· 페타바이트 규모의 네트워크 파일 시스템으로 자동 확장 |
+| **Performance mode (set at EFS creation time)** | · 범용 목적 (기본) : 지연 시간에 민감한 사용 사례 (웹서버, CMS 등)<br/>· MAX I/O : 지연 시간, 처리량, 병렬 처리(빅데이터, 미디어 프로세싱등)|
+| **Throughput mode**                             | · Bursting(1TB=50MiB/s + 최대 100MiB/s 버스트)<br/> · 프로비저닝 : 스토리지 크기에 상관없이 처리량 설정(ex: 1 GiB/s for 1 TB 스토리지) |
+
+### EFS - Storage Classes
+#### Storage Tiers (라이프 사이클 관리 기능 - N일 후 파일 이동)
+- **Standard** : 자주 액세스 하는 파일용
+- **Infrequent access (EFS-IA)** : 파일 검색 비용, 저장 비용 절감 라이프 사이클 정책을 사용하여 EFS-IA 사용
+
+#### 가용성 및 내구성
+- Regional : Multi-AZ, 프로덕션 환경에 최적
+- One Zone : 개발 환경에 적합한 단일 환경, 기본적으로 백업 지원 IA(EFS One Zone-IA)와의 호환성
+- 90% 이상의 비용 절감
 

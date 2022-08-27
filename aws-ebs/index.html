@@ -9,7 +9,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://riley817.github.io/aws-ebs/" /><meta property="og:image" content="https://riley817.github.io/icon.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-07-20T08:19:49+09:00" />
-<meta property="article:modified_time" content="2022-08-27T23:58:17+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
+<meta property="article:modified_time" content="2022-08-28T00:40:24+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://riley817.github.io/icon.png"/>
@@ -30,8 +30,8 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/riley817.github.io\/aws-ebs\/"
-        },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "aws, ec2","wordcount":  754 ,
-        "url": "https:\/\/riley817.github.io\/aws-ebs\/","datePublished": "2022-07-20T08:19:49+09:00","dateModified": "2022-08-27T23:58:17+09:00","publisher": {
+        },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "aws, ebs, efs","wordcount":  1113 ,
+        "url": "https:\/\/riley817.github.io\/aws-ebs\/","datePublished": "2022-07-20T08:19:49+09:00","dateModified": "2022-08-28T00:40:24+09:00","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/riley817.github.io\/images\/avatar.png"},"author": {
                 "@type": "Person",
@@ -105,8 +105,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">AWS EC2 Instance Storage</h1><h2 class="single-subtitle">AWS Certified SAA-C02 시험준비</h2><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-category">included in <a href="/categories/aws-certified-saa-c02-%EC%8B%9C%ED%97%98%EC%A4%80%EB%B9%84/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>AWS Certified SAA-C02 시험준비</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-07-20">2022-07-20</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;754 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;4 minutes&nbsp;<span id="/aws-ebs/" class="leancloud_visitors" data-flag-title="AWS EC2 Instance Storage">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-07-20">2022-07-20</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1113 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;6 minutes&nbsp;<span id="/aws-ebs/" class="leancloud_visitors" data-flag-title="AWS EC2 Instance Storage">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -143,6 +143,23 @@
         <li><a href="#general-purpose-ssd">General Purpose SSD</a></li>
         <li><a href="#provisioned-iopspiops-ssd">Provisioned IOPS(PIOPS) SSD</a></li>
         <li><a href="#hard-disk-driveshdd">Hard Disk Drives(HDD)</a></li>
+      </ul>
+    </li>
+    <li><a href="#ebs-multi-attach--io1io2-family">EBS Multi-Attach – io1/io2 family</a></li>
+    <li><a href="#ebs-encryption">EBS Encryption</a>
+      <ul>
+        <li><a href="#암호화되지-않은-ebs-볼륨을-암호화하기">암호화되지 않은 EBS 볼륨을 암호화하기</a></li>
+      </ul>
+    </li>
+    <li><a href="#amazon-efs--elastic-file-system">Amazon EFS – Elastic File System</a>
+      <ul>
+        <li><a href="#efs-성능-및-스토리지-classes">EFS 성능 및 스토리지 Classes</a></li>
+        <li><a href="#efs---storage-classes">EFS - Storage Classes</a>
+          <ul>
+            <li><a href="#storage-tiers-라이프-사이클-관리-기능---n일-후-파일-이동">Storage Tiers (라이프 사이클 관리 기능 - N일 후 파일 이동)</a></li>
+            <li><a href="#가용성-및-내구성">가용성 및 내구성</a></li>
+          </ul>
+        </li>
       </ul>
     </li>
   </ul>
@@ -373,7 +390,7 @@
             <div>
                 <ul type="disc">
                     <li><p>Sub-millisecond latency</p></li>
-                    <li><p>Sustained IOPS performance</p></li>
+                    <li><p>지속적인 IOPS 성능</p></li>
                     <li>
                         <p>More than 64,000 IOPS or 1,000 MiB/s of throughput</p>
                     </li>
@@ -406,60 +423,184 @@
     </tr>
     <tr>
         <td><b>Amazon EBS Multi-attach</b></td>
-        <td colspan="3">Supported</td>
+        <td colspan="3"><b>Supported</b></td>
     </tr>
     <tr>
         <td><b>Boot volume</b></td>
         <td colspan="3">Supported</td>
     </tr>
 </table>
-<table>
-<thead>
-<tr>
-<th>volume type</th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>io1/io2 (4GiB~16TiB)</strong></td>
-<td>· <strong>Max PIOPS:</strong> Nitro EC2 인스턴스의 경우 64,000 개, 기타 인스턴스 32,000 개<br/>· 스토리지 크기와 관계없이 PIOPS 증가 가능<br/>· io2 내구성 및 GiB당 IOPS 향상(io1과 동일한 가격)</td>
-</tr>
-<tr>
-<td><strong>io2 Block Express (4Gib ~ 64TiB)</strong></td>
-<td>· Sub-millisecond latency<br/>· Max PIOPS: 256,000, IOPS: GiB 비율 1,000:1</td>
-</tr>
-</tbody>
-</table>
 <h3 id="hard-disk-driveshdd">Hard Disk Drives(HDD)</h3>
 <ul>
 <li>부팅 볼륨으로 사용할 수 없음</li>
-<li>125 GiB ~ 16 TiB</li>
 </ul>
+<table>
+    <thead>
+        <tr>
+            <th></th>
+            <th>Throughput Optimized HDD</th>
+            <th>Cold HDD</th>
+        </tr>
+    </thead>
+    <tr>
+        <td><b>Volume type</b></td>
+        <td><code class="code">st1</code></td>
+        <td><code class="code">sc1</code></td>
+    </tr>
+    <tr>
+        <td><b>Durability</b></td>
+        <td>99.8% - 99.9% durability (0.1% - 0.2% annual failure rate)</td>
+        <td>99.8% - 99.9% durability (0.1% - 0.2% annual failure rate)</td>
+    </tr>
+    <tr>
+        <td><b>Use cases</b></td>
+        <td>
+            <div>
+                <ul type="disc">
+                    <li><p>Big data</p></li>
+                    <li><p>Data warehouses</p></li>
+                    <li><p>Log processing</p></li>
+                </ul>
+            </div>
+        </td>
+        <td>
+            <div>
+                <ul type="disc">
+                    <li><p>액세스 빈도가 낮은 데이터를 처리하기 위한 throughput-oriented 스토리지</p></li>
+                    <li><p>가장 낮은 스토리지 비용이 중요한 시나리오</p></li>
+                </ul>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td><b>Volume size</b></td>
+        <td>125 GiB - 16 TiB</td>
+        <td>125 GiB - 16 TiB </td>
+    </tr>
+    <tr>
+        <td><b>Max IOPS per volume</b> (1 MiB I/O)</td>
+        <td>500</td>
+        <td>250</td>
+    </tr>
+    <tr>
+        <td><b>Max throughput per volume</b></td>
+        <td>500 MiB/s</td>
+        <td>250 MiB/s</td>
+    </tr>
+    <tr>
+        <td><b>Amazon EBS Multi-attach</b></td>
+        <td>Not supported</td>
+        <td>Not supported</td>
+    </tr>
+    <tr>
+        <td><b>Boot volume</b></td>
+        <td>Not supported</td>
+        <td>Not supported</td>
+    </tr>
+</table>
+<h2 id="ebs-multi-attach--io1io2-family">EBS Multi-Attach – io1/io2 family</h2>
+<ul>
+<li>동일한 AZ의 여러 EC2 인스턴스에 동일한 EBS 볼륨 연결</li>
+<li>각 인스턴스에는 볼륨에 대한 전체 읽기 및 쓰기 권한 있음</li>
+<li>클러스터 인식 파일 시스템을 사용해야 함(XFS, EX4는 사용할 수 없음)
+<div class="details admonition tip open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw" aria-hidden="true"></i>Use case<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><center><image src="/posts/images/aws/ebs-multi-attach.png" width="300px">
+</center>
+<ul>
+<li>클러스터링 된 리눅스 애플리케이션에서 애플리케이션 가용성 향상 (example: Teradata)</li>
+<li>애플리케이션은 동시 쓰기 작업을 관리해야 하는 경우</li>
+</ul>
+</div>
+        </div>
+    </div></li>
+</ul>
+<h2 id="ebs-encryption">EBS Encryption</h2>
+<div class="details admonition success open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-check-circle fa-fw" aria-hidden="true"></i>EBS 볼륨 생성시<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><ul>
+<li>저장된 데이터는 볼륨 내부에서 암호화 된다.</li>
+<li>인스턴스와 볼륨 사이를 이동하는 이동중인 모든 데이터가 암호화 된다.</li>
+<li>모든 스냅샷이 암호화 된다.</li>
+<li>스냅샷에서 생성된 모든 볼륨</li>
+</ul>
+</div>
+        </div>
+    </div>
+<ul>
+<li>암호화 및 복호화가 알아서 처리된다. (사용자는 할일이 없음)</li>
+<li>암호화는 대기 시간에 미치는 영향을 최소화 한다.</li>
+<li>EBS 암호화는 KMS 키를 활용한다. (AES-256)</li>
+<li>암호화되지 않은 스냅샷은 복사하면 암호화가 가능</li>
+<li>암호화된 불륨의 스냅샷이 암호화됨</li>
+</ul>
+<h3 id="암호화되지-않은-ebs-볼륨을-암호화하기">암호화되지 않은 EBS 볼륨을 암호화하기</h3>
+<ul>
+<li>EBS 볼륨의 스냅샷을 생성한다.</li>
+<li>EBS 스냅샷을 암호화한다. (using copy)</li>
+<li>생성한 스냅샷에서 새로운 EBS 볼륨을 만든다. (만든 볼륨은 암호화)</li>
+<li>암호화된 볼륨을 원래 인스턴스에 연결</li>
+</ul>
+<h2 id="amazon-efs--elastic-file-system">Amazon EFS – Elastic File System</h2>
+<ul>
+<li>여러 EC2에 마운트 할 수 있는 관리형 NFS(<code>network file system</code>)</li>
+<li>EFS는 멀티 AZ의 EC2 인스턴스와 함께 작용한다.</li>
+<li>고 가용성, 확장성, expensive(3x gp2), 사용당 지불</li>
+<li><strong>Use cases:</strong> 컨텐츠 고나리, web serving, 데이터 쉐어링, Wordpress</li>
+<li><code>NFSv4.1 protocol</code> 사용</li>
+<li>보안 그룹을 통해 EFS 액세스를 컨트롤</li>
+<li><strong>Linux 기반 AMI 호환 (윈도우즈 아님)</strong></li>
+<li>KMS를 사용한 at-rest 암호화</li>
+<li>표준 파일 API가 있는 POSIX 파일 시스템 (Linux)</li>
+<li>파일 시스템 자동 확장, 사용량별 지불, 용량 계획 없음</li>
+</ul>
+<h3 id="efs-성능-및-스토리지-classes">EFS 성능 및 스토리지 Classes</h3>
 <table>
 <thead>
 <tr>
-<th>volume type</th>
+<th>Performance &amp; Storage Classes</th>
 <th></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><strong>Throughput Optimized HDD (st1)</strong></td>
-<td>· Big Data, Data Warehouses, Log Processing<br/>· <strong>Max throughput 500 MiB/s - max IOPS 500</strong></td>
+<td><strong>EFS Scale</strong></td>
+<td>· 1,000대의 NFS 동시 클라이언트 : 10 GB+/s 처리량<br/>· 페타바이트 규모의 네트워크 파일 시스템으로 자동 확장</td>
 </tr>
 <tr>
-<td><strong>Cold HDD (sc1)</strong></td>
-<td>· 자주 액세스하지 않는 데이터<br/>· 최저 비용이 중요한 경우<br/>· <strong>Max throughput 250 MiB/s – max IOPS 250</strong></td>
+<td><strong>Performance mode (set at EFS creation time)</strong></td>
+<td>· 범용 목적 (기본) : 지연 시간에 민감한 사용 사례 (웹서버, CMS 등)<br/>· MAX I/O : 지연 시간, 처리량, 병렬 처리(빅데이터, 미디어 프로세싱등)</td>
+</tr>
+<tr>
+<td><strong>Throughput mode</strong></td>
+<td>· Bursting(1TB=50MiB/s + 최대 100MiB/s 버스트)<br/> · 프로비저닝 : 스토리지 크기에 상관없이 처리량 설정(ex: 1 GiB/s for 1 TB 스토리지)</td>
 </tr>
 </tbody>
 </table>
+<h3 id="efs---storage-classes">EFS - Storage Classes</h3>
+<h4 id="storage-tiers-라이프-사이클-관리-기능---n일-후-파일-이동">Storage Tiers (라이프 사이클 관리 기능 - N일 후 파일 이동)</h4>
+<ul>
+<li><strong>Standard</strong> : 자주 액세스 하는 파일용</li>
+<li><strong>Infrequent access (EFS-IA)</strong> : 파일 검색 비용, 저장 비용 절감 라이프 사이클 정책을 사용하여 EFS-IA 사용</li>
+</ul>
+<h4 id="가용성-및-내구성">가용성 및 내구성</h4>
+<ul>
+<li>Regional : Multi-AZ, 프로덕션 환경에 최적</li>
+<li>One Zone : 개발 환경에 적합한 단일 환경, 기본적으로 백업 지원 IA(EFS One Zone-IA)와의 호환성</li>
+<li>90% 이상의 비용 절감</li>
+</ul>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 2022-08-27&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/012f45580feda2e27db5bb365897826cbf605756" target="_blank" title="commit by riley(riley0422@icloud.com) 012f45580feda2e27db5bb365897826cbf605756: 20220827235815">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>012f455</a></span>
+                <span>Updated on 2022-08-28&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/b379fc637126605e7ab57641b76e3d5198be2d35" target="_blank" title="commit by riley(riley0422@icloud.com) b379fc637126605e7ab57641b76e3d5198be2d35: 20220828004020">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>b379fc6</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>
@@ -470,7 +611,7 @@
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/aws/">aws</a>,&nbsp;<a href="/tags/ec2/">ec2</a></section>
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/aws/">aws</a>,&nbsp;<a href="/tags/ebs/">ebs</a>,&nbsp;<a href="/tags/efs/">efs</a></section>
         <section>
             <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
         </section>
