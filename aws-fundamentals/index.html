@@ -4,36 +4,34 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>Amazon S3 - Riley&#39;s DevLog</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:title" content="Amazon S3" />
-<meta property="og:description" content="Application communication Application communication 두 가지 패턴 Synchronous communications (application to application) Synchronous는 요청량이 급증하면 애플리케이션간 여러 문제를 유발시킬 수 있다. Asynchronous / Event based (application to queue to application) 애플리케이션 의존관계decouple를 낮추는 사례 아래 서비스들을 사용하여 즉각적으로 애플리케이션을 확장가능 하다.
-SQS 사용 : Queue 모델 SNS 사용 : pub/sub 모델 Kinesis : 실시간 스트리밍 모델 Amazon SQS Amazon SQS - Standard Queue AWS에서 가장 오래된 서비스. 애플리케이션을 decoupling하기 위해 서비스를 관리 중복 메세지를 갖을 수 있다." />
+        <title>AWS Fundamentals - Riley&#39;s DevLog</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:title" content="AWS Fundamentals" />
+<meta property="og:description" content="확장성 및 고가용성 확장성Scalability은 애플리케이션/시스템이 더 큰 부하를 처리할 수 있게 적용되는 것을 의미 확장성 종류 Vertical Scalability Horizontal Scalability (= elasticity) 확장성은 고 가용성(HA)과 연결되어 있지만 서로다르다. Vertical Scalability 수직적 확장은 인스턴스 크기를 증가 시키는 것을 의미 예시) t2.micro -&gt; t2.large로 확장 수직적 확장성은 데이터베이스와 같은 비분산 시스템에서 매우 일반적 RDS, ElastiCache는 수직 확장이 가능한 서비스 일반적으로 수직확장에는 제한이 있음(하드웨어 제한) Horizontal Scalability 수평적 확장은 애플리케이션의 인스턴스 혹은 시스템 수 증가 분산 시스템을 의미 웹 애플리케이션/현대 애플리케이션에서 매우 일반적 Amazon EC2와 같은 클라우드 제품 덕분에 수평확장 용이 High Availability 고가용성(HA)은 일반적으로 수평 확장과 함께 제공 최소 두 개의 데이터 센터(=A)에서 애플리케이션 및 시스템을 실행하는 것을 의미 고가용성의 목표는 데이터 센터 손실에서 살아 남는 것 고가용성은 수동적일 수 있음 (RDS Multi AZ의 경우) 고가용성은 활성화 할 수 있음 (수평적 확장을 위해) EC2를 위한 고가용성 및 확장성 Vertical Scaling : 인스턴스 사이즈를 늘린다." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://riley817.github.io/aws-integration-messaging/" /><meta property="og:image" content="https://riley817.github.io/icon.png"/><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2022-08-02T09:16:41+09:00" />
+<meta property="og:url" content="https://riley817.github.io/aws-fundamentals/" /><meta property="og:image" content="https://riley817.github.io/icon.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-07-22T08:19:49+09:00" />
 <meta property="article:modified_time" content="2022-08-28T13:41:10+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://riley817.github.io/icon.png"/>
 
-<meta name="twitter:title" content="Amazon S3"/>
-<meta name="twitter:description" content="Application communication Application communication 두 가지 패턴 Synchronous communications (application to application) Synchronous는 요청량이 급증하면 애플리케이션간 여러 문제를 유발시킬 수 있다. Asynchronous / Event based (application to queue to application) 애플리케이션 의존관계decouple를 낮추는 사례 아래 서비스들을 사용하여 즉각적으로 애플리케이션을 확장가능 하다.
-SQS 사용 : Queue 모델 SNS 사용 : pub/sub 모델 Kinesis : 실시간 스트리밍 모델 Amazon SQS Amazon SQS - Standard Queue AWS에서 가장 오래된 서비스. 애플리케이션을 decoupling하기 위해 서비스를 관리 중복 메세지를 갖을 수 있다."/>
+<meta name="twitter:title" content="AWS Fundamentals"/>
+<meta name="twitter:description" content="확장성 및 고가용성 확장성Scalability은 애플리케이션/시스템이 더 큰 부하를 처리할 수 있게 적용되는 것을 의미 확장성 종류 Vertical Scalability Horizontal Scalability (= elasticity) 확장성은 고 가용성(HA)과 연결되어 있지만 서로다르다. Vertical Scalability 수직적 확장은 인스턴스 크기를 증가 시키는 것을 의미 예시) t2.micro -&gt; t2.large로 확장 수직적 확장성은 데이터베이스와 같은 비분산 시스템에서 매우 일반적 RDS, ElastiCache는 수직 확장이 가능한 서비스 일반적으로 수직확장에는 제한이 있음(하드웨어 제한) Horizontal Scalability 수평적 확장은 애플리케이션의 인스턴스 혹은 시스템 수 증가 분산 시스템을 의미 웹 애플리케이션/현대 애플리케이션에서 매우 일반적 Amazon EC2와 같은 클라우드 제품 덕분에 수평확장 용이 High Availability 고가용성(HA)은 일반적으로 수평 확장과 함께 제공 최소 두 개의 데이터 센터(=A)에서 애플리케이션 및 시스템을 실행하는 것을 의미 고가용성의 목표는 데이터 센터 손실에서 살아 남는 것 고가용성은 수동적일 수 있음 (RDS Multi AZ의 경우) 고가용성은 활성화 할 수 있음 (수평적 확장을 위해) EC2를 위한 고가용성 및 확장성 Vertical Scaling : 인스턴스 사이즈를 늘린다."/>
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://riley817.github.io/aws-integration-messaging/" /><link rel="prev" href="https://riley817.github.io/aws-s3/" /><link rel="next" href="https://riley817.github.io/aws-rds/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://riley817.github.io/aws-fundamentals/" /><link rel="prev" href="https://riley817.github.io/aws-ebs/" /><link rel="next" href="https://riley817.github.io/aws-s3/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "Amazon S3",
+        "headline": "AWS Fundamentals",
         "inLanguage": "en",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "https:\/\/riley817.github.io\/aws-integration-messaging\/"
-        },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "elasticsearch","wordcount":  256 ,
-        "url": "https:\/\/riley817.github.io\/aws-integration-messaging\/","datePublished": "2022-08-02T09:16:41+09:00","dateModified": "2022-08-28T13:41:10+09:00","publisher": {
+            "@id": "https:\/\/riley817.github.io\/aws-fundamentals\/"
+        },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "aws, ec2, ENI","wordcount":  305 ,
+        "url": "https:\/\/riley817.github.io\/aws-fundamentals\/","datePublished": "2022-07-22T08:19:49+09:00","dateModified": "2022-08-28T13:41:10+09:00","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/riley817.github.io\/images\/avatar.png"},"author": {
                 "@type": "Person",
@@ -105,10 +103,10 @@ SQS 사용 : Queue 모델 SNS 사용 : pub/sub 모델 Kinesis : 실시간 스트
                 <div class="container"><div class="toc" id="toc-auto">
             <h2 class="toc-title">Contents</h2>
             <div class="toc-content" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Amazon S3</h1><h2 class="single-subtitle">AWS Certified SAA-C02 시험준비</h2><div class="post-meta">
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">AWS Fundamentals</h1><h2 class="single-subtitle">AWS Certified SAA-C02 시험준비</h2><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-category">included in <a href="/categories/aws-certified-saa-c02-%EC%8B%9C%ED%97%98%EC%A4%80%EB%B9%84/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>AWS Certified SAA-C02 시험준비</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-08-02">2022-08-02</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;256 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;2 minutes&nbsp;<span id="/aws-integration-messaging/" class="leancloud_visitors" data-flag-title="Amazon S3">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-07-22">2022-07-22</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;305 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;2 minutes&nbsp;<span id="/aws-fundamentals/" class="leancloud_visitors" data-flag-title="AWS Fundamentals">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -118,115 +116,108 @@ SQS 사용 : Queue 모델 SNS 사용 : pub/sub 모델 Kinesis : 실시간 스트
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
-    <li><a href="#application-communication">Application communication</a>
+    <li><a href="#확장성-및-고가용성">확장성 및 고가용성</a>
       <ul>
-        <li><a href="#application-communication-두-가지-패턴">Application communication 두 가지 패턴</a>
-          <ul>
-            <li><a href="#애플리케이션-의존관계decouple를-낮추는-사례">애플리케이션 의존관계<code>decouple</code>를 낮추는 사례</a></li>
-          </ul>
-        </li>
+        <li><a href="#vertical-scalability">Vertical Scalability</a></li>
+        <li><a href="#horizontal-scalability">Horizontal Scalability</a></li>
+        <li><a href="#high-availability">High Availability</a></li>
+        <li><a href="#ec2를-위한-고가용성-및-확장성">EC2를 위한 고가용성 및 확장성</a></li>
       </ul>
     </li>
-    <li><a href="#amazon-sqs">Amazon SQS</a>
+    <li><a href="#load-balancing">Load balancing</a>
       <ul>
-        <li><a href="#amazon-sqs---standard-queue">Amazon SQS - Standard Queue</a>
-          <ul>
-            <li><a href="#특징">특징</a></li>
-            <li><a href="#produing-message">Produing Message</a></li>
-            <li><a href="#consuming-message">Consuming Message</a></li>
-          </ul>
-        </li>
-        <li><a href="#multiple-ec2-인스턴스-컨슈머">Multiple EC2 인스턴스 컨슈머</a></li>
-        <li><a href="#sqs-with-auto-scaling-group-asg">SQS with Auto Scaling Group (ASG)</a></li>
-        <li><a href="#sqs-to-decouple-between-application-tiers">SQS to decouple between application tiers</a></li>
-        <li><a href="#sqs-보안">SQS 보안</a>
-          <ul>
-            <li><a href="#암호화">암호화</a></li>
-            <li><a href="#접근제한">접근제한</a></li>
-          </ul>
-        </li>
+        <li><a href="#load-balancer를-사용하는-이유">Load balancer를 사용하는 이유</a></li>
+        <li><a href="#elastic-load-balancer를-사용하는-이유">Elastic Load Balancer를 사용하는 이유</a></li>
+        <li><a href="#health-checks">Health Checks</a></li>
       </ul>
     </li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><h2 id="application-communication">Application communication</h2>
-<h3 id="application-communication-두-가지-패턴">Application communication 두 가지 패턴</h3>
-<ol>
-<li>Synchronous communications (application to application)
+            </div><div class="content" id="content"><h2 id="확장성-및-고가용성">확장성 및 고가용성</h2>
 <ul>
-<li>Synchronous는 요청량이 급증하면 애플리케이션간 여러 문제를 유발시킬 수 있다.</li>
+<li>확장성<code>Scalability</code>은 애플리케이션/시스템이 더 큰 부하를 처리할 수 있게 적용되는 것을 의미</li>
+<li>확장성 종류
+<ul>
+<li>Vertical Scalability</li>
+<li>Horizontal Scalability (= elasticity)</li>
 </ul>
 </li>
-<li>Asynchronous / Event based (application to queue to application)</li>
-</ol>
-<h4 id="애플리케이션-의존관계decouple를-낮추는-사례">애플리케이션 의존관계<code>decouple</code>를 낮추는 사례</h4>
-<p>아래 서비스들을 사용하여 즉각적으로 애플리케이션을 확장가능 하다.</p>
-<ul>
-<li>SQS 사용 : Queue 모델</li>
-<li>SNS 사용 : pub/sub 모델</li>
-<li>Kinesis : 실시간 스트리밍 모델</li>
+<li>확장성은 고 가용성(HA)과 연결되어 있지만 서로다르다.</li>
 </ul>
-<h2 id="amazon-sqs">Amazon SQS</h2>
-<h3 id="amazon-sqs---standard-queue">Amazon SQS - Standard Queue</h3>
+<h3 id="vertical-scalability">Vertical Scalability</h3>
 <ul>
-<li>AWS에서 가장 오래된 서비스.</li>
-<li>애플리케이션을 decoupling하기 위해 서비스를 관리</li>
-<li>중복 메세지를 갖을 수 있다. -&gt; 적어도 한번은 전송 된다.</li>
-<li>Can have out of order messages (best effort ordering)</li>
+<li>수직적 확장은 인스턴스 크기를 증가 시키는 것을 의미</li>
+<li>예시) t2.micro -&gt; t2.large로 확장</li>
+<li>수직적 확장성은 데이터베이스와 같은 비분산 시스템에서 매우 일반적</li>
+<li>RDS, ElastiCache는 수직 확장이 가능한 서비스</li>
+<li>일반적으로 수직확장에는 제한이 있음(하드웨어 제한)</li>
 </ul>
-<h4 id="특징">특징</h4>
+<h3 id="horizontal-scalability">Horizontal Scalability</h3>
 <ul>
-<li><strong>큐에 적재할 수 있는 메세지 및 처리량에 제한이 없다 <code>unlimited throughput</code>.</strong></li>
-<li>기본 4일에서 최대 14일까지 큐에 메세지를 보존할 수 있다.</li>
-<li>낮은 지연</li>
-<li>메세지의 크기는 256KB로 제한</li>
+<li>수평적 확장은 애플리케이션의 인스턴스 혹은 시스템 수 증가</li>
+<li>분산 시스템을 의미</li>
+<li>웹 애플리케이션/현대 애플리케이션에서 매우 일반적</li>
+<li>Amazon EC2와 같은 클라우드 제품 덕분에 수평확장 용이</li>
 </ul>
-<h4 id="produing-message">Produing Message</h4>
+<h3 id="high-availability">High Availability</h3>
 <ul>
-<li>SDK의 <code>SendMessage API</code>를 통해 SQS 메세지를 생산</li>
-<li>메세지는 consumer가 삭제하기 전까지 SQS에 유지된다.</li>
-<li>메세지 보존기간 : 기본 4 days ~ 14 days</li>
+<li>고가용성(HA)은 일반적으로 수평 확장과 함께 제공</li>
+<li>최소 두 개의 데이터 센터(=A)에서 애플리케이션 및 시스템을 실행하는 것을 의미</li>
+<li>고가용성의 목표는 데이터 센터 손실에서 살아 남는 것</li>
+<li>고가용성은 수동적일 수 있음 (RDS Multi AZ의 경우)</li>
+<li>고가용성은 활성화 할 수 있음 (수평적 확장을 위해)</li>
 </ul>
-<div class="details admonition note open">
-        <div class="details-summary admonition-title">
-            <i class="icon fas fa-pencil-alt fa-fw" aria-hidden="true"></i>example<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
-        </div>
-        <div class="details-content">
-            <div class="admonition-content"><p>예시) 주문정보를 전송한다.</p>
+<h3 id="ec2를-위한-고가용성-및-확장성">EC2를 위한 고가용성 및 확장성</h3>
 <ul>
-<li>Order Id</li>
-<li>Customer Id</li>
-<li>다른 속성 값들&hellip;</li>
+<li><strong>Vertical Scaling</strong> : 인스턴스 사이즈를 늘린다.(<code>=scale up/down</code>)</li>
+<li><strong>Horizontal Scaling</strong> : 인스턴스 갯수를 늘린다. (<code>=scale out/in</code>)</li>
+<li><strong>High Availability</strong> : 여러 AZ에서 동일한 애플리케이션에 대한 인스턴스를 실행
+<ul>
+<li>Auto Scaling Group multi AZ</li>
+<li>Load Balancer multi AZ</li>
 </ul>
-</div>
-        </div>
-    </div>
-<h4 id="consuming-message">Consuming Message</h4>
-<ul>
-<li>consumers : 운용중인 EC2 인스턴스, 서버 또는 AWS 람다 서비스 등</li>
-<li><strong>Poll SQS for message</strong> : 매 10초마다 메세지를 폴링 한다.</li>
-<li><strong>Process the message</strong> :  ex) RDS 데이터베이스에 메세지를 저장</li>
-<li><code>DeleteMessage API</code>를 사용하여 처리가 완료되면 메세지를 삭제해야 한다.</li>
+</li>
 </ul>
-<h3 id="multiple-ec2-인스턴스-컨슈머">Multiple EC2 인스턴스 컨슈머</h3>
+<h2 id="load-balancing">Load balancing</h2>
 <ul>
-<li>컨슈머들은 메세지를 수신 받고 병렬로 처리할 수 있다.</li>
-<li>적어도 한번은 전송이 된다.</li>
-<li>컨슈머는 처리가 완료되면 메세지를 삭제한다.</li>
-<li>컨슈머를 병렬로 확장하여 프로세스 처리량을 증가시킬 수 있다.</li>
+<li>로드 밸런싱은 트래픽을 여러 서버(e.g., EC2 인스턴스) 다운스트림으로 전달하는 서버를 의미</li>
 </ul>
-<h3 id="sqs-with-auto-scaling-group-asg">SQS with Auto Scaling Group (ASG)</h3>
-<h3 id="sqs-to-decouple-between-application-tiers">SQS to decouple between application tiers</h3>
-<h3 id="sqs-보안">SQS 보안</h3>
-<h4 id="암호화">암호화</h4>
+<center><image src="/posts/images/aws/load-balancing.png">
+</center>
+<h3 id="load-balancer를-사용하는-이유">Load balancer를 사용하는 이유</h3>
 <ul>
-<li>HTTPS API를 통한 전송중 암호화</li>
-<li>KMS 키를 통한 <code>At-rest</code> 암호화</li>
-<li>클라이언트 원하는대로 암/복호화를 클라이언트 측에서 가능</li>
+<li>여러 다운스트림을 인스턴스에 로드 분산</li>
+<li>애플리케이션에 단일 액세스 지점(DNS) 노출</li>
+<li>다운스트림 인스턴스의 장애를 원할하게 처리</li>
+<li>인스턴스의 정기적인 상태 검사 수행</li>
+<li>웹 사이트에 대한 SSL termination (HTTPS) 제공</li>
+<li>영역간 고가용성</li>
+<li>공용 트래픽과 사설 트래픽 분리</li>
 </ul>
-<h4 id="접근제한">접근제한</h4>
+<h3 id="elastic-load-balancer를-사용하는-이유">Elastic Load Balancer를 사용하는 이유</h3>
 <ul>
-<li><code>IAM</code> 정책을</li>
+<li>
+<p>Elastic Load Balancer <strong>AWS에 의해 관리되는 로드 밸런서</strong></p>
+<ul>
+<li>AWS가 업그레이드, 유지보수, 고가용성 관리</li>
+<li>AWS는 몇 가지 구성 knobs 제공</li>
+</ul>
+</li>
+<li>
+<p>AWS의 많은 제품/서비스와 통합 가능</p>
+<ul>
+<li>EC2, EC2 Auto Scaling Groups, Amazon ECS</li>
+<li>AWS Certificate Manager(ACM), CloudWatch</li>
+<li>Route 53, AWS WAF, AWS Global Accelerator</li>
+</ul>
+</li>
+</ul>
+<h3 id="health-checks">Health Checks</h3>
+<ul>
+<li><code>Health Checks</code>은 로드 밸런싱 장치에서 매우 중요</li>
+<li>로드 밸런서는 트래픽을 전달하는 인스턴스가 요청에 응답할 수 있는지 여부를 알 수 있도록 한다.</li>
+<li>상태 점검은 포트 및 route에서 수행 (<code>/health</code> 는 공통임)</li>
+<li><code>200</code> 응답이 아닌경우 인스턴스는 unhealthy</li>
 </ul>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
@@ -244,14 +235,14 @@ SQS 사용 : Queue 모델 SNS 사용 : pub/sub 모델 Kinesis : 실시간 스트
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/elasticsearch/">elasticsearch</a></section>
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/aws/">aws</a>,&nbsp;<a href="/tags/ec2/">ec2</a>,&nbsp;<a href="/tags/eni/">ENI</a></section>
         <section>
             <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
         </section>
     </div>
 
-    <div class="post-nav"><a href="/aws-s3/" class="prev" rel="prev" title="Amazon S3"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Amazon S3</a>
-            <a href="/aws-rds/" class="next" rel="next" title="Amazon RDS, Aurora &amp; ElastiCache">Amazon RDS, Aurora & ElastiCache<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+    <div class="post-nav"><a href="/aws-ebs/" class="prev" rel="prev" title="AWS EC2 Instance Storage"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>AWS EC2 Instance Storage</a>
+            <a href="/aws-s3/" class="next" rel="next" title="Amazon S3">Amazon S3<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
 </div>
 <div id="comments"><div id="valine" class="comment"></div><noscript>
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.

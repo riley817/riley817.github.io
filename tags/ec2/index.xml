@@ -4,7 +4,15 @@
         <link>https://riley817.github.io/tags/ec2/</link>
         <description>ec2 - Tag - Riley&#39;s DevLog</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
-            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Thu, 14 Jul 2022 08:19:49 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/tags/ec2/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Fri, 22 Jul 2022 08:19:49 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/tags/ec2/" rel="self" type="application/rss+xml" /><item>
+    <title>AWS Fundamentals</title>
+    <link>https://riley817.github.io/aws-fundamentals/</link>
+    <pubDate>Fri, 22 Jul 2022 08:19:49 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/aws-fundamentals/</guid>
+    <description><![CDATA[확장성 및 고가용성 확장성Scalability은 애플리케이션/시스템이 더 큰 부하를 처리할 수 있게 적용되는 것을 의미 확장성 종류 Vertical Scalability Horizontal Scalability (= elasticity) 확장성은 고 가용성(HA)과 연결되어 있지만 서로다르다. Vertical Scalability 수직적 확장은 인스턴스 크기를 증가 시키는 것을 의미 예시) t2.micro -&gt; t2.large로 확장 수직적 확장성은 데이터베이스와 같은 비분산 시스템에서 매우 일반적 RDS, ElastiCache는 수직 확장이 가능한 서비스 일반적으로 수직확장에는 제한이 있음(하드웨어 제한) Horizontal Scalability 수평적 확장은 애플리케이션의 인스턴스 혹은 시스템 수 증가 분산 시스템을 의미 웹 애플리케이션/현대 애플리케이션에서 매우 일반적 Amazon EC2와 같은 클라우드 제품 덕분에 수평확장 용이 High Availability 고가용성(HA)은 일반적으로 수평 확장과 함께 제공 최소 두 개의 데이터 센터(=A)에서 애플리케이션 및 시스템을 실행하는 것을 의미 고가용성의 목표는 데이터 센터 손실에서 살아 남는 것 고가용성은 수동적일 수 있음 (RDS Multi AZ의 경우) 고가용성은 활성화 할 수 있음 (수평적 확장을 위해) EC2를 위한 고가용성 및 확장성 Vertical Scaling : 인스턴스 사이즈를 늘린다.]]></description>
+</item>
+<item>
     <title>AWS Elastic Compute Cloud (EC2) - Associate</title>
     <link>https://riley817.github.io/aws-ec2-associate/</link>
     <pubDate>Thu, 14 Jul 2022 08:19:49 &#43;0900</pubDate>

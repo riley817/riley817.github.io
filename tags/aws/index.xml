@@ -22,6 +22,14 @@ IPLocationTools IP/Subnet Mask 192.]]></description>
     <description><![CDATA[전송중 암호화 (SSL) 데이터를 전송하기 전에 암호화. 수신 후 복호화 SSL 인증서로 암호화 (HTTPS) 전송 중 암호화는 MITM(man in the middle attack)이 발생하지 않도록 보장 Server side encryption at rest 데이터가 서버에 수신 된 후 암호화 데이터가 서버에 전송 전 복호화 데이터 키라고 불리우는 키 덕분에 데이터는 암호화 된 형태로 저장 암호화 및 복호화 키는 어딘가에 관리되어야 하며 서버는 이에 대한 액세스 권한이 있어야 한다. Client side encryption 데이터가 클라이언트에 의해 암호화되고 서버는 복호화할 수 없음 데이터는 수신 클라이언트에 의해 복호화 서버는 데이터의 암호를 복호화 할 수 없음 Envelop Encryption 암호화를 활용 AWS KMS (Key Management Service) KMS 키를 사용하여 데이터에 액세스할 수 있는 사람과 대상을 쉽게 제어]]></description>
 </item>
 <item>
+    <title>AWS Fundamentals</title>
+    <link>https://riley817.github.io/aws-fundamentals/</link>
+    <pubDate>Fri, 22 Jul 2022 08:19:49 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/aws-fundamentals/</guid>
+    <description><![CDATA[확장성 및 고가용성 확장성Scalability은 애플리케이션/시스템이 더 큰 부하를 처리할 수 있게 적용되는 것을 의미 확장성 종류 Vertical Scalability Horizontal Scalability (= elasticity) 확장성은 고 가용성(HA)과 연결되어 있지만 서로다르다. Vertical Scalability 수직적 확장은 인스턴스 크기를 증가 시키는 것을 의미 예시) t2.micro -&gt; t2.large로 확장 수직적 확장성은 데이터베이스와 같은 비분산 시스템에서 매우 일반적 RDS, ElastiCache는 수직 확장이 가능한 서비스 일반적으로 수직확장에는 제한이 있음(하드웨어 제한) Horizontal Scalability 수평적 확장은 애플리케이션의 인스턴스 혹은 시스템 수 증가 분산 시스템을 의미 웹 애플리케이션/현대 애플리케이션에서 매우 일반적 Amazon EC2와 같은 클라우드 제품 덕분에 수평확장 용이 High Availability 고가용성(HA)은 일반적으로 수평 확장과 함께 제공 최소 두 개의 데이터 센터(=A)에서 애플리케이션 및 시스템을 실행하는 것을 의미 고가용성의 목표는 데이터 센터 손실에서 살아 남는 것 고가용성은 수동적일 수 있음 (RDS Multi AZ의 경우) 고가용성은 활성화 할 수 있음 (수평적 확장을 위해) EC2를 위한 고가용성 및 확장성 Vertical Scaling : 인스턴스 사이즈를 늘린다.]]></description>
+</item>
+<item>
     <title>AWS EC2 Instance Storage</title>
     <link>https://riley817.github.io/aws-ebs/</link>
     <pubDate>Wed, 20 Jul 2022 08:19:49 &#43;0900</pubDate>
@@ -84,17 +92,6 @@ IPLocationTools IP/Subnet Mask 192.]]></description>
 인그레스 Ingress 클러스터 내의 서비스에 대한 외부 요청을 어떻게 처리할 것인지 네트워크 7계층 레벨에서 정의하는 쿠버네티스 오브젝트이다.
 인그레스 오브젝트의 기본 기능은 다음과 같다.
 외부 요청의 라우팅 : 특정 경로로 들어온 요청을 어떤 서비스로 전달할지 정의하는 라우터 규칙 설정 가상 호스트 기반의 요청 처리 : 같은 IP에 대해 다른 도메인 이름으로 요청했을 때 어떻게 처리할 것인지 정의 SSL/TLS 보안 연결 처리 : 요청을 라우팅 할 때, 보안 연결을 위한 인증서 적용 인그레스를 사용하는 이유 쿠버네티스 서비스 타입 중 NodePort 혹은 LoadBalancer 타입의 서비스를 사용해도 외부로 노출할 수 있지만, 인그레스 없이 서비스를 사용할 경우 SSL/TLS 보안 연결 등의 상세 옵션을 각각의 서비스와 디플로이먼트에 대해 일일이 설정을 해야 한다.]]></description>
-</item>
-<item>
-    <title>[AWS EKS] 4. Amazon ECR 에 이미지 올리기</title>
-    <link>https://riley817.github.io/archives/devops/aws/aws-4-ecr/</link>
-    <pubDate>Sat, 07 May 2022 23:00:58 &#43;0900</pubDate>
-    <author>riley</author>
-    <guid>https://riley817.github.io/archives/devops/aws/aws-4-ecr/</guid>
-    <description><![CDATA[☁️ Amazon EKS 웹 애플리케이션 구축하기 워크샵을 실습한 내용입니다.
-☁️ AWS Workshop 링크 : https://catalog.us-east-1.prod.workshops.aws/workshops/9c0aa9ab-90a9-44a6-abe1-8dff360ae428/ko-KR/
-Amazon ECR 리포지토리 생성 및 이미지 올리기 Amazon ECR(Elastic Container Registry) 은 도커 컨테이너의 이미지를 저장하는 Repository 서비스이다. Docker hub의 기능과 동일하다.
-AWS CLI로 이미지 리포지토리 생성 1 2 3 4 aws ecr create-repository \ --repository-name demo-flask-backend \ --image-scanning-configuration scanOnPush=true \ --region ap-northeast-2 명령어가 수행되면 리포지토리에 대한 정보가 출력되며 Amazon ECR 콘솔창에서도 생성된 리포지토리를 확인할 수 있다.]]></description>
 </item>
 </channel>
 </rss>

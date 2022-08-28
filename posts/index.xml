@@ -50,6 +50,14 @@ SQS 사용 : Queue 모델 SNS 사용 : pub/sub 모델 Kinesis : 실시간 스트
     <description><![CDATA[Amazon S3 Amazon S3은 AWS의 주요한 서비스 중 하나이다. 무한 확장infinitely scaling 가능한 storage 많은 웹사이트에서 Amazon S3을 backbone으로 사용한다. AWS의 다수의 서비스에서도 Amazon S3 통합하여 사용할 수 있다. Amazon S3 Overview Buckets Amazon S3에서는 object(files) 을 buckets(directories) 에 저장할 수 있다. 버켓은 반드시 전역적으로 유일globally unique name 해야 한다. 버켓은 region level 정의된다. (S3는 전역서비스지만 버켓은 리전리소스) Naming convention 대문자 불가 _ 불가 길이는 3~63 자리 IP 주소가 아닐 것 반드시 소문자로 또는 숫자로 시작 Objects Object는 파일이며 키를 가짐 key는 전체경로full path를 나타낸다 s3://my-bucket/my_file.]]></description>
 </item>
 <item>
+    <title>AWS Fundamentals</title>
+    <link>https://riley817.github.io/aws-fundamentals/</link>
+    <pubDate>Fri, 22 Jul 2022 08:19:49 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/aws-fundamentals/</guid>
+    <description><![CDATA[확장성 및 고가용성 확장성Scalability은 애플리케이션/시스템이 더 큰 부하를 처리할 수 있게 적용되는 것을 의미 확장성 종류 Vertical Scalability Horizontal Scalability (= elasticity) 확장성은 고 가용성(HA)과 연결되어 있지만 서로다르다. Vertical Scalability 수직적 확장은 인스턴스 크기를 증가 시키는 것을 의미 예시) t2.micro -&gt; t2.large로 확장 수직적 확장성은 데이터베이스와 같은 비분산 시스템에서 매우 일반적 RDS, ElastiCache는 수직 확장이 가능한 서비스 일반적으로 수직확장에는 제한이 있음(하드웨어 제한) Horizontal Scalability 수평적 확장은 애플리케이션의 인스턴스 혹은 시스템 수 증가 분산 시스템을 의미 웹 애플리케이션/현대 애플리케이션에서 매우 일반적 Amazon EC2와 같은 클라우드 제품 덕분에 수평확장 용이 High Availability 고가용성(HA)은 일반적으로 수평 확장과 함께 제공 최소 두 개의 데이터 센터(=A)에서 애플리케이션 및 시스템을 실행하는 것을 의미 고가용성의 목표는 데이터 센터 손실에서 살아 남는 것 고가용성은 수동적일 수 있음 (RDS Multi AZ의 경우) 고가용성은 활성화 할 수 있음 (수평적 확장을 위해) EC2를 위한 고가용성 및 확장성 Vertical Scaling : 인스턴스 사이즈를 늘린다.]]></description>
+</item>
+<item>
     <title>AWS EC2 Instance Storage</title>
     <link>https://riley817.github.io/aws-ebs/</link>
     <pubDate>Wed, 20 Jul 2022 08:19:49 &#43;0900</pubDate>
@@ -80,15 +88,6 @@ SQS 사용 : Queue 모델 SNS 사용 : pub/sub 모델 Kinesis : 실시간 스트
     <author>riley</author>
     <guid>https://riley817.github.io/aws-iam/</guid>
     <description><![CDATA[Users &amp; Groups IAM = Identity and Access Management → Global 서비스 Root 계정으로 생성 Users 는 조직의 사용자이며 그룹으로 묶을 수 있다. Groups는 user를 포함할 수 있고 다른 그룹은 포함할 수 없다. user는 여러 그룹에 속할 수 있다. Permissions Users or Groups 은 JSON 문서형태로 정책을 할당 정책 polices는 사용자의 permissions을 정의 AWS에서는 최소 권한 원칙을 적용한다 → 사용자가 필요로 하는 것보다 더 많은 권한을 부여하지 않는다. IAM Policies inheritance 인라인 정책 : 그룹에 속해있지 않아도 정책을 바로 사용자에게 연결 가능 IAM Policies Structure 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 { &#34;Version&#34;: &#34;2012-10-17&#34;, &#34;Statement&#34;: [ { &#34;Effect&#34;: &#34;Allow&#34;, &#34;Action&#34;: &#34;ec2:Describe*&#34;, &#34;Resource&#34;: &#34;*&#34; }, { &#34;Effect&#34;: &#34;Allow&#34;, &#34;Action&#34;: &#34;elasticloadbalancing:Describe*&#34;, &#34;Resource&#34;: &#34;* }, { &#34;Effect&#34;: &#34;Allow&#34;, &#34;Action&#34;: [ &#34;cloudwatch:ListMetrics&#34;, &#34;cloudwatch:GetMetricStatistics&#34;, &#34;cloudwatch:Describe*&#34; ], &#34;Resource&#34;: &#34;*&#34; } ] } 요소 Version : 정책 버전 Id : 정책을 식별할 수 있는 식별자 - 옵션 Statement : 하나 혹은 여러개 (필수사항) Statements 요소 Sid : statement 의 식별자 (옵션) Effect : 특정 statement에 접근은 허용 여부 (Allow 또는 Deny)를 나타냄 Principal : 정책이 적용 될 대상 (계정, 사용자, 역할) Action : 정책의 허용 또는 거부되는 호출 리스트 목록 Resource : 정책이 적용될 리소스 목록 Condition : statement가 언제적용될지 결정 (옵션) IAM Password Policy 강력한 비밀번호 → 계정에 대한 높은 보안 AWS에서는 설정가능한 패스워드 정책 패스워드 최소 길이 특수문자 포함 필수 입력 : 대소문자, 숫자, 특수문자 IAM 계정 사용자들의 패스워드 변경 허용 또는 금지 패스워드 만료 지정 패스워드 재사용 금지 MFA - Multi Factor Authentication MFA = 패스워드(사용자만 알고있는) + 보안 장비(사용자가 소유하고 있는) MFA devices options in AWS Virtual MFA device 하나의 디바이스에서 여러 토큰을 지원 Google Authenticator → phone only Authy → Multi device Universal 2nd Factor(U2F) Security Key YubiKey 하나의 키로 루트 그리고 IAM 사용자 지원 기타 Hardware Key Fob MFA Device Hardware Key Fob MFA Device for AWS GovCloud (US) AWS 액세스 하는 방법 AWS 액세스하는 방법 AWS Management Console : 패스워드 + MFA 사용 AWS Command Line Interface CLI : access key 사용 AWS Software Developer Kit SDK : access key 사용 Access Key는 AWS 콘솔을 통해 생성할 수 있다.]]></description>
-</item>
-<item>
-    <title>3.5 그 외 설정</title>
-    <link>https://riley817.github.io/elasticsearch-lecture3-5/</link>
-    <pubDate>Mon, 05 Nov 2018 23:38:01 &#43;0900</pubDate>
-    <author>riley</author>
-    <guid>https://riley817.github.io/elasticsearch-lecture3-5/</guid>
-    <description><![CDATA[Other Settings /etc/security/limits.conf Elasticsearch 는 많은 파일을 쓰거나 핸들링하게 된다. 열 수 있는 File descriptor가 부족하면 데이터의 손실로 이어질 수 있으며 실행할 수 있는 최대 File Descriptor 를 65,536 개 이상으로 설정하도록 한다.
-vi /etc/security/limits.conf 1 2 elasticsearch soft nofile 65536 elasticsearch hard nofile 65536 Thread 수 Elasticsearch 는 여러 유형의 작업에 대해 많은 Thread Pool을 사용하게 된다.. Elasticsearch 사용자가 만들 수 있는 Thread 가 4096 개 이상인지 확인한다. 1 2 elasticsearch soft noproc 4096 elasticsearch hard noproc 4096 Sysconfig file RPM 또는 Debian 패키지를 사용하여 시스템 설정 및 환경 변수를 지정할 수 있다.]]></description>
 </item>
 </channel>
 </rss>
