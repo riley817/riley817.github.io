@@ -9,7 +9,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://riley817.github.io/aws-fundamentals/" /><meta property="og:image" content="https://riley817.github.io/icon.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-07-22T08:19:49+09:00" />
-<meta property="article:modified_time" content="2022-08-28T23:06:44+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
+<meta property="article:modified_time" content="2022-08-29T23:21:27+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://riley817.github.io/icon.png"/>
@@ -30,8 +30,8 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/riley817.github.io\/aws-fundamentals\/"
-        },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "aws, ec2, ENI","wordcount":  659 ,
-        "url": "https:\/\/riley817.github.io\/aws-fundamentals\/","datePublished": "2022-07-22T08:19:49+09:00","dateModified": "2022-08-28T23:06:44+09:00","publisher": {
+        },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "aws, ec2, ENI","wordcount":  1588 ,
+        "url": "https:\/\/riley817.github.io\/aws-fundamentals\/","datePublished": "2022-07-22T08:19:49+09:00","dateModified": "2022-08-29T23:21:27+09:00","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/riley817.github.io\/images\/avatar.png"},"author": {
                 "@type": "Person",
@@ -105,8 +105,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">AWS Fundamentals</h1><h2 class="single-subtitle">AWS Certified SAA-C02 시험준비</h2><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-category">included in <a href="/categories/aws-certified-saa-c02-%EC%8B%9C%ED%97%98%EC%A4%80%EB%B9%84/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>AWS Certified SAA-C02 시험준비</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-07-22">2022-07-22</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;659 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;4 minutes&nbsp;<span id="/aws-fundamentals/" class="leancloud_visitors" data-flag-title="AWS Fundamentals">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-07-22">2022-07-22</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1588 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;8 minutes&nbsp;<span id="/aws-fundamentals/" class="leancloud_visitors" data-flag-title="AWS Fundamentals">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -143,7 +143,66 @@
                 <li><a href="#nlb--target-groups">NLB – Target Groups</a></li>
               </ul>
             </li>
-            <li><a href="#gateway-load-balancer">Gateway Load Balancer</a></li>
+            <li><a href="#gateway-load-balancer">Gateway Load Balancer</a>
+              <ul>
+                <li><a href="#gateway-load-balancer---target-groups">Gateway Load Balancer - Target Groups</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#stick-sessions-session-affinity">Stick Sessions (Session Affinity)</a>
+      <ul>
+        <li><a href="#cookie-names">Cookie Names</a>
+          <ul>
+            <li><a href="#application-based-cookies">Application-based Cookies</a>
+              <ul>
+                <li><a href="#사용자-정의-쿠키">사용자 정의 쿠키</a></li>
+                <li><a href="#application-cookie">Application cookie</a></li>
+              </ul>
+            </li>
+            <li><a href="#duration-based-cookies">Duration-based Cookies</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#cross-zone-로드-밸런싱">Cross-Zone 로드 밸런싱</a>
+      <ul>
+        <li><a href="#cross-zone-로드-밸런싱-사용">Cross-Zone 로드 밸런싱 사용</a></li>
+        <li><a href="#cross-zone-로드-밸런싱을-사용하지-않음">Cross-Zone 로드 밸런싱을 사용하지 않음</a></li>
+      </ul>
+    </li>
+    <li><a href="#ssltls-기본">SSL/TLS 기본</a>
+      <ul>
+        <li><a href="#load-balancer---ssl-certificates">Load Balancer - SSL Certificates</a></li>
+        <li><a href="#ssl---server-name-indication-sni">SSL - Server Name Indication (SNI)</a></li>
+      </ul>
+    </li>
+    <li><a href="#connection-draining">Connection Draining</a></li>
+    <li><a href="#auto-scaling-group">Auto Scaling Group</a>
+      <ul>
+        <li><a href="#auto-scaling-groupasg-목표">Auto Scaling Group(ASG) 목표</a></li>
+        <li><a href="#auto-scaling-group-속성">Auto Scaling Group 속성</a></li>
+        <li><a href="#auto-scaling---cloudwatch-alarms--scaling">Auto Scaling - CloudWatch Alarms &amp; Scaling</a>
+          <ul>
+            <li><a href="#dynamic-scaling-policies">Dynamic Scaling Policies</a></li>
+            <li><a href="#auto-scaling-groups--predictive-scaling">Auto Scaling Groups – Predictive Scaling</a></li>
+          </ul>
+        </li>
+        <li><a href="#확장에-적합한-측정-기준">확장에 적합한 측정 기준</a></li>
+        <li><a href="#auto-scaling-groups---scaling-cooldowns">Auto Scaling Groups - Scaling Cooldowns</a></li>
+      </ul>
+    </li>
+    <li><a href="#asg-for-solutions-architects">ASG for Solutions Architects</a>
+      <ul>
+        <li><a href="#asg-기본-종료-정책-simplified-version">ASG 기본 종료 정책 (simplified version)</a></li>
+        <li><a href="#asg-lifecycle-hooks">ASG Lifecycle Hooks</a></li>
+        <li><a href="#launchtemplate-vs-launch-configuration">LaunchTemplate vs Launch Configuration</a>
+          <ul>
+            <li><a href="#공통사항">공통사항</a></li>
+            <li><a href="#launch-configuration-legacy">Launch Configuration (legacy)</a></li>
+            <li><a href="#launchtemplate-newer">LaunchTemplate (newer)</a></li>
           </ul>
         </li>
       </ul>
@@ -370,15 +429,301 @@
 <h4 id="gateway-load-balancer">Gateway Load Balancer</h4>
 <ul>
 <li>AWS에서 써드파티 네트워크 가상 어플라이언스 구축, 확장 및 관리</li>
-<li>예시 ) 방화벽, 침입 탐지 및 차단 시스템, 심층 패킷 검사 시스템, 페이로드 조작 등</li>
+<li>예시) 방화벽, 침입 탐지 및 차단 시스템, 심층 패킷 검사 시스템, 페이로드 조작 등</li>
 <li>Layer 3 (네트워크 Layer)에서 작동 - IP Packets</li>
+<li>아래 기능들과 통합할 수 있다.
+<ul>
+<li><strong>Transparent Network Gateway</strong>: 모든 트래픽에 대한 단일 입력 수신</li>
+<li><strong>Load Balancer</strong> : 가상 어플라이언스로 트래픽 분산</li>
+</ul>
+</li>
+<li><strong>GENEVE protocol</strong> 6081 포트로 사용할 수 있다.</li>
+</ul>
+<h5 id="gateway-load-balancer---target-groups">Gateway Load Balancer - Target Groups</h5>
+<ul>
+<li>EC2 instances</li>
+<li>IP Addresses : 반드시 private IP</li>
+</ul>
+<h2 id="stick-sessions-session-affinity">Stick Sessions (Session Affinity)</h2>
+<ul>
+<li>동일한 클라이언트가 항상 로드밸런서 뒤에 있는 동일한 인스턴스로 리다이렉션 되도록 고정하는 기능을 구현</li>
+<li>CLB &amp; ALB의 기능</li>
+<li>고정 <code>cookie</code>에는 사용자가 제어하는 만료일자가 있음</li>
+<li>사용 사례 : 사용자가 세션 데이터를 잃지 않게 하기</li>
+<li><code>stickiness</code>를 사용하도록 설정하면 백엔드 EC2 인스턴스에 대한 로드가 불균형해질 수 있다.</li>
+</ul>
+<h3 id="cookie-names">Cookie Names</h3>
+<h4 id="application-based-cookies">Application-based Cookies</h4>
+<h5 id="사용자-정의-쿠키">사용자 정의 쿠키</h5>
+<ul>
+<li>애플리케이션에 의해 사용자가 지정하는 모든 특성을 포함 가능</li>
+<li>쿠키 이름은 각 대상 그룹<code>target group</code>에 대해 개별적으로 지정해야 함</li>
+<li><code>AWSALB</code>, <code>AWSALBAPP</code>,<code>AWSALBTG</code> 등 ELB 예약어는 사용하지 말것</li>
+</ul>
+<h5 id="application-cookie">Application cookie</h5>
+<ul>
+<li>로드밸런서에 의해 생성</li>
+<li>쿠키의 이름은 <code>AWSALBAPP</code></li>
+</ul>
+<h4 id="duration-based-cookies">Duration-based Cookies</h4>
+<ul>
+<li>로드밸런서에 의해 생성되는 쿠키</li>
+<li>쿠키의 이름은 ALB는 <code>AWSALB</code>, CLB는 <code>AWSELB</code></li>
+</ul>
+<h2 id="cross-zone-로드-밸런싱">Cross-Zone 로드 밸런싱</h2>
+<h3 id="cross-zone-로드-밸런싱-사용">Cross-Zone 로드 밸런싱 사용</h3>
+<ul>
+<li>각 로드 밸런서 인스턴스는 모든 AZ에 등록된 모든 인스턴스에 고르게 분산</li>
+</ul>
+<center><image src="/posts/images/aws/cross_zone_load_balancing_enabled.png">
+</center>
+<h3 id="cross-zone-로드-밸런싱을-사용하지-않음">Cross-Zone 로드 밸런싱을 사용하지 않음</h3>
+<ul>
+<li>요청이 Elastic Load Balancer 노드의 인스턴스에 분산</li>
+</ul>
+<center><image src="/posts/images/aws/cross_zone_load_balancing_disabled.png">
+</center>
+<table>
+<thead>
+<tr>
+<th><strong>Load balancer</strong></th>
+<th><strong>Cross-Zone Load Balancing</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Application Load Balancer</strong></td>
+<td>· 항상 동작(비활성화 불가능)<br/>· AZ간 요금 없음</td>
+</tr>
+<tr>
+<td><strong>Network Load Balancer</strong></td>
+<td>· 기본적으로 사용 안함<br/>· 활성화 된 경우 AZ간 요금 지불</td>
+</tr>
+<tr>
+<td><strong>Classic Load Balancer</strong></td>
+<td>· 기본적으로 사용 안함<br/>· 활성화 된 경우 AZ간 데이터 요금 없음</td>
+</tr>
+</tbody>
+</table>
+<h2 id="ssltls-기본">SSL/TLS 기본</h2>
+<ul>
+<li>SSL 인증서를 통해 클라이언트와 로드 밸런서 간 트래픽을 전송 중 암호화를 할 수 있다.</li>
+<li>SSL은 암호화를 하는데에 Secure Socket Layer를 사용</li>
+<li>TLS는 최신 버전인 전송 보안 계층을 나타낸다.</li>
+<li>요즘에는 <strong>TLS 인증서가 주로 사용되며</strong> 여전히 SSL이라고 부른다.</li>
+<li>공용 SSL 인증서는 CA(Certificate Authorities)에 의해 발급된다.</li>
+<li>SSL 인증서는 만료 날짜가 있으므로 갱신해야 한다.</li>
+</ul>
+<h3 id="load-balancer---ssl-certificates">Load Balancer - SSL Certificates</h3>
+<ul>
+<li>로드 밸런서는 <code>X.509</code> 인증서 (SSL/TLS 서버 인증서)를 사용</li>
+<li>ACM(AWS Certificate Manager)을 사용하여 인증서를 관리할 수 있음</li>
+<li>자신의 인증서를 만들어 업로드도 가능
+<div class="details admonition tip open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw" aria-hidden="true"></i>Http listener<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><ul>
+<li>기본 인증서를 지정해야 한다.</li>
+<li>여러 도메인을 지원하기 위해 선택적 으로 인증 목록을 추가 가능</li>
+<li><strong>클라이언트는 SNI(Server Name Indication)를 사용하여 도달하는 호스트 이름을 지정할 수 있다</strong></li>
+<li>이전 버전의 SSL/TLS(레거시 클라이언트)를 지원하는 정책 지정 가능</li>
+</ul>
+</div>
+        </div>
+    </div></li>
+</ul>
+<h3 id="ssl---server-name-indication-sni">SSL - Server Name Indication (SNI)</h3>
+<ul>
+<li>SNI는 <strong>여러 개의 SSL 인증서를 하나의 웹 서버에 로드하는 문제를 해결</strong>(여러 웹사이트를 서비스하기 위해)</li>
+<li>새로운 프로토콜이며 클라이언트가 초기 SSL 핸드쉐이크 대상 서버의 호스트 이름을 표시해야한다. -&gt; 그러면 서버가 올바른 인증서를 찾거나 기본 인증서를 반환</li>
+</ul>
+<div class="details admonition note open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-pencil-alt fa-fw" aria-hidden="true"></i>Note<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><ul>
+<li>ALB, NLB, CloudFront 에서만 동작</li>
+<li>CLB에서는 동작하지 않음</li>
+</ul>
+</div>
+        </div>
+    </div>
+<center><image src="/posts/images/aws/sni.png">
+</center>
+<table>
+<thead>
+<tr>
+<th><strong>Load balancer</strong></th>
+<th><strong>SSL 인증서</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Classic Load Balancer</strong></td>
+<td>· 하나의 SSL 인증서만 지원<br/>· 여러 SSL을 갖는 여러 호스트 이름에는 여러 CLB를 사용</td>
+</tr>
+<tr>
+<td><strong>Application Load Balancer</strong></td>
+<td>· 여러 SSL 인증서를 가진 리스너 지원<br/>· SNI를 사용하여 작동</td>
+</tr>
+<tr>
+<td><strong>Network Load Balancer</strong></td>
+<td>· 여러 SSL 인증서를 가진 리스너 지원<br/>· SNI를 사용하여 작동</td>
+</tr>
+</tbody>
+</table>
+<h2 id="connection-draining">Connection Draining</h2>
+<center><image src="/posts/images/aws/connection-draining.png">
+</center>
+<ul>
+<li>인스턴스가 등록 취소 중이거나 정상 상태가 아닌 동안 인스턴스에 어느 정도 시간을 주어  <code>in-flight requests</code>을 완료할 수 있도록 만들어 주는 기능</li>
+<li>각 ELB 타입마다 이름이 다름
+<ul>
+<li>CLB  : <code>Connection Draining</code></li>
+<li>ALB &amp; NLB : <code>Deregistration Delay</code>(등록 취소 지연)</li>
+</ul>
+</li>
+<li>등록취소<code>de-registering</code> 되면 등록 취소 중인 EC2 인스턴스로는 새로운 요청을 보내지 않는다.</li>
+<li>1 ~ 3,600초 (기본값 : 300초)</li>
+<li>비활성화 가능 (값을 0으로 설정)</li>
+<li>요청이 짧은 경우 낮은 값으로 설정</li>
+</ul>
+<h2 id="auto-scaling-group">Auto Scaling Group</h2>
+<h3 id="auto-scaling-groupasg-목표">Auto Scaling Group(ASG) 목표</h3>
+<ul>
+<li>증가하는 로드에 맞게 <strong>Scale Out</strong> : EC2 인스턴스 추가</li>
+<li>감소하는 로드에 맞게 <strong>Scale In</strong> : EC2 인스턴스 제거</li>
+<li>AGS에서 실행되는 최소 및 최대 EC2 인스턴스 수를 보장</li>
+<li>새 인스턴스를 자동으로 로드 밸런서에 등록</li>
+<li>이전 인스턴스가 비정상 혹은 종료된 경우 EC2 인스턴스 다시 생성</li>
+<li>ASG는 무료 (기본 EC2 인스턴스에 대해서만 지불)</li>
+</ul>
+<h3 id="auto-scaling-group-속성">Auto Scaling Group 속성</h3>
+<ul>
+<li><strong>Launch Template</strong> (이전 버전 Launch configurations는 더이상 사용되지 않음)
+<ul>
+<li>AMI + Instance Type</li>
+<li>EC2 User Data</li>
+<li>EBS Volumes</li>
+<li>Security Groups</li>
+<li>SSH Key PAir</li>
+<li>IAM Roles for your EC2 Instance</li>
+<li>Network + Subnets Information</li>
+<li>Load Balancer Information</li>
+</ul>
+</li>
+<li>Min Size / Max Size / Initial Capacity</li>
+<li>Scaling 정책</li>
+</ul>
+<h3 id="auto-scaling---cloudwatch-alarms--scaling">Auto Scaling - CloudWatch Alarms &amp; Scaling</h3>
+<ul>
+<li>CloudWatch 알람을 기반으로 AGS 확장 가능</li>
+<li>alarm이 메트릭(<strong>CPU 평균 또는 사용자 지정 메트릭</strong>) 등을 모니터링</li>
+<li>전체 ASG 인스턴스에 대해 평균 CPU와 같은 메트릭이 계산
+<div class="details admonition warning open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-exclamation-triangle fa-fw" aria-hidden="true"></i>경보 기준<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><ul>
+<li>스케일 아웃 정책 생성 (인스턴스 수 증가)</li>
+<li>스케일 인 정책 생성(인스턴스 수 감소)</li>
+</ul>
+</div>
+        </div>
+    </div></li>
+</ul>
+<h4 id="dynamic-scaling-policies">Dynamic Scaling Policies</h4>
+<table>
+<thead>
+<tr>
+<th><strong>Dynamic Scaling Policies</strong></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Target Tracking Scaling(대상추적 스케일링)</strong></td>
+<td>· 가장 간단하고 쉽게 설정<br/>example) 나는 ASG 평균 CPU가 약 40%를 유지하기를 원한다.</td>
+</tr>
+<tr>
+<td><strong>Simple / Step Scaling</strong></td>
+<td>· CloudWatch 경보가 트리거되면(CPU &gt; 70%), 2대 추가 등</td>
+</tr>
+<tr>
+<td><strong>Scheduled Actions</strong></td>
+<td>· 알려진 사용 패턴을 기반으로 확장 예상 <br/>example) 금요일 오후 5시에 최소 용량을 10으로 늘린다.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="auto-scaling-groups--predictive-scaling">Auto Scaling Groups – Predictive Scaling</h4>
+<ul>
+<li>예측 스케일링 : 지속적으로 로드 예측 및 스케줄 확장을 미리 계획한다.</li>
+</ul>
+<h3 id="확장에-적합한-측정-기준">확장에 적합한 측정 기준</h3>
+<ul>
+<li><strong>CPUUtilization(CPU 사용률)</strong> : 인스턴스 전체의 평균 CPU 활용률</li>
+<li><strong>RequestCountPerTarget(대상당 요청 수)</strong> : EC2 인스턴스 당 요청 수가 안정적인지 확인</li>
+<li><strong>Average Network In/Out(평균 네트워크 입출력)</strong> : 애플리케이션이 네트워크영역인 경우</li>
+<li><strong>Any custom metric</strong> : CloudWatch를 사용하여 푸시</li>
+</ul>
+<h3 id="auto-scaling-groups---scaling-cooldowns">Auto Scaling Groups - Scaling Cooldowns</h3>
+<ul>
+<li>스케일링 작업이 발생한 후 쿨 다운 타임이 발생(기본값 300초)</li>
+<li>쿨 다운 타임동안 ASG는 추가 인스턴스를 시작 혹은 종료하지 않는다. (측정지표가 안정화되도록 허용)
+<div class="details admonition tip open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw" aria-hidden="true"></i>Tip<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">즉시 사용할 수 있는 AMI를 사용하여 요청 시간을 단축하고 쿨 다운 타임을 단축한다.</div>
+        </div>
+    </div></li>
+</ul>
+<h2 id="asg-for-solutions-architects">ASG for Solutions Architects</h2>
+<h3 id="asg-기본-종료-정책-simplified-version">ASG 기본 종료 정책 (simplified version)</h3>
+<ol>
+<li>인스턴스 수가 가장 많은 AZ를 찾는다.</li>
+<li>AZ에 선택할 인스턴스가 여러 개 있는 경우 가장 오래된 launch configuration을 갖는 인스턴스를 삭제</li>
+</ol>
+<blockquote>
+<p>ASG는 기본적으로 AZ 전체에서 인스턴스 수 균형을 시도</p>
+</blockquote>
+<center><image src="/posts/images/aws/asg-default-termination-policy.png">
+</center>
+<h3 id="asg-lifecycle-hooks">ASG Lifecycle Hooks</h3>
+<ul>
+<li>기본적으로 ASG에서 인스턴스가 실행되자마자 서비스가 시작된다.</li>
+<li><code>Pending state</code> : 인스턴스가 서비스 상태가 되기 전에 추가 단계를 수행할 수 있음</li>
+<li><code>Terminating state</code> : 인스턴스가 종료 되기 전에 일부 작업을 수행할 수 있다.</li>
+</ul>
+<center><image src="/posts/images/aws/asg-lifecycle-hooks.png"></center>
+<h3 id="launchtemplate-vs-launch-configuration">LaunchTemplate vs Launch Configuration</h3>
+<h4 id="공통사항">공통사항</h4>
+<ul>
+<li>Amazon Machine Image(AMI) ID, 인스턴스 유형, Key pair, 보안 그룹, EC2 인스턴스를 사용하는 기타 매개변수(tags, EC2 user-data &hellip;)</li>
+</ul>
+<h4 id="launch-configuration-legacy">Launch Configuration (legacy)</h4>
+<ul>
+<li>매번 다시 만들어야 함</li>
+</ul>
+<h4 id="launchtemplate-newer">LaunchTemplate (newer)</h4>
+<ul>
+<li>여러 버전을 가질 수 있음</li>
+<li>매개 변수 하위 집합 생성 ( 재사용 및 상속을 위한 부분 구성)</li>
+<li>On-Demand 및 스팟 인스턴스를 모두 사용하여 프로비저닝</li>
+<li>T2 무제한 버스트 기능 사용 가능</li>
+<li>AWS 권장</li>
 </ul>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 2022-08-28&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/dff5074f152e65ab0bf8ef59b2c3b8a8679b8b2f" target="_blank" title="commit by riley(riley0422@icloud.com) dff5074f152e65ab0bf8ef59b2c3b8a8679b8b2f: 20220828230643">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>dff5074</a></span>
+                <span>Updated on 2022-08-29&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/c21c0df4b06c57141b21e3e2c5f60e09cf9339ba" target="_blank" title="commit by riley(riley0422@icloud.com) c21c0df4b06c57141b21e3e2c5f60e09cf9339ba: 20220829232124">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>c21c0df</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>
@@ -402,7 +747,7 @@
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
             </noscript></div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.101.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.102.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
                 </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Riley</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

@@ -135,6 +135,185 @@
 
 #### Gateway Load Balancer
 - AWS에서 써드파티 네트워크 가상 어플라이언스 구축, 확장 및 관리
-- 예시 ) 방화벽, 침입 탐지 및 차단 시스템, 심층 패킷 검사 시스템, 페이로드 조작 등
+- 예시) 방화벽, 침입 탐지 및 차단 시스템, 심층 패킷 검사 시스템, 페이로드 조작 등
 - Layer 3 (네트워크 Layer)에서 작동 - IP Packets
+- 아래 기능들과 통합할 수 있다.
+    - **Transparent Network Gateway**: 모든 트래픽에 대한 단일 입력 수신
+    - **Load Balancer** : 가상 어플라이언스로 트래픽 분산
+- **GENEVE protocol** 6081 포트로 사용할 수 있다. 
+
+##### Gateway Load Balancer - Target Groups
+- EC2 instances
+- IP Addresses : 반드시 private IP
+
+## Stick Sessions (Session Affinity)
+- 동일한 클라이언트가 항상 로드밸런서 뒤에 있는 동일한 인스턴스로 리다이렉션 되도록 고정하는 기능을 구현
+- CLB & ALB의 기능
+- 고정 `cookie`에는 사용자가 제어하는 만료일자가 있음
+- 사용 사례 : 사용자가 세션 데이터를 잃지 않게 하기
+- `stickiness`를 사용하도록 설정하면 백엔드 EC2 인스턴스에 대한 로드가 불균형해질 수 있다.
+
+### Cookie Names
+#### Application-based Cookies
+##### 사용자 정의 쿠키
+- 애플리케이션에 의해 사용자가 지정하는 모든 특성을 포함 가능
+- 쿠키 이름은 각 대상 그룹`target group`에 대해 개별적으로 지정해야 함
+- `AWSALB`, `AWSALBAPP`,`AWSALBTG` 등 ELB 예약어는 사용하지 말것
+##### Application cookie
+- 로드밸런서에 의해 생성
+- 쿠키의 이름은 `AWSALBAPP`
+
+#### Duration-based Cookies
+- 로드밸런서에 의해 생성되는 쿠키
+- 쿠키의 이름은 ALB는 `AWSALB`, CLB는 `AWSELB`
+
+## Cross-Zone 로드 밸런싱
+### Cross-Zone 로드 밸런싱 사용
+- 각 로드 밸런서 인스턴스는 모든 AZ에 등록된 모든 인스턴스에 고르게 분산
+<center><image src="/posts/images/aws/cross_zone_load_balancing_enabled.png">
+</center>
+
+### Cross-Zone 로드 밸런싱을 사용하지 않음
+- 요청이 Elastic Load Balancer 노드의 인스턴스에 분산
+<center><image src="/posts/images/aws/cross_zone_load_balancing_disabled.png">
+</center>
+
+| **Load balancer**             | **Cross-Zone Load Balancing** |
+|-------------------------------|-------------------------------|
+| **Application Load Balancer**|· 항상 동작(비활성화 불가능)<br/>· AZ간 요금 없음 |
+| **Network Load Balancer**|· 기본적으로 사용 안함<br/>· 활성화 된 경우 AZ간 요금 지불|
+| **Classic Load Balancer**|· 기본적으로 사용 안함<br/>· 활성화 된 경우 AZ간 데이터 요금 없음|
+
+## SSL/TLS 기본
+- SSL 인증서를 통해 클라이언트와 로드 밸런서 간 트래픽을 전송 중 암호화를 할 수 있다.
+- SSL은 암호화를 하는데에 Secure Socket Layer를 사용
+- TLS는 최신 버전인 전송 보안 계층을 나타낸다.
+- 요즘에는 **TLS 인증서가 주로 사용되며** 여전히 SSL이라고 부른다.
+- 공용 SSL 인증서는 CA(Certificate Authorities)에 의해 발급된다.
+- SSL 인증서는 만료 날짜가 있으므로 갱신해야 한다.
+
+### Load Balancer - SSL Certificates
+- 로드 밸런서는 `X.509` 인증서 (SSL/TLS 서버 인증서)를 사용
+- ACM(AWS Certificate Manager)을 사용하여 인증서를 관리할 수 있음
+- 자신의 인증서를 만들어 업로드도 가능
+{{<admonition tip "Http listener">}}
+- 기본 인증서를 지정해야 한다.
+- 여러 도메인을 지원하기 위해 선택적 으로 인증 목록을 추가 가능
+- **클라이언트는 SNI(Server Name Indication)를 사용하여 도달하는 호스트 이름을 지정할 수 있다**
+- 이전 버전의 SSL/TLS(레거시 클라이언트)를 지원하는 정책 지정 가능
+{{</admonition>}}
+
+### SSL - Server Name Indication (SNI)
+- SNI는 **여러 개의 SSL 인증서를 하나의 웹 서버에 로드하는 문제를 해결**(여러 웹사이트를 서비스하기 위해)
+- 새로운 프로토콜이며 클라이언트가 초기 SSL 핸드쉐이크 대상 서버의 호스트 이름을 표시해야한다. -> 그러면 서버가 올바른 인증서를 찾거나 기본 인증서를 반환
+
+{{<admonition note>}}
+- ALB, NLB, CloudFront 에서만 동작
+- CLB에서는 동작하지 않음
+{{</admonition>}}
+
+<center><image src="/posts/images/aws/sni.png">
+</center>
+
+| **Load balancer**             | **SSL 인증서** |
+|-------------------------------|-------------------------------|
+| **Classic Load Balancer**|· 하나의 SSL 인증서만 지원<br/>· 여러 SSL을 갖는 여러 호스트 이름에는 여러 CLB를 사용|
+| **Application Load Balancer**|· 여러 SSL 인증서를 가진 리스너 지원<br/>· SNI를 사용하여 작동 |
+| **Network Load Balancer**|· 여러 SSL 인증서를 가진 리스너 지원<br/>· SNI를 사용하여 작동 |
+
+## Connection Draining
+<center><image src="/posts/images/aws/connection-draining.png">
+</center>
+
+- 인스턴스가 등록 취소 중이거나 정상 상태가 아닌 동안 인스턴스에 어느 정도 시간을 주어  `in-flight requests`을 완료할 수 있도록 만들어 주는 기능
+- 각 ELB 타입마다 이름이 다름
+    - CLB  : `Connection Draining`
+    - ALB & NLB : `Deregistration Delay`(등록 취소 지연)
+- 등록취소`de-registering` 되면 등록 취소 중인 EC2 인스턴스로는 새로운 요청을 보내지 않는다.
+- 1 ~ 3,600초 (기본값 : 300초)
+- 비활성화 가능 (값을 0으로 설정)
+- 요청이 짧은 경우 낮은 값으로 설정
+
+## Auto Scaling Group
+### Auto Scaling Group(ASG) 목표
+- 증가하는 로드에 맞게 **Scale Out** : EC2 인스턴스 추가
+- 감소하는 로드에 맞게 **Scale In** : EC2 인스턴스 제거
+- AGS에서 실행되는 최소 및 최대 EC2 인스턴스 수를 보장
+- 새 인스턴스를 자동으로 로드 밸런서에 등록
+- 이전 인스턴스가 비정상 혹은 종료된 경우 EC2 인스턴스 다시 생성
+- ASG는 무료 (기본 EC2 인스턴스에 대해서만 지불)
+
+### Auto Scaling Group 속성
+- **Launch Template** (이전 버전 Launch configurations는 더이상 사용되지 않음)
+    - AMI + Instance Type
+    - EC2 User Data
+    - EBS Volumes
+    - Security Groups
+    - SSH Key PAir
+    - IAM Roles for your EC2 Instance
+    - Network + Subnets Information
+    - Load Balancer Information
+- Min Size / Max Size / Initial Capacity
+- Scaling 정책
+
+### Auto Scaling - CloudWatch Alarms & Scaling
+- CloudWatch 알람을 기반으로 AGS 확장 가능
+- alarm이 메트릭(**CPU 평균 또는 사용자 지정 메트릭**) 등을 모니터링
+- 전체 ASG 인스턴스에 대해 평균 CPU와 같은 메트릭이 계산
+{{<admonition warning "경보 기준">}}
+- 스케일 아웃 정책 생성 (인스턴스 수 증가)
+- 스케일 인 정책 생성(인스턴스 수 감소)
+{{</admonition>}}
+
+#### Dynamic Scaling Policies
+| **Dynamic Scaling Policies** | |
+|------------------------------|-------------------------------|
+| **Target Tracking Scaling(대상추적 스케일링)**  |· 가장 간단하고 쉽게 설정<br/>example) 나는 ASG 평균 CPU가 약 40%를 유지하기를 원한다.|
+| **Simple / Step Scaling**    |· CloudWatch 경보가 트리거되면(CPU > 70%), 2대 추가 등|
+| **Scheduled Actions**        |· 알려진 사용 패턴을 기반으로 확장 예상 <br/>example) 금요일 오후 5시에 최소 용량을 10으로 늘린다.|
+
+#### Auto Scaling Groups – Predictive Scaling
+- 예측 스케일링 : 지속적으로 로드 예측 및 스케줄 확장을 미리 계획한다.
+
+### 확장에 적합한 측정 기준
+- **CPUUtilization(CPU 사용률)** : 인스턴스 전체의 평균 CPU 활용률
+- **RequestCountPerTarget(대상당 요청 수)** : EC2 인스턴스 당 요청 수가 안정적인지 확인
+- **Average Network In/Out(평균 네트워크 입출력)** : 애플리케이션이 네트워크영역인 경우
+- **Any custom metric** : CloudWatch를 사용하여 푸시
+
+### Auto Scaling Groups - Scaling Cooldowns
+- 스케일링 작업이 발생한 후 쿨 다운 타임이 발생(기본값 300초)
+- 쿨 다운 타임동안 ASG는 추가 인스턴스를 시작 혹은 종료하지 않는다. (측정지표가 안정화되도록 허용)
+{{<admonition tip >}}
+즉시 사용할 수 있는 AMI를 사용하여 요청 시간을 단축하고 쿨 다운 타임을 단축한다.
+{{</admonition>}}
+
+## ASG for Solutions Architects
+### ASG 기본 종료 정책 (simplified version)
+1. 인스턴스 수가 가장 많은 AZ를 찾는다.
+2. AZ에 선택할 인스턴스가 여러 개 있는 경우 가장 오래된 launch configuration을 갖는 인스턴스를 삭제
+> ASG는 기본적으로 AZ 전체에서 인스턴스 수 균형을 시도 
+<center><image src="/posts/images/aws/asg-default-termination-policy.png">
+</center>
+
+### ASG Lifecycle Hooks
+- 기본적으로 ASG에서 인스턴스가 실행되자마자 서비스가 시작된다.
+- `Pending state` : 인스턴스가 서비스 상태가 되기 전에 추가 단계를 수행할 수 있음
+- `Terminating state` : 인스턴스가 종료 되기 전에 일부 작업을 수행할 수 있다.
+<center><image src="/posts/images/aws/asg-lifecycle-hooks.png"></center>
+
+
+### LaunchTemplate vs Launch Configuration
+#### 공통사항
+- Amazon Machine Image(AMI) ID, 인스턴스 유형, Key pair, 보안 그룹, EC2 인스턴스를 사용하는 기타 매개변수(tags, EC2 user-data ...)
+
+#### Launch Configuration (legacy)
+- 매번 다시 만들어야 함
+
+#### LaunchTemplate (newer)
+- 여러 버전을 가질 수 있음
+- 매개 변수 하위 집합 생성 ( 재사용 및 상속을 위한 부분 구성)
+- On-Demand 및 스팟 인스턴스를 모두 사용하여 프로비저닝
+- T2 무제한 버스트 기능 사용 가능
+- AWS 권장
 
