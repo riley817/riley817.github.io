@@ -6,26 +6,22 @@
         <meta name="robots" content="noodp" />
         <title>Amazon RDS, Aurora &amp; ElastiCache - Riley&#39;s DevLog</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:title" content="Amazon RDS, Aurora &amp; ElastiCache" />
 <meta property="og:description" content="AWS RDS RDS는 관계형 데이터 베이스 서비스 Relational Database Service 를 나타내며 SQL 쿼리 언어를 사용하는 데이터베이스를 위한 서비스이다.
-RDS에서 제공하는 데이터베이스
-Postgres MySQL MariaDB Oracle Microsoft SQL Server Aurora - AWS Proprietary database EC2에 DB를 운용하지 않고 RDS 사용했을 때 이점
-프로비저닝 및 OS 패치 자동화 지속적 백업과 특정 timestamp 기준 복구 (Point Time Restore) 대시보드 모니터링 읽기 성능 향상을 위한 읽기 전용 복제본 재해복구 DZ(Disaster Recovery)를 위한 Multi AZ 셋업 가능 업그레이드를 위한 유지보수 확장성 (vertical and horizontal) EBS 스토리지 백업 (gp2 or io1) Warning 그러나 인스턴스에 SSH를 따로 가질 수는 없다." />
+RDS에서 제공하는 데이터베이스 Postgres MySQL MariaDB Oracle Microsoft SQL Server Aurora - AWS Proprietary database AWS RDS 사용시 이점 RDS는 다음과 같은 서비스를 관리한다. 프로비저닝 및 OS 패치 자동화 지속적 백업과 특정 timestamp 기준 복구 (Point Time Restore) 대시보드 모니터링 읽기 성능 향상을 위한 읽기 전용 복제본 재해복구 DZ(Disaster Recovery)를 위한 Multi AZ 셋업 가능 업그레이드를 위한 유지보수 확장성 (vertical and horizontal) EBS 스토리지 백업 (gp2 or io1) 그러나 인스턴스에 SSH를 따로 가질 수는 없다." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://riley817.github.io/aws-rds/" /><meta property="og:image" content="https://riley817.github.io/icon.png"/><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2022-08-06T17:41:51+09:00" />
-<meta property="article:modified_time" content="2022-08-29T23:21:27+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
+<meta property="article:published_time" content="2022-08-01T17:41:51+09:00" />
+<meta property="article:modified_time" content="2022-10-04T23:17:44+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://riley817.github.io/icon.png"/>
 
 <meta name="twitter:title" content="Amazon RDS, Aurora &amp; ElastiCache"/>
 <meta name="twitter:description" content="AWS RDS RDS는 관계형 데이터 베이스 서비스 Relational Database Service 를 나타내며 SQL 쿼리 언어를 사용하는 데이터베이스를 위한 서비스이다.
-RDS에서 제공하는 데이터베이스
-Postgres MySQL MariaDB Oracle Microsoft SQL Server Aurora - AWS Proprietary database EC2에 DB를 운용하지 않고 RDS 사용했을 때 이점
-프로비저닝 및 OS 패치 자동화 지속적 백업과 특정 timestamp 기준 복구 (Point Time Restore) 대시보드 모니터링 읽기 성능 향상을 위한 읽기 전용 복제본 재해복구 DZ(Disaster Recovery)를 위한 Multi AZ 셋업 가능 업그레이드를 위한 유지보수 확장성 (vertical and horizontal) EBS 스토리지 백업 (gp2 or io1) Warning 그러나 인스턴스에 SSH를 따로 가질 수는 없다."/>
+RDS에서 제공하는 데이터베이스 Postgres MySQL MariaDB Oracle Microsoft SQL Server Aurora - AWS Proprietary database AWS RDS 사용시 이점 RDS는 다음과 같은 서비스를 관리한다. 프로비저닝 및 OS 패치 자동화 지속적 백업과 특정 timestamp 기준 복구 (Point Time Restore) 대시보드 모니터링 읽기 성능 향상을 위한 읽기 전용 복제본 재해복구 DZ(Disaster Recovery)를 위한 Multi AZ 셋업 가능 업그레이드를 위한 유지보수 확장성 (vertical and horizontal) EBS 스토리지 백업 (gp2 or io1) 그러나 인스턴스에 SSH를 따로 가질 수는 없다."/>
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://riley817.github.io/aws-rds/" /><link rel="prev" href="https://riley817.github.io/aws-integration-messaging/" /><link rel="next" href="https://riley817.github.io/aws-security-encryption/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://riley817.github.io/aws-rds/" /><link rel="prev" href="https://riley817.github.io/aws-fundamentals/" /><link rel="next" href="https://riley817.github.io/aws-s3/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
     {
@@ -36,8 +32,8 @@ Postgres MySQL MariaDB Oracle Microsoft SQL Server Aurora - AWS Proprietary data
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/riley817.github.io\/aws-rds\/"
-        },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "elasticsearch","wordcount":  1428 ,
-        "url": "https:\/\/riley817.github.io\/aws-rds\/","datePublished": "2022-08-06T17:41:51+09:00","dateModified": "2022-08-29T23:21:27+09:00","publisher": {
+        },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "RDS, Aurora, ElastiCache","wordcount":  1519 ,
+        "url": "https:\/\/riley817.github.io\/aws-rds\/","datePublished": "2022-08-01T17:41:51+09:00","dateModified": "2022-10-04T23:17:44+09:00","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/riley817.github.io\/images\/avatar.png"},"author": {
                 "@type": "Person",
@@ -111,8 +107,8 @@ Postgres MySQL MariaDB Oracle Microsoft SQL Server Aurora - AWS Proprietary data
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Amazon RDS, Aurora & ElastiCache</h1><h2 class="single-subtitle">AWS Certified SAA-C02 시험준비</h2><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-category">included in <a href="/categories/aws-certified-saa-c02-%EC%8B%9C%ED%97%98%EC%A4%80%EB%B9%84/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>AWS Certified SAA-C02 시험준비</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-08-06">2022-08-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1428 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;7 minutes&nbsp;<span id="/aws-rds/" class="leancloud_visitors" data-flag-title="Amazon RDS, Aurora &amp; ElastiCache">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-08-01">2022-08-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1519 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;8 minutes&nbsp;<span id="/aws-rds/" class="leancloud_visitors" data-flag-title="Amazon RDS, Aurora &amp; ElastiCache">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -122,74 +118,72 @@ Postgres MySQL MariaDB Oracle Microsoft SQL Server Aurora - AWS Proprietary data
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
+    <li><a href="#aws-rds">AWS RDS</a>
+      <ul>
+        <li><a href="#aws-rds-사용시-이점">AWS RDS 사용시 이점</a></li>
+      </ul>
+    </li>
     <li><a href="#rds-backup">RDS Backup</a>
       <ul>
         <li><a href="#rds-자동백업">RDS 자동백업</a></li>
         <li><a href="#db-스냅샷">DB 스냅샷</a></li>
-        <li><a href="#rds---storage-auto-scaling">RDS - Storage Auto Scaling</a></li>
       </ul>
     </li>
-    <li><a href="#읽기-전용-복제본-read-replicas">읽기 전용 복제본 <code>Read Replicas</code></a>
+    <li><a href="#rds-storage-auto-scaling">RDS Storage Auto Scaling</a></li>
+    <li><a href="#읽기-확장성을-위한-rds-읽기-복제본read-replicas">읽기 확장성을 위한 RDS 읽기 복제본(Read Replicas)</a>
       <ul>
         <li><a href="#rds-읽기-복제본-사용-사례">RDS 읽기 복제본 사용 사례</a></li>
         <li><a href="#네트워크-비용">네트워크 비용</a></li>
       </ul>
     </li>
-    <li><a href="#다중-azdisaster-recovery">다중 AZ<code>(Disaster Recovery)</code></a>
+    <li><a href="#rds-multi-azdisaster-recovery">RDS Multi AZ<code>(Disaster Recovery)</code></a>
       <ul>
         <li><a href="#단일-az에서-다중-az로">단일 AZ에서 다중 AZ로</a></li>
       </ul>
     </li>
-    <li><a href="#rds-보안">RDS 보안</a>
+    <li><a href="#rds-보안---encryption">RDS 보안 - Encryption</a>
       <ul>
-        <li><a href="#암호화">암호화</a>
-          <ul>
-            <li><a href="#at-rest-암호화">At-Rest 암호화</a></li>
-            <li><a href="#in-flight-암호화">In-flight 암호화</a></li>
-          </ul>
-        </li>
+        <li><a href="#at-rest-암호화">At rest 암호화</a></li>
+        <li><a href="#in-flight-암호화">In-flight 암호화</a></li>
         <li><a href="#암호화-옵션">암호화 옵션</a>
           <ul>
             <li><a href="#rds-백업-암호화">RDS 백업 암호화</a></li>
             <li><a href="#암호화되지-않은-rds-데이터베이스-암호화">암호화되지 않은 RDS 데이터베이스 암호화</a></li>
           </ul>
         </li>
-        <li><a href="#network--iam">Network &amp; IAM</a>
+      </ul>
+    </li>
+    <li><a href="#rds-보안--network--iam">RDS 보안 : Network &amp; IAM</a>
+      <ul>
+        <li><a href="#네트워크-보안">네트워크 보안</a></li>
+        <li><a href="#접근-제어-관리">접근 제어 관리</a></li>
+        <li><a href="#rds-iam-authentication">RDS IAM Authentication</a>
           <ul>
-            <li><a href="#네트워크-보안">네트워크 보안</a></li>
-            <li><a href="#접근-제어-관리">접근 제어 관리</a></li>
-            <li><a href="#rds-iam-authentication">RDS IAM Authentication</a>
-              <ul>
-                <li><a href="#장점">장점</a></li>
-              </ul>
-            </li>
+            <li><a href="#장점">장점</a></li>
           </ul>
         </li>
       </ul>
     </li>
     <li><a href="#rds-보안-요약">RDS 보안 요약</a>
       <ul>
-        <li><a href="#at-rest-암호화-1">AT-REST 암호화</a></li>
+        <li><a href="#encryption-at-rest">Encryption at rest</a></li>
         <li><a href="#사용자가-해야할-일">사용자가 해야할 일</a></li>
         <li><a href="#aws-하는일">AWS 하는일</a></li>
       </ul>
     </li>
-  </ul>
-
-  <ul>
-    <li><a href="#고가용성과-읽기-확장성">고가용성과 읽기 확장성</a></li>
-    <li><a href="#aurora-db-cluster">Aurora DB Cluster</a></li>
+    <li><a href="#amazon-aurora">Amazon Aurora</a>
+      <ul>
+        <li><a href="#aws-aurora의-고가용성과-읽기-확장성">AWS Aurora의 고가용성과 읽기 확장성</a></li>
+        <li><a href="#aurora-db-cluster">Aurora DB Cluster</a></li>
+      </ul>
+    </li>
     <li><a href="#aurora의-기능">Aurora의 기능</a></li>
     <li><a href="#aurora-보안">Aurora 보안</a></li>
-    <li><a href="#aurora-복제본">Aurora 복제본</a>
+    <li><a href="#aurora-replicas">Aurora Replicas</a>
       <ul>
-        <li><a href="#auto-scaling">Auto Scaling</a></li>
-        <li><a href="#custom-endpoints">Custom Endpoints</a></li>
-        <li><a href="#serverless">Serverless</a>
-          <ul>
-            <li><a href="#serverless---동작방식">Serverless - 동작방식</a></li>
-          </ul>
-        </li>
+        <li><a href="#aurora-auto-scaling">Aurora Auto Scaling</a></li>
+        <li><a href="#aurora-custom-endpoints">Aurora Custom Endpoints</a></li>
+        <li><a href="#aurora-serverless">Aurora Serverless</a></li>
         <li><a href="#multi-master">Multi-Master</a></li>
         <li><a href="#글로벌-aurora">글로벌 Aurora</a>
           <ul>
@@ -231,10 +225,14 @@ Postgres MySQL MariaDB Oracle Microsoft SQL Server Aurora - AWS Proprietary data
     </li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><h1 id="aws-rds">AWS RDS</h1>
+            </div><div class="content" id="content"><h2 id="aws-rds">AWS RDS</h2>
 <p>RDS는 관계형 데이터 베이스 서비스 <code>Relational Database Service</code> 를 나타내며 SQL 쿼리 언어를 사용하는 데이터베이스를 위한 서비스이다.</p>
-<p><strong>RDS에서 제공하는 데이터베이스</strong></p>
-<ul>
+<div class="details admonition success open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-check-circle fa-fw" aria-hidden="true"></i>RDS에서 제공하는 데이터베이스<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><ul>
 <li>Postgres</li>
 <li>MySQL</li>
 <li>MariaDB</li>
@@ -242,7 +240,12 @@ Postgres MySQL MariaDB Oracle Microsoft SQL Server Aurora - AWS Proprietary data
 <li>Microsoft SQL Server</li>
 <li>Aurora - AWS Proprietary database</li>
 </ul>
-<p><strong>EC2에 DB를 운용하지 않고 RDS 사용했을 때 이점</strong></p>
+</div>
+        </div>
+    </div>
+<h3 id="aws-rds-사용시-이점">AWS RDS 사용시 이점</h3>
+<ul>
+<li>RDS는 다음과 같은 서비스를 관리한다.
 <ul>
 <li>프로비저닝 및 OS 패치 자동화</li>
 <li>지속적 백업과 특정 timestamp 기준 복구 <code>(Point Time Restore)</code></li>
@@ -251,21 +254,18 @@ Postgres MySQL MariaDB Oracle Microsoft SQL Server Aurora - AWS Proprietary data
 <li><strong>재해복구 <code>DZ(Disaster Recovery)</code>를 위한 Multi AZ 셋업 가능</strong></li>
 <li>업그레이드를 위한 유지보수</li>
 <li>확장성 (vertical and horizontal)</li>
-<li>EBS 스토리지 백업 <code>(gp2 or io1)</code>
-<div class="details admonition warning open">
-        <div class="details-summary admonition-title">
-            <i class="icon fas fa-exclamation-triangle fa-fw" aria-hidden="true"></i>Warning<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
-        </div>
-        <div class="details-content">
-            <div class="admonition-content">그러나 인스턴스에 SSH를 따로 가질 수는 없다.</div>
-        </div>
-    </div></li>
+<li>EBS 스토리지 백업 <code>(gp2 or io1)</code></li>
+</ul>
+<blockquote>
+<p>그러나 인스턴스에 SSH를 따로 가질 수는 없다.</p>
+</blockquote>
+</li>
 </ul>
 <h2 id="rds-backup">RDS Backup</h2>
 <p>RDS에서는 자동으로 백업이 실행된다.</p>
 <h3 id="rds-자동백업">RDS 자동백업</h3>
 <ul>
-<li>매일 수행되는 데이터베이스 전체에 대한 백업</li>
+<li>매일 수행되는 데이터베이스 전체에 대한 백업(유지 관리 기간 중)</li>
 <li>RDS에 의해 트랜잭션 로그가 5분 마다 백업된다. → 원하는 시점으로 복원할 수 있는 기능 (가장 오래된 백업의 5분 전으로)</li>
 <li>보존기간은 7일 (최대 35일까지 늘릴 수 있다.)</li>
 </ul>
@@ -274,14 +274,25 @@ Postgres MySQL MariaDB Oracle Microsoft SQL Server Aurora - AWS Proprietary data
 <li>사용자에 의해 수동으로 트리거 된다.</li>
 <li>원하는 기간 동안 백업을 보존할 수 있다.</li>
 </ul>
-<h3 id="rds---storage-auto-scaling">RDS - Storage Auto Scaling</h3>
+<h2 id="rds-storage-auto-scaling">RDS Storage Auto Scaling</h2>
 <ul>
-<li>RDS DB 인스턴스의 스토리지를 동적으로 늘릴 수 있도록 지원한다.</li>
-<li>RDS가 사용 가능한 데이터베이스 스토리지가 부족함을 감지하면 자동으로 확장</li>
-<li>데이터베이스의 스토리지를 수동 확장 방지</li>
-<li><strong>Maximum Storage Threshold</strong> <code>최대 스토리지 임계값(최대 제한)</code> 을 설정해야 한다.</li>
-<li><strong>예측할 수 없는 워크로드 <code>unpredictable workloads</code> 가 있는 애플리케이션에 적합</strong></li>
-<li>모든 RDS 데이터베이스 엔진을 지원 (MariaDB, MySQL, PostgreSQL, SQL Server, Oracle)
+<li>
+<p>RDS DB 인스턴스의 스토리지를 동적으로 늘릴 수 있도록 지원한다.</p>
+</li>
+<li>
+<p>RDS가 사용 가능한 데이터베이스 스토리지가 부족함을 감지하면 자동으로 확장</p>
+</li>
+<li>
+<p>데이터베이스의 스토리지를 수동 확장 방지</p>
+</li>
+<li>
+<p><strong>Maximum Storage Threshold</strong> <code>최대 스토리지 임계값(최대 제한)</code> 을 설정해야 한다.</p>
+</li>
+<li>
+<p><strong>예측할 수 없는 워크로드 <code>unpredictable workloads</code> 가 있는 애플리케이션에 적합</strong></p>
+</li>
+<li>
+<p>모든 RDS 데이터베이스 엔진을 지원 (MariaDB, MySQL, PostgreSQL, SQL Server, Oracle)</p>
 <div class="details admonition info open">
         <div class="details-summary admonition-title">
             <i class="icon fas fa-info-circle fa-fw" aria-hidden="true"></i>자동으로 스토리지가 변경되는 경우<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
@@ -294,26 +305,24 @@ Postgres MySQL MariaDB Oracle Microsoft SQL Server Aurora - AWS Proprietary data
 </ul>
 </div>
         </div>
-    </div></li>
+    </div>
+</li>
 </ul>
-<h2 id="읽기-전용-복제본-read-replicas">읽기 전용 복제본 <code>Read Replicas</code></h2>
+<h2 id="읽기-확장성을-위한-rds-읽기-복제본read-replicas">읽기 확장성을 위한 RDS 읽기 복제본(Read Replicas)</h2>
+<center>
+  <image src="/posts/images/aws/rds-read-replicas.jpg" width="500px" caption="">
+</center>
 <ul>
 <li>최대 5개 까지 가능</li>
 <li>AZ 내, AZ 교차, 리전 교차</li>
-<li>읽기 복제본의 복제는 <strong>ASYNC</strong> 읽기 결과는 일관된다.</li>
+<li>읽기 복제본의 복제는 <strong>ASYNC</strong>이며 읽기 결과는 일관된다.</li>
 <li>읽기 복제본은 자체 DB로 승격가능</li>
 <li>애플리케이션에서는 읽기 복제본을 활용하기 위해서는 연결 문자열을 업데이트 해야 한다.</li>
 </ul>
-<a class="lightgallery" href="/posts/images/aws/rds-read-replicas.png" title="/posts/images/aws/rds-read-replicas.png" data-thumbnail="/posts/images/aws/rds-read-replicas.png">
-        <img
-            class="lazyload"
-            src="/svg/loading.min.svg"
-            data-src="/posts/images/aws/rds-read-replicas.png"
-            data-srcset="/posts/images/aws/rds-read-replicas.png, /posts/images/aws/rds-read-replicas.png 1.5x, /posts/images/aws/rds-read-replicas.png 2x"
-            data-sizes="auto"
-            alt="/posts/images/aws/rds-read-replicas.png" />
-    </a>
 <h3 id="rds-읽기-복제본-사용-사례">RDS 읽기 복제본 사용 사례</h3>
+<center>
+  <image src="/posts/images/aws/rds-read-replicas-usecase.jpg" width="500px" caption="">
+</center>
 <ul>
 <li>애플리케이션 분석을 실행하기 위한 애플리케이션을 실행하려는 경우</li>
 <li>읽기 복제본을 생성 후 새로운 워크로드에서 실행하려는 경우</li>
@@ -325,56 +334,50 @@ Postgres MySQL MariaDB Oracle Microsoft SQL Server Aurora - AWS Proprietary data
 <li>AZ간 데이터가 이동할 때 네트워크 비용이 발생한다.</li>
 <li><strong>RDS 읽기 복제본를 사용하면 같은 리전이면 복제본의 수수료를 지불하지 않는다.</strong></li>
 </ul>
-<h2 id="다중-azdisaster-recovery">다중 AZ<code>(Disaster Recovery)</code></h2>
+<h2 id="rds-multi-azdisaster-recovery">RDS Multi AZ<code>(Disaster Recovery)</code></h2>
+<center>
+  <image src="/posts/images/aws/rds-multi-az-dr.png" width="500px" caption="">
+</center>
 <ul>
 <li><strong>동기식<code>SYNC</code></strong> 으로 복제</li>
 <li>하나의 DNS 이름을 가지고 자동으로 <code>standby</code> 데이베이스에 복구</li>
 <li>가용성 증가</li>
 <li>가용영역의 네트워크가 손실되는 경우 스토리지를 복구한다.</li>
 <li>애플리케이션에 수동 개입이 없음</li>
-<li>Multi-AZ 복제본은 비용이 발생하지 않음
+<li>Multi-AZ 복제본은 비용이 발생하지 않음</li>
+<li>읽기 복제본은 재해 복구를 위해 다중 AZ로 설정된다.</li>
+</ul>
+<h3 id="단일-az에서-다중-az로">단일 AZ에서 다중 AZ로</h3>
+<ul>
+<li>
+<p>zero downtime operation (DB 중지가 불필요하다)</p>
+</li>
+<li>
+<p>데이터베이스의 <code>modify</code> 버튼만 클릭하면 된다.</p>
 <div class="details admonition info open">
         <div class="details-summary admonition-title">
-            <i class="icon fas fa-info-circle fa-fw" aria-hidden="true"></i>Info<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+            <i class="icon fas fa-info-circle fa-fw" aria-hidden="true"></i>내부적으로 발생하는 절차<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
         </div>
         <div class="details-content">
             <div class="admonition-content"><ul>
-<li>읽기 복제본은 재해 복구를 위해 다중 AZ로 설정된다.</li>
-</ul>
-</div>
-        </div>
-    </div></li>
-</ul>
-<a class="lightgallery" href="/posts/images/aws/rds-multi-az-dr.png?#center" title="/posts/images/aws/rds-multi-az-dr.png?#center" data-thumbnail="/posts/images/aws/rds-multi-az-dr.png?#center">
-        <img
-            class="lazyload"
-            src="/svg/loading.min.svg"
-            data-src="/posts/images/aws/rds-multi-az-dr.png?#center"
-            data-srcset="/posts/images/aws/rds-multi-az-dr.png?#center, /posts/images/aws/rds-multi-az-dr.png?#center 1.5x, /posts/images/aws/rds-multi-az-dr.png?#center 2x"
-            data-sizes="auto"
-            alt="/posts/images/aws/rds-multi-az-dr.png?#center" width="500" />
-    </a>
-<h3 id="단일-az에서-다중-az로">단일 AZ에서 다중 AZ로</h3>
-<ul>
-<li>DB 중지가 불필요하다 -&gt; downtime이 없는 운영이 가능</li>
-<li>내부적으로 발생하는 절차
-<ul>
 <li>스냅샷이 생성</li>
 <li>스냅샷에서 새로운 데이터베이스가 AZ에 복원</li>
 <li>두 데이터베이스간 동기화 설정</li>
 </ul>
+</div>
+        </div>
+    </div>
 </li>
 </ul>
-<h2 id="rds-보안">RDS 보안</h2>
-<h3 id="암호화">암호화</h3>
-<h4 id="at-rest-암호화">At-Rest 암호화</h4>
+<h2 id="rds-보안---encryption">RDS 보안 - Encryption</h2>
+<h3 id="at-rest-암호화">At rest 암호화</h3>
 <ul>
-<li>AWS KMS로 마스터 데이터베이스 및 읽기 전용 데이터베이스 AES-256 암호화</li>
+<li>AWS KMS의 AES-256 암호화를 사용하여 마스터 및 읽기 전용 암호화 가능</li>
 <li>암호화 실행 시간을 정의 해야 한다.</li>
 <li><strong>마스터 데이터베이스를 암호화하지 않으면 읽기 전용 데이터베이스도 암호화 할 수 없다</strong></li>
 <li>Oracle 및 SQL Server에서 TED(Transparent Data Encryption) 사용 가능하다. -&gt; 데이터 암호화의 대안 제안</li>
 </ul>
-<h4 id="in-flight-암호화">In-flight 암호화</h4>
+<h3 id="in-flight-암호화">In-flight 암호화</h3>
 <ul>
 <li>SSL 인증서를 통한 데이터 전송중 암호화</li>
 <li>데이터베이스를 연결 할 때 신뢰할 수 있는 인증서로 SSL 옵션을 제공하여 SSL을 제공할 수 있다.
@@ -383,19 +386,15 @@ Postgres MySQL MariaDB Oracle Microsoft SQL Server Aurora - AWS Proprietary data
             <i class="icon fas fa-check-circle fa-fw" aria-hidden="true"></i>모든 클라이언트가 SSL 사용하게 하려면<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
         </div>
         <div class="details-content">
-            <div class="admonition-content"><ul>
-<li><strong>PostgreSQL</strong>:
+            <div class="admonition-content"><p><strong>PostgreSQL</strong><br/></p>
 <ul>
 <li>AWS RDS Console (Parameter Groups)</li>
 <li><code>rds.force_ssl=1</code></li>
 </ul>
-</li>
-<li><strong>MySQL</strong>:
+<p><strong>MySQL</strong><br/></p>
 <ul>
 <li>데이터베이스 내부에서 실행</li>
 <li><code>GRANT USAGE ON *.* TO 'mysqluser'@'%' REQUIRE SSL;</code></li>
-</ul>
-</li>
 </ul>
 </div>
         </div>
@@ -404,6 +403,7 @@ Postgres MySQL MariaDB Oracle Microsoft SQL Server Aurora - AWS Proprietary data
 <h3 id="암호화-옵션">암호화 옵션</h3>
 <h4 id="rds-백업-암호화">RDS 백업 암호화</h4>
 <ul>
+<li>암호화되지 않은 RDS 데이터베이스의 스냅샷은 암호화되지 않음.</li>
 <li>암호화 된 RDS 데이터베이스만 스냅샷이 암호화 됨</li>
 <li>스냅샷을 암호화 된 스냅샷으로 복사할 수 있음</li>
 </ul>
@@ -414,43 +414,39 @@ Postgres MySQL MariaDB Oracle Microsoft SQL Server Aurora - AWS Proprietary data
 <li>암호화 된 스냅샷에서 데이터베이스를 복원한다.</li>
 <li>응용프로그램에서 새 데이터베이스로 마이그레이션 후 이전 데이터베이스는 삭제한다.</li>
 </ol>
-<h3 id="network--iam">Network &amp; IAM</h3>
-<h4 id="네트워크-보안">네트워크 보안</h4>
+<h2 id="rds-보안--network--iam">RDS 보안 : Network &amp; IAM</h2>
+<h3 id="네트워크-보안">네트워크 보안</h3>
 <ul>
-<li>RDS는 일반적으로 프라이빗 서브넷에 구축된다.</li>
-<li>RDS 보안은 보안 그룹을 통해 RDS와 통신할 수 있는 IP와 보안 그룹을 제어</li>
+<li>RDS는 일반적으로 public 서브넷이 아닌 private 서브넷에 구축된다.</li>
+<li>RDS 보안은 보안 그룹을 활용하여 작동하며, RDS와 통신할 수 있는 IP와 보안 그룹을 제어한다.</li>
 </ul>
-<h4 id="접근-제어-관리">접근 제어 관리</h4>
+<h3 id="접근-제어-관리">접근 제어 관리</h3>
 <ul>
-<li>데이터베이스의 username과 password 로그인을 사용하거나 RDS MySQL &amp; PostgreSQL에서는 IAM 기반의 인증을 사용할 수 있다.</li>
+<li>IAM 정책을 통해(RDS API를 통해) AWS RDS를 관리할 수 있는 사용자를 제어할 수 있다.</li>
+<li>기존 사용자 및 암호화를 사용하여 데이터베이스에 로그인 할 수 있다.</li>
+<li>IAM 기반 인증을 사용하여 RDS MySQL 및 PostgreSQL에 로그인할 수 있다.</li>
 </ul>
-<h4 id="rds-iam-authentication">RDS IAM Authentication</h4>
+<h3 id="rds-iam-authentication">RDS IAM Authentication</h3>
+<center>
+  <image src="/posts/images/aws/rds-auth-iam.png" width="300">
+</center>
 <ul>
-<li>RDS MySQL &amp; PostgreSQL에서만 IAM 데이터베이스 인증이 가능하다.</li>
-<li>패스워드는 필요하지않고 RDS API를 통해 IAM으로 인증 토큰을 얻을 수 있다.</li>
-<li>인증 토큰은 15분의 수명시간을 갖는다.</li>
+<li>IAM 데이터베이스 인증은 <strong>MySQL 및 PostgreSQL</strong>과 함께 작동한다.</li>
+<li>비밀번호는 필요하지 않고 IAM &amp; RDS API 호출을 통해 획득한 인증 토큰만 필요하다.</li>
+<li>인증토큰은 15분의 lifetime을 갖는다.</li>
 </ul>
-<a class="lightgallery" href="/posts/images/aws/rds-auth-iam.png" title="/posts/images/aws/rds-auth-iam.png" data-thumbnail="/posts/images/aws/rds-auth-iam.png">
-        <img
-            class="lazyload"
-            src="/svg/loading.min.svg"
-            data-src="/posts/images/aws/rds-auth-iam.png"
-            data-srcset="/posts/images/aws/rds-auth-iam.png, /posts/images/aws/rds-auth-iam.png 1.5x, /posts/images/aws/rds-auth-iam.png 2x"
-            data-sizes="auto"
-            alt="/posts/images/aws/rds-auth-iam.png" width="300" />
-    </a>
-<h5 id="장점">장점</h5>
+<h4 id="장점">장점</h4>
 <ul>
 <li>네트워크의 in/out은 SSL을 통해 암호화된다.</li>
 <li>IAM에서 DB 대신에 사용자를 관리</li>
 <li>IAM 역할 및 EC2 인스턴스 프로파일을 활용하여 손쉽게 통합 가능하다.</li>
 </ul>
 <h2 id="rds-보안-요약">RDS 보안 요약</h2>
-<h3 id="at-rest-암호화-1">AT-REST 암호화</h3>
-<ul>
+<h3 id="encryption-at-rest">Encryption at rest</h3>
+<ol>
 <li>DB 인스턴스를 처음 생성할 때만 수행</li>
-<li>암호화 되지 않은 DB =&gt; 스냅샷 생성 =&gt; 스냅샷을 암호화된 것으로 복사 =&gt; 스냅샷에서 DB 생성</li>
-</ul>
+<li>암호화 되지 않은 DB -&gt; 스냅샷 생성 -&gt; 스냅샷을 암호화된 것으로 복사 -&gt; 스냅샷에서 DB 생성</li>
+</ol>
 <h3 id="사용자가-해야할-일">사용자가 해야할 일</h3>
 <ul>
 <li>데이터베이스 보안그룹의 ports/ip/security group 인바운드 규칙 확인한다.</li>
@@ -465,53 +461,49 @@ Postgres MySQL MariaDB Oracle Microsoft SQL Server Aurora - AWS Proprietary data
 <li>사용자가 수동으로 OS 패치를 하지 않아도 됨</li>
 <li>사용자가 기본 인스턴스를 확인하지 않아도 됨</li>
 </ul>
-<h1 id="amazon-aurora">Amazon Aurora</h1>
+<h2 id="amazon-aurora">Amazon Aurora</h2>
 <ul>
-<li>Aurora는 AWS의 독점 기술 (오픈소스는 아님)</li>
-<li>Postgres 그리고 MySQL만 호환된다.
+<li>Aurora는 AWS의 독점 기술 (그러나 오픈소스는 아니다.)</li>
+<li>Postgres 그리고 MySQL은 모두 Aurora DB로 지원된다.
 <ul>
 <li>드라이버가 Postgres, mysql 데이터베이스인 것처럼 작동하는 것을 의미</li>
 </ul>
 </li>
-<li>AWS 최적화. RDS에 비해 3배 향상된 성능</li>
+<li>Aurora는 AWS 클라우드에 최적화되어 있으며, RDS의 MySQL 보다 5배, RDS의 Postgres 보다 3배 향상된 성능을 제공한다.</li>
 <li>스토리지는 자동으로 10GB, 최대 128 TB 까지 증가</li>
 <li>MySQL을 5개의 복제본만 가질 수 있는 반면 Aurora는 15개의 복제본을 가질 수 있다.</li>
 <li>복제 프로세스가 더 빠르다</li>
 <li>즉각적인 장애 복구. native high availability (HA)</li>
 <li>RDS에 비해 비용이 20% 높지만 규모가 클 경우 더 효율적</li>
 </ul>
-<h2 id="고가용성과-읽기-확장성">고가용성과 읽기 확장성</h2>
-<ul>
-<li>
-<p>6개의 데이터 복제본은 3개의 AZ에 걸쳐 저장</p>
-<ul>
-<li>쓰기 시 4개의 복제본만 있으면 됨</li>
-<li>읽기 시 3개의 복제본만 있으면 됨</li>
-<li>P2P(Peer-to-Peer) 복제를 통한 자가 복구</li>
-<li>수백개의 볼륨을 걸쳐 스트라이핑</li>
+<h3 id="aws-aurora의-고가용성과-읽기-확장성">AWS Aurora의 고가용성과 읽기 확장성</h3>
+<div class="details admonition success open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-check-circle fa-fw" aria-hidden="true"></i>6개의 데이터 복제본이 3개의 AZ에 걸쳐 저장<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><ul>
+<li>쓰기의 경우 4개의 복제본만 있으면 된다.</li>
+<li>읽기 시 3개의 복제본만 있으면 된다.</li>
+<li>peer-to-peer 복제를 통해 자가 복구한다.</li>
+<li>수백개의 볼륨을 걸쳐 스토리지를 스트리핑</li>
 </ul>
-</li>
-<li>
-<p>쓰기 가능 마스터 하나</p>
-</li>
-<li>
-<p>30초 이내에 자동으로 마스터 장애 복구 실행</p>
-</li>
-<li>
-<p>마스터 + 최대 15개의 읽기 전용</p>
-</li>
-<li>
-<p><strong>리전 간 읽기 전용 복제 지원</strong></p>
-</li>
-</ul>
-<h2 id="aurora-db-cluster">Aurora DB Cluster</h2>
+</div>
+        </div>
+    </div>
 <ul>
-<li>Writer 엔드포인트를 제공 : 항상 마스터를 가리킴</li>
-<li>읽기 전용 오토 스케일링
-<ul>
-<li>Reader 엔드포인트 : 오토 스케일링 된 읽기 전용 복제본 로드 밸런싱</li>
+<li>쓰기 가능 마스터 하나이다.</li>
+<li>30초 이내에 자동으로 마스터 장애 복구 실행</li>
+<li>마스터 + 최대 15개의 읽기 전용 제공</li>
+<li><strong>리전 간 읽기 전용 복제 지원</strong></li>
 </ul>
-</li>
+<h3 id="aurora-db-cluster">Aurora DB Cluster</h3>
+<center>
+  <image src="/posts/images/aws/db-cluster.jpg" width="1000px">
+</center>
+<ul>
+<li><strong>Writer Endpoint</strong> : 항상 마스터를 가리킴</li>
+<li><strong>Reader Endpoint</strong> : 오토 스케일링 된 읽기 전용 복제본 로드 밸런싱</li>
 </ul>
 <h2 id="aurora의-기능">Aurora의 기능</h2>
 <ul>
@@ -523,52 +515,89 @@ Postgres MySQL MariaDB Oracle Microsoft SQL Server Aurora - AWS Proprietary data
 <li>자동화 된 무중단 패치</li>
 <li>향상된 모니터링</li>
 <li>정기 유지보수</li>
-<li><code>Bactrack</code> : 백업을 사용하지 않고 언제든지 데이터를 복원</li>
+<li><code>Backtrack</code> : 백업을 사용하지 않고 언제든지 데이터를 복원</li>
 </ul>
 <h2 id="aurora-보안">Aurora 보안</h2>
 <ul>
 <li>RDS와 비슷한 수준의 보안 (같은 엔진을 사용)</li>
-<li>KMS 사용한 At-Rest 암호화</li>
+<li>KMS 사용한 at rest 암호화</li>
 <li>자동화된 백업, 스냅샷 그리고 암호화된 복제본</li>
 <li>SSL을 사용한 전송중 암호화 (MySQL, Postgres와 같은)</li>
 <li><strong>IAM 토큰을 사용한 인증이 가능 (RDS와 같은 방식)</strong></li>
 <li>사용자는 보안그룹을 통해 인스턴스를 보호해야 한다.</li>
 <li>SSH에 접근할 수 없다.</li>
 </ul>
-<h2 id="aurora-복제본">Aurora 복제본</h2>
-<h3 id="auto-scaling">Auto Scaling</h3>
-<p><strong>Aurora 인스턴스 3개가 있다고 가정</strong></p>
+<h2 id="aurora-replicas">Aurora Replicas</h2>
+<h3 id="aurora-auto-scaling">Aurora Auto Scaling</h3>
+<center>
+  <image src="/posts/images/aws/aurora-replicas-auto-scaling.jpg" width="700px">
+</center>
+<div class="details admonition tip open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw" aria-hidden="true"></i>Aurora auto scaling<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><p><strong>Aurora 인스턴스 3개가 있다고 가정</strong></p>
 <ul>
 <li>Writer Endpoint : 1개</li>
 <li>Reader Endpoint : 2개</li>
 </ul>
-<p><strong>Case 많은 읽기 요청으로 CPU사용량 증가</strong></p>
+<p><strong>많은 읽기 요청으로 CPU사용량 증가</strong></p>
 <ul>
 <li>Aurora 복제본이 추가되고 자동으로 Reader Endpoint가 새 복제본을 포함하도록 확장</li>
 <li>CPU 사용량을 낮추기 위해 분산된 방식으로 새로운 복제본이 트래픽 수신</li>
 </ul>
-<h3 id="custom-endpoints">Custom Endpoints</h3>
-<p><strong>Aurora 두 종류 복제본이 있다고 가정</strong></p>
+</div>
+        </div>
+    </div>
+<h3 id="aurora-custom-endpoints">Aurora Custom Endpoints</h3>
+<ul>
+<li>사용자 지정 Endpoints로 Aurora 인스턴스의 하위 집합을 정의</li>
+<li>예시) 특정 복제본에 대한 분석 쿼리를 실행할 때</li>
+<li>일반적으로 사용자 정의 Endpoints를 정의한 후 Reader Endpoint는 정의하지 않는다.</li>
+</ul>
+<center>
+  <image src="/posts/images/aws/aurora-custom-endpoints.jpg" caption="">
+</center>
+<div class="details admonition tip open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw" aria-hidden="true"></i>Aurora custom endpoints<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><p><strong>Aurora 두 종류 복제본이 있다고 가정</strong></p>
 <ul>
 <li>복제본 db.r3.large : 2개</li>
 <li>복제본 db.r5.xlarge : 2개 - 용량이 더 큼</li>
 </ul>
-<p><strong>Case: 특정 읽기전용 데이터베이스에 분석 쿼리 실행</strong></p>
+<p><strong>특정 읽기전용 데이터베이스에 분석 쿼리 실행</strong></p>
 <ul>
 <li>용량이 더 큰 인스턴스 서브셋을 사용자 endpoint로 정의</li>
 </ul>
-<h3 id="serverless">Serverless</h3>
+</div>
+        </div>
+    </div>
+<h3 id="aurora-serverless">Aurora Serverless</h3>
 <ul>
 <li>자동화 된 데이터베이스 인스턴스 및 실제 사용량을 기반으로 한 오토 스케일링 제공</li>
 <li>간헐적이거나 예측할 수 없는 워크로드에 적합</li>
 <li>용량 측정이 필요 없다</li>
 <li>초당 비용 지불. 비용측면에서는 효과적</li>
 </ul>
-<h4 id="serverless---동작방식">Serverless - 동작방식</h4>
-<ul>
+<center>
+  <image src="/posts/images/aws/aurora-serverless.jpg" caption="">
+</center>
+<div class="details admonition tip open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw" aria-hidden="true"></i>Aurora Serverless<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><ul>
 <li>Aurora에서 관리하는 Proxy Fleet과 통신</li>
 <li>백엔드에서는 서버리스 방식으로 워크로드를 기반으로 한 Aurora 인스턴스 생성</li>
 </ul>
+</div>
+        </div>
+    </div>
 <h3 id="multi-master">Multi-Master</h3>
 <ul>
 <li>쓰기 전용 마스터에 즉각적인 장애 조치가 필요한 경우.(Writer 노드에 고가용성이 필요한 경우)</li>
@@ -681,8 +710,8 @@ Postgres MySQL MariaDB Oracle Microsoft SQL Server Aurora - AWS Proprietary data
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 2022-08-29&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/c21c0df4b06c57141b21e3e2c5f60e09cf9339ba" target="_blank" title="commit by riley(riley0422@icloud.com) c21c0df4b06c57141b21e3e2c5f60e09cf9339ba: 20220829232124">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>c21c0df</a></span>
+                <span>Updated on 2022-10-04&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/b0f8a457913edb47f4734285667f37f1085f5cf1" target="_blank" title="commit by riley(riley0422@icloud.com) b0f8a457913edb47f4734285667f37f1085f5cf1: 20221004231729">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>b0f8a45</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>
@@ -693,20 +722,20 @@ Postgres MySQL MariaDB Oracle Microsoft SQL Server Aurora - AWS Proprietary data
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/elasticsearch/">elasticsearch</a></section>
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/rds/">RDS</a>,&nbsp;<a href="/tags/aurora/">Aurora</a>,&nbsp;<a href="/tags/elasticache/">ElastiCache</a></section>
         <section>
             <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
         </section>
     </div>
 
-    <div class="post-nav"><a href="/aws-integration-messaging/" class="prev" rel="prev" title="Amazon S3"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Amazon S3</a>
-            <a href="/aws-security-encryption/" class="next" rel="next" title="AWS Security &amp; Encryption">AWS Security & Encryption<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+    <div class="post-nav"><a href="/aws-fundamentals/" class="prev" rel="prev" title="AWS Fundamentals - Load Balancing, Auto Scaling Groups and EBS Volumes"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>AWS Fundamentals - Load Balancing, Auto Scaling Groups and EBS Volumes</a>
+            <a href="/aws-s3/" class="next" rel="next" title="Amazon S3">Amazon S3<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
 </div>
 <div id="comments"><div id="valine" class="comment"></div><noscript>
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
             </noscript></div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.102.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.104.2">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
                 </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Riley</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

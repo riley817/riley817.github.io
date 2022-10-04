@@ -917,6 +917,17 @@ H2 데이터 베이스 설치방법 아래 링크에서 zip 파일을 내려받�
     
     <item>
       <title></title>
+      <link>https://riley817.github.io/archives/20220919/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/archives/20220919/</guid>
+      <description>질문1) 회사는 Java 프레임워크로 작성된 새로운 온라인 거래 웹 애플리케이션이 있으며 Application Load Balancer 뒤의 EC2 인스턴스로 서비스 됩니다. 이러한 EC2 인스턴스에서 상태 확인을 수행하도록 로드 밸런서를 구성했습니다. 이러한 EC2 인스턴스 중 하나가 상태 확인에 실패하면 어떻게 됩니까?
+Application Load Balancer가 상태 확인에 실패한 인스턴스로 트래픽 전송을 중지합니다.
+HealthCheck 정상 인스턴스 상태 : InService HealthCheck 비정상적인 인스턴스 상태 : OutOfService 질문2) 회사가 자체 관리 메세지 지향 미들웨어 시스템에서 Amazon SQS로 메세지 대기열을 마이그레이션하고 있습니다.</description>
+    </item>
+    
+    <item>
+      <title></title>
       <link>https://riley817.github.io/archives/archives/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <author>riley0422@icloud.com (Riley)</author>

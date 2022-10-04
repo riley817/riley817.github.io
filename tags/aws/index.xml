@@ -22,20 +22,12 @@ IPLocationTools IP/Subnet Mask 192.]]></description>
     <description><![CDATA[전송중 암호화 (SSL) 데이터를 전송하기 전에 암호화. 수신 후 복호화 SSL 인증서로 암호화 (HTTPS) 전송 중 암호화는 MITM(man in the middle attack)이 발생하지 않도록 보장 Server side encryption at rest 데이터가 서버에 수신 된 후 암호화 데이터가 서버에 전송 전 복호화 데이터 키라고 불리우는 키 덕분에 데이터는 암호화 된 형태로 저장 암호화 및 복호화 키는 어딘가에 관리되어야 하며 서버는 이에 대한 액세스 권한이 있어야 한다. Client side encryption 데이터가 클라이언트에 의해 암호화되고 서버는 복호화할 수 없음 데이터는 수신 클라이언트에 의해 복호화 서버는 데이터의 암호를 복호화 할 수 없음 Envelop Encryption 암호화를 활용 AWS KMS (Key Management Service) KMS 키를 사용하여 데이터에 액세스할 수 있는 사람과 대상을 쉽게 제어]]></description>
 </item>
 <item>
-    <title>AWS Fundamentals</title>
-    <link>https://riley817.github.io/aws-fundamentals/</link>
-    <pubDate>Fri, 22 Jul 2022 08:19:49 &#43;0900</pubDate>
-    <author>riley</author>
-    <guid>https://riley817.github.io/aws-fundamentals/</guid>
-    <description><![CDATA[확장성 및 고가용성 확장성Scalability은 애플리케이션/시스템이 더 큰 부하를 처리할 수 있게 적용되는 것을 의미 확장성 종류 Vertical Scalability Horizontal Scalability (= elasticity) 확장성은 고 가용성(HA)과 연결되어 있지만 서로다르다. Vertical Scalability 수직적 확장은 인스턴스 크기를 증가 시키는 것을 의미 예시) t2.micro -&gt; t2.large로 확장 수직적 확장성은 데이터베이스와 같은 비분산 시스템에서 매우 일반적 RDS, ElastiCache는 수직 확장이 가능한 서비스 일반적으로 수직확장에는 제한이 있음(하드웨어 제한) Horizontal Scalability 수평적 확장은 애플리케이션의 인스턴스 혹은 시스템 수 증가 분산 시스템을 의미 웹 애플리케이션/현대 애플리케이션에서 매우 일반적 Amazon EC2와 같은 클라우드 제품 덕분에 수평확장 용이 High Availability 고가용성(HA)은 일반적으로 수평 확장과 함께 제공 최소 두 개의 데이터 센터(=A)에서 애플리케이션 및 시스템을 실행하는 것을 의미 고가용성의 목표는 데이터 센터 손실에서 살아 남는 것 고가용성은 수동적일 수 있음 (RDS Multi AZ의 경우) 고가용성은 활성화 할 수 있음 (수평적 확장을 위해) EC2를 위한 고가용성 및 확장성 Vertical Scaling : 인스턴스 사이즈를 늘린다.]]></description>
-</item>
-<item>
     <title>AWS EC2 Instance Storage</title>
     <link>https://riley817.github.io/aws-ebs/</link>
     <pubDate>Wed, 20 Jul 2022 08:19:49 &#43;0900</pubDate>
     <author>riley</author>
     <guid>https://riley817.github.io/aws-ebs/</guid>
-    <description><![CDATA[EBS Volume EBS(Elastic Block Store) Volume은 볼륨 인스턴스가 실행되는 동안 인스턴스에 연결할 수 있는 네트워크 드라이브이다. 인스턴스가 종료된 후에도 데이터를 유지할 수 있다. 한 번에 하나의 인스턴스에만 마운트 할 수 있다. (CCP 레벨) CCP 레벨 : 하나의 EBS는 하나의 EC2 인스턴스에만 마운트 가능 Associate Level: 일부 EBS 다중 연결 네트워크 USB 스틱 프리티어는 한 달 30GB의 일반 용도 (SSD) 또는 마그네틱 유형으로 제공 EBS Volume 특징 네트워크 드라이브이다.(즉, 물리적인 드라이브가 아님) 네트워크를 사용하여 인스턴스를 통신.]]></description>
+    <description><![CDATA[EBS Volume EBS(Elastic Block Store) Volume은 볼륨 인스턴스가 실행되는 동안 인스턴스에 연결할 수 있는 네트워크 드라이브이다. 인스턴스가 종료된 후에도 데이터를 유지할 수 있다. 한 번에 하나의 인스턴스에만 마운트 할 수 있다. (CCP 레벨) CCP 레벨 : 하나의 EBS는 하나의 EC2 인스턴스에만 마운트 가능 Associate Level: 일부 EBS 다중 연결 특정 가용 영역에바 바인딩 되어 있다. 네트워크 USB 스틱과 유사하다. 프리티어는 한 달 30GB의 일반 용도 (SSD) 또는 마그네틱 유형으로 제공 EBS Volume 특징 네트워크 드라이브이다.]]></description>
 </item>
 <item>
     <title>AWS IAM</title>
@@ -63,7 +55,7 @@ IPLocationTools IP/Subnet Mask 192.]]></description>
     <pubDate>Thu, 14 Jul 2022 08:19:49 &#43;0900</pubDate>
     <author>riley</author>
     <guid>https://riley817.github.io/aws-ec2-associate/</guid>
-    <description><![CDATA[Private vs Public IP (IPv4) 네트워크는 두가지 종류의 IP가 존재. IPv4, IPv6 IPv4 : 1.160.10.240 IPv6 : 3ffe:1900:4545:3:200:f8ff:fe21:67cf IPv4 대부분 온라인에서 범용적으로 사용 IPv6 사물인터넷(IoT) 문제를 해결하기 위해 새로 등장함 IPv4는 퍼블릭 영역에서 37억개의 서로 다른 주소를 허용 IPv4:[0-255].[0-255].[0-255].[0-255] Private vs Public IP 차이점 Public IP Public IP는 컴퓨터가 인터넷상(WWW)에서 식별될 수 있음을 의미 전체 웹에서 고유해야 한다. (두 개의 머신이 같은 public IP를 갖을 수 없다) 쉽게 지리적 위치를 찾을 수 있음 Private IP Private IP는 컴퓨터가 사설 네트워크망에서만 식별될 수 있음을 의미 IP는 사설 네트워크에서 고유해야 한다.]]></description>
+    <description><![CDATA[Private vs Public IP (IPv4) 네트워크는 IPv4, IPv6 두 가지로 분류 할 수 있다. IPv4 : 1.160.10.240 IPv6 : 3ffe:1900:4545:3:200:f8ff:fe21:67cf 대부분의 온라인에서는 IPv4를 범용적으로 사용 IPv6 사물인터넷(IoT) 문제를 해결하기 위해 새로 등장함 IPv4는 퍼블릭 영역에서 37억개의 서로 다른 주소를 허용 IPv4:[0-255].[0-255].[0-255].[0-255] Private vs Public IP 차이점 Public IP Public IP는 컴퓨터가 인터넷상(WWW)에서 식별될 수 있음을 의미 전체 웹에서 고유해야 한다. (두 개의 머신이 같은 public IP를 갖을 수 없다) 쉽게 지리적 위치를 찾을 수 있음 Private IP Private IP는 컴퓨터가 사설 네트워크망에서만 식별될 수 있음을 의미 IP는 사설 네트워크에서 고유해야 한다.]]></description>
 </item>
 <item>
     <title>AWS EC2 Basics</title>
@@ -71,15 +63,15 @@ IPLocationTools IP/Subnet Mask 192.]]></description>
     <pubDate>Wed, 13 Jul 2022 01:10:49 &#43;0900</pubDate>
     <author>riley</author>
     <guid>https://riley817.github.io/aws-ec2/</guid>
-    <description><![CDATA[Amazon EC2 EC2는 AWS에서 제공하는 가장 인기있는 서비스 Elastic Compute Cloud = Infrastructure as a service 구성할 수 있는 기능 가상 머신 임대 (EC2) 가상 드라이브에 데이터를 저장 (EBS) 시스템 간 부하 분산 (ELB) auto-scaling group(ASG)를 사용하여 서비스 확장 EC2 sizing &amp; configuration options Operating System(OS) : Linux, Windows or Mac OS 컴퓨터 성능과 코어양 선택 가능 (CPU) random-access memory (RAM) 스토리지 용량 Network-attached (EBS &amp; EFS) hardware (EC2 Instance Store) Network card: 네트워크 카드 속도, 공용 IP 주소 방화벽 규칙 : security group Bootstrap script (configure at first launch): EC2 User Data EC2 User Data EC2 User Data를 사용하여 인스턴스를 부트스트랩 가능 bootstrapping이란 머신을 시작할 때 명령을 실행하는 것을 의미한다.]]></description>
+    <description><![CDATA[Amazon EC2 EC2는 AWS의 가장 인기있는 서비스이다. Elastic Compute Cloud = Infrastructure as a service 클라우드의 작동 방식을 이해하기 위해서는 EC2를 이해하는 것이 중요하다. 구성할 수 있는 기능 가상 머신 임대 (EC2) 가상 드라이브에 데이터를 저장 (EBS) 시스템 간 부하 분산 (ELB) auto-scaling group(ASG)를 사용하여 서비스 확장 EC2 sizing &amp; configuration options Operating System(OS) : Linux, Windows or Mac OS 컴퓨터 성능과 코어양 선택 가능 (CPU) random-access memory (RAM) 스토리지 용량 Network-attached (EBS &amp; EFS) hardware (EC2 Instance Store) Network card: 네트워크 카드 속도, 공용 IP 주소 방화벽 규칙 : security group Bootstrap script (configure at first launch): EC2 User Data EC2 User Data EC2 사용자 데이터 스크립트를 사용하여 인스턴스를 부트스트랩 할 수 있다.]]></description>
 </item>
 <item>
     <title>AWS Identity and Access Management</title>
     <link>https://riley817.github.io/aws-iam/</link>
-    <pubDate>Wed, 13 Jul 2022 01:10:49 &#43;0900</pubDate>
+    <pubDate>Tue, 12 Jul 2022 23:10:49 &#43;0900</pubDate>
     <author>riley</author>
     <guid>https://riley817.github.io/aws-iam/</guid>
-    <description><![CDATA[Users &amp; Groups IAM = Identity and Access Management → Global 서비스 Root 계정으로 생성 Users 는 조직의 사용자이며 그룹으로 묶을 수 있다. Groups는 user를 포함할 수 있고 다른 그룹은 포함할 수 없다. user는 여러 그룹에 속할 수 있다. Permissions Users or Groups 은 JSON 문서형태로 정책을 할당 정책 polices는 사용자의 permissions을 정의 AWS에서는 최소 권한 원칙을 적용한다 → 사용자가 필요로 하는 것보다 더 많은 권한을 부여하지 않는다. IAM Policies inheritance 인라인 정책 : 그룹에 속해있지 않아도 정책을 바로 사용자에게 연결 가능 IAM Policies Structure 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 { &#34;Version&#34;: &#34;2012-10-17&#34;, &#34;Statement&#34;: [ { &#34;Effect&#34;: &#34;Allow&#34;, &#34;Action&#34;: &#34;ec2:Describe*&#34;, &#34;Resource&#34;: &#34;*&#34; }, { &#34;Effect&#34;: &#34;Allow&#34;, &#34;Action&#34;: &#34;elasticloadbalancing:Describe*&#34;, &#34;Resource&#34;: &#34;* }, { &#34;Effect&#34;: &#34;Allow&#34;, &#34;Action&#34;: [ &#34;cloudwatch:ListMetrics&#34;, &#34;cloudwatch:GetMetricStatistics&#34;, &#34;cloudwatch:Describe*&#34; ], &#34;Resource&#34;: &#34;*&#34; } ] } 요소 Version : 정책 버전 Id : 정책을 식별할 수 있는 식별자 - 옵션 Statement : 하나 혹은 여러개 (필수사항) Statements 요소 Sid : statement 의 식별자 (옵션) Effect : 특정 statement에 접근은 허용 여부 (Allow 또는 Deny)를 나타냄 Principal : 정책이 적용 될 대상 (계정, 사용자, 역할) Action : 정책의 허용 또는 거부되는 호출 리스트 목록 Resource : 정책이 적용될 리소스 목록 Condition : statement가 언제적용될지 결정 (옵션) IAM Password Policy 강력한 비밀번호 → 계정에 대한 높은 보안 AWS에서는 설정가능한 패스워드 정책 패스워드 최소 길이 특수문자 포함 필수 입력 : 대소문자, 숫자, 특수문자 IAM 계정 사용자들의 패스워드 변경 허용 또는 금지 패스워드 만료 지정 패스워드 재사용 금지 MFA - Multi Factor Authentication MFA = 패스워드(사용자만 알고있는) + 보안 장비(사용자가 소유하고 있는) MFA devices options in AWS Virtual MFA device 하나의 디바이스에서 여러 토큰을 지원 Google Authenticator → phone only Authy → Multi device Universal 2nd Factor(U2F) Security Key YubiKey 하나의 키로 루트 그리고 IAM 사용자 지원 기타 Hardware Key Fob MFA Device Hardware Key Fob MFA Device for AWS GovCloud (US) AWS 액세스 하는 방법 AWS 액세스하는 방법 AWS Management Console : 패스워드 + MFA 사용 AWS Command Line Interface CLI : access key 사용 AWS Software Developer Kit SDK : access key 사용 Access Key는 AWS 콘솔을 통해 생성할 수 있다.]]></description>
+    <description><![CDATA[Users &amp; Groups IAM = Identity and Access Management → Global 서비스 Root 계정은 기본으로 생성되며 사용하거나 공유해서는 안된다. Users 는 조직의 사용자이며 그룹으로 묶을 수 있다. Groups는 user를 포함할 수 있고 다른 그룹은 포함할 수 없다. 사용자는 그룹에 속할 필요는 없고 user는 여러 그룹에 속할 수 있다. Permissions 사용자나 그룹은 정책은 JSON 문서를 통해 할당할 수 있다. 정책(polices)은 사용자의 권한(permissions)을 정의한다. AWS에서는 최소 권한 원칙을 적용한다 → 사용자가 필요로 하는 것보다 더 많은 권한을 부여하지 않는다.]]></description>
 </item>
 <item>
     <title>[AWS EKS] 5. 인그레스 컨트롤러 만들기</title>
@@ -92,6 +84,17 @@ IPLocationTools IP/Subnet Mask 192.]]></description>
 인그레스 Ingress 클러스터 내의 서비스에 대한 외부 요청을 어떻게 처리할 것인지 네트워크 7계층 레벨에서 정의하는 쿠버네티스 오브젝트이다.
 인그레스 오브젝트의 기본 기능은 다음과 같다.
 외부 요청의 라우팅 : 특정 경로로 들어온 요청을 어떤 서비스로 전달할지 정의하는 라우터 규칙 설정 가상 호스트 기반의 요청 처리 : 같은 IP에 대해 다른 도메인 이름으로 요청했을 때 어떻게 처리할 것인지 정의 SSL/TLS 보안 연결 처리 : 요청을 라우팅 할 때, 보안 연결을 위한 인증서 적용 인그레스를 사용하는 이유 쿠버네티스 서비스 타입 중 NodePort 혹은 LoadBalancer 타입의 서비스를 사용해도 외부로 노출할 수 있지만, 인그레스 없이 서비스를 사용할 경우 SSL/TLS 보안 연결 등의 상세 옵션을 각각의 서비스와 디플로이먼트에 대해 일일이 설정을 해야 한다.]]></description>
+</item>
+<item>
+    <title>[AWS EKS] 4. Amazon ECR 에 이미지 올리기</title>
+    <link>https://riley817.github.io/archives/devops/aws/aws-4-ecr/</link>
+    <pubDate>Sat, 07 May 2022 23:00:58 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/archives/devops/aws/aws-4-ecr/</guid>
+    <description><![CDATA[☁️ Amazon EKS 웹 애플리케이션 구축하기 워크샵을 실습한 내용입니다.
+☁️ AWS Workshop 링크 : https://catalog.us-east-1.prod.workshops.aws/workshops/9c0aa9ab-90a9-44a6-abe1-8dff360ae428/ko-KR/
+Amazon ECR 리포지토리 생성 및 이미지 올리기 Amazon ECR(Elastic Container Registry) 은 도커 컨테이너의 이미지를 저장하는 Repository 서비스이다. Docker hub의 기능과 동일하다.
+AWS CLI로 이미지 리포지토리 생성 1 2 3 4 aws ecr create-repository \ --repository-name demo-flask-backend \ --image-scanning-configuration scanOnPush=true \ --region ap-northeast-2 명령어가 수행되면 리포지토리에 대한 정보가 출력되며 Amazon ECR 콘솔창에서도 생성된 리포지토리를 확인할 수 있다.]]></description>
 </item>
 </channel>
 </rss>
