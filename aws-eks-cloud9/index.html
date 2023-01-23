@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>[AWS EKS] 1. IAM 계정 생성 - Riley&#39;s DevLog</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:title" content="[AWS EKS] 1. IAM 계정 생성" />
+        <title>[AWS EKS] (Optional) AWS Cloud9으로 실습 환경 구축하기 - Riley&#39;s DevLog</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:title" content="[AWS EKS] (Optional) AWS Cloud9으로 실습 환경 구축하기" />
 <meta property="og:description" content="☁️ Amazon EKS 웹 애플리케이션 구축하기 워크샵을 실습한 내용입니다. \
 AWS Cloud9 AWS Cloud9 은 브라우저만으로 코드를 작성, 실행 및 디버깅할 수 있는 IDE(통합개발환경)이다. 코드 편집기, 디버거 및 터미널 기능을 포함하고 있고 프로그래밍 언어를 위한 필수 도구가 사전에 패키징 되어 제공된다.
 AWS Cloud9 시작하기 AWS Cloud9 IDE 구성 AWS Cloud9 콘솔 접속 후 Create environment 버튼 클릭한다.
@@ -13,11 +13,11 @@ IDE의 Environment 이름 및 설명을 작성한다.
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://riley817.github.io/aws-eks-cloud9/" /><meta property="og:image" content="https://riley817.github.io/icon.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-05-05T22:00:00+09:00" />
-<meta property="article:modified_time" content="2023-01-23T16:20:57+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
+<meta property="article:modified_time" content="2023-01-23T19:07:39+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://riley817.github.io/icon.png"/>
 
-<meta name="twitter:title" content="[AWS EKS] 1. IAM 계정 생성"/>
+<meta name="twitter:title" content="[AWS EKS] (Optional) AWS Cloud9으로 실습 환경 구축하기"/>
 <meta name="twitter:description" content="☁️ Amazon EKS 웹 애플리케이션 구축하기 워크샵을 실습한 내용입니다. \
 AWS Cloud9 AWS Cloud9 은 브라우저만으로 코드를 작성, 실행 및 디버깅할 수 있는 IDE(통합개발환경)이다. 코드 편집기, 디버거 및 터미널 기능을 포함하고 있고 프로그래밍 언어를 위한 필수 도구가 사전에 패키징 되어 제공된다.
 AWS Cloud9 시작하기 AWS Cloud9 IDE 구성 AWS Cloud9 콘솔 접속 후 Create environment 버튼 클릭한다.
@@ -32,13 +32,13 @@ IDE의 Environment 이름 및 설명을 작성한다.
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "[AWS EKS] 1. IAM 계정 생성",
+        "headline": "[AWS EKS] (Optional) AWS Cloud9으로 실습 환경 구축하기",
         "inLanguage": "en",
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/riley817.github.io\/aws-eks-cloud9\/"
         },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "AWS, Amazon EKS, Kubernetes, Amazon ECR, AWS Cloud9","wordcount":  231 ,
-        "url": "https:\/\/riley817.github.io\/aws-eks-cloud9\/","datePublished": "2022-05-05T22:00:00+09:00","dateModified": "2023-01-23T16:20:57+09:00","publisher": {
+        "url": "https:\/\/riley817.github.io\/aws-eks-cloud9\/","datePublished": "2022-05-05T22:00:00+09:00","dateModified": "2023-01-23T19:07:39+09:00","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/riley817.github.io\/images\/avatar.png"},"author": {
                 "@type": "Person",
@@ -110,10 +110,10 @@ IDE의 Environment 이름 및 설명을 작성한다.
                 <div class="container"><div class="toc" id="toc-auto">
             <h2 class="toc-title">Contents</h2>
             <div class="toc-content always-active" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">[AWS EKS] 1. IAM 계정 생성</h1><h2 class="single-subtitle">[AWS EKS] (Optional) AWS Cloud9으로 실습 환경 구축하기</h2><div class="post-meta">
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">[AWS EKS] (Optional) AWS Cloud9으로 실습 환경 구축하기</h1><h2 class="single-subtitle">[AWS EKS] (Optional) AWS Cloud9으로 실습 환경 구축하기</h2><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-category">included in <a href="/categories/building-web-applications-with-amazon-eks/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Building Web Applications with Amazon EKS</a></span></div>
             <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-05-05">2022-05-05</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;231 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;2 minutes&nbsp;<span id="/aws-eks-cloud9/" class="leancloud_visitors" data-flag-title="[AWS EKS] 1. IAM 계정 생성">
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;2 minutes&nbsp;<span id="/aws-eks-cloud9/" class="leancloud_visitors" data-flag-title="[AWS EKS] (Optional) AWS Cloud9으로 실습 환경 구축하기">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -202,8 +202,8 @@ IDE의 Environment 이름 및 설명을 작성한다.
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 2023-01-23&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/db5877e427614337ffbb673875fa349e5bf0be3a" target="_blank" title="commit by riley817(riley0422@icloud.com) db5877e427614337ffbb673875fa349e5bf0be3a: 20230123162055">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>db5877e</a></span>
+                <span>Updated on 2023-01-23&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/897d26c874a6c05be65d0efcfcecb47f34074660" target="_blank" title="commit by riley817(riley0422@icloud.com) 897d26c874a6c05be65d0efcfcecb47f34074660: 20230123190737">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>897d26c</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>

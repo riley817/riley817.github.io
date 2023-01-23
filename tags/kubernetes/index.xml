@@ -48,7 +48,7 @@ Mac OS는 pkg 파일을 다운로드 하여 설치한다.
 Mac OS : https://awscli.amazonaws.com/AWSCLIV2.pkg 다른 OS에서 AWS CLI 설치하기 1 2 3 $ aws --version aws-cli/2.6.1 Python/3.9.11 Darwin/21.4.0 exe/x86_64 prompt/o AWS Credential Configure AWS CLI에서 자주 사용되는 구성 설정과 자격 증명을 저장할 수 있다.]]></description>
 </item>
 <item>
-    <title>[AWS EKS] 1. IAM 계정 생성</title>
+    <title>[AWS EKS] (Optional) AWS Cloud9으로 실습 환경 구축하기</title>
     <link>https://riley817.github.io/aws-eks-cloud9/</link>
     <pubDate>Thu, 05 May 2022 22:00:00 &#43;0900</pubDate>
     <author>riley</author>

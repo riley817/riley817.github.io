@@ -1,0 +1,19 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Bean Validation - Tag - Riley&#39;s DevLog</title>
+        <link>https://riley817.github.io/tags/bean-validation/</link>
+        <description>Bean Validation - Tag - Riley&#39;s DevLog</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
+            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Sun, 09 Dec 2018 17:53:39 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/tags/bean-validation/" rel="self" type="application/rss+xml" /><item>
+    <title>[Mastering Spring 5.0] 6.3 Bean Validation</title>
+    <link>https://riley817.github.io/page-6-3/</link>
+    <pubDate>Sun, 09 Dec 2018 17:53:39 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/page-6-3/</guid>
+    <description><![CDATA[Bean Validation 데이터 유효성 검증 (Validation) 은 모든계층에서 공통적으로 발생하는 작업이다. 만약 모든 계층에서 동일한 내용의 Validation 로직이 각각의 레이어별로 구현되어 있다면 코드 중복과 함께 각 계층별로 중구난방으로 구현된 검증로직간 불일치로 인하여 오류가 발생하기도 쉽다.
+[출처] https://docs.jboss.org/hibernate/stable/validator/reference/en-US/html_single/images/application-layers.png
+이러한 Validation 중복을 피하기 위해 도메인의 검증 로직을 도메인 모델 자체에 묶어서 정의하기도 한다. 하지만 도메인 모델에 실제 코드로 Validation 로직을 표현한다면 도메인 모델 자체가 장황하지고 복잡해지게 된다. [출처] https://docs.jboss.org/hibernate/stable/validator/reference/en-US/html_single/images/application-layers2.png
+Java 에서는 위와 같은 문제를 해결하기 위해 어노테이션을 통한 Entity 와 Method 를 검증하기 위한 API 를 제공하고 있다.]]></description>
+</item>
+</channel>
+</rss>
