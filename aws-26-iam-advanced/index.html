@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>26. AWS Identity and Access Management - Advanced - Riley&#39;s DevLog</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:title" content="26. AWS Identity and Access Management - Advanced" />
+<meta property="og:description" content="STS - Security Token Service AWS 리소스에 대한 제한적이고 일시적인 액세스 권한을 허용 토큰은 1 시간까지 유효 (새로고침 필요) STS API STS API 설명 AssumeRole - 개인 계정 내에서: 보안을 강화하기 위해 사용 - 계정 간 : 대상 계정에 역할을 수임하여 작업을 수행 AssumeRoleWithSAML - SAML으로 로그인한 사용자의 자격증명을 반환 AssumeRoleWithWebIdentity - IdP(Identity Provider - Facebook Login, Google Login, OIDC Compatible&hellip;) 로그인 사용자의 자격증명을 반환 - 이것보다는 AWS Cognito 추천함 GetSessionToken - AWS 루트 계정 또는 사용자에 대한 MFA 인증 STS를 통해 역할을 수임받기 IAM 계정 내 혹은 계정 간 IAM 역할(Role)을 정의한다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://riley817.github.io/aws-26-iam-advanced/" /><meta property="og:image" content="https://riley817.github.io/icon.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-07-16T16:14:49+09:00" />
+<meta property="article:modified_time" content="2023-01-23T16:20:57+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://riley817.github.io/icon.png"/>
+
+<meta name="twitter:title" content="26. AWS Identity and Access Management - Advanced"/>
+<meta name="twitter:description" content="STS - Security Token Service AWS 리소스에 대한 제한적이고 일시적인 액세스 권한을 허용 토큰은 1 시간까지 유효 (새로고침 필요) STS API STS API 설명 AssumeRole - 개인 계정 내에서: 보안을 강화하기 위해 사용 - 계정 간 : 대상 계정에 역할을 수임하여 작업을 수행 AssumeRoleWithSAML - SAML으로 로그인한 사용자의 자격증명을 반환 AssumeRoleWithWebIdentity - IdP(Identity Provider - Facebook Login, Google Login, OIDC Compatible&hellip;) 로그인 사용자의 자격증명을 반환 - 이것보다는 AWS Cognito 추천함 GetSessionToken - AWS 루트 계정 또는 사용자에 대한 MFA 인증 STS를 통해 역할을 수임받기 IAM 계정 내 혹은 계정 간 IAM 역할(Role)을 정의한다."/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://riley817.github.io/aws-26-iam-advanced/" /><link rel="prev" href="https://riley817.github.io/aws-06-ec2-associate/" /><link rel="next" href="https://riley817.github.io/aws-00-regions-az/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "26. AWS Identity and Access Management - Advanced",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/riley817.github.io\/aws-26-iam-advanced\/"
+        },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "AWS, AWS IAM","wordcount":  1551 ,
+        "url": "https:\/\/riley817.github.io\/aws-26-iam-advanced\/","datePublished": "2022-07-16T16:14:49+09:00","dateModified": "2023-01-23T16:20:57+09:00","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "https:\/\/riley817.github.io\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "riley"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Riley&#39;s DevLog"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i></span>Riley&#39;s DevLog</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Riley&#39;s DevLog"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i></span>Riley&#39;s DevLog</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content always-active" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">26. AWS Identity and Access Management - Advanced</h1><h2 class="single-subtitle">AWS Certified SAA-C02 시험준비</h2><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-category">included in <a href="/categories/aws-certified-saa-c02-%EC%8B%9C%ED%97%98%EC%A4%80%EB%B9%84/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>AWS Certified SAA-C02 시험준비</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-07-16">2022-07-16</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1551 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;8 minutes&nbsp;<span id="/aws-26-iam-advanced/" class="leancloud_visitors" data-flag-title="26. AWS Identity and Access Management - Advanced">
+                        <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#sts---security-token-service">STS - Security Token Service</a>
+      <ul>
+        <li><a href="#sts-api">STS API</a></li>
+        <li><a href="#sts를-통해-역할을-수임받기">STS를 통해 역할을 수임받기</a></li>
+        <li><a href="#계정-간-sts">계정 간 STS</a></li>
+      </ul>
+    </li>
+    <li><a href="#identity-federation-in-aws">Identity Federation in AWS</a>
+      <ul>
+        <li><a href="#federations의-종류">Federations의 종류</a>
+          <ul>
+            <li><a href="#saml-20-federation">SAML 2.0 Federation</a></li>
+            <li><a href="#custom-identity-broker-application">Custom Identity Broker Application</a></li>
+            <li><a href="#web-identity-federation---assumerolewithwebidentity">Web Identity Federation - AssumeRoleWithWebIdentity</a></li>
+          </ul>
+        </li>
+        <li><a href="#aws-cognito">AWS Cognito</a></li>
+        <li><a href="#microsoft-active-directory-ad">Microsoft Active Directory (AD)</a></li>
+        <li><a href="#aws-directory-services">AWS Directory Services</a></li>
+      </ul>
+    </li>
+    <li><a href="#aws-organizations">AWS Organizations</a>
+      <ul>
+        <li><a href="#다중-계정-전략">다중 계정 전략</a></li>
+        <li><a href="#organizational-units-ou">Organizational Units (OU)</a></li>
+        <li><a href="#service-control-policies-scp">Service Control Policies (SCP)</a>
+          <ul>
+            <li><a href="#scp-hierarchy">SCP Hierarchy</a>
+              <ul>
+                <li><a href="#blacklist--whitelist-전략">Blacklist &amp; Whitelist 전략</a>
+                  <ul>
+                    <li><a href="#특정-유형의-서비스를-블랙리스트로-등록">특정 유형의 서비스를 블랙리스트로 등록</a></li>
+                    <li><a href="#특정-유형의-서비스만-화이트리스트에-추가">특정 유형의 서비스만 화이트리스트에 추가</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#조직-이동">조직 이동</a>
+          <ul>
+            <li><a href="#계정-마이그레이션">계정 마이그레이션</a></li>
+            <li><a href="#마스터-계정의-마이그레이션">마스터 계정의 마이그레이션</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#iam-conditions">IAM Conditions</a></li>
+    <li><a href="#iam-for-s3">IAM for S3</a>
+      <ul>
+        <li><a href="#iam-role과-리소스-기반의-정책">IAM Role과 리소스 기반의 정책</a></li>
+        <li><a href="#iam-permission-boundaries">IAM Permission Boundaries</a>
+          <ul>
+            <li><a href="#permission-boundaries-사용-사례">Permission Boundaries 사용 사례</a></li>
+            <li><a href="#iam-policy-evaluation-logic">IAM Policy Evaluation Logic</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#aws-resource-access-manager-ram">AWS Resource Access Manager (RAM)</a>
+      <ul>
+        <li><a href="#resource-access-manager---vpc-예시">Resource Access Manager - VPC 예시</a></li>
+      </ul>
+    </li>
+    <li><a href="#aws-single-sign-on-sso">AWS Single Sign-On (SSO)</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="sts---security-token-service">STS - Security Token Service</h2>
+<ul>
+<li>AWS 리소스에 대한 제한적이고 일시적인 액세스 권한을 허용</li>
+<li>토큰은 1 시간까지 유효 (새로고침 필요)</li>
+</ul>
+<h3 id="sts-api">STS API</h3>
+<table>
+<thead>
+<tr>
+<th>STS API</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>AssumeRole</strong></td>
+<td>- 개인 계정 내에서: 보안을 강화하기 위해 사용 <br/> - 계정 간 : 대상 계정에 역할을 수임하여 작업을 수행</td>
+</tr>
+<tr>
+<td><strong>AssumeRoleWithSAML</strong></td>
+<td>- SAML으로 로그인한 사용자의 자격증명을 반환</td>
+</tr>
+<tr>
+<td><strong>AssumeRoleWithWebIdentity</strong></td>
+<td>- IdP(Identity Provider - Facebook Login, Google Login, OIDC Compatible&hellip;) 로그인 사용자의 자격증명을 반환 <br/> - <strong>이것보다는 AWS Cognito 추천함</strong></td>
+</tr>
+<tr>
+<td><strong>GetSessionToken</strong></td>
+<td>- AWS 루트 계정 또는 사용자에 대한 MFA 인증</td>
+</tr>
+</tbody>
+</table>
+<h3 id="sts를-통해-역할을-수임받기">STS를 통해 역할을 수임받기</h3>
+<ol>
+<li>IAM 계정 내 혹은 계정 간 IAM 역할<code>(Role)</code>을 정의한다.</li>
+<li>사용자, 역할 등이 액세스 할 수 있는 IAM Role 원칙<code>(Principal)</code>을 정의한다.</li>
+<li><code>AWS STS(Security Token Service)</code> 사용하여 IAM 역할을 가장할 수 있는 임시자격증명을 조회할 수 있다. (AssumeRole API)</li>
+</ol>
+<blockquote>
+<p>그림
+임시자격증명 정보는 15분 ~ 1시간사이의 유효시간을 갖는다.</p>
+</blockquote>
+<h3 id="계정-간-sts">계정 간 STS</h3>
+<figure><a class="lightgallery" href="/posts/images/aws/cross-account-access-with-sts.png" title="/posts/images/aws/cross-account-access-with-sts.png" data-thumbnail="/posts/images/aws/cross-account-access-with-sts.png" data-sub-html="<h2>https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_common-scenarios_aws-accounts.html</h2>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/posts/images/aws/cross-account-access-with-sts.png"
+            data-srcset="/posts/images/aws/cross-account-access-with-sts.png, /posts/images/aws/cross-account-access-with-sts.png 1.5x, /posts/images/aws/cross-account-access-with-sts.png 2x"
+            data-sizes="auto"
+            alt="/posts/images/aws/cross-account-access-with-sts.png" width="100%" />
+    </a><figcaption class="image-caption"><a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_common-scenarios_aws-accounts.html" target="_blank" rel="noopener noreffer">https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_common-scenarios_aws-accounts.html</a></figcaption>
+    </figure>
+<ol>
+<li>프로덕션 계정의 관리자는 개발계정의 사용자들이  <code>productionapp</code> 버켓의 읽기/쓰기 IAM 역할을 얻을 수 있는 <code>UpdateApp</code>을 생성</li>
+<li>개발계정의 관리자는 <code>Developer</code> 그룹의 멤버들을 <code>UpdateApp</code> 역할의 STS <code>AssumeRole API</code>를 호출 할 수 있는 권한을 부여</li>
+<li>개발계정의 사용자는 역할 전환을 요청</li>
+<li><code>AWS STS</code>는 역할 임시자격증명을 반환</li>
+<li>임시 자격 증명은 AWS 리소스에 대한 액세스를 허용</li>
+</ol>
+<h2 id="identity-federation-in-aws">Identity Federation in AWS</h2>
+<ul>
+<li><code>Federation</code>을 통해 AWS 외부의 사용자가 AWS 리소스에 액세스하는 임시 역할을 수행</li>
+</ul>
+<h3 id="federations의-종류">Federations의 종류</h3>
+<ul>
+<li>
+<p>SAML 2.0</p>
+</li>
+<li>
+<p>Custom Identity Broker</p>
+</li>
+<li>
+<p>Web Identity Federation with Amazon Cognito</p>
+</li>
+<li>
+<p>Web Identity Federation without Amazon Cognito</p>
+</li>
+<li>
+<p>Single Sign On</p>
+</li>
+<li>
+<p>Non-SAML with AWS Microsoft AD</p>
+<blockquote>
+<p>federation을 사용하면 IAM 사용자를 생성할 필요 없다. (사용자 관리는 AWS 외부에 있다.)
+그림</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="saml-20-federation">SAML 2.0 Federation</h4>
+<ul>
+<li><code>Active Directory</code></li>
+<li><code>ADFS(Active Directory Federation Service)</code></li>
+<li>AWS 콘솔 또는 CLI로 액세스 제공 (임시 보안 인증 이용)</li>
+<li>직원별로 IAM 사용자를 생성할 필요 없다.</li>
+<li>AWS IAM과 SAML 사이에 신뢰 설정이 필요하다.</li>
+<li>SAML 2.0을 통해 웹 기반 크로스 도메인을 지원한다(SSO)</li>
+<li><strong>STS API : AssumeRoleWithSAML</strong></li>
+<li><em>SAML을 통한 federation 방식은 오래된 방식이다.</em> -&gt; <strong>Amazon Single Sign On(SSO)</strong> 을 통한 federation은 심플하고 새로운 방식</li>
+</ul>
+<div class="details admonition tip open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw" aria-hidden="true"></i>Using SAML-based federation for API access to AWS<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><figure><a class="lightgallery" href="/posts/images/aws/saml-based-federation.diagram.png" title="/posts/images/aws/saml-based-federation.diagram.png" data-thumbnail="/posts/images/aws/saml-based-federation.diagram.png" data-sub-html="<h2>https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_saml.html</h2>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/posts/images/aws/saml-based-federation.diagram.png"
+            data-srcset="/posts/images/aws/saml-based-federation.diagram.png, /posts/images/aws/saml-based-federation.diagram.png 1.5x, /posts/images/aws/saml-based-federation.diagram.png 2x"
+            data-sizes="auto"
+            alt="/posts/images/aws/saml-based-federation.diagram.png" width="100%" />
+    </a><figcaption class="image-caption"><a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_saml.html" target="_blank" rel="noopener noreffer">https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_saml.html</a></figcaption>
+    </figure>
+<ol>
+<li>조직의 사용자가 클라이언트 앱을 사용하여 조직의 IdP에서 인증을 요청</li>
+<li>IdP는 조직의 ID 저장소에 대한 사용자 인증</li>
+<li>IdP는 사용자에 대한 정보로 SAML assertion 구성 -&gt; 클라이언트 앱으로 전송</li>
+<li>클라이언트 앱은 AWS STS <code>AssumeRoleWithSAML</code> API 호출 SAML 공급자 ARN, 수임할 역할의 ARN 및 IdP의 SAML assertion 전달</li>
+<li>클라이언트 앱에 대한 API 응답에 임시 자격 증명 포함</li>
+<li>클라이언트 앱은 임시 자격 증명을 사용하여 Amazon S3 API 호출</li>
+</ol>
+</div>
+        </div>
+    </div>
+<div class="details admonition tip open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw" aria-hidden="true"></i>AWS Management Console을 사용하여 SAML 2.0 federation 활성화<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><p>SAML 2.0 Assertion는 자격증명과 호환되며 STS 리소스나 콘솔에 액세스 할 수 있게 해준다.</p>
+<figure><a class="lightgallery" href="/posts/images/aws/saml-based-sso-to-console.diagram.png" title="/posts/images/aws/saml-based-sso-to-console.diagram.png" data-thumbnail="/posts/images/aws/saml-based-sso-to-console.diagram.png" data-sub-html="<h2>https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_enable-console-saml.html</h2>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/posts/images/aws/saml-based-sso-to-console.diagram.png"
+            data-srcset="/posts/images/aws/saml-based-sso-to-console.diagram.png, /posts/images/aws/saml-based-sso-to-console.diagram.png 1.5x, /posts/images/aws/saml-based-sso-to-console.diagram.png 2x"
+            data-sizes="auto"
+            alt="/posts/images/aws/saml-based-sso-to-console.diagram.png" width="100%" />
+    </a><figcaption class="image-caption"><a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_enable-console-saml.html" target="_blank" rel="noopener noreffer">https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_enable-console-saml.html</a></figcaption>
+    </figure>
+</div>
+        </div>
+    </div>
+<div class="details admonition tip open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw" aria-hidden="true"></i>Active Directory FS<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><ul>
+<li>ADFS가 SAML 2.0과 호환된다면 과정은 동일하다.</li>
+</ul>
+<figure><a class="lightgallery" href="/posts/images/aws/federated_auth_with_adfs.png" title="/posts/images/aws/federated_auth_with_adfs.png" data-thumbnail="/posts/images/aws/federated_auth_with_adfs.png" data-sub-html="<h2>https://aws.amazon.com/ko/blogs/security/aws-federated-authentication-with-active-directory-federation-services-ad-fs/</h2>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/posts/images/aws/federated_auth_with_adfs.png"
+            data-srcset="/posts/images/aws/federated_auth_with_adfs.png, /posts/images/aws/federated_auth_with_adfs.png 1.5x, /posts/images/aws/federated_auth_with_adfs.png 2x"
+            data-sizes="auto"
+            alt="/posts/images/aws/federated_auth_with_adfs.png" width="100%" />
+    </a><figcaption class="image-caption"><a href="https://aws.amazon.com/ko/blogs/security/aws-federated-authentication-with-active-directory-federation-services-ad-fs/" target="_blank" rel="noopener noreffer">https://aws.amazon.com/ko/blogs/security/aws-federated-authentication-with-active-directory-federation-services-ad-fs/</a></figcaption>
+    </figure>
+<ol>
+<li>브라우저 인터페이스로 ADFS 로그인</li>
+<li>ADFS는 사용자가 제대로 인증되었는지 Identity Store를 통해 확인</li>
+<li>ADFS는 SAML Assertion을 반환</li>
+<li>SAML Assertion을 AWS STS 통해 역할과 교환 (Sign-in)</li>
+<li>임시 자격 증명은 STS <code>AssumeRoleWithSAML</code>을 사용하여 반환</li>
+<li>사용자가 인증되고 AWS 관리 콘솔에 대한 액세스 권한이 제공</li>
+</ol>
+</div>
+        </div>
+    </div>
+<h4 id="custom-identity-broker-application">Custom Identity Broker Application</h4>
+<ul>
+<li>IdP가 SAML 2.0과 호화되지 않는 경우에 사용</li>
+<li><strong>identity 브로커가 적절한 IAM 정책을 결정해야 한다.</strong></li>
+<li>사용 STS API : <strong>AssumeRole</strong> or <strong>GetFederationToken</strong></li>
+</ul>
+<figure><a class="lightgallery" href="/posts/images/aws/enterprise-authentication-with-identity-broker-application.diagram.png" title="/posts/images/aws/enterprise-authentication-with-identity-broker-application.diagram.png" data-thumbnail="/posts/images/aws/enterprise-authentication-with-identity-broker-application.diagram.png" data-sub-html="<h2>https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_common-scenarios_federated-users.html</h2>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/posts/images/aws/enterprise-authentication-with-identity-broker-application.diagram.png"
+            data-srcset="/posts/images/aws/enterprise-authentication-with-identity-broker-application.diagram.png, /posts/images/aws/enterprise-authentication-with-identity-broker-application.diagram.png 1.5x, /posts/images/aws/enterprise-authentication-with-identity-broker-application.diagram.png 2x"
+            data-sizes="auto"
+            alt="/posts/images/aws/enterprise-authentication-with-identity-broker-application.diagram.png" width="100%" />
+    </a><figcaption class="image-caption"><a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_common-scenarios_federated-users.html" target="_blank" rel="noopener noreffer">https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_common-scenarios_federated-users.html</a></figcaption>
+    </figure>
+<ul>
+<li>자격 증명 브로커는 IAM STS API <code>AssumeRole</code>과 <code>GetFederationToken</code> API를 이용하여 클라이언트가 AWS 콘솔과 API 등에 액세스 할 수 있게 한다.</li>
+</ul>
+<h4 id="web-identity-federation---assumerolewithwebidentity">Web Identity Federation - AssumeRoleWithWebIdentity</h4>
+<ul>
+<li>Client-Side에서 AWS에 액세스 하기위해서는 -&gt; AWS Cognito를 사용하기를 권장한다.</li>
+</ul>
+<h3 id="aws-cognito">AWS Cognito</h3>
+<ul>
+<li><strong>목적</strong> : Client Side(모바일, 웹)에서 AWS 리소스를 직접 액세스 제공</li>
+<li><strong>사용예시</strong> : 페이스북 로그인하여 S3 쓰기 작업을 할 수 있는 임시 권한을 제공하고 싶은 경우</li>
+<li><strong>문제</strong> : 그때마다 IAM 사용자를 생성해야 한다.</li>
+<li><strong>어떻게</strong>
+<ul>
+<li>federated IdP로 로그인 또는 익명 아이디</li>
+<li><code>Federated Identity Pool</code>로부터 AWS 임시 자격증명을 얻는다.</li>
+<li>이러한 자격증명은 사용 권한을 명시하는 미리 정의된 IAM 정책과 함께 제공</li>
+</ul>
+</li>
+</ul>
+<h3 id="microsoft-active-directory-ad">Microsoft Active Directory (AD)</h3>
+<ul>
+<li>Found on any Windows Server with AD Domain Services</li>
+<li>Database of objects: User Accounts, Computers, Printers, File Shares, Security Groups</li>
+<li>중앙 집중식 보안 관리, 계정 생성, 권한 할당</li>
+<li>Objects는 <strong>trees</strong>로 구성되어 있다.</li>
+<li>trees의 그룹은 <strong>forest</strong>라고 한다.</li>
+</ul>
+<h3 id="aws-directory-services">AWS Directory Services</h3>
+<table>
+<thead>
+<tr>
+<th>AWS Directory Services</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>AWS Managed Microsoft AD</strong></td>
+<td>- AWS에서 자신만의 AD를 만들고 로컬에서 사용자를 관리 <br/> - MFA 지원 <br/> - Establish “trust” connections with your on-premises AD</td>
+</tr>
+<tr>
+<td><strong>AD Connector</strong></td>
+<td>- on-premises AD로 리다이렉션 Directory Gateway(proxy) <br/>- MFA 지원<br/>- 사용자는 온프레미스 AD에서 관리</td>
+</tr>
+<tr>
+<td><strong>Simple AD</strong></td>
+<td>- AD 호환 관리 디렉토리 <br/> - on-premises AD와 결합할 수 없다.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="aws-organizations">AWS Organizations</h2>
+<ul>
+<li>글로벌 서비스</li>
+<li>여러 AWS 계정 관리</li>
+<li>기본 계정이 마스터 계정이므로 변경할 수 없다. (기타 계정은 회원 계정)</li>
+<li>회원 계정은 한 조직의 일부만 될 수 있다.</li>
+<li>모든 계정읜 통합 청구 - 단일 지불 방법</li>
+<li>EC2, S3 할인 등 가격 책정 이점</li>
+<li>API를 사용하여 AWS 계정 생성 자동화</li>
+</ul>
+<h3 id="다중-계정-전략">다중 계정 전략</h3>
+<ul>
+<li>부서별 비용 센터별, dev/test/prod 등 규제 제한 사항(SCP 이용) 또는 리소스 격라 수준에 따라 계정을 생성한다.</li>
+<li>계정당 서비스 제한이 별도로 있고, 로깅을 위해 격리한다.</li>
+</ul>
+<h3 id="organizational-units-ou">Organizational Units (OU)</h3>
+<h3 id="service-control-policies-scp">Service Control Policies (SCP)</h3>
+<ul>
+<li>IAM 역할에 Whitelist 또는 Blacklist</li>
+<li><strong>OU</strong> 또는 <strong>Account</strong> 레벨에만 적용 가능</li>
+<li>마스터 계정에는 적용되지 않음</li>
+<li>SCP는 루트 사용자를 포함한 모든 계정의 사용자와 Role에 적용된다.</li>
+<li>SCP는 Service-linked 역할에 영향을 주지 않는다.
+<ul>
+<li>Service-linked 역할은 다른 AWS 서비스를 AWS 조직과 통합할 수 있도록 SCP에 의해 제한될 수 없다.</li>
+</ul>
+</li>
+<li>SCP에는 명시적으로 Allow (허용)이 있어야 한다. (기본적으로 아무것도 허용하지 않음)</li>
+<li>사용 사례
+<ul>
+<li>특정 서비스에 대한 액세스 제한</li>
+<li>서비스를 명시적으로 사용하지 않도록 설정하여 PCI 규정 준수 적용</li>
+</ul>
+</li>
+</ul>
+<h4 id="scp-hierarchy">SCP Hierarchy</h4>
+<blockquote>
+</blockquote>
+<h5 id="blacklist--whitelist-전략">Blacklist &amp; Whitelist 전략</h5>
+<h6 id="특정-유형의-서비스를-블랙리스트로-등록">특정 유형의 서비스를 블랙리스트로 등록</h6>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>    
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;Version&#34;</span><span class="p">:</span> <span class="s2">&#34;2012-10-17&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;Statement&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;Sid&#34;</span><span class="p">:</span> <span class="s2">&#34;AllowsAllActions&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;Effect&#34;</span><span class="p">:</span> <span class="s2">&#34;Allow&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;Action&#34;</span><span class="p">:</span> <span class="s2">&#34;*&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;Resource&#34;</span><span class="p">:</span> <span class="s2">&#34;*&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;Sid&#34;</span><span class="p">:</span> <span class="s2">&#34;DenyDynamoDB&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;Effect&#34;</span><span class="p">:</span> <span class="s2">&#34;Deny&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;Action&#34;</span><span class="p">:</span> <span class="s2">&#34;dynamodb:*&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;Resource&#34;</span><span class="p">:</span> <span class="s2">&#34;*&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="특정-유형의-서비스만-화이트리스트에-추가">특정 유형의 서비스만 화이트리스트에 추가</h6>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>    
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;Version&#34;</span><span class="p">:</span> <span class="s2">&#34;2012-10-17&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;Statement&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;Effect&#34;</span><span class="p">:</span> <span class="s2">&#34;Allow&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;Action&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;ec2:*&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;cloudwatch:*&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="조직-이동">조직 이동</h3>
+<h4 id="계정-마이그레이션">계정 마이그레이션</h4>
+<ol>
+<li>이전 조직에서 구성원 계정 제거</li>
+<li>새 조직에서 초대정 보내기</li>
+<li>회원 계정에서 새 조직에 대한 초대 수락</li>
+</ol>
+<h4 id="마스터-계정의-마이그레이션">마스터 계정의 마이그레이션</h4>
+<ol>
+<li>조직에서 구성원 계정 제거</li>
+<li>이전 조직 삭제</li>
+<li>위의 과정 반복 이전 마스터 계정을 새 조직으로 초대</li>
+</ol>
+<h2 id="iam-conditions">IAM Conditions</h2>
+<div class="details admonition tip open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw" aria-hidden="true"></i>aws:SourceIP:<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><ul>
+<li>API 호출하는 곳으로부터 클라이언트 IP를 제한</li>
+<li>아래 예시는 해당 아이피 범위가 아닌 곳에서는 요청을 허용하지 않음 (NotIpAddress)</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>    
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;Version&#34;</span><span class="p">:</span> <span class="s2">&#34;2012-10-17&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;Statement&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;Effect&#34;</span><span class="p">:</span> <span class="s2">&#34;Deny&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;Action&#34;</span><span class="p">:</span> <span class="s2">&#34;*&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;Resource&#34;</span><span class="p">:</span> <span class="s2">&#34;*&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;Condition&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;NotIpAddress&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;aws:SourceIp&#34;</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">                <span class="s2">&#34;192.0.2.0/24&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="s2">&#34;203.0.113.0/24&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="p">},</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//...
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></div>
+        </div>
+    </div>
+<div class="details admonition tip open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw" aria-hidden="true"></i>aws:RequestedRegion:<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><ul>
+<li>API 호출이 이루어지는 리젼을 제한</li>
+<li>요청리전이 <code>eu-central-1</code>, <code>eu-west-1</code> 다른 리전에서 온 것은 수락하지 않음.</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>    
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;Version&#34;</span><span class="p">:</span> <span class="s2">&#34;2012-10-17&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;Statement&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;Sid&#34;</span><span class="p">:</span> <span class="s2">&#34;AllowOnlyInsideEU&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;Effect&#34;</span><span class="p">:</span> <span class="s2">&#34;Allow&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;Action&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;ec2:*&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;rds:*&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;dynamodb:*&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="p">],</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;Resource&#34;</span><span class="p">:</span> <span class="s2">&#34;*&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;Condition&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;SingleEquals&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;aws:RequestedRegion&#34;</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">                <span class="s2">&#34;eu-central-1&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="s2">&#34;eu-west-1&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="p">},</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//...
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></div>
+        </div>
+    </div>
+<div class="details admonition tip open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw" aria-hidden="true"></i>Restrict based on tags<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><ul>
+<li>태그가 <code>DataAnalytics</code>이면서 부서가 <code>Data</code>일 때만 ec2의 해당 작업이 허용</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>    
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;Version&#34;</span><span class="p">:</span> <span class="s2">&#34;2012-10-17&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;Statement&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;Sid&#34;</span><span class="p">:</span> <span class="s2">&#34;StartStopIfTags&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;Effect&#34;</span><span class="p">:</span> <span class="s2">&#34;Allow&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;Action&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;ec2:StartInstances&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;ec2:StopInstances&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;ec2:DescribeTags&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">],</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;Resource&#34;</span><span class="p">:</span> <span class="s2">&#34;arn:aws:ec2:regin:account-id:instance/*&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;Condition&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;StringEquals&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;ec2:ResourceTag/Project&#34;</span> <span class="p">:</span> <span class="s2">&#34;DataAnalytics&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;aws:PrincipalTag/Department&#34;</span><span class="p">:</span> <span class="s2">&#34;Data&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div>
+        </div>
+    </div>
+<div class="details admonition tip open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw" aria-hidden="true"></i>다요소 인증 강제<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>    
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;Version&#34;</span><span class="p">:</span> <span class="s2">&#34;2012-10-17&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;Statement&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;Sid&#34;</span><span class="p">:</span> <span class="s2">&#34;AllowAllActionsForEC2&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;Effect&#34;</span><span class="p">:</span> <span class="s2">&#34;Allow&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;Action&#34;</span><span class="p">:</span> <span class="s2">&#34;ec2:*&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="s2">&#34;Resource&#34;</span><span class="p">:</span> <span class="s2">&#34;*&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;Sid&#34;</span><span class="p">:</span> <span class="s2">&#34;DenyStopAndTerminateWhenMFAIsNotPresent&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;Effect&#34;</span><span class="p">:</span> <span class="s2">&#34;Deny&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;Action&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;ec2:StopInstances&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;ec2:TerminateInstances&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">],</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;Resource&#34;</span><span class="p">:</span> <span class="s2">&#34;*&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;Condition&#34;</span> <span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;BoolIfExists&#34;</span> <span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;aws:MultiFactorAuthPresent&#34;</span> <span class="p">:</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div>
+        </div>
+    </div>
+<h2 id="iam-for-s3">IAM for S3</h2>
+<div class="details admonition success open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-check-circle fa-fw" aria-hidden="true"></i>IAM for S3<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><ul>
+<li><code>ListBucket</code> : Bucket 레벨의 permission
+<ul>
+<li><code>&quot;arn:aws:s3:::test&quot;</code></li>
+</ul>
+</li>
+<li><code>GetObject</code>, <code>PutObject</code>, <code>DeleteObject</code> : Object 레벨의 permission
+<ul>
+<li><code>arn:aws:s3:::test/*</code></li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>    
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;Version&#34;</span><span class="p">:</span> <span class="s2">&#34;2012-10-17&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;Statement&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;Effect&#34;</span><span class="p">:</span> <span class="s2">&#34;Allow&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;Action&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;s3:ListBucket&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;Resource&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;arn:aws:s3:::test&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;Effect&#34;</span><span class="p">:</span> <span class="s2">&#34;Allow&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;Action&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;s3:GetObject&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;s3:PutObject&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;s3:DeleteObject&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">],</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;Resource&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;arn:aws:s3:::test/*&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div>
+        </div>
+    </div>
+<h3 id="iam-role과-리소스-기반의-정책">IAM Role과 리소스 기반의 정책</h3>
+<p>계정 A에서 계정 B에 존재하는 S3 버킷을 프록시로 사용하여 연결하는 대신 리소스 기반 정책으로 연결했을 때</p>
+<ul>
+<li>역할을 수임받을 때 계정 A의 원래 권한을 포기하고 Role에 할당된 권한을 갖게 된다.</li>
+<li>리소스 기반 정책을 사용할 때 주체가 권한을 포기할 필요가 있다.
+<ul>
+<li>example: 계정 A는 DynamoDB 테이블을 스캔하여 B계정의 S3 덤프</li>
+</ul>
+</li>
+<li>Supported by: Amazon S3 buckets, SNS topics, SQS queues, etc&hellip;</li>
+</ul>
+<h3 id="iam-permission-boundaries">IAM Permission Boundaries</h3>
+<ul>
+<li>IAM permission boundaries는 사용자와 역할에 대해 지원 (그룹은 지원하지 않음)</li>
+<li>관리 정책을 사용하여 IAM 엔티티가 얻을 수 있는 최대 권한을 설정하는 고급 기능이다.</li>
+</ul>
+<figure><a class="lightgallery" href="/posts/images/aws/EffectivePermissions-rbp-boundary-id.png" title="/posts/images/aws/EffectivePermissions-rbp-boundary-id.png" data-thumbnail="/posts/images/aws/EffectivePermissions-rbp-boundary-id.png" data-sub-html="<h2>https://docs.aws.amazon.com/ko_kr/IAM/latest/UserGuide/access_policies_boundaries.html</h2>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/posts/images/aws/EffectivePermissions-rbp-boundary-id.png"
+            data-srcset="/posts/images/aws/EffectivePermissions-rbp-boundary-id.png, /posts/images/aws/EffectivePermissions-rbp-boundary-id.png 1.5x, /posts/images/aws/EffectivePermissions-rbp-boundary-id.png 2x"
+            data-sizes="auto"
+            alt="/posts/images/aws/EffectivePermissions-rbp-boundary-id.png" width="10%" />
+    </a><figcaption class="image-caption"><a href="https://docs.aws.amazon.com/ko_kr/IAM/latest/UserGuide/access_policies_boundaries.html" target="_blank" rel="noopener noreffer">https://docs.aws.amazon.com/ko_kr/IAM/latest/UserGuide/access_policies_boundaries.html</a></figcaption>
+    </figure>
+<h4 id="permission-boundaries-사용-사례">Permission Boundaries 사용 사례</h4>
+<ul>
+<li>권한 범위 내에서 비관리자에게 책임 위임</li>
+<li>개발자가 자신의 권한을 관리할 수 없도록 하고 자체 정책 및 사용 권한을 관리할 수 있도록 허용</li>
+<li>조직 및 SCP를 사용하는 전체 계정 대신 특정 사용자 한명을 제한할 때 유용</li>
+</ul>
+<h4 id="iam-policy-evaluation-logic">IAM Policy Evaluation Logic</h4>
+<figure><a class="lightgallery" href="/posts/images/aws/PolicyEvaluationHorizontal111621.png" title="/posts/images/aws/PolicyEvaluationHorizontal111621.png" data-thumbnail="/posts/images/aws/PolicyEvaluationHorizontal111621.png" data-sub-html="<h2>https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_evaluation-logic.html</h2>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/posts/images/aws/PolicyEvaluationHorizontal111621.png"
+            data-srcset="/posts/images/aws/PolicyEvaluationHorizontal111621.png, /posts/images/aws/PolicyEvaluationHorizontal111621.png 1.5x, /posts/images/aws/PolicyEvaluationHorizontal111621.png 2x"
+            data-sizes="auto"
+            alt="/posts/images/aws/PolicyEvaluationHorizontal111621.png" />
+    </a><figcaption class="image-caption"><a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_evaluation-logic.html" target="_blank" rel="noopener noreffer">https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_evaluation-logic.html</a></figcaption>
+    </figure>
+<h2 id="aws-resource-access-manager-ram">AWS Resource Access Manager (RAM)</h2>
+<ul>
+<li>소유한 AWS 리소스를 다른 AWS 계정과 공유</li>
+<li>모든 계정 또는 조직 내에서 공유</li>
+<li>리소스 중복 방지</li>
+<li><strong>VPC 서브넷</strong>
+<ul>
+<li>모든 리소스를 동일한 서브넷에서 시작할 수 있도록 허용</li>
+<li>동일한 AWS 조직 사용자여야 한다.</li>
+<li>Security Group 및 기본 VPC 공유 할 수 없음</li>
+<li>참가자는 자신의 리소스를 관리할 수 있음</li>
+<li>참가자는 다른 참가자 또는 소유자의 리소스를 보거나 수정 및 삭제할 수 없음</li>
+</ul>
+</li>
+<li><strong>AWS Transit Gateway</strong></li>
+<li><strong>Route53 Resolver Rules</strong></li>
+<li><strong>License Manager Configurations</strong></li>
+</ul>
+<h3 id="resource-access-manager---vpc-예시">Resource Access Manager - VPC 예시</h3>
+<a class="lightgallery" href="/posts/images/aws/resource-access-manager-vpc-example.png" title="/posts/images/aws/resource-access-manager-vpc-example.png" data-thumbnail="/posts/images/aws/resource-access-manager-vpc-example.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/posts/images/aws/resource-access-manager-vpc-example.png"
+            data-srcset="/posts/images/aws/resource-access-manager-vpc-example.png, /posts/images/aws/resource-access-manager-vpc-example.png 1.5x, /posts/images/aws/resource-access-manager-vpc-example.png 2x"
+            data-sizes="auto"
+            alt="/posts/images/aws/resource-access-manager-vpc-example.png" />
+    </a>
+<ul>
+<li><strong>각각의 계정</strong>
+<ul>
+<li>자체 자원에 대한 책임이 존재</li>
+<li>다른 계정의 리소스를 보거나 수정 또는 삭제 불가</li>
+</ul>
+</li>
+<li><strong>네트워크는 공유된다.</strong>
+<ul>
+<li>VPC에 구현된 모든 리소스는 VPC의 다른 리소스와 통신 가능</li>
+<li>개인 IP를 사용하여 여러 계정에서 애플리케이션에 쉽게 액세스</li>
+<li>최대 보안을 위해 다른 계정의 보안 그룹 참조</li>
+</ul>
+</li>
+</ul>
+<h2 id="aws-single-sign-on-sso">AWS Single Sign-On (SSO)</h2>
+<ul>
+<li>Singe sign-on을 중앙에서 관리하여 여러 계정 및 3rd-party 비즈니스 애플리케이션에 액세스한다.</li>
+<li><strong>AWS 조직과 통합</strong></li>
+<li><strong>SAML 2.0 마크업</strong> 지원</li>
+<li>on-premises로 통합된 <strong>Active Directory</strong>와 통합</li>
+<li>중앙 집중식 관리</li>
+<li>CloudTrail을 통한 중앙 집중식 감사</li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-01-23&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/db5877e427614337ffbb673875fa349e5bf0be3a" target="_blank" title="commit by riley817(riley0422@icloud.com) db5877e427614337ffbb673875fa349e5bf0be3a: 20230123162055">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>db5877e</a></span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/aws/">AWS</a>,&nbsp;<a href="/tags/aws-iam/">AWS IAM</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/aws-06-ec2-associate/" class="prev" rel="prev" title="6. AWS Elastic Compute Cloud (EC2) - Associate"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>6. AWS Elastic Compute Cloud (EC2) - Associate</a>
+            <a href="/aws-00-regions-az/" class="next" rel="next" title="AWS Overview">AWS Overview<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.110.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Riley</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/valine@1.4.18/dist/Valine.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.1/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{"valine":{"appId":"QGzwQXOqs5JOhN4RGPOkR2mR-MdYXbMMI","appKey":"WBmoGyJtbqUswvfLh6L8iEBr","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@14.0.0/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"en","pageSize":10,"placeholder":"Your comment ...","recordIP":true,"serverURLs":"https://leancloud.hugoloveit.com","visitor":true}},"search":{"algoliaAppID":"","algoliaIndex":"","algoliaSearchKey":"","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

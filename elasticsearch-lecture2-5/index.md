@@ -1,4 +1,6 @@
-# 2.5 Elasticsearch 플러그인
+# [Elasticsearch 검색 엔진 구축 강의] 2.5 Elasticsearch 플러그인
+
+
 
 ## Elasticsearch 플러그인
 + 플러그인은 사용자 정의 방식에 의해 ES 의 긴능을 향상 시키는 방법이다.

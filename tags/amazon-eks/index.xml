@@ -1,0 +1,72 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Amazon EKS - Tag - Riley&#39;s DevLog</title>
+        <link>https://riley817.github.io/tags/amazon-eks/</link>
+        <description>Amazon EKS - Tag - Riley&#39;s DevLog</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
+            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Sun, 08 May 2022 00:13:03 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/tags/amazon-eks/" rel="self" type="application/rss+xml" /><item>
+    <title>[AWS EKS] 5. 인그레스 컨트롤러 만들기</title>
+    <link>https://riley817.github.io/aws-5-ingress-controller/</link>
+    <pubDate>Sun, 08 May 2022 00:13:03 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/aws-5-ingress-controller/</guid>
+    <description><![CDATA[☁️ Amazon EKS 웹 애플리케이션 구축하기 워크샵을 실습한 내용입니다.
+인그레스 Ingress 클러스터 내의 서비스에 대한 외부 요청을 어떻게 처리할 것인지 네트워크 7계층 레벨에서 정의하는 쿠버네티스 오브젝트이다.
+인그레스 오브젝트의 기본 기능은 다음과 같다.
+외부 요청의 라우팅 : 특정 경로로 들어온 요청을 어떤 서비스로 전달할지 정의하는 라우터 규칙 설정 가상 호스트 기반의 요청 처리 : 같은 IP에 대해 다른 도메인 이름으로 요청했을 때 어떻게 처리할 것인지 정의 SSL/TLS 보안 연결 처리 : 요청을 라우팅 할 때, 보안 연결을 위한 인증서 적용 인그레스를 사용하는 이유 쿠버네티스 서비스 타입 중 NodePort 혹은 LoadBalancer 타입의 서비스를 사용해도 외부로 노출할 수 있지만, 인그레스 없이 서비스를 사용할 경우 SSL/TLS 보안 연결 등의 상세 옵션을 각각의 서비스와 디플로이먼트에 대해 일일이 설정을 해야 한다.]]></description>
+</item>
+<item>
+    <title>[AWS EKS] 4. Amazon ECR 에 이미지 올리기</title>
+    <link>https://riley817.github.io/aws-4-ecr/</link>
+    <pubDate>Sat, 07 May 2022 23:00:58 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/aws-4-ecr/</guid>
+    <description><![CDATA[☁️ Amazon EKS 웹 애플리케이션 구축하기 워크샵을 실습한 내용입니다.
+Amazon ECR 리포지토리 생성 및 이미지 올리기 Amazon ECR(Elastic Container Registry) 은 도커 컨테이너의 이미지를 저장하는 Repository 서비스이다. Docker hub의 기능과 동일하다.
+AWS CLI로 이미지 리포지토리 생성 1 2 3 4 aws ecr create-repository \ --repository-name demo-flask-backend \ --image-scanning-configuration scanOnPush=true \ --region ap-northeast-2 명령어가 수행되면 리포지토리에 대한 정보가 출력되며 Amazon ECR 콘솔창에서도 생성된 리포지토리를 확인할 수 있다.
+이미지를 리포지토리로 푸시 이미지를 푸시하려는 리포지토리 선택 후 오른쪽 상단에 푸시 명령 보기(View push commands) 버튼을 클릭하면 푸시 명령어를 확인 할 수 있다.]]></description>
+</item>
+<item>
+    <title>[AWS EKS] 3. EKS Cluster 생성하기</title>
+    <link>https://riley817.github.io/aws-3-eks-cluster/</link>
+    <pubDate>Fri, 06 May 2022 23:10:03 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/aws-3-eks-cluster/</guid>
+    <description><![CDATA[☁️ Amazon EKS 웹 애플리케이션 구축하기 워크샵을 실습한 내용입니다.
+Amazon EKS 클러스터는 다양한 방식으로 배포할 수 있다.
+AWS 콘솔 창으로 배포 AWS CloudFormation 혹은 AWS CDK 와 같은 IaC(Infrastructure as Code) 도구를 사용해 배포 EKS의 공식 CLI인 eksctl 로 배포 Terraform, Pulumi, Rancher 등으로 배포 eksctl로 Cluster 생성하기 아무 옵션없이 eksctl create cluster 실행하면 default parameter로 클러스터가 배포된다. 그러나 yaml 파일로 작성한 구성 파일을 작성하여 배포하면 구성파일에 명시한 오브젝트들의 바라는 상태(desired state)를 쉽게 파악하고 관리할 수 있는 이점이 있다.]]></description>
+</item>
+<item>
+    <title>[AWS EKS] 2. AWS CLI, eksctl, kubectl 설치 및 설정</title>
+    <link>https://riley817.github.io/aws-2-cli/</link>
+    <pubDate>Thu, 05 May 2022 22:47:55 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/aws-2-cli/</guid>
+    <description><![CDATA[☁️ Amazon EKS 웹 애플리케이션 구축하기 워크샵을 실습한 내용입니다. ☁️ 워크샵에는 Cloud9을 구축했지만 나는 따로 구축하지는 않았다.
+AWS CLI AWS CLI 설치하기 (Mac OS) AWS Command Line Interface는 command-line shell 명령어를 사용하여 AWS 서비스의 EC2, VPC 등과 같은 AWS의 리소스를 프로비저닝 할 수 있다.
+Mac OS는 pkg 파일을 다운로드 하여 설치한다.
+Mac OS : https://awscli.amazonaws.com/AWSCLIV2.pkg 다른 OS에서 AWS CLI 설치하기 1 2 3 $ aws --version aws-cli/2.6.1 Python/3.9.11 Darwin/21.4.0 exe/x86_64 prompt/o AWS Credential Configure AWS CLI에서 자주 사용되는 구성 설정과 자격 증명을 저장할 수 있다.]]></description>
+</item>
+<item>
+    <title>[AWS EKS] 1. IAM 계정 생성</title>
+    <link>https://riley817.github.io/aws-eks-cloud9/</link>
+    <pubDate>Thu, 05 May 2022 22:00:00 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/aws-eks-cloud9/</guid>
+    <description><![CDATA[☁️ Amazon EKS 웹 애플리케이션 구축하기 워크샵을 실습한 내용입니다. \
+AWS Cloud9 AWS Cloud9 은 브라우저만으로 코드를 작성, 실행 및 디버깅할 수 있는 IDE(통합개발환경)이다. 코드 편집기, 디버거 및 터미널 기능을 포함하고 있고 프로그래밍 언어를 위한 필수 도구가 사전에 패키징 되어 제공된다.
+AWS Cloud9 시작하기 AWS Cloud9 IDE 구성 AWS Cloud9 콘솔 접속 후 Create environment 버튼 클릭한다.
+IDE의 Environment 이름 및 설명을 작성한다.
+인스턴스 타입을 t3.medium으로, 플랫폼의 경우 Amazon Linux 2 (recommended) 설정 Next Step을 클릭하여 지정한 속성 확인 후 Create environment 클릭하여 environment 생성한다.]]></description>
+</item>
+<item>
+    <title>[AWS EKS] 1. IAM 계정 생성</title>
+    <link>https://riley817.github.io/aws-1-eks-iam/</link>
+    <pubDate>Thu, 05 May 2022 16:51:59 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/aws-1-eks-iam/</guid>
+    <description><![CDATA[☁️ Amazon EKS 웹 애플리케이션 구축하기 워크샵을 실습한 내용입니다.
+IAM 계정 생성 AWS 계정의 루트사용자로 로그인한다. IAM 대시보드에서 액세스 관리 &gt; 사용자 &gt; 사용자 추가를 선택한다. 사용자 이름을 입력 후 Access type에서 암호-AWS 관리 콘솔 액세스 선택 사용자 지정 비밀번호로 비밀번호 생성한다. 기존 정책 직접 연결(Attach existing policies directly) 선택 후 부여하려는 정책을 선택하여 다음:태그(Next:Tags) 버튼을 클릭. 태그 추가(선택 사항) 단계 후 최종 생성 정보를 확인하고 사용자 만들기(Create User) 클릭하여 생성한다.]]></description>
+</item>
+</channel>
+</rss>

@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>1. AWS Identity and Access Management - Riley&#39;s DevLog</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:title" content="1. AWS Identity and Access Management" />
+<meta property="og:description" content="Users &amp; Groups IAM = Identity and Access Management → Global 서비스 Root 계정은 기본으로 생성되며 사용하거나 공유해서는 안된다. Users 는 조직의 사용자이며 그룹으로 묶을 수 있다. Groups는 user를 포함할 수 있고 다른 그룹은 포함할 수 없다. 사용자는 그룹에 속할 필요는 없고 user는 여러 그룹에 속할 수 있다. Permissions 사용자나 그룹은 정책은 JSON 문서를 통해 할당할 수 있다. 정책(polices)은 사용자의 권한(permissions)을 정의한다. AWS에서는 최소 권한 원칙을 적용한다 → 사용자가 필요로 하는 것보다 더 많은 권한을 부여하지 않는다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://riley817.github.io/aws-01-iam/" /><meta property="og:image" content="https://riley817.github.io/icon.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-07-12T23:10:49+09:00" />
+<meta property="article:modified_time" content="2023-01-23T16:20:57+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://riley817.github.io/icon.png"/>
+
+<meta name="twitter:title" content="1. AWS Identity and Access Management"/>
+<meta name="twitter:description" content="Users &amp; Groups IAM = Identity and Access Management → Global 서비스 Root 계정은 기본으로 생성되며 사용하거나 공유해서는 안된다. Users 는 조직의 사용자이며 그룹으로 묶을 수 있다. Groups는 user를 포함할 수 있고 다른 그룹은 포함할 수 없다. 사용자는 그룹에 속할 필요는 없고 user는 여러 그룹에 속할 수 있다. Permissions 사용자나 그룹은 정책은 JSON 문서를 통해 할당할 수 있다. 정책(polices)은 사용자의 권한(permissions)을 정의한다. AWS에서는 최소 권한 원칙을 적용한다 → 사용자가 필요로 하는 것보다 더 많은 권한을 부여하지 않는다."/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://riley817.github.io/aws-01-iam/" /><link rel="prev" href="https://riley817.github.io/20220627/" /><link rel="next" href="https://riley817.github.io/aws-05-ec2/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "1. AWS Identity and Access Management",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/riley817.github.io\/aws-01-iam\/"
+        },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "AWS, Amazone EC2","wordcount":  742 ,
+        "url": "https:\/\/riley817.github.io\/aws-01-iam\/","datePublished": "2022-07-12T23:10:49+09:00","dateModified": "2023-01-23T16:20:57+09:00","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "https:\/\/riley817.github.io\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "riley"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Riley&#39;s DevLog"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i></span>Riley&#39;s DevLog</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Riley&#39;s DevLog"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i></span>Riley&#39;s DevLog</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content always-active" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">1. AWS Identity and Access Management</h1><h2 class="single-subtitle">AWS Certified SAA-C02 시험준비</h2><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-category">included in <a href="/categories/aws-certified-saa-c02-%EC%8B%9C%ED%97%98%EC%A4%80%EB%B9%84/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>AWS Certified SAA-C02 시험준비</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-07-12">2022-07-12</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;742 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;4 minutes&nbsp;<span id="/aws-01-iam/" class="leancloud_visitors" data-flag-title="1. AWS Identity and Access Management">
+                        <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#users--groups">Users &amp; Groups</a></li>
+    <li><a href="#permissions">Permissions</a></li>
+    <li><a href="#iam-policies-inheritance">IAM Policies inheritance</a></li>
+    <li><a href="#iam-policies-structure">IAM Policies Structure</a>
+      <ul>
+        <li><a href="#요소">요소</a></li>
+        <li><a href="#statements-요소">Statements 요소</a></li>
+      </ul>
+    </li>
+    <li><a href="#iam-password-policy">IAM Password Policy</a></li>
+    <li><a href="#mfa---multi-factor-authentication">MFA - Multi Factor Authentication</a>
+      <ul>
+        <li><a href="#mfa-devices-options-in-aws"><strong>MFA devices options in AWS</strong></a></li>
+      </ul>
+    </li>
+    <li><a href="#aws에-액세스-하는-방법">AWS에 액세스 하는 방법</a>
+      <ul>
+        <li><a href="#aws-cli">AWS CLI</a></li>
+        <li><a href="#aws-sdkaws-software-development-kit">AWS SDK(AWS Software Development Kit)</a></li>
+      </ul>
+    </li>
+    <li><a href="#iam-roles-for-service">IAM Roles for Service</a>
+      <ul>
+        <li><a href="#iam-security-tools">IAM Security Tools</a></li>
+        <li><a href="#iam-가이드라인--모범-사례">IAM 가이드라인 &amp; 모범 사례</a></li>
+      </ul>
+    </li>
+    <li><a href="#summary">Summary</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="users--groups">Users &amp; Groups</h2>
+<ul>
+<li><code>IAM</code> = Identity and Access Management → Global 서비스</li>
+<li>Root 계정은 기본으로 생성되며 사용하거나 공유해서는 안된다.</li>
+<li><strong>Users 는 조직의 사용자이며 그룹으로 묶을 수 있다.</strong></li>
+<li><strong>Groups는 user를 포함할 수 있고 다른 그룹은 포함할 수 없다.</strong></li>
+<li>사용자는 그룹에 속할 필요는 없고 user는 여러 그룹에 속할 수 있다.</li>
+</ul>
+<h2 id="permissions">Permissions</h2>
+<ul>
+<li>사용자나 그룹은 정책은 JSON 문서를 통해 할당할 수 있다.</li>
+<li>정책(<code>polices</code>)은 사용자의 <strong>권한(permissions)을 정의</strong>한다.</li>
+<li>AWS에서는 최소 권한 원칙을 적용한다 → 사용자가 필요로 하는 것보다 더 많은 권한을 부여하지 않는다.</li>
+</ul>
+<h2 id="iam-policies-inheritance">IAM Policies inheritance</h2>
+<ul>
+<li>인라인 정책 : 그룹에 속해있지 않아도 정책을 바로 사용자에게 연결 가능</li>
+</ul>
+<h2 id="iam-policies-structure">IAM Policies Structure</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&#34;Version&#34;</span><span class="p">:</span> <span class="s2">&#34;2012-10-17&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">	<span class="nt">&#34;Statement&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">		<span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="nt">&#34;Effect&#34;</span><span class="p">:</span> <span class="s2">&#34;Allow&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">			<span class="nt">&#34;Action&#34;</span><span class="p">:</span> <span class="s2">&#34;ec2:Describe*&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">			<span class="nt">&#34;Resource&#34;</span><span class="p">:</span> <span class="s2">&#34;*&#34;</span>
+</span></span><span class="line"><span class="cl">		<span class="p">},</span> 
+</span></span><span class="line"><span class="cl">		<span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="nt">&#34;Effect&#34;</span><span class="p">:</span> <span class="s2">&#34;Allow&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">			<span class="nt">&#34;Action&#34;</span><span class="p">:</span> <span class="s2">&#34;elasticloadbalancing:Describe*&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">			<span class="nt">&#34;Resource&#34;</span><span class="p">:</span> <span class="s2">&#34;*
+</span></span></span><span class="line"><span class="cl"><span class="s2">		}, 
+</span></span></span><span class="line"><span class="cl"><span class="s2">		{
+</span></span></span><span class="line"><span class="cl"><span class="s2">			&#34;</span><span class="err">Effect</span><span class="s2">&#34;: &#34;</span><span class="err">Allow</span><span class="s2">&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="s2">			&#34;</span><span class="err">Action</span><span class="s2">&#34;: [
+</span></span></span><span class="line"><span class="cl"><span class="s2">				&#34;</span><span class="err">cloudwatch</span><span class="p">:</span><span class="err">ListMetrics</span><span class="s2">&#34;, 
+</span></span></span><span class="line"><span class="cl"><span class="s2">				&#34;</span><span class="err">cloudwatch</span><span class="p">:</span><span class="err">GetMetricStatistics</span><span class="s2">&#34;, 
+</span></span></span><span class="line"><span class="cl"><span class="s2">				&#34;</span><span class="err">cloudwatch</span><span class="p">:</span><span class="err">Describe*</span><span class="s2">&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">			], 
+</span></span></span><span class="line"><span class="cl"><span class="s2">			&#34;</span><span class="err">Resource</span><span class="s2">&#34;: &#34;</span><span class="err">*&#34;</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="요소">요소</h3>
+<ul>
+<li><code>Version</code> : 정책 버전</li>
+<li><code>Id</code> : 정책을 식별할 수 있는 식별자 (옵션)</li>
+<li><code>Statement</code> : 하나 혹은 여러개 (필수사항)</li>
+</ul>
+<h3 id="statements-요소">Statements 요소</h3>
+<ul>
+<li><code>Sid</code> : statement 의 식별자 (옵션)</li>
+<li><code>Effect</code> : 특정 statement에 접근은 허용 여부 (Allow 또는 Deny)를 나타냄</li>
+<li><code>Principal</code> : 정책이  적용 될 대상 (계정, 사용자, 역할)</li>
+<li><code>Action</code> : 정책의 허용 또는 거부되는 호출 리스트 목록</li>
+<li><code>Resource</code> : 정책이 적용될 리소스 목록</li>
+<li><code>Condition</code> : statement가 언제적용될지 결정 (옵션)</li>
+</ul>
+<h2 id="iam-password-policy">IAM Password Policy</h2>
+<ul>
+<li>강력한 비밀번호 → 계정에 대한 높은 보안</li>
+</ul>
+<div class="details admonition tip open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw" aria-hidden="true"></i>AWS에서 설정가능한 패스워드 정책<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><ul>
+<li>패스워드 최소 길이</li>
+<li>특수문자 포함 필수 입력 : 대소문자, 숫자, 특수문자</li>
+<li>IAM 계정 사용자들의 패스워드 변경 허용 또는 금지</li>
+<li>패스워드 만료 지정</li>
+<li>패스워드 재사용 금지</li>
+</ul>
+</div>
+        </div>
+    </div>
+<h2 id="mfa---multi-factor-authentication">MFA - Multi Factor Authentication</h2>
+<ul>
+<li>사용자는 계정에 액세스 할 수 있으며 구성을 변경하거나 AWS 계정의 리소스를 삭제할 수 있다.</li>
+<li><strong>MFA는 루트 계정 및 IAM 사용자를 보호하려는 경우 사용할 수 있다.</strong></li>
+<li>비밀번호가 도난당하거나 해킹당해도 계정에 손상을 입지 않는다.</li>
+</ul>
+<blockquote>
+<p><strong>MFA</strong> = 패스워드(사용자만 알고있는) + 보안 장비(사용자가 소유하고 있는)</p>
+</blockquote>
+<h3 id="mfa-devices-options-in-aws"><strong>MFA devices options in AWS</strong></h3>
+<table>
+<thead>
+<tr>
+<th>MFA devices</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Virtual MFA device</strong></td>
+<td>- 하나의 디바이스에 멀티 토큰을 지원 <br/>- Google Authenticator(phone only)<br/>- Authy(multi-device)</td>
+</tr>
+<tr>
+<td><strong>Universal 2nd Factor (U2F) Security Key</strong></td>
+<td>- 단일 보안 키를 사용하여 여러 루트 및 IAM 사용자 지원<br/>- YubiKey by Yubico (3rd party)</td>
+</tr>
+<tr>
+<td><strong>Hardware Key Fob MFA Device</strong></td>
+<td>- Provided by Gemalto (3rd party)</td>
+</tr>
+<tr>
+<td><strong>Hardware Key Fob MFA Device for AWS GovCloud (US)</strong></td>
+<td>- Provided by SurePassID (3rd party)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="aws에-액세스-하는-방법">AWS에 액세스 하는 방법</h2>
+<div class="details admonition note open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-pencil-alt fa-fw" aria-hidden="true"></i>AWS 액세스하기 위한 세 가지 방법<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><ol>
+<li><code>AWS Management Console</code> : 비밀번호 + MFA로 보호</li>
+<li><code>AWS Command Line Interface (CLI)</code> : access key로 보호</li>
+<li><code>AWS Software Developer Kit (SDK)</code> : 코드의 경우 access key로 보호</li>
+</ol>
+</div>
+        </div>
+    </div>
+<ul>
+<li>액세스키는 AWS 콘솔을 통해 생성할 수 있다.</li>
+<li>사용자가 자신의 액세스키를 관리한다.</li>
+<li><strong>액세스 키는 패스워드와 마찬가지로 기밀이므로 공유하지 않는다.</strong></li>
+<li>Access Key ID ~= username</li>
+<li>Secret Access Key ~= password</li>
+</ul>
+<h3 id="aws-cli">AWS CLI</h3>
+<ul>
+<li>커맨드라인 쉘에서 명령어를 사용하여 AWS 서비스와 상호작용 할 수 있도록 해주는 도구</li>
+<li>CLI를 사용하면 AWS의 공용 API로 직접 액세스 가능</li>
+<li>리소소를 자동화하여 관리할 수 있다.</li>
+<li>오픈소스이다. <strong><a href="https://github.com/aws/aws-cli" target="_blank" rel="noopener noreffer">https://github.com/aws/aws-cli</a></strong></li>
+<li>AWS 관리 콘솔 대신 사용 가능</li>
+</ul>
+<h3 id="aws-sdkaws-software-development-kit">AWS SDK(AWS Software Development Kit)</h3>
+<ul>
+<li>
+<p>특정 언어로 된 라이브러리 집합</p>
+</li>
+<li>
+<p>프로그래밍으로 AWS에 액세스를 액세스하고 관리</p>
+</li>
+<li>
+<p>응용 프로그램에 포함</p>
+<div class="details admonition note open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-pencil-alt fa-fw" aria-hidden="true"></i>Supports<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><ul>
+<li>SDKs (Javascript, Python, PHP, .NET, Ruby, Java, Go, Node.js, C++)</li>
+<li>Mobile SDKs (Android, iOS…)</li>
+<li>IoT Device SDKs (Embedded C, Arduino…)</li>
+</ul>
+</div>
+        </div>
+    </div>
+</li>
+</ul>
+<h2 id="iam-roles-for-service">IAM Roles for Service</h2>
+<ul>
+<li>일부 AWS 서비스는 사용자를 대신하여 작업을 수행</li>
+<li>IAM 역할을 사용하여 AWS 서비스에 사용 권한을 할당
+<div class="details admonition tip open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw" aria-hidden="true"></i>공통 역할<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><ul>
+<li>EC2 인스턴스 Roles</li>
+<li>Lambda Function Roles</li>
+<li>Roles for CloudFormation</li>
+</ul>
+</div>
+        </div>
+    </div></li>
+</ul>
+<h3 id="iam-security-tools">IAM Security Tools</h3>
+<table>
+<thead>
+<tr>
+<th><strong>IAM Security Tools</strong></th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>IAM Credentials Report (account-level)</strong></td>
+<td>계정의 모든 사용자와 해당 사용자의 다양한 자격 증명 상태를 나열하는 보고서</td>
+</tr>
+<tr>
+<td><strong>IAM Access Advisor (user-level)</strong></td>
+<td>- 사용자에게 부여된 서비스 권한과 해당 서비스에 마지막으로 액세스한 시간을 표시<br/>- 이 정보를 사용하여 정책을 수정</td>
+</tr>
+</tbody>
+</table>
+<h3 id="iam-가이드라인--모범-사례">IAM 가이드라인 &amp; 모범 사례</h3>
+<ul>
+<li>루트 계정은 AWS 계정을 설정할 때를 제외하고 사용하지 않는다.</li>
+<li>실제 유저 한명 = 하나의 AWS 유저</li>
+<li><strong>사용자를 그룹에 할당하고 그룹에 권한을 할당</strong></li>
+<li><strong>강력한 패스워드 정책 사용</strong></li>
+<li><strong>MFA(Multi Factor Authentication)</strong> 인증 사용 및 적용</li>
+<li>AWS 서비스에 대한 사용 권한을 부여하는 역할 <code>Roles</code> 을 생성 및 사용</li>
+<li><strong>프로그래밍 방식의 액세스 키 사용 (CLI / SDK)</strong></li>
+<li>IAM 자격증명 보고서를 사용한 계정 감사</li>
+<li><strong>IAM 유저와 액세스키 공유는 절대 하지 않는다</strong></li>
+</ul>
+<h2 id="summary">Summary</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Users</strong></td>
+<td>AWS 콘솔에 대한 비밀번호를 갖는 실제사용자와 매핑</td>
+</tr>
+<tr>
+<td><strong>Groups</strong></td>
+<td>오직 사용자만 그룹에 포함할 수 있다.<br/>다른 그룹은 포함할 수 없다.</td>
+</tr>
+<tr>
+<td><strong>Policies</strong></td>
+<td>사용자나 그룹이 할 수 있는 권한을 알려주는 문서이다.<br/><code>JSON</code> 형태로 되어있다.</td>
+</tr>
+<tr>
+<td><strong>Roles</strong></td>
+<td>EC2와 같은 AWS 서비스에서 무언가를 할 수 있게 하는 권한을 주려고 할때 IAM Role을 만들어야 한다.</td>
+</tr>
+<tr>
+<td><strong>Security</strong></td>
+<td><strong>MFA + Password</strong></td>
+</tr>
+<tr>
+<td><strong>Access Keys</strong></td>
+<td>AWS의 CLI, SDK 접근하기 위해 사용하는 자격증명 값이다.</td>
+</tr>
+<tr>
+<td><strong>Audit(회계 감사)</strong></td>
+<td>IAM Credential Reports(IAM 자격증명 보고서) : 사용자 자격증명 내역 확인<br/>IAM Access Advisor(IAM 액세스 관리자) : 최근 권한 사용내역 확인</td>
+</tr>
+</tbody>
+</table>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-01-23&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/db5877e427614337ffbb673875fa349e5bf0be3a" target="_blank" title="commit by riley817(riley0422@icloud.com) db5877e427614337ffbb673875fa349e5bf0be3a: 20230123162055">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>db5877e</a></span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/aws/">AWS</a>,&nbsp;<a href="/tags/amazone-ec2/">Amazone EC2</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/20220627/" class="prev" rel="prev" title="[TIL &amp; Issue Note] 개발협업 가이드 핸드북 초안"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>[TIL & Issue Note] 개발협업 가이드 핸드북 초안</a>
+            <a href="/aws-05-ec2/" class="next" rel="next" title="5. AWS EC2 Basics">5. AWS EC2 Basics<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.110.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Riley</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/valine@1.4.18/dist/Valine.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.1/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{"valine":{"appId":"QGzwQXOqs5JOhN4RGPOkR2mR-MdYXbMMI","appKey":"WBmoGyJtbqUswvfLh6L8iEBr","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@14.0.0/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"en","pageSize":10,"placeholder":"Your comment ...","recordIP":true,"serverURLs":"https://leancloud.hugoloveit.com","visitor":true}},"search":{"algoliaAppID":"","algoliaIndex":"","algoliaSearchKey":"","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

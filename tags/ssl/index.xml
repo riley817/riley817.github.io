@@ -1,32 +1,32 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>ssl - Tag - Riley&#39;s DevLog</title>
+        <title>SSL - Tag - Riley&#39;s DevLog</title>
         <link>https://riley817.github.io/tags/ssl/</link>
-        <description>ssl - Tag - Riley&#39;s DevLog</description>
+        <description>SSL - Tag - Riley&#39;s DevLog</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
             <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Wed, 02 Mar 2022 22:30:01 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/tags/ssl/" rel="self" type="application/rss+xml" /><item>
     <title>[TIL &amp; Issue Note] 20220302</title>
-    <link>https://riley817.github.io/archives/til/20220302/</link>
+    <link>https://riley817.github.io/20220302/</link>
     <pubDate>Wed, 02 Mar 2022 22:30:01 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/archives/til/20220302/</guid>
+    <guid>https://riley817.github.io/20220302/</guid>
     <description><![CDATA[What is React? 사용자 인터페이스를 구축하기 위한 자바스크립트 라이브러리. 모바일 앱과 웹사이트 비교 모바일 앱 모바일 앱은 반응성이 매우 높은 사용자 환경을 제공한다. 화면 전환이 빠르기 때문에 사용하기 좋다. 웹사이트 웹사이트는 사용자 요청이 (링크나, 버튼을 클릭했을 때) 서버로 전송되고 전송된 결과(HTML 페이지)는 브라우저로 다시 전송되어 화면에 띄워지는 구조이다. 이러한 요청과 반응 사이클로 인해 동작이 모바일 앱에 비해서는 투박하고 지연이 있을 수 있다. 자바스크립트 자바스크립트를 통해 Dom을 조작하고 이를 통해 HTML의 요소를 제어할 수 있다.]]></description>
 </item>
 <item>
     <title>[TIL &amp; Issue Note] 20220218</title>
-    <link>https://riley817.github.io/archives/til/20220218/</link>
+    <link>https://riley817.github.io/20220218/</link>
     <pubDate>Fri, 18 Feb 2022 21:59:10 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/archives/til/20220218/</guid>
+    <guid>https://riley817.github.io/20220218/</guid>
     <description><![CDATA[20220218 Note 도커 비공개 레포지토리를 자체 인증서를 발급 하여 세팅한다. 깃랩 러너를 구성하여 main 브랜치에 머지되었을 때 서버를 구성한다. docker-compose.yml
 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 version: &#39;3.8&#39; services: registry: image: registry:2 restart: always volumes: - /home/cherry/devops/docker_repository/images:/var/lib/registry - /home/cherry/devops/docker_repository/certs:/certs ports: - 5000:5000 environment: REGISTRY_HTTP_TLS_CERTIFICATE: /certs/domain.crt REGISTRY_HTTP_TLS_KEY: /certs/domain.key gitlab-runner: container_name: gitlab-runner image: &#39;gitlab/gitlab-runner:latest&#39; restart: always volumes: - .]]></description>
 </item>
 <item>
     <title>[TIL &amp; Issue Note] 20220217</title>
-    <link>https://riley817.github.io/archives/til/20220217/</link>
+    <link>https://riley817.github.io/20220217/</link>
     <pubDate>Thu, 17 Feb 2022 22:06:00 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/archives/til/20220217/</guid>
+    <guid>https://riley817.github.io/20220217/</guid>
     <description><![CDATA[이슈 사내 사이드 프로젝트 배포를 위한 개인 도커 레포지토리를 구축 중이다. 도메인은 godaddy를 통해 구매하였고, repository.XXXXX.com 서브도메인을 구성하였다. 개인 도커 레포지토리를 외부에서 접근하려먼 HTTPS만 지원하기 때문에 openssl을 통해 자체 서명 인증서를 발급했다.
 1 openssl req -newkey rsa:4096 -nodes -sha256 -keyout ./domain.key -x509 -days 365 -out ./domain.crt 위와 같이 발행 후 원격장비에서 도커 레포지토리 장비로 이미지를 푸시하려는데 아래와 같은 메세지와 함께 푸시가 되지 않았다.
 The push refers to repository [repository.XXXXX.com:5000/my-nginx] Get &ldquo;https://repository.]]></description>

@@ -5,87 +5,87 @@
         <description>AWS Certified SAA-C02 시험준비 - Category - Riley&#39;s DevLog</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
             <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Mon, 15 Aug 2022 17:26:41 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/categories/aws-certified-saa-c02-%EC%8B%9C%ED%97%98%EC%A4%80%EB%B9%84/" rel="self" type="application/rss+xml" /><item>
-    <title>AWS Virtual Private Cloud(VPC)</title>
-    <link>https://riley817.github.io/aws-vpc/</link>
+    <title>28. AWS Virtual Private Cloud(VPC)</title>
+    <link>https://riley817.github.io/aws-28-vpc/</link>
     <pubDate>Mon, 15 Aug 2022 17:26:41 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/aws-vpc/</guid>
-    <description><![CDATA[CIDR - IPv4 Classless Inter-Domain Routing - IP 주소 할당 방법 Security Groups 규칙 및 AWS 네트워킹에 일반적으로 사용 Base IP : 범위에 포함된 IP를 나타냄 Example) 10.0.0.0, 192.168.0.0 &hellip; Subnet Mask : IP에서 변경할 수 있는 비트 수를 정의 Example) /0, /24, /32 /8 : 255.0.0.0 /16 : 255.255.0.0 /24 : 255.255.255.0 /32 : 255.255.255.255 Subnet Mask Subnet Mask 사용하면 기본적으로 기본IP에서 다음 값을 추가로 가져올 수 있다.
+    <guid>https://riley817.github.io/aws-28-vpc/</guid>
+    <description><![CDATA[CIDR - IPv4 Classless Inter-Domain Routing : IP 주소 할당 방법 Security Groups : 규칙 및 AWS 네트워킹에 일반적으로 사용 Base IP : 범위에 포함된 IP를 나타냄 (e.g., 10.0.0.0, 192.168.0.0 &hellip;) Subnet Mask IP에서 변경할 수 있는 비트 수를 정의 (e.g., /0, /24, /32) /8 : 255.0.0.0 /16 : 255.255.0.0 /24 : 255.255.255.0 /32 : 255.255.255.255 Subnet Mask Subnet Mask 사용하면 기본적으로 기본IP에서 다음 값을 추가로 가져올 수 있다.
 IPLocationTools IP/Subnet Mask 192.]]></description>
 </item>
 <item>
-    <title>AWS Security &amp; Encryption</title>
-    <link>https://riley817.github.io/aws-security-encryption/</link>
+    <title>27. AWS Security &amp; Encryption</title>
+    <link>https://riley817.github.io/aws-27-security-encryption/</link>
     <pubDate>Sun, 14 Aug 2022 23:31:49 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/aws-security-encryption/</guid>
+    <guid>https://riley817.github.io/aws-27-security-encryption/</guid>
     <description><![CDATA[전송중 암호화 (SSL) 데이터를 전송하기 전에 암호화. 수신 후 복호화 SSL 인증서로 암호화 (HTTPS) 전송 중 암호화는 MITM(man in the middle attack)이 발생하지 않도록 보장 Server side encryption at rest 데이터가 서버에 수신 된 후 암호화 데이터가 서버에 전송 전 복호화 데이터 키라고 불리우는 키 덕분에 데이터는 암호화 된 형태로 저장 암호화 및 복호화 키는 어딘가에 관리되어야 하며 서버는 이에 대한 액세스 권한이 있어야 한다. Client side encryption 데이터가 클라이언트에 의해 암호화되고 서버는 복호화할 수 없음 데이터는 수신 클라이언트에 의해 복호화 서버는 데이터의 암호를 복호화 할 수 없음 Envelop Encryption 암호화를 활용 AWS KMS (Key Management Service) KMS 키를 사용하여 데이터에 액세스할 수 있는 사람과 대상을 쉽게 제어]]></description>
 </item>
 <item>
-    <title>Amazon S3</title>
-    <link>https://riley817.github.io/aws-integration-messaging/</link>
+    <title>18. AWS Integration &amp; Messaging</title>
+    <link>https://riley817.github.io/aws-18-integration-messaging/</link>
     <pubDate>Tue, 02 Aug 2022 09:16:41 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/aws-integration-messaging/</guid>
+    <guid>https://riley817.github.io/aws-18-integration-messaging/</guid>
     <description><![CDATA[Application communication Application communication 두 가지 패턴 Synchronous communications (application to application) Synchronous는 요청량이 급증하면 애플리케이션간 여러 문제를 유발시킬 수 있다. Asynchronous / Event based (application to queue to application) 애플리케이션 의존관계decouple를 낮추는 사례 아래 서비스들을 사용하여 즉각적으로 애플리케이션을 확장가능 하다.
 SQS 사용 : Queue 모델 SNS 사용 : pub/sub 모델 Kinesis : 실시간 스트리밍 모델 Amazon SQS Amazon SQS - Standard Queue AWS에서 가장 오래된 서비스. 애플리케이션을 decoupling하기 위해 서비스를 관리 중복 메세지를 갖을 수 있다.]]></description>
 </item>
 <item>
-    <title>Amazon S3</title>
-    <link>https://riley817.github.io/aws-s3/</link>
+    <title>14. S3 Storage and Data Management</title>
+    <link>https://riley817.github.io/aws-14-s3/</link>
     <pubDate>Mon, 01 Aug 2022 22:26:38 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/aws-s3/</guid>
+    <guid>https://riley817.github.io/aws-14-s3/</guid>
     <description><![CDATA[Amazon S3 Amazon S3은 AWS의 주요한 서비스 중 하나이다. 무한 확장infinitely scaling 가능한 storage 많은 웹사이트에서 Amazon S3을 backbone으로 사용한다. AWS의 다수의 서비스에서도 Amazon S3 통합하여 사용할 수 있다. Amazon S3 Overview Buckets Amazon S3에서는 object(files) 을 buckets(directories) 에 저장할 수 있다. 버켓은 반드시 전역적으로 유일globally unique name 해야 한다. 버켓은 region level 정의된다. (S3는 전역서비스지만 버켓은 리전리소스) Naming convention 대문자 불가 _ 불가 길이는 3~63 자리 IP 주소가 아닐 것 반드시 소문자로 또는 숫자로 시작 Objects Object는 파일이며 키를 가짐 key는 전체경로full path를 나타낸다 s3://my-bucket/my_file.]]></description>
 </item>
 <item>
-    <title>Amazon RDS, Aurora &amp; ElastiCache</title>
-    <link>https://riley817.github.io/aws-rds/</link>
+    <title>9. Amazon RDS, Aurora &amp; ElastiCache</title>
+    <link>https://riley817.github.io/aws-09-rds/</link>
     <pubDate>Mon, 01 Aug 2022 17:41:51 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/aws-rds/</guid>
+    <guid>https://riley817.github.io/aws-09-rds/</guid>
     <description><![CDATA[AWS RDS RDS는 관계형 데이터 베이스 서비스 Relational Database Service 를 나타내며 SQL 쿼리 언어를 사용하는 데이터베이스를 위한 서비스이다.
 RDS에서 제공하는 데이터베이스 Postgres MySQL MariaDB Oracle Microsoft SQL Server Aurora - AWS Proprietary database AWS RDS 사용시 이점 RDS는 다음과 같은 서비스를 관리한다. 프로비저닝 및 OS 패치 자동화 지속적 백업과 특정 timestamp 기준 복구 (Point Time Restore) 대시보드 모니터링 읽기 성능 향상을 위한 읽기 전용 복제본 재해복구 DZ(Disaster Recovery)를 위한 Multi AZ 셋업 가능 업그레이드를 위한 유지보수 확장성 (vertical and horizontal) EBS 스토리지 백업 (gp2 or io1) 그러나 인스턴스에 SSH를 따로 가질 수는 없다.]]></description>
 </item>
 <item>
-    <title>AWS Fundamentals - Load Balancing, Auto Scaling Groups and EBS Volumes</title>
-    <link>https://riley817.github.io/aws-fundamentals/</link>
+    <title>8. AWS Fundamentals - Load Balancing, Auto Scaling Groups and EBS Volumes</title>
+    <link>https://riley817.github.io/aws-08-fundamentals/</link>
     <pubDate>Fri, 22 Jul 2022 08:19:49 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/aws-fundamentals/</guid>
+    <guid>https://riley817.github.io/aws-08-fundamentals/</guid>
     <description><![CDATA[확장성(Scalability) 및 고가용성(High Availability) 확장성은 애플리케이션/시스템이 더 큰 부하를 처리할 수 있게 적용되는 것을 의미 확장성 종류 Vertical Scalability Horizontal Scalability (= 탄력성elasticity) 확장성은 고 가용성(HA)과 연결되어 있지만 서로다르다. Vertical Scalability 수직적 확장은 인스턴스 크기를 증가 시키는 것을 의미 예시) t2.micro -&gt; t2.large로 확장 수직적 확장성은 데이터베이스와 같은 비분산 시스템에서 매우 일반적 RDS, ElastiCache는 수직 확장이 가능한 서비스 일반적으로 수직확장에는 제한이 있음(하드웨어 제한) Horizontal Scalability 수평적 확장은 애플리케이션의 인스턴스 혹은 시스템 수 증가 분산 시스템을 의미 웹 애플리케이션/현대 애플리케이션에서 매우 일반적 Amazon EC2와 같은 클라우드 제품 덕분에 수평확장 용이 High Availability 고가용성(HA)은 일반적으로 수평 확장과 함께 제공 최소 두 개의 데이터 센터(=AZ)에서 애플리케이션 및 시스템을 실행하는 것을 의미 고가용성의 목표는 데이터 센터 손실에서 살아 남는 것 고가용성은 수동적일 수 있음 (RDS Multi AZ의 경우) 고가용성은 활성화 할 수 있음 (수평적 확장을 위해) EC2를 위한 고가용성 및 확장성 Vertical Scaling : 인스턴스 사이즈를 늘린다.]]></description>
 </item>
 <item>
-    <title>AWS EC2 Instance Storage</title>
-    <link>https://riley817.github.io/aws-ebs/</link>
+    <title>7. AWS EC2 Instance Storage</title>
+    <link>https://riley817.github.io/aws-07-ebs/</link>
     <pubDate>Wed, 20 Jul 2022 08:19:49 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/aws-ebs/</guid>
+    <guid>https://riley817.github.io/aws-07-ebs/</guid>
     <description><![CDATA[EBS Volume EBS(Elastic Block Store) Volume은 볼륨 인스턴스가 실행되는 동안 인스턴스에 연결할 수 있는 네트워크 드라이브이다. 인스턴스가 종료된 후에도 데이터를 유지할 수 있다. 한 번에 하나의 인스턴스에만 마운트 할 수 있다. (CCP 레벨) CCP 레벨 : 하나의 EBS는 하나의 EC2 인스턴스에만 마운트 가능 Associate Level: 일부 EBS 다중 연결 특정 가용 영역에바 바인딩 되어 있다. 네트워크 USB 스틱과 유사하다. 프리티어는 한 달 30GB의 일반 용도 (SSD) 또는 마그네틱 유형으로 제공 EBS Volume 특징 네트워크 드라이브이다.]]></description>
 </item>
 <item>
-    <title>AWS Elastic Compute Cloud (EC2) - Associate</title>
-    <link>https://riley817.github.io/aws-ec2-associate/</link>
+    <title>AWS Overview</title>
+    <link>https://riley817.github.io/aws-00-regions-az/</link>
+    <pubDate>Sun, 17 Jul 2022 17:23:55 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/aws-00-regions-az/</guid>
+    <description><![CDATA[Global Infrastructure Note AWS Regions AWS Availability Zones AWS Data Centers AWS Edge Locations / Points of Presence AWS Regions 데이터 센터의 집합 cluster of data centers 대부분의 AWS 서비스들은 특정 리전에 국한region-scoped되어 있다. 각 Region은 최소 두 개 이상의 개별 가용 영역Availability Zones로 구성 AWS Region을 선택하는 방법 Compliance with data governance and legal requirements : 데이터의 법률 준수 및 요구사항 Proximity to customers: : 고객과의 접근성. 대기시간 단축 Available services within a Region : 특정 리전에서만 가능한 AWS 서비인지 확인 Pricing : 비용은 지역에 따라 가격이 다르다.]]></description>
+</item>
+<item>
+    <title>26. AWS Identity and Access Management - Advanced</title>
+    <link>https://riley817.github.io/aws-26-iam-advanced/</link>
+    <pubDate>Sat, 16 Jul 2022 16:14:49 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/aws-26-iam-advanced/</guid>
+    <description><![CDATA[STS - Security Token Service AWS 리소스에 대한 제한적이고 일시적인 액세스 권한을 허용 토큰은 1 시간까지 유효 (새로고침 필요) STS API STS API 설명 AssumeRole - 개인 계정 내에서: 보안을 강화하기 위해 사용 - 계정 간 : 대상 계정에 역할을 수임하여 작업을 수행 AssumeRoleWithSAML - SAML으로 로그인한 사용자의 자격증명을 반환 AssumeRoleWithWebIdentity - IdP(Identity Provider - Facebook Login, Google Login, OIDC Compatible&hellip;) 로그인 사용자의 자격증명을 반환 - 이것보다는 AWS Cognito 추천함 GetSessionToken - AWS 루트 계정 또는 사용자에 대한 MFA 인증 STS를 통해 역할을 수임받기 IAM 계정 내 혹은 계정 간 IAM 역할(Role)을 정의한다.]]></description>
+</item>
+<item>
+    <title>6. AWS Elastic Compute Cloud (EC2) - Associate</title>
+    <link>https://riley817.github.io/aws-06-ec2-associate/</link>
     <pubDate>Thu, 14 Jul 2022 08:19:49 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/aws-ec2-associate/</guid>
+    <guid>https://riley817.github.io/aws-06-ec2-associate/</guid>
     <description><![CDATA[Private vs Public IP (IPv4) 네트워크는 IPv4, IPv6 두 가지로 분류 할 수 있다. IPv4 : 1.160.10.240 IPv6 : 3ffe:1900:4545:3:200:f8ff:fe21:67cf 대부분의 온라인에서는 IPv4를 범용적으로 사용 IPv6 사물인터넷(IoT) 문제를 해결하기 위해 새로 등장함 IPv4는 퍼블릭 영역에서 37억개의 서로 다른 주소를 허용 IPv4:[0-255].[0-255].[0-255].[0-255] Private vs Public IP 차이점 Public IP Public IP는 컴퓨터가 인터넷상(WWW)에서 식별될 수 있음을 의미 전체 웹에서 고유해야 한다. (두 개의 머신이 같은 public IP를 갖을 수 없다) 쉽게 지리적 위치를 찾을 수 있음 Private IP Private IP는 컴퓨터가 사설 네트워크망에서만 식별될 수 있음을 의미 IP는 사설 네트워크에서 고유해야 한다.]]></description>
-</item>
-<item>
-    <title>AWS EC2 Basics</title>
-    <link>https://riley817.github.io/aws-ec2/</link>
-    <pubDate>Wed, 13 Jul 2022 01:10:49 &#43;0900</pubDate>
-    <author>riley</author>
-    <guid>https://riley817.github.io/aws-ec2/</guid>
-    <description><![CDATA[Amazon EC2 EC2는 AWS의 가장 인기있는 서비스이다. Elastic Compute Cloud = Infrastructure as a service 클라우드의 작동 방식을 이해하기 위해서는 EC2를 이해하는 것이 중요하다. 구성할 수 있는 기능 가상 머신 임대 (EC2) 가상 드라이브에 데이터를 저장 (EBS) 시스템 간 부하 분산 (ELB) auto-scaling group(ASG)를 사용하여 서비스 확장 EC2 sizing &amp; configuration options Operating System(OS) : Linux, Windows or Mac OS 컴퓨터 성능과 코어양 선택 가능 (CPU) random-access memory (RAM) 스토리지 용량 Network-attached (EBS &amp; EFS) hardware (EC2 Instance Store) Network card: 네트워크 카드 속도, 공용 IP 주소 방화벽 규칙 : security group Bootstrap script (configure at first launch): EC2 User Data EC2 User Data EC2 사용자 데이터 스크립트를 사용하여 인스턴스를 부트스트랩 할 수 있다.]]></description>
-</item>
-<item>
-    <title>AWS Identity and Access Management</title>
-    <link>https://riley817.github.io/aws-iam/</link>
-    <pubDate>Tue, 12 Jul 2022 23:10:49 &#43;0900</pubDate>
-    <author>riley</author>
-    <guid>https://riley817.github.io/aws-iam/</guid>
-    <description><![CDATA[Users &amp; Groups IAM = Identity and Access Management → Global 서비스 Root 계정은 기본으로 생성되며 사용하거나 공유해서는 안된다. Users 는 조직의 사용자이며 그룹으로 묶을 수 있다. Groups는 user를 포함할 수 있고 다른 그룹은 포함할 수 없다. 사용자는 그룹에 속할 필요는 없고 user는 여러 그룹에 속할 수 있다. Permissions 사용자나 그룹은 정책은 JSON 문서를 통해 할당할 수 있다. 정책(polices)은 사용자의 권한(permissions)을 정의한다. AWS에서는 최소 권한 원칙을 적용한다 → 사용자가 필요로 하는 것보다 더 많은 권한을 부여하지 않는다.]]></description>
 </item>
 </channel>
 </rss>

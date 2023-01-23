@@ -1,4 +1,4 @@
-# 3.1 Elasticsearch 구성하기
+# [Elasticsearch 검색 엔진 구축 강의] 3.1 Elasticsearch 구성하기
 
 
 Elasticsearch 는 정적으로 설정을 구성할 수 있을 뿐만 아니라 클러스터 운영중에도 클러스터 세팅 업데이트 API 를 통하여 동적인 설정 구성이 가능하다.

@@ -5,32 +5,33 @@
         <description>devops - Tag - Riley&#39;s DevLog</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
             <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Mon, 14 Feb 2022 14:55:56 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/tags/devops/" rel="self" type="application/rss+xml" /><item>
-    <title>CI/CD 서버 구축하기 - 2. docker-compose를 사용하여 Jenkins, GitLab 설치</title>
-    <link>https://riley817.github.io/archives/devops/ci-cd/install-jenkins-gitlab/</link>
+    <title>[CI/CD 서버 구축하기] 2. docker-compose를 사용하여 Jenkins, GitLab 설치</title>
+    <link>https://riley817.github.io/install-jenkins-gitlab/</link>
     <pubDate>Mon, 14 Feb 2022 14:55:56 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/archives/devops/ci-cd/install-jenkins-gitlab/</guid>
-    <description><![CDATA[개요 사내 개발 협업을 위한 CI/CD 서버를 구축한다. AWS EC2 인스턴스를 사용중이다. (Ubuntu LTS) docker, docker-compose가 설치되어 있다. Install Docker Engine on Ubuntu Install Docker Compose GitLab의 경우 추후 라이센스 구매를 위해 ce가 아닌 ee 버전으로 설치한다. 설치를 위한 Docker Compose 설정 아래는 GitLab, Jenkins를 컨테이너를 띄우기 위한 docker-compose 설정이다. GitLab 이미지는 단일 컨테이너에서 서비스를 실행하기위한 Monolithic 이미지이며 최소 시스템 요구사항은 아래와 같다.
-GitLab installation minimum requirements docker-compose.yml 파일 준비 작업 디렉터리를 생성한다.]]></description>
+    <guid>https://riley817.github.io/install-jenkins-gitlab/</guid>
+    <description><![CDATA[사내 개발 협업을 위한 CI/CD 서버를 구축한다. AWS EC2 인스턴스를 사용중이다. (Ubuntu LTS) docker, docker-compose가 설치되어 있다. GitLab의 경우 추후 라이센스 구매를 위해 ce가 아닌 ee 버전으로 설치한다. 설치를 위한 Docker Compose 설정 아래는 GitLab, Jenkins를 컨테이너를 띄우기 위한 docker-compose 설정이다. GitLab 이미지는 단일 컨테이너에서 서비스를 실행하기위한 Monolithic 이미지이며 최소 시스템 요구사항은 아래와 같다.
+GitLab installation minimum requirements docker-compose.yml 파일 준비 작업 디렉터리를 생성한다.
+1 2 3 cd ~/ mkdir devops cd devops docker-compose.]]></description>
 </item>
 <item>
-    <title>CI/CD 서버 구축하기 - 1. 개념</title>
-    <link>https://riley817.github.io/archives/devops/ci-cd/ci-cd/</link>
+    <title>[CI/CD 서버 구축하기] 1. 개념</title>
+    <link>https://riley817.github.io/ci-cd/</link>
     <pubDate>Thu, 10 Feb 2022 23:08:56 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/archives/devops/ci-cd/ci-cd/</guid>
+    <guid>https://riley817.github.io/ci-cd/</guid>
     <description><![CDATA[요약 CI/CD는 애플리케이션 개발 단계를 자동화하여 애플리케이션을 보다 짧은 주기로 고객에게 제공하는 방법이다. 아래 세 가지 단계로 구분 할 수 있다.
-지속적인 통합 Continuous Integration 지속적인 서비스 제공 Continuous Delivery 지속적인 배포 Continuous Deployment [출처] https://www.redhat.com/ko/topics/devops/what-is-ci-cd
-💡 &ldquo;CD&quot;는 지속적인 서비스 제공(Continuous Delivery) 및/또는 지속적인 배포(Continuous Deployment)를 의미하며 이 두 용어는 상호 교환적으로 사용할 수 있다.
+지속적인 통합 Continuous Integration 지속적인 서비스 제공 Continuous Delivery 지속적인 배포 Continuous Deployment [출처] https://www.redhat.com/ko/topics/devops/what-is-ci-cd 💡 &ldquo;CD&quot;는 지속적인 서비스 제공(Continuous Delivery) 및/또는 지속적인 배포(Continuous Deployment)를 의미하며 이 두 용어는 상호 교환적으로 사용할 수 있다.
 개념 CI 다수의 개발자가 작성 및 수정한 코드가 지속적으로 통합/테스트(Continuous Integration) 되는 것을 의미한다. CI 작업 순서는 도구, 프로그래밍 언어, 프로젝트 등 기타 여러 요인에 따라 많이 다르지만 일반적으로는 다음과 같다.]]></description>
 </item>
 <item>
-    <title>AWS CentOS7 테스트 서버 구축하기</title>
-    <link>https://riley817.github.io/archives/devops/build-aws-centos7/</link>
+    <title>AWS CentOS 7 테스트 서버 구축하기</title>
+    <link>https://riley817.github.io/build-aws-centos7/</link>
     <pubDate>Fri, 20 Mar 2020 15:55:39 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/archives/devops/build-aws-centos7/</guid>
-    <description><![CDATA[목표 AWS에서 Cent OS 7로 테스트 서버를 구축한다. 콘솔접속경로 1. 콘솔 대시보드에서 인스턴스 시작을 선택한다. 2. Amazon Machine Image(AMI)에서 인스턴스 템플릿을 선택한다. 검색 창에 centos를 검색 후 원하는 버전을 선택한다. 3. 인스턴스 유형 선택 페이지에서 하드웨어 구성을 선택한다. 일단 난 프리티어니깐&hellip; t2.micro를 선택 🤔 4. 🤷🏻‍♀️ 검토 후 시작(Review and Launch) 버튼을 클릭하여 구성을 완료한다. 5. 보안 그룹 구성 6. 인스턴스 시작 검토 페이지에서 시작을 선택한다. 7. 키 페어 생성화면에서 키 페어를 생성한다.]]></description>
+    <guid>https://riley817.github.io/build-aws-centos7/</guid>
+    <description><![CDATA[목표 😁😁😁
+AWS에서 Cent OS 7로 테스트 서버를 구축한다. 콘솔접속경로 AWS EC2 인스턴스 추가하기 1. 콘솔 대시보드에서 인스턴스 시작을 선택한다. 2. Amazon Machine Image(AMI)에서 인스턴스 템플릿을 선택한다. 검색 창에 centos를 검색 후 원하는 버전을 선택한다. 3. 인스턴스 유형 선택 페이지에서 하드웨어 구성을 선택한다. 일단 난 프리티어니깐&hellip; t2.micro를 선택 🤔 4. 🤷🏻‍♀️ 검토 후 시작(Review and Launch) 버튼을 클릭하여 구성을 완료한다. 5. 보안 그룹 구성 6. 인스턴스 시작 검토 페이지에서 시작을 선택한다.]]></description>
 </item>
 </channel>
 </rss>

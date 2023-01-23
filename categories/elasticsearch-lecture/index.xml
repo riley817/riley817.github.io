@@ -49,38 +49,5 @@ vi /etc/security/limits.conf 1 2 elasticsearch soft nofile 65536 elasticsearch h
 Static settings Elasticsearch는 노드별로 설정파일을 구성할 수 있다. Elasticsearch 에는 세 개의 구성 파일이 있으며, 이 설정 파일들의 위치는 아카이브 배포판 설치시에는 $ES_HOME/config, 패키지 배포시에는 (RPM 설치 등) /etc/elasticsearch 에 위치한다.
 elasticsearch.yml : Elasticsearch 의 핵심 설정 jvm.options : JVM 옵션 설정 ( heapsize 설정 ) log4j2.properties : Elasticsearch 의 logging 설정 Dynamic settings 클러스터에 REST API 로 호출하여 클러스터를 운영중에도 구성 설정을 변경 할 수 있다.]]></description>
 </item>
-<item>
-    <title>2.5 Elasticsearch 플러그인</title>
-    <link>https://riley817.github.io/elasticsearch-lecture2-5/</link>
-    <pubDate>Tue, 30 Oct 2018 15:49:11 &#43;0900</pubDate>
-    <author>riley</author>
-    <guid>https://riley817.github.io/elasticsearch-lecture2-5/</guid>
-    <description><![CDATA[Elasticsearch 플러그인 플러그인은 사용자 정의 방식에 의해 ES 의 긴능을 향상 시키는 방법이다. 플러그인은 모든 노드에 설치해야 하며 설치 후 클러스터를 재시작 해야 한다. 플러그인 범주 Core Plugins (권고) Elasticsearch 에서 공식적으로 지원하는 플러그인 Elasticsearch 버전이 업데이트 될때마다 버전 업데이트가 지원됨. Community contributed 개인 개발자나 회사에 의해 지원되는 플러그인 참고 Elasticsearch Reference - modules-plugins. ]]></description>
-</item>
-<item>
-    <title>2.4 Elastic-HQ</title>
-    <link>https://riley817.github.io/elasticsearch-lecture2-4/</link>
-    <pubDate>Tue, 30 Oct 2018 15:33:39 &#43;0900</pubDate>
-    <author>riley</author>
-    <guid>https://riley817.github.io/elasticsearch-lecture2-4/</guid>
-    <description><![CDATA[Elastic HQ 설치하기 Requirements Python 3.4+ Elasticsearch. Supported versions: 2.x, 5.x, 6.x ElasticHQ Git Repository 에서 클론 혹은 다운로드 한다. 1 2 3 4 # git 이 설치되어 있지 않으면 sudo yum -y install git git clone https://github.com/ElasticHQ/elasticsearch-HQ.git Python 3.4+ 설치한다. (pip 은 파이선 패키지 관리자) 1 2 3 4 # clone 한 디렉터리로 이동 후 cd elasticsearch-HQ/ sudo yum -y install python34 python34-pip Repository 의 의존성 패키지 설치한다. 1 pip install -r requirements.]]></description>
-</item>
-<item>
-    <title>2.3 Head 소개</title>
-    <link>https://riley817.github.io/elasticsearch-lecture2-3/</link>
-    <pubDate>Mon, 29 Oct 2018 20:31:39 &#43;0900</pubDate>
-    <author>riley</author>
-    <guid>https://riley817.github.io/elasticsearch-lecture2-3/</guid>
-    <description><![CDATA[Elasticsearch Head 클러스트들을 한눈에 보기 위한 도구. 직접 서버를 구성하여 설치할 수도 있고 크롬의 브라우저 익스텐션으로도 제공한다.
-Installation ES Head git repository 에서 클론 혹은 다운로드한다. 1 2 3 4 # git 이 설치되어 있지 않으면 sudo yum -y install git git clone https://github.com/mobz/elasticsearch-head.git npm 으로 관련 의존성 모듈 설치 1 2 3 4 5 6 7 cd elasticsearch-head/ sudo yum -y install bzip2 epel-release sudo yum -y install npm # Node 가 설치되어있어야 한다.]]></description>
-</item>
-<item>
-    <title>2.2 플러그인 설치하기</title>
-    <link>https://riley817.github.io/elasticsearch-lecture2-2/</link>
-    <pubDate>Mon, 29 Oct 2018 19:58:33 &#43;0900</pubDate>
-    <author>riley</author>
-    <guid>https://riley817.github.io/elasticsearch-lecture2-2/</guid>
-    <description><![CDATA[플러그인 설치 인터넷이 가능한 환경에서 설치시 1 2 3 4 5 6 $ cd /usr/share/elasticsearch/ $ sudo bin/elasticsearch-plugin install [플러그인이름] # example $ sudo bin/elasticsearch-plugin install analysis-nori 파일서버 등에서 설치시 1 2 3 4 $ sudo bin/elasticsearch-plugin install file://path/to/plugin.zip # 파일서버 $ sudo bin/elasticsearch-plugin install [파일서버URL] 설치된 플러그인 리스트 확인 1 sudo bin/elasticsearch-plugin list 설치된 플러그인 제거 1 sudo bin/elasticsearch-plugin remove [플러그인이름] 참고 Elasticsearch Reference - plugin-management ]]></description>
-</item>
 </channel>
 </rss>

@@ -1,4 +1,4 @@
-# 3.4 log4j2.properties
+# [Elasticsearch 검색 엔진 구축 강의] 3.4 log4j2.properties
 
 
 ## log4j2.properties

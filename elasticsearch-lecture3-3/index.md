@@ -1,4 +1,4 @@
-# 3.3 jvm.options
+# [Elasticsearch 검색 엔진 구축 강의] 3.3 jvm.options
 
 
 ## jvm.options

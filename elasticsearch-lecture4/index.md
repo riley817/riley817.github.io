@@ -1,4 +1,4 @@
-# Elasticsearch 기본 동작
+# [Elasticsearch 검색 엔진 구축 강의] 4. Elasticsearch 기본 동작
 
 
 

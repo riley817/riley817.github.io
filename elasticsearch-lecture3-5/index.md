@@ -1,4 +1,4 @@
-# 3.5 그 외 설정
+# [Elasticsearch 검색 엔진 구축 강의] 3.5 그 외 설정
 
 
 ### Other Settings

@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>7. AWS EC2 Instance Storage - Riley&#39;s DevLog</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:title" content="7. AWS EC2 Instance Storage" />
+<meta property="og:description" content="EBS Volume EBS(Elastic Block Store) Volume은 볼륨 인스턴스가 실행되는 동안 인스턴스에 연결할 수 있는 네트워크 드라이브이다. 인스턴스가 종료된 후에도 데이터를 유지할 수 있다. 한 번에 하나의 인스턴스에만 마운트 할 수 있다. (CCP 레벨) CCP 레벨 : 하나의 EBS는 하나의 EC2 인스턴스에만 마운트 가능 Associate Level: 일부 EBS 다중 연결 특정 가용 영역에바 바인딩 되어 있다. 네트워크 USB 스틱과 유사하다. 프리티어는 한 달 30GB의 일반 용도 (SSD) 또는 마그네틱 유형으로 제공 EBS Volume 특징 네트워크 드라이브이다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://riley817.github.io/aws-07-ebs/" /><meta property="og:image" content="https://riley817.github.io/icon.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-07-20T08:19:49+09:00" />
+<meta property="article:modified_time" content="2023-01-23T16:20:57+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://riley817.github.io/icon.png"/>
+
+<meta name="twitter:title" content="7. AWS EC2 Instance Storage"/>
+<meta name="twitter:description" content="EBS Volume EBS(Elastic Block Store) Volume은 볼륨 인스턴스가 실행되는 동안 인스턴스에 연결할 수 있는 네트워크 드라이브이다. 인스턴스가 종료된 후에도 데이터를 유지할 수 있다. 한 번에 하나의 인스턴스에만 마운트 할 수 있다. (CCP 레벨) CCP 레벨 : 하나의 EBS는 하나의 EC2 인스턴스에만 마운트 가능 Associate Level: 일부 EBS 다중 연결 특정 가용 영역에바 바인딩 되어 있다. 네트워크 USB 스틱과 유사하다. 프리티어는 한 달 30GB의 일반 용도 (SSD) 또는 마그네틱 유형으로 제공 EBS Volume 특징 네트워크 드라이브이다."/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://riley817.github.io/aws-07-ebs/" /><link rel="prev" href="https://riley817.github.io/aws-00-regions-az/" /><link rel="next" href="https://riley817.github.io/aws-08-fundamentals/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "7. AWS EC2 Instance Storage",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/riley817.github.io\/aws-07-ebs\/"
+        },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "AWS, Amazone EC2, Amazon Elastic Block Store(EBS), Amazon Elastic File System(EFS)","wordcount":  1239 ,
+        "url": "https:\/\/riley817.github.io\/aws-07-ebs\/","datePublished": "2022-07-20T08:19:49+09:00","dateModified": "2023-01-23T16:20:57+09:00","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "https:\/\/riley817.github.io\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "riley"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Riley&#39;s DevLog"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i></span>Riley&#39;s DevLog</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Riley&#39;s DevLog"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i></span>Riley&#39;s DevLog</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content always-active" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">7. AWS EC2 Instance Storage</h1><h2 class="single-subtitle">AWS Certified SAA-C02 시험준비</h2><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-category">included in <a href="/categories/aws-certified-saa-c02-%EC%8B%9C%ED%97%98%EC%A4%80%EB%B9%84/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>AWS Certified SAA-C02 시험준비</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-07-20">2022-07-20</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1239 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;6 minutes&nbsp;<span id="/aws-07-ebs/" class="leancloud_visitors" data-flag-title="7. AWS EC2 Instance Storage">
+                        <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#ebs-volume">EBS Volume</a>
+      <ul>
+        <li><a href="#ebs-volume-특징">EBS Volume 특징</a></li>
+        <li><a href="#delete-on-termination-attribute">Delete on Termination attribute</a></li>
+      </ul>
+    </li>
+    <li><a href="#ebs-스냅샷">EBS 스냅샷</a>
+      <ul>
+        <li><a href="#ebs-스냅샷-기능">EBS 스냅샷 기능</a></li>
+      </ul>
+    </li>
+    <li><a href="#ami">AMI</a>
+      <ul>
+        <li><a href="#ami-프로세스-ec2-인스턴스">AMI 프로세스 (EC2 인스턴스)</a></li>
+      </ul>
+    </li>
+    <li><a href="#ec2-instance-store">EC2 Instance Store</a></li>
+    <li><a href="#ebs-볼륨-유형">EBS 볼륨 유형</a>
+      <ul>
+        <li><a href="#general-purpose-ssd">General Purpose SSD</a></li>
+        <li><a href="#provisioned-iopspiops-ssd">Provisioned IOPS(PIOPS) SSD</a></li>
+        <li><a href="#hard-disk-driveshdd">Hard Disk Drives(HDD)</a></li>
+      </ul>
+    </li>
+    <li><a href="#ebs-multi-attach--io1io2-family">EBS Multi-Attach – io1/io2 family</a></li>
+    <li><a href="#ebs-encryption">EBS Encryption</a>
+      <ul>
+        <li><a href="#암호화되지-않은-ebs-볼륨을-암호화하기">암호화되지 않은 EBS 볼륨을 암호화하기</a></li>
+      </ul>
+    </li>
+    <li><a href="#amazon-efs--elastic-file-system">Amazon EFS – Elastic File System</a>
+      <ul>
+        <li><a href="#efs-성능-및-스토리지-classes">EFS 성능 및 스토리지 Classes</a></li>
+        <li><a href="#efs---storage-classes">EFS - Storage Classes</a>
+          <ul>
+            <li><a href="#storage-tiers-라이프-사이클-관리-기능---n일-후-파일-이동">Storage Tiers (라이프 사이클 관리 기능 - N일 후 파일 이동)</a></li>
+            <li><a href="#가용성-및-내구성">가용성 및 내구성</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#ebs-vs-efs">EBS vs EFS</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="ebs-volume">EBS Volume</h2>
+<ul>
+<li><strong>EBS(Elastic Block Store) Volume</strong>은 볼륨 인스턴스가 실행되는 동안 인스턴스에 연결할 수 있는 네트워크 드라이브이다.</li>
+<li>인스턴스가 종료된 후에도 데이터를 유지할 수 있다.</li>
+<li><strong>한 번에 하나의 인스턴스에만 마운트 할 수 있다.</strong> (CCP 레벨)
+<ul>
+<li>CCP 레벨 : 하나의 EBS는 하나의 EC2 인스턴스에만 마운트 가능</li>
+<li>Associate Level: 일부 EBS 다중 연결</li>
+</ul>
+</li>
+<li>특정 가용 영역에바 바인딩 되어 있다.</li>
+<li><code>네트워크 USB 스틱</code>과 유사하다.</li>
+<li>프리티어는 한 달 30GB의 일반 용도 (SSD) 또는 마그네틱 유형으로 제공</li>
+</ul>
+<h3 id="ebs-volume-특징">EBS Volume 특징</h3>
+<ul>
+<li><strong>네트워크 드라이브이다.(즉, 물리적인 드라이브가 아님)</strong>
+<ul>
+<li>네트워크를 사용하여 인스턴스를 통신. 약간의 지연이 있을 수 있다.</li>
+<li>EC2 인스턴스에 분리하여 다른 인스턴스에 빠르게 연결 가능</li>
+</ul>
+</li>
+<li><strong>AZ에 묶여있다.</strong>
+<ul>
+<li><code>us-east-1a</code>의 EBS 볼륨을 <code>us-east-1b</code>에 연결할 수 없다.</li>
+<li>볼륨을 이동하려면 먼저 스냅샷을 생성해야 한다.</li>
+</ul>
+</li>
+<li><strong>프로비저닝 된 용량(GB 및 IOPS 단위)</strong>
+<ul>
+<li>프로비저닝 된 모든 용량에 대해 청구</li>
+<li>시간이 지남에 따라 드라이브 용량을 늘릴 수 있다.</li>
+</ul>
+</li>
+</ul>
+<h3 id="delete-on-termination-attribute">Delete on Termination attribute</h3>
+<ul>
+<li>EC2 인스턴스가 종료될 때 EBS 동작을 제어할 수 있다.
+<ul>
+<li>기본적으로 루트 EBS 볼륨은 삭제된다. <code>Delete on Termination : checked(default)</code></li>
+<li>기본적으로 연결된 다른 EBS 볼륨은 삭제되지 않는다.<code>Delete on Termination : unchecked</code></li>
+</ul>
+</li>
+<li>AWS 콘솔 및 CLI에서 설정 가능하다.</li>
+<li><strong>인스턴스 종료 시 루트 볼륨을 유지하고 싶으면 체크를 해제한다.</strong></li>
+</ul>
+<h2 id="ebs-스냅샷">EBS 스냅샷</h2>
+<ul>
+<li>특정 시점에 EBS 볼륨의 백업(Snapshot)을 만들 수 있다.</li>
+<li>스냅샷을 위해 볼륨을 분리할 필요는 없지만 권장</li>
+<li>AZ 또는 리전 간 스냅샷 복사 가능</li>
+</ul>
+<h3 id="ebs-스냅샷-기능">EBS 스냅샷 기능</h3>
+<table>
+<thead>
+<tr>
+<th><strong>스냅샷 기능</strong></th>
+<th><strong>설명</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>EBS Snapshot Archive</strong></td>
+<td>· 75% 더 저렴한 비용으로 <code>archive tier</code>로 스냅샷을 전송한다.<br/>· 아카이브를 복원하는데 24 ~ 72 시간 소요</td>
+</tr>
+<tr>
+<td><strong>Recycle Bin for EBS Snapshot</strong></td>
+<td>· 실수로 삭제한 후 복구할 수 있도록 삭제된 스냅샷을 보존하는 규칙을 설정<br/>· 보존 기간은 1일 ~ 1년</td>
+</tr>
+</tbody>
+</table>
+<h2 id="ami">AMI</h2>
+<ul>
+<li>
+<p><strong>Amazon Machine Image</strong></p>
+</li>
+<li>
+<p>AMI는 EC2 인스턴스를 커스터마이징 한 것</p>
+<ul>
+<li>소프트웨어, 구성, 운영체제, 모니터링 등 모든 소프트웨어가 사전 패키지화되어 있어 부팅 및 구성 시간 단축</li>
+</ul>
+</li>
+<li>
+<p>AMI는 <strong>특정 리전</strong>만을 위해 구축되며 여러 리전간 복사 가능</p>
+<div class="details admonition tip open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw" aria-hidden="true"></i>다음 위치에서 EC2 인스턴스 시작<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><ul>
+<li><strong>A Public AMI</strong> : AWS 제공</li>
+<li><strong>Your own AMI</strong> : 사용자가 직접 만들고 관리</li>
+<li><strong>AWS Marketplace AMI</strong> : 다른 사용자가 AMI를 만듬 (잠재적으로 판매)</li>
+</ul>
+</div>
+        </div>
+    </div>
+</li>
+</ul>
+<h3 id="ami-프로세스-ec2-인스턴스">AMI 프로세스 (EC2 인스턴스)</h3>
+<ul>
+<li>EC2 인스턴스를 시작하고 커스터마이징 한다.</li>
+<li>인스턴스를 중단한다. (데이터 무결성을 위해)</li>
+<li>AMI 빌드 한다. - EBS 스냅샷도 생성</li>
+<li>다른 인스턴스에서 AMI를 실행</li>
+</ul>
+<h2 id="ec2-instance-store">EC2 Instance Store</h2>
+<ul>
+<li>EBS 볼륨은 좋지만 <strong>제한적인</strong> 성능을 갖는 네트워크 드라이브임</li>
+<li><strong>고성능의 하드웨어 디스크가 필요할 경우 EC2 Instance Store를 사용</strong></li>
+<li>I/O 성능 향상</li>
+<li>EC2 Instance Store가 중지되면 스토리지가 손실 (ephemeral)</li>
+<li>buffer / cache / scratch data / temporary content 에 적합</li>
+<li>하드웨어 장애 시 데이터 손실의 위험</li>
+<li>백업 및 복제는 사용자의 책임</li>
+</ul>
+<h2 id="ebs-볼륨-유형">EBS 볼륨 유형</h2>
+<ul>
+<li>
+<p>EBS 볼륨은 6가지 유형으로 제공</p>
+<table>
+<thead>
+<tr>
+<th><strong>EBS 볼륨 유형</strong></th>
+<th><strong>특징</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>gp2/gp3 (SSD)</strong></td>
+<td>다양한 워크로드에 대하 가격과 성능을 맞추는 범용 SSD 볼륨</td>
+</tr>
+<tr>
+<td><strong>io1/io2 (SSD)</strong></td>
+<td>mission-critical, 짧은 대기 시간 또는 높은 처리량 워크로드를 위한 최고성능 SSD 볼륨</td>
+</tr>
+<tr>
+<td><strong>st1(HDD)</strong></td>
+<td>자주 액세스하는 throughput-intensive 워크로드를 위해 설계된 저비용 HDD 볼륨</td>
+</tr>
+<tr>
+<td><strong>sc1(HDD)</strong></td>
+<td>액세스 빈도가 낮은 워크로드에 맞게 설계된 최저 비용 HDD 볼륨</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>EBS 볼륨은 <code>Size | Throughput | IOPS(I/O Ops Per Sec)</code> 으로 구분할 수 있다.</p>
+</li>
+<li>
+<p><strong>오직 <code>gp2/gp3</code>,<code>io1/io2</code> 만 부팅 볼륨으로 사용 가능</strong></p>
+</li>
+</ul>
+<h3 id="general-purpose-ssd">General Purpose SSD</h3>
+<table>
+    <thead>
+        <tr>
+            <th></th>
+            <th colspan="2" align="center" style="text-align: center;">General Purpose SSD</th>
+        </tr>
+    </thead>
+    <tr>
+        <td><b>Volume type</b></td>
+        <td><b><code class="code">gp3</code></b></td>
+        <td><b><code class="code">gp2</code></b></td>
+    </tr>
+    <tr>
+        <td><b>Durability</b></td>
+        <td colspan="2">99.8% - 99.9% durability (0.1% - 0.2% annual failure rate)</td>
+    </tr>
+    <tr>
+        <td><b>Use cases</b></td>
+        <td colspan="2">
+            <div>
+                <ul type="disc">
+                    <li><p>대기시간이 짧은 대화형 애플리케이션</p></li>
+                    <li><p>개발 또는 테스트 환경</p></li>
+                    <li><p>가상 데스크톱</p></li>
+                    <li><p>Medium-sized single-instance databases</p></li>
+                    <li><p>Boot volumes</p></li>
+                </ul>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td><b>Volume size</b></td>
+        <td colspan="2">1 GiB - 16 TiB </td>
+    </tr>
+    <tr>
+        <td><b>Max IOPS per volume</b> (16 KiB I/O) **</td>
+        <td colspan="2">16,000</td>
+    </tr>
+    <tr>
+        <td><b>Max throughput per volume</b> **</td>
+        <td>1,000 MiB/s</td>
+        <td>250 MiB/s *</td>
+    </tr>
+    <tr>
+        <td><b>Amazon EBS Multi-attach</b></td>
+        <td colspan="2">Not supported</td>
+    </tr>
+    <tr>
+        <td><b>Boot volume</b></td>
+        <td colspan="2">Supported</td>
+    </tr>
+</table>
+<h3 id="provisioned-iopspiops-ssd">Provisioned IOPS(PIOPS) SSD</h3>
+<ul>
+<li>지속적인 IOPS 성능을 제공하는 비즈니스 애플리케이션</li>
+<li>또는 16,000 이상의 IOPS가 필요한 애플리케이션</li>
+<li><strong>데이터베이스 워크로드에 적합</strong> (스토리지 성능 및 일관성 민감한)</li>
+<li>Multi-attach EBS 지원</li>
+</ul>
+<table>
+    <thead>
+        <tr>
+            <th></th>
+            <th colspan="3" align="center" style="text-align: center;">Provisioned IOPS SSD</th>
+        </tr>
+    </thead>
+    <tr>
+        <td><b>Volume type</b></td>
+        <td><code class="code">io2</code> Block Express *</td>
+        <td><code class="code">io2</code></td>
+        <td><code class="code">io1</code></td>
+    </tr>
+    <tr>
+        <td><b>Durability</b></td>
+        <td>99.999% durability (0.001% annual failure rate)</td>
+        <td>99.999% durability (0.001% annual failure rate)</td>
+        <td>99.8% - 99.9% durability (0.1% - 0.2% annual failure rate)</td>
+    </tr>
+    <tr>
+        <td><b>Use cases</b></td>
+        <td>
+            <p>Workloads that require:</p>
+            <div>
+                <ul type="disc">
+                    <li><p>Sub-millisecond latency</p></li>
+                    <li><p>지속적인 IOPS 성능</p></li>
+                    <li>
+                        <p>More than 64,000 IOPS or 1,000 MiB/s of throughput</p>
+                    </li>
+                </ul>
+            </div>
+        </td>
+        <td colspan="2">
+            <div>
+                <ul type="disc">
+                    <li><p>Workloads that require sustained IOPS performance or more than 16,000 IOPS</p></li>
+                    <li><p>I/O-intensive database workloads</p></li>
+                </ul>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td><b>Volume size</b></td>
+        <td>4 GiB - 64 TiB</td>
+        <td colspan="2">4 GiB - 16 TiB </td>
+    </tr>
+    <tr>
+        <td><b>Max IOPS per volume</b> (16 KiB I/O)</td>
+        <td>256,000</td>
+        <td colspan="2">64,000 †</td>
+    </tr>
+    <tr>
+        <td><b>Max throughput per volume</b></td>
+        <td>4,000 MiB/s</td>
+        <td colspan="2">1,000 MiB/s †</td>
+    </tr>
+    <tr>
+        <td><b>Amazon EBS Multi-attach</b></td>
+        <td colspan="3"><b>Supported</b></td>
+    </tr>
+    <tr>
+        <td><b>Boot volume</b></td>
+        <td colspan="3">Supported</td>
+    </tr>
+</table>
+<h3 id="hard-disk-driveshdd">Hard Disk Drives(HDD)</h3>
+<ul>
+<li>부팅 볼륨으로 사용할 수 없음</li>
+</ul>
+<table>
+    <thead>
+        <tr>
+            <th></th>
+            <th>Throughput Optimized HDD</th>
+            <th>Cold HDD</th>
+        </tr>
+    </thead>
+    <tr>
+        <td><b>Volume type</b></td>
+        <td><code class="code">st1</code></td>
+        <td><code class="code">sc1</code></td>
+    </tr>
+    <tr>
+        <td><b>Durability</b></td>
+        <td>99.8% - 99.9% durability (0.1% - 0.2% annual failure rate)</td>
+        <td>99.8% - 99.9% durability (0.1% - 0.2% annual failure rate)</td>
+    </tr>
+    <tr>
+        <td><b>Use cases</b></td>
+        <td>
+            <div>
+                <ul type="disc">
+                    <li><p>Big data</p></li>
+                    <li><p>Data warehouses</p></li>
+                    <li><p>Log processing</p></li>
+                </ul>
+            </div>
+        </td>
+        <td>
+            <div>
+                <ul type="disc">
+                    <li><p>액세스 빈도가 낮은 데이터를 처리하기 위한 throughput-oriented 스토리지</p></li>
+                    <li><p>가장 낮은 스토리지 비용이 중요한 시나리오</p></li>
+                </ul>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td><b>Volume size</b></td>
+        <td>125 GiB - 16 TiB</td>
+        <td>125 GiB - 16 TiB </td>
+    </tr>
+    <tr>
+        <td><b>Max IOPS per volume</b> (1 MiB I/O)</td>
+        <td>500</td>
+        <td>250</td>
+    </tr>
+    <tr>
+        <td><b>Max throughput per volume</b></td>
+        <td>500 MiB/s</td>
+        <td>250 MiB/s</td>
+    </tr>
+    <tr>
+        <td><b>Amazon EBS Multi-attach</b></td>
+        <td>Not supported</td>
+        <td>Not supported</td>
+    </tr>
+    <tr>
+        <td><b>Boot volume</b></td>
+        <td>Not supported</td>
+        <td>Not supported</td>
+    </tr>
+</table>
+<h2 id="ebs-multi-attach--io1io2-family">EBS Multi-Attach – io1/io2 family</h2>
+<center><image src="/posts/images/aws/ebs-multi-attach.png" width="300px">
+</center>
+<ul>
+<li>
+<p>동일한 AZ의 여러 EC2 인스턴스에 동일한 EBS 볼륨 연결</p>
+</li>
+<li>
+<p>각 인스턴스에는 볼륨에 대한 전체 읽기 및 쓰기 권한 있음</p>
+</li>
+<li>
+<p><strong>파일 시스템은 반드시  cluster-aware 사용해야 함(XFS, EX4는 사용할 수 없음)</strong></p>
+<div class="details admonition tip open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw" aria-hidden="true"></i>Use case<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><ul>
+<li>클러스터링 된 리눅스 애플리케이션에서 애플리케이션 가용성 향상 (example: Teradata)</li>
+<li>애플리케이션의 동시 쓰기 작업을 관리해야 하는 경우</li>
+</ul>
+</div>
+        </div>
+    </div>
+</li>
+</ul>
+<h2 id="ebs-encryption">EBS Encryption</h2>
+<div class="details admonition success open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-check-circle fa-fw" aria-hidden="true"></i>암호화 된 EBS 볼륨을 생성하면 다음이 표시된다.<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><ul>
+<li>저장된 데이터는 볼륨 내부에서 암호화 된다.</li>
+<li>인스턴스와 볼륨 사이를 이동하는 이동중인 모든 데이터가 암호화 된다.</li>
+<li>모든 스냅샷이 암호화 된다.</li>
+<li>스냅샷에서 생성된 모든 볼륨이 암호화 된다.</li>
+</ul>
+</div>
+        </div>
+    </div>
+<ul>
+<li>암호화 및 복호화가 알아서 처리된다. (사용자는 할일이 없음)</li>
+<li>암호화는 대기 시간에 미치는 영향을 최소화 한다.</li>
+<li>EBS 암호화는 KMS의 키를 활용한다. (AES-256)</li>
+<li>암호화되지 않은 스냅샷은 복사하면 암호화가 가능</li>
+<li>암호화된 불륨의 스냅샷은 암호화되어 있다.</li>
+</ul>
+<h3 id="암호화되지-않은-ebs-볼륨을-암호화하기">암호화되지 않은 EBS 볼륨을 암호화하기</h3>
+<ol>
+<li>EBS 볼륨의 스냅샷을 생성한다.</li>
+<li>EBS 스냅샷을 암호화한다. (using copy)</li>
+<li>생성한 스냅샷에서 새로운 EBS 볼륨을 만든다. (만든 볼륨은 암호화)</li>
+<li>암호화된 볼륨을 원래 인스턴스에 연결</li>
+</ol>
+<h2 id="amazon-efs--elastic-file-system">Amazon EFS – Elastic File System</h2>
+<ul>
+<li>여러 EC2에 마운트 할 수 있는 관리형 NFS(<code>network file system</code>)</li>
+<li>EFS는 다중 AZ의 EC2 인스턴스와 함께 작용한다.</li>
+<li>고 가용성, 확장성, expensive(3x gp2), 사용당 지불</li>
+<li>사용 사례 : 컨텐츠 관리, Web 서비스 제공, 데이터 쉐어링, 워드 프레스 등</li>
+<li><code>NFSv4.1 protocol</code> 사용</li>
+<li>보안 그룹을 통해 EFS 액세스를 컨트롤</li>
+<li><strong>Linux 기반 AMI 호환 (윈도우즈 아님)</strong></li>
+<li>KMS를 사용한 at-rest 암호화</li>
+<li>표준 파일 API가 있는 <strong>Linux POSIX 파일 시스템</strong></li>
+<li>파일 시스템 자동 확장, 사용량별 지불, 용량 계획 없음</li>
+</ul>
+<h3 id="efs-성능-및-스토리지-classes">EFS 성능 및 스토리지 Classes</h3>
+<table>
+<thead>
+<tr>
+<th>Performance &amp; Storage Classes</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>EFS Scale</strong></td>
+<td>· 1,000대의 NFS 동시 클라이언트 : 10 GB+/s 처리량<br/>· 페타바이트 규모의 네트워크 파일 시스템으로 자동 확장</td>
+</tr>
+<tr>
+<td><strong>Performance mode (set at EFS creation time)</strong></td>
+<td>· 범용 목적 (기본) : 지연 시간에 민감한 사용 사례 (웹서버, CMS 등)<br/>· MAX I/O : 지연 시간, 처리량, 병렬 처리(빅데이터, 미디어 프로세싱등)</td>
+</tr>
+<tr>
+<td><strong>Throughput mode</strong></td>
+<td>· Bursting(1TB=50MiB/s + 최대 100MiB/s 버스트)<br/> · 프로비저닝 : 스토리지 크기에 상관없이 처리량 설정(ex: 1 GiB/s for 1 TB 스토리지)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="efs---storage-classes">EFS - Storage Classes</h3>
+<h4 id="storage-tiers-라이프-사이클-관리-기능---n일-후-파일-이동">Storage Tiers (라이프 사이클 관리 기능 - N일 후 파일 이동)</h4>
+<ul>
+<li><strong>Standard</strong> : 자주 액세스 하는 파일용</li>
+<li><strong>Infrequent access (EFS-IA)</strong> : 파일 검색 비용, 저장 비용 절감 라이프 사이클 정책을 사용하여 EFS-IA 사용</li>
+</ul>
+<h4 id="가용성-및-내구성">가용성 및 내구성</h4>
+<ul>
+<li>Regional : Multi-AZ, 프로덕션 환경에 최적</li>
+<li>One Zone : 개발 환경에 적합한 단일 환경, 기본적으로 백업 지원 IA(EFS One Zone-IA)와의 호환성</li>
+<li>90% 이상의 비용 절감</li>
+</ul>
+<h2 id="ebs-vs-efs">EBS vs EFS</h2>
+<table>
+<thead>
+<tr>
+<th><strong>EBS</strong></th>
+<th><strong>EFS</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>• 한 번에 하나의 인스턴스만 연결<br/>• AZ 수준에서 묶임<br/>• <strong>gp2</strong> : 디스크 크기가 증가하면 IO가 증가한다.<br/>• <strong>io1</strong> : 독립적으로 IO 증가 가능</td>
+<td>• AZ 전체에 수백 개의 인스턴스 마운트 가능<br/>• EFS는 웹사이트의 파일을 공유할 때 사용할 수 있다.(워드 프레스)<br/>• 오직 POSIX만 지원<br/>• EFS는 EBS 보다 높은 가격대를 가지고 있다.<br/>• EFS-IA를 활용하여 비용 절감 가능</td>
+</tr>
+<tr>
+<td>• AZ에서 EBS 볼륨을 마이그레이션하려면<br/>    • 스냅샷을 생성한다.<br/>    • 다른 가용영역으로 스냅샷을 복구한다.<br/>    • EBS 백업은 IO를 사용하므로 응용프로그램이 많은 트래픽을 처리하는 동안 실행해서는 안된다.</td>
+<td></td>
+</tr>
+<tr>
+<td>• 루트 EBS는 EC2 인스턴스가 종료되면 인스턴스 볼륨이 기본적으로 종료된다. (비활성화 가능)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-01-23&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/db5877e427614337ffbb673875fa349e5bf0be3a" target="_blank" title="commit by riley817(riley0422@icloud.com) db5877e427614337ffbb673875fa349e5bf0be3a: 20230123162055">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>db5877e</a></span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/aws/">AWS</a>,&nbsp;<a href="/tags/amazone-ec2/">Amazone EC2</a>,&nbsp;<a href="/tags/amazon-elastic-block-storeebs/">Amazon Elastic Block Store(EBS)</a>,&nbsp;<a href="/tags/amazon-elastic-file-systemefs/">Amazon Elastic File System(EFS)</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/aws-00-regions-az/" class="prev" rel="prev" title="AWS Overview"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>AWS Overview</a>
+            <a href="/aws-08-fundamentals/" class="next" rel="next" title="8. AWS Fundamentals - Load Balancing, Auto Scaling Groups and EBS Volumes">8. AWS Fundamentals - Load Balancing, Auto Scaling Groups and EBS Volumes<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.110.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Riley</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/valine@1.4.18/dist/Valine.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.1/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{"valine":{"appId":"QGzwQXOqs5JOhN4RGPOkR2mR-MdYXbMMI","appKey":"WBmoGyJtbqUswvfLh6L8iEBr","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@14.0.0/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"en","pageSize":10,"placeholder":"Your comment ...","recordIP":true,"serverURLs":"https://leancloud.hugoloveit.com","visitor":true}},"search":{"algoliaAppID":"","algoliaIndex":"","algoliaSearchKey":"","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

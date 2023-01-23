@@ -1,4 +1,4 @@
-# Elasticsearch 및 Kibana 설치
+# [Elasticsearch 검색 엔진 구축 강의] 3. Elasticsearch 및 Kibana 설치
 
 
 ## Elasticsearch 설치하기

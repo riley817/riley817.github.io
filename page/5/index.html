@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-	<meta name="generator" content="Hugo 0.104.2" />
+	<meta name="generator" content="Hugo 0.110.0">
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
@@ -9,7 +9,6 @@
 <meta property="og:description" content="Riley&#39;s DevLog" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://riley817.github.io/" /><meta property="og:image" content="https://riley817.github.io/icon.png"/><meta property="og:site_name" content="Riley&#39;s DevLog" />
-
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://riley817.github.io/icon.png"/>
 
@@ -31,7 +30,7 @@
             },"description": "Riley's DevLog","image": "https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png","thumbnailUrl": "https:\/\/riley817.github.io\/images\/screenshot.png","name": "Riley's DevLog"
     }
     </script></head>
-    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
 
         <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
     <div class="header-wrapper">
@@ -99,12 +98,37 @@
         data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
         data-sizes="auto"
         alt="/images/avatar.png"
-        title="/images/avatar.png" /></a></div><div class="home-subtitle"><div id="id-1" class="typeit"></div></div><div class="links"><a href="https://github.com/https://github.com/riley817" title="GitHub" target="_blank" rel="noopener noreffer me"><i class="fab fa-github-alt fa-fw" aria-hidden="true"></i></a></div></div>
+        title="/images/avatar.png" /></a></div><h1 class="home-title">라일리의 개발 공부기록</h1><div class="home-subtitle"><div id="id-1" class="typeit"></div></div><div class="links"><a href="https://github.com/https://github.com/riley817" title="GitHub" target="_blank" rel="noopener noreffer me"><i class="fab fa-github-alt fa-fw" aria-hidden="true"></i></a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/aws-iam-advanced/">AWS Identity and Access Management - Advanced</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="0001-01-01">0001-01-01</time></span>&nbsp;<span class="post-category">included in <a href="/categories/aws-certified-saa-c02-%EC%8B%9C%ED%97%98%EC%A4%80%EB%B9%84/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>AWS Certified SAA-C02 시험준비</a></span></div><div class="content">STS - Security Token Service AWS 리소스에 대한 제한적이고 일시적인 액세스 권한을 허용 토큰은 1 시간까지 유효 (새로고침 필요) STS API STS API 설명 AssumeRole - 개인 계정 내에서: 보안을 강화하기 위해 사용 - 계정 간 : 대상 계정에 역할을 수임하여 작업을 수행 AssumeRoleWithSAML - SAML으로 로그인한 사용자의 자격증명을 반환 AssumeRoleWithWebIdentity - IdP(Identity Provider - Facebook Login, Google Login, OIDC Compatible&hellip;) 로그인 사용자의 자격증명을 반환 - 이것보다는 AWS Cognito 추천함 GetSessionToken - AWS 루트 계정 또는 사용자에 대한 MFA 인증 STS를 통해 역할을 수임받기 IAM 계정 내 혹은 계정 간 IAM 역할(Role)을 정의한다.</div><div class="post-footer">
-        <a href="/aws-iam-advanced/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/aws/">aws</a>,&nbsp;<a href="/tags/iam/">IAM</a></div></div>
+        <a href="/20220324/">[TIL & Issue Note] 20220324</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-03-24">2022-03-24</time></span>&nbsp;<span class="post-category">included in <a href="/categories/til-issue-note/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>TIL & Issue Note</a></span></div><div class="content">블록체인 원리(7) - 채굴과 51% 공격 1. 채굴과 블록 생성 블록을 만드는 것 = 채굴 보상금 획득 하는것이 금 획득하는 것과 비슷 채굴 단어의 유래 - Nick Szabo 금이 가치를 갖는 것은 채굴이 어렵기 때문 어떤 문제가 매우 어렵다면 -&gt; 문제의 정답 자체가 어떤 가치를 가지지 않을까? 블록 만듦 -&gt; 해시 퍼즐 풀이 : 어려운 문제이기 때문에 정답 자체가 가치 보유 금을 캐려면 -&gt; 금광에서 채굴 : 힘든 작업이기 때문에 금이 가치 보유 해시 퍼즐 풀이 -&gt;(비유) 금광에서 채굴 채굴 == 블록을 만들다.</div><div class="post-footer">
+        <a href="/20220324/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/til/">TIL</a>,&nbsp;<a href="/tags/blockchain/">Blockchain</a>,&nbsp;<a href="/tags/bitcoin/">Bitcoin</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/20220321/">[TIL & Issue Note] 20220321</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-03-21">2022-03-21</time></span>&nbsp;<span class="post-category">included in <a href="/categories/til-issue-note/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>TIL & Issue Note</a></span></div><div class="content">블록체인 원리 - (5) 비가역성 블록체인 원리 (6) - 하드 포크와 소프트 포크 1. 하드 포크와 소프트 포크의 기본 개념 하드 포크와 소프트 포크 동일한 블록에서 노드가 다른 행동을 하는 이유 중앙화 서버 : 하나의 소프트웨어를 여러 사람이 접속 블록체인 : 각자의 소프트웨어 접속 -&gt; 모든 사람의 소프트웨어 버전이 다르기 때문에 발생 블록체인의 소프트웨어 변경 최신 소프트웨어 사용자 -&gt; 모든 변경이 반영된 상태로 사용 이전 소프트웨어 사용자 -&gt; 변경이 반영되지 않은 형태로 사용 하드포크, 소프트 포크 동일한 블록에 대해 서로 다른 규칙을 적용, 서로 다른 결론에 이르는 현상 규칙이 상충시 발생하는 두 가지 현상 과거에는 유효하던 규칙이 지금은 무효화 과거에는 무효하던 규칙이 지금은 유효화 -&gt; 결국 블록체인 데이터에 영향을 미치게 됨 2.</div><div class="post-footer">
+        <a href="/20220321/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/til/">TIL</a>,&nbsp;<a href="/tags/blockchain/">Blockchain</a>,&nbsp;<a href="/tags/bitcoin/">Bitcoin</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/20220317/">[TIL & Issue Note] 20220317</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-03-17">2022-03-17</time></span>&nbsp;<span class="post-category">included in <a href="/categories/til-issue-note/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>TIL & Issue Note</a></span></div><div class="content">블록체인 원리 - (4) 탈중앙화 합의 및 이중사용 1. 탈중앙화 합의 규칙의 개념 탈중앙화 합의 규칙 규칙 미준수 -&gt; 폐기 규칙 준수 -&gt; 동의 탈중앙화 합의 규칙에는 규칙을 지켰을 때도 퇴출하는 방식이 필요 블록체인의 특징 구성상 P2P 혹은 피어투피어 방식으로 이루어짐 특정 서버가 존재하지 않음 브로드캐스팅을 통해서 자신의 피어를 통한 데이터 전송을 받고 있음 모든 노드는 현재 자신이 가지고 있는 데이터와 피어로부터 전달받은 데이터에 의존해서 모든것을 판단해야 함 중앙서버 중앙 통제 서버가 모든 지시를 내림 -&gt; 노드는 지시에 따름 블록체인 모든 노드가 동등한 권리와 의무를 가짐 -&gt; 지시를 받을 수 없는 구조</div><div class="post-footer">
+        <a href="/20220317/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/til/">TIL</a>,&nbsp;<a href="/tags/blockchain/">Blockchain</a>,&nbsp;<a href="/tags/bitcoin/">Bitcoin</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/20220316/">[TIL & Issue Note] 20220316</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-03-16">2022-03-16</time></span>&nbsp;<span class="post-category">included in <a href="/categories/til-issue-note/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>TIL & Issue Note</a></span></div><div class="content">Getting Started What is React ? 사용자 인터페이스를 구축하기 위한 자바스크립트 라이브러리 모바일 앱처럼 상호작용과 반응성이 높은 사용자 환경을 제공 모바일 앱 화면 전환이 빠르고 사용자 반응성이 높음 웹 전통적인 웹사이트의 전환은 1) 링크,버튼 등 요청 2) 서버에서는 응답을 받고 새로운 HTML을 그림 서버와 요청과 응답 작업으로 인해 상호작용이 투박함 서버에서 처리한 HTML이 로드되는 것을 기다려야 함 자바스크립트 사용자가 보는 것을 조작할 수 있는 프로그래밍 언어 DOM에 접근하고 조작할 수 있다.</div><div class="post-footer">
+        <a href="/20220316/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/til/">TIL</a>,&nbsp;<a href="/tags/javascript/">Javascript</a>,&nbsp;<a href="/tags/react/">React</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/20220315/">[TIL & Issue Note] 20220315</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-03-15">2022-03-15</time></span>&nbsp;<span class="post-category">included in <a href="/categories/til-issue-note/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>TIL & Issue Note</a></span></div><div class="content">블록체인 원리 (3) - 작업증명 : 해시 퍼즐과 난이도 1. 블록만들기와 해시 퍼즐 해시 퍼즐 무차별 대입법 -&gt; 특정 값 -&gt; 무한 반복 산수 문제 해시 퍼즐을 푸는 수학적 공식은 없음 무수히 반복되는 산수 문제 해결 해시를 통해 얻게 되는 고유한 값 32 Byte 값 -&gt; SHA-256 - 유효한 블록의 해시값을 찾을 때까지 무한 반복 해시 퍼즐 정답 = 블록 고유 해시값 제네시스 블록 해시값 = 2의 32승 번 값 계산 -&gt; 약 10분동안 계산 해시 퍼즐 풀이 블록 헤더의 넌스값을 0 으로 설정 비트코인 해시 함수를 연속 2번 해싱 (SHA-256) : 임의의 32 Byte 값 블록 전체를 해시함수를 연속 두 번 적용하여 나온 해시값 H와 주어진 목표값 T 값을 비교 주어진 값보다 더 작거나 갖지 않다 -&gt; 넌스 1증가 (1 ~ 32 까지 증가) -&gt; 임의의 32 Byte 값 생성 반복 판단박스 목표 값보다 T보다 작아질 때까지 반복 넌스값 입력의 사소한 변화 32 Byte 충분히 작은 값이 나올 때까지 반복 T(목표값) -&gt; 목표값이 작을 수록 만족 힘듦 작업증명 퍼즐을 이용해서 의도적으로 막대한 에너지를 소모하게 만든 방식 스팸 방지를 위해 개발 의도적으로 막대한 에너지를 소모하게 하여 그 일을 억제 최초 기록 및 변경에 막대한 에너지 소모 -&gt; 반대 급부의 경제적 이득이 없으면 변경 이유 없다 최초의 기록된 노드의 검증 -&gt; 합당한 이유 없다면 정상적 기록을 통한 보상금 -&gt; 합리적 선택 스팸 방지 네트워크 과부하 문제 어떤 작업을 반드시 해야만 되도록 부과 -&gt; 스팸 억제 2.</div><div class="post-footer">
+        <a href="/20220315/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/til/">TIL</a>,&nbsp;<a href="/tags/blockchain/">Blockchain</a>,&nbsp;<a href="/tags/bitcoin/">Bitcoin</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/20220314/">[TIL & Issue Note] 20220314</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-03-14">2022-03-14</time></span>&nbsp;<span class="post-category">included in <a href="/categories/til-issue-note/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>TIL & Issue Note</a></span></div><div class="content">블록체인 원리(2) - 블록의 구조 1. 블록의 이해 블록 (Block) 의미 있는 묶음 = 1 BLOCK 어떤 의미있는 단위를 한 블록으로 정의 특정 데이터를 다루는 단위 비트코인 블록체인 1 MB 까지의 한도 내에서 거래내역을 기록한 단위 (2000 ~ 3000 거래 내역) 비트코인 캐시 (8MB 까지 허용), 비트코인 골드 이더리움 블록체인 이론적인 한도는 없음 비트코인 블록의 구조 블록 헤더 : 데이터의 요약 정보 블록 헤더의 크기 : 80 Byte 항상 일정한 크기를 유지 블록 데이터 : 실제의 데이터를 담는 부분 2.</div><div class="post-footer">
+        <a href="/20220314/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/til/">TIL</a>,&nbsp;<a href="/tags/blockchain/">Blockchain</a>,&nbsp;<a href="/tags/bitcoin/">Bitcoin</a></div></div>
 </article><ul class="pagination"><li class="page-item ">
                     <span class="page-link">
                         <a href="/">1</a>
@@ -123,10 +147,24 @@
                     <span class="page-link">
                         <a href="/page/5/">5</a>
                     </span>
+                </li><li class="page-item ">
+                    <span class="page-link">
+                        <a href="/page/6/">6</a>
+                    </span>
+                </li><li class="page-item ">
+                    <span class="page-link">
+                        <a href="/page/7/">7</a>
+                    </span>
+                </li><li class="page-item ">
+                    <span class="page-link" aria-hidden="true">&hellip;</span>
+                </li><li class="page-item ">
+                    <span class="page-link">
+                        <a href="/page/17/">17</a>
+                    </span>
                 </li></ul></div></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.104.2">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
-                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Riley</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.110.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Riley</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>
 
@@ -135,5 +173,5 @@
             </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
                 <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
             </a>
-        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.1/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.5.4/dist/index.umd.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"data":{"id-1":"rm -rf ."},"search":{"algoliaAppID":"","algoliaIndex":"","algoliaSearchKey":"","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"algolia"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.1/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.5.4/dist/index.umd.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"data":{"id-1":"harder, better, faster, stronger"},"search":{"algoliaAppID":"","algoliaIndex":"","algoliaSearchKey":"","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"algolia"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
 </html>

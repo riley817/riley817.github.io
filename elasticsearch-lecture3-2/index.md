@@ -1,4 +1,5 @@
-# 3.2 elasticsearch.yml
+# [Elasticsearch 검색 엔진 구축 강의] 3.2 elasticsearch.yml
+
 
 ## elasticsearch.yml
 `elasticsearch.yml` 은 데이터 파일 위치, 로그파일 위치 등 클러스터의 핵심적인 설정을 할 수 있는 구성 파일이다. 파일 포맷은 **YAML** 로 되어있다.

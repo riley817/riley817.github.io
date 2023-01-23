@@ -25,13 +25,5 @@ filebeat, logstash 는 데이터 소스가 있는 시스템에 설치하고, Ela
 엘라스틱서치 운영 모니터링 까지 Elastic Cloud 에서 모두 지원하기 때문에 따로 구성하지 않아도 된다.
 Elastic Cloud 구조 작업 목표 On-promise로 구성되어 있는 검색어 키워드를 Elastic Cloud 환경으로 이관한다. 추후에 맵으로 시각화 할 수 있도록 기존 데이터에 location(latitude, longitude)를 추가한다. 현재 시스템 구성 현재 구성되어 있는 검색어 키워드 인덱스 명 → wini_srch_kwrd_hist-yyyymm ES_MASTER 서버에서 로그스태시가 매일 09:00 마다 키워드 테이블을 조회하여 엘라스틱서치에 저장시키고 있다.]]></description>
 </item>
-<item>
-    <title>Azure VM에 Elastic Stack 설정</title>
-    <link>https://riley817.github.io/archives/elasticsearch/azure-vm-elastic-stack/</link>
-    <pubDate>Fri, 22 Jan 2021 00:00:00 &#43;0000</pubDate>
-    <author>riley</author>
-    <guid>https://riley817.github.io/archives/elasticsearch/azure-vm-elastic-stack/</guid>
-    <description><![CDATA[VM 세팅 리소스 그룹 생성 --location 으로 리젼을 선택할 수 있다. 1 2 3 4 5 # 리젼 코드 조회하기 az account list-locations -o table # elastic Resource Group 생성 az group create --name elastic --location koreasouth VM 생성하기 elastic 그룹에 VM 을 생성한다. 1 2 3 4 5 6 yoon@Azure:~$ az vm create \ &gt; --resource-group elastic \ &gt; --name rileyVM \ &gt; --image UbuntuLTS \ &gt; --admin-username riley \ &gt; --generate-ssh-keys 빠른 시작: Azure CLI를 사용하여 Linux VM 만들기 - Azure Virtual Machines SSH 접속 세팅 VM 생성 시 --generate-ssh-ke 의 옵션을 주어 SSH Key를 생성하였다.]]></description>
-</item>
 </channel>
 </rss>

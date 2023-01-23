@@ -1,0 +1,19 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>시작하세요! 도커/쿠버네티스 - Category - Riley&#39;s DevLog</title>
+        <link>https://riley817.github.io/categories/%EC%8B%9C%EC%9E%91%ED%95%98%EC%84%B8%EC%9A%94-%EB%8F%84%EC%BB%A4/%EC%BF%A0%EB%B2%84%EB%84%A4%ED%8B%B0%EC%8A%A4/</link>
+        <description>시작하세요! 도커/쿠버네티스 - Category - Riley&#39;s DevLog</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
+            <webMaster>riley0422@icloud.com (Riley)</webMaster><atom:link href="https://riley817.github.io/categories/%EC%8B%9C%EC%9E%91%ED%95%98%EC%84%B8%EC%9A%94-%EB%8F%84%EC%BB%A4/%EC%BF%A0%EB%B2%84%EB%84%A4%ED%8B%B0%EC%8A%A4/" rel="self" type="application/rss+xml" /><item>
+    <title>[시작하세요! 도커/쿠버네티스] Chapter 1. 도커</title>
+    <link>https://riley817.github.io/chapter1-docker/</link>
+    <pubDate>Fri, 02 Aug 2019 11:04:49 &#43;0800</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/chapter1-docker/</guid>
+    <description><![CDATA[시작하세요! 도커/쿠버네티스 책 정리 🐳🐳🐳
+도커(docker)는 리눅스 컨테이너에 여러 기능을 추가함으로써 애플리케이션을 컨테이너로서 좀 더 쉽게 사용할 수 있게 만들어진 오픈소스 프로젝트이다. GO 언어로 작성되어 있으며 2013년 3월에 첫 번째 릴리스가 발표된 이후 지금까지 꾸준히 개발되고 있다.
+도커와 관련된 프로젝트
+Docker Compose Private Registry Docker Machine Kitematic 도커라고 하면 Docker Engine 혹은 도커와 관련된 모든 프로젝트를 의미한다. 도커 생태계에 있는 여러 프로젝트들은 도커 엔진을 좀 더 효율적으로 사용하기 위한 것에 불과하며 핵심이 되는 것은 도커 엔진이다.]]></description>
+</item>
+</channel>
+</rss>

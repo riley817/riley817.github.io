@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>9. Amazon RDS, Aurora &amp; ElastiCache - Riley&#39;s DevLog</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:title" content="9. Amazon RDS, Aurora &amp; ElastiCache" />
+<meta property="og:description" content="AWS RDS RDS는 관계형 데이터 베이스 서비스 Relational Database Service 를 나타내며 SQL 쿼리 언어를 사용하는 데이터베이스를 위한 서비스이다.
+RDS에서 제공하는 데이터베이스 Postgres MySQL MariaDB Oracle Microsoft SQL Server Aurora - AWS Proprietary database AWS RDS 사용시 이점 RDS는 다음과 같은 서비스를 관리한다. 프로비저닝 및 OS 패치 자동화 지속적 백업과 특정 timestamp 기준 복구 (Point Time Restore) 대시보드 모니터링 읽기 성능 향상을 위한 읽기 전용 복제본 재해복구 DZ(Disaster Recovery)를 위한 Multi AZ 셋업 가능 업그레이드를 위한 유지보수 확장성 (vertical and horizontal) EBS 스토리지 백업 (gp2 or io1) 그러나 인스턴스에 SSH를 따로 가질 수는 없다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://riley817.github.io/aws-09-rds/" /><meta property="og:image" content="https://riley817.github.io/icon.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-08-01T17:41:51+09:00" />
+<meta property="article:modified_time" content="2023-01-23T16:20:57+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://riley817.github.io/icon.png"/>
+
+<meta name="twitter:title" content="9. Amazon RDS, Aurora &amp; ElastiCache"/>
+<meta name="twitter:description" content="AWS RDS RDS는 관계형 데이터 베이스 서비스 Relational Database Service 를 나타내며 SQL 쿼리 언어를 사용하는 데이터베이스를 위한 서비스이다.
+RDS에서 제공하는 데이터베이스 Postgres MySQL MariaDB Oracle Microsoft SQL Server Aurora - AWS Proprietary database AWS RDS 사용시 이점 RDS는 다음과 같은 서비스를 관리한다. 프로비저닝 및 OS 패치 자동화 지속적 백업과 특정 timestamp 기준 복구 (Point Time Restore) 대시보드 모니터링 읽기 성능 향상을 위한 읽기 전용 복제본 재해복구 DZ(Disaster Recovery)를 위한 Multi AZ 셋업 가능 업그레이드를 위한 유지보수 확장성 (vertical and horizontal) EBS 스토리지 백업 (gp2 or io1) 그러나 인스턴스에 SSH를 따로 가질 수는 없다."/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://riley817.github.io/aws-09-rds/" /><link rel="prev" href="https://riley817.github.io/aws-08-fundamentals/" /><link rel="next" href="https://riley817.github.io/aws-14-s3/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "9. Amazon RDS, Aurora \u0026 ElastiCache",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/riley817.github.io\/aws-09-rds\/"
+        },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Amazon RDS, Aurora, ElastiCache","wordcount":  1519 ,
+        "url": "https:\/\/riley817.github.io\/aws-09-rds\/","datePublished": "2022-08-01T17:41:51+09:00","dateModified": "2023-01-23T16:20:57+09:00","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "https:\/\/riley817.github.io\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "riley"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Riley&#39;s DevLog"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i></span>Riley&#39;s DevLog</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Riley&#39;s DevLog"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i></span>Riley&#39;s DevLog</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content always-active" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">9. Amazon RDS, Aurora & ElastiCache</h1><h2 class="single-subtitle">AWS Certified SAA-C02 시험준비</h2><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-category">included in <a href="/categories/aws-certified-saa-c02-%EC%8B%9C%ED%97%98%EC%A4%80%EB%B9%84/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>AWS Certified SAA-C02 시험준비</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-08-01">2022-08-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1519 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;8 minutes&nbsp;<span id="/aws-09-rds/" class="leancloud_visitors" data-flag-title="9. Amazon RDS, Aurora &amp; ElastiCache">
+                        <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#aws-rds">AWS RDS</a>
+      <ul>
+        <li><a href="#aws-rds-사용시-이점">AWS RDS 사용시 이점</a></li>
+      </ul>
+    </li>
+    <li><a href="#rds-backup">RDS Backup</a>
+      <ul>
+        <li><a href="#rds-자동백업">RDS 자동백업</a></li>
+        <li><a href="#db-스냅샷">DB 스냅샷</a></li>
+      </ul>
+    </li>
+    <li><a href="#rds-storage-auto-scaling">RDS Storage Auto Scaling</a></li>
+    <li><a href="#읽기-확장성을-위한-rds-읽기-복제본read-replicas">읽기 확장성을 위한 RDS 읽기 복제본(Read Replicas)</a>
+      <ul>
+        <li><a href="#rds-읽기-복제본-사용-사례">RDS 읽기 복제본 사용 사례</a></li>
+        <li><a href="#네트워크-비용">네트워크 비용</a></li>
+      </ul>
+    </li>
+    <li><a href="#rds-multi-azdisaster-recovery">RDS Multi AZ<code>(Disaster Recovery)</code></a>
+      <ul>
+        <li><a href="#단일-az에서-다중-az로">단일 AZ에서 다중 AZ로</a></li>
+      </ul>
+    </li>
+    <li><a href="#rds-보안---encryption">RDS 보안 - Encryption</a>
+      <ul>
+        <li><a href="#at-rest-암호화">At rest 암호화</a></li>
+        <li><a href="#in-flight-암호화">In-flight 암호화</a></li>
+        <li><a href="#암호화-옵션">암호화 옵션</a>
+          <ul>
+            <li><a href="#rds-백업-암호화">RDS 백업 암호화</a></li>
+            <li><a href="#암호화되지-않은-rds-데이터베이스-암호화">암호화되지 않은 RDS 데이터베이스 암호화</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#rds-보안--network--iam">RDS 보안 : Network &amp; IAM</a>
+      <ul>
+        <li><a href="#네트워크-보안">네트워크 보안</a></li>
+        <li><a href="#접근-제어-관리">접근 제어 관리</a></li>
+        <li><a href="#rds-iam-authentication">RDS IAM Authentication</a>
+          <ul>
+            <li><a href="#장점">장점</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#rds-보안-요약">RDS 보안 요약</a>
+      <ul>
+        <li><a href="#encryption-at-rest">Encryption at rest</a></li>
+        <li><a href="#사용자가-해야할-일">사용자가 해야할 일</a></li>
+        <li><a href="#aws-하는일">AWS 하는일</a></li>
+      </ul>
+    </li>
+    <li><a href="#amazon-aurora">Amazon Aurora</a>
+      <ul>
+        <li><a href="#aws-aurora의-고가용성과-읽기-확장성">AWS Aurora의 고가용성과 읽기 확장성</a></li>
+        <li><a href="#aurora-db-cluster">Aurora DB Cluster</a></li>
+      </ul>
+    </li>
+    <li><a href="#aurora의-기능">Aurora의 기능</a></li>
+    <li><a href="#aurora-보안">Aurora 보안</a></li>
+    <li><a href="#aurora-replicas">Aurora Replicas</a>
+      <ul>
+        <li><a href="#aurora-auto-scaling">Aurora Auto Scaling</a></li>
+        <li><a href="#aurora-custom-endpoints">Aurora Custom Endpoints</a></li>
+        <li><a href="#aurora-serverless">Aurora Serverless</a></li>
+        <li><a href="#multi-master">Multi-Master</a></li>
+        <li><a href="#글로벌-aurora">글로벌 Aurora</a>
+          <ul>
+            <li><a href="#aurora-리전-간-읽기-복제">Aurora 리전 간 읽기 복제</a></li>
+            <li><a href="#aurora-global-database추천">Aurora Global Database(추천)</a></li>
+          </ul>
+        </li>
+        <li><a href="#aurora-machine-learning">Aurora Machine Learning</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#elasticache-solution-architecture">ElastiCache Solution Architecture</a>
+      <ul>
+        <li><a href="#db-cache">DB Cache</a></li>
+        <li><a href="#사용자-세션-저장">사용자 세션 저장</a></li>
+      </ul>
+    </li>
+    <li><a href="#redis-vs-memcached">Redis vs Memcached</a>
+      <ul>
+        <li><a href="#redis">Redis</a></li>
+        <li><a href="#memcached">Memcached</a></li>
+      </ul>
+    </li>
+    <li><a href="#cache-security">Cache Security</a>
+      <ul>
+        <li><a href="#redis-auth">Redis Auth</a></li>
+        <li><a href="#memcached-1">Memcached</a></li>
+      </ul>
+    </li>
+    <li><a href="#데이터-로드-패턴">데이터 로드 패턴</a>
+      <ul>
+        <li><a href="#lazy-loading">Lazy Loading</a></li>
+        <li><a href="#write-through">Write Through</a></li>
+        <li><a href="#session-store">Session Store</a></li>
+        <li><a href="#redis-use-case">Redis Use Case</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="aws-rds">AWS RDS</h2>
+<p>RDS는 관계형 데이터 베이스 서비스 <code>Relational Database Service</code> 를 나타내며 SQL 쿼리 언어를 사용하는 데이터베이스를 위한 서비스이다.</p>
+<div class="details admonition success open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-check-circle fa-fw" aria-hidden="true"></i>RDS에서 제공하는 데이터베이스<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><ul>
+<li>Postgres</li>
+<li>MySQL</li>
+<li>MariaDB</li>
+<li>Oracle</li>
+<li>Microsoft SQL Server</li>
+<li>Aurora - AWS Proprietary database</li>
+</ul>
+</div>
+        </div>
+    </div>
+<h3 id="aws-rds-사용시-이점">AWS RDS 사용시 이점</h3>
+<ul>
+<li>RDS는 다음과 같은 서비스를 관리한다.
+<ul>
+<li>프로비저닝 및 OS 패치 자동화</li>
+<li>지속적 백업과 특정 timestamp 기준 복구 <code>(Point Time Restore)</code></li>
+<li>대시보드 모니터링</li>
+<li>읽기 성능 향상을 위한 읽기 전용 복제본</li>
+<li><strong>재해복구 <code>DZ(Disaster Recovery)</code>를 위한 Multi AZ 셋업 가능</strong></li>
+<li>업그레이드를 위한 유지보수</li>
+<li>확장성 (vertical and horizontal)</li>
+<li>EBS 스토리지 백업 <code>(gp2 or io1)</code></li>
+</ul>
+<blockquote>
+<p>그러나 인스턴스에 SSH를 따로 가질 수는 없다.</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="rds-backup">RDS Backup</h2>
+<p>RDS에서는 자동으로 백업이 실행된다.</p>
+<h3 id="rds-자동백업">RDS 자동백업</h3>
+<ul>
+<li>매일 수행되는 데이터베이스 전체에 대한 백업(유지 관리 기간 중)</li>
+<li>RDS에 의해 트랜잭션 로그가 5분 마다 백업된다. → 원하는 시점으로 복원할 수 있는 기능 (가장 오래된 백업의 5분 전으로)</li>
+<li>보존기간은 7일 (최대 35일까지 늘릴 수 있다.)</li>
+</ul>
+<h3 id="db-스냅샷">DB 스냅샷</h3>
+<ul>
+<li>사용자에 의해 수동으로 트리거 된다.</li>
+<li>원하는 기간 동안 백업을 보존할 수 있다.</li>
+</ul>
+<h2 id="rds-storage-auto-scaling">RDS Storage Auto Scaling</h2>
+<ul>
+<li>
+<p>RDS DB 인스턴스의 스토리지를 동적으로 늘릴 수 있도록 지원한다.</p>
+</li>
+<li>
+<p>RDS가 사용 가능한 데이터베이스 스토리지가 부족함을 감지하면 자동으로 확장</p>
+</li>
+<li>
+<p>데이터베이스의 스토리지를 수동 확장 방지</p>
+</li>
+<li>
+<p><strong>Maximum Storage Threshold</strong> <code>최대 스토리지 임계값(최대 제한)</code> 을 설정해야 한다.</p>
+</li>
+<li>
+<p><strong>예측할 수 없는 워크로드 <code>unpredictable workloads</code> 가 있는 애플리케이션에 적합</strong></p>
+</li>
+<li>
+<p>모든 RDS 데이터베이스 엔진을 지원 (MariaDB, MySQL, PostgreSQL, SQL Server, Oracle)</p>
+<div class="details admonition info open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-info-circle fa-fw" aria-hidden="true"></i>자동으로 스토리지가 변경되는 경우<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><ul>
+<li>사용가능한 스토리지가 할당된 스토리지의 10% 미만임</li>
+<li>최소 5분 이상 지속됨</li>
+<li>마지막 수정 후 6시간이 지남</li>
+</ul>
+</div>
+        </div>
+    </div>
+</li>
+</ul>
+<h2 id="읽기-확장성을-위한-rds-읽기-복제본read-replicas">읽기 확장성을 위한 RDS 읽기 복제본(Read Replicas)</h2>
+<center>
+  <image src="/posts/images/aws/rds-read-replicas.jpg" width="500px" caption="">
+</center>
+<ul>
+<li>최대 5개 까지 가능</li>
+<li>AZ 내, AZ 교차, 리전 교차</li>
+<li>읽기 복제본의 복제는 <strong>ASYNC</strong>이며 읽기 결과는 일관된다.</li>
+<li>읽기 복제본은 자체 DB로 승격가능</li>
+<li>애플리케이션에서는 읽기 복제본을 활용하기 위해서는 연결 문자열을 업데이트 해야 한다.</li>
+</ul>
+<h3 id="rds-읽기-복제본-사용-사례">RDS 읽기 복제본 사용 사례</h3>
+<center>
+  <image src="/posts/images/aws/rds-read-replicas-usecase.jpg" width="500px" caption="">
+</center>
+<ul>
+<li>애플리케이션 분석을 실행하기 위한 애플리케이션을 실행하려는 경우</li>
+<li>읽기 복제본을 생성 후 새로운 워크로드에서 실행하려는 경우</li>
+<li>프로덕션의 응용프로그램은 영향받지 않음</li>
+<li>읽기 복제본은 <strong>SELECT 유형의 문에만 사용</strong> (INSERT, UPDATE, DELETE는 사용불가능)</li>
+</ul>
+<h3 id="네트워크-비용">네트워크 비용</h3>
+<ul>
+<li>AZ간 데이터가 이동할 때 네트워크 비용이 발생한다.</li>
+<li><strong>RDS 읽기 복제본를 사용하면 같은 리전이면 복제본의 수수료를 지불하지 않는다.</strong></li>
+</ul>
+<h2 id="rds-multi-azdisaster-recovery">RDS Multi AZ<code>(Disaster Recovery)</code></h2>
+<center>
+  <image src="/posts/images/aws/rds-multi-az-dr.png" width="500px" caption="">
+</center>
+<ul>
+<li><strong>동기식<code>SYNC</code></strong> 으로 복제</li>
+<li>하나의 DNS 이름을 가지고 자동으로 <code>standby</code> 데이베이스에 복구</li>
+<li>가용성 증가</li>
+<li>가용영역의 네트워크가 손실되는 경우 스토리지를 복구한다.</li>
+<li>애플리케이션에 수동 개입이 없음</li>
+<li>Multi-AZ 복제본은 비용이 발생하지 않음</li>
+<li>읽기 복제본은 재해 복구를 위해 다중 AZ로 설정된다.</li>
+</ul>
+<h3 id="단일-az에서-다중-az로">단일 AZ에서 다중 AZ로</h3>
+<ul>
+<li>
+<p>zero downtime operation (DB 중지가 불필요하다)</p>
+</li>
+<li>
+<p>데이터베이스의 <code>modify</code> 버튼만 클릭하면 된다.</p>
+<div class="details admonition info open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-info-circle fa-fw" aria-hidden="true"></i>내부적으로 발생하는 절차<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><ul>
+<li>스냅샷이 생성</li>
+<li>스냅샷에서 새로운 데이터베이스가 AZ에 복원</li>
+<li>두 데이터베이스간 동기화 설정</li>
+</ul>
+</div>
+        </div>
+    </div>
+</li>
+</ul>
+<h2 id="rds-보안---encryption">RDS 보안 - Encryption</h2>
+<h3 id="at-rest-암호화">At rest 암호화</h3>
+<ul>
+<li>AWS KMS의 AES-256 암호화를 사용하여 마스터 및 읽기 전용 암호화 가능</li>
+<li>암호화 실행 시간을 정의 해야 한다.</li>
+<li><strong>마스터 데이터베이스를 암호화하지 않으면 읽기 전용 데이터베이스도 암호화 할 수 없다</strong></li>
+<li>Oracle 및 SQL Server에서 TED(Transparent Data Encryption) 사용 가능하다. -&gt; 데이터 암호화의 대안 제안</li>
+</ul>
+<h3 id="in-flight-암호화">In-flight 암호화</h3>
+<ul>
+<li>SSL 인증서를 통한 데이터 전송중 암호화</li>
+<li>데이터베이스를 연결 할 때 신뢰할 수 있는 인증서로 SSL 옵션을 제공하여 SSL을 제공할 수 있다.
+<div class="details admonition success open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-check-circle fa-fw" aria-hidden="true"></i>모든 클라이언트가 SSL 사용하게 하려면<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><p><strong>PostgreSQL</strong><br/></p>
+<ul>
+<li>AWS RDS Console (Parameter Groups)</li>
+<li><code>rds.force_ssl=1</code></li>
+</ul>
+<p><strong>MySQL</strong><br/></p>
+<ul>
+<li>데이터베이스 내부에서 실행</li>
+<li><code>GRANT USAGE ON *.* TO 'mysqluser'@'%' REQUIRE SSL;</code></li>
+</ul>
+</div>
+        </div>
+    </div></li>
+</ul>
+<h3 id="암호화-옵션">암호화 옵션</h3>
+<h4 id="rds-백업-암호화">RDS 백업 암호화</h4>
+<ul>
+<li>암호화되지 않은 RDS 데이터베이스의 스냅샷은 암호화되지 않음.</li>
+<li>암호화 된 RDS 데이터베이스만 스냅샷이 암호화 됨</li>
+<li>스냅샷을 암호화 된 스냅샷으로 복사할 수 있음</li>
+</ul>
+<h4 id="암호화되지-않은-rds-데이터베이스-암호화">암호화되지 않은 RDS 데이터베이스 암호화</h4>
+<ol>
+<li>암호화되지 않은 데이터베이스의 스냅샷을 생성한다.</li>
+<li>생성한 스냅샷을 복사하고 복사한 스냅샷에 대한 암호화를 활성화 한다.</li>
+<li>암호화 된 스냅샷에서 데이터베이스를 복원한다.</li>
+<li>응용프로그램에서 새 데이터베이스로 마이그레이션 후 이전 데이터베이스는 삭제한다.</li>
+</ol>
+<h2 id="rds-보안--network--iam">RDS 보안 : Network &amp; IAM</h2>
+<h3 id="네트워크-보안">네트워크 보안</h3>
+<ul>
+<li>RDS는 일반적으로 public 서브넷이 아닌 private 서브넷에 구축된다.</li>
+<li>RDS 보안은 보안 그룹을 활용하여 작동하며, RDS와 통신할 수 있는 IP와 보안 그룹을 제어한다.</li>
+</ul>
+<h3 id="접근-제어-관리">접근 제어 관리</h3>
+<ul>
+<li>IAM 정책을 통해(RDS API를 통해) AWS RDS를 관리할 수 있는 사용자를 제어할 수 있다.</li>
+<li>기존 사용자 및 암호화를 사용하여 데이터베이스에 로그인 할 수 있다.</li>
+<li>IAM 기반 인증을 사용하여 RDS MySQL 및 PostgreSQL에 로그인할 수 있다.</li>
+</ul>
+<h3 id="rds-iam-authentication">RDS IAM Authentication</h3>
+<center>
+  <image src="/posts/images/aws/rds-auth-iam.png" width="300">
+</center>
+<ul>
+<li>IAM 데이터베이스 인증은 <strong>MySQL 및 PostgreSQL</strong>과 함께 작동한다.</li>
+<li>비밀번호는 필요하지 않고 IAM &amp; RDS API 호출을 통해 획득한 인증 토큰만 필요하다.</li>
+<li>인증토큰은 15분의 lifetime을 갖는다.</li>
+</ul>
+<h4 id="장점">장점</h4>
+<ul>
+<li>네트워크의 in/out은 SSL을 통해 암호화된다.</li>
+<li>IAM에서 DB 대신에 사용자를 관리</li>
+<li>IAM 역할 및 EC2 인스턴스 프로파일을 활용하여 손쉽게 통합 가능하다.</li>
+</ul>
+<h2 id="rds-보안-요약">RDS 보안 요약</h2>
+<h3 id="encryption-at-rest">Encryption at rest</h3>
+<ol>
+<li>DB 인스턴스를 처음 생성할 때만 수행</li>
+<li>암호화 되지 않은 DB -&gt; 스냅샷 생성 -&gt; 스냅샷을 암호화된 것으로 복사 -&gt; 스냅샷에서 DB 생성</li>
+</ol>
+<h3 id="사용자가-해야할-일">사용자가 해야할 일</h3>
+<ul>
+<li>데이터베이스 보안그룹의 ports/ip/security group 인바운드 규칙 확인한다.</li>
+<li>데이터베이스 내 모든 사용자 생성 및 권한을 관리 (IAM을 통한)</li>
+<li>public 액세스가 없는 데이터베이스를 생성</li>
+<li>파라미터 그룹과 데이터베이스가 SSL 연결만 허용하도록 구성하여 암호화되는지 확인</li>
+</ul>
+<h3 id="aws-하는일">AWS 하는일</h3>
+<ul>
+<li>SSH 액세스가 발생하지 않게 함</li>
+<li>사용자가 수동으로 DB 패치를 하지 않아도 됨</li>
+<li>사용자가 수동으로 OS 패치를 하지 않아도 됨</li>
+<li>사용자가 기본 인스턴스를 확인하지 않아도 됨</li>
+</ul>
+<h2 id="amazon-aurora">Amazon Aurora</h2>
+<ul>
+<li>Aurora는 AWS의 독점 기술 (그러나 오픈소스는 아니다.)</li>
+<li>Postgres 그리고 MySQL은 모두 Aurora DB로 지원된다.
+<ul>
+<li>드라이버가 Postgres, mysql 데이터베이스인 것처럼 작동하는 것을 의미</li>
+</ul>
+</li>
+<li>Aurora는 AWS 클라우드에 최적화되어 있으며, RDS의 MySQL 보다 5배, RDS의 Postgres 보다 3배 향상된 성능을 제공한다.</li>
+<li>스토리지는 자동으로 10GB, 최대 128 TB 까지 증가</li>
+<li>MySQL을 5개의 복제본만 가질 수 있는 반면 Aurora는 15개의 복제본을 가질 수 있다.</li>
+<li>복제 프로세스가 더 빠르다</li>
+<li>즉각적인 장애 복구. native high availability (HA)</li>
+<li>RDS에 비해 비용이 20% 높지만 규모가 클 경우 더 효율적</li>
+</ul>
+<h3 id="aws-aurora의-고가용성과-읽기-확장성">AWS Aurora의 고가용성과 읽기 확장성</h3>
+<div class="details admonition success open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-check-circle fa-fw" aria-hidden="true"></i>6개의 데이터 복제본이 3개의 AZ에 걸쳐 저장<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><ul>
+<li>쓰기의 경우 4개의 복제본만 있으면 된다.</li>
+<li>읽기 시 3개의 복제본만 있으면 된다.</li>
+<li>peer-to-peer 복제를 통해 자가 복구한다.</li>
+<li>수백개의 볼륨을 걸쳐 스토리지를 스트리핑</li>
+</ul>
+</div>
+        </div>
+    </div>
+<ul>
+<li>쓰기 가능 마스터 하나이다.</li>
+<li>30초 이내에 자동으로 마스터 장애 복구 실행</li>
+<li>마스터 + 최대 15개의 읽기 전용 제공</li>
+<li><strong>리전 간 읽기 전용 복제 지원</strong></li>
+</ul>
+<h3 id="aurora-db-cluster">Aurora DB Cluster</h3>
+<center>
+  <image src="/posts/images/aws/db-cluster.jpg" width="1000px">
+</center>
+<ul>
+<li><strong>Writer Endpoint</strong> : 항상 마스터를 가리킴</li>
+<li><strong>Reader Endpoint</strong> : 오토 스케일링 된 읽기 전용 복제본 로드 밸런싱</li>
+</ul>
+<h2 id="aurora의-기능">Aurora의 기능</h2>
+<ul>
+<li>장애복구 자동화</li>
+<li>백업과 복원</li>
+<li>격리 및 보안</li>
+<li>업계 규정 준수</li>
+<li>푸시 버튼 스케일링</li>
+<li>자동화 된 무중단 패치</li>
+<li>향상된 모니터링</li>
+<li>정기 유지보수</li>
+<li><code>Backtrack</code> : 백업을 사용하지 않고 언제든지 데이터를 복원</li>
+</ul>
+<h2 id="aurora-보안">Aurora 보안</h2>
+<ul>
+<li>RDS와 비슷한 수준의 보안 (같은 엔진을 사용)</li>
+<li>KMS 사용한 at rest 암호화</li>
+<li>자동화된 백업, 스냅샷 그리고 암호화된 복제본</li>
+<li>SSL을 사용한 전송중 암호화 (MySQL, Postgres와 같은)</li>
+<li><strong>IAM 토큰을 사용한 인증이 가능 (RDS와 같은 방식)</strong></li>
+<li>사용자는 보안그룹을 통해 인스턴스를 보호해야 한다.</li>
+<li>SSH에 접근할 수 없다.</li>
+</ul>
+<h2 id="aurora-replicas">Aurora Replicas</h2>
+<h3 id="aurora-auto-scaling">Aurora Auto Scaling</h3>
+<center>
+  <image src="/posts/images/aws/aurora-replicas-auto-scaling.jpg" width="700px">
+</center>
+<div class="details admonition tip open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw" aria-hidden="true"></i>Aurora auto scaling<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><p><strong>Aurora 인스턴스 3개가 있다고 가정</strong></p>
+<ul>
+<li>Writer Endpoint : 1개</li>
+<li>Reader Endpoint : 2개</li>
+</ul>
+<p><strong>많은 읽기 요청으로 CPU사용량 증가</strong></p>
+<ul>
+<li>Aurora 복제본이 추가되고 자동으로 Reader Endpoint가 새 복제본을 포함하도록 확장</li>
+<li>CPU 사용량을 낮추기 위해 분산된 방식으로 새로운 복제본이 트래픽 수신</li>
+</ul>
+</div>
+        </div>
+    </div>
+<h3 id="aurora-custom-endpoints">Aurora Custom Endpoints</h3>
+<ul>
+<li>사용자 지정 Endpoints로 Aurora 인스턴스의 하위 집합을 정의</li>
+<li>예시) 특정 복제본에 대한 분석 쿼리를 실행할 때</li>
+<li>일반적으로 사용자 정의 Endpoints를 정의한 후 Reader Endpoint는 정의하지 않는다.</li>
+</ul>
+<center>
+  <image src="/posts/images/aws/aurora-custom-endpoints.jpg" caption="">
+</center>
+<div class="details admonition tip open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw" aria-hidden="true"></i>Aurora custom endpoints<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><p><strong>Aurora 두 종류 복제본이 있다고 가정</strong></p>
+<ul>
+<li>복제본 db.r3.large : 2개</li>
+<li>복제본 db.r5.xlarge : 2개 - 용량이 더 큼</li>
+</ul>
+<p><strong>특정 읽기전용 데이터베이스에 분석 쿼리 실행</strong></p>
+<ul>
+<li>용량이 더 큰 인스턴스 서브셋을 사용자 endpoint로 정의</li>
+</ul>
+</div>
+        </div>
+    </div>
+<h3 id="aurora-serverless">Aurora Serverless</h3>
+<ul>
+<li>자동화 된 데이터베이스 인스턴스 및 실제 사용량을 기반으로 한 오토 스케일링 제공</li>
+<li>간헐적이거나 예측할 수 없는 워크로드에 적합</li>
+<li>용량 측정이 필요 없다</li>
+<li>초당 비용 지불. 비용측면에서는 효과적</li>
+</ul>
+<center>
+  <image src="/posts/images/aws/aurora-serverless.jpg" caption="">
+</center>
+<div class="details admonition tip open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw" aria-hidden="true"></i>Aurora Serverless<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><ul>
+<li>Aurora에서 관리하는 Proxy Fleet과 통신</li>
+<li>백엔드에서는 서버리스 방식으로 워크로드를 기반으로 한 Aurora 인스턴스 생성</li>
+</ul>
+</div>
+        </div>
+    </div>
+<h3 id="multi-master">Multi-Master</h3>
+<ul>
+<li>쓰기 전용 마스터에 즉각적인 장애 조치가 필요한 경우.(Writer 노드에 고가용성이 필요한 경우)</li>
+<li>모든 노드가 읽기와 쓰기 작업을 진행</li>
+<li>쓰기 노드가 다운될경우 읽기 본제본을 새로운 마스터로 승격</li>
+</ul>
+<h3 id="글로벌-aurora">글로벌 Aurora</h3>
+<h4 id="aurora-리전-간-읽기-복제">Aurora 리전 간 읽기 복제</h4>
+<ul>
+<li>재해복구에 유용</li>
+<li>간단하게 구현</li>
+</ul>
+<h4 id="aurora-global-database추천">Aurora Global Database(추천)</h4>
+<ul>
+<li>하나의 읽기/쓰기 기본 리전 <code>Primary Region</code></li>
+<li>5개까지 보조 리전 설정 가능 : 읽기 전용이며, 보조 리전당 랙은 1초 미만</li>
+<li>리전당 최대 16개의 읽기 전용 복제본을 가질 수 있다.</li>
+<li>대기 시간 단축에 도움</li>
+<li>RTO가 있으므로 복구 시간 목표는 1분 미만</li>
+</ul>
+<h3 id="aurora-machine-learning">Aurora Machine Learning</h3>
+<ul>
+<li>SQL을 통해 ML 기반의 예측을 애플리케이션에 추가</li>
+<li>Aurora와 AWS ML 서비스를 쉽고, 최적화, 안전하게 통합할 수 있다.</li>
+<li>지원되는 서비스</li>
+<li>Amazon SageMaker (use with any ML model)</li>
+<li>Amazon Comprehend (for sentiment analysis)</li>
+<li>ML 경험이 없어도 된다.</li>
+<li>사용사례
+<ul>
+<li>사기탐지, 광고 타게팅, 감정분석, 제품 추천</li>
+</ul>
+</li>
+</ul>
+<h1 id="amazon-elasticache">Amazon ElastiCache</h1>
+<ul>
+<li>캐시는 높은 성능과 낮은 지연 시간을 가진 in-memory 데이터베이스를 의미한다.</li>
+<li>RDS 동일한 방식으로 관계형 데이터베이스를 관리</li>
+<li>Redis와 Memcached와 같은 캐시 기술 관리</li>
+<li>읽기 집약적인 워크로드 부하를 줄일 수 있다.</li>
+<li>애플리케이션에서 상태를 관리하지 않아도 된다.</li>
+<li>OS 운영, 패치, 최적화, 설치, 구성, 모니터링, 장애복구, 백업등의 기능을 AWS에서 주관한다.</li>
+<li><strong>ElasticCache를 사용하면 애플리케이션 코드를 향상시킬 수 있다.</strong></li>
+</ul>
+<h2 id="elasticache-solution-architecture">ElastiCache Solution Architecture</h2>
+<h3 id="db-cache">DB Cache</h3>
+<ul>
+<li>애플리케이션은 ElasticCache에서 쿼리 할 수 없는 경우 RDS에서 가져와 ElasticCache에 저장한다.</li>
+<li>RDS에 부하 완화 지원</li>
+<li>캐시에는 최신 데이터만 사용 할 수 있도록 무효화 전략 필요</li>
+</ul>
+<h3 id="사용자-세션-저장">사용자 세션 저장</h3>
+<ul>
+<li>사용자의 세션 데이터를 ElasticCache에 저장</li>
+<li>애플리케이션은 ElasticCache에서 직접 사용자의 세션캐시를 검색</li>
+<li>다른 인스턴스로 접근시에도 사용자 재로그인이 필요 없음</li>
+</ul>
+<h2 id="redis-vs-memcached">Redis vs Memcached</h2>
+<h3 id="redis">Redis</h3>
+<ul>
+<li>자동화 된 재해 복구 + 다중 AZ</li>
+<li>읽기 복제본을 통한 읽기 확장 및 고 가용성</li>
+<li>AOP 지속성을 이용한 내구성</li>
+<li>백업 및 복원 기능</li>
+</ul>
+<h3 id="memcached">Memcached</h3>
+<ul>
+<li>데이터를 파티셔닝 한 다중 노드  (sharding)</li>
+<li>가용성이 낮음</li>
+<li>복제 X. 지속성 X</li>
+<li>백업 및 복원 기능 없음</li>
+<li>다중 스레드 설계</li>
+<li>분산 캐시</li>
+</ul>
+<h2 id="cache-security">Cache Security</h2>
+<ul>
+<li>IAM authentication 지원하지 않음</li>
+<li>ElasticCache는 AWS API 수준 보안에서만 사용</li>
+</ul>
+<h3 id="redis-auth">Redis Auth</h3>
+<ul>
+<li>레디스 클러스터를 생성할 때 비밀번호나 토큰을 설정할 수 있다.</li>
+<li>이는 security group에 대한 추가적인 수준의 보안</li>
+<li>SSL 전송 중 암호화 지원</li>
+</ul>
+<h3 id="memcached-1">Memcached</h3>
+<ul>
+<li>SASL 기반 인증 지원</li>
+</ul>
+<h2 id="데이터-로드-패턴">데이터 로드 패턴</h2>
+<h3 id="lazy-loading">Lazy Loading</h3>
+<ul>
+<li>모든 데이터를 읽은 후 캐시한 데이터를 로딩 할 수 있다.</li>
+</ul>
+<h3 id="write-through">Write Through</h3>
+<ul>
+<li>DB에 데이터를 쓸 때 캐시 데이터 추가 및 업데이트 요청</li>
+</ul>
+<h3 id="session-store">Session Store</h3>
+<ul>
+<li>임시 세션 데이터를 캐시에 저장 (TTL 기능 사용)</li>
+</ul>
+<h3 id="redis-use-case">Redis Use Case</h3>
+<ul>
+<li>게이밍 리더보드 계산</li>
+<li><strong>Redis Sorted set</strong>은 고유성과 순서 모두를 보장한다.</li>
+<li>새 요소가 추가 될 때마다 실시간으로 순위 책정</li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-01-23&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/db5877e427614337ffbb673875fa349e5bf0be3a" target="_blank" title="commit by riley817(riley0422@icloud.com) db5877e427614337ffbb673875fa349e5bf0be3a: 20230123162055">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>db5877e</a></span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/amazon-rds/">Amazon RDS</a>,&nbsp;<a href="/tags/aurora/">Aurora</a>,&nbsp;<a href="/tags/elasticache/">ElastiCache</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/aws-08-fundamentals/" class="prev" rel="prev" title="8. AWS Fundamentals - Load Balancing, Auto Scaling Groups and EBS Volumes"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>8. AWS Fundamentals - Load Balancing, Auto Scaling Groups and EBS Volumes</a>
+            <a href="/aws-14-s3/" class="next" rel="next" title="14. S3 Storage and Data Management">14. S3 Storage and Data Management<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.110.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Riley</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/valine@1.4.18/dist/Valine.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.1/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{"valine":{"appId":"QGzwQXOqs5JOhN4RGPOkR2mR-MdYXbMMI","appKey":"WBmoGyJtbqUswvfLh6L8iEBr","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@14.0.0/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"en","pageSize":10,"placeholder":"Your comment ...","recordIP":true,"serverURLs":"https://leancloud.hugoloveit.com","visitor":true}},"search":{"algoliaAppID":"","algoliaIndex":"","algoliaSearchKey":"","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

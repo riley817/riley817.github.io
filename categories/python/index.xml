@@ -1,24 +1,24 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>python - Category - Riley&#39;s DevLog</title>
+        <title>Python - Category - Riley&#39;s DevLog</title>
         <link>https://riley817.github.io/categories/python/</link>
-        <description>python - Category - Riley&#39;s DevLog</description>
+        <description>Python - Category - Riley&#39;s DevLog</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
             <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Fri, 14 Dec 2018 23:15:22 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/categories/python/" rel="self" type="application/rss+xml" /><item>
-    <title>파이썬의 자료형</title>
-    <link>https://riley817.github.io/archives/python/python-data-type/</link>
+    <title>[Python] Python의 자료형</title>
+    <link>https://riley817.github.io/python-data-type/</link>
     <pubDate>Fri, 14 Dec 2018 23:15:22 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/archives/python/python-data-type/</guid>
+    <guid>https://riley817.github.io/python-data-type/</guid>
     <description><![CDATA[파이썬의 변수와 객체 C 와 같은 언어에서 변수는 메모리 상 저장공간에 직접 값을 할당한다면, 파이썬에서 변수는 메모리상에 생성된 객체를 참조 하는 개념이다.
 1 2 3 4 5 6 7 8 9 10 &gt;&gt;&gt; x = 100 &gt;&gt;&gt; y = 100 &gt;&gt;&gt; x is y True # 257 부터는 서로 다른 객체로 생성됨. &gt;&gt;&gt; x = 257 &gt;&gt;&gt; y = 257 &gt;&gt;&gt; x is y False 위의 예제에서는 x 와 y 는 100 이라는 메모리상 같은 객체를 가리키고 있다.]]></description>
 </item>
 <item>
-    <title>pyenv를 이용하여 python 시작하기</title>
-    <link>https://riley817.github.io/archives/python/start-python-using-pyenv/</link>
+    <title>[Python] pyenv를 이용하여 python 시작하기</title>
+    <link>https://riley817.github.io/start-python-using-pyenv/</link>
     <pubDate>Thu, 13 Dec 2018 19:11:39 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/archives/python/start-python-using-pyenv/</guid>
+    <guid>https://riley817.github.io/start-python-using-pyenv/</guid>
     <description><![CDATA[pyenv? pyenv 는 하나의 시스템에서 여러 다양한 버전의 Python 을 관리하기 위한 관리 도구이다. 파이썬 버전을 사용자 단위 혹은 프로젝트별로 각각 다른 버전을 사용할 수 있다. ruby 의 rvm, Node.js 의 nvm 와 같은 역할을 하는 Version Manager 이다. https://github.com/pyenv/pyenv pyenv 설치 python 을 설치하는데 필요한 패키지 설치 1 $ sudo apt install curl git-core gcc make zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev libssl-dev pyenv 소스 다운로드 Gibhub 저장소에서 최신 pyenv 소스를 클론하여 ~/.]]></description>
 </item>
 </channel>

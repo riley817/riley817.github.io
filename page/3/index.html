@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-	<meta name="generator" content="Hugo 0.104.2" />
+	<meta name="generator" content="Hugo 0.110.0">
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
@@ -9,7 +9,6 @@
 <meta property="og:description" content="Riley&#39;s DevLog" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://riley817.github.io/" /><meta property="og:image" content="https://riley817.github.io/icon.png"/><meta property="og:site_name" content="Riley&#39;s DevLog" />
-
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://riley817.github.io/icon.png"/>
 
@@ -31,7 +30,7 @@
             },"description": "Riley's DevLog","image": "https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png","thumbnailUrl": "https:\/\/riley817.github.io\/images\/screenshot.png","name": "Riley's DevLog"
     }
     </script></head>
-    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
 
         <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
     <div class="header-wrapper">
@@ -99,41 +98,51 @@
         data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
         data-sizes="auto"
         alt="/images/avatar.png"
-        title="/images/avatar.png" /></a></div><div class="home-subtitle"><div id="id-1" class="typeit"></div></div><div class="links"><a href="https://github.com/https://github.com/riley817" title="GitHub" target="_blank" rel="noopener noreffer me"><i class="fab fa-github-alt fa-fw" aria-hidden="true"></i></a></div></div>
+        title="/images/avatar.png" /></a></div><h1 class="home-title">라일리의 개발 공부기록</h1><div class="home-subtitle"><div id="id-1" class="typeit"></div></div><div class="links"><a href="https://github.com/https://github.com/riley817" title="GitHub" target="_blank" rel="noopener noreffer me"><i class="fab fa-github-alt fa-fw" aria-hidden="true"></i></a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/elasticsearch-lecture3-3/">3.3 jvm.options</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2018-11-05">2018-11-05</time></span>&nbsp;<span class="post-category">included in <a href="/categories/elasticsearch-lecture/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>elasticsearch lecture</a></span></div><div class="content">jvm.options jvm.options 의 설정을 통해 JVM(Java Virtual Machine) 의 옵션을 변경할 수 있다. 설정 파일은 config/jvm.options(tar or zip 배포판) 또는 /etc/elasticsearch/jvm.options(rpm 패키지 설치) 에서 위치하고 있다. JVM Heap Size Configuration Elasticsearch 는 Java 기반이기 때문에 Heap 메모리를 어떻게 설정하느냐에 따라 성능에 큰 영향을 미치게 된다. 기본적으로 Elasticsearch 의 최소, 최대 Heap 사이즈는 2GB로 설정되어 있다. 실제 운영환경에 따라서 Elasticsearch 에서 충분한 Heap 을 사용할 수 있도록 Heap Size 를 구성하는 것이 중요하다.</div><div class="post-footer">
-        <a href="/elasticsearch-lecture3-3/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/elasticsearch/">elasticsearch</a></div></div>
+        <a href="/20220627/">[TIL & Issue Note] 개발협업 가이드 핸드북 초안</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-06-27">2022-06-27</time></span>&nbsp;<span class="post-category">included in <a href="/categories/til-issue-note/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>TIL & Issue Note</a></span></div><div class="content">개발 협업 가이드 우리 팀에서 내부 및 외부 공동 작업자가 개발 협업하기 위한 방법으로 애자일의 Scrum 방법론을 사용합니다. Scrum 관리를 위한 도구로는 GitLab의 이슈 시스템과 칸반보드 기능을 활용합니다. GitLab에 등록되는 이슈(Task)는 시스템 개발과 관련된 작업만 작성하도록 합니다. 프로젝트 계약 등 개발작업이 아닌 작업의 경우 Microsoft Planner의 칸반보드를 사용합니다.
+PBTeam – Microsoft Planner 사용가이드
+GitLab은 Git 원격 저장소 관리, CI/CD, 이슈 관리, 테스트 등 소프트웨어 개발과 운영의 전반적인 라이프사이클을 관리할 수 있는 통합 툴입니다.</div><div class="post-footer">
+        <a href="/20220627/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/til/">TIL</a>,&nbsp;<a href="/tags/blockchain/">Blockchain</a>,&nbsp;<a href="/tags/bitcoin/">Bitcoin</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/elasticsearch-lecture3-2/">3.2 elasticsearch.yml</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2018-11-02">2018-11-02</time></span>&nbsp;<span class="post-category">included in <a href="/categories/elasticsearch-lecture/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>elasticsearch lecture</a></span></div><div class="content">elasticsearch.yml elasticsearch.yml 은 데이터 파일 위치, 로그파일 위치 등 클러스터의 핵심적인 설정을 할 수 있는 구성 파일이다. 파일 포맷은 YAML 로 되어있다.
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 # path.data : 데이터파일의 위치를 설정 # path.logs : ES 의 로그 파일이 저장될 위치를 설정 path: data: /var/lib/elasticsearch logs: /var/log/elasticsearch # 클러스터를 고유하게 식별할 수 있는 이름 설정 cluster: name: es-cluster # 노드를 고유하게 식별할 수 있는 이름설정 # 보통 호스트명 기준으로 설정하는 것이 운영에 용이 node: name: es-master01 path.</div><div class="post-footer">
-        <a href="/elasticsearch-lecture3-2/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/elasticsearch/">elasticsearch</a></div></div>
+        <a href="/20220603/">[TIL & Issue Note] 20220603</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-06-03">2022-06-03</time></span>&nbsp;<span class="post-category">included in <a href="/categories/til-issue-note/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>TIL & Issue Note</a></span></div><div class="content"> ECMAscript 모듈 Scope 관련 문제
+Functions not working when type=&quot;module&quot; or import </div><div class="post-footer">
+        <a href="/20220603/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/til/">TIL</a>,&nbsp;<a href="/tags/javascript/">Javascript</a>,&nbsp;<a href="/tags/ecmascript/">ECMAScript</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/elasticsearch-lecture3-1/">3.1 Elasticsearch 구성하기</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2018-11-02">2018-11-02</time></span>&nbsp;<span class="post-category">included in <a href="/categories/elasticsearch-lecture/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>elasticsearch lecture</a></span></div><div class="content">Elasticsearch 는 정적으로 설정을 구성할 수 있을 뿐만 아니라 클러스터 운영중에도 클러스터 세팅 업데이트 API 를 통하여 동적인 설정 구성이 가능하다.
-Static settings Elasticsearch는 노드별로 설정파일을 구성할 수 있다. Elasticsearch 에는 세 개의 구성 파일이 있으며, 이 설정 파일들의 위치는 아카이브 배포판 설치시에는 $ES_HOME/config, 패키지 배포시에는 (RPM 설치 등) /etc/elasticsearch 에 위치한다.
-elasticsearch.yml : Elasticsearch 의 핵심 설정 jvm.options : JVM 옵션 설정 ( heapsize 설정 ) log4j2.properties : Elasticsearch 의 logging 설정 Dynamic settings 클러스터에 REST API 로 호출하여 클러스터를 운영중에도 구성 설정을 변경 할 수 있다.</div><div class="post-footer">
-        <a href="/elasticsearch-lecture3-1/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/elasticsearch/">elasticsearch</a></div></div>
+        <a href="/aws-5-ingress-controller/">[AWS EKS] 5. 인그레스 컨트롤러 만들기</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-05-08">2022-05-08</time></span>&nbsp;<span class="post-category">included in <a href="/categories/building-web-applications-with-amazon-eks/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Building Web Applications with Amazon EKS</a></span></div><div class="content">☁️ Amazon EKS 웹 애플리케이션 구축하기 워크샵을 실습한 내용입니다.
+인그레스 Ingress 클러스터 내의 서비스에 대한 외부 요청을 어떻게 처리할 것인지 네트워크 7계층 레벨에서 정의하는 쿠버네티스 오브젝트이다.
+인그레스 오브젝트의 기본 기능은 다음과 같다.
+외부 요청의 라우팅 : 특정 경로로 들어온 요청을 어떤 서비스로 전달할지 정의하는 라우터 규칙 설정 가상 호스트 기반의 요청 처리 : 같은 IP에 대해 다른 도메인 이름으로 요청했을 때 어떻게 처리할 것인지 정의 SSL/TLS 보안 연결 처리 : 요청을 라우팅 할 때, 보안 연결을 위한 인증서 적용 인그레스를 사용하는 이유 쿠버네티스 서비스 타입 중 NodePort 혹은 LoadBalancer 타입의 서비스를 사용해도 외부로 노출할 수 있지만, 인그레스 없이 서비스를 사용할 경우 SSL/TLS 보안 연결 등의 상세 옵션을 각각의 서비스와 디플로이먼트에 대해 일일이 설정을 해야 한다.</div><div class="post-footer">
+        <a href="/aws-5-ingress-controller/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/aws/">AWS</a>,&nbsp;<a href="/tags/amazon-eks/">Amazon EKS</a>,&nbsp;<a href="/tags/kubernetes/">Kubernetes</a>,&nbsp;<a href="/tags/amazon-ecr/">Amazon ECR</a>,&nbsp;<a href="/tags/aws-cloud9/">AWS Cloud9</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/elasticsearch-lecture2-5/">2.5 Elasticsearch 플러그인</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2018-10-30">2018-10-30</time></span>&nbsp;<span class="post-category">included in <a href="/categories/elasticsearch-lecture/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>elasticsearch lecture</a></span></div><div class="content">Elasticsearch 플러그인 플러그인은 사용자 정의 방식에 의해 ES 의 긴능을 향상 시키는 방법이다. 플러그인은 모든 노드에 설치해야 하며 설치 후 클러스터를 재시작 해야 한다. 플러그인 범주 Core Plugins (권고) Elasticsearch 에서 공식적으로 지원하는 플러그인 Elasticsearch 버전이 업데이트 될때마다 버전 업데이트가 지원됨. Community contributed 개인 개발자나 회사에 의해 지원되는 플러그인 참고 Elasticsearch Reference - modules-plugins. </div><div class="post-footer">
-        <a href="/elasticsearch-lecture2-5/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/elasticsearch/">elasticsearch</a></div></div>
+        <a href="/aws-4-ecr/">[AWS EKS] 4. Amazon ECR 에 이미지 올리기</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-05-07">2022-05-07</time></span>&nbsp;<span class="post-category">included in <a href="/categories/building-web-applications-with-amazon-eks/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Building Web Applications with Amazon EKS</a></span></div><div class="content">☁️ Amazon EKS 웹 애플리케이션 구축하기 워크샵을 실습한 내용입니다.
+Amazon ECR 리포지토리 생성 및 이미지 올리기 Amazon ECR(Elastic Container Registry) 은 도커 컨테이너의 이미지를 저장하는 Repository 서비스이다. Docker hub의 기능과 동일하다.
+AWS CLI로 이미지 리포지토리 생성 1 2 3 4 aws ecr create-repository \ --repository-name demo-flask-backend \ --image-scanning-configuration scanOnPush=true \ --region ap-northeast-2 명령어가 수행되면 리포지토리에 대한 정보가 출력되며 Amazon ECR 콘솔창에서도 생성된 리포지토리를 확인할 수 있다.
+이미지를 리포지토리로 푸시 이미지를 푸시하려는 리포지토리 선택 후 오른쪽 상단에 푸시 명령 보기(View push commands) 버튼을 클릭하면 푸시 명령어를 확인 할 수 있다.</div><div class="post-footer">
+        <a href="/aws-4-ecr/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/aws/">AWS</a>,&nbsp;<a href="/tags/amazon-eks/">Amazon EKS</a>,&nbsp;<a href="/tags/kubernetes/">Kubernetes</a>,&nbsp;<a href="/tags/amazon-ecr/">Amazon ECR</a>,&nbsp;<a href="/tags/aws-cloud9/">AWS Cloud9</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/elasticsearch-lecture2-4/">2.4 Elastic-HQ</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2018-10-30">2018-10-30</time></span>&nbsp;<span class="post-category">included in <a href="/categories/elasticsearch-lecture/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>elasticsearch lecture</a></span></div><div class="content">Elastic HQ 설치하기 Requirements Python 3.4+ Elasticsearch. Supported versions: 2.x, 5.x, 6.x ElasticHQ Git Repository 에서 클론 혹은 다운로드 한다. 1 2 3 4 # git 이 설치되어 있지 않으면 sudo yum -y install git git clone https://github.com/ElasticHQ/elasticsearch-HQ.git Python 3.4+ 설치한다. (pip 은 파이선 패키지 관리자) 1 2 3 4 # clone 한 디렉터리로 이동 후 cd elasticsearch-HQ/ sudo yum -y install python34 python34-pip Repository 의 의존성 패키지 설치한다. 1 pip install -r requirements.</div><div class="post-footer">
-        <a href="/elasticsearch-lecture2-4/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/elasticsearch/">elasticsearch</a></div></div>
+        <a href="/aws-3-eks-cluster/">[AWS EKS] 3. EKS Cluster 생성하기</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-05-06">2022-05-06</time></span>&nbsp;<span class="post-category">included in <a href="/categories/building-web-applications-with-amazon-eks/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Building Web Applications with Amazon EKS</a></span></div><div class="content">☁️ Amazon EKS 웹 애플리케이션 구축하기 워크샵을 실습한 내용입니다.
+Amazon EKS 클러스터는 다양한 방식으로 배포할 수 있다.
+AWS 콘솔 창으로 배포 AWS CloudFormation 혹은 AWS CDK 와 같은 IaC(Infrastructure as Code) 도구를 사용해 배포 EKS의 공식 CLI인 eksctl 로 배포 Terraform, Pulumi, Rancher 등으로 배포 eksctl로 Cluster 생성하기 아무 옵션없이 eksctl create cluster 실행하면 default parameter로 클러스터가 배포된다. 그러나 yaml 파일로 작성한 구성 파일을 작성하여 배포하면 구성파일에 명시한 오브젝트들의 바라는 상태(desired state)를 쉽게 파악하고 관리할 수 있는 이점이 있다.</div><div class="post-footer">
+        <a href="/aws-3-eks-cluster/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/aws/">AWS</a>,&nbsp;<a href="/tags/amazon-eks/">Amazon EKS</a>,&nbsp;<a href="/tags/kubernetes/">Kubernetes</a>,&nbsp;<a href="/tags/amazon-ecr/">Amazon ECR</a>,&nbsp;<a href="/tags/aws-cloud9/">AWS Cloud9</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/elasticsearch-lecture2-3/">2.3 Head 소개</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2018-10-29">2018-10-29</time></span>&nbsp;<span class="post-category">included in <a href="/categories/elasticsearch-lecture/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>elasticsearch lecture</a></span></div><div class="content">Elasticsearch Head 클러스트들을 한눈에 보기 위한 도구. 직접 서버를 구성하여 설치할 수도 있고 크롬의 브라우저 익스텐션으로도 제공한다.
-Installation ES Head git repository 에서 클론 혹은 다운로드한다. 1 2 3 4 # git 이 설치되어 있지 않으면 sudo yum -y install git git clone https://github.com/mobz/elasticsearch-head.git npm 으로 관련 의존성 모듈 설치 1 2 3 4 5 6 7 cd elasticsearch-head/ sudo yum -y install bzip2 epel-release sudo yum -y install npm # Node 가 설치되어있어야 한다.</div><div class="post-footer">
-        <a href="/elasticsearch-lecture2-3/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/elasticsearch/">elasticsearch</a></div></div>
+        <a href="/aws-2-cli/">[AWS EKS] 2. AWS CLI, eksctl, kubectl 설치 및 설정</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-05-05">2022-05-05</time></span>&nbsp;<span class="post-category">included in <a href="/categories/building-web-applications-with-amazon-eks/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Building Web Applications with Amazon EKS</a></span></div><div class="content">☁️ Amazon EKS 웹 애플리케이션 구축하기 워크샵을 실습한 내용입니다. ☁️ 워크샵에는 Cloud9을 구축했지만 나는 따로 구축하지는 않았다.
+AWS CLI AWS CLI 설치하기 (Mac OS) AWS Command Line Interface는 command-line shell 명령어를 사용하여 AWS 서비스의 EC2, VPC 등과 같은 AWS의 리소스를 프로비저닝 할 수 있다.
+Mac OS는 pkg 파일을 다운로드 하여 설치한다.
+Mac OS : https://awscli.amazonaws.com/AWSCLIV2.pkg 다른 OS에서 AWS CLI 설치하기 1 2 3 $ aws --version aws-cli/2.6.1 Python/3.9.11 Darwin/21.4.0 exe/x86_64 prompt/o AWS Credential Configure AWS CLI에서 자주 사용되는 구성 설정과 자격 증명을 저장할 수 있다.</div><div class="post-footer">
+        <a href="/aws-2-cli/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/aws/">AWS</a>,&nbsp;<a href="/tags/amazon-eks/">Amazon EKS</a>,&nbsp;<a href="/tags/kubernetes/">Kubernetes</a>,&nbsp;<a href="/tags/amazon-ecr/">Amazon ECR</a>,&nbsp;<a href="/tags/aws-cloud9/">AWS Cloud9</a></div></div>
 </article><ul class="pagination"><li class="page-item ">
                     <span class="page-link">
                         <a href="/">1</a>
@@ -154,10 +163,16 @@ Installation ES Head git repository 에서 클론 혹은 다운로드한다. 1 2
                     <span class="page-link">
                         <a href="/page/5/">5</a>
                     </span>
+                </li><li class="page-item ">
+                    <span class="page-link" aria-hidden="true">&hellip;</span>
+                </li><li class="page-item ">
+                    <span class="page-link">
+                        <a href="/page/17/">17</a>
+                    </span>
                 </li></ul></div></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.104.2">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
-                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Riley</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.110.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Riley</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>
 
@@ -166,5 +181,5 @@ Installation ES Head git repository 에서 클론 혹은 다운로드한다. 1 2
             </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
                 <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
             </a>
-        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.1/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.5.4/dist/index.umd.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"data":{"id-1":"rm -rf ."},"search":{"algoliaAppID":"","algoliaIndex":"","algoliaSearchKey":"","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"algolia"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.1/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.5.4/dist/index.umd.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"data":{"id-1":"harder, better, faster, stronger"},"search":{"algoliaAppID":"","algoliaIndex":"","algoliaSearchKey":"","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"algolia"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
 </html>

@@ -4,17 +4,16 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>AWS EC2 Instance Storage - Riley&#39;s DevLog</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:title" content="AWS EC2 Instance Storage" />
+        <title>7. AWS EC2 Instance Storage - Riley&#39;s DevLog</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:title" content="7. AWS EC2 Instance Storage" />
 <meta property="og:description" content="EBS Volume EBS(Elastic Block Store) Volume은 볼륨 인스턴스가 실행되는 동안 인스턴스에 연결할 수 있는 네트워크 드라이브이다. 인스턴스가 종료된 후에도 데이터를 유지할 수 있다. 한 번에 하나의 인스턴스에만 마운트 할 수 있다. (CCP 레벨) CCP 레벨 : 하나의 EBS는 하나의 EC2 인스턴스에만 마운트 가능 Associate Level: 일부 EBS 다중 연결 특정 가용 영역에바 바인딩 되어 있다. 네트워크 USB 스틱과 유사하다. 프리티어는 한 달 30GB의 일반 용도 (SSD) 또는 마그네틱 유형으로 제공 EBS Volume 특징 네트워크 드라이브이다." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://riley817.github.io/aws-ebs/" /><meta property="og:image" content="https://riley817.github.io/icon.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-07-20T08:19:49+09:00" />
-<meta property="article:modified_time" content="2022-10-04T23:17:44+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
-
+<meta property="article:modified_time" content="2023-01-15T23:01:46+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://riley817.github.io/icon.png"/>
 
-<meta name="twitter:title" content="AWS EC2 Instance Storage"/>
+<meta name="twitter:title" content="7. AWS EC2 Instance Storage"/>
 <meta name="twitter:description" content="EBS Volume EBS(Elastic Block Store) Volume은 볼륨 인스턴스가 실행되는 동안 인스턴스에 연결할 수 있는 네트워크 드라이브이다. 인스턴스가 종료된 후에도 데이터를 유지할 수 있다. 한 번에 하나의 인스턴스에만 마운트 할 수 있다. (CCP 레벨) CCP 레벨 : 하나의 EBS는 하나의 EC2 인스턴스에만 마운트 가능 Associate Level: 일부 EBS 다중 연결 특정 가용 영역에바 바인딩 되어 있다. 네트워크 USB 스틱과 유사하다. 프리티어는 한 달 30GB의 일반 용도 (SSD) 또는 마그네틱 유형으로 제공 EBS Volume 특징 네트워크 드라이브이다."/>
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
@@ -25,13 +24,13 @@
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "AWS EC2 Instance Storage",
+        "headline": "7. AWS EC2 Instance Storage",
         "inLanguage": "en",
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/riley817.github.io\/aws-ebs\/"
         },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "aws, ebs, efs","wordcount":  1239 ,
-        "url": "https:\/\/riley817.github.io\/aws-ebs\/","datePublished": "2022-07-20T08:19:49+09:00","dateModified": "2022-10-04T23:17:44+09:00","publisher": {
+        "url": "https:\/\/riley817.github.io\/aws-ebs\/","datePublished": "2022-07-20T08:19:49+09:00","dateModified": "2023-01-15T23:01:46+09:00","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/riley817.github.io\/images\/avatar.png"},"author": {
                 "@type": "Person",
@@ -39,7 +38,7 @@
             },"description": ""
     }
     </script></head>
-    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('light' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'light' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
 
         <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
     <div class="header-wrapper">
@@ -103,10 +102,10 @@
                 <div class="container"><div class="toc" id="toc-auto">
             <h2 class="toc-title">Contents</h2>
             <div class="toc-content" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">AWS EC2 Instance Storage</h1><h2 class="single-subtitle">AWS Certified SAA-C02 시험준비</h2><div class="post-meta">
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">7. AWS EC2 Instance Storage</h1><h2 class="single-subtitle">AWS Certified SAA-C02 시험준비</h2><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-category">included in <a href="/categories/aws-certified-saa-c02-%EC%8B%9C%ED%97%98%EC%A4%80%EB%B9%84/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>AWS Certified SAA-C02 시험준비</a></span></div>
             <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-07-20">2022-07-20</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1239 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;6 minutes&nbsp;<span id="/aws-ebs/" class="leancloud_visitors" data-flag-title="AWS EC2 Instance Storage">
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;6 minutes&nbsp;<span id="/aws-ebs/" class="leancloud_visitors" data-flag-title="7. AWS EC2 Instance Storage">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -638,8 +637,8 @@
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 2022-10-04&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/b0f8a457913edb47f4734285667f37f1085f5cf1" target="_blank" title="commit by riley(riley0422@icloud.com) b0f8a457913edb47f4734285667f37f1085f5cf1: 20221004231729">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>b0f8a45</a></span>
+                <span>Updated on 2023-01-15&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/f6b33af13bf3e071dfa958b20e8180e79f095a59" target="_blank" title="commit by riley817(riley0422@icloud.com) f6b33af13bf3e071dfa958b20e8180e79f095a59: 20230115230144">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>f6b33af</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>
@@ -650,7 +649,7 @@
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/aws/">aws</a>,&nbsp;<a href="/tags/ebs/">ebs</a>,&nbsp;<a href="/tags/efs/">efs</a></section>
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/aws/">AWS</a>,&nbsp;<a href="/tags/ebs/">ebs</a>,&nbsp;<a href="/tags/efs/">efs</a></section>
         <section>
             <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
         </section>
@@ -663,8 +662,8 @@
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
             </noscript></div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.104.2">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
-                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Riley</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.109.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Riley</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>
 

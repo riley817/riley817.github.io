@@ -5,28 +5,30 @@
         <description>ec2 - Tag - Riley&#39;s DevLog</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
             <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Thu, 14 Jul 2022 08:19:49 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/tags/ec2/" rel="self" type="application/rss+xml" /><item>
-    <title>AWS Elastic Compute Cloud (EC2) - Associate</title>
-    <link>https://riley817.github.io/aws-ec2-associate/</link>
+    <title>6. AWS Elastic Compute Cloud (EC2) - Associate</title>
+    <link>https://riley817.github.io/aws-06-ec2-associate/</link>
     <pubDate>Thu, 14 Jul 2022 08:19:49 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/aws-ec2-associate/</guid>
+    <guid>https://riley817.github.io/aws-06-ec2-associate/</guid>
     <description><![CDATA[Private vs Public IP (IPv4) 네트워크는 IPv4, IPv6 두 가지로 분류 할 수 있다. IPv4 : 1.160.10.240 IPv6 : 3ffe:1900:4545:3:200:f8ff:fe21:67cf 대부분의 온라인에서는 IPv4를 범용적으로 사용 IPv6 사물인터넷(IoT) 문제를 해결하기 위해 새로 등장함 IPv4는 퍼블릭 영역에서 37억개의 서로 다른 주소를 허용 IPv4:[0-255].[0-255].[0-255].[0-255] Private vs Public IP 차이점 Public IP Public IP는 컴퓨터가 인터넷상(WWW)에서 식별될 수 있음을 의미 전체 웹에서 고유해야 한다. (두 개의 머신이 같은 public IP를 갖을 수 없다) 쉽게 지리적 위치를 찾을 수 있음 Private IP Private IP는 컴퓨터가 사설 네트워크망에서만 식별될 수 있음을 의미 IP는 사설 네트워크에서 고유해야 한다.]]></description>
 </item>
 <item>
-    <title>AWS EC2 Basics</title>
-    <link>https://riley817.github.io/aws-ec2/</link>
+    <title>5. AWS EC2 Basics</title>
+    <link>https://riley817.github.io/aws-05-ec2/</link>
     <pubDate>Wed, 13 Jul 2022 01:10:49 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/aws-ec2/</guid>
+    <guid>https://riley817.github.io/aws-05-ec2/</guid>
     <description><![CDATA[Amazon EC2 EC2는 AWS의 가장 인기있는 서비스이다. Elastic Compute Cloud = Infrastructure as a service 클라우드의 작동 방식을 이해하기 위해서는 EC2를 이해하는 것이 중요하다. 구성할 수 있는 기능 가상 머신 임대 (EC2) 가상 드라이브에 데이터를 저장 (EBS) 시스템 간 부하 분산 (ELB) auto-scaling group(ASG)를 사용하여 서비스 확장 EC2 sizing &amp; configuration options Operating System(OS) : Linux, Windows or Mac OS 컴퓨터 성능과 코어양 선택 가능 (CPU) random-access memory (RAM) 스토리지 용량 Network-attached (EBS &amp; EFS) hardware (EC2 Instance Store) Network card: 네트워크 카드 속도, 공용 IP 주소 방화벽 규칙 : security group Bootstrap script (configure at first launch): EC2 User Data EC2 User Data EC2 사용자 데이터 스크립트를 사용하여 인스턴스를 부트스트랩 할 수 있다.]]></description>
 </item>
 <item>
-    <title>AWS Identity and Access Management</title>
-    <link>https://riley817.github.io/aws-iam/</link>
+    <title>1. AWS Identity and Access Management</title>
+    <link>https://riley817.github.io/aws-01-iam/</link>
     <pubDate>Tue, 12 Jul 2022 23:10:49 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/aws-iam/</guid>
-    <description><![CDATA[Users &amp; Groups IAM = Identity and Access Management → Global 서비스 Root 계정은 기본으로 생성되며 사용하거나 공유해서는 안된다. Users 는 조직의 사용자이며 그룹으로 묶을 수 있다. Groups는 user를 포함할 수 있고 다른 그룹은 포함할 수 없다. 사용자는 그룹에 속할 필요는 없고 user는 여러 그룹에 속할 수 있다. Permissions 사용자나 그룹은 정책은 JSON 문서를 통해 할당할 수 있다. 정책(polices)은 사용자의 권한(permissions)을 정의한다. AWS에서는 최소 권한 원칙을 적용한다 → 사용자가 필요로 하는 것보다 더 많은 권한을 부여하지 않는다.]]></description>
+    <guid>https://riley817.github.io/aws-01-iam/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/posts/images/aws/aws-logo.png" referrerpolicy="no-referrer">
+            </div>Users &amp; Groups IAM = Identity and Access Management → Global 서비스 Root 계정은 기본으로 생성되며 사용하거나 공유해서는 안된다. Users 는 조직의 사용자이며 그룹으로 묶을 수 있다. Groups는 user를 포함할 수 있고 다른 그룹은 포함할 수 없다. 사용자는 그룹에 속할 필요는 없고 user는 여러 그룹에 속할 수 있다. Permissions 사용자나 그룹은 정책은 JSON 문서를 통해 할당할 수 있다. 정책(polices)은 사용자의 권한(permissions)을 정의한다. AWS에서는 최소 권한 원칙을 적용한다 → 사용자가 필요로 하는 것보다 더 많은 권한을 부여하지 않는다.]]></description>
 </item>
 </channel>
 </rss>

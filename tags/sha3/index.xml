@@ -1,18 +1,18 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>sha3 - Tag - Riley&#39;s DevLog</title>
+        <title>SHA3 - Tag - Riley&#39;s DevLog</title>
         <link>https://riley817.github.io/tags/sha3/</link>
-        <description>sha3 - Tag - Riley&#39;s DevLog</description>
+        <description>SHA3 - Tag - Riley&#39;s DevLog</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
             <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Sun, 17 Apr 2022 23:04:00 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/tags/sha3/" rel="self" type="application/rss+xml" /><item>
-    <title>SHA3 라이브러리 조사</title>
-    <link>https://riley817.github.io/archives/javascript/hash3/</link>
+    <title>Javascript SHA3 라이브러리 조사</title>
+    <link>https://riley817.github.io/hash3/</link>
     <pubDate>Sun, 17 Apr 2022 23:04:00 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/archives/javascript/hash3/</guid>
+    <guid>https://riley817.github.io/hash3/</guid>
     <description><![CDATA[개요 Go의 라이브러리에서 사용하는 SHA3-512 해시값과 자바스립트에서 사용하는 CryptoJS의 SHA3-512 해시값이 다른 문제가 발생
 테스트 대상 모듈 hash.js js-sha3 CrytoJS 테스트 방법 Go의 테스트 코드 작성 후 Go에서 생성한 해시값과 Javascript에서 위의 라이브러리로 생성했을 때 해시값이 같은지 비교한다.
-테스트 결과 hash.js : SHA3-512 관련 함수가 없는 것 같았다. js-sha3 : 성공 CrytoJS : 실패 CrytoJS 의 경우 Go에서 사용하는 SHA3-512와 차이가 있는 것 같다. [cryptojs_document(https://cryptojs.gitbook.io/docs/)에 참고 사항이 있었다.
+테스트 결과 hash.js : SHA3-512 관련 함수가 없는 것 같았다. js-sha3 : 성공 CrytoJS : 실패 CrytoJS 의 경우 Go에서 사용하는 SHA3-512와 차이가 있는 것 같다. cryptojs_document에 참고 사항이 있었다.
 NOTE: I made a mistake when I named this implementation SHA-3.]]></description>
 </item>
 </channel>

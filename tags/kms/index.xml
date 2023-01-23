@@ -5,11 +5,11 @@
         <description>KMS - Tag - Riley&#39;s DevLog</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
             <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Sun, 14 Aug 2022 23:31:49 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/tags/kms/" rel="self" type="application/rss+xml" /><item>
-    <title>AWS Security &amp; Encryption</title>
-    <link>https://riley817.github.io/aws-security-encryption/</link>
+    <title>27. AWS Security &amp; Encryption</title>
+    <link>https://riley817.github.io/aws-27-security-encryption/</link>
     <pubDate>Sun, 14 Aug 2022 23:31:49 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/aws-security-encryption/</guid>
+    <guid>https://riley817.github.io/aws-27-security-encryption/</guid>
     <description><![CDATA[전송중 암호화 (SSL) 데이터를 전송하기 전에 암호화. 수신 후 복호화 SSL 인증서로 암호화 (HTTPS) 전송 중 암호화는 MITM(man in the middle attack)이 발생하지 않도록 보장 Server side encryption at rest 데이터가 서버에 수신 된 후 암호화 데이터가 서버에 전송 전 복호화 데이터 키라고 불리우는 키 덕분에 데이터는 암호화 된 형태로 저장 암호화 및 복호화 키는 어딘가에 관리되어야 하며 서버는 이에 대한 액세스 권한이 있어야 한다. Client side encryption 데이터가 클라이언트에 의해 암호화되고 서버는 복호화할 수 없음 데이터는 수신 클라이언트에 의해 복호화 서버는 데이터의 암호를 복호화 할 수 없음 Envelop Encryption 암호화를 활용 AWS KMS (Key Management Service) KMS 키를 사용하여 데이터에 액세스할 수 있는 사람과 대상을 쉽게 제어]]></description>
 </item>
 </channel>

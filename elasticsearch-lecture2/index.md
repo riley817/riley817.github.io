@@ -1,4 +1,4 @@
-# Elasticsearch 개념 및 용어정리 - Inverted Index, Segment
+# [Elasticsearch 검색 엔진 구축 강의] 2. Elasticsearch 개념 및 용어정리 - Inverted Index, Segment
 
 
 ## Inverted Index 

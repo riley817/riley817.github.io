@@ -1,0 +1,1273 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>[TIL &amp; Issue Note] 20220326 - Riley&#39;s DevLog</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:title" content="[TIL &amp; Issue Note] 20220326" />
+<meta property="og:description" content="블록체인과 보안 및 개인정보 1. 블록체인과 보안 해커 해커의 주된 목표 가치있는 정보 탈취로 경제적 이익 추구 -&gt; 정보 자체에 대한 약탈 서비스 중단(Denial of Service)을 통한 시스템의 교란 해커의 공격을 막으려면? 정보 자체가 노출되는 것을 보호 서비스가 중단되지 않도록 보호 블록체인은 해커의 공격에 대해 안전할까? 블록체인은 모든 데이터를 브로드캐스팅을 통해 다른 노드와 공유 정보의 탈취 자체가 필요없을 정도로 정보가 노출됨. 정보 탈취로부터의 안정성은 가지고 있지 못함 암호화 자체가 안전을 보장하지 않음 암호화를 위한 기술적인 문제도 뒤따름 블록체인 보안 서비스 중단 공격이나 기록을 변경시키려는 시도로부터는 현존하는 가장 안전한 시스템 공격이나 기록 변경을 위해서는 모든 노드를 공격해야 함." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://riley817.github.io/20220326/" /><meta property="og:image" content="https://riley817.github.io/icon.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-03-26T18:51:55+09:00" />
+<meta property="article:modified_time" content="2023-01-23T16:20:57+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://riley817.github.io/icon.png"/>
+
+<meta name="twitter:title" content="[TIL &amp; Issue Note] 20220326"/>
+<meta name="twitter:description" content="블록체인과 보안 및 개인정보 1. 블록체인과 보안 해커 해커의 주된 목표 가치있는 정보 탈취로 경제적 이익 추구 -&gt; 정보 자체에 대한 약탈 서비스 중단(Denial of Service)을 통한 시스템의 교란 해커의 공격을 막으려면? 정보 자체가 노출되는 것을 보호 서비스가 중단되지 않도록 보호 블록체인은 해커의 공격에 대해 안전할까? 블록체인은 모든 데이터를 브로드캐스팅을 통해 다른 노드와 공유 정보의 탈취 자체가 필요없을 정도로 정보가 노출됨. 정보 탈취로부터의 안정성은 가지고 있지 못함 암호화 자체가 안전을 보장하지 않음 암호화를 위한 기술적인 문제도 뒤따름 블록체인 보안 서비스 중단 공격이나 기록을 변경시키려는 시도로부터는 현존하는 가장 안전한 시스템 공격이나 기록 변경을 위해서는 모든 노드를 공격해야 함."/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://riley817.github.io/20220326/" /><link rel="prev" href="https://riley817.github.io/20220324/" /><link rel="next" href="https://riley817.github.io/hash3/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "[TIL \u0026 Issue Note] 20220326",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/riley817.github.io\/20220326\/"
+        },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "TIL, Blockchian, Bitcoin","wordcount":  3128 ,
+        "url": "https:\/\/riley817.github.io\/20220326\/","datePublished": "2022-03-26T18:51:55+09:00","dateModified": "2023-01-23T16:20:57+09:00","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "https:\/\/riley817.github.io\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "riley"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Riley&#39;s DevLog"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i></span>Riley&#39;s DevLog</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Riley&#39;s DevLog"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i></span>Riley&#39;s DevLog</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content always-active" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">[TIL & Issue Note] 20220326</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-category">included in <a href="/categories/til-issue-note/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>TIL & Issue Note</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-03-26">2022-03-26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;3128 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;15 minutes&nbsp;<span id="/20220326/" class="leancloud_visitors" data-flag-title="[TIL &amp; Issue Note] 20220326">
+                        <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-블록체인과-보안">1. 블록체인과 보안</a>
+      <ul>
+        <li><a href="#해커">해커</a>
+          <ul>
+            <li><a href="#해커의-주된-목표">해커의 주된 목표</a></li>
+            <li><a href="#해커의-공격을-막으려면">해커의 공격을 막으려면?</a></li>
+            <li><a href="#블록체인은-해커의-공격에-대해-안전할까">블록체인은 해커의 공격에 대해 안전할까?</a></li>
+          </ul>
+        </li>
+        <li><a href="#블록체인-보안">블록체인 보안</a></li>
+        <li><a href="#현업에서의-블록체인-사용">현업에서의 블록체인 사용</a>
+          <ul>
+            <li><a href="#블록체인-사용-고려-가능한-시스템">블록체인 사용 고려 가능한 시스템</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#2-블록체인과-개인정보">2. 블록체인과 개인정보</a>
+      <ul>
+        <li><a href="#정보">정보</a></li>
+        <li><a href="#개인-정보">개인 정보</a></li>
+        <li><a href="#블록체인">블록체인</a></li>
+        <li><a href="#블록체인-데이터의-암호화">블록체인 데이터의 암호화</a>
+          <ul>
+            <li><a href="#데이터-암호화의-이치">데이터 암호화의 이치</a>
+              <ul>
+                <li><a href="#비트코인-블록체인">비트코인 블록체인</a></li>
+                <li><a href="#비트코인-블록체인에서-공개된-정보">비트코인 블록체인에서 공개된 정보</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#비트코인과-이더리움">비트코인과 이더리움</a>
+          <ul>
+            <li><a href="#비트코인">비트코인</a></li>
+            <li><a href="#이더리움">이더리움</a></li>
+          </ul>
+        </li>
+        <li><a href="#블록체인의-순기능과-역기능">블록체인의 순기능과 역기능</a>
+          <ul>
+            <li><a href="#블록체인에-대한-진실">블록체인에 대한 진실</a></li>
+            <li><a href="#비트코인과-스마트컨트랙트">비트코인과 스마트컨트랙트</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#3-중개소와-블록체인">3. 중개소와 블록체인</a>
+      <ul>
+        <li><a href="#암호화폐-중개소와-블록체인의-관계">암호화폐 중개소와 블록체인의 관계</a></li>
+        <li><a href="#비트코인-중개소">비트코인 중개소</a></li>
+      </ul>
+    </li>
+    <li><a href="#블록체인과-보안">블록체인과 보안</a></li>
+    <li><a href="#블록체인과-개인정보">블록체인과 개인정보</a></li>
+    <li><a href="#중개소와-블록체인">중개소와 블록체인</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#1-비트코인-블록체인의-문제점">1. 비트코인 블록체인의 문제점</a>
+      <ul>
+        <li><a href="#비트코인-블록체인의-문제점개선점">비트코인 블록체인의 문제점(=개선점)</a>
+          <ul>
+            <li><a href="#1-용도가-제한적임">1. 용도가 제한적임</a></li>
+            <li><a href="#2-상태가-기록되어-있지-않음">2. 상태가 기록되어 있지 않음</a>
+              <ul>
+                <li><a href="#비트코인의-상태">비트코인의 상태</a></li>
+              </ul>
+            </li>
+            <li><a href="#3-비트코인이-사용하고-있는-해시-퍼즐-방식은-계산만-빨리하면-풀-수-있음">3. 비트코인이 사용하고 있는 해시 퍼즐 방식은 계산만 빨리하면 풀 수 있음</a></li>
+          </ul>
+        </li>
+        <li><a href="#이더리움이-비트코인-문제를-개선한-방법">이더리움이 비트코인 문제를 개선한 방법</a>
+          <ul>
+            <li><a href="#1용도가-제한적임">1.용도가 제한적임</a></li>
+            <li><a href="#2-상태가-기록되어-있지-않음-1">2. 상태가 기록되어 있지 않음</a></li>
+            <li><a href="#3-비트코인이-사용하고-있는-해시-퍼즐-방식은-계산만-빨리하면-풀-수-있음-1">3. 비트코인이 사용하고 있는 해시 퍼즐 방식은 계산만 빨리하면 풀 수 있음</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#2-이더리움-블록체인의-특징">2. 이더리움 블록체인의 특징</a>
+      <ul>
+        <li><a href="#이더리움-블록체인">이더리움 블록체인</a>
+          <ul>
+            <li><a href="#스마트-계약">스마트 계약</a></li>
+            <li><a href="#이더리움에서의-스마트-컨트랙트-이용">이더리움에서의 스마트 컨트랙트 이용</a></li>
+            <li><a href="#이더리움의-발전">이더리움의 발전</a></li>
+            <li><a href="#계정-단위-관리를-위한-계정정의">계정 단위 관리를 위한 계정정의</a></li>
+            <li><a href="#이더리움의-블록">이더리움의 블록</a></li>
+            <li><a href="#계약-계정">계약 계정</a></li>
+          </ul>
+        </li>
+        <li><a href="#비트코인-해시함수의-단점">비트코인 해시함수의 단점</a></li>
+        <li><a href="#이더리움의-해시퍼즐-방식">이더리움의 해시퍼즐 방식</a>
+          <ul>
+            <li><a href="#이더리움-해시-함수">이더리움 해시 함수</a></li>
+            <li><a href="#이더리움-해시-퍼즐-방식의-문제점">이더리움 해시 퍼즐 방식의 문제점</a></li>
+            <li><a href="#asic의-사용">ASIC의 사용</a></li>
+            <li><a href="#메모리-하드-방식">메모리-하드 방식</a></li>
+          </ul>
+        </li>
+        <li><a href="#그-밖의-개선">그 밖의 개선</a>
+          <ul>
+            <li><a href="#통합-개발-프로그램-ide의-제공">통합 개발 프로그램 (IDE)의 제공</a></li>
+            <li><a href="#토큰-개념-도입">토큰 개념 도입</a>
+              <ul>
+                <li><a href="#토큰-개념의-도입-전">토큰 개념의 도입 전</a></li>
+                <li><a href="#토큰-개념의-도입-후">토큰 개념의 도입 후</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#개선되지-못한-부분">개선되지 못한 부분</a></li>
+        <li><a href="#이더리움의-스마트-계약">이더리움의 스마트 계약</a></li>
+        <li><a href="#토큰의-개념을-보는-시각">토큰의 개념을 보는 시각</a>
+          <ul>
+            <li><a href="#토큰의-기능">토큰의 기능</a></li>
+            <li><a href="#토큰의-이면">토큰의 이면</a></li>
+            <li><a href="#이더리움이-꿈꾸는-세상">이더리움이 꿈꾸는 세상</a></li>
+            <li><a href="#dapp의-한계">Dapp의 한계</a></li>
+          </ul>
+        </li>
+        <li><a href="#스마트-컨트랙트의-역할">스마트 컨트랙트의 역할</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-이더리움과-비트코인-비교">3. 이더리움과 비트코인 비교</a>
+      <ul>
+        <li><a href="#비트코인과-이더리움-1">비트코인과 이더리움</a></li>
+        <li><a href="#이더리움-1">이더리움</a></li>
+        <li><a href="#튜링-완전과-튜링-비완전">튜링 완전과 튜링 비완전</a></li>
+        <li><a href="#비트코인과-이더리움의-블록-형태">비트코인과 이더리움의 블록 형태</a></li>
+      </ul>
+    </li>
+    <li><a href="#비트코인-블록체인의-문제점">비트코인 블록체인의 문제점</a></li>
+    <li><a href="#이더리움-블록체인의-특징">이더리움 블록체인의 특징</a></li>
+    <li><a href="#이더리움과-비트코인-비교">이더리움과 비트코인 비교</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#1-블록체인의-진정한-효용">1. 블록체인의 진정한 효용</a>
+      <ul>
+        <li><a href="#블록체인에-관한-오해">블록체인에 관한 오해</a>
+          <ul>
+            <li><a href="#데이터-저장의-안정성-오해-바로잡기">데이터 저장의 안정성 오해 바로잡기</a>
+              <ul>
+                <li><a href="#데이터-자체-비보호">데이터 자체 비보호</a></li>
+                <li><a href="#dos-공격에-대해서는-상대적-안정성-보유">DoS 공격에 대해서는 상대적 안정성 보유</a></li>
+              </ul>
+            </li>
+            <li><a href="#해킹-방지에-탁월-오해-바로잡기">해킹 방지에 탁월 오해 바로잡기</a>
+              <ul>
+                <li><a href="#기록-변조-및-서비스-중단-시도에-대한-안정성-보유">기록 변조 및 서비스 중단 시도에 대한 안정성 보유</a></li>
+              </ul>
+            </li>
+            <li><a href="#진실만을-기록에-대한-오해-바로잡기">진실만을 기록에 대한 오해 바로잡기</a>
+              <ul>
+                <li><a href="#초창기-블록체인">초창기 블록체인</a></li>
+                <li><a href="#후기-블록체인">후기 블록체인</a></li>
+              </ul>
+            </li>
+            <li><a href="#기록의-불변-오해-바로잡기">기록의 불변 오해 바로잡기</a></li>
+            <li><a href="#중앙화-시스템보다-효율적-오해-바로잡기">중앙화 시스템보다 효율적 오해 바로잡기</a>
+              <ul>
+                <li><a href="#일의-반복을-통해-데이터의-투명성을-요구하는-기술">일의 반복을 통해 데이터의 투명성을 요구하는 기술</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#블록체인-플랫폼">블록체인 플랫폼</a></li>
+        <li><a href="#블록체인의-효용성">블록체인의 효용성</a></li>
+        <li><a href="#현재-블록체인의-발전-방향">현재 블록체인의 발전 방향</a></li>
+        <li><a href="#블록체인에-관한-연구의-미래">블록체인에 관한 연구의 미래</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-프라이빗-블록체인과-컨소시엄-블록체인">2. 프라이빗 블록체인과 컨소시엄 블록체인</a>
+      <ul>
+        <li><a href="#비트코인과-이더리움-블록체인의-특징">비트코인과 이더리움 블록체인의 특징</a>
+          <ul>
+            <li><a href="#기록과-검증을-위해-특정-서버를-의지하지-않음확장성">기록과 검증을 위해 특정 서버를 의지하지 않음(확장성)</a>
+              <ul>
+                <li><a href="#퍼블릭-블록체인">퍼블릭 블록체인</a></li>
+                <li><a href="#프라이빗-컨소시엄-블록체인">프라이빗, 컨소시엄 블록체인</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#프라이빗-컨소시엄-효용성-훼손-사항">프라이빗, 컨소시엄 효용성 훼손 사항</a>
+          <ul>
+            <li><a href="#1-심각한-안정성의-저해">1. 심각한 안정성의 저해</a></li>
+            <li><a href="#2-확장성-보유-불가">2. 확장성 보유 불가</a></li>
+            <li><a href="#3-기록의-불변성-저해">3. 기록의 불변성 저해</a></li>
+            <li><a href="#4-탈중앙화-제3자의-개입-없이-거래-불가능">4. 탈중앙화, 제3자의 개입 없이 거래 불가능</a>
+              <ul>
+                <li><a href="#분산저장--블록체인">분산저장 =? 블록체인</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#블록체인-도입-전-체크리스트">블록체인 도입 전 체크리스트</a>
+          <ul>
+            <li><a href="#1-왜-블록체인이-필요한가">1. 왜 블록체인이 필요한가?</a></li>
+            <li><a href="#2-어떤-형태의-블록체인을-도입할-것인가">2. 어떤 형태의 블록체인을 도입할 것인가</a></li>
+            <li><a href="#3-도입하는-블록체인이-문제점을-해결-할-수-있는가">3. 도입하는 블록체인이 문제점을 해결 할 수 있는가?</a></li>
+          </ul>
+        </li>
+        <li><a href="#블록체인-도입-시-고려사항">블록체인 도입 시 고려사항</a></li>
+        <li><a href="#컨소시엄-블록체인의-등장">컨소시엄 블록체인의 등장</a></li>
+        <li><a href="#지분-증명">지분 증명</a>
+          <ul>
+            <li><a href="#지분증명을-사용하는-블록체인-시스템">지분증명을 사용하는 블록체인 시스템</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#블록체인의-진정한-효용-1">블록체인의 진정한 효용</a></li>
+    <li><a href="#프라이빗-블록체인과-컨소시엄-블록체인">프라이빗 블록체인과 컨소시엄 블록체인</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#1-블록체인과-일반적-중앙집중-시스템">1. 블록체인과 일반적 중앙집중 시스템</a>
+      <ul>
+        <li><a href="#블록체인과-중앙-서버">블록체인과 중앙 서버</a>
+          <ul>
+            <li><a href="#비트코인의-탄생">비트코인의 탄생</a></li>
+            <li><a href="#비트코인의-기반-탈중앙화-시스템">비트코인의 기반, 탈중앙화 시스템</a></li>
+            <li><a href="#비트코인의-목적">비트코인의 목적</a></li>
+            <li><a href="#탈중앙화-시스템">탈중앙화 시스템</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#2-블록체인의-기본-원리">2. 블록체인의 기본 원리</a>
+      <ul>
+        <li><a href="#블록체인의-기본-원리">블록체인의 기본 원리</a>
+          <ul>
+            <li><a href="#트랜잭션-처리-방식">트랜잭션 처리 방식</a></li>
+            <li><a href="#비트코인의-소유권-통제">비트코인의 소유권 통제</a></li>
+            <li><a href="#기록-조작-불가">기록 조작 불가</a></li>
+            <li><a href="#개인정보-노출-x">개인정보 노출 X</a></li>
+          </ul>
+        </li>
+        <li><a href="#블록체인을-이루기-위한-기반-기술">블록체인을 이루기 위한 기반 기술</a>
+          <ul>
+            <li><a href="#해시-함수">해시 함수</a>
+              <ul>
+                <li><a href="#해시-함수의-블록-해시-숫자-생성">해시 함수의 블록 해시 숫자 생성</a></li>
+              </ul>
+            </li>
+            <li><a href="#해시퍼즐">해시퍼즐</a></li>
+            <li><a href="#비대칭-암호화-기법">비대칭 암호화 기법</a></li>
+            <li><a href="#블록-기록-과정">블록 기록 과정</a>
+              <ul>
+                <li><a href="#리더-선출">리더 선출</a></li>
+                <li><a href="#검증-절차">검증 절차</a></li>
+                <li><a href="#합의">합의</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#각-블록은-하나의-새로운-세계">각 블록은 하나의 새로운 세계</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-블록체인의-진정한-효용">3. 블록체인의 진정한 효용</a>
+      <ul>
+        <li><a href="#블록체인의-진정한-효용-이해">블록체인의 진정한 효용 이해</a></li>
+        <li><a href="#현업에서-블록체인이-비효율적인-경우">현업에서 블록체인이 비효율적인 경우</a></li>
+        <li><a href="#블록체인-도입-시-만족해야-하는-사항">블록체인 도입 시 만족해야 하는 사항</a></li>
+        <li><a href="#블록체인이-이루려고-했던-세상">블록체인이 이루려고 했던 세상</a>
+          <ul>
+            <li><a href="#daodecentralized-autonomous-organization">DAO(Decentralized Autonomous Organization)</a>
+              <ul>
+                <li><a href="#닉-사보의-스마트-계약">닉 사보의 스마트 계약</a></li>
+              </ul>
+            </li>
+            <li><a href="#블록체인의-비각역성과-불변성">블록체인의 비각역성과 불변성</a></li>
+            <li><a href="#더-다오-사건">더 다오 사건</a></li>
+            <li><a href="#중재가-필요-없는-거래">중재가 필요 없는 거래</a></li>
+          </ul>
+        </li>
+        <li><a href="#현업에-블록체인-도입-시-고려사항">현업에 블록체인 도입 시 고려사항</a>
+          <ul>
+            <li><a href="#블록체인으로-어떤-효용을-얻을-것인가">블록체인으로 어떤 효용을 얻을 것인가</a></li>
+            <li><a href="#그-효용이-기존의-시스템으로는-불가능한가">그 효용이 기존의 시스템으로는 불가능한가</a></li>
+            <li><a href="#어떠한-형태로-블록체인을-구현해야-하는가">어떠한 형태로 블록체인을 구현해야 하는가</a></li>
+          </ul>
+        </li>
+        <li><a href="#블록체인을-위한-블록체인-프로젝트---존립가치-없음">블록체인을 위한 블록체인 프로젝트 -&gt; 존립가치 없음</a></li>
+        <li><a href="#효용을-위한-블록체인-프로젝트---앞으로-계속-연구해야-할-영역임">효용을 위한 블록체인 프로젝트 -&gt; 앞으로 계속 연구해야 할 영역임</a></li>
+      </ul>
+    </li>
+    <li><a href="#블록체인과-일반적-중앙집중-시스템">블록체인과 일반적 중앙집중 시스템</a></li>
+    <li><a href="#블록체인의-기본-원리-1">블록체인의 기본 원리</a></li>
+    <li><a href="#블록체인의-진정한-효용-2">블록체인의 진정한 효용</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="블록체인과-보안-및-개인정보">블록체인과 보안 및 개인정보</h1>
+<h2 id="1-블록체인과-보안">1. 블록체인과 보안</h2>
+<h3 id="해커">해커</h3>
+<h4 id="해커의-주된-목표">해커의 주된 목표</h4>
+<ol>
+<li>가치있는 <strong>정보 탈취</strong>로 <strong>경제적 이익 추구</strong> -&gt; 정보 자체에 대한 약탈</li>
+<li>서비스 중단(Denial of Service)을 통한 <strong>시스템의 교란</strong></li>
+</ol>
+<h4 id="해커의-공격을-막으려면">해커의 공격을 막으려면?</h4>
+<ul>
+<li>정보 자체가 노출되는 것을 보호</li>
+<li>서비스가 중단되지 않도록 보호</li>
+</ul>
+<h4 id="블록체인은-해커의-공격에-대해-안전할까">블록체인은 해커의 공격에 대해 안전할까?</h4>
+<ul>
+<li>블록체인은 모든 데이터를 브로드캐스팅을 통해 다른 노드와 공유</li>
+<li>정보의 탈취 자체가 필요없을 정도로 정보가 노출됨.</li>
+<li><strong>정보 탈취로부터의 안정성은 가지고 있지 못함</strong></li>
+<li>암호화 자체가 안전을 보장하지 않음</li>
+<li>암호화를 위한 기술적인 문제도 뒤따름</li>
+</ul>
+<h3 id="블록체인-보안">블록체인 보안</h3>
+<ul>
+<li>서비스 중단 공격이나 기록을 변경시키려는 시도로부터는 현존하는 가장 안전한 시스템
+<ul>
+<li>공격이나 기록 변경을 위해서는 모든 노드를 공격해야 함.</li>
+</ul>
+</li>
+</ul>
+<h3 id="현업에서의-블록체인-사용">현업에서의 블록체인 사용</h3>
+<ul>
+<li><strong>정보의 탈취로부터의 안전성에 대한 고려는 접어두어야 함</strong></li>
+</ul>
+<h4 id="블록체인-사용-고려-가능한-시스템">블록체인 사용 고려 가능한 시스템</h4>
+<ul>
+<li>중단되는 안 되는 서비스</li>
+<li>기록이 변경되면 안 되는 시스템</li>
+</ul>
+<h2 id="2-블록체인과-개인정보">2. 블록체인과 개인정보</h2>
+<h3 id="정보">정보</h3>
+<ul>
+<li>데이터를 가공하여 누군가에게 가치 있는 무엇을 제공해 줄 수 있는 경우.</li>
+</ul>
+<h3 id="개인-정보">개인 정보</h3>
+<ul>
+<li>가공 된 정보 중 누구에게 해당하는 것인지 특정할 수 있는 경우
+<ul>
+<li>질병정보 -&gt; 누구에 대한 정보인지 알 수없는 경우 -&gt; 정보</li>
+<li>질병정보 -&gt; 누구에 대한 정보인지 알 수 있는 경우 -&gt; 개인정보</li>
+</ul>
+</li>
+<li>두 가지 정보가 결합되어 어떤 사람을 특정할 수 있는 정보를 발생하기도 함</li>
+<li>정보 중에 누구 것인지를 특정할 수 있는 경우</li>
+</ul>
+<h3 id="블록체인">블록체인</h3>
+<ul>
+<li>두 가지 정보가 결합되어 어떤 사람을 특정할 수 있는 정보를 발생하기도 함</li>
+<li>비트코인 블록체인에 들어 있는 데이터는 암호화되지 않은 채 모든 노드에 공개</li>
+</ul>
+<h3 id="블록체인-데이터의-암호화">블록체인 데이터의 암호화</h3>
+<ul>
+<li>암호화 자체도 안전하지 않음</li>
+<li>해킹을 통해서 언제든지 풀릴 수 있음</li>
+<li><strong>암호화의 여부와 상관없이 접근을 통제하는 것이 가장 중요</strong></li>
+</ul>
+<h4 id="데이터-암호화의-이치">데이터 암호화의 이치</h4>
+<ul>
+<li>암호화된 비밀번호 데이터를 온라인에 공개할 수 없는 것과 같은 이치</li>
+<li>암호화를 통한 브로드캐스팅은 안전하게 보호할 수 없음 -&gt; X
+<ul>
+<li>모든 데이터는 접근을 통제해야만 안전하게 보호가 가능함</li>
+<li>블록체인은 암호화의 여부에 상관없이 정보가 보호되지 않음.</li>
+</ul>
+</li>
+</ul>
+<h5 id="비트코인-블록체인">비트코인 블록체인</h5>
+<ul>
+<li>익명성 보장</li>
+<li>정보가 존재 -&gt; 모든 사람에게 공개 -&gt; 이 정보가 누구의 것인지는 특정할 수 없다 = 개인정가 없다</li>
+<li>정보는 노출되지만 개인정보는 노출되지 않음.</li>
+</ul>
+<h5 id="비트코인-블록체인에서-공개된-정보">비트코인 블록체인에서 공개된 정보</h5>
+<ul>
+<li>발송인의 비트코인 주소</li>
+<li>수취인의 비트코인 주소</li>
+<li>비트코인의 수량</li>
+</ul>
+<h3 id="비트코인과-이더리움">비트코인과 이더리움</h3>
+<h4 id="비트코인">비트코인</h4>
+<ul>
+<li>정적인 내용만 기록</li>
+<li>적힐 내용이 미리 정해져 있음</li>
+<li>사용자가 내용을 바꿀 수 없음</li>
+<li>용도를 바꾸려면 프로그램을 완전히 수정해야 함</li>
+<li>개인정보가 누출될 일이 없음</li>
+<li>익명으로 처리됨</li>
+<li>구조적으로 개인정보가 막혀 있음</li>
+</ul>
+<h4 id="이더리움">이더리움</h4>
+<ul>
+<li>동적인 프로그램까지 기록</li>
+<li>스마트 컨트랙트를 만드는 사람이 내용을 임의로 정할 수 있음.</li>
+<li>스마트 컨트랙트를 통해서 임의로 데이터를 쓸 수 있음</li>
+<li>스마트 컨트랙트를 이용해 개인정보를 저장했다면 개인정보의 누출이 일어 날 수 있음</li>
+<li>개인정보의 누출이 언제든지 발생</li>
+</ul>
+<h3 id="블록체인의-순기능과-역기능">블록체인의 순기능과 역기능</h3>
+<ul>
+<li>순기능 : 검열을 피해 자신의 의견을 퍼블릭이 파악할 수 있는 공간에 게재했다.</li>
+<li>역기능 : 사실확인이 안 된 상태에서 영원히 기록되게 된다.</li>
+<li>비트코인은 진실만을 기록한다? -&gt; 비트코인은 단순한 기록장치</li>
+</ul>
+<h4 id="블록체인에-대한-진실">블록체인에 대한 진실</h4>
+<ul>
+<li>정적인 기록을 위한 검열을 통과했기 때문에 코인에서 진실을 쓰지 않는 방법이 존재하지 않음</li>
+<li>검증 절차 없이 누구든 원하는 내용을 쓸 수 있음</li>
+<li>정보 -&gt; (스마트 컨트랙트) -&gt; 이더리움</li>
+<li>무엇이든 기록할 수 있지만 쉽게 바꿀 수 없음</li>
+</ul>
+<h4 id="비트코인과-스마트컨트랙트">비트코인과 스마트컨트랙트</h4>
+<ul>
+<li>
+<p>비트코인 : 모든 거래내역을 모든 노드가 참여하여 검증하므로 진실만을 기록하도록 노력함</p>
+</li>
+<li>
+<p>스마트 컨트랙트</p>
+<ul>
+<li>원하는 사람이 자신이 원하는 내용을 쓸 수 있도록 하는 것</li>
+</ul>
+</li>
+<li>
+<p>비트코인처럼 정적인 기록만 작성할 경우 개인정보보 보호 가능 -&gt; 규칙검증 가능 -&gt; 통제</p>
+</li>
+<li>
+<p>스마트 컨트랙트 경우 어떤 기록이든 작성 가능하므로 개인정보 보호가 불가능</p>
+</li>
+<li>
+<p><strong>스마트 컨트랙트를 이용하면 개인정보는 언제든지 누출 될 가능성이 있음</strong></p>
+</li>
+</ul>
+<h2 id="3-중개소와-블록체인">3. 중개소와 블록체인</h2>
+<h3 id="암호화폐-중개소와-블록체인의-관계">암호화폐 중개소와 블록체인의 관계</h3>
+<ul>
+<li>블록체인의 안전성과 암호화폐 중개소의 안전성을 관련이 없음</li>
+<li><strong>해킹과 블록체인의 안전성은 블록체인과 비트코인 시스템에 국한된 내용임</strong></li>
+<li>지갑 소프트웨어 -&gt; 블록체인을 사용하기 위한 인터페이스</li>
+<li>지갑을 통해 늘 블록체인과 통신을 하고 있음</li>
+<li>지갑을 개발하는 사람마다 안전성이 다르게 만들 수 있음</li>
+<li>우회적으로 블록체인을 접근하는 환경
+<ul>
+<li>죽애소는 블록체인 자체와 관련이 없음</li>
+</ul>
+</li>
+</ul>
+<p>![[Pasted image 20220326164000.png]]</p>
+<h3 id="비트코인-중개소">비트코인 중개소</h3>
+<ul>
+<li>중앙화 시스템으로 되어 있음</li>
+<li>중개소의 안정성은 그 중개소 자체가 가진 안정성과 같음</li>
+<li>암호화폐 중개소는 블록체인의 외부 요소로 블록체인 기술과는 상관이 없음</li>
+<li>최근 발생한 암호화폐 해킹 사건은 중개소를 해킹하여 많은 자원을 획득하려는 시도</li>
+<li>암호화폐 중개소는 거래 내용을 시뮬레이션만 하고 있음 것</li>
+<li>언제든지 해킹 위험에 노출</li>
+<li>암호화폐 중개소의 안전성에 전적으로 의지</li>
+</ul>
+<hr>
+<h2 id="블록체인과-보안">블록체인과 보안</h2>
+<ul>
+<li>블록체인에 담긴 데이터 자체는 모든 노드에 노출되므로 안전하지 않음</li>
+<li>블록체인은 서비스 중단(Dos) 공격으로부터 안전함</li>
+</ul>
+<h2 id="블록체인과-개인정보">블록체인과 개인정보</h2>
+<ul>
+<li>블록체인에는 정보는 담겨 있지만, 익명성을 기반으로 하고 있기 때문에 누구의 정보인지 특정할 수 없으므로 개인정보 문제는 발생하지 않음</li>
+<li>법 조항의 강화에 따른 적극적인 대응 필요</li>
+</ul>
+<h2 id="중개소와-블록체인">중개소와 블록체인</h2>
+<ul>
+<li>중개소는 블록체인 기술과 무관하며, 단순히 이를 이용하는 외부 소프트웨어에 불과</li>
+<li>다양한 해킹의 위협으로부터 노출되어 있음</li>
+</ul>
+<h1 id="이더리움-vs-비트코인">이더리움 vs 비트코인</h1>
+<h2 id="1-비트코인-블록체인의-문제점">1. 비트코인 블록체인의 문제점</h2>
+<h3 id="비트코인-블록체인의-문제점개선점">비트코인 블록체인의 문제점(=개선점)</h3>
+<ul>
+<li>이더리움이 등장하면서 나타난 비트코인에서 개선할 점</li>
+</ul>
+<h4 id="1-용도가-제한적임">1. 용도가 제한적임</h4>
+<ul>
+<li>비트코인을 주고 받는 정적인 기록만 함.</li>
+<li>새로운 것을 기록하기 위해서는 프로그램 모두가 수정되어야 함</li>
+<li>비트코인을 주고 받는 제한적인 용도로만 사용 가능</li>
+</ul>
+<h4 id="2-상태가-기록되어-있지-않음">2. 상태가 기록되어 있지 않음</h4>
+<h5 id="비트코인의-상태">비트코인의 상태</h5>
+<ul>
+<li>주소별 잔액</li>
+<li>입출금 히스토리</li>
+<li>비트코인의 특정 상태는 어떤 한 블록에 있지 않으므로 하나의 블록만으로는 상태를 알 수 없음</li>
+</ul>
+<h4 id="3-비트코인이-사용하고-있는-해시-퍼즐-방식은-계산만-빨리하면-풀-수-있음">3. 비트코인이 사용하고 있는 해시 퍼즐 방식은 계산만 빨리하면 풀 수 있음</h4>
+<ul>
+<li>해시파워가 일부 세력에 의해 독점 될 위험이 큼</li>
+<li>51% Attack -&gt; 일부 세력의 해시파워 독점 -&gt; 블록의 생산을 독점하는 결과가 나타남</li>
+<li>빠른 계산만 하면 되므로 전용기계로 만들기에 좋은 방식으로 되어 있음</li>
+</ul>
+<h3 id="이더리움이-비트코인-문제를-개선한-방법">이더리움이 비트코인 문제를 개선한 방법</h3>
+<ul>
+<li>이더리움은 비트코인의 세가지 문제를 가장 큰 문제점이라 판단하고 개선하기 위해 노력함</li>
+</ul>
+<h4 id="1용도가-제한적임">1.용도가 제한적임</h4>
+<ul>
+<li><strong>스마트 컨트랙트를 이용하여 극복</strong></li>
+<li>프로그램을 이용하여 각각의 용도가 바뀜</li>
+<li>호출시마다 메세지를 통해 서로 다른 매개변수를 부여할 수 있음</li>
+<li>각각 동작을 달리 할 수 있음</li>
+</ul>
+<h4 id="2-상태가-기록되어-있지-않음-1">2. 상태가 기록되어 있지 않음</h4>
+<ul>
+<li>계정벌 상태 관리를 통하여 극복</li>
+<li>비트코인 : 주고받은 모든 기록내용이 주소를 통해 기록. 모든 블록에 흩어져 있음</li>
+<li>이더리움은 계정별 관리 진행 -&gt; 각각의 블록에서 각각의 계정으로 이어가는 다리 역할</li>
+<li>어떤 계정이던 특정 블록에서 바로 액세스 가능</li>
+</ul>
+<h4 id="3-비트코인이-사용하고-있는-해시-퍼즐-방식은-계산만-빨리하면-풀-수-있음-1">3. 비트코인이 사용하고 있는 해시 퍼즐 방식은 계산만 빨리하면 풀 수 있음</h4>
+<ul>
+<li><strong>메모리-하드 해시를 통하여 극복</strong></li>
+</ul>
+<h2 id="2-이더리움-블록체인의-특징">2. 이더리움 블록체인의 특징</h2>
+<h3 id="이더리움-블록체인">이더리움 블록체인</h3>
+<h4 id="스마트-계약">스마트 계약</h4>
+<ul>
+<li>1990년대 닉 사보(Nick Sazbo)에 의해 제안</li>
+<li>제3자의 개입없이 법률적 계약사항이 집행되는 디지털 환경</li>
+</ul>
+<h4 id="이더리움에서의-스마트-컨트랙트-이용">이더리움에서의 스마트 컨트랙트 이용</h4>
+<ul>
+<li>컴퓨터 프로그램 -&gt; 프로그램 실행 -&gt; 데이터 생성 -&gt; 데이터 이용</li>
+<li>프로그램을 통해 원하는 내용을 블록에 저장 및 호출할 수 있는 환경 제공</li>
+<li>솔리디티 언어를 이용하여 프로그래밍화</li>
+</ul>
+<h4 id="이더리움의-발전">이더리움의 발전</h4>
+<ul>
+<li>계정단위의 관리를 위한 계정 정의</li>
+<li>EOA(Externally Owned Account)
+<ul>
+<li>비트코인 주소와 비슷</li>
+<li>정적인 내용 기록이 기본 목표</li>
+<li>개인키로 통제할 수 있음</li>
+<li>이더리움 간 전송 가능</li>
+</ul>
+</li>
+<li>계약 계정
+<ul>
+<li>스마트 컨트랙트 저장</li>
+<li>전송 내용과 특정 스마트 컨트랙트 저장</li>
+<li>코드에 의해 통제</li>
+</ul>
+</li>
+</ul>
+<h4 id="계정-단위-관리를-위한-계정정의">계정 단위 관리를 위한 계정정의</h4>
+<p>![[Pasted image 20220326171431.png]]</p>
+<ul>
+<li>계약 계정 내의 실행코드가 실행되면 그 결과가 저장되게 됨</li>
+</ul>
+<h4 id="이더리움의-블록">이더리움의 블록</h4>
+<ul>
+<li>현재 계정 상태가 저장된 별도의 공간이 있음</li>
+<li>이더리움 주소 A를 여러번 사용 -&gt; 글로벌한 결과를 한 곳에서 저장</li>
+<li>계약 계정 속에 프로그램을 저장할 수 있는 방식 -&gt; 스마트 컨트랙트</li>
+</ul>
+<h4 id="계약-계정">계약 계정</h4>
+<ul>
+<li>언제든지 코드에 의해 통제</li>
+<li>실행된 코드는 또 다른 계약 계정 호출 가능</li>
+<li>최초의 계약 계정은 반드시 EOA를 통해 호출</li>
+</ul>
+<h3 id="비트코인-해시함수의-단점">비트코인 해시함수의 단점</h3>
+<ul>
+<li>전용기계화가 쉬엄</li>
+<li>특정 세력이 해시파워를 장악하는 것이 쉬움</li>
+<li>해시 함수의 독점화를 통해 51% 공격이 용이</li>
+</ul>
+<h3 id="이더리움의-해시퍼즐-방식">이더리움의 해시퍼즐 방식</h3>
+<p>![[Pasted image 20220326171810.png]]</p>
+<ul>
+<li>SHA256 -&gt; SHA3 변경</li>
+<li>메모리 문제 해결의 열쇠</li>
+</ul>
+<h4 id="이더리움-해시-함수">이더리움 해시 함수</h4>
+<ul>
+<li>메모리 상자가 있음</li>
+<li>하나의 해시 함수 계산 시 64회 메모리 액세스 필요</li>
+<li>Nonce 1씩 증가시키는 것을 물론 64개의 숫자를 읽어와서 계산</li>
+</ul>
+<h4 id="이더리움-해시-퍼즐-방식의-문제점">이더리움 해시 퍼즐 방식의 문제점</h4>
+<ul>
+<li><strong>계산 속도 저하</strong>
+<ul>
+<li>해시 퍼즐에 가장 큰 시간이 소요되는 것은 -&gt; 64회 메모리 액세스</li>
+<li>64회의 메모리 액세스를 해야하므로 의도적으로 속도를 늦춘 셈</li>
+</ul>
+</li>
+</ul>
+<h4 id="asic의-사용">ASIC의 사용</h4>
+<ul>
+<li>속도를 따라 잡을 수 있는 메모리가 않음 -&gt; ASIC으로 만드는 것이 용이 하지 않음</li>
+<li>가격대 효용비용이 떨어 질 수 있음</li>
+<li>비트코인에 비해 효율적이지 않음</li>
+<li>특정 세력의 해시 함수 독점을 방지 할 수 있음</li>
+</ul>
+<h4 id="메모리-하드-방식">메모리-하드 방식</h4>
+<p>사용 속도가 느린 메모리 시스템의 활용을 통해 전용기계화 하여 해시 함수를 독점하려는 시도를 막는 방식</p>
+<ul>
+<li>비트코인 블록체인 이후 대부분 메모리-하드 방식 이용</li>
+<li>해시 함수의 전용화 및 특정 세력의 독점화 방지</li>
+<li>비트코인에 비해 더 나은 성능으로 발전 중</li>
+</ul>
+<h3 id="그-밖의-개선">그 밖의 개선</h3>
+<h4 id="통합-개발-프로그램-ide의-제공">통합 개발 프로그램 (IDE)의 제공</h4>
+<ul>
+<li>IDE 툴을 사용해 스마트 컨트랙트 생성 가능</li>
+<li>스스로 작동, 집행되는 스마트 계약의 시발점</li>
+</ul>
+<h4 id="토큰-개념-도입">토큰 개념 도입</h4>
+<h5 id="토큰-개념의-도입-전">토큰 개념의 도입 전</h5>
+<ul>
+<li>독자적인 네트워크 구성 -&gt; 구축된 네트워크에서 암호 화폐 발행</li>
+</ul>
+<h5 id="토큰-개념의-도입-후">토큰 개념의 도입 후</h5>
+<ul>
+<li>스마트 컨트랙트 이용 -&gt; 개념만으로 전송 및 판매 가능</li>
+<li>누구나 손쉽게 토큰 발생 가능</li>
+</ul>
+<h3 id="개선되지-못한-부분">개선되지 못한 부분</h3>
+<ul>
+<li>범용적인 부분 이외에 안전성, 지속성, 탈중앙화</li>
+<li>비트코인 블록체인에 비해 개선된 점이 많지 않음</li>
+</ul>
+<h3 id="이더리움의-스마트-계약">이더리움의 스마트 계약</h3>
+<ul>
+<li>스마트 계약의 환경 더 개선한것으로 볼 수 있음</li>
+<li>비트코인이 가지고 있던 문제점을 개선</li>
+</ul>
+<h3 id="토큰의-개념을-보는-시각">토큰의 개념을 보는 시각</h3>
+<ul>
+<li>암호화폐 -&gt; 인센티브 공학의 일부</li>
+<li>채굴하는 사람의 대가를 위해 도입</li>
+<li>다른 인센티브 방식이 있을 수 있음</li>
+</ul>
+<h4 id="토큰의-기능">토큰의 기능</h4>
+<ul>
+<li>일정 디지털 화폐를 서로 주고받는 기능</li>
+<li>이더리움에서는 스마트 컨트랙트를 위해서 주고 받을 수 있음</li>
+<li>현재 15만개 중 1,000 여개가 실제로 거래</li>
+</ul>
+<h4 id="토큰의-이면">토큰의 이면</h4>
+<ul>
+<li>거래되고 있는 대부분의 토큰이 중개소에 의해 만들어지고 있음</li>
+<li>스마트 컨트랙트가 토큰을 이용하는 사람들에 의해 남용될 가능성 발생</li>
+<li>최근 생성되는 대부분의 스마트 컨트랙트가 토큰에 연루</li>
+</ul>
+<h4 id="이더리움이-꿈꾸는-세상">이더리움이 꿈꾸는 세상</h4>
+<ul>
+<li>누구나 탈 중앙화 프로그램을 제공할 수 있도록 하겠다</li>
+<li>안정성, 지속성에 대한 검증 필요</li>
+</ul>
+<h4 id="dapp의-한계">Dapp의 한계</h4>
+<ul>
+<li>중요한 정보를 저장할 수 없음 -&gt; 사용제한에 대한 문제가 발생</li>
+<li>비효율적인 시스템 -&gt; 효율을 포기하고 값 저장</li>
+<li>저장된 것에 대한 변화를 최소화</li>
+<li>좀 더 나은 시스템 구현에 대한 숙제가 남아 있음</li>
+</ul>
+<h3 id="스마트-컨트랙트의-역할">스마트 컨트랙트의 역할</h3>
+<ul>
+<li>원하는 데이터를 기록하고 블록체인이 범용성을 가지도록 함.</li>
+</ul>
+<h2 id="3-이더리움과-비트코인-비교">3. 이더리움과 비트코인 비교</h2>
+<h3 id="비트코인과-이더리움-1">비트코인과 이더리움</h3>
+<p>![[Pasted image 20220326173306.png]]</p>
+<h3 id="이더리움-1">이더리움</h3>
+<ul>
+<li>비트코인의 비효율적인 부분 개선</li>
+<li>해시파원의 편중 견제</li>
+<li>스마트 컨트랙트 구현
+<ul>
+<li>누구나 쉽게 프로그램 할 수 있도록 함</li>
+</ul>
+</li>
+</ul>
+<h3 id="튜링-완전과-튜링-비완전">튜링 완전과 튜링 비완전</h3>
+<ul>
+<li><strong>튜링 완전</strong> - 컴퓨터의 동작을 모두 표현 할 수 있는 경우. 솔리디티 언</li>
+<li><strong>튜링 비완전</strong> - 튜링 완전에 비해 표현이 제한적. 스크립트 언어</li>
+</ul>
+<h3 id="비트코인과-이더리움의-블록-형태">비트코인과 이더리움의 블록 형태</h3>
+<p>![[Pasted image 20220326173556.png]]</p>
+<hr>
+<h2 id="비트코인-블록체인의-문제점">비트코인 블록체인의 문제점</h2>
+<ul>
+<li>비트코인에는 정적인 데이터만 기록되어 용도가 제한적임</li>
+<li>해시 퍼즐의 경우 계산에만 국한되어 전용기계를 통해 일부 세력의 독점화가 용이</li>
+</ul>
+<h2 id="이더리움-블록체인의-특징">이더리움 블록체인의 특징</h2>
+<ul>
+<li>이더리움은 디지털 환경을 통해 제 3자 없이도 계약을 이행하려는 닉 사보의 &lsquo;스마트 컨트랙트&rsquo; 개념을 구현하기 위해, 블록에 프로그램을 저장할 수 있는 기능을 적용</li>
+<li>해시 퍼즐에 메모리-하드-개념을 도입하여 전용기계를 통한 일부 세력의 독점화를 견제</li>
+</ul>
+<h2 id="이더리움과-비트코인-비교">이더리움과 비트코인 비교</h2>
+<ul>
+<li>이더리움은 블록체인의 비효율적인 부분을 개선함</li>
+<li>이더리움은 튜링-완전 언어를 도입해 스마트 컨트랙트를 구현</li>
+<li>이더리움은 메모리-하드 해시 퍼즐을 통해 일부 세력 독점을 견제했음</li>
+<li>이더리움은 계정 위주의 관리를 통해 현재 계정의 잔액 등 상태를 손쉽게 알 수 있게 했음</li>
+<li>이더리움은 블록체인 본연의 기능 면에 있어서 큰 변혁이 아니라고 볼 수 있음</li>
+</ul>
+<h1 id="블록체인의-진정한-효용">블록체인의 진정한 효용</h1>
+<h2 id="1-블록체인의-진정한-효용">1. 블록체인의 진정한 효용</h2>
+<h3 id="블록체인에-관한-오해">블록체인에 관한 오해</h3>
+<ol>
+<li>데이터 저장의 안전성</li>
+<li>해킹 방지에 탁월</li>
+<li>진실만을 기록</li>
+<li>기록의 불변</li>
+<li>중앙화 시스템보다 효율적</li>
+</ol>
+<h4 id="데이터-저장의-안정성-오해-바로잡기">데이터 저장의 안정성 오해 바로잡기</h4>
+<ul>
+<li>블록체인에 데이터를 저장하면 안전하게 보호된다 (▲)</li>
+</ul>
+<h5 id="데이터-자체-비보호">데이터 자체 비보호</h5>
+<ul>
+<li>블록체인 데이터는 브로드캐스팅을 통해 모든 노드에 공유</li>
+</ul>
+<h5 id="dos-공격에-대해서는-상대적-안정성-보유">DoS 공격에 대해서는 상대적 안정성 보유</h5>
+<blockquote>
+<p>데이터는 보호되지 않으나, 서비스 중단 공격에는 상대적으로 안전하다.</p>
+</blockquote>
+<h4 id="해킹-방지에-탁월-오해-바로잡기">해킹 방지에 탁월 오해 바로잡기</h4>
+<ul>
+<li>블록체인은 현존하는 시스템 중 해킹으로부터 가장 안전하다 (▲)</li>
+</ul>
+<h5 id="기록-변조-및-서비스-중단-시도에-대한-안정성-보유">기록 변조 및 서비스 중단 시도에 대한 안정성 보유</h5>
+<ul>
+<li>참여한 모든 노드의 중복 검증</li>
+</ul>
+<blockquote>
+<p>서비스 중단 및 기록 변조 시도에는 가장 안전하지만 데이터의 보호가 되지 않는 가장 취약한 시스템이다.</p>
+</blockquote>
+<h4 id="진실만을-기록에-대한-오해-바로잡기">진실만을 기록에 대한 오해 바로잡기</h4>
+<ul>
+<li>블록체인은 항상 진실만을 기록한다. (X)</li>
+</ul>
+<h5 id="초창기-블록체인">초창기 블록체인</h5>
+<ul>
+<li>정적인 기록, 비트코인 거래 내용 기록 -&gt; 검증가능</li>
+<li>최소한 비트코인 블록체인에서는 진실만 기록 가능한 장치 마련</li>
+</ul>
+<h5 id="후기-블록체인">후기 블록체인</h5>
+<ul>
+<li>누구든 원하는 사실 기록 -&gt; 검증 불가</li>
+</ul>
+<blockquote>
+<p>블록체인은 진실을 기록하는 것이 아니라, 기록이 변경되지 않도록 특정장치를 한 것이다.</p>
+</blockquote>
+<h4 id="기록의-불변-오해-바로잡기">기록의 불변 오해 바로잡기</h4>
+<ul>
+<li>한 번 기록되면 어떤 경우에도 변경되지 않는다.(X)</li>
+</ul>
+<blockquote>
+<p>기록 및 변경이 어려울 뿐, 불가능한 것은 아니다.
+퍼즐의 난이도 조절로 기록 변경을 어렵게 만들 수 있다.</p>
+</blockquote>
+<h4 id="중앙화-시스템보다-효율적-오해-바로잡기">중앙화 시스템보다 효율적 오해 바로잡기</h4>
+<ul>
+<li>블록체인은 중앙화 시스템보다 더 효율적이다 (X)</li>
+</ul>
+<h5 id="일의-반복을-통해-데이터의-투명성을-요구하는-기술">일의 반복을 통해 데이터의 투명성을 요구하는 기술</h5>
+<ul>
+<li>효율성 ↓, 투명성 ⬆️</li>
+<li>속도의 효율성 : 블록체인 &lt; 중앙화 시스템</li>
+</ul>
+<blockquote>
+<p>블록체인은 중앙화 시스템에 비해 비효율적이다.</p>
+</blockquote>
+<h3 id="블록체인-플랫폼">블록체인 플랫폼</h3>
+<ul>
+<li>블록체인의 효용을 위해 작업증명 방식의 막대한 에너지 사용에 대한 의구심 증폭</li>
+</ul>
+<h3 id="블록체인의-효용성">블록체인의 효용성</h3>
+<ul>
+<li>효용성을 희생하고 안전성을 누림</li>
+<li>스스로 실행되는 스마트 계약 환경을 구축할 수 있는 플랫폼</li>
+<li>진정한 효용성을 얻기 위해서는 블록체인의 안정성이 관건</li>
+</ul>
+<h3 id="현재-블록체인의-발전-방향">현재 블록체인의 발전 방향</h3>
+<ul>
+<li>기존의 블록체인을 변형하려는 노력이 많이 나오고 있음</li>
+<li>블록체인 = 리더선출 방식
+<ul>
+<li>비트코인 : 해시 퍼즐 방식을 통해 무작위성을 최대한 보장하며 리더 선출</li>
+<li>현재 : 정해진 방식 혹은 일부 세력이 점유한 방식에 의해 리더 선출</li>
+<li>블록체인의 무작위성을 잃어버리게 되는 결과를 가져올 수 있음</li>
+</ul>
+</li>
+<li>신뢰받는 제3가 필요 없는 거래, 안전성, 기록불변성, 확장성 등의 모든 조건을 만족하는 블록체인 개발은 여전히 미지수임</li>
+</ul>
+<h3 id="블록체인에-관한-연구의-미래">블록체인에 관한 연구의 미래</h3>
+<ul>
+<li>과연 탈중앙화된 세상을 소프트웨어로 구현할 수 있을까?</li>
+<li>누군가 혁신적인 방식이 제안될 가능성이 있음</li>
+<li>소프트웨어로 새로운 효용을 가질 수 있을까</li>
+</ul>
+<h2 id="2-프라이빗-블록체인과-컨소시엄-블록체인">2. 프라이빗 블록체인과 컨소시엄 블록체인</h2>
+<ul>
+<li>프라이빗 블록체인과 컨소시엄 블록체인을 과연 블록체인이라고 할 수 있는가?</li>
+</ul>
+<h3 id="비트코인과-이더리움-블록체인의-특징">비트코인과 이더리움 블록체인의 특징</h3>
+<h4 id="기록과-검증을-위해-특정-서버를-의지하지-않음확장성">기록과 검증을 위해 특정 서버를 의지하지 않음(확장성)</h4>
+<h5 id="퍼블릭-블록체인">퍼블릭 블록체인</h5>
+<ul>
+<li>확장성 보유, 누구든 기록의 무결성 확인 가능 -&gt; 기록의 투명성 확보</li>
+</ul>
+<h5 id="프라이빗-컨소시엄-블록체인">프라이빗, 컨소시엄 블록체인</h5>
+<ul>
+<li>기록과 검증은 정해진 소수의 서버에 의해서 가능</li>
+<li>프라이빗 블록체인의 경우
+<ul>
+<li>단 하나의 서버가 기록과 검증 실시 중앙화 시스템과 유사</li>
+<li>분산 저장을 통해 차별화</li>
+<li>프라이빗, 중앙화 시스템으로 분류할 수도 있다.</li>
+</ul>
+</li>
+<li>컨소시엄 블록체인
+<ul>
+<li>여러 개의 서버로 나눠 저장할 뿐 기록과 검증을 정의된 소수에 의존</li>
+<li>사전에 정의된 컨소시엄에 합류해야 기록의 검증에 참여가능</li>
+<li>몇 개의 동종업계가 기록 분산 저장 방식 채택</li>
+</ul>
+</li>
+</ul>
+<h3 id="프라이빗-컨소시엄-효용성-훼손-사항">프라이빗, 컨소시엄 효용성 훼손 사항</h3>
+<h4 id="1-심각한-안정성의-저해">1. 심각한 안정성의 저해</h4>
+<ul>
+<li>해커의 목표가 뚜렷함</li>
+<li>해킹에 안전하다는 말이 성립되지 않음</li>
+<li>서비스 중단 공격 및 기록 변경 공격으로부터 안전했던 속성을 잃음</li>
+</ul>
+<h4 id="2-확장성-보유-불가">2. 확장성 보유 불가</h4>
+<ul>
+<li>사전에 정한 노드만 기록과 검증에 참여가능</li>
+</ul>
+<h4 id="3-기록의-불변성-저해">3. 기록의 불변성 저해</h4>
+<ul>
+<li>채굴과정이 없음</li>
+<li>기록 변경에 대해 쉽게 감지하거나 엄청난 에너지가 드는 리소스가 필요 없음</li>
+<li>해시 함수만 다시 계산하면 언제든지 기록 변경 가능</li>
+</ul>
+<h4 id="4-탈중앙화-제3자의-개입-없이-거래-불가능">4. 탈중앙화, 제3자의 개입 없이 거래 불가능</h4>
+<ul>
+<li>노드 자체가 이미 신뢰받는 제 3자의 역할</li>
+<li>여러 개의 서버에 의존하는 방식으로 변경된 것임</li>
+<li>퍼블릭 블록체인과는 거리가 멀다.</li>
+<li>다소의 안전성을 제외하고 블록체인이 가지고 있는 모든 속성을 잃음</li>
+</ul>
+<h5 id="분산저장--블록체인">분산저장 =? 블록체인</h5>
+<ul>
+<li>안전성 유지</li>
+<li>투명성 유지</li>
+<li>탈중앙화
+-&gt; 프라이빗, 컨소시엄 블록체인 기능 수행 불가</li>
+</ul>
+<h3 id="블록체인-도입-전-체크리스트">블록체인 도입 전 체크리스트</h3>
+<h4 id="1-왜-블록체인이-필요한가">1. 왜 블록체인이 필요한가?</h4>
+<ul>
+<li>용도에 따른 블록체인의 종류는 중요하지 않음.</li>
+<li>왜 블록체인 도입을 생각했을까?</li>
+<li>기록의 불변성, 안정성을 고려하면 -&gt; 퍼블릭/프라이빗 답이아님</li>
+<li>안전성 때문에 새로운 시스템을 도입해야할 필요가 있을까?</li>
+</ul>
+<h4 id="2-어떤-형태의-블록체인을-도입할-것인가">2. 어떤 형태의 블록체인을 도입할 것인가</h4>
+<h4 id="3-도입하는-블록체인이-문제점을-해결-할-수-있는가">3. 도입하는 블록체인이 문제점을 해결 할 수 있는가?</h4>
+<ul>
+<li>안전성 분산이 해답이 아님 -&gt; 분산이 해답이라면 현재의 은행 모두가 해킹으로부터 안전하지 않을까?</li>
+</ul>
+<h3 id="블록체인-도입-시-고려사항">블록체인 도입 시 고려사항</h3>
+<ul>
+<li>블록체인은 안전성을 위해 효율을 포기한 시스템이다.</li>
+<li>현재 시스템으로 원하는 목적을 달성할 수 없는가?</li>
+<li>블록체인은 그 효능이 한정적이다.</li>
+</ul>
+<h3 id="컨소시엄-블록체인의-등장">컨소시엄 블록체인의 등장</h3>
+<ul>
+<li>컨소시엄, 프라이빗으로 구현 가능</li>
+<li>하이퍼레저 시스템은 분산 저장시스템으로 부르는 것이 합당.</li>
+<li>분산 저장시스템은 효용성이 있을 수 있음</li>
+<li>새로운 효용을 만들 수 없을 수 있음</li>
+<li>하이퍼렛저를 왜 이용하는지에 대해 꼼꼼히 따져봐야 함</li>
+<li>분산저장 시스템은 더 큰 효용성을 둘 수 있을 경우에만 사용하도록 함</li>
+</ul>
+<h3 id="지분-증명">지분 증명</h3>
+<ul>
+<li>작업증명을 대체할 수 있는 방식</li>
+<li>작업증명 방식을 대선하여 더 나은 방식으로 호도되기도 함</li>
+<li>지분증명과 작업증명은 다른 방식</li>
+<li>다수결, 코인보유량에 따라 결정방식이  다름</li>
+</ul>
+<h4 id="지분증명을-사용하는-블록체인-시스템">지분증명을 사용하는 블록체인 시스템</h4>
+<ul>
+<li>블록체인 시스템으로 부르기에 미흡함</li>
+<li>안전성이 담보되지 않았음</li>
+<li>투명성 문제가 제기되고 있음</li>
+<li>완전한 무작위성에 의한 투명성을 가진 블록체인과는 거리가 멀다.</li>
+<li>Delegated POS, PPOS 표방한 블록체인은 미리 몇 개의 노드가 검증에 참여 -&gt; 컨소시엄 블록체인과 거의 동일한 형태</li>
+</ul>
+<hr>
+<h2 id="블록체인의-진정한-효용-1">블록체인의 진정한 효용</h2>
+<ul>
+<li>안전성, 기록 불변성, 신뢰받는 제 3자 필요없는 거래, 누구나 검증에 참여 가능하다는 특징이 있음</li>
+<li>블록체인은 완성형으로 사용할 수 있는 기술이 아닌, 많은 실험을 통해 그 효용성을 검증해 나가야 하는 상태의 기술임</li>
+</ul>
+<h2 id="프라이빗-블록체인과-컨소시엄-블록체인">프라이빗 블록체인과 컨소시엄 블록체인</h2>
+<ul>
+<li>프라이빗 블록체인 : 기능의 입루를 변형한 블록체인, 특정 노드가 서버 역할 수행, 하나의 서버만 존재</li>
+<li>컨소시엄 블록체인 : 다수의 노드가 서버 역할 수행</li>
+<li>프라이빗 블록체인과 컨소시엄 블록체인의 경우 누구나 참여하는 확장성이 결여</li>
+</ul>
+<h1 id="과정-종합">과정 종합</h1>
+<h2 id="1-블록체인과-일반적-중앙집중-시스템">1. 블록체인과 일반적 중앙집중 시스템</h2>
+<h3 id="블록체인과-중앙-서버">블록체인과 중앙 서버</h3>
+<h4 id="비트코인의-탄생">비트코인의 탄생</h4>
+<ul>
+<li>유래 : 암호화를 통해 프라이버시 보호를 극대화하고자 했던 -&gt; 사이퍼 펑크</li>
+<li>탄생 : 절대 익명 거래, 비가역성 거래</li>
+</ul>
+<h4 id="비트코인의-기반-탈중앙화-시스템">비트코인의 기반, 탈중앙화 시스템</h4>
+<ul>
+<li>분산시스템 =&gt; 일의 배분을 통한 효율성 추구</li>
+<li>탈중앙화 시스템 =&gt; 일의 반복을 통해 기록 불변성과 안전성을 추구</li>
+<li>블록체인 사용시 효율성 증대 불가능 -&gt; 중앙화 시스템 보다 일 반복</li>
+<li>분산시스템 목적 &lt;-&gt; 블록체인 목적</li>
+</ul>
+<h4 id="비트코인의-목적">비트코인의 목적</h4>
+<ul>
+<li>누구도 접근 불가능한 절대 익명의 금융거래 환경</li>
+<li>신뢰받는 제 3장벗이 작동하는 방식 연구 -&gt; 블록체인 인프라 제안</li>
+</ul>
+<h4 id="탈중앙화-시스템">탈중앙화 시스템</h4>
+<ul>
+<li>일의 반복을 통해 안정성을 추가한 시스템</li>
+</ul>
+<h2 id="2-블록체인의-기본-원리">2. 블록체인의 기본 원리</h2>
+<h3 id="블록체인의-기본-원리">블록체인의 기본 원리</h3>
+<h4 id="트랜잭션-처리-방식">트랜잭션 처리 방식</h4>
+<ul>
+<li>블록체인 정보 -&gt; 브로드 캐스팅 -&gt; 전체 노드 공유</li>
+<li>중요한 정보에 블록체인에 담으면 안됨
+![[Pasted image 20220326182718.png]]</li>
+</ul>
+<h4 id="비트코인의-소유권-통제">비트코인의 소유권 통제</h4>
+<ul>
+<li>비대칭 암호화에 의해 철저히 통제</li>
+<li>브로드캐스팅 통해 모든 공유 -&gt; 기록 사용은 해당 개인키 소유자만 가능</li>
+<li>공개키와 개인키로 이루어진 암호화로 소유권 통제</li>
+</ul>
+<h4 id="기록-조작-불가">기록 조작 불가</h4>
+<ul>
+<li>작성된 기록 조작 시 해시 함수에 의해 발각</li>
+</ul>
+<h4 id="개인정보-노출-x">개인정보 노출 X</h4>
+<ul>
+<li>블록체인은 익명성에 기반</li>
+</ul>
+<h3 id="블록체인을-이루기-위한-기반-기술">블록체인을 이루기 위한 기반 기술</h3>
+<h4 id="해시-함수">해시 함수</h4>
+<ul>
+<li>입력 길이와 상관없이 늘 일정한 길이의 출력을 내는 함수</li>
+<li>입력의 사소한 변화에도 출력이 완전히 달라짐</li>
+<li>출력으로 입력 예측 불가</li>
+<li>비트코인에서 해시 함수는 원래 문서의 변경 여부 탐지에 사용</li>
+</ul>
+<h5 id="해시-함수의-블록-해시-숫자-생성">해시 함수의 블록 해시 숫자 생성</h5>
+<ul>
+<li>현재 해시값 + 이전 해시값 : 모두 연쇄 반응을 일으키도록 설계</li>
+<li>현재 블록값의 값 변경시 그 이후 생성 블록 값은 연쇄적으로 변경</li>
+<li>제네시스 블록 값 변경 이후 생성된 블록은 해시값 변경</li>
+</ul>
+<h4 id="해시퍼즐">해시퍼즐</h4>
+<ul>
+<li>작업증명이라는 방식을 비트코인 형식으루 구현</li>
+<li>비트코인에서의 작업증명 -&gt; 해시퍼즐</li>
+<li>엄청난 양의 계산을 해야만 해결 가능</li>
+<li>하나의 해시 퍼즐 풀이에 걸리는 시간 -&gt; 최소 10분이상</li>
+<li>오래된 기록일수록 불변성이 기하급수적으로 증가</li>
+</ul>
+<h4 id="비대칭-암호화-기법">비대칭 암호화 기법</h4>
+<ul>
+<li>대칭형 암호화 기법</li>
+<li>비대칭형 암호화 기법 -&gt; 암호화, 복호화 할때 서로 다른 키
+<ul>
+<li>개인키, 공개키 두 개의 키가 쌍을 이룸</li>
+<li>개인키 소유자만이 잠금 장치를 풀 수 있음</li>
+<li>실수령자만이 비트코인 사용 가능</li>
+<li>비트코인은 짝이 되는 상대키로만 잠금 장치를 풀 수 있는 방식 적용</li>
+</ul>
+</li>
+</ul>
+<h4 id="블록-기록-과정">블록 기록 과정</h4>
+<p>![[Pasted image 20220326183504.png]]</p>
+<h5 id="리더-선출">리더 선출</h5>
+<ul>
+<li>비트코인 -&gt; 해시 퍼즐을 가장 먼저 해결한 사람</li>
+<li>작업증명 방식</li>
+<li>지분증명 방식 -&gt; 안전성 문제, 블록체인으로 보기 어려움</li>
+</ul>
+<h5 id="검증-절차">검증 절차</h5>
+<ul>
+<li>리더로 선출된 노드가 전권을 보유하고 기록 수행
+<ul>
+<li>신뢰할 수 없으므로 검증 절차가 필요함</li>
+<li>검증은 시스템에 참여한 모든 노드가 수행</li>
+</ul>
+</li>
+</ul>
+<h5 id="합의">합의</h5>
+<ul>
+<li>모든 노드가 동의하면 새로운 블록 형성</li>
+<li>정상적인 블록이 아니라고 판명되면 폐기</li>
+<li>소프트웨어 버전에 따라 블록체인의 기본 원리와 블록체인의 진정한 효용 발생  -&gt; 하드포크, 소프트포크</li>
+</ul>
+<h3 id="각-블록은-하나의-새로운-세계">각 블록은 하나의 새로운 세계</h3>
+<ul>
+<li>세계를 지배할 리더 선출, 선출된 리더는 전권 보유</li>
+<li>55만 개의 비트코인은 55만 번에 걸쳐 새로운 리더 선출</li>
+<li>선출된 리더는 중앙 서버의 역할</li>
+<li>기록하는 사람이 단 한명이기 때문에</li>
+<li>기록할 리더는 계속 변경</li>
+<li>비트코인 : 10분마다 반복</li>
+<li>이더리움 : 15초마다 반복</li>
+</ul>
+<h2 id="3-블록체인의-진정한-효용">3. 블록체인의 진정한 효용</h2>
+<h3 id="블록체인의-진정한-효용-이해">블록체인의 진정한 효용 이해</h3>
+<ul>
+<li>현업에서 블록체인의 필요 여부 판단</li>
+<li>블록체인에서 요구 실현 가능성 판단</li>
+</ul>
+<h3 id="현업에서-블록체인이-비효율적인-경우">현업에서 블록체인이 비효율적인 경우</h3>
+<ul>
+<li>안정성보다 효율성을 추구할 때 -&gt; 블록체인 적절하지 않음</li>
+<li>리더 선출의 무작위성 보장, 제3자 없이 거래 가능하도록 구축</li>
+<li>제3자가 필요하거나 되고 싶은 경우</li>
+</ul>
+<h3 id="블록체인-도입-시-만족해야-하는-사항">블록체인 도입 시 만족해야 하는 사항</h3>
+<ul>
+<li>안정성, 기록불변성, 신뢰받는 제3자가 필요 없는 거래, 누구나 검증에 참여 가능한 확장성</li>
+<li>일부만 필요하거나 모두 필요 없다면 블록체인은 적절한 솔루션이 아님</li>
+<li>일부만 맞고할 경우 처리 여부는 스스로 판단</li>
+</ul>
+<h3 id="블록체인이-이루려고-했던-세상">블록체인이 이루려고 했던 세상</h3>
+<h4 id="daodecentralized-autonomous-organization">DAO(Decentralized Autonomous Organization)</h4>
+<ul>
+<li>탈중앙화 된 자유 조직</li>
+<li>자율적으로 실현될 수 있는 환경 추구</li>
+<li>블록체인이 자율적 환경을 실현해줄 것이라도 믿음</li>
+<li>이를 통한 경제적 이득 -&gt; 불필요한 수수려 제거</li>
+</ul>
+<h5 id="닉-사보의-스마트-계약">닉 사보의 스마트 계약</h5>
+<ul>
+<li>그 누구의 간섭없이 스마트 컨트랙트에 의해서만 꾸려지는 생태계</li>
+<li>이 상태를 꿈꾸는 사람들이 만든 용어</li>
+</ul>
+<h4 id="블록체인의-비각역성과-불변성">블록체인의 비각역성과 불변성</h4>
+<ul>
+<li>블록체인의 기록 -&gt; 바꾸는 것이 어렵게는 가능 -&gt; 작업증명 방식</li>
+<li>현실 -&gt; 비각역적 불변성은 아직 미구현
+<ul>
+<li>채굴업자들의 담함</li>
+<li>블록체인 기록 언제든 변경 가능</li>
+</ul>
+</li>
+</ul>
+<h4 id="더-다오-사건">더 다오 사건</h4>
+<ul>
+<li>이더리움 진영 사이에 다툼 발생</li>
+<li>채굴업자와 담합 -&gt; 지금의 이더리움</li>
+<li>채굴업자와 반기 -&gt; 이더리움 클래시</li>
+</ul>
+<h4 id="중재가-필요-없는-거래">중재가 필요 없는 거래</h4>
+<ul>
+<li>연구 가치 있음</li>
+<li>중재가 필요 없다는 자체로 의미를 가지지 못함</li>
+<li>세상에 중재가 있는 이유는 필요하기 때문</li>
+</ul>
+<h3 id="현업에-블록체인-도입-시-고려사항">현업에 블록체인 도입 시 고려사항</h3>
+<h4 id="블록체인으로-어떤-효용을-얻을-것인가">블록체인으로 어떤 효용을 얻을 것인가</h4>
+<ul>
+<li>기존에 없던 효용 획득 -&gt; 고객은 어떤 시스템이든 만족</li>
+<li>효용 미획득 -&gt; 고객</li>
+</ul>
+<h4 id="그-효용이-기존의-시스템으로는-불가능한가">그 효용이 기존의 시스템으로는 불가능한가</h4>
+<h4 id="어떠한-형태로-블록체인을-구현해야-하는가">어떠한 형태로 블록체인을 구현해야 하는가</h4>
+<h3 id="블록체인을-위한-블록체인-프로젝트---존립가치-없음">블록체인을 위한 블록체인 프로젝트 -&gt; 존립가치 없음</h3>
+<h3 id="효용을-위한-블록체인-프로젝트---앞으로-계속-연구해야-할-영역임">효용을 위한 블록체인 프로젝트 -&gt; 앞으로 계속 연구해야 할 영역임</h3>
+<hr>
+<h2 id="블록체인과-일반적-중앙집중-시스템">블록체인과 일반적 중앙집중 시스템</h2>
+<ul>
+<li>분산시스템 : 일의 분산을 통해 효율을 올리려는 시스템</li>
+<li>블록체인 : 탈중앙화 시스템으로서 일의 반복을 통해 기록의 불변성과 안정성을 꾀하려는 기술</li>
+</ul>
+<h2 id="블록체인의-기본-원리-1">블록체인의 기본 원리</h2>
+<ul>
+<li>블록체인은 브로드캐스팅을 통해 모든 정보를 전체 노드에 공유</li>
+<li>블록 단위로 리더를 선출, 기록을 맡긴 다음, 그 기록이 정확한지 모든 노드가 검증</li>
+</ul>
+<h2 id="블록체인의-진정한-효용-2">블록체인의 진정한 효용</h2>
+<ul>
+<li>블록체인은 효용성을 버리고 기록의 불변성과 안정성을 꾀함과 동시에, 신뢰받는 제 3자 없이도 거래가 가능한 P2P 시스템을 구현하고자 하는 것임</li>
+<li>따라서 블록체인을 고려할 때는 이러한 효용이 진정으로 필요한 것인지 면밀히 검토하에 체크리스트 검토후 진행</li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-01-23&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/db5877e427614337ffbb673875fa349e5bf0be3a" target="_blank" title="commit by riley817(riley0422@icloud.com) db5877e427614337ffbb673875fa349e5bf0be3a: 20230123162055">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>db5877e</a></span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/til/">TIL</a>,&nbsp;<a href="/tags/blockchian/">Blockchian</a>,&nbsp;<a href="/tags/bitcoin/">Bitcoin</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/20220324/" class="prev" rel="prev" title="[TIL &amp; Issue Note] 20220324"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>[TIL & Issue Note] 20220324</a>
+            <a href="/hash3/" class="next" rel="next" title="Javascript SHA3 라이브러리 조사">Javascript SHA3 라이브러리 조사<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.110.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Riley</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/valine@1.4.18/dist/Valine.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.1/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{"valine":{"appId":"QGzwQXOqs5JOhN4RGPOkR2mR-MdYXbMMI","appKey":"WBmoGyJtbqUswvfLh6L8iEBr","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@14.0.0/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"en","pageSize":10,"placeholder":"Your comment ...","recordIP":true,"serverURLs":"https://leancloud.hugoloveit.com","visitor":true}},"search":{"algoliaAppID":"","algoliaIndex":"","algoliaSearchKey":"","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

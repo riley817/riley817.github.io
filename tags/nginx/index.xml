@@ -1,31 +1,33 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>nginx - Tag - Riley&#39;s DevLog</title>
+        <title>NGINX - Tag - Riley&#39;s DevLog</title>
         <link>https://riley817.github.io/tags/nginx/</link>
-        <description>nginx - Tag - Riley&#39;s DevLog</description>
+        <description>NGINX - Tag - Riley&#39;s DevLog</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
-            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Fri, 05 Feb 2021 23:07:41 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/tags/nginx/" rel="self" type="application/rss+xml" /><item>
-    <title>docker</title>
-    <link>https://riley817.github.io/archives/devops/docker-compose/</link>
-    <pubDate>Fri, 05 Feb 2021 23:07:41 &#43;0900</pubDate>
+            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Sun, 21 Mar 2021 13:21:04 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/tags/nginx/" rel="self" type="application/rss+xml" /><item>
+    <title>[Elastic Cloud] nginx 로그를 Elasticsearch Cloud로 수집하기</title>
+    <link>https://riley817.github.io/nginx-log-es-cloud/</link>
+    <pubDate>Sun, 21 Mar 2021 13:21:04 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/archives/devops/docker-compose/</guid>
-    <description><![CDATA[1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 version: &#39;3.0&#39; services: gitlab: container_name: gitlab image: gitlab/gitlab-ee:latest restart: always hostname: &#34;gitlab.]]></description>
+    <guid>https://riley817.github.io/nginx-log-es-cloud/</guid>
+    <description><![CDATA[개요 파일비트를 사용하여 웹 서버(nginx) 로그 파일을 수집하고 Elasticsearch Cloud에 전송한다. Cloud에서 생성한 Kibana 사이트에 접속하면 여러 플랫폼에서 데이터를 수집할 수 있는 예시 파일을 참고 할 수 있다.
+파일비트 설치 파일비트는 수집할 로그가 쌓이는 서버에 설치했다.
+1 2 3 4 cd /usr/local/src sudo curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.11.1-linux-x86_64.tar.gz tar xzvf filebeat-7.11.1-linux-x86_64.tar.gz cd filebeat-7.11.1-linux-x86_64 Elastic Cloud 인증정보 설정 Elastic Cloud 접속을 위하여 filebeat.yml의 관련항목의 주석을 해제하고 인증정보를 설정한다. 그 외 필요한 설정 정보는 아래 링크를 참조한다.]]></description>
 </item>
 <item>
-    <title>nginx 컴파일 설치하기 - centos7</title>
-    <link>https://riley817.github.io/archives/devops/nginx-compile/</link>
+    <title>[NGINX] CentOS 7에서 nginx 컴파일 설치하기</title>
+    <link>https://riley817.github.io/nginx-compile/</link>
     <pubDate>Wed, 06 May 2020 23:45:11 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/archives/devops/nginx-compile/</guid>
+    <guid>https://riley817.github.io/nginx-compile/</guid>
     <description><![CDATA[nginx 컴파일 설치하기 CentOS 7에서 NGINX를 컴파일 버전으로 설치한다. 컴파일 설치를 하기 위해서는 몇 가지 라이브러리가 필요하다. 필요 의존 라이브러리는 openssl, pcre, zlib 등이 필요하므로 먼저 설치한다. 컴파일을 위한 라이브러리 설치 1 2 3 4 5 6 7 8 9 10 11 # pcre 라이브러리 설치 yum install pcre* # gzip 압축을 사용하기 위해서 설치 yum install zlib zlib-devel # open ssl 설치 yum install openssl openssl-devel # gcc 설치 yum install gcc nginx 소스 파일을 다운로드 최신 버전 경로는 아래 url에 접속하여 원하는 버전 링크를 복사한다.]]></description>
 </item>
 <item>
-    <title>nginx CORS 활성화 하기</title>
-    <link>https://riley817.github.io/archives/devops/nginx-cors/</link>
+    <title>[NGINX] nginx CORS 활성화 하기</title>
+    <link>https://riley817.github.io/nginx-cors/</link>
     <pubDate>Wed, 06 May 2020 22:11:55 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/archives/devops/nginx-cors/</guid>
+    <guid>https://riley817.github.io/nginx-cors/</guid>
     <description><![CDATA[nginx CORS 활성화 하기 nginx에서 CORS(Cross-Origin Resource Sharing) 설정을 활성화한다. nginx 설정파일 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 # # Wide-open CORS config for nginx # location / { if ($request_method = &#39;OPTIONS&#39;) { add_header &#39;Access-Control-Allow-Origin&#39; &#39;*&#39;; add_header &#39;Access-Control-Allow-Methods&#39; &#39;GET, POST, OPTIONS&#39;; # # Custom headers and headers various browsers *should* be OK with but aren&#39;t # add_header &#39;Access-Control-Allow-Headers&#39; &#39;DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range&#39;; # # Tell client that this pre-flight info is valid for 20 days # add_header &#39;Access-Control-Max-Age&#39; 1728000; add_header &#39;Content-Type&#39; &#39;text/plain; charset=utf-8&#39;; add_header &#39;Content-Length&#39; 0; return 204; } if ($request_method = &#39;POST&#39;) { add_header &#39;Access-Control-Allow-Origin&#39; &#39;*&#39;; add_header &#39;Access-Control-Allow-Methods&#39; &#39;GET, POST, OPTIONS&#39;; add_header &#39;Access-Control-Allow-Headers&#39; &#39;DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range&#39;; add_header &#39;Access-Control-Expose-Headers&#39; &#39;Content-Length,Content-Range&#39;; } if ($request_method = &#39;GET&#39;) { add_header &#39;Access-Control-Allow-Origin&#39; &#39;*&#39;; add_header &#39;Access-Control-Allow-Methods&#39; &#39;GET, POST, OPTIONS&#39;; add_header &#39;Access-Control-Allow-Headers&#39; &#39;DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range&#39;; add_header &#39;Access-Control-Expose-Headers&#39; &#39;Content-Length,Content-Range&#39;; } } ]]></description>
 </item>
 </channel>

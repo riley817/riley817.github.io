@@ -1,9 +1,9 @@
+# [Elasticsearch 검색 엔진 구축 강의] Elasticsearch 클러스터 분산구성 시나리오
+
+
 # Elasticsearch 클러스터 분산구성 시나리오
 
-
-## Elasticsearch 클러스터 분산구성 시나리오
-
-### 단일 노드에 3개의 샤드로 클러스터 구성하기
+## 단일 노드에 3개의 샤드로 클러스터 구성하기
 `blogs`라는 인덱스에 3개의 `primary` 샤드와 1개의 `replica` 샤드가 운용되도록 할당한다.
 
 ```bash

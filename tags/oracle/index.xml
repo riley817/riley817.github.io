@@ -1,24 +1,24 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>oracle - Tag - Riley&#39;s DevLog</title>
+        <title>Oracle - Tag - Riley&#39;s DevLog</title>
         <link>https://riley817.github.io/tags/oracle/</link>
-        <description>oracle - Tag - Riley&#39;s DevLog</description>
+        <description>Oracle - Tag - Riley&#39;s DevLog</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
             <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Thu, 12 Aug 2021 17:17:30 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/tags/oracle/" rel="self" type="application/rss+xml" /><item>
-    <title>docker를 사용하여 oracle 12c 세팅하기</title>
-    <link>https://riley817.github.io/archives/docker-kubernetes/docker-oracle/</link>
+    <title>[Doker] docker를 사용하여 oracle 12c 세팅하기</title>
+    <link>https://riley817.github.io/docker-oracle/</link>
     <pubDate>Thu, 12 Aug 2021 17:17:30 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/archives/docker-kubernetes/docker-oracle/</guid>
+    <guid>https://riley817.github.io/docker-oracle/</guid>
     <description><![CDATA[기록쓰 기록쓰 👻👻👻👻
 Oracle 12c 공식 이미지 다운로드 https://hub.docker.com/_/oracle-database-enterprise-edition?tab=resources 공식 이미지를 다운로드 후 Preceed to Checkout 버튼을 클릭하여 동의 정보를 입력한다. 대충 입력쓰&hellip; 도커 이미지 다운로드 후 실행 8080은 많이 사용하니까 각각 8282, 1522로 매핑하였다. 1 2 3 4 5 # docker image pull docker pull store/oracle/database-enterprise:12.2.0.1 # docker run docker run -d -p 8282:8080 -p 1522:1521 --name oracle12c store/oracle/database-enterprise:12.2.0.1 유저 생성 및 권한 부여 sysdba로 sqlplus 접속 1 docker exec -it oracle12c bash -c &#34;source /home/oracle/.]]></description>
 </item>
 <item>
     <title>Oracle Scheduler DBMS_SCHEDULER 개념 및 사용법</title>
-    <link>https://riley817.github.io/archives/dbms/oracle-scheduler/</link>
-    <pubDate>Thu, 22 Apr 2021 00:00:00 &#43;0000</pubDate>
+    <link>https://riley817.github.io/oracle-scheduler/</link>
+    <pubDate>Fri, 23 Apr 2021 16:44:26 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/archives/dbms/oracle-scheduler/</guid>
+    <guid>https://riley817.github.io/oracle-scheduler/</guid>
     <description><![CDATA[Oracle Scheduler - DBMS_SCHEDULER 오라클에서 정해진 시간에 반복된 작업을 수행하기 위해 DBMS_JOB 패키지를 활용하였지만 Oracle 10g 부터는 좀 더 확장된 기능을 가진 DBMS_SCHEDULER 패키지를 제공하고 있다. DBMS_JOB과의 가장 큰 차이점은 DBMS_JOB에서는 불가능하던 외부스크립트 (프로시저나, 함수 이외에도 OS에서 생성된 각종 유틸, 프로그램 까지) 실행이 가능하다. Class 생성 클래스를 지정하지 않게 되면 DEFAULT_JOB_CLASS 에 포함되는데 이 경우 기본 로깅 정책을 따른다. 기본로깅 정책은 DBMS_SCHEDULER.LOGGING_RUNS 이며 로깅레벨을 별도로 설정하거나 다른 스케쥴잡과 그룹화하여 관리하고 싶을 경우 Class를 생성한다.]]></description>
 </item>
 </channel>

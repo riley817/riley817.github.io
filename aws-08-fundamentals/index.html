@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>8. AWS Fundamentals - Load Balancing, Auto Scaling Groups and EBS Volumes - Riley&#39;s DevLog</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:title" content="8. AWS Fundamentals - Load Balancing, Auto Scaling Groups and EBS Volumes" />
+<meta property="og:description" content="확장성(Scalability) 및 고가용성(High Availability) 확장성은 애플리케이션/시스템이 더 큰 부하를 처리할 수 있게 적용되는 것을 의미 확장성 종류 Vertical Scalability Horizontal Scalability (= 탄력성elasticity) 확장성은 고 가용성(HA)과 연결되어 있지만 서로다르다. Vertical Scalability 수직적 확장은 인스턴스 크기를 증가 시키는 것을 의미 예시) t2.micro -&gt; t2.large로 확장 수직적 확장성은 데이터베이스와 같은 비분산 시스템에서 매우 일반적 RDS, ElastiCache는 수직 확장이 가능한 서비스 일반적으로 수직확장에는 제한이 있음(하드웨어 제한) Horizontal Scalability 수평적 확장은 애플리케이션의 인스턴스 혹은 시스템 수 증가 분산 시스템을 의미 웹 애플리케이션/현대 애플리케이션에서 매우 일반적 Amazon EC2와 같은 클라우드 제품 덕분에 수평확장 용이 High Availability 고가용성(HA)은 일반적으로 수평 확장과 함께 제공 최소 두 개의 데이터 센터(=AZ)에서 애플리케이션 및 시스템을 실행하는 것을 의미 고가용성의 목표는 데이터 센터 손실에서 살아 남는 것 고가용성은 수동적일 수 있음 (RDS Multi AZ의 경우) 고가용성은 활성화 할 수 있음 (수평적 확장을 위해) EC2를 위한 고가용성 및 확장성 Vertical Scaling : 인스턴스 사이즈를 늘린다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://riley817.github.io/aws-08-fundamentals/" /><meta property="og:image" content="https://riley817.github.io/icon.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-07-22T08:19:49+09:00" />
+<meta property="article:modified_time" content="2023-01-23T16:20:57+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://riley817.github.io/icon.png"/>
+
+<meta name="twitter:title" content="8. AWS Fundamentals - Load Balancing, Auto Scaling Groups and EBS Volumes"/>
+<meta name="twitter:description" content="확장성(Scalability) 및 고가용성(High Availability) 확장성은 애플리케이션/시스템이 더 큰 부하를 처리할 수 있게 적용되는 것을 의미 확장성 종류 Vertical Scalability Horizontal Scalability (= 탄력성elasticity) 확장성은 고 가용성(HA)과 연결되어 있지만 서로다르다. Vertical Scalability 수직적 확장은 인스턴스 크기를 증가 시키는 것을 의미 예시) t2.micro -&gt; t2.large로 확장 수직적 확장성은 데이터베이스와 같은 비분산 시스템에서 매우 일반적 RDS, ElastiCache는 수직 확장이 가능한 서비스 일반적으로 수직확장에는 제한이 있음(하드웨어 제한) Horizontal Scalability 수평적 확장은 애플리케이션의 인스턴스 혹은 시스템 수 증가 분산 시스템을 의미 웹 애플리케이션/현대 애플리케이션에서 매우 일반적 Amazon EC2와 같은 클라우드 제품 덕분에 수평확장 용이 High Availability 고가용성(HA)은 일반적으로 수평 확장과 함께 제공 최소 두 개의 데이터 센터(=AZ)에서 애플리케이션 및 시스템을 실행하는 것을 의미 고가용성의 목표는 데이터 센터 손실에서 살아 남는 것 고가용성은 수동적일 수 있음 (RDS Multi AZ의 경우) 고가용성은 활성화 할 수 있음 (수평적 확장을 위해) EC2를 위한 고가용성 및 확장성 Vertical Scaling : 인스턴스 사이즈를 늘린다."/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://riley817.github.io/aws-08-fundamentals/" /><link rel="prev" href="https://riley817.github.io/aws-07-ebs/" /><link rel="next" href="https://riley817.github.io/aws-09-rds/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "8. AWS Fundamentals - Load Balancing, Auto Scaling Groups and EBS Volumes",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/riley817.github.io\/aws-08-fundamentals\/"
+        },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Load Balancer, Auto Scaling Groups, Amazon Elastic Block Store(EBS)","wordcount":  1624 ,
+        "url": "https:\/\/riley817.github.io\/aws-08-fundamentals\/","datePublished": "2022-07-22T08:19:49+09:00","dateModified": "2023-01-23T16:20:57+09:00","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "https:\/\/riley817.github.io\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "riley"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Riley&#39;s DevLog"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i></span>Riley&#39;s DevLog</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Riley&#39;s DevLog"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i></span>Riley&#39;s DevLog</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content always-active" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">8. AWS Fundamentals - Load Balancing, Auto Scaling Groups and EBS Volumes</h1><h2 class="single-subtitle">AWS Certified SAA-C02 시험준비</h2><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-category">included in <a href="/categories/aws-certified-saa-c02-%EC%8B%9C%ED%97%98%EC%A4%80%EB%B9%84/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>AWS Certified SAA-C02 시험준비</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-07-22">2022-07-22</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1624 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;8 minutes&nbsp;<span id="/aws-08-fundamentals/" class="leancloud_visitors" data-flag-title="8. AWS Fundamentals - Load Balancing, Auto Scaling Groups and EBS Volumes">
+                        <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#확장성scalability-및-고가용성high-availability">확장성(Scalability) 및 고가용성(High Availability)</a>
+      <ul>
+        <li><a href="#vertical-scalability">Vertical Scalability</a></li>
+        <li><a href="#horizontal-scalability">Horizontal Scalability</a></li>
+        <li><a href="#high-availability">High Availability</a></li>
+        <li><a href="#ec2를-위한-고가용성-및-확장성">EC2를 위한 고가용성 및 확장성</a></li>
+      </ul>
+    </li>
+    <li><a href="#load-balancing">Load balancing</a>
+      <ul>
+        <li><a href="#load-balancer를-사용하는-이유">Load balancer를 사용하는 이유</a>
+          <ul>
+            <li><a href="#elastic-load-balancer를-사용하는-이유">Elastic Load Balancer를 사용하는 이유</a></li>
+          </ul>
+        </li>
+        <li><a href="#health-checks">Health Checks</a></li>
+        <li><a href="#aws-로드-밸런서-종류">AWS 로드 밸런서 종류</a>
+          <ul>
+            <li><a href="#classic-load-balancers-v1">Classic Load Balancers (v1)</a></li>
+            <li><a href="#application-load-balancer-v2">Application Load Balancer (v2)</a>
+              <ul>
+                <li><a href="#alb-target-group대상-그룹">ALB Target Group(대상 그룹)</a></li>
+                <li><a href="#alb-알아야할-내용">ALB 알아야할 내용</a></li>
+              </ul>
+            </li>
+            <li><a href="#network-load-balancer-v2">Network Load Balancer (v2)</a>
+              <ul>
+                <li><a href="#nlb-target-groups대상그룹">NLB Target Groups(대상그룹)</a></li>
+              </ul>
+            </li>
+            <li><a href="#gateway-load-balancer">Gateway Load Balancer</a>
+              <ul>
+                <li><a href="#gateway-load-balancer---target-groups">Gateway Load Balancer - Target Groups</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#stick-sessions-session-affinity">Stick Sessions (Session Affinity)</a>
+      <ul>
+        <li><a href="#cookie-names">Cookie Names</a></li>
+      </ul>
+    </li>
+    <li><a href="#cross-zone-로드-밸런싱">Cross-Zone 로드 밸런싱</a>
+      <ul>
+        <li><a href="#cross-zone-로드-밸런싱-사용">Cross-Zone 로드 밸런싱 사용</a></li>
+        <li><a href="#cross-zone-로드-밸런싱을-사용하지-않음">Cross-Zone 로드 밸런싱을 사용하지 않음</a></li>
+      </ul>
+    </li>
+    <li><a href="#ssltls">SSL/TLS</a>
+      <ul>
+        <li><a href="#load-balancer---ssl-certificates">Load Balancer - SSL Certificates</a></li>
+        <li><a href="#ssl---server-name-indication-sni">SSL - Server Name Indication (SNI)</a></li>
+      </ul>
+    </li>
+    <li><a href="#connection-draining">Connection Draining</a></li>
+    <li><a href="#auto-scaling-group">Auto Scaling Group</a>
+      <ul>
+        <li><a href="#auto-scaling-groupasg-목표">Auto Scaling Group(ASG) 목표</a></li>
+        <li><a href="#auto-scaling-group-속성">Auto Scaling Group 속성</a></li>
+        <li><a href="#auto-scaling---cloudwatch-alarms--scaling">Auto Scaling - CloudWatch Alarms &amp; Scaling</a>
+          <ul>
+            <li><a href="#dynamic-scaling-policies">Dynamic Scaling Policies</a></li>
+            <li><a href="#predictive-scaling">Predictive Scaling</a></li>
+          </ul>
+        </li>
+        <li><a href="#확장에-적합한-측정-기준">확장에 적합한 측정 기준</a></li>
+        <li><a href="#scaling-cooldowns">Scaling Cooldowns</a></li>
+      </ul>
+    </li>
+    <li><a href="#asg-for-solutions-architects">ASG for Solutions Architects</a>
+      <ul>
+        <li><a href="#asg-기본-종료-정책-simplified-version">ASG 기본 종료 정책 (simplified version)</a></li>
+        <li><a href="#asg-lifecycle-hooks">ASG Lifecycle Hooks</a></li>
+        <li><a href="#launch-template-vs-launch-configuration">Launch Template vs Launch Configuration</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="확장성scalability-및-고가용성high-availability">확장성(Scalability) 및 고가용성(High Availability)</h2>
+<ul>
+<li>확장성은 애플리케이션/시스템이 더 큰 부하를 처리할 수 있게 적용되는 것을 의미</li>
+<li>확장성 종류
+<ul>
+<li><strong>Vertical Scalability</strong></li>
+<li><strong>Horizontal Scalability (= 탄력성<code>elasticity</code>)</strong></li>
+</ul>
+</li>
+<li><strong>확장성은 고 가용성(HA)과 연결되어 있지만 서로다르다.</strong></li>
+</ul>
+<h3 id="vertical-scalability">Vertical Scalability</h3>
+<ul>
+<li>수직적 확장은 인스턴스 크기를 증가 시키는 것을 의미</li>
+<li>예시) t2.micro -&gt; t2.large로 확장</li>
+<li>수직적 확장성은 데이터베이스와 같은 비분산 시스템에서 매우 일반적</li>
+<li>RDS, ElastiCache는 수직 확장이 가능한 서비스</li>
+<li>일반적으로 수직확장에는 제한이 있음(하드웨어 제한)</li>
+</ul>
+<h3 id="horizontal-scalability">Horizontal Scalability</h3>
+<ul>
+<li>수평적 확장은 애플리케이션의 인스턴스 혹은 시스템 수 증가</li>
+<li>분산 시스템을 의미</li>
+<li>웹 애플리케이션/현대 애플리케이션에서 매우 일반적</li>
+<li>Amazon EC2와 같은 클라우드 제품 덕분에 수평확장 용이</li>
+</ul>
+<h3 id="high-availability">High Availability</h3>
+<ul>
+<li>고가용성(HA)은 일반적으로 수평 확장과 함께 제공</li>
+<li>최소 두 개의 데이터 센터(=AZ)에서 애플리케이션 및 시스템을 실행하는 것을 의미</li>
+<li>고가용성의 목표는 데이터 센터 손실에서 살아 남는 것</li>
+<li>고가용성은 수동적일 수 있음 (RDS Multi AZ의 경우)</li>
+<li>고가용성은 활성화 할 수 있음 (수평적 확장을 위해)</li>
+</ul>
+<h3 id="ec2를-위한-고가용성-및-확장성">EC2를 위한 고가용성 및 확장성</h3>
+<ul>
+<li><strong>Vertical Scaling</strong> : 인스턴스 사이즈를 늘린다.(<code>=scale up/down</code>)</li>
+<li><strong>Horizontal Scaling</strong> : 인스턴스 갯수를 늘린다. (<code>=scale out/in</code>)</li>
+<li><strong>High Availability</strong> : 여러 AZ에서 동일한 애플리케이션에 대한 인스턴스를 실행
+<ul>
+<li>Auto Scaling Group multi AZ</li>
+<li>Load Balancer multi AZ</li>
+</ul>
+</li>
+</ul>
+<h2 id="load-balancing">Load balancing</h2>
+<p>로드 밸런싱은 트래픽을 여러 서버(e.g., EC2 인스턴스) 다운스트림으로 전달하는 서버를 의미</p>
+<center><image src="/posts/images/aws/load-balancing.png"></center>
+<h3 id="load-balancer를-사용하는-이유">Load balancer를 사용하는 이유</h3>
+<ul>
+<li>여러 다운스트림을 인스턴스에 로드 분산</li>
+<li>애플리케이션에 단일 액세스 지점(DNS) 노출</li>
+<li>다운스트림 인스턴스의 장애를 원할하게 처리</li>
+<li>인스턴스의 정기적인 상태 검사 수행</li>
+<li>웹 사이트에 대한 SSL termination (HTTPS) 제공</li>
+<li>Enforce stickiness with cookies</li>
+<li>영역간 고가용성</li>
+<li>공용 트래픽과 사설 트래픽 분리</li>
+</ul>
+<h4 id="elastic-load-balancer를-사용하는-이유">Elastic Load Balancer를 사용하는 이유</h4>
+<ul>
+<li>Elastic Load Balancer는 <strong>AWS에 의해 관리되는 로드 밸런서</strong>
+<ul>
+<li>AWS에 의해 동작이 보장된다.</li>
+<li>AWS가 업그레이드, 유지보수, 고가용성 관리</li>
+<li>AWS는 몇 가지 구성 노브만 제공</li>
+</ul>
+</li>
+<li>자체 로드 밸런서를 설정하는 것은 비용이 덜 들지만 훨씬 더 많은 수고가 필요하다.</li>
+<li>AWS의 많은 제품/서비스와 통합 가능
+<ul>
+<li>EC2, EC2 Auto Scaling Groups, Amazon ECS</li>
+<li>AWS Certificate Manager(ACM), CloudWatch</li>
+<li>Route 53, AWS WAF, AWS Global Accelerator</li>
+</ul>
+</li>
+</ul>
+<h3 id="health-checks">Health Checks</h3>
+<ul>
+<li>상태체크(<code>Health Checks</code>)는 로드 밸런싱 장치에서 매우 중요하다.</li>
+<li>로드 밸런서는 트래픽을 전달하는 인스턴스가 요청에 응답할 수 있는지 여부를 알 수 있도록 한다.</li>
+<li>상태 점검은 포트 및 route에서 수행한다. (<code>/health</code> 는 공통임)</li>
+<li><code>200</code> 응답이 아닌경우 인스턴스는 상태가 올바르지 못하다.</li>
+</ul>
+<h3 id="aws-로드-밸런서-종류">AWS 로드 밸런서 종류</h3>
+<ul>
+<li>AWS는 4가지 로드밸런스가 존재한다.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"><strong>Load balancer 종류</strong></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>Classic Load Balancer <code>CLB</code> v1(2009)</strong></td>
+<td>HTTP, HTTPS, TCP, SSL(Secure TCP)</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Application Load Balancer <code>ALB</code> v2(2016)</strong></td>
+<td>HTTP, HTTPS, WebSocket</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Network Load Balancer<code>NLB</code> v2(2017)</strong></td>
+<td>TCP, TLS(secure TCP), UDP</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Gateway Load Balancer<code>GWLB</code>(2020)</strong></td>
+<td>Operates at layer3 (Network layer) - IP Protocol</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>전반적으로 새로운 세대의 로드 밸런서는 더 많은 기능을 제공하므로 사용하는 것이 좋다.</li>
+<li>일부 로드 밸런서는 내부(private), 외부(public) ELB로 설정가능</li>
+</ul>
+<h4 id="classic-load-balancers-v1">Classic Load Balancers (v1)</h4>
+<ul>
+<li>TCP(Layer 4), HTTP &amp; HTTPS(Layer 7) 지원</li>
+<li>상태 검사는 TCP 또는 HTTP 기반</li>
+<li>고정 hostname : <code>http://xxx.region.elb.amazonaws.com/</code></li>
+</ul>
+<center><image src="/posts/images/aws/clb.png" width="500px"></center>
+<h4 id="application-load-balancer-v2">Application Load Balancer (v2)</h4>
+<ul>
+<li>Layer 7 (HTTP)</li>
+<li>여러 시스템(target groups)에서 여러 HTTP 애플리케이션에 대한 로드 밸런싱</li>
+<li>동일한 시스템의 여러 애플리케이션에 대한 로드 밸런싱(example: containers)</li>
+<li>HTTP/2 및 웹 소켓 지원</li>
+<li>redirects 지원 (예: HTTP -&gt; HTTPS)</li>
+</ul>
+<div class="details admonition tip open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw" aria-hidden="true"></i>다른 대상 그룹으로 라우팅<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><ul>
+<li><strong>URL 기반 라우팅</strong>
+<ul>
+<li><code>example.com/users</code></li>
+<li><code>example.com/post</code></li>
+</ul>
+</li>
+<li><strong>URL hostname 기반 라우팅</strong>
+<ul>
+<li><code>one.example.com</code></li>
+<li><code>other.example.com</code></li>
+</ul>
+</li>
+<li><strong>Query string, 헤더 기반 라우팅</strong>
+<ul>
+<li><code>example.com/users?id=123&amp;order=false</code></li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+    </div>
+<ul>
+<li>ALB는 마이크로 서비스와 컨테이너 기반 애플리케이션에 매우 적합 (example : Docker &amp; Amazon ECS)</li>
+<li>ECS의 동적 포트로 리디렉션하는 포트 매핑 기능 있음</li>
+<li>그에 비해, 애플리케이션 당 여러 Classic Load Balancer 가 필요</li>
+</ul>
+<h5 id="alb-target-group대상-그룹">ALB Target Group(대상 그룹)</h5>
+<ul>
+<li><strong>EC2 인스턴스</strong>(Auto Scaling Group에 의해 관리할 수 있는) - HTTP</li>
+<li><strong>ECS(ECS 자체 관리) Task</strong> - HTTP</li>
+<li><strong>람다 함수</strong>: HTTP 요청이 JSON 이벤트로 변환</li>
+<li><strong>IP 주소</strong>: 반드시 사설 IP 요청</li>
+<li>ALB는 여러 대상 그룹으로 라우팅 할 수 있음</li>
+<li>대상 그룹 수준에서 상태 체크가 가능하다.</li>
+</ul>
+<h5 id="alb-알아야할-내용">ALB 알아야할 내용</h5>
+<ul>
+<li>고정 호스트이름 : <code>XXX.region.elb.amazonaws.com</code></li>
+<li>응용 프로그램 서버가 클라이언트 IP를 직접 확인하지 않음
+<ul>
+<li>클라이언트 실제 IP가 <strong>X-Forwarded-For</strong> 헤더에 삽입</li>
+<li>포트와 <code>X-Forwarded-Port</code>와 프로토 <code>X-Forwarded-Proto</code>도 가져올 수 있음</li>
+</ul>
+</li>
+</ul>
+<h4 id="network-load-balancer-v2">Network Load Balancer (v2)</h4>
+<ul>
+<li>Network load balancer(Layer 4)를 통해:
+<ul>
+<li><strong>TCP, UDP 트래픽을 인스턴스로 전달</strong></li>
+<li>초당 수백만 건의 요청 처리</li>
+<li>지연 시간 최대 ~100ms(vs 400ms for ALB) 단축</li>
+</ul>
+</li>
+<li>NLB는 <strong>AZ당 하나의 정적 IP를 가지며 Elastic IP 할당을 지원</strong>(특정 IP 화이트 리스트에 도움이 됨.)</li>
+<li>TCP 또는 UDP 트래픽의 최고의 성능을 위해 사용</li>
+<li>AWS 프리티어에는 포함되지 않음</li>
+</ul>
+<h5 id="nlb-target-groups대상그룹">NLB Target Groups(대상그룹)</h5>
+<ul>
+<li>EC2 인스턴스</li>
+<li>IP 주소 : 반드시 사설망 IP</li>
+<li>Application Load Balancer</li>
+</ul>
+<h4 id="gateway-load-balancer">Gateway Load Balancer</h4>
+<ul>
+<li>AWS에서 써드파티 네트워크 가상 어플라이언스 구축, 확장 및 관리</li>
+<li>예시) 방화벽, 침입 탐지 및 차단 시스템, 심층 패킷 검사 시스템, 페이로드 조작 등</li>
+<li>Layer 3 (네트워크 Layer)에서 작동 - IP Packets</li>
+<li>아래 기능들과 통합할 수 있다.
+<ul>
+<li><strong>Transparent Network Gateway</strong>: 모든 트래픽에 대한 단일 입력 수신</li>
+<li><strong>Load Balancer</strong> : 가상 어플라이언스로 트래픽 분산</li>
+</ul>
+</li>
+<li><strong>GENEVE protocol</strong> 6081 포트로 사용할 수 있다.</li>
+</ul>
+<h5 id="gateway-load-balancer---target-groups">Gateway Load Balancer - Target Groups</h5>
+<ul>
+<li>EC2 instances</li>
+<li>IP Addresses : 반드시 private IP</li>
+</ul>
+<h2 id="stick-sessions-session-affinity">Stick Sessions (Session Affinity)</h2>
+<ul>
+<li>동일한 클라이언트가 항상 로드밸런서 뒤에 있는 동일한 인스턴스로 리다이렉션 되도록 고정하는 기능을 구현</li>
+<li>CLB &amp; ALB에서 동작한다.</li>
+<li>고정 <code>cookie</code>에는 사용자가 제어하는 만료일자가 있음</li>
+<li>사용 사례 : 사용자가 세션 데이터를 잃지 않게 하기</li>
+<li><code>stickiness</code>를 사용하도록 설정하면 백엔드 EC2 인스턴스에 대한 로드가 불균형해질 수 있다.</li>
+</ul>
+<h3 id="cookie-names">Cookie Names</h3>
+<table>
+<thead>
+<tr>
+<th><strong>Cookie Names</strong></th>
+<th><strong>description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Application-based Cookies</strong></td>
+<td><strong>Custom cookie</strong><br/>  · 애플리케이션에 의해 사용자가 지정하는 모든 특성을 포함 가능<br/>  · 쿠키 이름은 각 대상 그룹<code>target group</code>에 대해 개별적으로 지정해야 함<br/>  · <code>AWSALB</code>, <code>AWSALBAPP</code>,<code>AWSALBTG</code> 등 ELB 예약어는 사용하지 말것<br/><br/><strong>Application cookie</strong><br/>  · 로드밸런서에의해 생성  · 쿠키의 이름은 <strong>AWSALBAPP</strong></td>
+</tr>
+<tr>
+<td><strong>Duration-based Cookies</strong></td>
+<td>· 로드밸런서에 의해 생성되는 쿠기<br/>· ALB의 경우 <strong>AWSALB</strong>, CLB의 경우 <strong>AWSCLB</strong></td>
+</tr>
+</tbody>
+</table>
+<h2 id="cross-zone-로드-밸런싱">Cross-Zone 로드 밸런싱</h2>
+<h3 id="cross-zone-로드-밸런싱-사용">Cross-Zone 로드 밸런싱 사용</h3>
+<p>각 로드 밸런서 인스턴스는 모든 AZ에 등록된 모든 인스턴스에 고르게 분산</p>
+<center><image src="/posts/images/aws/cross_zone_load_balancing_enabled.png"></center>
+<h3 id="cross-zone-로드-밸런싱을-사용하지-않음">Cross-Zone 로드 밸런싱을 사용하지 않음</h3>
+<p>요청이 Elastic Load Balancer 노드의 인스턴스에 분산</p>
+<center><image src="/posts/images/aws/cross_zone_load_balancing_disabled.png"></center>
+<table>
+<thead>
+<tr>
+<th><strong>Load balancer</strong></th>
+<th><strong>Cross-Zone Load Balancing</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Application Load Balancer</strong></td>
+<td>· 항상 동작(비활성화 불가능)<br/>· AZ간 요금 없음</td>
+</tr>
+<tr>
+<td><strong>Network Load Balancer</strong></td>
+<td>· 기본적으로 사용 안함<br/>· 활성화 된 경우 AZ간 요금 지불</td>
+</tr>
+<tr>
+<td><strong>Classic Load Balancer</strong></td>
+<td>· 기본적으로 사용 안함<br/>· 활성화 된 경우 AZ간 데이터 요금 없음</td>
+</tr>
+</tbody>
+</table>
+<h2 id="ssltls">SSL/TLS</h2>
+<ul>
+<li>SSL 인증서를 통해 클라이언트와 로드 밸런서 간 트래픽을 전송 중 암호화를 할 수 있다.</li>
+<li><strong>SSL</strong> : 암호화 하는데에 Secure Socket Layer를 사용</li>
+<li><strong>TLS</strong> : 최신 버전인 전송 보안 계층을 나타낸다.</li>
+<li>요즘에는 <strong>TLS 인증서가 주로 사용되며</strong> 여전히 SSL이라고 부른다.</li>
+<li>공용 SSL 인증서는 CA(Certificate Authorities)에 의해 발급된다.</li>
+<li>SSL 인증서는 만료 날짜가 있으므로 갱신해야 한다.</li>
+</ul>
+<h3 id="load-balancer---ssl-certificates">Load Balancer - SSL Certificates</h3>
+<ul>
+<li>로드 밸런서는 <code>X.509</code> 인증서 (SSL/TLS 서버 인증서)를 사용</li>
+<li>ACM(AWS Certificate Manager)을 사용하여 인증서를 관리할 수 있음</li>
+<li>자신의 인증서를 만들어 업로드도 가능
+<div class="details admonition tip open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw" aria-hidden="true"></i>Http listener<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><ul>
+<li>기본 인증서를 지정해야 한다.</li>
+<li>여러 도메인을 지원하기 위해 선택적으로 인증 목록을 추가 가능</li>
+<li><strong>클라이언트는 SNI(Server Name Indication)를 사용하여 도달하는 호스트 이름을 지정할 수 있다</strong></li>
+<li>이전 버전의 SSL/TLS(레거시 클라이언트)를 지원하는 정책 지정 가능</li>
+</ul>
+</div>
+        </div>
+    </div></li>
+</ul>
+<h3 id="ssl---server-name-indication-sni">SSL - Server Name Indication (SNI)</h3>
+<ul>
+<li>
+<p>SNI는 <strong>여러 개의 SSL 인증서를 하나의 웹 서버에 로드하는 문제를 해결</strong>(여러 웹사이트를 서비스하기 위해)</p>
+</li>
+<li>
+<p>새로운 프로토콜이며 클라이언트가 초기 SSL 핸드쉐이크 대상 서버의 호스트 이름을 표시해야한다. -&gt; 그러면 서버가 올바른 인증서를 찾거나 기본 인증서를 반환</p>
+<div class="details admonition note open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-pencil-alt fa-fw" aria-hidden="true"></i>Note<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><ul>
+<li>오직 ALB, NLB, CloudFront 에서만 동작</li>
+<li>CLB에서는 동작하지 않음</li>
+</ul>
+</div>
+        </div>
+    </div>
+</li>
+</ul>
+<center><image src="/posts/images/aws/sni.png" width="600px"></center>
+<table>
+<thead>
+<tr>
+<th><strong>Load balancer</strong></th>
+<th><strong>SSL 인증서</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Classic Load Balancer</strong></td>
+<td>· 하나의 SSL 인증서만 지원<br/>· 여러 SSL을 갖는 여러 호스트 이름에는 여러 CLB를 사용</td>
+</tr>
+<tr>
+<td><strong>Application Load Balancer</strong></td>
+<td>· 여러 SSL 인증서를 가진 리스너 지원<br/>· SNI를 사용하여 작동</td>
+</tr>
+<tr>
+<td><strong>Network Load Balancer</strong></td>
+<td>· 여러 SSL 인증서를 가진 리스너 지원<br/>· SNI를 사용하여 작동</td>
+</tr>
+</tbody>
+</table>
+<h2 id="connection-draining">Connection Draining</h2>
+<center><image src="/posts/images/aws/connection-draining.png" width="400px"></center>
+<ul>
+<li>각 ELB 타입마다 이름이 다름
+<ul>
+<li>CLB : <code>Connection Draining</code></li>
+<li>ALB &amp; NLB : <code>Deregistration Delay</code>(등록 취소 지연)</li>
+</ul>
+</li>
+<li>인스턴스가 등록 취소 중이거나 정상 상태가 아닌 동안 인스턴스에 어느 정도 시간을 주어 <code>in-flight requests</code>을 완료할 수 있도록 만들어 주는 기능</li>
+<li>등록취소<code>de-registering</code>되면 등록 취소 중인 EC2 인스턴스로는 새로운 요청을 보내지 않는다.</li>
+<li>1 ~ 3,600초 (기본값 : 300초)</li>
+<li>비활성화 가능 (값을 0으로 설정)</li>
+<li>요청이 짧은 경우 낮은 값으로 설정</li>
+</ul>
+<h2 id="auto-scaling-group">Auto Scaling Group</h2>
+<h3 id="auto-scaling-groupasg-목표">Auto Scaling Group(ASG) 목표</h3>
+<ul>
+<li>증가하는 로드에 맞게 <strong>Scale Out</strong> : EC2 인스턴스 추가</li>
+<li>감소하는 로드에 맞게 <strong>Scale In</strong> : EC2 인스턴스 제거</li>
+<li>AGS에서 실행되는 최소 및 최대 EC2 인스턴스 수를 보장</li>
+<li>새 인스턴스를 자동으로 로드 밸런서에 등록</li>
+<li>이전 인스턴스가 비정상 혹은 종료된 경우 EC2 인스턴스 다시 생성</li>
+<li>ASG는 무료 (기본 EC2 인스턴스에 대해서만 지불)</li>
+</ul>
+<h3 id="auto-scaling-group-속성">Auto Scaling Group 속성</h3>
+<ul>
+<li><strong>Launch Template</strong> (이전 버전 Launch configurations는 더이상 사용되지 않음)
+<ul>
+<li>AMI + Instance Type</li>
+<li>EC2 User Data</li>
+<li>EBS Volumes</li>
+<li>Security Groups</li>
+<li>SSH Key PAir</li>
+<li>IAM Roles for your EC2 Instance</li>
+<li>Network + Subnets Information</li>
+<li>Load Balancer Information</li>
+</ul>
+</li>
+<li>Min Size / Max Size / Initial Capacity</li>
+<li>Scaling 정책</li>
+</ul>
+<h3 id="auto-scaling---cloudwatch-alarms--scaling">Auto Scaling - CloudWatch Alarms &amp; Scaling</h3>
+<ul>
+<li>CloudWatch 알람을 기반으로 AGS를 확장 가능</li>
+<li>alarm이 메트릭 등을(<strong>CPU 평균 또는 사용자 지정 메트릭</strong>) 모니터링</li>
+<li>전체 ASG 인스턴스에 대해 평균 CPU와 같은 메트릭이 계산
+<div class="details admonition warning open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-exclamation-triangle fa-fw" aria-hidden="true"></i>경보 기준<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><ul>
+<li>스케일 아웃 정책 생성 (인스턴스 수 증가)</li>
+<li>스케일 인 정책 생성(인스턴스 수 감소)</li>
+</ul>
+</div>
+        </div>
+    </div></li>
+</ul>
+<h4 id="dynamic-scaling-policies">Dynamic Scaling Policies</h4>
+<table>
+<thead>
+<tr>
+<th><strong>Dynamic Scaling Policies</strong></th>
+<th><strong>description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Target Tracking Scaling(대상추적 스케일링)</strong></td>
+<td>· 가장 간단하고 쉽게 설정<br/>· 예시) 나는 ASG 평균 CPU가 약 40%를 유지하기를 원한다.</td>
+</tr>
+<tr>
+<td><strong>Simple / Step Scaling</strong></td>
+<td>· CloudWatch 경보가 트리거되면(CPU &gt; 70%), 2대 추가<br/>· CloudWatch 경보가 트리거 되었을 때(CPU &lt; 30%), 1대를 삭제한다.</td>
+</tr>
+<tr>
+<td><strong>Scheduled Actions</strong></td>
+<td>· 알려진 사용 패턴을 기반으로 확장 예상 <br/>· 예시) 금요일 오후 5시에 최소 용량을 10으로 늘린다.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="predictive-scaling">Predictive Scaling</h4>
+<ul>
+<li>예측 스케일링 : 지속적으로 로드 예측 및 스케줄 확장을 미리 계획한다.</li>
+</ul>
+<h3 id="확장에-적합한-측정-기준">확장에 적합한 측정 기준</h3>
+<ul>
+<li><strong>CPUUtilization(CPU 사용률)</strong> : 인스턴스 전체의 평균 CPU 활용률</li>
+<li><strong>RequestCountPerTarget(대상당 요청 수)</strong> : EC2 인스턴스 당 요청 수가 안정적인지 확인</li>
+<li><strong>Average Network In/Out(평균 네트워크 입출력)</strong> : 애플리케이션이 네트워크영역인 경우</li>
+<li><strong>Any custom metric</strong> : CloudWatch를 사용하여 푸시</li>
+</ul>
+<h3 id="scaling-cooldowns">Scaling Cooldowns</h3>
+<ul>
+<li>스케일링 작업이 발생한 후 <strong>쿨 다운 타임이 발생(기본값 300초)</strong></li>
+<li>쿨 다운 타임동안 ASG는 추가 인스턴스를 시작 혹은 종료하지 않는다. (측정지표가 안정화되도록 허용)
+<div class="details admonition tip open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw" aria-hidden="true"></i>Tip<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">즉시 사용할 수 있는 AMI를 사용하여 요청 시간을 단축하고 쿨 다운 타임을 단축한다.</div>
+        </div>
+    </div></li>
+</ul>
+<h2 id="asg-for-solutions-architects">ASG for Solutions Architects</h2>
+<h3 id="asg-기본-종료-정책-simplified-version">ASG 기본 종료 정책 (simplified version)</h3>
+<center><image src="/posts/images/aws/asg-default-termination-policy.png" width="500px"></center>
+<ol>
+<li>인스턴스 수가 가장 많은 AZ를 찾는다.</li>
+<li>AZ에 선택할 인스턴스가 여러 개 있는 경우 가장 오래된 launch configuration을 갖는 인스턴스를 삭제
+<blockquote>
+<p>ASG는 기본적으로 AZ 전체에서 인스턴스 수 균형을 시도</p>
+</blockquote>
+</li>
+</ol>
+<h3 id="asg-lifecycle-hooks">ASG Lifecycle Hooks</h3>
+<center><image src="/posts/images/aws/asg-lifecycle-hooks.png" caption="[출처]https://docs.aws.amazon.com/autoscaling/ec2/userguide/lifecycle-hooks.html"></center>
+<ul>
+<li>기본적으로 ASG에서 인스턴스가 실행되자마자 서비스가 시작된다.</li>
+<li><code>Pending state</code> : 인스턴스가 서비스 상태가 되기 전에 추가 단계를 수행할 수 있음</li>
+<li><code>Terminating state</code> : 인스턴스가 종료 되기 전에 일부 작업을 수행할 수 있다.</li>
+</ul>
+<h3 id="launch-template-vs-launch-configuration">Launch Template vs Launch Configuration</h3>
+<table>
+    <thead>
+        <tr>
+            <th><strong>Launch Template(newer)</strong></th>
+            <th><strong>Launch Configuration(legacy)</strong></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                <p>
+                · 여러 버전을 가질 수 있음<br/>
+                · 매개 변수 하위 집합 생성(재사용성 및 상속을 위한 부분 구성)<br/>
+                · On-Demand 및 스팟 인스턴스를 모두 사용하여 프로비저닝<br/>
+                · T2 무제한 버스트 기능 사용<br/>
+                · 향후 AWS에서 권장</p>
+            </td>
+            <td>매번 다시 만들어야 한다.</td>
+        </tr>
+        <tr>
+            <td colspan="2">· Amazon Machine Image(AMI) ID, 인스턴스 유형, Key pair, 보안 그룹, EC2 인스턴스를 사용하는 기타 매개변수(tags, EC2 user-data …)</td>
+        </tr>
+    </tbody>
+</table>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-01-23&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/db5877e427614337ffbb673875fa349e5bf0be3a" target="_blank" title="commit by riley817(riley0422@icloud.com) db5877e427614337ffbb673875fa349e5bf0be3a: 20230123162055">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>db5877e</a></span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/load-balancer/">Load Balancer</a>,&nbsp;<a href="/tags/auto-scaling-groups/">Auto Scaling Groups</a>,&nbsp;<a href="/tags/amazon-elastic-block-storeebs/">Amazon Elastic Block Store(EBS)</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/aws-07-ebs/" class="prev" rel="prev" title="7. AWS EC2 Instance Storage"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>7. AWS EC2 Instance Storage</a>
+            <a href="/aws-09-rds/" class="next" rel="next" title="9. Amazon RDS, Aurora &amp; ElastiCache">9. Amazon RDS, Aurora & ElastiCache<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.110.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Riley</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/valine@1.4.18/dist/Valine.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.1/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{"valine":{"appId":"QGzwQXOqs5JOhN4RGPOkR2mR-MdYXbMMI","appKey":"WBmoGyJtbqUswvfLh6L8iEBr","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@14.0.0/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"en","pageSize":10,"placeholder":"Your comment ...","recordIP":true,"serverURLs":"https://leancloud.hugoloveit.com","visitor":true}},"search":{"algoliaAppID":"","algoliaIndex":"","algoliaSearchKey":"","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

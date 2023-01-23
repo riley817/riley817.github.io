@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>27. AWS Security &amp; Encryption - Riley&#39;s DevLog</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:title" content="27. AWS Security &amp; Encryption" />
+<meta property="og:description" content="전송중 암호화 (SSL) 데이터를 전송하기 전에 암호화. 수신 후 복호화 SSL 인증서로 암호화 (HTTPS) 전송 중 암호화는 MITM(man in the middle attack)이 발생하지 않도록 보장 Server side encryption at rest 데이터가 서버에 수신 된 후 암호화 데이터가 서버에 전송 전 복호화 데이터 키라고 불리우는 키 덕분에 데이터는 암호화 된 형태로 저장 암호화 및 복호화 키는 어딘가에 관리되어야 하며 서버는 이에 대한 액세스 권한이 있어야 한다. Client side encryption 데이터가 클라이언트에 의해 암호화되고 서버는 복호화할 수 없음 데이터는 수신 클라이언트에 의해 복호화 서버는 데이터의 암호를 복호화 할 수 없음 Envelop Encryption 암호화를 활용 AWS KMS (Key Management Service) KMS 키를 사용하여 데이터에 액세스할 수 있는 사람과 대상을 쉽게 제어" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://riley817.github.io/aws-27-security-encryption/" /><meta property="og:image" content="https://riley817.github.io/icon.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-08-14T23:31:49+09:00" />
+<meta property="article:modified_time" content="2023-01-23T16:20:57+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://riley817.github.io/icon.png"/>
+
+<meta name="twitter:title" content="27. AWS Security &amp; Encryption"/>
+<meta name="twitter:description" content="전송중 암호화 (SSL) 데이터를 전송하기 전에 암호화. 수신 후 복호화 SSL 인증서로 암호화 (HTTPS) 전송 중 암호화는 MITM(man in the middle attack)이 발생하지 않도록 보장 Server side encryption at rest 데이터가 서버에 수신 된 후 암호화 데이터가 서버에 전송 전 복호화 데이터 키라고 불리우는 키 덕분에 데이터는 암호화 된 형태로 저장 암호화 및 복호화 키는 어딘가에 관리되어야 하며 서버는 이에 대한 액세스 권한이 있어야 한다. Client side encryption 데이터가 클라이언트에 의해 암호화되고 서버는 복호화할 수 없음 데이터는 수신 클라이언트에 의해 복호화 서버는 데이터의 암호를 복호화 할 수 없음 Envelop Encryption 암호화를 활용 AWS KMS (Key Management Service) KMS 키를 사용하여 데이터에 액세스할 수 있는 사람과 대상을 쉽게 제어"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://riley817.github.io/aws-27-security-encryption/" /><link rel="prev" href="https://riley817.github.io/aws-18-integration-messaging/" /><link rel="next" href="https://riley817.github.io/aws-28-vpc/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "27. AWS Security \u0026 Encryption",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/riley817.github.io\/aws-27-security-encryption\/"
+        },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "AWS, AWS Key Management Service, AWS System Manager","wordcount":  1520 ,
+        "url": "https:\/\/riley817.github.io\/aws-27-security-encryption\/","datePublished": "2022-08-14T23:31:49+09:00","dateModified": "2023-01-23T16:20:57+09:00","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "https:\/\/riley817.github.io\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "riley"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Riley&#39;s DevLog"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i></span>Riley&#39;s DevLog</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Riley&#39;s DevLog"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i></span>Riley&#39;s DevLog</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content always-active" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">27. AWS Security & Encryption</h1><h2 class="single-subtitle">KMS, Encryption SDK, SSM Parameter Store</h2><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-category">included in <a href="/categories/aws-certified-saa-c02-%EC%8B%9C%ED%97%98%EC%A4%80%EB%B9%84/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>AWS Certified SAA-C02 시험준비</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-08-14">2022-08-14</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1520 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;8 minutes&nbsp;<span id="/aws-27-security-encryption/" class="leancloud_visitors" data-flag-title="27. AWS Security &amp; Encryption">
+                        <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#전송중-암호화-ssl">전송중 암호화 (SSL)</a></li>
+    <li><a href="#server-side-encryption-at-rest">Server side encryption at rest</a></li>
+    <li><a href="#client-side-encryption">Client side encryption</a></li>
+    <li><a href="#aws-kms-key-management-service">AWS KMS (Key Management Service)</a>
+      <ul>
+        <li><a href="#customer-master-key-cmk-types">Customer Master Key (CMK) Types</a>
+          <ul>
+            <li><a href="#대칭키-symmetric-aes-256-key">대칭키 Symmetric (AES-256 Key)</a></li>
+            <li><a href="#비대칭키-asymmetric-rsa--ecc-key-pairs">비대칭키 Asymmetric (RSA &amp; ECC Key pairs)</a></li>
+          </ul>
+        </li>
+        <li><a href="#kms-대칭키">KMS 대칭키</a></li>
+        <li><a href="#aws-kms-101">AWS KMS 101</a></li>
+        <li><a href="#copying-snapshots-across-regions">Copying Snapshots across regions</a></li>
+        <li><a href="#kms-키-정책">KMS 키 정책</a>
+          <ul>
+            <li><a href="#copying-snapshots-across-accounts">Copying Snapshots across accounts</a></li>
+          </ul>
+        </li>
+        <li><a href="#kms-automatic-key-rotation">KMS Automatic Key Rotation</a></li>
+        <li><a href="#kms-manual-key-rotation">KMS Manual Key Rotation</a></li>
+      </ul>
+    </li>
+    <li><a href="#ssm-parameter-store">SSM Parameter Store</a>
+      <ul>
+        <li><a href="#ssm-parameter-store-hierarchy">SSM Parameter Store Hierarchy</a></li>
+        <li><a href="#parameters-policies-for-advanced-parameters">Parameters Policies (for advanced parameters)</a></li>
+      </ul>
+    </li>
+    <li><a href="#aws-secret-manager">AWS Secret Manager</a></li>
+    <li><a href="#cloudhsm">CloudHSM</a>
+      <ul>
+        <li><a href="#cloudhsm-diagram">CLoudHSM Diagram</a></li>
+        <li><a href="#cloudhsm---high-availability">CLoudHSM - High Availability</a></li>
+      </ul>
+    </li>
+    <li><a href="#cloudhsm-vs-kms">CloudHSM vs. KMS</a></li>
+    <li><a href="#aws-shield">AWS Shield</a>
+      <ul>
+        <li><a href="#aws-shield-standard">AWS Shield Standard</a></li>
+        <li><a href="#aws-shield-advanced">AWS Shield Advanced</a></li>
+      </ul>
+    </li>
+    <li><a href="#aws-waf---web-application-firewall">AWS WAF - Web Application Firewall</a>
+      <ul>
+        <li><a href="#define-web-acl-web-access-control-list">Define Web ACL (Web Access Control List)</a></li>
+        <li><a href="#aws-firewall-manager">AWS Firewall Manager</a></li>
+      </ul>
+    </li>
+    <li><a href="#amazon-guardduty">Amazon GuardDuty</a></li>
+    <li><a href="#amazon-inspector">Amazon Inspector</a>
+      <ul>
+        <li><a href="#aws-inspector가-평가하는-것들">AWS Inspector가 평가하는 것들</a></li>
+      </ul>
+    </li>
+    <li><a href="#amazon-macie">Amazon Macie</a></li>
+    <li><a href="#aws-공유적-책임-모델">AWS 공유적 책임 모델</a>
+      <ul>
+        <li><a href="#rds에서-책임모델">RDS에서 책임모델</a></li>
+        <li><a href="#s3에서-책임모델">S3에서 책임모델</a></li>
+        <li><a href="#shared-responsibility-model-diagram">Shared Responsibility Model diagram</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="전송중-암호화-ssl">전송중 암호화 (SSL)</h2>
+<ul>
+<li>데이터를 전송하기 전에 암호화. 수신 후 복호화</li>
+<li>SSL 인증서로 암호화 (HTTPS)</li>
+<li>전송 중 암호화는 MITM(man in the middle attack)이 발생하지 않도록 보장</li>
+</ul>
+<h2 id="server-side-encryption-at-rest">Server side encryption at rest</h2>
+<ul>
+<li>데이터가 서버에 수신 된 후 암호화</li>
+<li>데이터가 서버에 전송 전 복호화</li>
+<li>데이터 키라고 불리우는 키 덕분에 데이터는 암호화 된 형태로 저장</li>
+<li>암호화 및 복호화 키는 어딘가에 관리되어야 하며 서버는 이에 대한 액세스 권한이 있어야 한다.</li>
+</ul>
+<a class="lightgallery" href="/posts/images/aws/server-side-encryption.jpg" title="/posts/images/aws/server-side-encryption.jpg" data-thumbnail="/posts/images/aws/server-side-encryption.jpg">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/posts/images/aws/server-side-encryption.jpg"
+            data-srcset="/posts/images/aws/server-side-encryption.jpg, /posts/images/aws/server-side-encryption.jpg 1.5x, /posts/images/aws/server-side-encryption.jpg 2x"
+            data-sizes="auto"
+            alt="/posts/images/aws/server-side-encryption.jpg" />
+    </a>
+<h2 id="client-side-encryption">Client side encryption</h2>
+<ul>
+<li>데이터가 클라이언트에 의해 암호화되고 서버는 복호화할 수 없음</li>
+<li>데이터는 수신 클라이언트에 의해 복호화</li>
+<li>서버는 데이터의 암호를 복호화 할 수 없음</li>
+<li><strong>Envelop Encryption</strong> 암호화를 활용</li>
+</ul>
+<a class="lightgallery" href="/posts/images/aws/client-side-encryption.jpg" title="/posts/images/aws/client-side-encryption.jpg" data-thumbnail="/posts/images/aws/client-side-encryption.jpg">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/posts/images/aws/client-side-encryption.jpg"
+            data-srcset="/posts/images/aws/client-side-encryption.jpg, /posts/images/aws/client-side-encryption.jpg 1.5x, /posts/images/aws/client-side-encryption.jpg 2x"
+            data-sizes="auto"
+            alt="/posts/images/aws/client-side-encryption.jpg" />
+    </a>
+<h2 id="aws-kms-key-management-service">AWS KMS (Key Management Service)</h2>
+<ul>
+<li>
+<p>KMS 키를 사용하여 데이터에 액세스할 수 있는 사람과 대상을 쉽게 제어</p>
+</li>
+<li>
+<p>인증을위한 IAM과 완벽하게 통합가능</p>
+</li>
+<li>
+<p>CLI / SDK 사용 가능</p>
+</li>
+<li>
+<p>다음의 서비스와 완벽하게 통합:</p>
+<ul>
+<li><strong>Amazon EBS</strong>: 볼륨 암호화</li>
+<li><strong>Amazon S3</strong> : Server side encryption of objects</li>
+<li><strong>Amazon Redshift</strong>: encryption of data</li>
+<li><strong>Amazon RDS</strong>: encryption of data</li>
+<li><strong>Amazon SSM</strong>: Parameter store</li>
+<li>그외&hellip;</li>
+</ul>
+</li>
+</ul>
+<h3 id="customer-master-key-cmk-types">Customer Master Key (CMK) Types</h3>
+<h4 id="대칭키-symmetric-aes-256-key">대칭키 Symmetric (AES-256 Key)</h4>
+<ul>
+<li>암호화 및 복호화가 동일</li>
+<li>AWS는 KMS와 통합된 Symmetric CMKs를 사용</li>
+<li><code>envelope encryption</code>에 필요</li>
+<li>암호화되지 않은 키에 액세스 할 수 없음 - 사용하려면 KMS API 호출 필요</li>
+</ul>
+<h4 id="비대칭키-asymmetric-rsa--ecc-key-pairs">비대칭키 Asymmetric (RSA &amp; ECC Key pairs)</h4>
+<ul>
+<li>SSL 작동 원리</li>
+<li>암호화 시 public key 복호화 시 private key 사용</li>
+<li>암호화/복호화 및 Sing/Verify 작업에 사용</li>
+<li>public key를 다운로드할 수 있지만 private key에는 액세스 할 수 없음</li>
+<li>사용 사례
+<ul>
+<li><strong>KMS API를 호출할 수 없는 사용자</strong>에 의한 AWS 외부 암호화</li>
+</ul>
+</li>
+</ul>
+<h3 id="kms-대칭키">KMS 대칭키</h3>
+<ul>
+<li>KMS Symmetric Key 키 정책
+<ul>
+<li>생성정책</li>
+<li>Rotation policies - 키 교체 정책</li>
+<li>활성화 및 비활성화</li>
+</ul>
+</li>
+<li><strong>CloudTrail</strong>을 사용하여 키 사용을 감사</li>
+<li>Customer Master Keys(CMS) 유형
+<ol>
+<li>AWS Managed Service Default CMK: free</li>
+<li>User Keys created in KMS: $1 / month</li>
+<li>User Keys imported (must be 256-bit symmetric key): $1 / month</li>
+</ol>
+<ul>
+<li>Call KMS API ($0.03 / 10000 calls)</li>
+</ul>
+</li>
+</ul>
+<h3 id="aws-kms-101">AWS KMS 101</h3>
+<ul>
+<li>데이터베이스 패스워드</li>
+<li>외부 서비스의 자격증명</li>
+<li>SSL 인증서의 private key</li>
+</ul>
+<div class="details admonition tip open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw" aria-hidden="true"></i>Tip<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">KMS는 데이터를 암호화하거나 복호화하는 키를 볼 수 없기 때문에 AWS의 전체 보안이 가능</div>
+        </div>
+    </div>
+<ul>
+<li><strong>Secret 데이터는 플레인텍스트로 특히 코드로 저장하지 않는다.</strong></li>
+<li><strong>KMS 요청당 4KB의 데이터를 암호화하는데 효율</strong> - 데이터가 4KB 큰 경우 envelop encryption 사용</li>
+</ul>
+<div class="details admonition note open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-pencil-alt fa-fw" aria-hidden="true"></i>다른 사용자에게 KMS 권한을 부여하려면<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><ul>
+<li>키 정책이 사용자를 허용하는지 확인한다.</li>
+<li>IAM 정책이 API를 호출을 허용하는지 확인한다.</li>
+</ul>
+</div>
+        </div>
+    </div>
+<h3 id="copying-snapshots-across-regions">Copying Snapshots across regions</h3>
+<ul>
+<li>KMS 키는 특정 리전에 바인딩 된다.
+<ul>
+<li>리전 A에서 KMS를 생성하면 리전 B로 전송 불가능</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li>KMS로 암호화된 EBS 볼륨</li>
+<li>동일한 키로 암호화 된 EBS 스냅샷 생성</li>
+<li>다른 리전에 KMS 키로 재 암호화</li>
+<li>새로운 리전에 새로운 키로 암호화 된 스냅샷생성</li>
+<li>해당 스냅샷으로 볼륨을 재생성</li>
+</ol>
+<h3 id="kms-키-정책">KMS 키 정책</h3>
+<ul>
+<li>KMS 키에 대한 액세스 제어는 S3 Bucket 정책과 비슷</li>
+<li>차이점 : 사용자 없이 액세스 제어 불가</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>기본 KMS 키 정책</th>
+<th>Custom KMS 키 정책</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>- 특정 키 정책을 사용하지 않으면 기본으로 생성</td>
+<td>- KMS 키에 액세스할 수 있는 사용자 및 role 정의</td>
+</tr>
+<tr>
+<td>- 루트 사용자 = 전체 AWS 계정에 대한 전체 치 액세스 권한</td>
+<td>- 키를 관리할 수 있는 사용자 정의</td>
+</tr>
+<tr>
+<td>- KMS 키에 대한 IAM 정책에 대한 액세스 권한 부여</td>
+<td>- KMS 키의 계정간 액세스에 유용</td>
+</tr>
+</tbody>
+</table>
+<h4 id="copying-snapshots-across-accounts">Copying Snapshots across accounts</h4>
+<ol>
+<li>사용자의 CMK로 암호화 된 스냅샷 생성</li>
+<li>KMS 키 정책을 첨부하여 계정간 계정 액세스 권한 부여</li>
+<li>암호화 된 스냅샷 공유</li>
+<li>스냅샷 복사본 생성 계정의 KMS 키로 암호화</li>
+<li>스냅샷 볼륨 생성</li>
+</ol>
+<h3 id="kms-automatic-key-rotation">KMS Automatic Key Rotation</h3>
+<ul>
+<li><strong>Customer-managed(CMK)에서만</strong> (not AWS managed CMK)</li>
+<li>사용할 경우 <strong>1 년마다</strong> 키가 rotation</li>
+<li>이전 데이터들이 복호화 될 수 있도록 이전키의 상태는 활성화</li>
+<li>새 키의 CMK ID는 동일하다. (Backing Key만 변경)</li>
+</ul>
+<h3 id="kms-manual-key-rotation">KMS Manual Key Rotation</h3>
+<ul>
+<li>90일, 180일 등 원하는 간격으로 rotate 할 경우</li>
+<li><strong>새 키의 CMK ID가 다르다</strong></li>
+<li>이전 데이터들이 복호화 될 수 있도록 이전키의 상태는 활성화</li>
+<li><code>UpdateAlias</code> API를 사용하여 별칭을 사용하는 것이 좋다.</li>
+<li>자동 키 로테이션 CMK(비대칭 CMK 같은)에 적합하지 않은 경우 좋은 대안</li>
+</ul>
+<h2 id="ssm-parameter-store">SSM Parameter Store</h2>
+<ul>
+<li>구성 및 기밀 데이터를 위한 안전한 스토리지</li>
+<li>KMS를 사용한 원활한 암호화(옵션)</li>
+<li>Serverless, 확장성, 내구성, 손쉬운 SDK</li>
+<li>버전 트래킹</li>
+<li>path &amp; IAM을 사용한 구성 관리</li>
+<li><code>CloudWatch</code> 이벤트 알림</li>
+<li><code>CloudFormation</code>과 통합</li>
+</ul>
+<h3 id="ssm-parameter-store-hierarchy">SSM Parameter Store Hierarchy</h3>
+<a class="lightgallery" href="/posts/images/aws/ssm-hierarchy.jpg" title="/posts/images/aws/ssm-hierarchy.jpg" data-thumbnail="/posts/images/aws/ssm-hierarchy.jpg">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/posts/images/aws/ssm-hierarchy.jpg"
+            data-srcset="/posts/images/aws/ssm-hierarchy.jpg, /posts/images/aws/ssm-hierarchy.jpg 1.5x, /posts/images/aws/ssm-hierarchy.jpg 2x"
+            data-sizes="auto"
+            alt="/posts/images/aws/ssm-hierarchy.jpg" />
+    </a>
+<h3 id="parameters-policies-for-advanced-parameters">Parameters Policies (for advanced parameters)</h3>
+<ul>
+<li>암호같은 중요한 데이터를 강제로 업데이트하거나 삭제하기 위해 만료일에 TTL을 적용</li>
+<li>한번에 여러 정책을 할당 가능</li>
+</ul>
+<div class="details admonition abstract open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-list-ul fa-fw" aria-hidden="true"></i>파라미터 정책<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><p><strong>Expiration(파라미터 삭제)</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;Type&#34;</span><span class="p">:</span> <span class="s2">&#34;Expiration&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;Version&#34;</span> <span class="p">:</span> <span class="s2">&#34;1.0&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;Attributes&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;Timestamp&#34;</span> <span class="p">:</span> <span class="s2">&#34;2020-12-02T21:34:33.000Z&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>만료 알림(CloudWatch Events)</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;Type&#34;</span><span class="p">:</span> <span class="s2">&#34;Expiration&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;Version&#34;</span> <span class="p">:</span> <span class="s2">&#34;1.0&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;Attributes&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;Timestamp&#34;</span> <span class="p">:</span> <span class="s2">&#34;2020-12-02T21:34:33.000Z&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>NoChangeNotification(CloudWatch Events)</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;Type&#34;</span><span class="p">:</span> <span class="s2">&#34;NoChangeNotification&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;Version&#34;</span> <span class="p">:</span> <span class="s2">&#34;1.0&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;Attributes&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;After&#34;</span><span class="p">:</span> <span class="s2">&#34;20&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;Unit&#34;</span><span class="p">:</span> <span class="s2">&#34;Days&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div>
+        </div>
+    </div>
+<h2 id="aws-secret-manager">AWS Secret Manager</h2>
+<ul>
+<li>기밀 저장을 위한 새로운 서비스</li>
+<li><strong>X 일마다 강제로 기밀을 로테이션 하는 기능</strong></li>
+<li><strong>Amazon RDS</strong> (MySQL, PostgreSQL, Aurora) 통합</li>
+<li>KMS을 사용한 암호화</li>
+<li>대부분의 RDS 통합을 위함</li>
+</ul>
+<h2 id="cloudhsm">CloudHSM</h2>
+<ul>
+<li>KMS는 AWS에서 암호화를 위한 소프트웨어 관리</li>
+<li>CloudHSM =&gt; AWS에서 암호화 <strong>하드웨어</strong> 프로비저닝</li>
+<li>전용 하드웨어 (HSM = Hardware Security Module)</li>
+<li>AWS가 아닌 자신의 암호화 키를 전체적으로 관리해야 한다.</li>
+<li>HSM는 변조 방지, FIPS 140-2 레벨 3 준수</li>
+<li>대칭 및 비대칭 암호화 (SSL/TLS 키)모두 지원</li>
+<li>프리티어 아님</li>
+<li>CloudHSM Client Software를 사용해야 함</li>
+<li>Redshift는 데이터베이스의 암호화와 키 관리를 위해 CloudHSM를 지원</li>
+<li><strong>SSE-C 암호화와 함께 사용하기 좋은 옵션</strong></li>
+</ul>
+<h3 id="cloudhsm-diagram">CLoudHSM Diagram</h3>
+<ul>
+<li><strong>IAM Permissions</strong>
+<ul>
+<li>CRUD an HSM Cluster</li>
+</ul>
+</li>
+<li><strong>CloudHSM software</strong>
+<ul>
+<li>Manage the Keys</li>
+<li>Manage the Users</li>
+</ul>
+</li>
+</ul>
+<h3 id="cloudhsm---high-availability">CLoudHSM - High Availability</h3>
+<ul>
+<li>CloudHSM 클러스터는 Multi AZ(HA) 분산된다.</li>
+<li>뛰어난 가용성 및 내구성을 갖는다.</li>
+</ul>
+<h2 id="cloudhsm-vs-kms">CloudHSM vs. KMS</h2>
+<table>
+<thead>
+<tr>
+<th>기능</th>
+<th>AWS KMS</th>
+<th>AWS CloudHSM</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tenancy</td>
+<td>Multi-Tenant</td>
+<td>Single-Tenant</td>
+</tr>
+<tr>
+<td>Standard</td>
+<td>FIPS 140-2 Level 2</td>
+<td>FIPS 140-2 Level 3</td>
+</tr>
+<tr>
+<td>Master Keys</td>
+<td>· AWS Owned CMK<br/>· AWS Manged CMK</br>· Customer Managed CMK</td>
+<td>Customer Managed CMK</td>
+</tr>
+<tr>
+<td>Key Types</td>
+<td>· Symmetric<br/>· Asymmetric<br/>· Digital Signing</td>
+<td>· Symmetric<br/>· Asymmetric<br/>· Digital Signing &amp; Hashing</td>
+</tr>
+<tr>
+<td>Key Accessibility</td>
+<td>여러 AWS 리젼에서 액세스 가능</td>
+<td>· VPC에서 배포 및 관리<br/>· VPC 간에 공유 가능(VPC 피어링)</td>
+</tr>
+<tr>
+<td>Cryptographic Acceleration</td>
+<td>None</td>
+<td>· SSL/TLS Acceleration<br/>• Oracle TDE Acceleration</td>
+</tr>
+<tr>
+<td>Access &amp; Authentication</td>
+<td>AWS IAM</td>
+<td>사용자를 생성하고 권한을 관리</td>
+</tr>
+<tr>
+<td>High Availability</td>
+<td>AWS Managed Service</td>
+<td>서로 다른 AZ에 여러 HSM 추가</td>
+</tr>
+<tr>
+<td>Audit Capability</td>
+<td>· CloudTrail<br/>· CloudWatch</td>
+<td>• CloudWatch<br/>• CloudTrail<br/>• MFA support</td>
+</tr>
+<tr>
+<td>Free Tier</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<h2 id="aws-shield">AWS Shield</h2>
+<h3 id="aws-shield-standard">AWS Shield Standard</h3>
+<ul>
+<li>무료 서비스</li>
+<li>SYN/UDP Floods, Reflection, 네트워크 Layer3/Layer4 공격과 같은 기타 공격으로 부터 보호 제공</li>
+</ul>
+<h3 id="aws-shield-advanced">AWS Shield Advanced</h3>
+<ul>
+<li>선택적인 DDoS 완화 서비스 ($3,000 per month per organization)</li>
+<li><strong>Amazon EC2, Elastic Load Balancing(ELB), Amazon CloudFront, AWS Global Accelerator 및 Route 53</strong>에 대한 보다 정교한 공격으로부터 보호</li>
+<li>AWS DDoS 대응팀(DRP) 연중무휴 액세스</li>
+<li>DDoS로 인해 사용량이 급증하는 동안 더 높은 수수료로부터 보호</li>
+</ul>
+<h2 id="aws-waf---web-application-firewall">AWS WAF - Web Application Firewall</h2>
+<ul>
+<li>일반적인 웹 악용으로 부터 웹 응용 계층 보호 (Layer 7)</li>
+<li><strong>Layer 7 is HTTP</strong> (vs Layer 4 is TCP)</li>
+<li>Deploy on <strong>Application Load Balancer, API Gateway, CloudFront</strong></li>
+</ul>
+<h3 id="define-web-acl-web-access-control-list">Define Web ACL (Web Access Control List)</h3>
+<ul>
+<li>규칙에는 IP address, HTTP headers, HTTP body, URI strings 포함할 수 있다.</li>
+<li>일반적인 공격으로 부터 보호
+<ul>
+<li>SQL injection</li>
+<li>Cross-Site Scripting (XSS)</li>
+</ul>
+</li>
+<li>크기 제약, <strong>지리적 일치(블록 국가)</strong></li>
+<li>DDoS 보호를 위한 속도기반 규칙 (이벤트 발생 횟수 계산)</li>
+</ul>
+<h3 id="aws-firewall-manager">AWS Firewall Manager</h3>
+<ul>
+<li><strong>AWS 조직의 모든 계정 규칙을 관리</strong></li>
+<li>공통 보안 규칙 집합</li>
+<li>WAF 규칙 : (Application Load Balancer, API Gateways, CloudFront)</li>
+<li>AWS Shield Advanced (ALB, CLB, Elastic IP, CloudFront)</li>
+<li>VPC의 EC2 및 ENI 리소스에 대한 Security Group</li>
+</ul>
+<h2 id="amazon-guardduty">Amazon GuardDuty</h2>
+<ul>
+<li>AWS 계정 보호를 위한 지능형 위협 검색</li>
+<li>머닝 러신 알고리즘, 이상 징후 감지, 3rd party 데이터 이용</li>
+<li>클릭 한 번으로 활성화 (30일 평가판), 소프으웨서 설치 불필요</li>
+<li>입력에는 다음과 같은 데이터가 포함
+<ul>
+<li><strong>CloudTrail Events Logs</strong> : 비정상적인 API 호출, 무단 배포
+<ul>
+<li><strong>CloudTrail Management Events</strong> : VPC 서브넷 생성, create trail 등</li>
+<li><strong>CloudTrail S3 Data Events</strong> : GetObject, ListObject, DeleteObject 등</li>
+</ul>
+</li>
+<li><strong>VPC Flow</strong> : 비정상적인 내부 트래픽, 비정상적인 IP 주소</li>
+<li><strong>DNS Log</strong> : DNS 쿼리 내 암호화된 데이터를 전송하는 EC2 인스턴스의 손상</li>
+<li><strong>Kubernetes Audit Log</strong> : 의심스러운 활동과 EKS 클러스터 손상 가능성</li>
+</ul>
+</li>
+<li>발견 시 알림을 받을 <strong>CloudWatch Event rules</strong> 설정 가능</li>
+<li>CloudWatch Events rule은 AWS Lambda or SNS를 대상으로 할 수 있다</li>
+<li><code>CryptoCurrency Attacks</code> 공격으로부터 보호할 수 있음
+<a class="lightgallery" href="/posts/images/aws/guard-duty.png" title="/posts/images/aws/guard-duty.png" data-thumbnail="/posts/images/aws/guard-duty.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/posts/images/aws/guard-duty.png"
+            data-srcset="/posts/images/aws/guard-duty.png, /posts/images/aws/guard-duty.png 1.5x, /posts/images/aws/guard-duty.png 2x"
+            data-sizes="auto"
+            alt="/posts/images/aws/guard-duty.png" />
+    </a></li>
+</ul>
+<h2 id="amazon-inspector">Amazon Inspector</h2>
+<ul>
+<li>자동화된 보안 평가</li>
+</ul>
+<div class="details admonition tip open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw" aria-hidden="true"></i>Tip<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><p><strong>For EC2 instance</strong></p>
+<ul>
+<li>AWS System Manager(SSM) agent 활용</li>
+<li>의도하지 않은 네트워크 액세스 가능성에 대한 분석</li>
+<li>실행중인 OS의 알려진 취약성 분석</li>
+</ul>
+<p><strong>For Containers push to Amazon ECR</strong></p>
+<ul>
+<li>ECR 컨테이너에 push에 대한 분석</li>
+</ul>
+</div>
+        </div>
+    </div>
+<ul>
+<li>AWS Security Hub와 보고 및 통합</li>
+<li>Amazon Event Bridge 결과 전송</li>
+</ul>
+<h3 id="aws-inspector가-평가하는-것들">AWS Inspector가 평가하는 것들</h3>
+<ul>
+<li><strong>EC2 인스턴스 및 컨테이너 infrastructure 만 해당</strong></li>
+<li>필요한 경우에만 인프라의 지속적인 검색</li>
+<li>패키지 취약성 (EC2 &amp; ECR) - CVE 데이터베이스</li>
+<li>Network reachability (EC2)</li>
+<li>위험 점수는 우선순위 지정에 대한 모든 취약성과 연결</li>
+</ul>
+<h2 id="amazon-macie">Amazon Macie</h2>
+<ul>
+<li>머신러닝과 패턴 매칭을 활용해 AWS의 중요한 데이터를 검색 및 보호하는 완전 관리형 데이터 베이스 보안 및 프라이버시 서비스</li>
+<li><strong>개인 식별 가능 정보 (personally identifiable information-PII)와 같은 중요한 데이터를 식별하고 경고</strong>하도록 도와줌</li>
+</ul>
+<h2 id="aws-공유적-책임-모델">AWS 공유적 책임 모델</h2>
+<ul>
+<li>
+<p><strong>AWS의 책임</strong></p>
+<ul>
+<li>클라우드의 보안</li>
+<li>모든 AWS 서비스를 실행하는 인프라(hardware, software, facilities, and networking) 보호</li>
+<li>S3, DynamoDB, RDS 등과 같은 관리형 서비스</li>
+</ul>
+</li>
+<li>
+<p><strong>고객의 책임</strong></p>
+<ul>
+<li>클라우드 내 보안</li>
+<li>EC2 인스턴스의 경우 고객은 게스트 OS(보안 패치 및 업데이트 포함), 방화벽 및 네트워크 구성, IAM을 관리해야 함</li>
+<li>애플리케이션 데이터 암호화</li>
+</ul>
+</li>
+<li>
+<p><strong>공유</strong> : 패치 관리, 구성 관리, 인식 및 교육</p>
+</li>
+</ul>
+<h3 id="rds에서-책임모델">RDS에서 책임모델</h3>
+<ul>
+<li><strong>AWS의 책임</strong>
+<ul>
+<li>근본적인 EC2 인스턴스 관리 SSH 액세스</li>
+<li>자동화된 DB 패치</li>
+<li>자동화된 OS 패치</li>
+<li>근본적인 인스턴스 및 디스크 감사 및 기능 보장</li>
+</ul>
+</li>
+<li><strong>고객의 책임</strong>
+<ul>
+<li>DB Security Group의 포트 / IP / 인바운드 규칙 확인</li>
+<li>데이터베이스 내의 사용자 생성 및 권한</li>
+<li>공용 접근 권한 유무 관계없이 데이터베이스 작성</li>
+<li>매개 변수 그룹 또는 DB가 SSL 연결만 허용하도록 구성되었는지 확인</li>
+<li>데이터베이스 암호화 설정</li>
+</ul>
+</li>
+</ul>
+<h3 id="s3에서-책임모델">S3에서 책임모델</h3>
+<ul>
+<li><strong>AWS의 책임</strong>
+<ul>
+<li>무제한 스토리지의 제공을 보장</li>
+<li>암호화 제공을 보장</li>
+<li>서로 다른 고객간의 데이터 분리 보장</li>
+<li>AWS 직원이 데이터에 액세스 할 수 없도록 보장</li>
+</ul>
+</li>
+<li><strong>고객의 책임</strong>
+<ul>
+<li>Bucket의 구성</li>
+<li>Bucket 정책 / 공용 설정</li>
+<li>IAM 사용자 및 역할</li>
+<li>암호화 사용</li>
+</ul>
+</li>
+</ul>
+<h3 id="shared-responsibility-model-diagram">Shared Responsibility Model diagram</h3>
+<figure><a class="lightgallery" href="/posts/images/aws/Shared_Responsibility_Model_V2.59d1eccec334b366627e9295b304202faf7b899b.jpg" title="/posts/images/aws/Shared_Responsibility_Model_V2.59d1eccec334b366627e9295b304202faf7b899b.jpg" data-thumbnail="/posts/images/aws/Shared_Responsibility_Model_V2.59d1eccec334b366627e9295b304202faf7b899b.jpg" data-sub-html="<h2>https://aws.amazon.com/ko/compliance/shared-responsibility-model/</h2>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/posts/images/aws/Shared_Responsibility_Model_V2.59d1eccec334b366627e9295b304202faf7b899b.jpg"
+            data-srcset="/posts/images/aws/Shared_Responsibility_Model_V2.59d1eccec334b366627e9295b304202faf7b899b.jpg, /posts/images/aws/Shared_Responsibility_Model_V2.59d1eccec334b366627e9295b304202faf7b899b.jpg 1.5x, /posts/images/aws/Shared_Responsibility_Model_V2.59d1eccec334b366627e9295b304202faf7b899b.jpg 2x"
+            data-sizes="auto"
+            alt="/posts/images/aws/Shared_Responsibility_Model_V2.59d1eccec334b366627e9295b304202faf7b899b.jpg" />
+    </a><figcaption class="image-caption"><a href="https://aws.amazon.com/ko/compliance/shared-responsibility-model/" target="_blank" rel="noopener noreffer">https://aws.amazon.com/ko/compliance/shared-responsibility-model/</a></figcaption>
+    </figure>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-01-23&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/db5877e427614337ffbb673875fa349e5bf0be3a" target="_blank" title="commit by riley817(riley0422@icloud.com) db5877e427614337ffbb673875fa349e5bf0be3a: 20230123162055">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>db5877e</a></span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/aws/">AWS</a>,&nbsp;<a href="/tags/aws-key-management-service/">AWS Key Management Service</a>,&nbsp;<a href="/tags/aws-system-manager/">AWS System Manager</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/aws-18-integration-messaging/" class="prev" rel="prev" title="18. AWS Integration &amp; Messaging"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>18. AWS Integration & Messaging</a>
+            <a href="/aws-28-vpc/" class="next" rel="next" title="28. AWS Virtual Private Cloud(VPC)">28. AWS Virtual Private Cloud(VPC)<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.110.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Riley</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/valine@1.4.18/dist/Valine.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.1/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{"valine":{"appId":"QGzwQXOqs5JOhN4RGPOkR2mR-MdYXbMMI","appKey":"WBmoGyJtbqUswvfLh6L8iEBr","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@14.0.0/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"en","pageSize":10,"placeholder":"Your comment ...","recordIP":true,"serverURLs":"https://leancloud.hugoloveit.com","visitor":true}},"search":{"algoliaAppID":"","algoliaIndex":"","algoliaSearchKey":"","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

@@ -1,23 +1,23 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>java - Tag - Riley&#39;s DevLog</title>
+        <title>Java - Tag - Riley&#39;s DevLog</title>
         <link>https://riley817.github.io/tags/java/</link>
-        <description>java - Tag - Riley&#39;s DevLog</description>
+        <description>Java - Tag - Riley&#39;s DevLog</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
             <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Sat, 26 Feb 2022 21:17:12 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/tags/java/" rel="self" type="application/rss+xml" /><item>
     <title>[Think Data Structures] 자바 배열 리스트 구현하기</title>
-    <link>https://riley817.github.io/archives/think-data-structures/think-data-structures-1/</link>
+    <link>https://riley817.github.io/think-data-structures-1/</link>
     <pubDate>Sat, 26 Feb 2022 21:17:12 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/archives/think-data-structures/think-data-structures-1/</guid>
+    <guid>https://riley817.github.io/think-data-structures-1/</guid>
     <description><![CDATA[목표 자바 배열을 사용하여 요소를 저장하는 List 인터페이스 구현한다. 클래스 정의와 인스턴스 변수, 생성자 1 2 3 4 5 6 7 8 9 public class MyArrayList&lt;T&gt; implements List&lt;T&gt; { int size; // keeps track of the number of elements private T[] array; // stores the elements public MyArrayList() { array = (T[]) new Object[10]; size = 0; } } size 변수는 MyArrayList의 요소 개수를 추적한다. array 변수는 실제로 그 요소들을 저장하는 배열을 의미한다.]]></description>
 </item>
 <item>
-    <title>Multi Thread</title>
-    <link>https://riley817.github.io/archives/java/thread/</link>
+    <title>[Java Fundamental] Multi Thread</title>
+    <link>https://riley817.github.io/thread/</link>
     <pubDate>Sun, 19 Apr 2020 23:11:21 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/archives/java/thread/</guid>
+    <guid>https://riley817.github.io/thread/</guid>
     <description><![CDATA[자바 기본 잊지 않게 정리하기! 🤔
 프로세스와 스레드 프로세스(process) : 운영체제에서 실행 중인 하나의 애플리케이션을 의미 멀티 태스킹(multi tasking) 운영 체제에서 두 가지 이상의 다중 작업(프로세스)를 동시에 처리하는 것을 의미. 운영 체제에서는 멀티 태스킹을 할 수 있도록 CPU 및 메모리 자원을 적절히 할당하고 병렬로 실행시킨다. 할당받은 메모리를 가지고 실행하기 때문에 독립적이다. 메인 스레드 자바 애플리케이션은 메인 스레드(main thread)가 main() 메소드를 실행 하면서 시작. 메인 스레드는 필요에 따라 작업 스레드를 만들어 병렬로 실행 가능하다.]]></description>
 </item>

@@ -1,29 +1,42 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>etc - Category - Riley&#39;s DevLog</title>
+        <title>Etc - Category - Riley&#39;s DevLog</title>
         <link>https://riley817.github.io/categories/etc/</link>
-        <description>etc - Category - Riley&#39;s DevLog</description>
+        <description>Etc - Category - Riley&#39;s DevLog</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
-            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Tue, 11 Jan 2022 18:43:25 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/categories/etc/" rel="self" type="application/rss+xml" /><item>
-    <title>code-server를 이용하여 ipad에서 vscode로 개발하기</title>
-    <link>https://riley817.github.io/archives/etc/code-server/</link>
-    <pubDate>Tue, 11 Jan 2022 18:43:25 &#43;0900</pubDate>
+            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Sun, 16 Jan 2022 00:01:00 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/categories/etc/" rel="self" type="application/rss+xml" /><item>
+    <title>Web Worker API</title>
+    <link>https://riley817.github.io/webworker/</link>
+    <pubDate>Sun, 16 Jan 2022 00:01:00 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/archives/etc/code-server/</guid>
-    <description><![CDATA[ 고가의 ipad 키보드를 샀으니 이제 ipad로 짜세있게 개발을 해봐야겠다.ㅎㅎㅎ
-code-server를 이용하여 ipad에서 vscode 개발하기 VS code-server를 이용하면 외부에서 접속이 가능한 개발환경을 만들 수 있다.
-1. 가상 인스턴스 서버 생성 code-server를 사용하려면 원격 서버가 필요하다. 나는 퍼니오(https://www.fun25.co.kr/)라는 가상서버 호스팅 서비스를 이용하고 있다. 클라우드 무료로 사용할 수 있는건 모두 다 사용해본 관계로&hellip; 퍼니오에서 저렴하게 구매해서 사용하고 있다.
-인스턴스 요구 사항은 다음과 같다.
-웹소켓이 가능한 linux 머신, 1 GB RAN, 2 CPUs ]]></description>
+    <guid>https://riley817.github.io/webworker/</guid>
+    <description><![CDATA[Web worker Web Worker 는 메인 스레드와 분리된 별도의 백그라운드 스레드에서 스크립트를 실행할 수 있는 기술이다. UI 스레드와는 별개의 스레드를 실행시켜 사용자 인터페이스를 방해하지않고 작업을 수행할 수 있다.
+Web worker scope Web worker는 메인 스레드와 별도의 worker 스레드를 갖는다. 메인 스레드에서 window 객체는 GlobalScope 이지만 worker 스레드에서는 별도의 스코프 범위를 갖는다. Worker 종류에 따른 Scope worker 스레드는 메인 스레드 window 객체에 액세스할 수 있는 권한이 없기 때문에 window의 메서드나 DOM을 직접적으로 제어할 수 없다.]]></description>
 </item>
 <item>
-    <title>텔레그램 봇</title>
-    <link>https://riley817.github.io/archives/etc/telegrambot/</link>
+    <title>텔레그램 봇 설정하기</title>
+    <link>https://riley817.github.io/telegrambot/</link>
     <pubDate>Fri, 13 Aug 2021 14:46:00 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/archives/etc/telegrambot/</guid>
+    <guid>https://riley817.github.io/telegrambot/</guid>
     <description><![CDATA[할때마다 까먹는다.
 텔레그램 봇 만들기 1. 봇아빠 채팅방에 접속 https://t.me/BotFather 혹은 @BotFather 검색하여 채팅방 접속 2. BotFather 채팅방에서 봇 생성 명령어를 입력한다. 채팅창에 /newbot을 입력한다. 3. 텔레그램 봇 이름을 입력한다. 이름은 _bot으로 끝나야 한다. 4. 다시 입력 한번 더 bot 이름을 입력하면 봇 주소와 API 토큰 값을 얻을 수 있다. 5. 봇 채팅방 접속 후 시작 버튼 클릭 6. 봇 채팅방 chat id 얻기 봇 채팅방에서 아무 메세지나 입력한다. 브라우저에서 https://api.]]></description>
+</item>
+<item>
+    <title>[NGINX] CentOS 7에서 nginx 컴파일 설치하기</title>
+    <link>https://riley817.github.io/nginx-compile/</link>
+    <pubDate>Wed, 06 May 2020 23:45:11 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/nginx-compile/</guid>
+    <description><![CDATA[nginx 컴파일 설치하기 CentOS 7에서 NGINX를 컴파일 버전으로 설치한다. 컴파일 설치를 하기 위해서는 몇 가지 라이브러리가 필요하다. 필요 의존 라이브러리는 openssl, pcre, zlib 등이 필요하므로 먼저 설치한다. 컴파일을 위한 라이브러리 설치 1 2 3 4 5 6 7 8 9 10 11 # pcre 라이브러리 설치 yum install pcre* # gzip 압축을 사용하기 위해서 설치 yum install zlib zlib-devel # open ssl 설치 yum install openssl openssl-devel # gcc 설치 yum install gcc nginx 소스 파일을 다운로드 최신 버전 경로는 아래 url에 접속하여 원하는 버전 링크를 복사한다.]]></description>
+</item>
+<item>
+    <title>[NGINX] nginx CORS 활성화 하기</title>
+    <link>https://riley817.github.io/nginx-cors/</link>
+    <pubDate>Wed, 06 May 2020 22:11:55 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/nginx-cors/</guid>
+    <description><![CDATA[nginx CORS 활성화 하기 nginx에서 CORS(Cross-Origin Resource Sharing) 설정을 활성화한다. nginx 설정파일 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 # # Wide-open CORS config for nginx # location / { if ($request_method = &#39;OPTIONS&#39;) { add_header &#39;Access-Control-Allow-Origin&#39; &#39;*&#39;; add_header &#39;Access-Control-Allow-Methods&#39; &#39;GET, POST, OPTIONS&#39;; # # Custom headers and headers various browsers *should* be OK with but aren&#39;t # add_header &#39;Access-Control-Allow-Headers&#39; &#39;DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range&#39;; # # Tell client that this pre-flight info is valid for 20 days # add_header &#39;Access-Control-Max-Age&#39; 1728000; add_header &#39;Content-Type&#39; &#39;text/plain; charset=utf-8&#39;; add_header &#39;Content-Length&#39; 0; return 204; } if ($request_method = &#39;POST&#39;) { add_header &#39;Access-Control-Allow-Origin&#39; &#39;*&#39;; add_header &#39;Access-Control-Allow-Methods&#39; &#39;GET, POST, OPTIONS&#39;; add_header &#39;Access-Control-Allow-Headers&#39; &#39;DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range&#39;; add_header &#39;Access-Control-Expose-Headers&#39; &#39;Content-Length,Content-Range&#39;; } if ($request_method = &#39;GET&#39;) { add_header &#39;Access-Control-Allow-Origin&#39; &#39;*&#39;; add_header &#39;Access-Control-Allow-Methods&#39; &#39;GET, POST, OPTIONS&#39;; add_header &#39;Access-Control-Allow-Headers&#39; &#39;DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range&#39;; add_header &#39;Access-Control-Expose-Headers&#39; &#39;Content-Length,Content-Range&#39;; } } ]]></description>
 </item>
 </channel>
 </rss>
