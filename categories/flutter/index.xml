@@ -1,0 +1,19 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Flutter - Category - Riley&#39;s DevLog</title>
+        <link>https://riley817.github.io/categories/flutter/</link>
+        <description>Flutter - Category - Riley&#39;s DevLog</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
+            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Tue, 24 Jan 2023 16:40:55 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/categories/flutter/" rel="self" type="application/rss+xml" /><item>
+    <title>[Dart] Dart 문법 정리</title>
+    <link>https://riley817.github.io/dart/</link>
+    <pubDate>Tue, 24 Jan 2023 16:40:55 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/dart/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/posts/images/banner/dart.png" referrerpolicy="no-referrer">
+            </div>😊 Dart 기본 문법의 헷갈리는 부분과 몰랐던 부분 정리! 🐸🐸 Final 과 const final과 const 키워드를 사용하여 선언하면 할당한 값을 변경할 수 없다. 둘다 상수를 선언할 때 사용하지만 차이점은 const는 complie-time에 상수를 설정하며 final은 runtime시에 결정되는 값도 상수로 설정할 수 있다.
+1 2 3 4 // error const DateTime now1 = DateTime.now(); // error! const는 runtime시에 값이 결정되는 값은 설정할 수 없다. final DateTime now2 = DateTime.now(); // final은 runtime시에 결정되는 값도 설정 가능하다.]]></description>
+</item>
+</channel>
+</rss>

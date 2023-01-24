@@ -4,7 +4,18 @@
         <link>https://riley817.github.io/posts/</link>
         <description>All Posts | Riley&#39;s DevLog</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
-            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Mon, 15 Aug 2022 17:26:41 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Tue, 24 Jan 2023 16:40:55 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>[Dart] Dart 문법 정리</title>
+    <link>https://riley817.github.io/dart/</link>
+    <pubDate>Tue, 24 Jan 2023 16:40:55 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/dart/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/posts/images/banner/dart.png" referrerpolicy="no-referrer">
+            </div>😊 Dart 기본 문법의 헷갈리는 부분과 몰랐던 부분 정리! 🐸🐸 Final 과 const final과 const 키워드를 사용하여 선언하면 할당한 값을 변경할 수 없다. 둘다 상수를 선언할 때 사용하지만 차이점은 const는 complie-time에 상수를 설정하며 final은 runtime시에 결정되는 값도 상수로 설정할 수 있다.
+1 2 3 4 // error const DateTime now1 = DateTime.now(); // error! const는 runtime시에 값이 결정되는 값은 설정할 수 없다. final DateTime now2 = DateTime.now(); // final은 runtime시에 결정되는 값도 설정 가능하다.]]></description>
+</item>
+<item>
     <title>28. AWS Virtual Private Cloud(VPC)</title>
     <link>https://riley817.github.io/aws-28-vpc/</link>
     <pubDate>Mon, 15 Aug 2022 17:26:41 &#43;0900</pubDate>
@@ -78,14 +89,6 @@ RDS에서 제공하는 데이터베이스 Postgres MySQL MariaDB Oracle Microsof
     <author>riley</author>
     <guid>https://riley817.github.io/aws-26-iam-advanced/</guid>
     <description><![CDATA[STS - Security Token Service AWS 리소스에 대한 제한적이고 일시적인 액세스 권한을 허용 토큰은 1 시간까지 유효 (새로고침 필요) STS API STS API 설명 AssumeRole - 개인 계정 내에서: 보안을 강화하기 위해 사용 - 계정 간 : 대상 계정에 역할을 수임하여 작업을 수행 AssumeRoleWithSAML - SAML으로 로그인한 사용자의 자격증명을 반환 AssumeRoleWithWebIdentity - IdP(Identity Provider - Facebook Login, Google Login, OIDC Compatible&hellip;) 로그인 사용자의 자격증명을 반환 - 이것보다는 AWS Cognito 추천함 GetSessionToken - AWS 루트 계정 또는 사용자에 대한 MFA 인증 STS를 통해 역할을 수임받기 IAM 계정 내 혹은 계정 간 IAM 역할(Role)을 정의한다.]]></description>
-</item>
-<item>
-    <title>6. AWS Elastic Compute Cloud (EC2) - Associate</title>
-    <link>https://riley817.github.io/aws-06-ec2-associate/</link>
-    <pubDate>Thu, 14 Jul 2022 08:19:49 &#43;0900</pubDate>
-    <author>riley</author>
-    <guid>https://riley817.github.io/aws-06-ec2-associate/</guid>
-    <description><![CDATA[Private vs Public IP (IPv4) 네트워크는 IPv4, IPv6 두 가지로 분류 할 수 있다. IPv4 : 1.160.10.240 IPv6 : 3ffe:1900:4545:3:200:f8ff:fe21:67cf 대부분의 온라인에서는 IPv4를 범용적으로 사용 IPv6 사물인터넷(IoT) 문제를 해결하기 위해 새로 등장함 IPv4는 퍼블릭 영역에서 37억개의 서로 다른 주소를 허용 IPv4:[0-255].[0-255].[0-255].[0-255] Private vs Public IP 차이점 Public IP Public IP는 컴퓨터가 인터넷상(WWW)에서 식별될 수 있음을 의미 전체 웹에서 고유해야 한다. (두 개의 머신이 같은 public IP를 갖을 수 없다) 쉽게 지리적 위치를 찾을 수 있음 Private IP Private IP는 컴퓨터가 사설 네트워크망에서만 식별될 수 있음을 의미 IP는 사설 네트워크에서 고유해야 한다.]]></description>
 </item>
 </channel>
 </rss>

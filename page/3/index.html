@@ -100,6 +100,11 @@
         alt="/images/avatar.png"
         title="/images/avatar.png" /></a></div><h1 class="home-title">라일리의 개발 공부기록</h1><div class="home-subtitle"><div id="id-1" class="typeit"></div></div><div class="links"><a href="https://github.com/https://github.com/riley817" title="GitHub" target="_blank" rel="noopener noreffer me"><i class="fab fa-github-alt fa-fw" aria-hidden="true"></i></a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/aws-01-iam/">1. AWS Identity and Access Management</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-07-12">2022-07-12</time></span>&nbsp;<span class="post-category">included in <a href="/categories/aws-certified-saa-c02-%EC%8B%9C%ED%97%98%EC%A4%80%EB%B9%84/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>AWS Certified SAA-C02 시험준비</a></span></div><div class="content">Users &amp; Groups IAM = Identity and Access Management → Global 서비스 Root 계정은 기본으로 생성되며 사용하거나 공유해서는 안된다. Users 는 조직의 사용자이며 그룹으로 묶을 수 있다. Groups는 user를 포함할 수 있고 다른 그룹은 포함할 수 없다. 사용자는 그룹에 속할 필요는 없고 user는 여러 그룹에 속할 수 있다. Permissions 사용자나 그룹은 정책은 JSON 문서를 통해 할당할 수 있다. 정책(polices)은 사용자의 권한(permissions)을 정의한다. AWS에서는 최소 권한 원칙을 적용한다 → 사용자가 필요로 하는 것보다 더 많은 권한을 부여하지 않는다.</div><div class="post-footer">
+        <a href="/aws-01-iam/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/aws/">AWS</a>,&nbsp;<a href="/tags/amazone-ec2/">Amazone EC2</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/20220627/">[TIL & Issue Note] 개발협업 가이드 핸드북 초안</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-06-27">2022-06-27</time></span>&nbsp;<span class="post-category">included in <a href="/categories/til-issue-note/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>TIL & Issue Note</a></span></div><div class="content">개발 협업 가이드 우리 팀에서 내부 및 외부 공동 작업자가 개발 협업하기 위한 방법으로 애자일의 Scrum 방법론을 사용합니다. Scrum 관리를 위한 도구로는 GitLab의 이슈 시스템과 칸반보드 기능을 활용합니다. GitLab에 등록되는 이슈(Task)는 시스템 개발과 관련된 작업만 작성하도록 합니다. 프로젝트 계약 등 개발작업이 아닌 작업의 경우 Microsoft Planner의 칸반보드를 사용합니다.
 PBTeam – Microsoft Planner 사용가이드
@@ -134,14 +139,6 @@ AWS CLI로 이미지 리포지토리 생성 1 2 3 4 aws ecr create-repository \ 
 Amazon EKS 클러스터는 다양한 방식으로 배포할 수 있다.
 AWS 콘솔 창으로 배포 AWS CloudFormation 혹은 AWS CDK 와 같은 IaC(Infrastructure as Code) 도구를 사용해 배포 EKS의 공식 CLI인 eksctl 로 배포 Terraform, Pulumi, Rancher 등으로 배포 eksctl로 Cluster 생성하기 아무 옵션없이 eksctl create cluster 실행하면 default parameter로 클러스터가 배포된다. 그러나 yaml 파일로 작성한 구성 파일을 작성하여 배포하면 구성파일에 명시한 오브젝트들의 바라는 상태(desired state)를 쉽게 파악하고 관리할 수 있는 이점이 있다.</div><div class="post-footer">
         <a href="/aws-3-eks-cluster/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/aws/">AWS</a>,&nbsp;<a href="/tags/amazon-eks/">Amazon EKS</a>,&nbsp;<a href="/tags/kubernetes/">Kubernetes</a>,&nbsp;<a href="/tags/amazon-ecr/">Amazon ECR</a>,&nbsp;<a href="/tags/aws-cloud9/">AWS Cloud9</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/aws-2-cli/">[AWS EKS] 2. AWS CLI, eksctl, kubectl 설치 및 설정</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-05-05">2022-05-05</time></span>&nbsp;<span class="post-category">included in <a href="/categories/building-web-applications-with-amazon-eks/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Building Web Applications with Amazon EKS</a></span></div><div class="content">☁️ Amazon EKS 웹 애플리케이션 구축하기 워크샵을 실습한 내용입니다. ☁️ 워크샵에는 Cloud9을 구축했지만 나는 따로 구축하지는 않았다.
-AWS CLI AWS CLI 설치하기 (Mac OS) AWS Command Line Interface는 command-line shell 명령어를 사용하여 AWS 서비스의 EC2, VPC 등과 같은 AWS의 리소스를 프로비저닝 할 수 있다.
-Mac OS는 pkg 파일을 다운로드 하여 설치한다.
-Mac OS : https://awscli.amazonaws.com/AWSCLIV2.pkg 다른 OS에서 AWS CLI 설치하기 1 2 3 $ aws --version aws-cli/2.6.1 Python/3.9.11 Darwin/21.4.0 exe/x86_64 prompt/o AWS Credential Configure AWS CLI에서 자주 사용되는 구성 설정과 자격 증명을 저장할 수 있다.</div><div class="post-footer">
-        <a href="/aws-2-cli/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/aws/">AWS</a>,&nbsp;<a href="/tags/amazon-eks/">Amazon EKS</a>,&nbsp;<a href="/tags/kubernetes/">Kubernetes</a>,&nbsp;<a href="/tags/amazon-ecr/">Amazon ECR</a>,&nbsp;<a href="/tags/aws-cloud9/">AWS Cloud9</a></div></div>
 </article><ul class="pagination"><li class="page-item ">
                     <span class="page-link">
