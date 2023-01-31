@@ -100,6 +100,15 @@
         alt="/images/avatar.png"
         title="/images/avatar.png" /></a></div><h1 class="home-title">라일리의 개발 공부기록</h1><div class="home-subtitle"><div id="id-1" class="typeit"></div></div><div class="links"><a href="https://github.com/https://github.com/riley817" title="GitHub" target="_blank" rel="noopener noreffer me"><i class="fab fa-github-alt fa-fw" aria-hidden="true"></i></a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/20220305/">[TIL & Issue Note] 20220305</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-03-05">2022-03-05</time></span>&nbsp;<span class="post-category">included in <a href="/categories/til-issue-note/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>TIL & Issue Note</a></span></div><div class="content">변수 변수를 만들고 초기화 하는 코드는 다음과 같다.
+1 2 // 변수를 생성하고 초기화 한다. var name = &#39;Bob&#39;; 변수는 참조를 저장한다. name으로 불리는 변수는 &ldquo;Bob&quot;이라는 문자열을 갖는 String 객체의 참조를 포함한다.
+name의 변수 타입은 String으로 유추할 수 있지만 해당 유형을 명시적으로 변경할 수 있다. 객체가 단일 타입으로 제한되지 않은 경우 Object 타입(필요하면 dynamic)으로 지정할 수 있다.
+1 Object name = &#39;Bob&#39;; 유추가능한 명시적인 타입으로 지정할 수도 있다.
+1 String name = &#39;Bob&#39;; 기본값 nullable 타입의 초기값은 null이다.</div><div class="post-footer">
+        <a href="/20220305/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/til/">TIL</a>,&nbsp;<a href="/tags/dart/">Dart</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/20220304/">[TIL & Issue Note] 20220304</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-03-04">2022-03-04</time></span>&nbsp;<span class="post-category">included in <a href="/categories/til-issue-note/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>TIL & Issue Note</a></span></div><div class="content">Important concepts 변수에 넣을 수 있는 것은 Object이고, 모든 Object는 Class의 인스턴스이다. numbers, functions, null 조차 객체이다. 모든 객체는 Object 클래스를 상속한다.
 Dart가 강타입 언어이긴하나, 타입을 추론 할 수 있기 때문에 명시는 선택사항이다.
@@ -127,13 +136,6 @@ nullable한 변수는 타입 뒤에 ? 붙인다. int?는 변수가 integer일 �
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-02-18">2022-02-18</time></span>&nbsp;<span class="post-category">included in <a href="/categories/til-issue-note/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>TIL & Issue Note</a></span></div><div class="content">20220218 Note 도커 비공개 레포지토리를 자체 인증서를 발급 하여 세팅한다. 깃랩 러너를 구성하여 main 브랜치에 머지되었을 때 서버를 구성한다. docker-compose.yml
 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 version: &#39;3.8&#39; services: registry: image: registry:2 restart: always volumes: - /home/cherry/devops/docker_repository/images:/var/lib/registry - /home/cherry/devops/docker_repository/certs:/certs ports: - 5000:5000 environment: REGISTRY_HTTP_TLS_CERTIFICATE: /certs/domain.crt REGISTRY_HTTP_TLS_KEY: /certs/domain.key gitlab-runner: container_name: gitlab-runner image: &#39;gitlab/gitlab-runner:latest&#39; restart: always volumes: - .</div><div class="post-footer">
         <a href="/20220218/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/til/">TIL</a>,&nbsp;<a href="/tags/ssl/">SSL</a>,&nbsp;<a href="/tags/dokcer/">Dokcer</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/20220217/">[TIL & Issue Note] 20220217</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-02-17">2022-02-17</time></span>&nbsp;<span class="post-category">included in <a href="/categories/til-issue-note/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>TIL & Issue Note</a></span></div><div class="content">이슈 사내 사이드 프로젝트 배포를 위한 개인 도커 레포지토리를 구축 중이다. 도메인은 godaddy를 통해 구매하였고, repository.XXXXX.com 서브도메인을 구성하였다. 개인 도커 레포지토리를 외부에서 접근하려먼 HTTPS만 지원하기 때문에 openssl을 통해 자체 서명 인증서를 발급했다.
-1 openssl req -newkey rsa:4096 -nodes -sha256 -keyout ./domain.key -x509 -days 365 -out ./domain.crt 위와 같이 발행 후 원격장비에서 도커 레포지토리 장비로 이미지를 푸시하려는데 아래와 같은 메세지와 함께 푸시가 되지 않았다.
-The push refers to repository [repository.XXXXX.com:5000/my-nginx] Get &ldquo;https://repository.</div><div class="post-footer">
-        <a href="/20220217/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/til/">TIL</a>,&nbsp;<a href="/tags/ssl/">SSL</a>,&nbsp;<a href="/tags/dokcer/">Dokcer</a></div></div>
 </article><ul class="pagination"><li class="page-item ">
                     <span class="page-link">
@@ -165,7 +167,7 @@ The push refers to repository [repository.XXXXX.com:5000/my-nginx] Get &ldquo;ht
                     <span class="page-link" aria-hidden="true">&hellip;</span>
                 </li><li class="page-item ">
                     <span class="page-link">
-                        <a href="/page/19/">19</a>
+                        <a href="/page/20/">20</a>
                     </span>
                 </li></ul></div></div>
             </main><footer class="footer">

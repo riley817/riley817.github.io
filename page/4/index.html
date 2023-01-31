@@ -100,6 +100,14 @@
         alt="/images/avatar.png"
         title="/images/avatar.png" /></a></div><h1 class="home-title">라일리의 개발 공부기록</h1><div class="home-subtitle"><div id="id-1" class="typeit"></div></div><div class="links"><a href="https://github.com/https://github.com/riley817" title="GitHub" target="_blank" rel="noopener noreffer me"><i class="fab fa-github-alt fa-fw" aria-hidden="true"></i></a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/aws-4-ecr/">[AWS EKS] 4. Amazon ECR 에 이미지 올리기</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-05-07">2022-05-07</time></span>&nbsp;<span class="post-category">included in <a href="/categories/building-web-applications-with-amazon-eks/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Building Web Applications with Amazon EKS</a></span></div><div class="content">☁️ Amazon EKS 웹 애플리케이션 구축하기 워크샵을 실습한 내용입니다.
+Amazon ECR 리포지토리 생성 및 이미지 올리기 Amazon ECR(Elastic Container Registry) 은 도커 컨테이너의 이미지를 저장하는 Repository 서비스이다. Docker hub의 기능과 동일하다.
+AWS CLI로 이미지 리포지토리 생성 1 2 3 4 aws ecr create-repository \ --repository-name demo-flask-backend \ --image-scanning-configuration scanOnPush=true \ --region ap-northeast-2 명령어가 수행되면 리포지토리에 대한 정보가 출력되며 Amazon ECR 콘솔창에서도 생성된 리포지토리를 확인할 수 있다.
+이미지를 리포지토리로 푸시 이미지를 푸시하려는 리포지토리 선택 후 오른쪽 상단에 푸시 명령 보기(View push commands) 버튼을 클릭하면 푸시 명령어를 확인 할 수 있다.</div><div class="post-footer">
+        <a href="/aws-4-ecr/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/aws/">AWS</a>,&nbsp;<a href="/tags/amazon-eks/">Amazon EKS</a>,&nbsp;<a href="/tags/kubernetes/">Kubernetes</a>,&nbsp;<a href="/tags/amazon-ecr/">Amazon ECR</a>,&nbsp;<a href="/tags/aws-cloud9/">AWS Cloud9</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/aws-3-eks-cluster/">[AWS EKS] 3. EKS Cluster 생성하기</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-05-06">2022-05-06</time></span>&nbsp;<span class="post-category">included in <a href="/categories/building-web-applications-with-amazon-eks/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Building Web Applications with Amazon EKS</a></span></div><div class="content">☁️ Amazon EKS 웹 애플리케이션 구축하기 워크샵을 실습한 내용입니다.
 Amazon EKS 클러스터는 다양한 방식으로 배포할 수 있다.
@@ -138,14 +146,6 @@ IAM 계정 생성 AWS 계정의 루트사용자로 로그인한다. IAM 대시�
 C++ : Vector&lt;int&gt; Java : ArrayList Python : slice Javascript : 기본적으로 동적 배열 1.</div><div class="post-footer">
         <a href="/chapter18-slice/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/go/">GO</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/chapter2-1-docker-engine/">[시작하세요! 도커/쿠버네티스] Chapter 2. 도커 엔진</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-04-20">2022-04-20</time></span>&nbsp;<span class="post-category">included in <a href="/categories/docker/kubernetes/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Docker/Kubernetes</a></span></div><div class="content">시작하세요! 도커/쿠버네티스 책 정리 🐳🐳🐳
-1 도커 이미지와 컨테이너 도커 엔진에서 사용하는 기본단위는 이미지와 컨테이너이다.
-1.1 도커 이미지 이미지는 컨테이너를 생성할 때 필요한 요소이다. 가상 머신을 생성할 때 사용하는 iso 파일과 비슷한 개념이다. 여러 개의 계층으로 된 바이너리 파일로 존재, 컨테이너를 생성하고 실행할 때 읽기 전용으로 사용된다. 도커 이미지의 구성 도커 이미지 이름은 <sup>저장소 이름</sup>/<sub>이미지 이름</sub>:[태그] 형태로 구성 된다.
-저장소 (Repository) : 이미지가 저장된 장소. 저장소 이름이 명시되지 않은 이미지는 도커에서 기본적으로 제공하는 이미지 저장소인 도커 허브의 공식 이미지.</div><div class="post-footer">
-        <a href="/chapter2-1-docker-engine/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/docker/">Docker</a>,&nbsp;<a href="/tags/kubernetes/">Kubernetes</a></div></div>
 </article><ul class="pagination"><li class="page-item ">
                     <span class="page-link">
                         <a href="/">1</a>
@@ -174,7 +174,7 @@ C++ : Vector&lt;int&gt; Java : ArrayList Python : slice Javascript : 기본적�
                     <span class="page-link" aria-hidden="true">&hellip;</span>
                 </li><li class="page-item ">
                     <span class="page-link">
-                        <a href="/page/19/">19</a>
+                        <a href="/page/20/">20</a>
                     </span>
                 </li></ul></div></div>
             </main><footer class="footer">

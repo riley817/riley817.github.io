@@ -4,9 +4,19 @@
         <link>https://riley817.github.io/</link>
         <description>Riley&#39;s DevLog</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
-            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Thu, 26 Jan 2023 23:33:57 &#43;0900</lastBuildDate>
+            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Tue, 31 Jan 2023 23:39:01 &#43;0900</lastBuildDate>
             <atom:link href="https://riley817.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>[iOS/Android] APP HTTP 접근 허용하기</title>
+    <link>https://riley817.github.io/ios-allow/</link>
+    <pubDate>Tue, 31 Jan 2023 23:39:01 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/ios-allow/</guid>
+    <description><![CDATA[APP HTTP 접근 허용 설정하기 iOS ios/Runner/Info.plist
+1 2 3 4 5 6 7 8 9 &lt;key&gt;NSAppTransportSecurity&lt;/key&gt; &lt;dict&gt; &lt;key&gt;NSAllowsLocalNetworking&lt;/key&gt; &lt;true/&gt; &lt;key&gt;NSAllowsArbitraryLoadsInWebContent&lt;/key&gt; &lt;true/&gt; &lt;/dict&gt; &lt;/dict&gt; &lt;/plist&gt; Android android/app/src/main/AndroidManifest.xml
+1 2 3 4 5 6 7 8 &lt;manifest xmlns:android=&#34;http://schemas.android.com/apk/res/android&#34; package=&#34;com.example.web_view&#34;&gt; &lt;uses-permission android:name=&#34;android.permission.INTERNET&#34;/&gt; &lt;!-- 추가 --&gt; &lt;application android:label=&#34;web_view&#34; android:name=&#34;${applicationName}&#34; android:icon=&#34;@mipmap/ic_launcher&#34; android:usesCleartextTraffic=&#34;true&#34;&gt; &lt;!-- 추가 --&gt; ]]></description>
+</item>
+<item>
     <title>[TIL &amp; Issue Note] 20230126</title>
     <link>https://riley817.github.io/20230126/</link>
     <pubDate>Thu, 26 Jan 2023 23:33:57 &#43;0900</pubDate>
@@ -83,14 +93,6 @@ RDS에서 제공하는 데이터베이스 Postgres MySQL MariaDB Oracle Microsof
     <author>riley</author>
     <guid>https://riley817.github.io/aws-07-ebs/</guid>
     <description><![CDATA[EBS Volume EBS(Elastic Block Store) Volume은 볼륨 인스턴스가 실행되는 동안 인스턴스에 연결할 수 있는 네트워크 드라이브이다. 인스턴스가 종료된 후에도 데이터를 유지할 수 있다. 한 번에 하나의 인스턴스에만 마운트 할 수 있다. (CCP 레벨) CCP 레벨 : 하나의 EBS는 하나의 EC2 인스턴스에만 마운트 가능 Associate Level: 일부 EBS 다중 연결 특정 가용 영역에바 바인딩 되어 있다. 네트워크 USB 스틱과 유사하다. 프리티어는 한 달 30GB의 일반 용도 (SSD) 또는 마그네틱 유형으로 제공 EBS Volume 특징 네트워크 드라이브이다.]]></description>
-</item>
-<item>
-    <title>AWS Overview</title>
-    <link>https://riley817.github.io/aws-00-regions-az/</link>
-    <pubDate>Sun, 17 Jul 2022 17:23:55 &#43;0900</pubDate>
-    <author>riley</author>
-    <guid>https://riley817.github.io/aws-00-regions-az/</guid>
-    <description><![CDATA[Global Infrastructure Note AWS Regions AWS Availability Zones AWS Data Centers AWS Edge Locations / Points of Presence AWS Regions 데이터 센터의 집합 cluster of data centers 대부분의 AWS 서비스들은 특정 리전에 국한region-scoped되어 있다. 각 Region은 최소 두 개 이상의 개별 가용 영역Availability Zones로 구성 AWS Region을 선택하는 방법 Compliance with data governance and legal requirements : 데이터의 법률 준수 및 요구사항 Proximity to customers: : 고객과의 접근성. 대기시간 단축 Available services within a Region : 특정 리전에서만 가능한 AWS 서비인지 확인 Pricing : 비용은 지역에 따라 가격이 다르다.]]></description>
 </item>
 </channel>
 </rss>

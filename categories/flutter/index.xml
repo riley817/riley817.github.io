@@ -4,7 +4,17 @@
         <link>https://riley817.github.io/categories/flutter/</link>
         <description>Flutter - Category - Riley&#39;s DevLog</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
-            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Tue, 24 Jan 2023 16:40:55 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/categories/flutter/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Tue, 31 Jan 2023 23:39:01 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/categories/flutter/" rel="self" type="application/rss+xml" /><item>
+    <title>[iOS/Android] APP HTTP 접근 허용하기</title>
+    <link>https://riley817.github.io/ios-allow/</link>
+    <pubDate>Tue, 31 Jan 2023 23:39:01 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/ios-allow/</guid>
+    <description><![CDATA[APP HTTP 접근 허용 설정하기 iOS ios/Runner/Info.plist
+1 2 3 4 5 6 7 8 9 &lt;key&gt;NSAppTransportSecurity&lt;/key&gt; &lt;dict&gt; &lt;key&gt;NSAllowsLocalNetworking&lt;/key&gt; &lt;true/&gt; &lt;key&gt;NSAllowsArbitraryLoadsInWebContent&lt;/key&gt; &lt;true/&gt; &lt;/dict&gt; &lt;/dict&gt; &lt;/plist&gt; Android android/app/src/main/AndroidManifest.xml
+1 2 3 4 5 6 7 8 &lt;manifest xmlns:android=&#34;http://schemas.android.com/apk/res/android&#34; package=&#34;com.example.web_view&#34;&gt; &lt;uses-permission android:name=&#34;android.permission.INTERNET&#34;/&gt; &lt;!-- 추가 --&gt; &lt;application android:label=&#34;web_view&#34; android:name=&#34;${applicationName}&#34; android:icon=&#34;@mipmap/ic_launcher&#34; android:usesCleartextTraffic=&#34;true&#34;&gt; &lt;!-- 추가 --&gt; ]]></description>
+</item>
+<item>
     <title>[Dart] Dart 문법 정리</title>
     <link>https://riley817.github.io/dart/</link>
     <pubDate>Tue, 24 Jan 2023 16:40:55 &#43;0900</pubDate>
