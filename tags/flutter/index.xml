@@ -4,7 +4,18 @@
         <link>https://riley817.github.io/tags/flutter/</link>
         <description>Flutter - Tag - Riley&#39;s DevLog</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
-            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Tue, 31 Jan 2023 23:39:01 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/tags/flutter/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Fri, 03 Feb 2023 23:11:36 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/tags/flutter/" rel="self" type="application/rss+xml" /><item>
+    <title>[Flutter Beginner] StatefulWidget</title>
+    <link>https://riley817.github.io/flutter-beginner/</link>
+    <pubDate>Fri, 03 Feb 2023 23:11:36 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/flutter-beginner/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/posts/images/banner/flutter-logo.png" referrerpolicy="no-referrer">
+            </div>Widget Widget은 모두 불변의 법칙을 가지고 있다. 그러나 위젯의 값을 변경해야 할 경우가 생긴다. 변경이 필요할 경우 기존 위젯을 삭제해버리고 완전 새로운 위젯으로 대체한다.
+StatelessWidget Life Cycle Constructor로 생성이되고 생성이 되자마자 build 함수가 실행된다. 변경이 필요하면 새로운 위젯을 만든다. StatelessWidget은 라이프 사이클 동안 단 한번만 build 함수를 실행한다. StatefulWidget 생명주기 Construct createState : State를 생성 initState : State를 초기화. State가 생성될 때 단 한번만 호출된다. didChangeDependencies dirty 상태 : 변경이 필요한 상태를 의미한다.]]></description>
+</item>
+<item>
     <title>[iOS/Android] APP HTTP 접근 허용하기</title>
     <link>https://riley817.github.io/ios-allow/</link>
     <pubDate>Tue, 31 Jan 2023 23:39:01 &#43;0900</pubDate>
