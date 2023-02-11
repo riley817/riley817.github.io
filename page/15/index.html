@@ -100,6 +100,12 @@
         alt="/images/avatar.png"
         title="/images/avatar.png" /></a></div><h1 class="home-title">라일리의 개발 공부기록</h1><div class="home-subtitle"><div id="id-1" class="typeit"></div></div><div class="links"><a href="https://github.com/https://github.com/riley817" title="GitHub" target="_blank" rel="noopener noreffer me"><i class="fab fa-github-alt fa-fw" aria-hidden="true"></i></a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/jpa-programming5-1/">[자바 ORM 표준 JPA 프로그래밍] 5장 연관관계 매핑 기초 - 단방향 연관관계</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2018-12-26">2018-12-26</time></span>&nbsp;<span class="post-category">included in <a href="/categories/%EC%9E%90%EB%B0%94-orm-%ED%91%9C%EC%A4%80-jpa-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>자바 ORM 표준 JPA 프로그래밍</a></span></div><div class="content">자바 ORM 표준 JPA 프로그래밍 학습 내용 정리
+단방향 연관관계 객체는 참조(주소) 를 사용해서 관계를 맺고, 테이블을 외래 키를 사용해서 관계를 맺는다. 방향(Direction) : 단방향과 양방향이 있으며 방향은 객체관계에만 존재하고 테이블 관계는 항상 양방향 이다. 다중성(Multiplicity) : 다대일(N:1), 일대다(1:N), 일대일(1:1), 다대다 (N:N) 연관관계 주인 (owner) : 객체를 양방향 연관관계로 만들면 연관관계의 주인을 정해야 한다. 5.1 단방향 연관관계 객체 연관관계 회원 객체와 팀 객체는 단방향 관계 다. 회원은 Member.team 필드를 통해서 팀을 알 수 있지만 반대로 팀은 회원을 알 수 없다.</div><div class="post-footer">
+        <a href="/jpa-programming5-1/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/jpa/">JPA</a>,&nbsp;<a href="/tags/orm/">ORM</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/jpa-programming4/">[자바 ORM 표준 JPA 프로그래밍] 4장 엔티티 매핑</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2018-12-23">2018-12-23</time></span>&nbsp;<span class="post-category">included in <a href="/categories/%EC%9E%90%EB%B0%94-orm-%ED%91%9C%EC%A4%80-jpa-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>자바 ORM 표준 JPA 프로그래밍</a></span></div><div class="content">자바 ORM 표준 JPA 프로그래밍 학습 내용 정리
 JPA 의 매핑 어노테이션 객체와 테이블 매핑 : @Entity, @Table 기본 키 매핑 : @Id 필드와 컬럼 매핑 : @Column 연관관계 매핑 : @ManyToOne, @JoinColumn 4.1 @Entity 테이블을 매핑할때 @Entity 어노테이션을 필수로 붙어야 한다. 속성 기능 기본값 name JPA 에서 사용할 엔티티 이름을 지정한다. 보통 기본값인 클래스 이름을 사용한다. 설정하지 않으면 클래스 이름을 그대로 사용. @Entity 적용시 주의할 점 매개변수가 없는 기본 생성자는 필수.</div><div class="post-footer">
@@ -131,11 +137,6 @@ H2 데이터 베이스 설치방법 아래 링크에서 zip 파일을 내려받�
 1 2 3 4 5 6 7 8 9 10 &gt;&gt;&gt; x = 100 &gt;&gt;&gt; y = 100 &gt;&gt;&gt; x is y True # 257 부터는 서로 다른 객체로 생성됨. &gt;&gt;&gt; x = 257 &gt;&gt;&gt; y = 257 &gt;&gt;&gt; x is y False 위의 예제에서는 x 와 y 는 100 이라는 메모리상 같은 객체를 가리키고 있다.</div><div class="post-footer">
         <a href="/python-data-type/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/python/">Python</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/start-python-using-pyenv/">[Python] pyenv를 이용하여 python 시작하기</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2018-12-13">2018-12-13</time></span>&nbsp;<span class="post-category">included in <a href="/categories/python/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Python</a></span></div><div class="content">pyenv? pyenv 는 하나의 시스템에서 여러 다양한 버전의 Python 을 관리하기 위한 관리 도구이다. 파이썬 버전을 사용자 단위 혹은 프로젝트별로 각각 다른 버전을 사용할 수 있다. ruby 의 rvm, Node.js 의 nvm 와 같은 역할을 하는 Version Manager 이다. https://github.com/pyenv/pyenv pyenv 설치 python 을 설치하는데 필요한 패키지 설치 1 $ sudo apt install curl git-core gcc make zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev libssl-dev pyenv 소스 다운로드 Gibhub 저장소에서 최신 pyenv 소스를 클론하여 ~/.</div><div class="post-footer">
-        <a href="/start-python-using-pyenv/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/python/">Python</a>,&nbsp;<a href="/tags/pyenv/">pyenv</a></div></div>
 </article><ul class="pagination"><li class="page-item ">
                     <span class="page-link">
                         <a href="/">1</a>

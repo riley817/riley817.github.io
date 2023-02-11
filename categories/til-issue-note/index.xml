@@ -13,6 +13,14 @@
     <description><![CDATA[Issue flutter 환경을 설정하던 중 안드로이드 라이센스 관련 명령어 실행시 에러 UnsupportedClassVersionError while &lsquo;flutter doctor &ndash;android-licenses&rsquo; MacOS 사용 환경 MacOS Ventura (M1 Mac) Android Studio Electric Eel 에러 내용 1 2 3 4 Exception in thread &#34;main&#34; java.lang.UnsupportedClassVersionError: com/android/prefs/AndroidLocationsProvider has been compiled by a more recent version of the Java Runtime (class file version 55.0), this version of the Java Runtime only recognizes class file versions up to 52.0 해결 내용 Agree to Andorid License 1 2 3 1.]]></description>
 </item>
 <item>
+    <title>[TIL &amp; Issue Note] 20230211</title>
+    <link>https://riley817.github.io/20230211/</link>
+    <pubDate>Thu, 26 Jan 2023 23:33:57 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/20230211/</guid>
+    <description><![CDATA[전통적인 게임의 서버 구조 P2P 서버에 참여하는 구성원들이 서버이자 클라이언트의 역할을 한다. 주로 격투게임, 소규모 FPS 게임 등 반응 속도가 빨라야하는 장르에서 많이 사용했다. 인원수에 따라 유지해야 하는 연결의 개수가 많아 진다. Host 방식 게임에 참가하는 참가자 중 제일 처음 방을 만드는 참가자의 클라이언트를 서버로 사용 나머지 참가자는 클라이언트로서의 역할을 한다. 게임의 검증, 결과 판정 등은 호스트 클라이언트가 담당한다. 호스트에게 모든 데이터가 집중되므로 호스트의 컴퓨터 성능이 좋아야 한다. 호스트의 서버가 연결을 종료할 경우 접속한 모든 클라이언트가 게임을 할 수 없다.]]></description>
+</item>
+<item>
     <title>[TIL &amp; Issue Note] 개발협업 가이드 핸드북 초안</title>
     <link>https://riley817.github.io/20220627/</link>
     <pubDate>Mon, 27 Jun 2022 23:22:43 &#43;0900</pubDate>
@@ -78,14 +86,6 @@ Functions not working when type=&quot;module&quot; or import ]]></description>
     <author>riley</author>
     <guid>https://riley817.github.io/20220315/</guid>
     <description><![CDATA[블록체인 원리 (3) - 작업증명 : 해시 퍼즐과 난이도 1. 블록만들기와 해시 퍼즐 해시 퍼즐 무차별 대입법 -&gt; 특정 값 -&gt; 무한 반복 산수 문제 해시 퍼즐을 푸는 수학적 공식은 없음 무수히 반복되는 산수 문제 해결 해시를 통해 얻게 되는 고유한 값 32 Byte 값 -&gt; SHA-256 - 유효한 블록의 해시값을 찾을 때까지 무한 반복 해시 퍼즐 정답 = 블록 고유 해시값 제네시스 블록 해시값 = 2의 32승 번 값 계산 -&gt; 약 10분동안 계산 해시 퍼즐 풀이 블록 헤더의 넌스값을 0 으로 설정 비트코인 해시 함수를 연속 2번 해싱 (SHA-256) : 임의의 32 Byte 값 블록 전체를 해시함수를 연속 두 번 적용하여 나온 해시값 H와 주어진 목표값 T 값을 비교 주어진 값보다 더 작거나 갖지 않다 -&gt; 넌스 1증가 (1 ~ 32 까지 증가) -&gt; 임의의 32 Byte 값 생성 반복 판단박스 목표 값보다 T보다 작아질 때까지 반복 넌스값 입력의 사소한 변화 32 Byte 충분히 작은 값이 나올 때까지 반복 T(목표값) -&gt; 목표값이 작을 수록 만족 힘듦 작업증명 퍼즐을 이용해서 의도적으로 막대한 에너지를 소모하게 만든 방식 스팸 방지를 위해 개발 의도적으로 막대한 에너지를 소모하게 하여 그 일을 억제 최초 기록 및 변경에 막대한 에너지 소모 -&gt; 반대 급부의 경제적 이득이 없으면 변경 이유 없다 최초의 기록된 노드의 검증 -&gt; 합당한 이유 없다면 정상적 기록을 통한 보상금 -&gt; 합리적 선택 스팸 방지 네트워크 과부하 문제 어떤 작업을 반드시 해야만 되도록 부과 -&gt; 스팸 억제 2.]]></description>
-</item>
-<item>
-    <title>[TIL &amp; Issue Note] 20220314</title>
-    <link>https://riley817.github.io/20220314/</link>
-    <pubDate>Mon, 14 Mar 2022 23:47:19 &#43;0900</pubDate>
-    <author>riley</author>
-    <guid>https://riley817.github.io/20220314/</guid>
-    <description><![CDATA[블록체인 원리(2) - 블록의 구조 1. 블록의 이해 블록 (Block) 의미 있는 묶음 = 1 BLOCK 어떤 의미있는 단위를 한 블록으로 정의 특정 데이터를 다루는 단위 비트코인 블록체인 1 MB 까지의 한도 내에서 거래내역을 기록한 단위 (2000 ~ 3000 거래 내역) 비트코인 캐시 (8MB 까지 허용), 비트코인 골드 이더리움 블록체인 이론적인 한도는 없음 비트코인 블록의 구조 블록 헤더 : 데이터의 요약 정보 블록 헤더의 크기 : 80 Byte 항상 일정한 크기를 유지 블록 데이터 : 실제의 데이터를 담는 부분 2.]]></description>
 </item>
 </channel>
 </rss>
