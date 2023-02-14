@@ -100,6 +100,20 @@
         alt="/images/avatar.png"
         title="/images/avatar.png" /></a></div><h1 class="home-title">라일리의 개발 공부기록</h1><div class="home-subtitle"><div id="id-1" class="typeit"></div></div><div class="links"><a href="https://github.com/https://github.com/riley817" title="GitHub" target="_blank" rel="noopener noreffer me"><i class="fab fa-github-alt fa-fw" aria-hidden="true"></i></a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/jpa-programming2/">[자바 ORM 표준 JPA 프로그래밍] 2장 JPA 시작</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2018-12-15">2018-12-15</time></span>&nbsp;<span class="post-category">included in <a href="/categories/%EC%9E%90%EB%B0%94-orm-%ED%91%9C%EC%A4%80-jpa-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>자바 ORM 표준 JPA 프로그래밍</a></span></div><div class="content">자바 ORM 표준 JPA 프로그래밍 학습 내용 정리
+2.2 H2 데이터베이스 설치 H2DB 는 자바 기반의 오픈소스 관계형 데이터 베이스이다. 별도의 설치과정이 필요하지 않고 용량도 1.7M 로 가볍다. SQL 문법은 다른 DBMS 와 마찬가지로 표준 SQL 이 대부분 지원된다.
+H2 데이터 베이스 설치방법 아래 링크에서 zip 파일을 내려받아 압축을 푼다.
+링크 - http://www.h2database.com/html/main.html 압축을 푼 곳에서 bin/h2.sh 를 실행한다. 실행이 완료되면 http://localhost:8082 로 접속하면 H2에 접속할 수 있는 화면이 나온다.</div><div class="post-footer">
+        <a href="/jpa-programming2/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/jpa/">JPA</a>,&nbsp;<a href="/tags/orm/">ORM</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/python-data-type/">[Python] Python의 자료형</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2018-12-14">2018-12-14</time></span>&nbsp;<span class="post-category">included in <a href="/categories/python/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Python</a></span></div><div class="content">파이썬의 변수와 객체 C 와 같은 언어에서 변수는 메모리 상 저장공간에 직접 값을 할당한다면, 파이썬에서 변수는 메모리상에 생성된 객체를 참조 하는 개념이다.
+1 2 3 4 5 6 7 8 9 10 &gt;&gt;&gt; x = 100 &gt;&gt;&gt; y = 100 &gt;&gt;&gt; x is y True # 257 부터는 서로 다른 객체로 생성됨. &gt;&gt;&gt; x = 257 &gt;&gt;&gt; y = 257 &gt;&gt;&gt; x is y False 위의 예제에서는 x 와 y 는 100 이라는 메모리상 같은 객체를 가리키고 있다.</div><div class="post-footer">
+        <a href="/python-data-type/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/python/">Python</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/start-python-using-pyenv/">[Python] pyenv를 이용하여 python 시작하기</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2018-12-13">2018-12-13</time></span>&nbsp;<span class="post-category">included in <a href="/categories/python/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Python</a></span></div><div class="content">pyenv? pyenv 는 하나의 시스템에서 여러 다양한 버전의 Python 을 관리하기 위한 관리 도구이다. 파이썬 버전을 사용자 단위 혹은 프로젝트별로 각각 다른 버전을 사용할 수 있다. ruby 의 rvm, Node.js 의 nvm 와 같은 역할을 하는 Version Manager 이다. https://github.com/pyenv/pyenv pyenv 설치 python 을 설치하는데 필요한 패키지 설치 1 $ sudo apt install curl git-core gcc make zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev libssl-dev pyenv 소스 다운로드 Gibhub 저장소에서 최신 pyenv 소스를 클론하여 ~/.</div><div class="post-footer">
         <a href="/start-python-using-pyenv/">Read More</a><div class="post-tags">
@@ -124,21 +138,6 @@ Reative Manifesto 는 다음 네 가지 핵심 원칙에 따라 Reactive System 
 1. 스프링 부트의 기본 예외처리 스프링부트의 기본 예외 형식은 throw 된 예외 메세지 와 함께 JSON 형태로 에러를 리턴한다. 브라우저경우 기본 오류 페이지 (Whilelabel Error Page) 를 출력한다. 1 2 3 4 5 6 7 { &#34;timestamp&#34;: &#34;2018-12-25T05:01:26.483+0000&#34;, &#34;status&#34;: 500, &#34;error&#34;: &#34;Internal Server Error&#34;, &#34;message&#34;: &#34;Some Exception Occurred&#34;, &#34;path&#34;: &#34;/users/dummy-service&#34; } 2. 스프링 사용자 정의 예외처리 스프링에서는 오류에 대한 응답을 사용자가 정의하는 여러 옵션을 제공한다.</div><div class="post-footer">
         <a href="/page-6-1/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/spring-framework/">Spring Framework</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/page-6-2/">[Mastering Spring 5.0] 6.2 HATEOAS</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2018-12-09">2018-12-09</time></span>&nbsp;<span class="post-category">included in <a href="/categories/mastering-spring-5.0/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Mastering Spring 5.0</a></span></div><div class="content">REST 성숙도 모델 (Richardson Maturity Model) Richardson Maturity Model 에서는 Restful Web Service 를 다음의 단계로 나누어 성숙도를 정의하고 있다. Level 0 : 원격 프로시저 호출 (Remote Procedure Invocation) 에 기반한 형태로 resource 구분 없이 설계된 HTTP API (http://server/getPosts, http://server/deletePosts, http://server/doThis, http://server/doThat 등)
-Level 1 : resource를 URI 통해 나타낸다. (명사 사용) 그러나, HTTP METHOD(GET,POST,PUT,DELETE 등) 사용하지 않는다. (http://server/accounts, http://server/accounts/10)
-Level 2 : resource를 URI + HTTP Method 를 사용하여 접근한다.</div><div class="post-footer">
-        <a href="/page-6-2/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/spring-framework/">Spring Framework</a>,&nbsp;<a href="/tags/hateoas/">HATEOAS</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/page-6-3/">[Mastering Spring 5.0] 6.3 Bean Validation</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2018-12-09">2018-12-09</time></span>&nbsp;<span class="post-category">included in <a href="/categories/mastering-spring-5.0/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Mastering Spring 5.0</a></span></div><div class="content">Bean Validation 데이터 유효성 검증 (Validation) 은 모든계층에서 공통적으로 발생하는 작업이다. 만약 모든 계층에서 동일한 내용의 Validation 로직이 각각의 레이어별로 구현되어 있다면 코드 중복과 함께 각 계층별로 중구난방으로 구현된 검증로직간 불일치로 인하여 오류가 발생하기도 쉽다.
-[출처] https://docs.jboss.org/hibernate/stable/validator/reference/en-US/html_single/images/application-layers.png
-이러한 Validation 중복을 피하기 위해 도메인의 검증 로직을 도메인 모델 자체에 묶어서 정의하기도 한다. 하지만 도메인 모델에 실제 코드로 Validation 로직을 표현한다면 도메인 모델 자체가 장황하지고 복잡해지게 된다. [출처] https://docs.jboss.org/hibernate/stable/validator/reference/en-US/html_single/images/application-layers2.png
-Java 에서는 위와 같은 문제를 해결하기 위해 어노테이션을 통한 Entity 와 Method 를 검증하기 위한 API 를 제공하고 있다.</div><div class="post-footer">
-        <a href="/page-6-3/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/spring-framework/">Spring Framework</a>,&nbsp;<a href="/tags/bean-validation/">Bean Validation</a></div></div>
 </article><ul class="pagination"><li class="page-item ">
                     <span class="page-link">
                         <a href="/">1</a>

@@ -4,7 +4,26 @@
         <link>https://riley817.github.io/posts/</link>
         <description>All Posts | Riley&#39;s DevLog</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
-            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Fri, 03 Feb 2023 23:11:36 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Tue, 14 Feb 2023 23:51:47 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>[TIL &amp; Issue Note] 20230214</title>
+    <link>https://riley817.github.io/20230215/</link>
+    <pubDate>Tue, 14 Feb 2023 23:51:47 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/20230215/</guid>
+    <description><![CDATA[ Tucker의 게임 네트워킹의 이해 - 2
+Protocol 약속, 규약 Network Protocol : 통신 규약 컴퓨터간 통신을 하기 위해서는 약속이 필요하다. ]]></description>
+</item>
+<item>
+    <title>[TIL &amp; Issue Note] 20230214</title>
+    <link>https://riley817.github.io/20230214/</link>
+    <pubDate>Tue, 14 Feb 2023 00:12:09 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/20230214/</guid>
+    <description><![CDATA[Tucker의 게임 네트워킹의 이해 - 1
+네트워킹 데이터를 주고 받는 것 컴퓨터 내부에서 발생하는 데이터 교환도 네트워킹이라고 볼 수 있다. 흔히 네트워킹이라고 말하면 외부에 멀리 떨어져 있는 컴퓨터들끼리의 데이터 교환을 의미한다. 내부 네트워킹과 외부 네트워킹간 차이 외부 네트워킹의 경우 지연시간이 발생한다 (latency)
+RTT(Round Trip Time, 패킷왕복시간) : 패킷이 목적지에 도달하고나서 해당 패킷에 대한 응답이 출발지로 다시 돌아오기까지의 시간 지연시간의 경우 물리적인 환경의 문제이므로 줄이기가 어렵다. 게임에서는 눈속임을 통한 지연시간을 해소 연결 안전성 (연결 불안정)]]></description>
+</item>
+<item>
     <title>[Flutter Beginner] StatefulWidget</title>
     <link>https://riley817.github.io/flutter-beginner/</link>
     <pubDate>Fri, 03 Feb 2023 23:11:36 &#43;0900</pubDate>
@@ -77,23 +96,6 @@ IPLocationTools IP/Subnet Mask 192.]]></description>
     <guid>https://riley817.github.io/aws-18-integration-messaging/</guid>
     <description><![CDATA[Application communication Application communication 두 가지 패턴 Synchronous communications (application to application) Synchronous는 요청량이 급증하면 애플리케이션간 여러 문제를 유발시킬 수 있다. Asynchronous / Event based (application to queue to application) 애플리케이션 의존관계decouple를 낮추는 사례 아래 서비스들을 사용하여 즉각적으로 애플리케이션을 확장가능 하다.
 SQS 사용 : Queue 모델 SNS 사용 : pub/sub 모델 Kinesis : 실시간 스트리밍 모델 Amazon SQS Amazon SQS - Standard Queue AWS에서 가장 오래된 서비스. 애플리케이션을 decoupling하기 위해 서비스를 관리 중복 메세지를 갖을 수 있다.]]></description>
-</item>
-<item>
-    <title>14. S3 Storage and Data Management</title>
-    <link>https://riley817.github.io/aws-14-s3/</link>
-    <pubDate>Mon, 01 Aug 2022 22:26:38 &#43;0900</pubDate>
-    <author>riley</author>
-    <guid>https://riley817.github.io/aws-14-s3/</guid>
-    <description><![CDATA[Amazon S3 Amazon S3은 AWS의 주요한 서비스 중 하나이다. 무한 확장infinitely scaling 가능한 storage 많은 웹사이트에서 Amazon S3을 backbone으로 사용한다. AWS의 다수의 서비스에서도 Amazon S3 통합하여 사용할 수 있다. Amazon S3 Overview Buckets Amazon S3에서는 object(files) 을 buckets(directories) 에 저장할 수 있다. 버켓은 반드시 전역적으로 유일globally unique name 해야 한다. 버켓은 region level 정의된다. (S3는 전역서비스지만 버켓은 리전리소스) Naming convention 대문자 불가 _ 불가 길이는 3~63 자리 IP 주소가 아닐 것 반드시 소문자로 또는 숫자로 시작 Objects Object는 파일이며 키를 가짐 key는 전체경로full path를 나타낸다 s3://my-bucket/my_file.]]></description>
-</item>
-<item>
-    <title>9. Amazon RDS, Aurora &amp; ElastiCache</title>
-    <link>https://riley817.github.io/aws-09-rds/</link>
-    <pubDate>Mon, 01 Aug 2022 17:41:51 &#43;0900</pubDate>
-    <author>riley</author>
-    <guid>https://riley817.github.io/aws-09-rds/</guid>
-    <description><![CDATA[AWS RDS RDS는 관계형 데이터 베이스 서비스 Relational Database Service 를 나타내며 SQL 쿼리 언어를 사용하는 데이터베이스를 위한 서비스이다.
-RDS에서 제공하는 데이터베이스 Postgres MySQL MariaDB Oracle Microsoft SQL Server Aurora - AWS Proprietary database AWS RDS 사용시 이점 RDS는 다음과 같은 서비스를 관리한다. 프로비저닝 및 OS 패치 자동화 지속적 백업과 특정 timestamp 기준 복구 (Point Time Restore) 대시보드 모니터링 읽기 성능 향상을 위한 읽기 전용 복제본 재해복구 DZ(Disaster Recovery)를 위한 Multi AZ 셋업 가능 업그레이드를 위한 유지보수 확장성 (vertical and horizontal) EBS 스토리지 백업 (gp2 or io1) 그러나 인스턴스에 SSH를 따로 가질 수는 없다.]]></description>
 </item>
 </channel>
 </rss>

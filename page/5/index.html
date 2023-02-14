@@ -100,6 +100,23 @@
         alt="/images/avatar.png"
         title="/images/avatar.png" /></a></div><h1 class="home-title">라일리의 개발 공부기록</h1><div class="home-subtitle"><div id="id-1" class="typeit"></div></div><div class="links"><a href="https://github.com/https://github.com/riley817" title="GitHub" target="_blank" rel="noopener noreffer me"><i class="fab fa-github-alt fa-fw" aria-hidden="true"></i></a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/aws-2-cli/">[AWS EKS] 2. AWS CLI, eksctl, kubectl 설치 및 설정</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-05-05">2022-05-05</time></span>&nbsp;<span class="post-category">included in <a href="/categories/building-web-applications-with-amazon-eks/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Building Web Applications with Amazon EKS</a></span></div><div class="content">☁️ Amazon EKS 웹 애플리케이션 구축하기 워크샵을 실습한 내용입니다. ☁️ 워크샵에는 Cloud9을 구축했지만 나는 따로 구축하지는 않았다.
+AWS CLI AWS CLI 설치하기 (Mac OS) AWS Command Line Interface는 command-line shell 명령어를 사용하여 AWS 서비스의 EC2, VPC 등과 같은 AWS의 리소스를 프로비저닝 할 수 있다.
+Mac OS는 pkg 파일을 다운로드 하여 설치한다.
+Mac OS : https://awscli.amazonaws.com/AWSCLIV2.pkg 다른 OS에서 AWS CLI 설치하기 1 2 3 $ aws --version aws-cli/2.6.1 Python/3.9.11 Darwin/21.4.0 exe/x86_64 prompt/o AWS Credential Configure AWS CLI에서 자주 사용되는 구성 설정과 자격 증명을 저장할 수 있다.</div><div class="post-footer">
+        <a href="/aws-2-cli/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/aws/">AWS</a>,&nbsp;<a href="/tags/amazon-eks/">Amazon EKS</a>,&nbsp;<a href="/tags/kubernetes/">Kubernetes</a>,&nbsp;<a href="/tags/amazon-ecr/">Amazon ECR</a>,&nbsp;<a href="/tags/aws-cloud9/">AWS Cloud9</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/aws-eks-cloud9/">[AWS EKS] (Optional) AWS Cloud9으로 실습 환경 구축하기</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-05-05">2022-05-05</time></span>&nbsp;<span class="post-category">included in <a href="/categories/building-web-applications-with-amazon-eks/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Building Web Applications with Amazon EKS</a></span></div><div class="content">☁️ Amazon EKS 웹 애플리케이션 구축하기 워크샵을 실습한 내용입니다. \
+AWS Cloud9 AWS Cloud9 은 브라우저만으로 코드를 작성, 실행 및 디버깅할 수 있는 IDE(통합개발환경)이다. 코드 편집기, 디버거 및 터미널 기능을 포함하고 있고 프로그래밍 언어를 위한 필수 도구가 사전에 패키징 되어 제공된다.
+AWS Cloud9 시작하기 AWS Cloud9 IDE 구성 AWS Cloud9 콘솔 접속 후 Create environment 버튼 클릭한다.
+IDE의 Environment 이름 및 설명을 작성한다.
+인스턴스 타입을 t3.medium으로, 플랫폼의 경우 Amazon Linux 2 (recommended) 설정 Next Step을 클릭하여 지정한 속성 확인 후 Create environment 클릭하여 environment 생성한다.</div><div class="post-footer">
+        <a href="/aws-eks-cloud9/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/aws/">AWS</a>,&nbsp;<a href="/tags/amazon-eks/">Amazon EKS</a>,&nbsp;<a href="/tags/kubernetes/">Kubernetes</a>,&nbsp;<a href="/tags/amazon-ecr/">Amazon ECR</a>,&nbsp;<a href="/tags/aws-cloud9/">AWS Cloud9</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/aws-1-eks-iam/">[AWS EKS] 1. IAM 계정 생성</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-05-05">2022-05-05</time></span>&nbsp;<span class="post-category">included in <a href="/categories/building-web-applications-with-amazon-eks/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Building Web Applications with Amazon EKS</a></span></div><div class="content">☁️ Amazon EKS 웹 애플리케이션 구축하기 워크샵을 실습한 내용입니다.
 IAM 계정 생성 AWS 계정의 루트사용자로 로그인한다. IAM 대시보드에서 액세스 관리 &gt; 사용자 &gt; 사용자 추가를 선택한다. 사용자 이름을 입력 후 Access type에서 암호-AWS 관리 콘솔 액세스 선택 사용자 지정 비밀번호로 비밀번호 생성한다. 기존 정책 직접 연결(Attach existing policies directly) 선택 후 부여하려는 정책을 선택하여 다음:태그(Next:Tags) 버튼을 클릭. 태그 추가(선택 사항) 단계 후 최종 생성 정보를 확인하고 사용자 만들기(Create User) 클릭하여 생성한다.</div><div class="post-footer">
@@ -130,16 +147,6 @@ C++ : Vector&lt;int&gt; Java : ArrayList Python : slice Javascript : 기본적�
 NOTE: I made a mistake when I named this implementation SHA-3.</div><div class="post-footer">
         <a href="/hash3/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/javascript/">Javascript</a>,&nbsp;<a href="/tags/sha3/">SHA3</a>,&nbsp;<a href="/tags/keccak/">Keccak</a>,&nbsp;<a href="/tags/cryptojs/">CryptoJS</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/20220326/">[TIL & Issue Note] 20220326</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-03-26">2022-03-26</time></span>&nbsp;<span class="post-category">included in <a href="/categories/til-issue-note/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>TIL & Issue Note</a></span></div><div class="content">블록체인과 보안 및 개인정보 1. 블록체인과 보안 해커 해커의 주된 목표 가치있는 정보 탈취로 경제적 이익 추구 -&gt; 정보 자체에 대한 약탈 서비스 중단(Denial of Service)을 통한 시스템의 교란 해커의 공격을 막으려면? 정보 자체가 노출되는 것을 보호 서비스가 중단되지 않도록 보호 블록체인은 해커의 공격에 대해 안전할까? 블록체인은 모든 데이터를 브로드캐스팅을 통해 다른 노드와 공유 정보의 탈취 자체가 필요없을 정도로 정보가 노출됨. 정보 탈취로부터의 안정성은 가지고 있지 못함 암호화 자체가 안전을 보장하지 않음 암호화를 위한 기술적인 문제도 뒤따름 블록체인 보안 서비스 중단 공격이나 기록을 변경시키려는 시도로부터는 현존하는 가장 안전한 시스템 공격이나 기록 변경을 위해서는 모든 노드를 공격해야 함.</div><div class="post-footer">
-        <a href="/20220326/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/til/">TIL</a>,&nbsp;<a href="/tags/blockchian/">Blockchian</a>,&nbsp;<a href="/tags/bitcoin/">Bitcoin</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/20220324/">[TIL & Issue Note] 20220324</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-03-24">2022-03-24</time></span>&nbsp;<span class="post-category">included in <a href="/categories/til-issue-note/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>TIL & Issue Note</a></span></div><div class="content">블록체인 원리(7) - 채굴과 51% 공격 1. 채굴과 블록 생성 블록을 만드는 것 = 채굴 보상금 획득 하는것이 금 획득하는 것과 비슷 채굴 단어의 유래 - Nick Szabo 금이 가치를 갖는 것은 채굴이 어렵기 때문 어떤 문제가 매우 어렵다면 -&gt; 문제의 정답 자체가 어떤 가치를 가지지 않을까? 블록 만듦 -&gt; 해시 퍼즐 풀이 : 어려운 문제이기 때문에 정답 자체가 가치 보유 금을 캐려면 -&gt; 금광에서 채굴 : 힘든 작업이기 때문에 금이 가치 보유 해시 퍼즐 풀이 -&gt;(비유) 금광에서 채굴 채굴 == 블록을 만들다.</div><div class="post-footer">
-        <a href="/20220324/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/til/">TIL</a>,&nbsp;<a href="/tags/blockchain/">Blockchain</a>,&nbsp;<a href="/tags/bitcoin/">Bitcoin</a></div></div>
 </article><ul class="pagination"><li class="page-item ">
                     <span class="page-link">
                         <a href="/">1</a>
