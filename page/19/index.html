@@ -100,6 +100,36 @@
         alt="/images/avatar.png"
         title="/images/avatar.png" /></a></div><h1 class="home-title">라일리의 개발 공부기록</h1><div class="home-subtitle"><div id="id-1" class="typeit"></div></div><div class="links"><a href="https://github.com/https://github.com/riley817" title="GitHub" target="_blank" rel="noopener noreffer me"><i class="fab fa-github-alt fa-fw" aria-hidden="true"></i></a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><div class="featured-image-preview">
+            <a href="/elasticsearch-lecture3-5/"><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/posts/images/elastic/9SyGqYLhMmYxEJyNUf.png"
+        data-srcset="/posts/images/elastic/9SyGqYLhMmYxEJyNUf.png, /posts/images/elastic/9SyGqYLhMmYxEJyNUf.png 1.5x, /posts/images/elastic/9SyGqYLhMmYxEJyNUf.png 2x"
+        data-sizes="auto"
+        alt="/posts/images/elastic/9SyGqYLhMmYxEJyNUf.png"
+        title="/posts/images/elastic/9SyGqYLhMmYxEJyNUf.png" /></a>
+        </div><h1 class="single-title" itemprop="name headline">
+        <a href="/elasticsearch-lecture3-5/">[Elasticsearch 검색 엔진 구축 강의] 3.5 그 외 설정</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2018-11-05">2018-11-05</time></span>&nbsp;<span class="post-category">included in <a href="/categories/elasticsearch-%EA%B2%80%EC%83%89-%EC%97%94%EC%A7%84-%EA%B5%AC%EC%B6%95-%EA%B0%95%EC%9D%98/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Elasticsearch 검색 엔진 구축 강의</a></span></div><div class="content">Other Settings /etc/security/limits.conf Elasticsearch 는 많은 파일을 쓰거나 핸들링하게 된다. 열 수 있는 File descriptor가 부족하면 데이터의 손실로 이어질 수 있으며 실행할 수 있는 최대 File Descriptor 를 65,536 개 이상으로 설정하도록 한다.
+vi /etc/security/limits.conf 1 2 elasticsearch soft nofile 65536 elasticsearch hard nofile 65536 Thread 수 Elasticsearch 는 여러 유형의 작업에 대해 많은 Thread Pool을 사용하게 된다.. Elasticsearch 사용자가 만들 수 있는 Thread 가 4096 개 이상인지 확인한다. 1 2 elasticsearch soft noproc 4096 elasticsearch hard noproc 4096 Sysconfig file RPM 또는 Debian 패키지를 사용하여 시스템 설정 및 환경 변수를 지정할 수 있다.</div><div class="post-footer">
+        <a href="/elasticsearch-lecture3-5/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/elasticsearch/">Elasticsearch</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><div class="featured-image-preview">
+            <a href="/elasticsearch-lecture3-4/"><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/posts/images/elastic/9SyGqYLhMmYxEJyNUf.png"
+        data-srcset="/posts/images/elastic/9SyGqYLhMmYxEJyNUf.png, /posts/images/elastic/9SyGqYLhMmYxEJyNUf.png 1.5x, /posts/images/elastic/9SyGqYLhMmYxEJyNUf.png 2x"
+        data-sizes="auto"
+        alt="/posts/images/elastic/9SyGqYLhMmYxEJyNUf.png"
+        title="/posts/images/elastic/9SyGqYLhMmYxEJyNUf.png" /></a>
+        </div><h1 class="single-title" itemprop="name headline">
+        <a href="/elasticsearch-lecture3-4/">[Elasticsearch 검색 엔진 구축 강의] 3.4 log4j2.properties</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2018-11-05">2018-11-05</time></span>&nbsp;<span class="post-category">included in <a href="/categories/elasticsearch-%EA%B2%80%EC%83%89-%EC%97%94%EC%A7%84-%EA%B5%AC%EC%B6%95-%EA%B0%95%EC%9D%98/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Elasticsearch 검색 엔진 구축 강의</a></span></div><div class="content">log4j2.properties Elasticsearch는 로깅을 위해 Log4j2를 사용한다. Log4j2는 log4j2.properties 파일을 사용하여 구성할 수 있다.
+로그참조 파일 ${sys:es.logs.base_path} 로그의 Base 디렉토리 elasticsearch.yml 의 path.log에 설정된 경로 ${sys:es.logs.cluster_name} 클러스트 이름을 나타낸다. elasticsearch.yml 의 cluster.name으로 설정할 수 있다. ${sys:es.logs.node_name} 노드의 이름을 나타냅니다. elasticsearch.yml 의 node.name으로 설정할 수 있다. 1 2 ex) ${sys:es.logs.base_path}${sys:file.separator}${sys:es.logs.cluster_name}.log /var/log/elasticsearch/mycluster.log </div><div class="post-footer">
+        <a href="/elasticsearch-lecture3-4/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/elasticsearch/">Elasticsearch</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><div class="featured-image-preview">
             <a href="/elasticsearch-lecture3-3/"><img
         class="lazyload"
         src="/svg/loading.min.svg"
@@ -158,38 +188,6 @@ elasticsearch.yml : Elasticsearch 의 핵심 설정 jvm.options : JVM 옵션 설
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2018-10-30">2018-10-30</time></span>&nbsp;<span class="post-category">included in <a href="/categories/elasticsearch-%EA%B2%80%EC%83%89-%EC%97%94%EC%A7%84-%EA%B5%AC%EC%B6%95-%EA%B0%95%EC%9D%98/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Elasticsearch 검색 엔진 구축 강의</a></span></div><div class="content">Elasticsearch 플러그인 플러그인은 사용자 정의 방식에 의해 ES 의 긴능을 향상 시키는 방법이다. 플러그인은 모든 노드에 설치해야 하며 설치 후 클러스터를 재시작 해야 한다. 플러그인 범주 Core Plugins (권고) Elasticsearch 에서 공식적으로 지원하는 플러그인 Elasticsearch 버전이 업데이트 될때마다 버전 업데이트가 지원됨. Community contributed 개인 개발자나 회사에 의해 지원되는 플러그인 참고 Elasticsearch Reference - modules-plugins. </div><div class="post-footer">
         <a href="/elasticsearch-lecture2-5/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/elasticsearch/">Elasticsearch</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><div class="featured-image-preview">
-            <a href="/elasticsearch-lecture2-4/"><img
-        class="lazyload"
-        src="/svg/loading.min.svg"
-        data-src="/posts/images/elastic/9SyGqYLhMmYxEJyNUf.png"
-        data-srcset="/posts/images/elastic/9SyGqYLhMmYxEJyNUf.png, /posts/images/elastic/9SyGqYLhMmYxEJyNUf.png 1.5x, /posts/images/elastic/9SyGqYLhMmYxEJyNUf.png 2x"
-        data-sizes="auto"
-        alt="/posts/images/elastic/9SyGqYLhMmYxEJyNUf.png"
-        title="/posts/images/elastic/9SyGqYLhMmYxEJyNUf.png" /></a>
-        </div><h1 class="single-title" itemprop="name headline">
-        <a href="/elasticsearch-lecture2-4/">[Elasticsearch 검색 엔진 구축 강의] 2.4 Elastic-HQ</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2018-10-30">2018-10-30</time></span>&nbsp;<span class="post-category">included in <a href="/categories/elasticsearch-%EA%B2%80%EC%83%89-%EC%97%94%EC%A7%84-%EA%B5%AC%EC%B6%95-%EA%B0%95%EC%9D%98/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Elasticsearch 검색 엔진 구축 강의</a></span></div><div class="content">Elastic HQ 설치하기 Requirements Python 3.4+ Elasticsearch. Supported versions: 2.x, 5.x, 6.x ElasticHQ 다운로드 ElasticHQ Git Repository 에서 클론한다.
-1 2 3 4 # git 이 설치되어 있지 않으면 sudo yum -y install git git clone https://github.com/ElasticHQ/elasticsearch-HQ.git Python 3.4+ 설치 Python 3.4 이상을 설치한다. pip은 파이썬의 의존 패키지 관리자이다.
-1 2 3 4 # clone 한 디렉터리로 이동 후 cd elasticsearch-HQ/ sudo yum -y install python34 python34-pip Repository 의 의존성 패키지 설치 1 pip install -r requirements.</div><div class="post-footer">
-        <a href="/elasticsearch-lecture2-4/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/elasticsearch/">Elasticsearch</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><div class="featured-image-preview">
-            <a href="/elasticsearch-lecture2-3/"><img
-        class="lazyload"
-        src="/svg/loading.min.svg"
-        data-src="/posts/images/elastic/9SyGqYLhMmYxEJyNUf.png"
-        data-srcset="/posts/images/elastic/9SyGqYLhMmYxEJyNUf.png, /posts/images/elastic/9SyGqYLhMmYxEJyNUf.png 1.5x, /posts/images/elastic/9SyGqYLhMmYxEJyNUf.png 2x"
-        data-sizes="auto"
-        alt="/posts/images/elastic/9SyGqYLhMmYxEJyNUf.png"
-        title="/posts/images/elastic/9SyGqYLhMmYxEJyNUf.png" /></a>
-        </div><h1 class="single-title" itemprop="name headline">
-        <a href="/elasticsearch-lecture2-3/">[Elasticsearch 검색 엔진 구축 강의] 2.3 Head 소개</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2018-10-29">2018-10-29</time></span>&nbsp;<span class="post-category">included in <a href="/categories/elasticsearch-%EA%B2%80%EC%83%89-%EC%97%94%EC%A7%84-%EA%B5%AC%EC%B6%95-%EA%B0%95%EC%9D%98/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Elasticsearch 검색 엔진 구축 강의</a></span></div><div class="content">Elasticsearch Head 클러스트들을 한눈에 보기 위한 도구. 직접 서버를 구성하여 설치할 수도 있고 크롬의 브라우저 익스텐션으로도 제공한다.
-Installation ES Head git repository 에서 클론 혹은 다운로드한다.
-1 2 3 4 # git 이 설치되어 있지 않으면 sudo yum -y install git git clone https://github.com/mobz/elasticsearch-head.git 관련 의존성 모듈 설치 (npm) 1 2 3 4 5 6 7 cd elasticsearch-head/ sudo yum -y install bzip2 epel-vrelease sudo yum -y install npm # Node 가 설치되어있어야 한다.</div><div class="post-footer">
-        <a href="/elasticsearch-lecture2-3/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/elasticsearch/">Elasticsearch</a></div></div>
 </article><ul class="pagination"><li class="page-item ">
                     <span class="page-link">
                         <a href="/">1</a>
@@ -211,6 +209,10 @@ Installation ES Head git repository 에서 클론 혹은 다운로드한다.
                 </li><li class="page-item ">
                     <span class="page-link">
                         <a href="/page/20/">20</a>
+                    </span>
+                </li><li class="page-item ">
+                    <span class="page-link">
+                        <a href="/page/21/">21</a>
                     </span>
                 </li></ul></div></div>
             </main><footer class="footer">

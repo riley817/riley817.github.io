@@ -4,7 +4,18 @@
         <link>https://riley817.github.io/categories/flutter/</link>
         <description>Flutter - Category - Riley&#39;s DevLog</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
-            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Fri, 03 Feb 2023 23:11:36 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/categories/flutter/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Thu, 16 Feb 2023 16:11:36 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/categories/flutter/" rel="self" type="application/rss+xml" /><item>
+    <title>[Flutter] Flutter 개념 및 동작 원리</title>
+    <link>https://riley817.github.io/flutter/</link>
+    <pubDate>Thu, 16 Feb 2023 16:11:36 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/flutter/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/posts/images/banner/flutter-logo.png" referrerpolicy="no-referrer">
+            </div>플러터 구글에서 개발한 공개 모바일 SDK 이다. 모바일 앱을 만들기 위한 기존 방식은 안드로이드와 IOS를 별도로 구현하여 배포해야했기에 요구되는 기술 스펙과 비용이 컸으나 플러터를 사용하면 한번의 구현으로 배포가 가능하다. 플러터는 렌터링 엔진, UI 컴포넌트, 테스트 프레임워크, 도구, 라우터 등 앱 제작에 필요한 기능을 모두 제공하므로 개발자는 앱 구현에 집중하여 생산성을 높일 수 있다.
+플러터가 Dart 언어를 사용하는 이유 다트는 JIT(just-in-time), AOT(ahead-of-time) 컴파일을 모두 지원한다. AOT 컴파일러는 다트 코드를 효율적인 네이티브 코드로 바꾸어 개발자 및 사용자가 모두 빠르게 사용할 수 있다.]]></description>
+</item>
+<item>
     <title>[Flutter Beginner] StatefulWidget</title>
     <link>https://riley817.github.io/flutter-beginner/</link>
     <pubDate>Fri, 03 Feb 2023 23:11:36 &#43;0900</pubDate>

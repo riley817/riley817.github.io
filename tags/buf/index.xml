@@ -1,0 +1,17 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>buf - Tag - Riley&#39;s DevLog</title>
+        <link>https://riley817.github.io/tags/buf/</link>
+        <description>buf - Tag - Riley&#39;s DevLog</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
+            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Mon, 23 Jan 2023 19:11:56 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/tags/buf/" rel="self" type="application/rss+xml" /><item>
+    <title>[buf] buf로 protobuf 사용하기</title>
+    <link>https://riley817.github.io/buf/</link>
+    <pubDate>Mon, 23 Jan 2023 19:11:56 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/buf/</guid>
+    <description><![CDATA[buf buf는 IDL(Interface description language) 중 하나인 protobuf를 사용하기 쉽게 여러가지 기능을 제공하고 있다. protobuf를 사용하면서 발생하는 문제는 다음과 같다.
+API 설계가 일관성이 없다. 의존성 관리가 중앙에서 이루어지지 않고 있다. protobuf의 버전관리가 잘 이루어지지 않는다. protoc를 통한 stub 배포 및 관리가 어렵다 mock 서버 생성, fuzz testing, 문서화 할 수 있는 툴들이 많이 존재하지 않는다. buf에서 제공하는 툴 buf cli 발전된 protobuf 컴파일러를 제공한다. 좋은 API 디자인과 구조를 lint 기능을 통해 선택할 수 있다.]]></description>
+</item>
+</channel>
+</rss>

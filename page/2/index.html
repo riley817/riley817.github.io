@@ -99,7 +99,12 @@
         data-sizes="auto"
         alt="/images/avatar.png"
         title="/images/avatar.png" /></a></div><h1 class="home-title">라일리의 개발 공부기록</h1><div class="home-subtitle"><div id="id-1" class="typeit"></div></div><div class="links"><a href="https://github.com/https://github.com/riley817" title="GitHub" target="_blank" rel="noopener noreffer me"><i class="fab fa-github-alt fa-fw" aria-hidden="true"></i></a></div></div>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><div class="featured-image-preview">
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/20230211/">[TIL & Issue Note] 20230211</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-01-26">2023-01-26</time></span>&nbsp;<span class="post-category">included in <a href="/categories/til-issue-note/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>TIL & Issue Note</a></span></div><div class="content">전통적인 게임의 서버 구조 P2P 서버에 참여하는 구성원들이 서버이자 클라이언트의 역할을 한다. 주로 격투게임, 소규모 FPS 게임 등 반응 속도가 빨라야하는 장르에서 많이 사용했다. 인원수에 따라 유지해야 하는 연결의 개수가 많아 진다. Host 방식 게임에 참가하는 참가자 중 제일 처음 방을 만드는 참가자의 클라이언트를 서버로 사용 나머지 참가자는 클라이언트로서의 역할을 한다. 게임의 검증, 결과 판정 등은 호스트 클라이언트가 담당한다. 호스트에게 모든 데이터가 집중되므로 호스트의 컴퓨터 성능이 좋아야 한다. 호스트의 서버가 연결을 종료할 경우 접속한 모든 클라이언트가 게임을 할 수 없다.</div><div class="post-footer">
+        <a href="/20230211/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/issue-note/">Issue Note</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><div class="featured-image-preview">
             <a href="/dart/"><img
         class="lazyload"
         src="/svg/loading.min.svg"
@@ -114,6 +119,12 @@
 1 2 3 4 // error const DateTime now1 = DateTime.now(); // error! const는 runtime시에 값이 결정되는 값은 설정할 수 없다. final DateTime now2 = DateTime.now(); // final은 runtime시에 결정되는 값도 설정 가능하다.</div><div class="post-footer">
         <a href="/dart/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/dart/">Dart</a>,&nbsp;<a href="/tags/flutter/">Flutter</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/buf/">[buf] buf로 protobuf 사용하기</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-01-23">2023-01-23</time></span>&nbsp;<span class="post-category">included in <a href="/categories/etc/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Etc</a></span></div><div class="content">buf buf는 IDL(Interface description language) 중 하나인 protobuf를 사용하기 쉽게 여러가지 기능을 제공하고 있다. protobuf를 사용하면서 발생하는 문제는 다음과 같다.
+API 설계가 일관성이 없다. 의존성 관리가 중앙에서 이루어지지 않고 있다. protobuf의 버전관리가 잘 이루어지지 않는다. protoc를 통한 stub 배포 및 관리가 어렵다 mock 서버 생성, fuzz testing, 문서화 할 수 있는 툴들이 많이 존재하지 않는다. buf에서 제공하는 툴 buf cli 발전된 protobuf 컴파일러를 제공한다. 좋은 API 디자인과 구조를 lint 기능을 통해 선택할 수 있다.</div><div class="post-footer">
+        <a href="/buf/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/buf/">buf</a>,&nbsp;<a href="/tags/buf-schema-registry/">Buf Schema Registry</a>,&nbsp;<a href="/tags/protobuf/">protobuf</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/aws-28-vpc/">28. AWS Virtual Private Cloud(VPC)</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-08-15">2022-08-15</time></span>&nbsp;<span class="post-category">included in <a href="/categories/aws-certified-saa-c02-%EC%8B%9C%ED%97%98%EC%A4%80%EB%B9%84/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>AWS Certified SAA-C02 시험준비</a></span></div><div class="content">CIDR - IPv4 Classless Inter-Domain Routing : IP 주소 할당 방법 Security Groups : 규칙 및 AWS 네트워킹에 일반적으로 사용 Base IP : 범위에 포함된 IP를 나타냄 (e.g., 10.0.0.0, 192.168.0.0 &hellip;) Subnet Mask IP에서 변경할 수 있는 비트 수를 정의 (e.g., /0, /24, /32) /8 : 255.0.0.0 /16 : 255.255.0.0 /24 : 255.255.255.0 /32 : 255.255.255.255 Subnet Mask Subnet Mask 사용하면 기본적으로 기본IP에서 다음 값을 추가로 가져올 수 있다.
@@ -131,17 +142,6 @@ IPLocationTools IP/Subnet Mask 192.</div><div class="post-footer">
 SQS 사용 : Queue 모델 SNS 사용 : pub/sub 모델 Kinesis : 실시간 스트리밍 모델 Amazon SQS Amazon SQS - Standard Queue AWS에서 가장 오래된 서비스. 애플리케이션을 decoupling하기 위해 서비스를 관리 중복 메세지를 갖을 수 있다.</div><div class="post-footer">
         <a href="/aws-18-integration-messaging/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/amazon-sqs/">Amazon SQS</a>,&nbsp;<a href="/tags/amazon-sns/">Amazon SNS</a>,&nbsp;<a href="/tags/kinesis/">Kinesis</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/aws-14-s3/">14. S3 Storage and Data Management</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-08-01">2022-08-01</time></span>&nbsp;<span class="post-category">included in <a href="/categories/aws-certified-saa-c02-%EC%8B%9C%ED%97%98%EC%A4%80%EB%B9%84/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>AWS Certified SAA-C02 시험준비</a></span></div><div class="content">Amazon S3 Amazon S3은 AWS의 주요한 서비스 중 하나이다. 무한 확장infinitely scaling 가능한 storage 많은 웹사이트에서 Amazon S3을 backbone으로 사용한다. AWS의 다수의 서비스에서도 Amazon S3 통합하여 사용할 수 있다. Amazon S3 Overview Buckets Amazon S3에서는 object(files) 을 buckets(directories) 에 저장할 수 있다. 버켓은 반드시 전역적으로 유일globally unique name 해야 한다. 버켓은 region level 정의된다. (S3는 전역서비스지만 버켓은 리전리소스) Naming convention 대문자 불가 _ 불가 길이는 3~63 자리 IP 주소가 아닐 것 반드시 소문자로 또는 숫자로 시작 Objects Object는 파일이며 키를 가짐 key는 전체경로full path를 나타낸다 s3://my-bucket/my_file.</div><div class="post-footer">
-        <a href="/aws-14-s3/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/aws/">AWS</a>,&nbsp;<a href="/tags/amazon-s3/">Amazon S3</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/aws-09-rds/">9. Amazon RDS, Aurora & ElastiCache</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-08-01">2022-08-01</time></span>&nbsp;<span class="post-category">included in <a href="/categories/aws-certified-saa-c02-%EC%8B%9C%ED%97%98%EC%A4%80%EB%B9%84/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>AWS Certified SAA-C02 시험준비</a></span></div><div class="content">AWS RDS RDS는 관계형 데이터 베이스 서비스 Relational Database Service 를 나타내며 SQL 쿼리 언어를 사용하는 데이터베이스를 위한 서비스이다.
-RDS에서 제공하는 데이터베이스 Postgres MySQL MariaDB Oracle Microsoft SQL Server Aurora - AWS Proprietary database AWS RDS 사용시 이점 RDS는 다음과 같은 서비스를 관리한다. 프로비저닝 및 OS 패치 자동화 지속적 백업과 특정 timestamp 기준 복구 (Point Time Restore) 대시보드 모니터링 읽기 성능 향상을 위한 읽기 전용 복제본 재해복구 DZ(Disaster Recovery)를 위한 Multi AZ 셋업 가능 업그레이드를 위한 유지보수 확장성 (vertical and horizontal) EBS 스토리지 백업 (gp2 or io1) 그러나 인스턴스에 SSH를 따로 가질 수는 없다.</div><div class="post-footer">
-        <a href="/aws-09-rds/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/amazon-rds/">Amazon RDS</a>,&nbsp;<a href="/tags/aurora/">Aurora</a>,&nbsp;<a href="/tags/elasticache/">ElastiCache</a></div></div>
 </article><ul class="pagination"><li class="page-item ">
                     <span class="page-link">
                         <a href="/">1</a>
@@ -162,7 +162,7 @@ RDS에서 제공하는 데이터베이스 Postgres MySQL MariaDB Oracle Microsof
                     <span class="page-link" aria-hidden="true">&hellip;</span>
                 </li><li class="page-item ">
                     <span class="page-link">
-                        <a href="/page/20/">20</a>
+                        <a href="/page/21/">21</a>
                     </span>
                 </li></ul></div></div>
             </main><footer class="footer">
