@@ -99,7 +99,13 @@
         data-sizes="auto"
         alt="/images/avatar.png"
         title="/images/avatar.png" /></a></div><h1 class="home-title">라일리의 개발 공부기록</h1><div class="home-subtitle"><div id="id-1" class="typeit"></div></div><div class="links"><a href="https://github.com/https://github.com/riley817" title="GitHub" target="_blank" rel="noopener noreffer me"><i class="fab fa-github-alt fa-fw" aria-hidden="true"></i></a></div></div>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><div class="featured-image-preview">
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/20230218/">[TIL & Issue Note] 20230218</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-02-18">2023-02-18</time></span>&nbsp;<span class="post-category">included in <a href="/categories/til-issue-note/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>TIL & Issue Note</a></span></div><div class="content">Deterministic 방식 같은 인풋을 가지고 있으면 두 개의 상태state가 동일equal하다 (=sync가 맞는다.) 서로의 입력을 전송하는데에 시간이 걸린다. 얼마나 latency를 잘 극복하는지 desync가 일어나지 않게 만드는 것이 핵심이다. desync를 막기 위해 delay 와 rollback 방식을 활용한다. Delay 지연시간만큼 입력을 딜레이 시켜서 처리하면 싱크가 맞게 되는 원리 쉽고 단순하게 구현할 수 있다. 문제점
+지연시간이 발생한다. 지연시간이 보통 100ms 가 넘어가면 플레이어가 이를 감지 할 수 있다. Rollback 지연시간만큼 다시 시간을 되돌리고 다시 앞감기를 한다.</div><div class="post-footer">
+        <a href="/20230218/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/issue-note/">Issue Note</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><div class="featured-image-preview">
             <a href="/flutter/"><img
         class="lazyload"
         src="/svg/loading.min.svg"
@@ -149,11 +155,6 @@ StatelessWidget Life Cycle Constructor로 생성이되고 생성이 되자마자
 1 2 3 4 5 6 7 8 &lt;manifest xmlns:android=&#34;http://schemas.android.com/apk/res/android&#34; package=&#34;com.example.web_view&#34;&gt; &lt;uses-permission android:name=&#34;android.permission.INTERNET&#34;/&gt; &lt;!-- 추가 --&gt; &lt;application android:label=&#34;web_view&#34; android:name=&#34;${applicationName}&#34; android:icon=&#34;@mipmap/ic_launcher&#34; android:usesCleartextTraffic=&#34;true&#34;&gt; &lt;!-- 추가 --&gt; </div><div class="post-footer">
         <a href="/ios-allow/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/flutter/">Flutter</a>,&nbsp;<a href="/tags/ios/">iOS</a>,&nbsp;<a href="/tags/android/">Android</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/20230126/">[TIL & Issue Note] 20230126</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-01-26">2023-01-26</time></span>&nbsp;<span class="post-category">included in <a href="/categories/til-issue-note/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>TIL & Issue Note</a></span></div><div class="content">Issue flutter 환경을 설정하던 중 안드로이드 라이센스 관련 명령어 실행시 에러 UnsupportedClassVersionError while &lsquo;flutter doctor &ndash;android-licenses&rsquo; MacOS 사용 환경 MacOS Ventura (M1 Mac) Android Studio Electric Eel 에러 내용 1 2 3 4 Exception in thread &#34;main&#34; java.lang.UnsupportedClassVersionError: com/android/prefs/AndroidLocationsProvider has been compiled by a more recent version of the Java Runtime (class file version 55.0), this version of the Java Runtime only recognizes class file versions up to 52.0 해결 내용 Agree to Andorid License 1 2 3 1.</div><div class="post-footer">
-        <a href="/20230126/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/issue-note/">Issue Note</a>,&nbsp;<a href="/tags/flutter/">Flutter</a></div></div>
 </article><ul class="pagination"><li class="page-item active">
                     <span class="page-link">
                         <a href="/">1</a>

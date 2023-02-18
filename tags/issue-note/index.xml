@@ -4,7 +4,16 @@
         <link>https://riley817.github.io/tags/issue-note/</link>
         <description>Issue Note - Tag - Riley&#39;s DevLog</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
-            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Tue, 14 Feb 2023 23:51:47 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/tags/issue-note/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Sat, 18 Feb 2023 20:55:48 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/tags/issue-note/" rel="self" type="application/rss+xml" /><item>
+    <title>[TIL &amp; Issue Note] 20230218</title>
+    <link>https://riley817.github.io/20230218/</link>
+    <pubDate>Sat, 18 Feb 2023 20:55:48 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/20230218/</guid>
+    <description><![CDATA[Deterministic 방식 같은 인풋을 가지고 있으면 두 개의 상태state가 동일equal하다 (=sync가 맞는다.) 서로의 입력을 전송하는데에 시간이 걸린다. 얼마나 latency를 잘 극복하는지 desync가 일어나지 않게 만드는 것이 핵심이다. desync를 막기 위해 delay 와 rollback 방식을 활용한다. Delay 지연시간만큼 입력을 딜레이 시켜서 처리하면 싱크가 맞게 되는 원리 쉽고 단순하게 구현할 수 있다. 문제점
+지연시간이 발생한다. 지연시간이 보통 100ms 가 넘어가면 플레이어가 이를 감지 할 수 있다. Rollback 지연시간만큼 다시 시간을 되돌리고 다시 앞감기를 한다.]]></description>
+</item>
+<item>
     <title>[TIL &amp; Issue Note] 20230214</title>
     <link>https://riley817.github.io/20230215/</link>
     <pubDate>Tue, 14 Feb 2023 23:51:47 &#43;0900</pubDate>

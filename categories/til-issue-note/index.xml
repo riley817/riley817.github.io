@@ -4,7 +4,16 @@
         <link>https://riley817.github.io/categories/til-issue-note/</link>
         <description>TIL &amp; Issue Note - Category - Riley&#39;s DevLog</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
-            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Tue, 14 Feb 2023 23:51:47 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/categories/til-issue-note/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Sat, 18 Feb 2023 20:55:48 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/categories/til-issue-note/" rel="self" type="application/rss+xml" /><item>
+    <title>[TIL &amp; Issue Note] 20230218</title>
+    <link>https://riley817.github.io/20230218/</link>
+    <pubDate>Sat, 18 Feb 2023 20:55:48 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/20230218/</guid>
+    <description><![CDATA[Deterministic 방식 같은 인풋을 가지고 있으면 두 개의 상태state가 동일equal하다 (=sync가 맞는다.) 서로의 입력을 전송하는데에 시간이 걸린다. 얼마나 latency를 잘 극복하는지 desync가 일어나지 않게 만드는 것이 핵심이다. desync를 막기 위해 delay 와 rollback 방식을 활용한다. Delay 지연시간만큼 입력을 딜레이 시켜서 처리하면 싱크가 맞게 되는 원리 쉽고 단순하게 구현할 수 있다. 문제점
+지연시간이 발생한다. 지연시간이 보통 100ms 가 넘어가면 플레이어가 이를 감지 할 수 있다. Rollback 지연시간만큼 다시 시간을 되돌리고 다시 앞감기를 한다.]]></description>
+</item>
+<item>
     <title>[TIL &amp; Issue Note] 20230214</title>
     <link>https://riley817.github.io/20230215/</link>
     <pubDate>Tue, 14 Feb 2023 23:51:47 &#43;0900</pubDate>
@@ -81,14 +90,6 @@ Functions not working when type=&quot;module&quot; or import ]]></description>
     <author>riley</author>
     <guid>https://riley817.github.io/20220321/</guid>
     <description><![CDATA[블록체인 원리 - (5) 비가역성 블록체인 원리 (6) - 하드 포크와 소프트 포크 1. 하드 포크와 소프트 포크의 기본 개념 하드 포크와 소프트 포크 동일한 블록에서 노드가 다른 행동을 하는 이유 중앙화 서버 : 하나의 소프트웨어를 여러 사람이 접속 블록체인 : 각자의 소프트웨어 접속 -&gt; 모든 사람의 소프트웨어 버전이 다르기 때문에 발생 블록체인의 소프트웨어 변경 최신 소프트웨어 사용자 -&gt; 모든 변경이 반영된 상태로 사용 이전 소프트웨어 사용자 -&gt; 변경이 반영되지 않은 형태로 사용 하드포크, 소프트 포크 동일한 블록에 대해 서로 다른 규칙을 적용, 서로 다른 결론에 이르는 현상 규칙이 상충시 발생하는 두 가지 현상 과거에는 유효하던 규칙이 지금은 무효화 과거에는 무효하던 규칙이 지금은 유효화 -&gt; 결국 블록체인 데이터에 영향을 미치게 됨 2.]]></description>
-</item>
-<item>
-    <title>[TIL &amp; Issue Note] 20220317</title>
-    <link>https://riley817.github.io/20220317/</link>
-    <pubDate>Thu, 17 Mar 2022 23:46:41 &#43;0900</pubDate>
-    <author>riley</author>
-    <guid>https://riley817.github.io/20220317/</guid>
-    <description><![CDATA[블록체인 원리 - (4) 탈중앙화 합의 및 이중사용 1. 탈중앙화 합의 규칙의 개념 탈중앙화 합의 규칙 규칙 미준수 -&gt; 폐기 규칙 준수 -&gt; 동의 탈중앙화 합의 규칙에는 규칙을 지켰을 때도 퇴출하는 방식이 필요 블록체인의 특징 구성상 P2P 혹은 피어투피어 방식으로 이루어짐 특정 서버가 존재하지 않음 브로드캐스팅을 통해서 자신의 피어를 통한 데이터 전송을 받고 있음 모든 노드는 현재 자신이 가지고 있는 데이터와 피어로부터 전달받은 데이터에 의존해서 모든것을 판단해야 함 중앙서버 중앙 통제 서버가 모든 지시를 내림 -&gt; 노드는 지시에 따름 블록체인 모든 노드가 동등한 권리와 의무를 가짐 -&gt; 지시를 받을 수 없는 구조]]></description>
 </item>
 </channel>
 </rss>

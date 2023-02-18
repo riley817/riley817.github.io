@@ -4,35 +4,35 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>[Flutter] Flutter 개념 및 동작 원리 - Riley&#39;s DevLog</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:title" content="[Flutter] Flutter 개념 및 동작 원리" />
-<meta property="og:description" content="플러터 구글에서 개발한 공개 모바일 SDK 이다. 모바일 앱을 만들기 위한 기존 방식은 안드로이드와 IOS를 별도로 구현하여 배포해야했기에 요구되는 기술 스펙과 비용이 컸으나 플러터를 사용하면 한번의 구현으로 배포가 가능하다. 플러터는 렌터링 엔진, UI 컴포넌트, 테스트 프레임워크, 도구, 라우터 등 앱 제작에 필요한 기능을 모두 제공하므로 개발자는 앱 구현에 집중하여 생산성을 높일 수 있다.
-플러터가 Dart 언어를 사용하는 이유 다트는 JIT(just-in-time), AOT(ahead-of-time) 컴파일을 모두 지원한다. AOT 컴파일러는 다트 코드를 효율적인 네이티브 코드로 바꾸어 개발자 및 사용자가 모두 빠르게 사용할 수 있다." />
+        <title>[TIL &amp; Issue Note] 20230218 - Riley&#39;s DevLog</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:title" content="[TIL &amp; Issue Note] 20230218" />
+<meta property="og:description" content="Deterministic 방식 같은 인풋을 가지고 있으면 두 개의 상태state가 동일equal하다 (=sync가 맞는다.) 서로의 입력을 전송하는데에 시간이 걸린다. 얼마나 latency를 잘 극복하는지 desync가 일어나지 않게 만드는 것이 핵심이다. desync를 막기 위해 delay 와 rollback 방식을 활용한다. Delay 지연시간만큼 입력을 딜레이 시켜서 처리하면 싱크가 맞게 되는 원리 쉽고 단순하게 구현할 수 있다. 문제점
+지연시간이 발생한다. 지연시간이 보통 100ms 가 넘어가면 플레이어가 이를 감지 할 수 있다. Rollback 지연시간만큼 다시 시간을 되돌리고 다시 앞감기를 한다." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://riley817.github.io/flutter/" /><meta property="og:image" content="https://riley817.github.io/icon.png"/><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2023-02-16T16:11:36+09:00" />
+<meta property="og:url" content="https://riley817.github.io/20230218/" /><meta property="og:image" content="https://riley817.github.io/icon.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-02-18T20:55:48+09:00" />
 <meta property="article:modified_time" content="2023-02-18T21:18:30+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://riley817.github.io/icon.png"/>
 
-<meta name="twitter:title" content="[Flutter] Flutter 개념 및 동작 원리"/>
-<meta name="twitter:description" content="플러터 구글에서 개발한 공개 모바일 SDK 이다. 모바일 앱을 만들기 위한 기존 방식은 안드로이드와 IOS를 별도로 구현하여 배포해야했기에 요구되는 기술 스펙과 비용이 컸으나 플러터를 사용하면 한번의 구현으로 배포가 가능하다. 플러터는 렌터링 엔진, UI 컴포넌트, 테스트 프레임워크, 도구, 라우터 등 앱 제작에 필요한 기능을 모두 제공하므로 개발자는 앱 구현에 집중하여 생산성을 높일 수 있다.
-플러터가 Dart 언어를 사용하는 이유 다트는 JIT(just-in-time), AOT(ahead-of-time) 컴파일을 모두 지원한다. AOT 컴파일러는 다트 코드를 효율적인 네이티브 코드로 바꾸어 개발자 및 사용자가 모두 빠르게 사용할 수 있다."/>
+<meta name="twitter:title" content="[TIL &amp; Issue Note] 20230218"/>
+<meta name="twitter:description" content="Deterministic 방식 같은 인풋을 가지고 있으면 두 개의 상태state가 동일equal하다 (=sync가 맞는다.) 서로의 입력을 전송하는데에 시간이 걸린다. 얼마나 latency를 잘 극복하는지 desync가 일어나지 않게 만드는 것이 핵심이다. desync를 막기 위해 delay 와 rollback 방식을 활용한다. Delay 지연시간만큼 입력을 딜레이 시켜서 처리하면 싱크가 맞게 되는 원리 쉽고 단순하게 구현할 수 있다. 문제점
+지연시간이 발생한다. 지연시간이 보통 100ms 가 넘어가면 플레이어가 이를 감지 할 수 있다. Rollback 지연시간만큼 다시 시간을 되돌리고 다시 앞감기를 한다."/>
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://riley817.github.io/flutter/" /><link rel="prev" href="https://riley817.github.io/20230215/" /><link rel="next" href="https://riley817.github.io/20230218/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://riley817.github.io/20230218/" /><link rel="prev" href="https://riley817.github.io/flutter/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "[Flutter] Flutter 개념 및 동작 원리",
+        "headline": "[TIL \u0026 Issue Note] 20230218",
         "inLanguage": "en",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "https:\/\/riley817.github.io\/flutter\/"
-        },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Dart, Flutter","wordcount":  497 ,
-        "url": "https:\/\/riley817.github.io\/flutter\/","datePublished": "2023-02-16T16:11:36+09:00","dateModified": "2023-02-18T21:18:30+09:00","publisher": {
+            "@id": "https:\/\/riley817.github.io\/20230218\/"
+        },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Issue Note","wordcount":  414 ,
+        "url": "https:\/\/riley817.github.io\/20230218\/","datePublished": "2023-02-18T20:55:48+09:00","dateModified": "2023-02-18T21:18:30+09:00","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/riley817.github.io\/images\/avatar.png"},"author": {
                 "@type": "Person",
@@ -103,143 +103,155 @@
     </div><main class="main">
                 <div class="container"><div class="toc" id="toc-auto">
             <h2 class="toc-title">Contents</h2>
-            <div class="toc-content always-active" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">[Flutter] Flutter 개념 및 동작 원리</h1><div class="post-meta">
-            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-category">included in <a href="/categories/flutter/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Flutter</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-02-16">2023-02-16</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;497 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;3 minutes&nbsp;<span id="/flutter/" class="leancloud_visitors" data-flag-title="[Flutter] Flutter 개념 및 동작 원리">
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">[TIL & Issue Note] 20230218</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-category">included in <a href="/categories/til-issue-note/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>TIL & Issue Note</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-02-18">2023-02-18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;414 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;2 minutes&nbsp;<span id="/20230218/" class="leancloud_visitors" data-flag-title="[TIL &amp; Issue Note] 20230218">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
                     </span>&nbsp;</div>
-        </div><div class="featured-image"><img
-        class="lazyload"
-        src="/svg/loading.min.svg"
-        data-src="/posts/images/banner/flutter-logo.png"
-        data-srcset="/posts/images/banner/flutter-logo.png, /posts/images/banner/flutter-logo.png 1.5x, /posts/images/banner/flutter-logo.png 2x"
-        data-sizes="auto"
-        alt="/posts/images/banner/flutter-logo.png"
-        title="/posts/images/banner/flutter-logo.png" /></div><div class="details toc" id="toc-static"  data-kept="">
+        </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
                     <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
-    <li><a href="#플러터">플러터</a>
+    <li><a href="#deterministic-방식">Deterministic 방식</a>
       <ul>
-        <li><a href="#플러터가-dart-언어를-사용하는-이유">플러터가 Dart 언어를 사용하는 이유</a></li>
+        <li><a href="#delay">Delay</a></li>
+        <li><a href="#rollback">Rollback</a></li>
       </ul>
     </li>
-    <li><a href="#다른-모바일-개발-옵션">다른 모바일 개발 옵션</a>
-      <ul>
-        <li><a href="#네이티브-개발-안드로이드-ios">네이티브 개발 (안드로이드, iOS)</a></li>
-        <li><a href="#자바스크립트-기반-크로스-플랫폼">자바스크립트 기반 크로스 플랫폼</a></li>
-      </ul>
-    </li>
-    <li><a href="#플러터의-장점">플러터의 장점</a>
-      <ul>
-        <li><a href="#자바스크립트-다리가-없다">자바스크립트 다리가 없다.</a></li>
-        <li><a href="#컴파일-시간">컴파일 시간</a></li>
-        <li><a href="#한번에-여러-플랫폼에-배포가-가능하다">한번에 여러 플랫폼에 배포가 가능하다.</a></li>
-        <li><a href="#코드-공유-및-유지보수">코드 공유 및 유지보수</a></li>
-      </ul>
-    </li>
-    <li><a href="#플러터-동작-원리">플러터 동작 원리</a></li>
+    <li><a href="#deterministic-방식의-문제점">Deterministic 방식의 문제점</a></li>
+    <li><a href="#중계서버를-이용하는-방식---relay-broadcast-server">중계서버를 이용하는 방식 - Relay, Broadcast Server</a></li>
+    <li><a href="#정리">정리</a></li>
+    <li><a href="#rollback-방식을-해결하기-위한-방법">Rollback 방식을 해결하기 위한 방법</a></li>
+    <li><a href="#정리-1">정리</a></li>
+    <li><a href="#p2p-peer-to-peer">P2P (Peer to Peer)</a></li>
+    <li><a href="#relay-서버">Relay 서버</a></li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><h2 id="플러터">플러터</h2>
-<p>구글에서 개발한 공개 모바일 SDK 이다. 모바일 앱을 만들기 위한 기존 방식은 안드로이드와 IOS를 별도로 구현하여 배포해야했기에 요구되는 기술 스펙과 비용이 컸으나
-플러터를 사용하면 한번의 구현으로 배포가 가능하다. 플러터는 렌터링 엔진, UI 컴포넌트, 테스트 프레임워크, 도구, 라우터 등 앱 제작에 필요한 기능을 모두 제공하므로 개발자는 앱 구현에 집중하여 생산성을 높일 수 있다.</p>
-<h3 id="플러터가-dart-언어를-사용하는-이유">플러터가 Dart 언어를 사용하는 이유</h3>
+            </div><div class="content" id="content"><h2 id="deterministic-방식">Deterministic 방식</h2>
 <ul>
-<li>다트는 <code>JIT(just-in-time)</code>, <code>AOT(ahead-of-time)</code> 컴파일을 모두 지원한다.
+<li>같은 인풋을 가지고 있으면 두 개의 상태<code>state</code>가 동일<code>equal</code>하다 (=sync가 맞는다.)</li>
+<li>서로의 입력을 전송하는데에 시간이 걸린다.</li>
+<li>얼마나 latency를 잘 극복하는지 desync가 일어나지 않게 만드는 것이 핵심이다.</li>
+<li>desync를 막기 위해 <strong>delay</strong> 와 <strong>rollback</strong> 방식을 활용한다.</li>
+</ul>
+<h3 id="delay">Delay</h3>
 <ul>
-<li>AOT 컴파일러는 다트 코드를 효율적인 네이티브 코드로 바꾸어 개발자 및 사용자가 모두 빠르게 사용할 수 있다.</li>
-<li>다트의 선택형 JIT 컴파일러는 핫 리로드<code>hot reload</code>를 지원해 빠른 개발 속도와 반복<code>iteration</code>을 가능하게 해 생산성을 높여준다.</li>
+<li>지연시간만큼 입력을 딜레이 시켜서 처리하면 싱크가 맞게 되는 원리</li>
+<li>쉽고 단순하게 구현할 수 있다.</li>
+</ul>
+<p><strong>문제점</strong></p>
+<ul>
+<li>지연시간이 발생한다.</li>
+<li>지연시간이 보통 100ms 가 넘어가면 플레이어가 이를 감지 할 수 있다.</li>
+</ul>
+<h3 id="rollback">Rollback</h3>
+<ul>
+<li>지연시간만큼 다시 시간을 되돌리고 다시 앞감기를 한다.</li>
+</ul>
+<p><strong>문제점</strong></p>
+<ul>
+<li>유저 입장에서는 프레임이 갑자기 바뀌어서 렉이 걸린것 처럼 보여짐</li>
+<li>만들기가 매우 까다롭다
+<ul>
+<li>앞감기, 뒤감기, 새로운 입력 끼워넣기를 구현해야 한다.</li>
+<li>이전 모든 플레이를 기록하고 있어야 하기 때문에 메모리사용과 복잡도가 올라간다.</li>
+<li>플레이어가 많을 수록 각 캐릭터의 모든 상태를 기록하기가 어렵다.</li>
 </ul>
 </li>
-<li>다트는 객체지향 언어이기에 마크업 언어를 사용하지 않고 다트 언어만으로 UI/UX 를 쉽게 구현할 수 있다.</li>
-<li>기존 자바, C 등의 파생언어들과 유사해 생산성이 좋고 예측이 가능하다. 기존 다른 언어에 익숙할 수록 쉽게 접근이 가능하다.</li>
-<li>다트의 최초 목적은 웹 개발언어였으며 자바스크립트를 대체하려고 만들었다가 방향을 틀어 컴파일러로 구현되었는데 이는 다트의 모든 기능이 자바스크립트로 표현이 가능하다.</li>
-<li>모듈을 지원하지 않고 오직 객체지향을 기반으로 한다.</li>
 </ul>
-<h2 id="다른-모바일-개발-옵션">다른 모바일 개발 옵션</h2>
-<h3 id="네이티브-개발-안드로이드-ios">네이티브 개발 (안드로이드, iOS)</h3>
+<blockquote>
+<p>보통은 Delay 와 Rollback 을 합쳐서 활용한다. Rollback은 제한적으로 사용함으로써 되도록 플레이어가 알아차릴 수 없게 구현한다.
+ex) 오버워치 - 트레이시 캐릭터 (캐릭터 능력 중 시간을 되돌리는 능력이 있음 이는 rollback 에 부가적인 기능을 활용한 사례 )</p>
+</blockquote>
+<h2 id="deterministic-방식의-문제점">Deterministic 방식의 문제점</h2>
 <ul>
-<li>앱을 가장 완벽하게 제어 가능하며 디버깅 도구, 성능을 100% 활용 가능하다.</li>
-<li>그러나 플랫폼 별로 앱을 구현해야 한다.</li>
+<li>중간 접속 처리가 어렵다.</li>
+<li>상태가 아닌 모든 플레이어의 입력을 공유하므로 재접속 시 그동안 모든 입력을 받은 후 싱크를 맞춤</li>
+<li>reconnect 방식이 복잡</li>
+<li>desync의 상태를 맞추기가 어렵다</li>
+<li>좋은 방식이고 많은 게임에서 사용하고 있으나 구현이 어렵다.</li>
 </ul>
-<h3 id="자바스크립트-기반-크로스-플랫폼">자바스크립트 기반 크로스 플랫폼</h3>
+<h2 id="중계서버를-이용하는-방식---relay-broadcast-server">중계서버를 이용하는 방식 - Relay, Broadcast Server</h2>
 <ul>
-<li><code>web view</code>, <code>react native</code> 와 같은 자바스크립트 기반의 크로스 플랫폼을 사용하는 방법도 있다.</li>
-<li>네이티브 개발 경험이 없지만 최신 자바스크립트 기술을 어느정도 파악하면 웹개발자도 모바일 앱 개발에 참여할 수 있는 장점이 있다.</li>
-<li>단점으로는 <strong>자바스크립트 다리 Javascrtip birdge</strong>을 꼽을 수 있다.</li>
+<li>서버가 클라이언트에서 받은 패킷을 다른 클라이언트에 전달한다. (내가 보낸 패킷도 받게됨)</li>
+<li>모든 인풋을 서버에 의존한다.</li>
+<li>모든 클라이언트는 같은 입력을 받으므로 deterministic 방식이다.</li>
+<li><strong>서버에서는 프레임을 일정단위로 쪼개고 모든 클라이언트로부터 입력을 게더링한 뒤 일정시간이 지나면 클라이언트에 전송</strong></li>
+<li>턴제 방식과 동일하다.</li>
+<li>구현하기도 쉽고 desync도 발생하지 않는다.</li>
 </ul>
-<div class="details admonition tip open">
-        <div class="details-summary admonition-title">
-            <i class="icon fas fa-lightbulb fa-fw" aria-hidden="true"></i>자바스크립트 다리 Javascrtip birdge<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
-        </div>
-        <div class="details-content">
-            <div class="admonition-content"><ul>
-<li>웹뷰<code>WebView</code>는 웹킷<code>Webkit</code>(브라우저 렌더링 엔진)으로 구동되는데 웹킷에서 DOM을 처리하는 일의 비용이 높고 성능이 좋지 않은 문제가 있다.</li>
-<li>자바스크립트가 네이티브 코드와 직접 통신할 수 있도록 자바스크립트 다리를 만들어 이런 문제를 해결하였으며 DOM을 사용하지 않아 속도도 개선이 되었다.</li>
-<li>하지만 앱이 렌더링 엔진과 소통할 때마다 다리 건너 코드를 네이티브 코드로 컴파일 해야 한다.
-<a class="lightgallery" href="/posts/images/flutter/javascript-bridge.png" title="/posts/images/flutter/javascript-bridge.png" data-thumbnail="/posts/images/flutter/javascript-bridge.png">
-<img
-class="lazyload"
-src="/svg/loading.min.svg"
-data-src="/posts/images/flutter/javascript-bridge.png"
-data-srcset="/posts/images/flutter/javascript-bridge.png, /posts/images/flutter/javascript-bridge.png 1.5x, /posts/images/flutter/javascript-bridge.png 2x"
-data-sizes="auto"
-alt="/posts/images/flutter/javascript-bridge.png" />
-</a></li>
+<p><strong>문제점</strong></p>
+<ul>
+<li>서버를 거쳐서 네트워킹이 발생하므로 딜레이가 발생한다.</li>
 </ul>
-</div>
-        </div>
-    </div>
-<h2 id="플러터의-장점">플러터의 장점</h2>
-<h3 id="자바스크립트-다리가-없다">자바스크립트 다리가 없다.</h3>
+<h2 id="정리">정리</h2>
+<table>
+<thead>
+<tr>
+<th>Rollback</th>
+<th>중계서버</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>반응성이 높다</td>
+<td>반응성이 낮다</td>
+</tr>
+<tr>
+<td>desync가 발생한다.</td>
+<td>desync가 발생하지 않는다.</td>
+</tr>
+<tr>
+<td>격투, FPS 등에 적합</td>
+<td>AOS, 스포츠 게임에 적합</td>
+</tr>
+</tbody>
+</table>
+<h2 id="rollback-방식을-해결하기-위한-방법">Rollback 방식을 해결하기 위한 방법</h2>
 <ul>
-<li>크로스 플랫폼 기술로 앱을 개발할 때 자바스크립트 다리를 사용하는데 이에 필요한 비용이 상당히 높기에 앱의 최적화및 디버깅이 힘들다.</li>
-<li>플러터는 자체 렌더링 엔진을 이용하기에 실제 네이티브 코드로 컴파일하여 크롬이 사용하는 렌더링 엔진(Skia)을 사용하기에 실행 시 다트를 변환하지 않는다. 그렇기에 앱의 최적화가 더 유리하다.</li>
+<li>다른 플레이어로부터 새로운 인풋이 왔을때 특정 시간으로 롤백하는 기술은 매우 복잡하고 버그가 많음</li>
+<li>매 시간 지정한 프레임만큼 계속 롤백을 처리한다.</li>
+<li>중간에 다른 플레이어의 요청이 올경우 롤백 후 끼워넣는다.</li>
+<li>롤백의 경우 그래픽 변화는 많지 않기 때문에 성능상에 크게 문제가 있지는 않음</li>
 </ul>
-<h3 id="컴파일-시간">컴파일 시간</h3>
+<h2 id="정리-1">정리</h2>
 <ul>
-<li>플러터의 전체 컴파일 시간은 30초에서 최대 1분을 넘기지 않는다.</li>
-<li>핫 리로드를 제공해서 개발 주기를 높혀 높은 생산성을 보장한다.</li>
-</ul>
-<h3 id="한번에-여러-플랫폼에-배포가-가능하다">한번에 여러 플랫폼에 배포가 가능하다.</h3>
+<li><strong>Deterministic</strong> : 같은 input 이면 같은 결과를 받는 것</li>
+<li>input 의 싱크를 맞추는 기법
 <ul>
-<li>IOS와 안드로이드를 플러터와 다트를 사용해 한 번만 구현하면 동시에 배포가 가능하다.</li>
-<li>다트와 플러터 모두 유닛 테스트 라이브러리를 제공한다.</li>
-</ul>
-<h3 id="코드-공유-및-유지보수">코드 공유 및 유지보수</h3>
-<ul>
-<li>플러터 기술은 자바스크립트로도 가능하기 때문에 웹과 모바일 앱은 클라이언트 뷰를 제외하고 모든 코드 공유가 가능하다. DI를 사용하면 앵귤러 다트앱과 플러터 앱에 같은 모델과 컨트롤러를 사용할수도 있다.</li>
-<li>IOS와 안드로이드는 필연적으로 모든 코드를 공유한다. 덕분에 팀의 생산성을 극대화 할 수 있다.</li>
-</ul>
-<h2 id="플러터-동작-원리">플러터 동작 원리</h2>
-<ul>
-<li>넓은 의미로 플러터는 웹의 리액트처럼 리액티브, 선언형, 조합할 수 있는 뷰 계층 라이브러리이다. (플러터는 렌더링 엔진도 포함하므로 실제로는 리액트 + 브라우저)</li>
-<li>플러터는 위젯이라는 작은 컴포넌트를 조합해 모바일 UI를 만든다.</li>
-<li>플러터의 대부분의 것은 위젯이며 위젯 뷰를 묘사하는 것은 다트 클래스이다.</li>
-</ul>
-<a class="lightgallery" href="/posts/images/flutter/20210308154814_dpqbgxpf.png" title="/posts/images/flutter/20210308154814_dpqbgxpf.png" data-thumbnail="/posts/images/flutter/20210308154814_dpqbgxpf.png">
-        <img
-            class="lazyload"
-            src="/svg/loading.min.svg"
-            data-src="/posts/images/flutter/20210308154814_dpqbgxpf.png"
-            data-srcset="/posts/images/flutter/20210308154814_dpqbgxpf.png, /posts/images/flutter/20210308154814_dpqbgxpf.png 1.5x, /posts/images/flutter/20210308154814_dpqbgxpf.png 2x"
-            data-sizes="auto"
-            alt="/posts/images/flutter/20210308154814_dpqbgxpf.png" />
-    </a>
-<ul>
-<li>앱의 모든 UI들(리스트, 제품, 버튼, 이미지)은 위젯으로 구성되어있다.</li>
-<li>위젯은 상태를 갖을 수 있다.</li>
-<li>위젯의 상태가 변경되면 프레임워크가 이를 인지하고 새 트리를 기존 트리와 비교한 다음 갱신해야 하는 위젯을 처리하게 된다.
-<ul>
-<li>ex 수량 위젯의 + 버튼을 누르면 내부 상태가 바뀌면서 갱신해야 하는 위젯(수량을 나타내는 텍스트 위젯)을 갱신한다.</li>
+<li>Delay &amp;&amp; Rollback</li>
+<li>Relay 서버</li>
+<li>매 프레임마다 rollback</li>
 </ul>
 </li>
+</ul>
+<h2 id="p2p-peer-to-peer">P2P (Peer to Peer)</h2>
+<p>클라이언트 끼리 직접 연결하는 방식</p>
+<ul>
+<li>특정 클라이언트가 방장인 경우
+<ul>
+<li>방장을 중심으로 네트워킹이 발생하며 게임의 검증 및 판단을 방장이 한다.</li>
+<li>방장이 나가거나 커넥션이 끊긴 경우 게임이 종료된다. 혹은 새로운 클라이언트에 방을 위임한다.</li>
+<li>방장의 커넥션이 끊겼을 경우 문제가 발생한다.</li>
+</ul>
+</li>
+<li>모든 클라이언트 끼리 연결
+<ul>
+<li>각 클라이언트가 다른 클라이언트에 대한 커넥션을 가지고 있다.</li>
+<li>각 클라이언트가 관리해야 하는 커넥션 수가 많다.</li>
+<li>한명의 커넥션이 유실되도 전체 게임에는 영향을 주지 않는다.</li>
+</ul>
+</li>
+</ul>
+<h2 id="relay-서버">Relay 서버</h2>
+<ul>
+<li>서버를 두고 클라이언트들이 접속하는 방식</li>
+<li>서버가 다운되었을 때 게임 자체를 플레이할 수 없는 문제 발생</li>
 </ul>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
@@ -257,14 +269,13 @@ alt="/posts/images/flutter/javascript-bridge.png" />
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/dart/">Dart</a>,&nbsp;<a href="/tags/flutter/">Flutter</a></section>
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/issue-note/">Issue Note</a></section>
         <section>
             <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
         </section>
     </div>
 
-    <div class="post-nav"><a href="/20230215/" class="prev" rel="prev" title="[TIL &amp; Issue Note] 20230214"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>[TIL & Issue Note] 20230214</a>
-            <a href="/20230218/" class="next" rel="next" title="[TIL &amp; Issue Note] 20230218">[TIL & Issue Note] 20230218<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+    <div class="post-nav"><a href="/flutter/" class="prev" rel="prev" title="[Flutter] Flutter 개념 및 동작 원리"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>[Flutter] Flutter 개념 및 동작 원리</a></div>
 </div>
 <div id="comments"><div id="valine" class="comment"></div><noscript>
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.

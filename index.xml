@@ -4,9 +4,18 @@
         <link>https://riley817.github.io/</link>
         <description>Riley&#39;s DevLog</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
-            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Thu, 16 Feb 2023 16:11:36 &#43;0900</lastBuildDate>
+            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Sat, 18 Feb 2023 20:55:48 &#43;0900</lastBuildDate>
             <atom:link href="https://riley817.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>[TIL &amp; Issue Note] 20230218</title>
+    <link>https://riley817.github.io/20230218/</link>
+    <pubDate>Sat, 18 Feb 2023 20:55:48 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/20230218/</guid>
+    <description><![CDATA[Deterministic 방식 같은 인풋을 가지고 있으면 두 개의 상태state가 동일equal하다 (=sync가 맞는다.) 서로의 입력을 전송하는데에 시간이 걸린다. 얼마나 latency를 잘 극복하는지 desync가 일어나지 않게 만드는 것이 핵심이다. desync를 막기 위해 delay 와 rollback 방식을 활용한다. Delay 지연시간만큼 입력을 딜레이 시켜서 처리하면 싱크가 맞게 되는 원리 쉽고 단순하게 구현할 수 있다. 문제점
+지연시간이 발생한다. 지연시간이 보통 100ms 가 넘어가면 플레이어가 이를 감지 할 수 있다. Rollback 지연시간만큼 다시 시간을 되돌리고 다시 앞감기를 한다.]]></description>
+</item>
+<item>
     <title>[Flutter] Flutter 개념 및 동작 원리</title>
     <link>https://riley817.github.io/flutter/</link>
     <pubDate>Thu, 16 Feb 2023 16:11:36 &#43;0900</pubDate>
@@ -92,15 +101,6 @@ StatelessWidget Life Cycle Constructor로 생성이되고 생성이 되자마자
     <guid>https://riley817.github.io/buf/</guid>
     <description><![CDATA[buf buf는 IDL(Interface description language) 중 하나인 protobuf를 사용하기 쉽게 여러가지 기능을 제공하고 있다. protobuf를 사용하면서 발생하는 문제는 다음과 같다.
 API 설계가 일관성이 없다. 의존성 관리가 중앙에서 이루어지지 않고 있다. protobuf의 버전관리가 잘 이루어지지 않는다. protoc를 통한 stub 배포 및 관리가 어렵다 mock 서버 생성, fuzz testing, 문서화 할 수 있는 툴들이 많이 존재하지 않는다. buf에서 제공하는 툴 buf cli 발전된 protobuf 컴파일러를 제공한다. 좋은 API 디자인과 구조를 lint 기능을 통해 선택할 수 있다.]]></description>
-</item>
-<item>
-    <title>28. AWS Virtual Private Cloud(VPC)</title>
-    <link>https://riley817.github.io/aws-28-vpc/</link>
-    <pubDate>Mon, 15 Aug 2022 17:26:41 &#43;0900</pubDate>
-    <author>riley</author>
-    <guid>https://riley817.github.io/aws-28-vpc/</guid>
-    <description><![CDATA[CIDR - IPv4 Classless Inter-Domain Routing : IP 주소 할당 방법 Security Groups : 규칙 및 AWS 네트워킹에 일반적으로 사용 Base IP : 범위에 포함된 IP를 나타냄 (e.g., 10.0.0.0, 192.168.0.0 &hellip;) Subnet Mask IP에서 변경할 수 있는 비트 수를 정의 (e.g., /0, /24, /32) /8 : 255.0.0.0 /16 : 255.255.0.0 /24 : 255.255.255.0 /32 : 255.255.255.255 Subnet Mask Subnet Mask 사용하면 기본적으로 기본IP에서 다음 값을 추가로 가져올 수 있다.
-IPLocationTools IP/Subnet Mask 192.]]></description>
 </item>
 </channel>
 </rss>
