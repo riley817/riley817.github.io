@@ -100,6 +100,16 @@
         alt="/images/avatar.png"
         title="/images/avatar.png" /></a></div><h1 class="home-title">라일리의 개발 공부기록</h1><div class="home-subtitle"><div id="id-1" class="typeit"></div></div><div class="links"><a href="https://github.com/https://github.com/riley817" title="GitHub" target="_blank" rel="noopener noreffer me"><i class="fab fa-github-alt fa-fw" aria-hidden="true"></i></a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/20230221/">[TIL & Issue Note] 20230221</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-02-21">2023-02-21</time></span>&nbsp;<span class="post-category">included in <a href="/categories/til-issue-note/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>TIL & Issue Note</a></span></div><div class="content">Deterministic은 왜 해킹에 취약한가 Deterministic 은 양쪽 input set을 공유하여 status 를 맞추는 방식으로 동작한다. input에 의존하기 때문에 input에 대한 변조를 통한 해킹에 취약하다. input set을 검사하는 방법 서버에서 패킷을 검사한다. Stateless Server : 중계(Relay) 서버의 경우 현재 게임상태나 게임의 룰을 알고 있지 않아도 된다. (단순히 패킷을 전달하는 역할을 하기 때문) 클라이언트끼리 상대방의 패킷이 정당한지 검사한다. 혹은 방장이 참여 클라이언트의 패킷이 전당한지 검사한다. 해킹을 막는 방법 tolerance 범위가 넘어가는 경우 해킹으로 간주한다.</div><div class="post-footer">
+        <a href="/20230221/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/issue-note/">Issue Note</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/20230220/">[TIL & Issue Note] 20230218</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-02-20">2023-02-20</time></span>&nbsp;<span class="post-category">included in <a href="/categories/til-issue-note/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>TIL & Issue Note</a></span></div><div class="content">NAT(Network Address Translation)를 사용하는 이유 IPv4 주소체계에서 IP 주소를 절약 외부로 패킷이 나갈때는 private IP가 public IP로 바뀌어 전송되므로 내부 IP를 숨실 수 있음(보안) 게이트웨이, 라우터, 스위치, 공유기 등 NAT에서의 문제 UDP를 통한 네트워킹을 하기위해서는 서로의 Peer의 목적지를 알아야 한다. 클라이언트 A에서 NAT 거치게 되면 어떤 public IP와 Port 변환될지 모른다. 다른 클라이언트에서 A에게 연결을 하기 위해 public IP는 알고 있지만 private IP와 포트는 알지 못한다. UDP Hole Punching NAT 환경에서 사용자들과 P2P 연결을 중개하는 Relay 서버를 통해 사용자간 직접적인 데이터 전송을 구현</div><div class="post-footer">
+        <a href="/20230220/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/issue-note/">Issue Note</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/20230218/">[TIL & Issue Note] 20230218</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-02-18">2023-02-18</time></span>&nbsp;<span class="post-category">included in <a href="/categories/til-issue-note/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>TIL & Issue Note</a></span></div><div class="content">Deterministic 방식 같은 인풋을 가지고 있으면 두 개의 상태state가 동일equal하다 (=sync가 맞는다.) 서로의 입력을 전송하는데에 시간이 걸린다. 얼마나 latency를 잘 극복하는지 desync가 일어나지 않게 만드는 것이 핵심이다. desync를 막기 위해 delay 와 rollback 방식을 활용한다. Delay 지연시간만큼 입력을 딜레이 시켜서 처리하면 싱크가 맞게 되는 원리 쉽고 단순하게 구현할 수 있다. 문제점
 지연시간이 발생한다. 지연시간이 보통 100ms 가 넘어가면 플레이어가 이를 감지 할 수 있다. Rollback 지연시간만큼 다시 시간을 되돌리고 다시 앞감기를 한다.</div><div class="post-footer">
@@ -133,28 +143,6 @@ Protocol 약속, 규약 Network Protocol : 통신 규약 컴퓨터간 통신을 
 RTT(Round Trip Time, 패킷왕복시간) : 패킷이 목적지에 도달하고나서 해당 패킷에 대한 응답이 출발지로 다시 돌아오기까지의 시간 지연시간의 경우 물리적인 환경의 문제이므로 줄이기가 어렵다. 게임에서는 눈속임을 통한 지연시간을 해소 연결 안전성 (연결 불안정)</div><div class="post-footer">
         <a href="/20230214/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/issue-note/">Issue Note</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><div class="featured-image-preview">
-            <a href="/flutter-beginner/"><img
-        class="lazyload"
-        src="/svg/loading.min.svg"
-        data-src="/posts/images/banner/flutter-logo.png"
-        data-srcset="/posts/images/banner/flutter-logo.png, /posts/images/banner/flutter-logo.png 1.5x, /posts/images/banner/flutter-logo.png 2x"
-        data-sizes="auto"
-        alt="/posts/images/banner/flutter-logo.png"
-        title="/posts/images/banner/flutter-logo.png" /></a>
-        </div><h1 class="single-title" itemprop="name headline">
-        <a href="/flutter-beginner/">[Flutter Beginner] StatefulWidget</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-02-03">2023-02-03</time></span>&nbsp;<span class="post-category">included in <a href="/categories/flutter/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Flutter</a></span></div><div class="content">Widget Widget은 모두 불변의 법칙을 가지고 있다. 그러나 위젯의 값을 변경해야 할 경우가 생긴다. 변경이 필요할 경우 기존 위젯을 삭제해버리고 완전 새로운 위젯으로 대체한다.
-StatelessWidget Life Cycle Constructor로 생성이되고 생성이 되자마자 build 함수가 실행된다. 변경이 필요하면 새로운 위젯을 만든다. StatelessWidget은 라이프 사이클 동안 단 한번만 build 함수를 실행한다. StatefulWidget 생명주기 Construct createState : State를 생성 initState : State를 초기화. State가 생성될 때 단 한번만 호출된다. didChangeDependencies dirty 상태 : 변경이 필요한 상태를 의미한다.</div><div class="post-footer">
-        <a href="/flutter-beginner/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/dart/">Dart</a>,&nbsp;<a href="/tags/flutter/">Flutter</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/ios-allow/">[iOS/Android] APP HTTP 접근 허용하기</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-01-31">2023-01-31</time></span>&nbsp;<span class="post-category">included in <a href="/categories/flutter/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Flutter</a></span></div><div class="content">APP HTTP 접근 허용 설정하기 iOS ios/Runner/Info.plist
-1 2 3 4 5 6 7 8 9 &lt;key&gt;NSAppTransportSecurity&lt;/key&gt; &lt;dict&gt; &lt;key&gt;NSAllowsLocalNetworking&lt;/key&gt; &lt;true/&gt; &lt;key&gt;NSAllowsArbitraryLoadsInWebContent&lt;/key&gt; &lt;true/&gt; &lt;/dict&gt; &lt;/dict&gt; &lt;/plist&gt; Android android/app/src/main/AndroidManifest.xml
-1 2 3 4 5 6 7 8 &lt;manifest xmlns:android=&#34;http://schemas.android.com/apk/res/android&#34; package=&#34;com.example.web_view&#34;&gt; &lt;uses-permission android:name=&#34;android.permission.INTERNET&#34;/&gt; &lt;!-- 추가 --&gt; &lt;application android:label=&#34;web_view&#34; android:name=&#34;${applicationName}&#34; android:icon=&#34;@mipmap/ic_launcher&#34; android:usesCleartextTraffic=&#34;true&#34;&gt; &lt;!-- 추가 --&gt; </div><div class="post-footer">
-        <a href="/ios-allow/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/flutter/">Flutter</a>,&nbsp;<a href="/tags/ios/">iOS</a>,&nbsp;<a href="/tags/android/">Android</a></div></div>
 </article><ul class="pagination"><li class="page-item active">
                     <span class="page-link">
                         <a href="/">1</a>

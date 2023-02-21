@@ -4,33 +4,33 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>[TIL &amp; Issue Note] 20230211 - Riley&#39;s DevLog</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:title" content="[TIL &amp; Issue Note] 20230211" />
-<meta property="og:description" content="전통적인 게임의 서버 구조 P2P 서버에 참여하는 구성원들이 서버이자 클라이언트의 역할을 한다. 주로 격투게임, 소규모 FPS 게임 등 반응 속도가 빨라야하는 장르에서 많이 사용했다. 인원수에 따라 유지해야 하는 연결의 개수가 많아 진다. Host 방식 게임에 참가하는 참가자 중 제일 처음 방을 만드는 참가자의 클라이언트를 서버로 사용 나머지 참가자는 클라이언트로서의 역할을 한다. 게임의 검증, 결과 판정 등은 호스트 클라이언트가 담당한다. 호스트에게 모든 데이터가 집중되므로 호스트의 컴퓨터 성능이 좋아야 한다. 호스트의 서버가 연결을 종료할 경우 접속한 모든 클라이언트가 게임을 할 수 없다." />
+        <title>[TIL &amp; Issue Note] 20230221 - Riley&#39;s DevLog</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:title" content="[TIL &amp; Issue Note] 20230221" />
+<meta property="og:description" content="Deterministic은 왜 해킹에 취약한가 Deterministic 은 양쪽 input set을 공유하여 status 를 맞추는 방식으로 동작한다. input에 의존하기 때문에 input에 대한 변조를 통한 해킹에 취약하다. input set을 검사하는 방법 서버에서 패킷을 검사한다. Stateless Server : 중계(Relay) 서버의 경우 현재 게임상태나 게임의 룰을 알고 있지 않아도 된다. (단순히 패킷을 전달하는 역할을 하기 때문) 클라이언트끼리 상대방의 패킷이 정당한지 검사한다. 혹은 방장이 참여 클라이언트의 패킷이 전당한지 검사한다. 해킹을 막는 방법 tolerance 범위가 넘어가는 경우 해킹으로 간주한다." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://riley817.github.io/20230211/" /><meta property="og:image" content="https://riley817.github.io/icon.png"/><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2023-01-26T23:33:57+09:00" />
+<meta property="og:url" content="https://riley817.github.io/20230221/" /><meta property="og:image" content="https://riley817.github.io/icon.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-02-21T23:04:09+09:00" />
 <meta property="article:modified_time" content="2023-02-21T23:14:30+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://riley817.github.io/icon.png"/>
 
-<meta name="twitter:title" content="[TIL &amp; Issue Note] 20230211"/>
-<meta name="twitter:description" content="전통적인 게임의 서버 구조 P2P 서버에 참여하는 구성원들이 서버이자 클라이언트의 역할을 한다. 주로 격투게임, 소규모 FPS 게임 등 반응 속도가 빨라야하는 장르에서 많이 사용했다. 인원수에 따라 유지해야 하는 연결의 개수가 많아 진다. Host 방식 게임에 참가하는 참가자 중 제일 처음 방을 만드는 참가자의 클라이언트를 서버로 사용 나머지 참가자는 클라이언트로서의 역할을 한다. 게임의 검증, 결과 판정 등은 호스트 클라이언트가 담당한다. 호스트에게 모든 데이터가 집중되므로 호스트의 컴퓨터 성능이 좋아야 한다. 호스트의 서버가 연결을 종료할 경우 접속한 모든 클라이언트가 게임을 할 수 없다."/>
+<meta name="twitter:title" content="[TIL &amp; Issue Note] 20230221"/>
+<meta name="twitter:description" content="Deterministic은 왜 해킹에 취약한가 Deterministic 은 양쪽 input set을 공유하여 status 를 맞추는 방식으로 동작한다. input에 의존하기 때문에 input에 대한 변조를 통한 해킹에 취약하다. input set을 검사하는 방법 서버에서 패킷을 검사한다. Stateless Server : 중계(Relay) 서버의 경우 현재 게임상태나 게임의 룰을 알고 있지 않아도 된다. (단순히 패킷을 전달하는 역할을 하기 때문) 클라이언트끼리 상대방의 패킷이 정당한지 검사한다. 혹은 방장이 참여 클라이언트의 패킷이 전당한지 검사한다. 해킹을 막는 방법 tolerance 범위가 넘어가는 경우 해킹으로 간주한다."/>
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://riley817.github.io/20230211/" /><link rel="prev" href="https://riley817.github.io/dart/" /><link rel="next" href="https://riley817.github.io/20230126/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://riley817.github.io/20230221/" /><link rel="prev" href="https://riley817.github.io/20230220/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "[TIL \u0026 Issue Note] 20230211",
+        "headline": "[TIL \u0026 Issue Note] 20230221",
         "inLanguage": "en",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "https:\/\/riley817.github.io\/20230211\/"
-        },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Issue Note","wordcount":  441 ,
-        "url": "https:\/\/riley817.github.io\/20230211\/","datePublished": "2023-01-26T23:33:57+09:00","dateModified": "2023-02-21T23:14:30+09:00","publisher": {
+            "@id": "https:\/\/riley817.github.io\/20230221\/"
+        },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Issue Note","wordcount":  143 ,
+        "url": "https:\/\/riley817.github.io\/20230221\/","datePublished": "2023-02-21T23:04:09+09:00","dateModified": "2023-02-21T23:14:30+09:00","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/riley817.github.io\/images\/avatar.png"},"author": {
                 "@type": "Person",
@@ -102,10 +102,10 @@
                 <div class="container"><div class="toc" id="toc-auto">
             <h2 class="toc-title">Contents</h2>
             <div class="toc-content" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">[TIL & Issue Note] 20230211</h1><div class="post-meta">
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">[TIL & Issue Note] 20230221</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-category">included in <a href="/categories/til-issue-note/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>TIL & Issue Note</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-01-26">2023-01-26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;441 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;3 minutes&nbsp;<span id="/20230211/" class="leancloud_visitors" data-flag-title="[TIL &amp; Issue Note] 20230211">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-02-21">2023-02-21</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;143 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;One minute&nbsp;<span id="/20230221/" class="leancloud_visitors" data-flag-title="[TIL &amp; Issue Note] 20230221">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -115,147 +115,53 @@
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
-    <li><a href="#전통적인-게임의-서버-구조">전통적인 게임의 서버 구조</a>
+    <li><a href="#deterministic은-왜-해킹에-취약한가"><code>Deterministic</code>은 왜 해킹에 취약한가</a>
       <ul>
-        <li><a href="#p2p">P2P</a></li>
-        <li><a href="#host-방식">Host 방식</a></li>
-        <li><a href="#host-migration">Host Migration</a></li>
-        <li><a href="#전통적인-게임-서버-구조의-단점">전통적인 게임 서버 구조의 단점</a></li>
+        <li><a href="#input-set을-검사하는-방법">input set을 검사하는 방법</a></li>
       </ul>
     </li>
-    <li><a href="#현재의-게임-서버-구조">현재의 게임 서버 구조</a>
+    <li><a href="#해킹을-막는-방법">해킹을 막는 방법</a>
       <ul>
-        <li><a href="#데디케이트-서버">데디케이트 서버</a></li>
-      </ul>
-    </li>
-    <li><a href="#데이터-동기화-수준">데이터 동기화 수준</a>
-      <ul>
-        <li><a href="#lockstep-전략">LockStep 전략</a></li>
-      </ul>
-    </li>
-    <li><a href="#게임-네트워크-구조">게임 네트워크 구조</a>
-      <ul>
-        <li><a href="#서버구조-사례">서버구조 사례</a></li>
-        <li><a href="#네트워크-구조">네트워크 구조</a>
-          <ul>
-            <li><a href="#iaas-infrastructure-as-a-service">IaaS (Infrastructure-as-a-service)</a></li>
-            <li><a href="#paas-platforms-as-a-service">PaaS (Platforms-as-a-service)</a></li>
-            <li><a href="#serverless-아키텍트---baas-faas">Serverless 아키텍트 - BaaS, FaaS</a>
-              <ul>
-                <li><a href="#baas-backend-as-a-service">BaaS (Backend-as-a-service)</a></li>
-                <li><a href="#faas-function-as-a-service">Faas (Function-as-a-service)</a></li>
-              </ul>
-            </li>
-            <li><a href="#gbaas-game-beckend-as-a-service">GBaaS (Game Beckend-as-a-Service)</a></li>
-          </ul>
-        </li>
-        <li><a href="#스트리밍">스트리밍</a></li>
-        <li><a href="#5g">5G</a></li>
+        <li><a href="#해킹의-종류와-대응-방법">해킹의 종류와 대응 방법</a></li>
       </ul>
     </li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><h2 id="전통적인-게임의-서버-구조">전통적인 게임의 서버 구조</h2>
-<h3 id="p2p">P2P</h3>
+            </div><div class="content" id="content"><h2 id="deterministic은-왜-해킹에-취약한가"><code>Deterministic</code>은 왜 해킹에 취약한가</h2>
 <ul>
-<li>서버에 참여하는 구성원들이 서버이자 클라이언트의 역할을 한다.</li>
-<li>주로 격투게임, 소규모 FPS 게임 등 반응 속도가 빨라야하는 장르에서 많이 사용했다.</li>
-<li>인원수에 따라 유지해야 하는 연결의 개수가 많아 진다.</li>
+<li>Deterministic 은 양쪽 input set을 공유하여 status 를 맞추는 방식으로 동작한다.</li>
+<li>input에 의존하기 때문에 input에 대한 변조를 통한 해킹에 취약하다.</li>
 </ul>
-<h3 id="host-방식">Host 방식</h3>
+<h3 id="input-set을-검사하는-방법">input set을 검사하는 방법</h3>
+<ol>
+<li>서버에서 패킷을 검사한다.</li>
+</ol>
 <ul>
-<li>게임에 참가하는 참가자 중 제일 처음 방을 만드는 참가자의 클라이언트를 서버로 사용</li>
-<li>나머지 참가자는 클라이언트로서의 역할을 한다.</li>
-<li>게임의 검증, 결과 판정 등은 호스트 클라이언트가 담당한다.</li>
-<li>호스트에게 모든 데이터가 집중되므로 호스트의 컴퓨터 성능이 좋아야 한다.</li>
-<li>호스트의 서버가 연결을 종료할 경우 접속한 모든 클라이언트가 게임을 할 수 없다.</li>
+<li>Stateless Server : 중계(Relay) 서버의 경우 현재 게임상태나 게임의 룰을 알고 있지 않아도 된다. (단순히 패킷을 전달하는 역할을 하기 때문)</li>
 </ul>
-<h3 id="host-migration">Host Migration</h3>
+<ol start="2">
+<li>클라이언트끼리 상대방의 패킷이 정당한지 검사한다.</li>
+<li>혹은 방장이 참여 클라이언트의 패킷이 전당한지 검사한다.</li>
+</ol>
+<h2 id="해킹을-막는-방법">해킹을 막는 방법</h2>
 <ul>
-<li>Host 방식에서 좀 더 발전된 방식</li>
-<li>호스트가 네트워킹을 종료할 경우 호스트 역할을 다른 클라이언트에게 위임한다.</li>
+<li>tolerance 범위가 넘어가는 경우 해킹으로 간주한다. 하지만 그 오차범위의 경계를 이용하는 해킹들도 있기 때문에 완벽하게 막을 수는 없다.</li>
 </ul>
-<h3 id="전통적인-게임-서버-구조의-단점">전통적인 게임 서버 구조의 단점</h3>
+<h3 id="해킹의-종류와-대응-방법">해킹의 종류와 대응 방법</h3>
 <ul>
-<li>네트워크에 참가한 클라이언트가 게임의 결과를 판정하므로 검증이 제대로 되지 않을 경우 데이터 변조가 가능하다.</li>
-<li>보안상의 헛점에 취약하다. (ex 게임 핵 등)</li>
-</ul>
-<h2 id="현재의-게임-서버-구조">현재의 게임 서버 구조</h2>
-<h3 id="데디케이트-서버">데디케이트 서버</h3>
+<li>내부해킹 : 실행파일 자체를 조작한다. <code>.exe</code> 등 실행파일도 결국은 소스이므로 코드를 역 어셈블리화하여 변조한다.
 <ul>
-<li>서버와 클라이언트를 완전히 분리한다.</li>
-<li>게임의 결과 판정과 데이터 검증은 서버에서만 이루어 진다.</li>
-<li>보안성이 높다</li>
-<li>대부분의 대규모 게임의 경우 데디케이트 서버 방식을 사용한다.</li>
-<li>서버를 구성하고 유지하는 비용이 높다.</li>
-</ul>
-<h2 id="데이터-동기화-수준">데이터 동기화 수준</h2>
-<p>게임의 데이터 동기화 수준은 장르에 따라 다르다.</p>
-<ul>
-<li>FPS, 레이싱 등 : 캐릭터 및 차량의 이동속도나 좌표 등이 수시로 업데이트되므로 데이터량이 많다.</li>
-<li>턴제 전략게임, 카드게임(ex 하스스톤) 등 : 유저가 본인 턴에만 통신하므로 전송량이 작다.</li>
-<li>RTS <code>Real-Time Strategy</code> : 실시간 전략게임의 경우 움직이는 캐릭터 수가 많다.</li>
-</ul>
-<h3 id="lockstep-전략">LockStep 전략</h3>
-<ul>
-<li>캐릭터의 상태값을 동기화 하지 않고 유저의 입력값(커맨드)을 동기화 한다.</li>
-<li>클라이언트에서는 Lockstep을 저장하고 있다가 만약 서버가 끊겼을 경우 그동안 저장했던 Lockstep을 실행하여 동기화 한다.</li>
-</ul>
-<h2 id="게임-네트워크-구조">게임 네트워크 구조</h2>
-<h3 id="서버구조-사례">서버구조 사례</h3>
-<ul>
-<li>로그인 전용 서버, 로비기능(채팅, 상점), 매칭서버, 플레이 전용 서버 등이 별도로 구성</li>
-<li>플레이 전용 서버 : 실시간 통신이 가능해야 한다.
-<ul>
-<li>미러, 포톤, C++, C#</li>
+<li>실행파일의 파일 사이즈가 변경되었는지 체크한다.</li>
+<li><code>checksum</code> 의 해쉬 값을 비교하여 실행파일이 조작되었는지 판별한다.</li>
+<li>코드를 암호화 한다.</li>
 </ul>
 </li>
-<li>DB의 경우 속도가 느리므로 자주 사용하는 데이터의 경우 미리 메모리에 로드해둠으로써 간극을 최소화</li>
-</ul>
-<h3 id="네트워크-구조">네트워크 구조</h3>
-<p>전통적인 서버 구조의 경우 서버실 임대료, 장비, 인건비, 유지비용 등으로 인하여 구축 비용이 크다. 최근에서는 클라우드 서버를 통해 서버를 사용한 시간에 대한 임대료만 지불하여 비용 절감을 하고 있다.</p>
-<h4 id="iaas-infrastructure-as-a-service">IaaS (Infrastructure-as-a-service)</h4>
+<li>외부툴로 인한 해킹 : 실행파일을 실행한 상태에서 외부 해킹툴을 이용하는 방법.
 <ul>
-<li>AWS, Azure 등</li>
-<li>장비, 임대료 등 모든 인프라를 클라우드로 제공하고 사용자는 사용료만 지불하면 된다.</li>
+<li>블랙아웃을 통한 해킹 툴 차단</li>
+<li>특정 보안툴을 실행하지 않으면 게임 자체가 실행안되도록 설계 등</li>
 </ul>
-<h4 id="paas-platforms-as-a-service">PaaS (Platforms-as-a-service)</h4>
-<ul>
-<li>운영체제, 네트워크 설정, 관리도구 등 모든 기능을 제공</li>
-<li>로드밸런서, 오토스케일 기능 등을 사용 가능</li>
-</ul>
-<h4 id="serverless-아키텍트---baas-faas">Serverless 아키텍트 - BaaS, FaaS</h4>
-<h5 id="baas-backend-as-a-service">BaaS (Backend-as-a-service)</h5>
-<ul>
-<li>구글 파이어베이스 : 인증(자체, 소셜 등)기능, API, 푸시 기능 등을 제공</li>
-</ul>
-<h5 id="faas-function-as-a-service">Faas (Function-as-a-service)</h5>
-<ul>
-<li>AWS 람다, Azure Function 등</li>
-<li>기능을 함수 단위로 만들어 함수의 호출 횟수 및 함수 동작시간에 따라 비용을 측정한다.</li>
-<li>기존의 IaaS 와 같이 서버가 켜져있는 것과는 상관없이 얼마나 함수 콜이 처리 되었느냐에 따라 비용을 측정한다.</li>
-<li>크롤링 및 주기적인 처리</li>
-<li>웹요청 등</li>
-</ul>
-<h4 id="gbaas-game-beckend-as-a-service">GBaaS (Game Beckend-as-a-Service)</h4>
-<ul>
-<li>게이밍 용 밴앤드 서비스</li>
-<li>게임운영을 위한 주요 서버기능을 제공</li>
-<li>ex) 플레이펫, 게임 스팔스, Sparks, 포톤, 뒤끌</li>
-</ul>
-<h3 id="스트리밍">스트리밍</h3>
-<ul>
-<li>게임, 동작, 게임 결과 조작만 입력</li>
-<li>클라우드 서버에서 랜더링</li>
-<li>게이머들은 최신사양의 클라이언트가 필요없음</li>
-<li>플레이어는 인풋만 입력하고 클라우드 서버에서 렌더링</li>
-</ul>
-<h3 id="5g">5G</h3>
-<ul>
-<li>고신뢰/초저지연 통신</li>
-<li>게임 스트리밍</li>
-<li>더 낫게 플레이가 가능하다</li>
-<li>게임서버</li>
+</li>
 </ul>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
@@ -279,8 +185,7 @@
         </section>
     </div>
 
-    <div class="post-nav"><a href="/dart/" class="prev" rel="prev" title="[Dart] Dart 문법 정리"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>[Dart] Dart 문법 정리</a>
-            <a href="/20230126/" class="next" rel="next" title="[TIL &amp; Issue Note] 20230126">[TIL & Issue Note] 20230126<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+    <div class="post-nav"><a href="/20230220/" class="prev" rel="prev" title="[TIL &amp; Issue Note] 20230218"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>[TIL & Issue Note] 20230218</a></div>
 </div>
 <div id="comments"><div id="valine" class="comment"></div><noscript>
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.

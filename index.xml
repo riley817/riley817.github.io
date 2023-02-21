@@ -4,9 +4,25 @@
         <link>https://riley817.github.io/</link>
         <description>Riley&#39;s DevLog</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
-            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Sat, 18 Feb 2023 20:55:48 &#43;0900</lastBuildDate>
+            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Tue, 21 Feb 2023 23:04:09 &#43;0900</lastBuildDate>
             <atom:link href="https://riley817.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>[TIL &amp; Issue Note] 20230221</title>
+    <link>https://riley817.github.io/20230221/</link>
+    <pubDate>Tue, 21 Feb 2023 23:04:09 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/20230221/</guid>
+    <description><![CDATA[Deterministic은 왜 해킹에 취약한가 Deterministic 은 양쪽 input set을 공유하여 status 를 맞추는 방식으로 동작한다. input에 의존하기 때문에 input에 대한 변조를 통한 해킹에 취약하다. input set을 검사하는 방법 서버에서 패킷을 검사한다. Stateless Server : 중계(Relay) 서버의 경우 현재 게임상태나 게임의 룰을 알고 있지 않아도 된다. (단순히 패킷을 전달하는 역할을 하기 때문) 클라이언트끼리 상대방의 패킷이 정당한지 검사한다. 혹은 방장이 참여 클라이언트의 패킷이 전당한지 검사한다. 해킹을 막는 방법 tolerance 범위가 넘어가는 경우 해킹으로 간주한다.]]></description>
+</item>
+<item>
+    <title>[TIL &amp; Issue Note] 20230218</title>
+    <link>https://riley817.github.io/20230220/</link>
+    <pubDate>Mon, 20 Feb 2023 23:59:59 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/20230220/</guid>
+    <description><![CDATA[NAT(Network Address Translation)를 사용하는 이유 IPv4 주소체계에서 IP 주소를 절약 외부로 패킷이 나갈때는 private IP가 public IP로 바뀌어 전송되므로 내부 IP를 숨실 수 있음(보안) 게이트웨이, 라우터, 스위치, 공유기 등 NAT에서의 문제 UDP를 통한 네트워킹을 하기위해서는 서로의 Peer의 목적지를 알아야 한다. 클라이언트 A에서 NAT 거치게 되면 어떤 public IP와 Port 변환될지 모른다. 다른 클라이언트에서 A에게 연결을 하기 위해 public IP는 알고 있지만 private IP와 포트는 알지 못한다. UDP Hole Punching NAT 환경에서 사용자들과 P2P 연결을 중개하는 Relay 서버를 통해 사용자간 직접적인 데이터 전송을 구현]]></description>
+</item>
+<item>
     <title>[TIL &amp; Issue Note] 20230218</title>
     <link>https://riley817.github.io/20230218/</link>
     <pubDate>Sat, 18 Feb 2023 20:55:48 &#43;0900</pubDate>
@@ -81,26 +97,6 @@ StatelessWidget Life Cycle Constructor로 생성이되고 생성이 되자마자
     <author>riley</author>
     <guid>https://riley817.github.io/20230211/</guid>
     <description><![CDATA[전통적인 게임의 서버 구조 P2P 서버에 참여하는 구성원들이 서버이자 클라이언트의 역할을 한다. 주로 격투게임, 소규모 FPS 게임 등 반응 속도가 빨라야하는 장르에서 많이 사용했다. 인원수에 따라 유지해야 하는 연결의 개수가 많아 진다. Host 방식 게임에 참가하는 참가자 중 제일 처음 방을 만드는 참가자의 클라이언트를 서버로 사용 나머지 참가자는 클라이언트로서의 역할을 한다. 게임의 검증, 결과 판정 등은 호스트 클라이언트가 담당한다. 호스트에게 모든 데이터가 집중되므로 호스트의 컴퓨터 성능이 좋아야 한다. 호스트의 서버가 연결을 종료할 경우 접속한 모든 클라이언트가 게임을 할 수 없다.]]></description>
-</item>
-<item>
-    <title>[Dart] Dart 문법 정리</title>
-    <link>https://riley817.github.io/dart/</link>
-    <pubDate>Tue, 24 Jan 2023 16:40:55 &#43;0900</pubDate>
-    <author>riley</author>
-    <guid>https://riley817.github.io/dart/</guid>
-    <description><![CDATA[<div class="featured-image">
-                <img src="/posts/images/banner/dart.png" referrerpolicy="no-referrer">
-            </div>😊 Dart 기본 문법의 헷갈리는 부분과 몰랐던 부분 정리! 🐸🐸 Final 과 const final과 const 키워드를 사용하여 선언하면 할당한 값을 변경할 수 없다. 둘다 상수를 선언할 때 사용하지만 차이점은 const는 complie-time에 상수를 설정하며 final은 runtime시에 결정되는 값도 상수로 설정할 수 있다.
-1 2 3 4 // error const DateTime now1 = DateTime.now(); // error! const는 runtime시에 값이 결정되는 값은 설정할 수 없다. final DateTime now2 = DateTime.now(); // final은 runtime시에 결정되는 값도 설정 가능하다.]]></description>
-</item>
-<item>
-    <title>[buf] buf로 protobuf 사용하기</title>
-    <link>https://riley817.github.io/buf/</link>
-    <pubDate>Mon, 23 Jan 2023 19:11:56 &#43;0900</pubDate>
-    <author>riley</author>
-    <guid>https://riley817.github.io/buf/</guid>
-    <description><![CDATA[buf buf는 IDL(Interface description language) 중 하나인 protobuf를 사용하기 쉽게 여러가지 기능을 제공하고 있다. protobuf를 사용하면서 발생하는 문제는 다음과 같다.
-API 설계가 일관성이 없다. 의존성 관리가 중앙에서 이루어지지 않고 있다. protobuf의 버전관리가 잘 이루어지지 않는다. protoc를 통한 stub 배포 및 관리가 어렵다 mock 서버 생성, fuzz testing, 문서화 할 수 있는 툴들이 많이 존재하지 않는다. buf에서 제공하는 툴 buf cli 발전된 protobuf 컴파일러를 제공한다. 좋은 API 디자인과 구조를 lint 기능을 통해 선택할 수 있다.]]></description>
 </item>
 </channel>
 </rss>

@@ -4,7 +4,23 @@
         <link>https://riley817.github.io/tags/issue-note/</link>
         <description>Issue Note - Tag - Riley&#39;s DevLog</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
-            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Sat, 18 Feb 2023 20:55:48 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/tags/issue-note/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Tue, 21 Feb 2023 23:04:09 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/tags/issue-note/" rel="self" type="application/rss+xml" /><item>
+    <title>[TIL &amp; Issue Note] 20230221</title>
+    <link>https://riley817.github.io/20230221/</link>
+    <pubDate>Tue, 21 Feb 2023 23:04:09 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/20230221/</guid>
+    <description><![CDATA[Deterministic은 왜 해킹에 취약한가 Deterministic 은 양쪽 input set을 공유하여 status 를 맞추는 방식으로 동작한다. input에 의존하기 때문에 input에 대한 변조를 통한 해킹에 취약하다. input set을 검사하는 방법 서버에서 패킷을 검사한다. Stateless Server : 중계(Relay) 서버의 경우 현재 게임상태나 게임의 룰을 알고 있지 않아도 된다. (단순히 패킷을 전달하는 역할을 하기 때문) 클라이언트끼리 상대방의 패킷이 정당한지 검사한다. 혹은 방장이 참여 클라이언트의 패킷이 전당한지 검사한다. 해킹을 막는 방법 tolerance 범위가 넘어가는 경우 해킹으로 간주한다.]]></description>
+</item>
+<item>
+    <title>[TIL &amp; Issue Note] 20230218</title>
+    <link>https://riley817.github.io/20230220/</link>
+    <pubDate>Mon, 20 Feb 2023 23:59:59 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/20230220/</guid>
+    <description><![CDATA[NAT(Network Address Translation)를 사용하는 이유 IPv4 주소체계에서 IP 주소를 절약 외부로 패킷이 나갈때는 private IP가 public IP로 바뀌어 전송되므로 내부 IP를 숨실 수 있음(보안) 게이트웨이, 라우터, 스위치, 공유기 등 NAT에서의 문제 UDP를 통한 네트워킹을 하기위해서는 서로의 Peer의 목적지를 알아야 한다. 클라이언트 A에서 NAT 거치게 되면 어떤 public IP와 Port 변환될지 모른다. 다른 클라이언트에서 A에게 연결을 하기 위해 public IP는 알고 있지만 private IP와 포트는 알지 못한다. UDP Hole Punching NAT 환경에서 사용자들과 P2P 연결을 중개하는 Relay 서버를 통해 사용자간 직접적인 데이터 전송을 구현]]></description>
+</item>
+<item>
     <title>[TIL &amp; Issue Note] 20230218</title>
     <link>https://riley817.github.io/20230218/</link>
     <pubDate>Sat, 18 Feb 2023 20:55:48 &#43;0900</pubDate>
