@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>[TIL &amp; Issue Note] 20230227 - Riley&#39;s DevLog</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:title" content="[TIL &amp; Issue Note] 20230227" />
+<meta property="og:description" content="Server Authority 서버가 모든 권한을 가지고 있다. 서버는 중재자, 심판, 플레이어 역할을 한다. Client-Server 방식 클라이언트에서 질의(요청)하면 서버에서 응답하는 방식 가장 흔하게 사용하는 방법이며 대표적으로 웹서버가 있다. 클라이언트에 요청이 있어야만 서버가 응답을 한다. 웹서버 요청 방식 브라우저에서 naver.com 주소를 DNS 서버로 IP 검색 요청 DNS에서 naver.com 에 해당하는 IP 를 응답한다. 브라우저는 응답받은 IP의 서버에 커넥션 및 text 전문을 요청한다. naver.com 서버에서는 해당 요청에 응하는 전문을 리턴한다. MMORPG 게임에서 클라이언트와 서버 예시 플레이어가 이동을 위해 좌표를 서버로 요청Request한다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://riley817.github.io/20230227/" /><meta property="og:image" content="https://riley817.github.io/icon.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-02-27T17:05:22+09:00" />
+<meta property="article:modified_time" content="2023-02-27T18:23:46+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://riley817.github.io/icon.png"/>
+
+<meta name="twitter:title" content="[TIL &amp; Issue Note] 20230227"/>
+<meta name="twitter:description" content="Server Authority 서버가 모든 권한을 가지고 있다. 서버는 중재자, 심판, 플레이어 역할을 한다. Client-Server 방식 클라이언트에서 질의(요청)하면 서버에서 응답하는 방식 가장 흔하게 사용하는 방법이며 대표적으로 웹서버가 있다. 클라이언트에 요청이 있어야만 서버가 응답을 한다. 웹서버 요청 방식 브라우저에서 naver.com 주소를 DNS 서버로 IP 검색 요청 DNS에서 naver.com 에 해당하는 IP 를 응답한다. 브라우저는 응답받은 IP의 서버에 커넥션 및 text 전문을 요청한다. naver.com 서버에서는 해당 요청에 응하는 전문을 리턴한다. MMORPG 게임에서 클라이언트와 서버 예시 플레이어가 이동을 위해 좌표를 서버로 요청Request한다."/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://riley817.github.io/20230227/" /><link rel="prev" href="https://riley817.github.io/20230221/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "[TIL \u0026 Issue Note] 20230227",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/riley817.github.io\/20230227\/"
+        },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Issue Note","wordcount":  816 ,
+        "url": "https:\/\/riley817.github.io\/20230227\/","datePublished": "2023-02-27T17:05:22+09:00","dateModified": "2023-02-27T18:23:46+09:00","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "https:\/\/riley817.github.io\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "riley"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Riley&#39;s DevLog"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i></span>Riley&#39;s DevLog</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Riley&#39;s DevLog"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i></span>Riley&#39;s DevLog</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">[TIL & Issue Note] 20230227</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-category">included in <a href="/categories/til-issue-note/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>TIL & Issue Note</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-02-27">2023-02-27</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;816 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;4 minutes&nbsp;<span id="/20230227/" class="leancloud_visitors" data-flag-title="[TIL &amp; Issue Note] 20230227">
+                        <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#server-authority">Server Authority</a>
+      <ul>
+        <li><a href="#client-server-방식">Client-Server 방식</a>
+          <ul>
+            <li><a href="#웹서버-요청-방식">웹서버 요청 방식</a></li>
+          </ul>
+        </li>
+        <li><a href="#mmorpg-게임에서-클라이언트와-서버-예시">MMORPG 게임에서 클라이언트와 서버 예시</a></li>
+        <li><a href="#mmorpg">MMORPG</a></li>
+      </ul>
+    </li>
+    <li><a href="#소켓-프로그래밍의-배경">소켓 프로그래밍의 배경</a>
+      <ul>
+        <li><a href="#소켓-프로그래밍-방식">소켓 프로그래밍 방식</a>
+          <ul>
+            <li><a href="#동기식-synchronous">동기식 <code>Synchronous</code></a></li>
+            <li><a href="#비동기식-asynchronose">비동기식 <code>Asynchronose</code></a></li>
+          </ul>
+        </li>
+        <li><a href="#select-iocp">Select, IOCP</a>
+          <ul>
+            <li><a href="#select">Select</a></li>
+            <li><a href="#iocp-inout-completion-port">IOCP <code>In/Out Completion Port</code></a></li>
+          </ul>
+        </li>
+        <li><a href="#mmorpg-서버의-요구사항">MMORPG 서버의 요구사항</a>
+          <ul>
+            <li><a href="#mmorpg-서버가-해야할-일">MMORPG 서버가 해야할 일</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#multi-thread">Multi Thread</a>
+      <ul>
+        <li><a href="#single-thread-구조">Single Thread 구조</a></li>
+        <li><a href="#single-thread--dedecate">Single Thread + Dedecate</a></li>
+        <li><a href="#multi-thread-1">Multi Thread</a></li>
+        <li><a href="#single-thread-vs-multi-thread">Single Thread vs Multi Thread</a></li>
+      </ul>
+    </li>
+    <li><a href="#multi-process">Multi Process</a></li>
+    <li><a href="#single-process-vs-multi-process">Single Process vs Multi Process</a>
+      <ul>
+        <li><a href="#single-process">Single Process</a></li>
+        <li><a href="#multi-process-1">Multi Process</a></li>
+      </ul>
+    </li>
+    <li><a href="#availablity">Availablity</a></li>
+    <li><a href="#게임에서의-multi-process">게임에서의 Multi Process</a>
+      <ul>
+        <li><a href="#zone-별로-프로세스를-구획화">Zone 별로 프로세스를 구획화</a></li>
+        <li><a href="#스레드-간-경쟁">스레드 간 경쟁</a>
+          <ul>
+            <li><a href="#스레드간-경쟁을-관리하는-방식">스레드간 경쟁을 관리하는 방식</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="server-authority">Server Authority</h2>
+<ul>
+<li>서버가 모든 권한을 가지고 있다.</li>
+<li>서버는 중재자, 심판, 플레이어 역할을 한다.</li>
+</ul>
+<h3 id="client-server-방식">Client-Server 방식</h3>
+<ul>
+<li>클라이언트에서 질의(요청)하면 서버에서 응답하는 방식</li>
+<li>가장 흔하게 사용하는 방법이며 대표적으로 웹서버가 있다.</li>
+<li>클라이언트에 요청이 있어야만 서버가 응답을 한다.</li>
+</ul>
+<h4 id="웹서버-요청-방식">웹서버 요청 방식</h4>
+<ol>
+<li>브라우저에서 <code>naver.com</code> 주소를 DNS 서버로 IP 검색 요청</li>
+<li>DNS에서 <code>naver.com</code> 에 해당하는 IP 를 응답한다.</li>
+<li>브라우저는 응답받은 IP의 서버에 커넥션 및 text 전문을 요청한다.</li>
+<li><code>naver.com</code> 서버에서는 해당 요청에 응하는 전문을 리턴한다.</li>
+</ol>
+<a class="lightgallery" href="/posts/images/TIL/server-client.jpeg" title="/posts/images/TIL/server-client.jpeg" data-thumbnail="/posts/images/TIL/server-client.jpeg">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/posts/images/TIL/server-client.jpeg"
+            data-srcset="/posts/images/TIL/server-client.jpeg, /posts/images/TIL/server-client.jpeg 1.5x, /posts/images/TIL/server-client.jpeg 2x"
+            data-sizes="auto"
+            alt="/posts/images/TIL/server-client.jpeg" />
+    </a>
+<h3 id="mmorpg-게임에서-클라이언트와-서버-예시">MMORPG 게임에서 클라이언트와 서버 예시</h3>
+<a class="lightgallery" href="/posts/images/TIL/server-authority.jpeg" title="/posts/images/TIL/server-authority.jpeg" data-thumbnail="/posts/images/TIL/server-authority.jpeg">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/posts/images/TIL/server-authority.jpeg"
+            data-srcset="/posts/images/TIL/server-authority.jpeg, /posts/images/TIL/server-authority.jpeg 1.5x, /posts/images/TIL/server-authority.jpeg 2x"
+            data-sizes="auto"
+            alt="/posts/images/TIL/server-authority.jpeg" />
+    </a>
+<ol>
+<li>플레이어가 이동을 위해 좌표를 서버로 요청<code>Request</code>한다.</li>
+<li>서버에서도 플레이어의 상태를 가지고 있다. 서버에서 캐릭터를 이동시킨다.</li>
+<li>클라이언트에게 캐릭터를 이동을 시작했다는 응답<code>Response</code>을 보냄</li>
+<li>서버에서는 주변 플레이어들에게 해당 플레이어의 위치가 변경되었음을 알린다.<code>Notification</code></li>
+</ol>
+<h3 id="mmorpg">MMORPG</h3>
+<ul>
+<li><code>MMORPG</code> 게임은 서버가 모든 플레이어의 상태를 컨트롤해야 한다.</li>
+<li>또한 상태값을 실시간으로 전달해야 한다.</li>
+</ul>
+<h2 id="소켓-프로그래밍의-배경">소켓 프로그래밍의 배경</h2>
+<p>NIC(<code>Network Interface Card</code>) 주로 랜카드를 통해서 데이터를 In/Out 한다 프로그래머는 오픈된 인터페이스를 통해 하드웨어를 직접 연결하여 제어할 수 있었다 그러나 랜카드마다 인터페이스가 달랐기 때문에 각 제조사별로 프로그래밍을 할 수 밖에 없었다. 그래서 OS에서는 HAL 이라는 추상화 영역을 두어 각 하드웨어에 Adapted 하여 제조사에 상관없이 프로그래밍 할 수 있게 하고 있다.</p>
+<h3 id="소켓-프로그래밍-방식">소켓 프로그래밍 방식</h3>
+<h4 id="동기식-synchronous">동기식 <code>Synchronous</code></h4>
+<ul>
+<li>요청이 완료될 때 까지 펑션이 종료되지 않는다.</li>
+</ul>
+<h4 id="비동기식-asynchronose">비동기식 <code>Asynchronose</code></h4>
+<ul>
+<li>요청의 응답을 바로 리턴하고 작업이 완료되면 다시 응답값을 리턴한다.</li>
+</ul>
+<h3 id="select-iocp">Select, IOCP</h3>
+<h4 id="select">Select</h4>
+<ul>
+<li>소켓목록을 순회하며 송신, 수신, 예외에 따른 처리를 수행한다.</li>
+<li><code>pre-request</code> 방식</li>
+<li><code>Select</code> 방식의 경우 일의 주체자가 매번 요청을 처리할 수 있는지 확인해야 한다.</li>
+<li>비교적 간단한게 구현이 가능하다.</li>
+</ul>
+<h4 id="iocp-inout-completion-port">IOCP <code>In/Out Completion Port</code></h4>
+<ul>
+<li>주로 윈도우즈에서 사용한다,</li>
+<li>IOCP에 특정한 thread pool에서 소켓의 송수신을 관리한다.</li>
+<li>work thread와 소켓을 처리하는 thread가 분리되어 있다.</li>
+</ul>
+<h3 id="mmorpg-서버의-요구사항">MMORPG 서버의 요구사항</h3>
+<ul>
+<li>유저와 동접자 수가 많다. MMO(<code>Massively Multiplayer Online</code>)</li>
+<li>Actor 단위로 작업량이 많다</li>
+<li>Actor : Player, NPC(몬스터), Contorl-Zone, 그 외</li>
+<li>Actor의 매 프레임마다 동작을 처리해야 한다.</li>
+</ul>
+<h4 id="mmorpg-서버가-해야할-일">MMORPG 서버가 해야할 일</h4>
+<ol>
+<li>패킷 처리 (Read/Write)</li>
+</ol>
+<ul>
+<li>패킷을 파싱하고 패킷을 처리 후 패킷에 대한 응답을 클라이언트로 전송해야 한다.</li>
+</ul>
+<ol start="2">
+<li>Tick 처리</li>
+</ol>
+<ul>
+<li>매프레임에 유저에게 동작을 업데이트 시키는 과정</li>
+</ul>
+<ol start="3">
+<li>그 외</li>
+</ol>
+<ul>
+<li>ex) 물건을 사고파는 경매기능, 공성전 등&hellip;</li>
+</ul>
+<h2 id="multi-thread">Multi Thread</h2>
+<ul>
+<li>유저가 늘어남에 따라 패킷 및 Tick 처리가 많아지고 하나의 CPU가 모든일을 다 처리하는 시간이 짧다. 코어를 여러개 나누어 분산 처리함으로써 시간을 단축시킬 수 있다. 그러나 멀티 스레드를 사용함으로써 복잡도가 높아지고 관리가 어렵기 때문에 오히려 싱글 스레드를 사용할 때보다 성능저하가 발생할 수 있다.</li>
+</ul>
+<h3 id="single-thread-구조">Single Thread 구조</h3>
+<ul>
+<li>Network I/O와 Work Thread 사이의 간극을 해소하는 Queue를 구성한다.</li>
+<li>Work Thread는 매 Tick 마다 Queue에 쌓인 모든 패킷을 처리하고 프레임의 상태를 업데이트 한다.</li>
+<li>구조가 명료하고 심플하다.</li>
+<li>싱글 스레드이기 때문에 멀티스레드에서 발생할 수 있는 문제들(데드락 등)이 없다.</li>
+<li>처리할 수 있는 액터수가 한정적이다.</li>
+</ul>
+<h3 id="single-thread--dedecate">Single Thread + Dedecate</h3>
+<ul>
+<li>특정 업무를 수행하는 Dedecate 스레드를 추가한다. (ex 경매장, 공성전, DB I/O 등)</li>
+<li>특정기능을 분리함으로써 싱글스레드의 단점을 보완할 수 있다.</li>
+</ul>
+<h3 id="multi-thread-1">Multi Thread</h3>
+<ul>
+<li>Work 스레드를 여러개 사용한다.</li>
+<li>모든 워크 스레드가 하나의 큐를 사용하므로 충돌이 자주 발생한다.</li>
+<li>또한 스레드 별로 인터렉션이 발생할 경우 처리가 복잡해진다.</li>
+<li>웹서버의 경우 하나의 요청에 해당하는 데이터만 처리하면 되나 게임서버의 경우 인터렉션까지 고려하여 처리해야 한다.</li>
+<li>성능이 올라 갈 수도 있으나 위와 같은 복잡한 문제가 많기 때문에 단순히 멀티스레드를 구성해서 문제를 해결할 수 없다.</li>
+</ul>
+<h3 id="single-thread-vs-multi-thread">Single Thread vs Multi Thread</h3>
+<ul>
+<li>싱글 스레드를 사용하는 것을 추천한다. 관리하기 편리하고 프로그래밍 하기가 좋다.</li>
+<li>감당할 수 있는 액터가 줄어든다.</li>
+</ul>
+<h2 id="multi-process">Multi Process</h2>
+<ul>
+<li>하나의 컴퓨터의 여러 프로세스를 동작시킨다.</li>
+<li>서로 가상의 영역에서 동작하기 때문에 락킹에 대한 이슈는 발생하지 않는다.</li>
+<li>멀티스레드는 하나의 메모리를 공유하지만 멀티 프로세스는 각 프로세스 영역의 메모리를 관리한다.</li>
+<li>멀티프로세스의 경우 서로간 인터렉션이 불가능하다. 그러므로 게임에서는 월드를 구획화 하여 프로세스를 여러개로 관리한다.</li>
+</ul>
+<h2 id="single-process-vs-multi-process">Single Process vs Multi Process</h2>
+<h3 id="single-process">Single Process</h3>
+<ul>
+<li>게임서버를 하나로 동작시킨다.</li>
+<li>구현이 단순하고 버전업 및 배포 서비스가 편리하다.</li>
+<li><strong>Scale Up</strong> : 게임서버의 성능을 올리기 위해 더 좋은 단계의 머신을 사용한다.</li>
+<li>어느 순간이 되면 머신의 성능을 올려도 성능향상에 한계가 발생한다.</li>
+</ul>
+<h3 id="multi-process-1">Multi Process</h3>
+<ul>
+<li><strong>Scale Out</strong> : 머신의 수르 늘린다.</li>
+<li>같은 머신을 횡단으로 증가 시키므로 일정하게 성능이 향상된다.</li>
+<li>버전업 및 배포 등 관리가 매우 어렵다.</li>
+</ul>
+<blockquote>
+<p>처음에는 Scale Up을 하여 성능을 향상시키므로 비용이 더 저렴할 수 있으나 최근에는 클라우드 서버등의 가상머신을 많이 사용하므로서 경제적인 측면에는 오히려 Scale Out 방식이 더 저렴할 수도 있다.</p>
+</blockquote>
+<h2 id="availablity">Availablity</h2>
+<ul>
+<li>가용성</li>
+<li>싱글 스레드의 경우 하나의 서버가 죽으면 서비스 전체가 마비 될 수도 있다. (SPOF : single point of failure)</li>
+</ul>
+<h2 id="게임에서의-multi-process">게임에서의 Multi Process</h2>
+<h3 id="zone-별로-프로세스를-구획화">Zone 별로 프로세스를 구획화</h3>
+<ul>
+<li>게임 내 지형지물을 사용하여 Zone 별로 구획화하여 프로세스를 멀티로 구성한다.</li>
+<li>유저가 다른 존으로 넘어갈 때는 로딩 등으로 처리할 수 있다.</li>
+<li>같은 Zone 내에서도 프로세스를 중첩하여 <code>Channel</code>로 관리할 수 있다.</li>
+</ul>
+<h3 id="스레드-간-경쟁">스레드 간 경쟁</h3>
+<ul>
+<li>스레드간 공유하는 메모리 자원에 대한 경쟁이 발생한다.</li>
+<li>주로 락을 거는 방법으로 보호하고 자원을 어떻게 잘 분배할 것인지 고민해야 한다.</li>
+</ul>
+<h4 id="스레드간-경쟁을-관리하는-방식">스레드간 경쟁을 관리하는 방식</h4>
+<ol>
+<li>무식하게</li>
+</ol>
+<ul>
+<li>스레드의 wait time이 길어짐으로써 성능이 떨어진다.</li>
+<li>데드락이 많이 발생할 수 있다.</li>
+<li>특정 스레드의 레이스 순서에 따라 타이밍 이슈가 발생한다.</li>
+</ul>
+<ol start="2">
+<li>Akka - 액터별로 나눈다.</li>
+</ol>
+<ul>
+<li>액터를 기준으로 스레드를 분리한다.</li>
+<li>액터간 인터렉션이 발생할 경우 메세지를 통해 스레드간 데이터를 전달한다.</li>
+<li>서로 간섭이 일어나지 않기 때문에 락을 걸지 않아도 된다.</li>
+<li>코딩의 복잡도가 올라간다.</li>
+</ul>
+<ol start="3">
+<li>ECS - Entity Component System</li>
+</ol>
+<ul>
+<li>시스템 끼리 프로세스를 나눔으로써 기능 확장에 용이하다.</li>
+<li>데이터 Locality
+<ul>
+<li>관련 데이터들끼리 모여있는 경우 순차적으로 읽을 때 매우 빠르다.</li>
+</ul>
+</li>
+<li>시스템이 1:1로 대응 되면 좋으나 시스템간 인터렉션이 발생하므로 의존성 문제가 복잡해 질 수 있다.</li>
+</ul>
+<p><strong>Entity</strong></p>
+<ul>
+<li>컴포넌트를 담든 그릇과 같은 용도</li>
+<li>객체지향의 클래스처럼 상태를 관리한다.</li>
+</ul>
+<p><strong>Component</strong></p>
+<ul>
+<li>일반적으로 데이터 값을 가지고 있고 기능은 가지고 있지 않음</li>
+<li>구현은 구조체, 클래스 또는 연관 배열을 사용한다.</li>
+</ul>
+<p><strong>System</strong></p>
+<ul>
+<li>특정 컴포넌트로만 이루어진 구현</li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-02-27&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/320dac0d8856ae5d32b8925392a4a70f29bb2fb4" target="_blank" title="commit by riley817(riley0422@icloud.com) 320dac0d8856ae5d32b8925392a4a70f29bb2fb4: 20230227182344">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>320dac0</a></span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/issue-note/">Issue Note</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/20230221/" class="prev" rel="prev" title="[TIL &amp; Issue Note] 20230221"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>[TIL & Issue Note] 20230221</a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.110.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Riley</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/valine@1.4.18/dist/Valine.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.1/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{"valine":{"appId":"QGzwQXOqs5JOhN4RGPOkR2mR-MdYXbMMI","appKey":"WBmoGyJtbqUswvfLh6L8iEBr","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@14.0.0/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"en","pageSize":10,"placeholder":"Your comment ...","recordIP":true,"serverURLs":"https://leancloud.hugoloveit.com","visitor":true}},"search":{"algoliaAppID":"","algoliaIndex":"","algoliaSearchKey":"","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

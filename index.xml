@@ -4,9 +4,17 @@
         <link>https://riley817.github.io/</link>
         <description>Riley&#39;s DevLog</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
-            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Tue, 21 Feb 2023 23:04:09 &#43;0900</lastBuildDate>
+            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Mon, 27 Feb 2023 17:05:22 &#43;0900</lastBuildDate>
             <atom:link href="https://riley817.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>[TIL &amp; Issue Note] 20230227</title>
+    <link>https://riley817.github.io/20230227/</link>
+    <pubDate>Mon, 27 Feb 2023 17:05:22 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/20230227/</guid>
+    <description><![CDATA[Server Authority 서버가 모든 권한을 가지고 있다. 서버는 중재자, 심판, 플레이어 역할을 한다. Client-Server 방식 클라이언트에서 질의(요청)하면 서버에서 응답하는 방식 가장 흔하게 사용하는 방법이며 대표적으로 웹서버가 있다. 클라이언트에 요청이 있어야만 서버가 응답을 한다. 웹서버 요청 방식 브라우저에서 naver.com 주소를 DNS 서버로 IP 검색 요청 DNS에서 naver.com 에 해당하는 IP 를 응답한다. 브라우저는 응답받은 IP의 서버에 커넥션 및 text 전문을 요청한다. naver.com 서버에서는 해당 요청에 응하는 전문을 리턴한다. MMORPG 게임에서 클라이언트와 서버 예시 플레이어가 이동을 위해 좌표를 서버로 요청Request한다.]]></description>
+</item>
+<item>
     <title>[TIL &amp; Issue Note] 20230221</title>
     <link>https://riley817.github.io/20230221/</link>
     <pubDate>Tue, 21 Feb 2023 23:04:09 &#43;0900</pubDate>
@@ -89,14 +97,6 @@ StatelessWidget Life Cycle Constructor로 생성이되고 생성이 되자마자
     <author>riley</author>
     <guid>https://riley817.github.io/20230126/</guid>
     <description><![CDATA[Issue flutter 환경을 설정하던 중 안드로이드 라이센스 관련 명령어 실행시 에러 UnsupportedClassVersionError while &lsquo;flutter doctor &ndash;android-licenses&rsquo; MacOS 사용 환경 MacOS Ventura (M1 Mac) Android Studio Electric Eel 에러 내용 1 2 3 4 Exception in thread &#34;main&#34; java.lang.UnsupportedClassVersionError: com/android/prefs/AndroidLocationsProvider has been compiled by a more recent version of the Java Runtime (class file version 55.0), this version of the Java Runtime only recognizes class file versions up to 52.0 해결 내용 Agree to Andorid License 1 2 3 1.]]></description>
-</item>
-<item>
-    <title>[TIL &amp; Issue Note] 20230211</title>
-    <link>https://riley817.github.io/20230211/</link>
-    <pubDate>Thu, 26 Jan 2023 23:33:57 &#43;0900</pubDate>
-    <author>riley</author>
-    <guid>https://riley817.github.io/20230211/</guid>
-    <description><![CDATA[전통적인 게임의 서버 구조 P2P 서버에 참여하는 구성원들이 서버이자 클라이언트의 역할을 한다. 주로 격투게임, 소규모 FPS 게임 등 반응 속도가 빨라야하는 장르에서 많이 사용했다. 인원수에 따라 유지해야 하는 연결의 개수가 많아 진다. Host 방식 게임에 참가하는 참가자 중 제일 처음 방을 만드는 참가자의 클라이언트를 서버로 사용 나머지 참가자는 클라이언트로서의 역할을 한다. 게임의 검증, 결과 판정 등은 호스트 클라이언트가 담당한다. 호스트에게 모든 데이터가 집중되므로 호스트의 컴퓨터 성능이 좋아야 한다. 호스트의 서버가 연결을 종료할 경우 접속한 모든 클라이언트가 게임을 할 수 없다.]]></description>
 </item>
 </channel>
 </rss>

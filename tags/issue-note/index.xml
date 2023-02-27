@@ -4,7 +4,15 @@
         <link>https://riley817.github.io/tags/issue-note/</link>
         <description>Issue Note - Tag - Riley&#39;s DevLog</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
-            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Tue, 21 Feb 2023 23:04:09 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/tags/issue-note/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Mon, 27 Feb 2023 17:05:22 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/tags/issue-note/" rel="self" type="application/rss+xml" /><item>
+    <title>[TIL &amp; Issue Note] 20230227</title>
+    <link>https://riley817.github.io/20230227/</link>
+    <pubDate>Mon, 27 Feb 2023 17:05:22 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/20230227/</guid>
+    <description><![CDATA[Server Authority 서버가 모든 권한을 가지고 있다. 서버는 중재자, 심판, 플레이어 역할을 한다. Client-Server 방식 클라이언트에서 질의(요청)하면 서버에서 응답하는 방식 가장 흔하게 사용하는 방법이며 대표적으로 웹서버가 있다. 클라이언트에 요청이 있어야만 서버가 응답을 한다. 웹서버 요청 방식 브라우저에서 naver.com 주소를 DNS 서버로 IP 검색 요청 DNS에서 naver.com 에 해당하는 IP 를 응답한다. 브라우저는 응답받은 IP의 서버에 커넥션 및 text 전문을 요청한다. naver.com 서버에서는 해당 요청에 응하는 전문을 리턴한다. MMORPG 게임에서 클라이언트와 서버 예시 플레이어가 이동을 위해 좌표를 서버로 요청Request한다.]]></description>
+</item>
+<item>
     <title>[TIL &amp; Issue Note] 20230221</title>
     <link>https://riley817.github.io/20230221/</link>
     <pubDate>Tue, 21 Feb 2023 23:04:09 &#43;0900</pubDate>
