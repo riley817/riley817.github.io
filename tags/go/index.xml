@@ -4,7 +4,18 @@
         <link>https://riley817.github.io/tags/go/</link>
         <description>GO - Tag - Riley&#39;s DevLog</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
-            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Tue, 26 Apr 2022 14:50:36 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/tags/go/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Tue, 07 Mar 2023 21:27:33 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/tags/go/" rel="self" type="application/rss+xml" /><item>
+    <title>[Go 언어를 활용한 네트워크 프로그래밍] 1. 네트워크 시스템 개요</title>
+    <link>https://riley817.github.io/network-programming-with-go/</link>
+    <pubDate>Tue, 07 Mar 2023 21:27:33 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/network-programming-with-go/</guid>
+    <description><![CDATA[Go 언어를 활용한 네트워크 프로그래밍 책 정리
+컴퓨터 네트워크coumputer network 란 두 개 이상의 장치 또는 노드간의 연결을 말한다.
+네트워크 토폴로지 선택하기 네트워크 토폴로지topology 란 네트워크상의 노드의 구성을 말한다.
+네트워크 토폴로지 유형 점대점 point-to-point 연결형 두 노드가 하나의 연결을 공유 한다. 두 노드 간에 직접 통신이 필요할 때 매우 유용하다. 데이지 체인 daisy chain 연결형 일련의 점대점 연결 출발지 노드와 목적지 노드 사이의 중간 노드를 일반적으로 홉이라고 한다. 버스형 bus 버스형 토폴로지상의 노드들은 공통, 공유 네트워크 링크를 갖는다.]]></description>
+</item>
+<item>
     <title>[Tucker의 Go 프로그래밍] 18. 슬라이스</title>
     <link>https://riley817.github.io/chapter18-slice/</link>
     <pubDate>Tue, 26 Apr 2022 14:50:36 &#43;0900</pubDate>
@@ -90,15 +101,6 @@ os.Open() : 기존 파일 열기 os.Create() : 새 파일을 생성 os.Close() :
     <description><![CDATA[인프런 쉽고 빠르게 끝내는 GO언어 프로그래밍 핵심 기초 입문 과정 강의 정리
 10.1 에러처리 10.1.1 Go 에러 소프트웨어의 품질 향상에 가장 중요한 것 → 유형코드 및 에러 정보 등을 남기는 것
 Go 에서는 기본적으로 error 라는 인터페이스 타입을 갖고 있다. 개발자는 이 인터페이스를 구현하는 커스텀 에러 타입을 만들 수 있다. 1 2 3 type error interface { Error() string } 10.1.2 Go 에러처리 Go 함수의 경우 기본적으로 리턴 타입을 두개 갖고 있다.]]></description>
-</item>
-<item>
-    <title>[쉽고 빠르게 끝내는 GO언어 프로그래밍 핵심 기초 입문 과정] Section 9 : Go 병행처리</title>
-    <link>https://riley817.github.io/easy-golang-section9/</link>
-    <pubDate>Thu, 15 Apr 2021 22:39:29 &#43;0900</pubDate>
-    <author>riley</author>
-    <guid>https://riley817.github.io/easy-golang-section9/</guid>
-    <description><![CDATA[인프런 쉽고 빠르게 끝내는 GO언어 프로그래밍 핵심 기초 입문 과정 강의 정리
-9.1 고루틴 9.1.1 GoRoutine goroutine은 go 런타임이 관리하는 lightweight 논리적(가장적) Thread이다. 생성 방법이 매우 간단하고 리소스를 매우 적게 사용한다. → 수 많은 고루틴을 동시에 생성 및 실행이 가능 Java나 Python의 스레드는 MB단위인 반면에 GO KB 단위이다. 비동기적 asynchronously 함수 루틴을 실행 한다. 채널을 통해 루틴간 통신이 가능하다. 공유 메모리를 사용시에 정확한 동기화 코딩이 필요하다. 싱글 루틴에 비해 항상 빠르지는 않다.]]></description>
 </item>
 </channel>
 </rss>

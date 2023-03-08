@@ -1,0 +1,19 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Go 언어를 활용한 네트워크 프로그래밍 - Category - Riley&#39;s DevLog</title>
+        <link>https://riley817.github.io/categories/go-%EC%96%B8%EC%96%B4%EB%A5%BC-%ED%99%9C%EC%9A%A9%ED%95%9C-%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/</link>
+        <description>Go 언어를 활용한 네트워크 프로그래밍 - Category - Riley&#39;s DevLog</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
+            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Tue, 07 Mar 2023 21:27:33 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/categories/go-%EC%96%B8%EC%96%B4%EB%A5%BC-%ED%99%9C%EC%9A%A9%ED%95%9C-%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/" rel="self" type="application/rss+xml" /><item>
+    <title>[Go 언어를 활용한 네트워크 프로그래밍] 1. 네트워크 시스템 개요</title>
+    <link>https://riley817.github.io/network-programming-with-go/</link>
+    <pubDate>Tue, 07 Mar 2023 21:27:33 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/network-programming-with-go/</guid>
+    <description><![CDATA[Go 언어를 활용한 네트워크 프로그래밍 책 정리
+컴퓨터 네트워크coumputer network 란 두 개 이상의 장치 또는 노드간의 연결을 말한다.
+네트워크 토폴로지 선택하기 네트워크 토폴로지topology 란 네트워크상의 노드의 구성을 말한다.
+네트워크 토폴로지 유형 점대점 point-to-point 연결형 두 노드가 하나의 연결을 공유 한다. 두 노드 간에 직접 통신이 필요할 때 매우 유용하다. 데이지 체인 daisy chain 연결형 일련의 점대점 연결 출발지 노드와 목적지 노드 사이의 중간 노드를 일반적으로 홉이라고 한다. 버스형 bus 버스형 토폴로지상의 노드들은 공통, 공유 네트워크 링크를 갖는다.]]></description>
+</item>
+</channel>
+</rss>
