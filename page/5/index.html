@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-	<meta name="generator" content="Hugo 0.111.2">
+	<meta name="generator" content="Hugo 0.111.3">
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
@@ -100,6 +100,11 @@
         alt="/images/avatar.png"
         title="/images/avatar.png" /></a></div><h1 class="home-title">라일리의 개발 공부기록</h1><div class="home-subtitle"><div id="id-1" class="typeit"></div></div><div class="links"><a href="https://github.com/https://github.com/riley817" title="GitHub" target="_blank" rel="noopener noreffer me"><i class="fab fa-github-alt fa-fw" aria-hidden="true"></i></a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/aws-06-ec2-associate/">6. AWS Elastic Compute Cloud (EC2) - Associate</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-07-14">2022-07-14</time></span>&nbsp;<span class="post-category">included in <a href="/categories/aws-certified-saa-c02-%EC%8B%9C%ED%97%98%EC%A4%80%EB%B9%84/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>AWS Certified SAA-C02 시험준비</a></span></div><div class="content">Private vs Public IP (IPv4) 네트워크는 IPv4, IPv6 두 가지로 분류 할 수 있다. IPv4 : 1.160.10.240 IPv6 : 3ffe:1900:4545:3:200:f8ff:fe21:67cf 대부분의 온라인에서는 IPv4를 범용적으로 사용 IPv6 사물인터넷(IoT) 문제를 해결하기 위해 새로 등장함 IPv4는 퍼블릭 영역에서 37억개의 서로 다른 주소를 허용 IPv4:[0-255].[0-255].[0-255].[0-255] Private vs Public IP 차이점 Public IP Public IP는 컴퓨터가 인터넷상(WWW)에서 식별될 수 있음을 의미 전체 웹에서 고유해야 한다. (두 개의 머신이 같은 public IP를 갖을 수 없다) 쉽게 지리적 위치를 찾을 수 있음 Private IP Private IP는 컴퓨터가 사설 네트워크망에서만 식별될 수 있음을 의미 IP는 사설 네트워크에서 고유해야 한다.</div><div class="post-footer">
+        <a href="/aws-06-ec2-associate/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/aws/">AWS</a>,&nbsp;<a href="/tags/amazone-ec2/">Amazone EC2</a>,&nbsp;<a href="/tags/amazone-elastic-network-interfaceseni/">Amazone Elastic Network Interfaces(ENI)</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/aws-05-ec2/">5. AWS EC2 Basics</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-07-13">2022-07-13</time></span>&nbsp;<span class="post-category">included in <a href="/categories/aws-certified-saa-c02-%EC%8B%9C%ED%97%98%EC%A4%80%EB%B9%84/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>AWS Certified SAA-C02 시험준비</a></span></div><div class="content">Amazon EC2 EC2는 AWS의 가장 인기있는 서비스이다. Elastic Compute Cloud = Infrastructure as a service 클라우드의 작동 방식을 이해하기 위해서는 EC2를 이해하는 것이 중요하다. 구성할 수 있는 기능 가상 머신 임대 (EC2) 가상 드라이브에 데이터를 저장 (EBS) 시스템 간 부하 분산 (ELB) auto-scaling group(ASG)를 사용하여 서비스 확장 EC2 sizing &amp; configuration options Operating System(OS) : Linux, Windows or Mac OS 컴퓨터 성능과 코어양 선택 가능 (CPU) random-access memory (RAM) 스토리지 용량 Network-attached (EBS &amp; EFS) hardware (EC2 Instance Store) Network card: 네트워크 카드 속도, 공용 IP 주소 방화벽 규칙 : security group Bootstrap script (configure at first launch): EC2 User Data EC2 User Data EC2 사용자 데이터 스크립트를 사용하여 인스턴스를 부트스트랩 할 수 있다.</div><div class="post-footer">
         <a href="/aws-05-ec2/">Read More</a><div class="post-tags">
@@ -129,14 +134,6 @@ Functions not working when type=&quot;module&quot; or import </div><div class="p
 인그레스 오브젝트의 기본 기능은 다음과 같다.
 외부 요청의 라우팅 : 특정 경로로 들어온 요청을 어떤 서비스로 전달할지 정의하는 라우터 규칙 설정 가상 호스트 기반의 요청 처리 : 같은 IP에 대해 다른 도메인 이름으로 요청했을 때 어떻게 처리할 것인지 정의 SSL/TLS 보안 연결 처리 : 요청을 라우팅 할 때, 보안 연결을 위한 인증서 적용 인그레스를 사용하는 이유 쿠버네티스 서비스 타입 중 NodePort 혹은 LoadBalancer 타입의 서비스를 사용해도 외부로 노출할 수 있지만, 인그레스 없이 서비스를 사용할 경우 SSL/TLS 보안 연결 등의 상세 옵션을 각각의 서비스와 디플로이먼트에 대해 일일이 설정을 해야 한다.</div><div class="post-footer">
         <a href="/aws-5-ingress-controller/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/aws/">AWS</a>,&nbsp;<a href="/tags/amazon-eks/">Amazon EKS</a>,&nbsp;<a href="/tags/kubernetes/">Kubernetes</a>,&nbsp;<a href="/tags/amazon-ecr/">Amazon ECR</a>,&nbsp;<a href="/tags/aws-cloud9/">AWS Cloud9</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/aws-4-ecr/">[AWS EKS] 4. Amazon ECR 에 이미지 올리기</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-05-07">2022-05-07</time></span>&nbsp;<span class="post-category">included in <a href="/categories/building-web-applications-with-amazon-eks/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Building Web Applications with Amazon EKS</a></span></div><div class="content">☁️ Amazon EKS 웹 애플리케이션 구축하기 워크샵을 실습한 내용입니다.
-Amazon ECR 리포지토리 생성 및 이미지 올리기 Amazon ECR(Elastic Container Registry) 은 도커 컨테이너의 이미지를 저장하는 Repository 서비스이다. Docker hub의 기능과 동일하다.
-AWS CLI로 이미지 리포지토리 생성 1 2 3 4 aws ecr create-repository \ --repository-name demo-flask-backend \ --image-scanning-configuration scanOnPush=true \ --region ap-northeast-2 명령어가 수행되면 리포지토리에 대한 정보가 출력되며 Amazon ECR 콘솔창에서도 생성된 리포지토리를 확인할 수 있다.
-이미지를 리포지토리로 푸시 이미지를 푸시하려는 리포지토리 선택 후 오른쪽 상단에 푸시 명령 보기(View push commands) 버튼을 클릭하면 푸시 명령어를 확인 할 수 있다.</div><div class="post-footer">
-        <a href="/aws-4-ecr/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/aws/">AWS</a>,&nbsp;<a href="/tags/amazon-eks/">Amazon EKS</a>,&nbsp;<a href="/tags/kubernetes/">Kubernetes</a>,&nbsp;<a href="/tags/amazon-ecr/">Amazon ECR</a>,&nbsp;<a href="/tags/aws-cloud9/">AWS Cloud9</a></div></div>
 </article><ul class="pagination"><li class="page-item ">
                     <span class="page-link">
@@ -168,11 +165,11 @@ AWS CLI로 이미지 리포지토리 생성 1 2 3 4 aws ecr create-repository \ 
                     <span class="page-link" aria-hidden="true">&hellip;</span>
                 </li><li class="page-item ">
                     <span class="page-link">
-                        <a href="/page/21/">21</a>
+                        <a href="/page/22/">22</a>
                     </span>
                 </li></ul></div></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.111.2">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.111.3">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
                 </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Riley</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

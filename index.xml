@@ -4,9 +4,18 @@
         <link>https://riley817.github.io/</link>
         <description>Riley&#39;s DevLog</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
-            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Tue, 07 Mar 2023 21:27:33 &#43;0900</lastBuildDate>
+            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Mon, 10 Apr 2023 23:24:37 &#43;0900</lastBuildDate>
             <atom:link href="https://riley817.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>[Go 언어를 활용한 네트워크 프로그래밍] 3. 신뢰성 있는 TCP 데이터 스트림</title>
+    <link>https://riley817.github.io/network-programming-with-go-copy/</link>
+    <pubDate>Mon, 10 Apr 2023 23:24:37 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/network-programming-with-go-copy/</guid>
+    <description><![CDATA[Go 언어를 활용한 네트워크 프로그래밍 책 정리
+TCP를 신뢰성 있게 만드는 것 패킷손실packet loss : 무선 네트워크 간섭이나 네트워크 정체 등의 이유로 데이터가 전송에 실패하여 목적지까지 도달하지 못한 경우 발생 네트워크 정체network congestion : 네트워크의 연결상 처리할 수 있는 양 이상의 데이터를 전송하려 할 때 발생 TCP는 흐름제어 flow control 절차를 통해 데이터의 전송 속도를 조정하여 네트워크의 상태가 변경되더라도 손실된 패킷을 최소로 유지하면서 데이터를 빠르게 전송할 수 있다. TCP는 수신한 패킷을 추적하고, 승인되지 않은 패킷은 필요에 따라 재전송 한다.]]></description>
+</item>
+<item>
     <title>[Go 언어를 활용한 네트워크 프로그래밍] 1. 네트워크 시스템 개요</title>
     <link>https://riley817.github.io/network-programming-with-go/</link>
     <pubDate>Tue, 07 Mar 2023 21:27:33 &#43;0900</pubDate>
@@ -90,16 +99,6 @@ RTT(Round Trip Time, 패킷왕복시간) : 패킷이 목적지에 도달하고�
                 <img src="/posts/images/banner/flutter-logo.png" referrerpolicy="no-referrer">
             </div>Widget Widget은 모두 불변의 법칙을 가지고 있다. 그러나 위젯의 값을 변경해야 할 경우가 생긴다. 변경이 필요할 경우 기존 위젯을 삭제해버리고 완전 새로운 위젯으로 대체한다.
 StatelessWidget Life Cycle Constructor로 생성이되고 생성이 되자마자 build 함수가 실행된다. 변경이 필요하면 새로운 위젯을 만든다. StatelessWidget은 라이프 사이클 동안 단 한번만 build 함수를 실행한다. StatefulWidget 생명주기 Construct createState : State를 생성 initState : State를 초기화. State가 생성될 때 단 한번만 호출된다. didChangeDependencies dirty 상태 : 변경이 필요한 상태를 의미한다.]]></description>
-</item>
-<item>
-    <title>[iOS/Android] APP HTTP 접근 허용하기</title>
-    <link>https://riley817.github.io/ios-allow/</link>
-    <pubDate>Tue, 31 Jan 2023 23:39:01 &#43;0900</pubDate>
-    <author>riley</author>
-    <guid>https://riley817.github.io/ios-allow/</guid>
-    <description><![CDATA[APP HTTP 접근 허용 설정하기 iOS ios/Runner/Info.plist
-1 2 3 4 5 6 7 8 9 &lt;key&gt;NSAppTransportSecurity&lt;/key&gt; &lt;dict&gt; &lt;key&gt;NSAllowsLocalNetworking&lt;/key&gt; &lt;true/&gt; &lt;key&gt;NSAllowsArbitraryLoadsInWebContent&lt;/key&gt; &lt;true/&gt; &lt;/dict&gt; &lt;/dict&gt; &lt;/plist&gt; Android android/app/src/main/AndroidManifest.xml
-1 2 3 4 5 6 7 8 &lt;manifest xmlns:android=&#34;http://schemas.android.com/apk/res/android&#34; package=&#34;com.example.web_view&#34;&gt; &lt;uses-permission android:name=&#34;android.permission.INTERNET&#34;/&gt; &lt;!-- 추가 --&gt; &lt;application android:label=&#34;web_view&#34; android:name=&#34;${applicationName}&#34; android:icon=&#34;@mipmap/ic_launcher&#34; android:usesCleartextTraffic=&#34;true&#34;&gt; &lt;!-- 추가 --&gt; ]]></description>
 </item>
 </channel>
 </rss>
