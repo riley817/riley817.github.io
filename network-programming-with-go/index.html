@@ -6,21 +6,21 @@
         <meta name="robots" content="noodp" />
         <title>[Go 언어를 활용한 네트워크 프로그래밍] 1. 네트워크 시스템 개요 - Riley&#39;s DevLog</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:title" content="[Go 언어를 활용한 네트워크 프로그래밍] 1. 네트워크 시스템 개요" />
 <meta property="og:description" content="Go 언어를 활용한 네트워크 프로그래밍 책 정리
-컴퓨터 네트워크coumputer network 란 두 개 이상의 장치 또는 노드간의 연결을 말한다.
-네트워크 토폴로지 선택하기 네트워크 토폴로지topology 란 네트워크상의 노드의 구성을 말한다.
-네트워크 토폴로지 유형 점대점 point-to-point 연결형 두 노드가 하나의 연결을 공유 한다. 두 노드 간에 직접 통신이 필요할 때 매우 유용하다. 데이지 체인 daisy chain 연결형 일련의 점대점 연결 출발지 노드와 목적지 노드 사이의 중간 노드를 일반적으로 홉이라고 한다. 버스형 bus 버스형 토폴로지상의 노드들은 공통, 공유 네트워크 링크를 갖는다." />
+컴퓨터 네트워크(coumputer network) 란 두 개 이상의 장치 또는 노드간의 연결을 말한다.
+네트워크 토폴로지 유형 네트워크 토폴로지topology 란 네트워크상의 노드의 구성을 말한다. 토폴로지의 유형은 점대점 연결형, 데이지 체인형, 버스형, 링형, 스타형, 그물형의 6가지 기본 범주로 나뉜다.
+1. 점대점 point-to-point 연결형 두 노드가 하나의 연결을 공유 한다. 이러한 유형의 네트워크 연결을 드물지만 두 노드 간에 직접 통신이 필요할 때 매우 유용하다. 2. 데이지 체인 daisy chain 연결형 일련의 점대점 연결 출발지 노드와 목적지 노드 사이의 중간 노드를 일반적으로 홉이라고 한다." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://riley817.github.io/network-programming-with-go/" /><meta property="og:image" content="https://riley817.github.io/icon.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2023-03-07T21:27:33+09:00" />
-<meta property="article:modified_time" content="2023-04-10T23:53:32+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
+<meta property="article:modified_time" content="2023-04-18T23:50:59+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://riley817.github.io/icon.png"/>
 
 <meta name="twitter:title" content="[Go 언어를 활용한 네트워크 프로그래밍] 1. 네트워크 시스템 개요"/>
 <meta name="twitter:description" content="Go 언어를 활용한 네트워크 프로그래밍 책 정리
-컴퓨터 네트워크coumputer network 란 두 개 이상의 장치 또는 노드간의 연결을 말한다.
-네트워크 토폴로지 선택하기 네트워크 토폴로지topology 란 네트워크상의 노드의 구성을 말한다.
-네트워크 토폴로지 유형 점대점 point-to-point 연결형 두 노드가 하나의 연결을 공유 한다. 두 노드 간에 직접 통신이 필요할 때 매우 유용하다. 데이지 체인 daisy chain 연결형 일련의 점대점 연결 출발지 노드와 목적지 노드 사이의 중간 노드를 일반적으로 홉이라고 한다. 버스형 bus 버스형 토폴로지상의 노드들은 공통, 공유 네트워크 링크를 갖는다."/>
+컴퓨터 네트워크(coumputer network) 란 두 개 이상의 장치 또는 노드간의 연결을 말한다.
+네트워크 토폴로지 유형 네트워크 토폴로지topology 란 네트워크상의 노드의 구성을 말한다. 토폴로지의 유형은 점대점 연결형, 데이지 체인형, 버스형, 링형, 스타형, 그물형의 6가지 기본 범주로 나뉜다.
+1. 점대점 point-to-point 연결형 두 노드가 하나의 연결을 공유 한다. 이러한 유형의 네트워크 연결을 드물지만 두 노드 간에 직접 통신이 필요할 때 매우 유용하다. 2. 데이지 체인 daisy chain 연결형 일련의 점대점 연결 출발지 노드와 목적지 노드 사이의 중간 노드를 일반적으로 홉이라고 한다."/>
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -35,8 +35,8 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/riley817.github.io\/network-programming-with-go\/"
-        },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "GO","wordcount":  429 ,
-        "url": "https:\/\/riley817.github.io\/network-programming-with-go\/","datePublished": "2023-03-07T21:27:33+09:00","dateModified": "2023-04-10T23:53:32+09:00","publisher": {
+        },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "GO","wordcount":  1151 ,
+        "url": "https:\/\/riley817.github.io\/network-programming-with-go\/","datePublished": "2023-03-07T21:27:33+09:00","dateModified": "2023-04-18T23:50:59+09:00","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/riley817.github.io\/images\/avatar.png"},"author": {
                 "@type": "Person",
@@ -110,8 +110,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">[Go 언어를 활용한 네트워크 프로그래밍] 1. 네트워크 시스템 개요</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-category">included in <a href="/categories/go-%EC%96%B8%EC%96%B4%EB%A5%BC-%ED%99%9C%EC%9A%A9%ED%95%9C-%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Go 언어를 활용한 네트워크 프로그래밍</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-03-07">2023-03-07</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;429 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;3 minutes&nbsp;<span id="/network-programming-with-go/" class="leancloud_visitors" data-flag-title="[Go 언어를 활용한 네트워크 프로그래밍] 1. 네트워크 시스템 개요">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-03-07">2023-03-07</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1151 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;6 minutes&nbsp;<span id="/network-programming-with-go/" class="leancloud_visitors" data-flag-title="[Go 언어를 활용한 네트워크 프로그래밍] 1. 네트워크 시스템 개요">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -121,17 +121,17 @@
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
-    <li><a href="#네트워크-토폴로지-선택하기">네트워크 토폴로지 선택하기</a>
+    <li><a href="#네트워크-토폴로지-유형">네트워크 토폴로지 유형</a>
       <ul>
-        <li><a href="#네트워크-토폴로지-유형">네트워크 토폴로지 유형</a>
+        <li>
           <ul>
-            <li><a href="#점대점-point-to-point-연결형">점대점 <code>point-to-point</code> 연결형</a></li>
-            <li><a href="#데이지-체인-daisy-chain-연결형">데이지 체인 <code>daisy chain</code> 연결형</a></li>
-            <li><a href="#버스형-bus">버스형 <code>bus</code></a></li>
-            <li><a href="#링형-ring">링형 <code>ring</code></a></li>
-            <li><a href="#스타형-start">스타형 <code>start</code></a></li>
-            <li><a href="#그물형-mesh">그물형 <code>mesh</code></a></li>
-            <li><a href="#하이브리드-hybrid-토폴로지">하이브리드 <code>hybrid</code> 토폴로지</a></li>
+            <li><a href="#1-점대점-point-to-point-연결형">1. 점대점 <code>point-to-point</code> 연결형</a></li>
+            <li><a href="#2-데이지-체인-daisy-chain-연결형">2. 데이지 체인 <code>daisy chain</code> 연결형</a></li>
+            <li><a href="#3-버스형-bus">3. 버스형 <code>bus</code></a></li>
+            <li><a href="#4-링형-ring">4. 링형 <code>ring</code></a></li>
+            <li><a href="#5-스타형-start">5. 스타형 <code>start</code></a></li>
+            <li><a href="#6-그물형-mesh">6. 그물형 <code>mesh</code></a></li>
+            <li><a href="#7-하이브리드-hybrid-토폴로지">7. 하이브리드 <code>hybrid</code> 토폴로지</a></li>
           </ul>
         </li>
       </ul>
@@ -148,86 +148,83 @@
     </li>
     <li><a href="#osiopen-systems-interconnection-참조-모델">OSI(Open Systems Interconnection) 참조 모델</a>
       <ul>
-        <li><a href="#osi-참조-모델의-계층-구조-레이어">OSI 참조 모델의 계층 구조 레이어</a></li>
+        <li><a href="#osi-참조-모델의-계층-구조-레이어">OSI 참조 모델의 계층 구조 레이어</a>
+          <ul>
+            <li><a href="#7-계층애플리케이션-계층">7 계층(애플리케이션 계층)</a></li>
+            <li><a href="#6계층-프레젠테이션-계층">6계층 (프레젠테이션 계층)</a></li>
+            <li><a href="#5계층-세션-계층">5계층 (세션 계층)</a></li>
+            <li><a href="#4계층-전송-계층">4계층 (전송 계층)</a></li>
+            <li><a href="#3계층-네트워크-계층">3계층 (네트워크 계층)</a></li>
+            <li><a href="#2계층-데이터-링크-계층">2계층 (데이터 링크 계층)</a></li>
+            <li><a href="#1계층-물리-계층">1계층 (물리 계층)</a></li>
+          </ul>
+        </li>
       </ul>
     </li>
+    <li><a href="#데이터-캡슐화를-사용한-트래픽-전송">데이터 캡슐화를 사용한 트래픽 전송</a>
+      <ul>
+        <li><a href="#캡슐화-encapsulation">캡슐화 (encapsulation)</a>
+          <ul>
+            <li><a href="#osi-프로토콜-캡슐화">OSI 프로토콜 캡슐화</a></li>
+            <li><a href="#수평-통신horizontal-communication">수평 통신(horizontal communication)</a></li>
+          </ul>
+        </li>
+        <li><a href="#클라이언트와-서버간-발생한-7계층의-http-요청">클라이언트와 서버간 발생한 7계층의 HTTP 요청</a>
+          <ul>
+            <li><a href="#7-계층-데이터-http-송신-과정">7 계층 데이터 HTTP 송신 과정</a></li>
+            <li><a href="#7-계층-데이터-http-수신-과정">7 계층 데이터 HTTP 수신 과정</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#tcpip-모델">TCP/IP 모델</a></li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><blockquote>
 <p>Go 언어를 활용한 네트워크 프로그래밍 책 정리</p>
 </blockquote>
-<p><strong>컴퓨터 네트워크<code>coumputer network</code></strong> 란 두 개 이상의 장치 또는 노드간의 연결을 말한다.</p>
-<h2 id="네트워크-토폴로지-선택하기">네트워크 토폴로지 선택하기</h2>
-<p><strong>네트워크 토폴로지<code>topology</code></strong> 란 네트워크상의 노드의 구성을 말한다.</p>
-<h3 id="네트워크-토폴로지-유형">네트워크 토폴로지 유형</h3>
-<a class="lightgallery" href="/posts/images/go/network-topology-types.png" title="/posts/images/go/network-topology-types.png" data-thumbnail="/posts/images/go/network-topology-types.png">
-        <img
-            class="lazyload"
-            src="/svg/loading.min.svg"
-            data-src="/posts/images/go/network-topology-types.png"
-            data-srcset="/posts/images/go/network-topology-types.png, /posts/images/go/network-topology-types.png 1.5x, /posts/images/go/network-topology-types.png 2x"
-            data-sizes="auto"
-            alt="/posts/images/go/network-topology-types.png" width="500px" />
-    </a>
-<h4 id="점대점-point-to-point-연결형">점대점 <code>point-to-point</code> 연결형</h4>
-<a class="lightgallery" href="/posts/images/go/point-to-point.jpg" title="/posts/images/go/point-to-point.jpg" data-thumbnail="/posts/images/go/point-to-point.jpg">
-        <img
-            class="lazyload"
-            src="/svg/loading.min.svg"
-            data-src="/posts/images/go/point-to-point.jpg"
-            data-srcset="/posts/images/go/point-to-point.jpg, /posts/images/go/point-to-point.jpg 1.5x, /posts/images/go/point-to-point.jpg 2x"
-            data-sizes="auto"
-            alt="/posts/images/go/point-to-point.jpg" width="500px" />
-    </a>
+<p><strong>컴퓨터 네트워크(<code>coumputer network</code>)</strong> 란 두 개 이상의 장치 또는 노드간의 연결을 말한다.</p>
+<h2 id="네트워크-토폴로지-유형">네트워크 토폴로지 유형</h2>
+<p><strong>네트워크 토폴로지<code>topology</code></strong> 란 네트워크상의 노드의 구성을 말한다. 토폴로지의 유형은 점대점 연결형, 데이지 체인형, 버스형, 링형, 스타형, 그물형의 6가지 기본 범주로 나뉜다.</p>
+<figure><img src="/posts/images/go/network-topology-types.png"/>
+</figure>
+
+<h4 id="1-점대점-point-to-point-연결형">1. 점대점 <code>point-to-point</code> 연결형</h4>
 <ul>
 <li>두 노드가 하나의 연결을 공유 한다.</li>
-<li>두 노드 간에 직접 통신이 필요할 때 매우 유용하다.</li>
+<li>이러한 유형의 네트워크 연결을 드물지만 두 노드 간에 직접 통신이 필요할 때 매우 유용하다.
+<figure><img src="/posts/images/go/point-to-point.jpg?#center" width="300px"/>
+</figure>
+</li>
 </ul>
-<h4 id="데이지-체인-daisy-chain-연결형">데이지 체인 <code>daisy chain</code> 연결형</h4>
-<a class="lightgallery" href="/posts/images/go/daisy-chain.jpg" title="/posts/images/go/daisy-chain.jpg" data-thumbnail="/posts/images/go/daisy-chain.jpg">
-        <img
-            class="lazyload"
-            src="/svg/loading.min.svg"
-            data-src="/posts/images/go/daisy-chain.jpg"
-            data-srcset="/posts/images/go/daisy-chain.jpg, /posts/images/go/daisy-chain.jpg 1.5x, /posts/images/go/daisy-chain.jpg 2x"
-            data-sizes="auto"
-            alt="/posts/images/go/daisy-chain.jpg" width="500px" />
-    </a>
+<h4 id="2-데이지-체인-daisy-chain-연결형">2. 데이지 체인 <code>daisy chain</code> 연결형</h4>
 <ul>
 <li>일련의 점대점 연결</li>
 <li>출발지 노드와 목적지 노드 사이의 중간 노드를 일반적으로 <strong>홉</strong>이라고 한다.</li>
 </ul>
-<h4 id="버스형-bus">버스형 <code>bus</code></h4>
-<a class="lightgallery" href="/posts/images/go/daisy-chain.jpg" title="/posts/images/go/daisy-chain.jpg" data-thumbnail="/posts/images/go/daisy-chain.jpg">
-        <img
-            class="lazyload"
-            src="/svg/loading.min.svg"
-            data-src="/posts/images/go/daisy-chain.jpg"
-            data-srcset="/posts/images/go/daisy-chain.jpg, /posts/images/go/daisy-chain.jpg 1.5x, /posts/images/go/daisy-chain.jpg 2x"
-            data-sizes="auto"
-            alt="/posts/images/go/daisy-chain.jpg" width="500px" />
-    </a>
+<figure><img src="/posts/images/go/daisy-chain.jpg#center" width="500px"/>
+</figure>
+
+<h4 id="3-버스형-bus">3. 버스형 <code>bus</code></h4>
 <ul>
 <li>버스형 토폴로지상의 노드들은 공통, 공유 네트워크 링크를 갖는다.</li>
-<li>주로 무선 네트워크에서 사용 된다. 유선 네트워크상의 노드는 모든 트래픽을 보고 자신에게 필요한 트래픽만을 선택적으로 무시하거나 수신한다.</li>
-<li>무선 네트워크상의 노드들 또한 서로의 트래픽을 볼 수 있지만 일반적으로는 암호화 되어 있다.</li>
+<li>주로 무선 네트워크에서 사용 되며 유선 네트워크상의 노드는 모든 트래픽을 보고 자신에게 필요한 트래픽만을 선택적으로 무시하거나 수신한다.</li>
+<li>무선 네트워크상의 노드들 또한 서로의 트래픽을 볼 수 있지만 일반적으로는 암호화 되어 있다.
+<figure><img src="/posts/images/go/bus.jpg" width="500px"/>
+</figure>
+</li>
 </ul>
-<h4 id="링형-ring">링형 <code>ring</code></h4>
-<a class="lightgallery" href="/posts/images/go/ring.jpg" title="/posts/images/go/ring.jpg" data-thumbnail="/posts/images/go/ring.jpg">
-        <img
-            class="lazyload"
-            src="/svg/loading.min.svg"
-            data-src="/posts/images/go/ring.jpg"
-            data-srcset="/posts/images/go/ring.jpg, /posts/images/go/ring.jpg 1.5x, /posts/images/go/ring.jpg 2x"
-            data-sizes="auto"
-            alt="/posts/images/go/ring.jpg" width="500px" />
-    </a>
+<h4 id="4-링형-ring">4. 링형 <code>ring</code></h4>
 <ul>
 <li>데이터가 단일 방향으로 이동하는 폐쇄 루프 이다.</li>
 <li>노드 N은 노드 O -&gt; P -&gt; Q를 통해 R로 메세지를 전송한다.</li>
-<li>중간 노드에서 메시지를 전송하지 못하면 전송된 메세지는 목적지에 도달하지 않는다. -&gt; 가장 느린 노드의 속도로 제한된다.</li>
+<li>중간 노드에서 메시지를 전송하지 못하면 전송된 메세지는 목적지에 도달하지 않는다.</li>
+<li>가장 느린 노드의 속도로 제한된다.
+<figure><img src="/posts/images/go/ring.jpg#center" width="500px"/>
+</figure>
+</li>
 </ul>
-<h4 id="스타형-start">스타형 <code>start</code></h4>
+<h4 id="5-스타형-start">5. 스타형 <code>start</code></h4>
 <a class="lightgallery" href="/posts/images/go/star.jpg" title="/posts/images/go/star.jpg" data-thumbnail="/posts/images/go/star.jpg">
         <img
             class="lazyload"
@@ -243,7 +240,7 @@
 <li>중앙 노드는 종종 <strong>네트워크 스위치</strong> 이며, 이는 데이터를 수신하여 목적지 노드로 데이터를 재전송하는 장치이다.</li>
 <li>스타형 토폴로지에서는 단 하나의 홉만 이동한다.</li>
 </ul>
-<h4 id="그물형-mesh">그물형 <code>mesh</code></h4>
+<h4 id="6-그물형-mesh">6. 그물형 <code>mesh</code></h4>
 <a class="lightgallery" href="/posts/images/go/mesh.jpg" title="/posts/images/go/mesh.jpg" data-thumbnail="/posts/images/go/mesh.jpg">
         <img
             class="lazyload"
@@ -258,7 +255,7 @@
 <li><strong>단일 장애 지점 (<code>Single Point Of Failure, SPOF</code>) 제거</strong> : 단일 노드의 장애 시 다른 노드 간 트래픽에 영향을 주지 않는다.</li>
 <li>노드 수가 증가함에 따라 복잡성이 증가하기 때문에 대규모 네트워크에서는 사용할 수 없다.</li>
 </ul>
-<h4 id="하이브리드-hybrid-토폴로지">하이브리드 <code>hybrid</code> 토폴로지</h4>
+<h4 id="7-하이브리드-hybrid-토폴로지">7. 하이브리드 <code>hybrid</code> 토폴로지</h4>
 <a class="lightgallery" href="/posts/images/go/hybrid-topology.jpeg" title="/posts/images/go/hybrid-topology.jpeg" data-thumbnail="/posts/images/go/hybrid-topology.jpeg">
         <img
             class="lazyload"
@@ -278,13 +275,13 @@
 <ul>
 <li><strong>네트워크 대역폭</strong> 이란 일정 시간 내에 네트워크 연결을 통해 전송할 수 있는 데이터의 양을 의미한다.</li>
 <li>대역폭이 높다고 해서 반드시 성능이 좋은 것은 아니다.</li>
-<li>대역폭이 낮더라도 레이턴시가 작은 경우 대역폭이 높지만 큰 레이턴시를 갖는 네트워크보다 성능이 좋을 수 있다.</li>
+<li>대역폭이 낮더라도 레이턴시가 작은 경우가 대역폭이 높지만 큰 레이턴시를 갖는 네트워크보다 성능이 더 좋을 수 있다.</li>
 </ul>
 <h3 id="네트워크-레이턴시-latency">네트워크 레이턴시 <code>latency</code></h3>
 <ul>
 <li><strong>네트워크 레이턴시</strong>는 네트워크 리소스 요청을 보내고 응답을 받는 사이에 측정된 시간이다.</li>
 <li>레이턴시가 크면 나쁜 사용자 경험을 제공하게 되며, 종종 악의적인 공격자들에 의해 DDos 공격을 받을 수도 있다.</li>
-<li>ex) 웹사이트의 링크를 클릭 후 결과 페이지가 화면상에 렌더링될 때 소요되는 시간</li>
+<li>웹사이트에서 레이턴시는 클라이언트와 서버간 레이턴시, 데이터 저장소에서 데이터 검색하는데 걸리는 시간, 서버 측에서 동적인 콘텐츠를 컴파일하는 데 걸리는 시간, 웹 브라우저가 페이지를 렌더링하는 데 걸리는 시간 등 다양한 이유로 발생한다.</li>
 </ul>
 <h4 id="레이턴시-해결-방법들">레이턴시 해결 방법들</h4>
 <ol>
@@ -295,25 +292,138 @@
 </ol>
 <h2 id="osiopen-systems-interconnection-참조-모델">OSI(Open Systems Interconnection) 참조 모델</h2>
 <ul>
-<li>OSI 참조 모델은 프로토콜의 개발과 통신을 위한 프레임워크의 역할을 한다.</li>
-<li><strong>프로토콜 (<code>protocol</code>)</strong> : 네트워크를 통해 전송되는 데이터의 포맷과 순서를 결정하는 규칙 혹은 절차를 의미한다.</li>
+<li><strong>개방형 시스템 상호 연결(OSI)</strong> 모델은 프로토콜의 개발과 통신을 위한 프레임워크 역할을 한다.</li>
+<li><strong>프로토콜 (<code>protocol</code>)</strong> 이란 네트워크를 통해 전송되는 데이터의 포맷과 순서를 결정하는 규칙 혹은 절차를 의미한다.</li>
 </ul>
 <h3 id="osi-참조-모델의-계층-구조-레이어">OSI 참조 모델의 계층 구조 레이어</h3>
-<a class="lightgallery" href="/posts/images/go/osi-model.png" title="/posts/images/go/osi-model.png" data-thumbnail="/posts/images/go/osi-model.png">
-        <img
-            class="lazyload"
-            src="/svg/loading.min.svg"
-            data-src="/posts/images/go/osi-model.png"
-            data-srcset="/posts/images/go/osi-model.png, /posts/images/go/osi-model.png 1.5x, /posts/images/go/osi-model.png 2x"
-            data-sizes="auto"
-            alt="/posts/images/go/osi-model.png" width="1000px" />
-    </a>
+<ul>
+<li>OSI 참조 모델은 네트워크 내의 모든 활동을 7개의 계층으로 구성된 엄격한 계층 구조로 추상화하였다.</li>
+</ul>
+<figure><img src="/posts/images/go/osi-model.png#center"/>
+</figure>
+
+<h4 id="7-계층애플리케이션-계층">7 계층(애플리케이션 계층)</h4>
+<ul>
+<li>네트워크 애플리케이션과 라이브러리는 대부분 애플리케이션 계층과 상호 작용한다.</li>
+<li>호스트를 식별하고 리소스를 검색하는 역할을 담당한다. 웹 브라우저, 비트토렌트 클라이언트 등이 있다.</li>
+</ul>
+<h4 id="6계층-프레젠테이션-계층">6계층 (프레젠테이션 계층)</h4>
+<ul>
+<li>데이터가 아래 계층으로 이동할 때 네트워크 계층에 대한 데이터를 준비하고, 데이터가 스택 위로 이동할 때 애플리케이션 계층에 데이터를 제공한다.</li>
+<li>암호화, 암호 해독 및 데이터 인코딩이 있다.</li>
+</ul>
+<h4 id="5계층-세션-계층">5계층 (세션 계층)</h4>
+<ul>
+<li>네트워크의 노드 간의 연결 수명 주기를 관리한다.</li>
+<li>연결 수립, 연결 시간 초과 관리, 작동 모드 조정, 연결 종료 등의 기능 담당</li>
+<li>일분 7계층의 프로토콜은 5계층에서 제공하는 서비스에 의존한다.</li>
+</ul>
+<h4 id="4계층-전송-계층">4계층 (전송 계층)</h4>
+<ul>
+<li>전송의 안정성을 유지하면서 두 노드 간 데이터의 전송을 제어하고 조정한다.</li>
+<li>데이터의 전송이 신뢰성을 유지하기 위해 에러 수정, 데이터 전송 속도 제어, 데이터 청킹 및 분할, 누락된 데이터 재전송, 수신 데이터 확인 과정등이 포함된다.</li>
+<li>수신자가 데이터 수신을 인정하지 않은 경우 이 계층의 프로토콜이 데이터를 재전송한다.</li>
+</ul>
+<h4 id="3계층-네트워크-계층">3계층 (네트워크 계층)</h4>
+<ul>
+<li>노드 간 데이터를 전송하는 역할을 한다.</li>
+<li>원격 노드에 직접 연결하지 않고도 네트워크 주소로 데이터를 전송할 수 있다.</li>
+<li>네트워크 계층에서는 전송의 신뢰성이나 전송 에러등을 전송자에게 알려주기 위한 별도의 프로토콜이 필요하지 않는다.</li>
+<li>라우팅, 주소 지정, 멀티 캐스팅 및 트래픽 제어와 관련된 네트워크 관리를 위한 프로토콜의 중심</li>
+</ul>
+<h4 id="2계층-데이터-링크-계층">2계층 (데이터 링크 계층)</h4>
+<ul>
+<li>직접 연결된 두 노드 간 데이터 전송을 처리한다.</li>
+<li>시스템에서 스위치로, 스위치에서 다른 시스템으로 데이터를 쉽게 전송할 수 있도록 지원한다.</li>
+<li>데이터 링크 계층에서의 프로토콜은 물리 계층의 에러를 식별하여 수정을 시도한다.</li>
+</ul>
+<h4 id="1계층-물리-계층">1계층 (물리 계층)</h4>
+<ul>
+<li>네트워크 스택에서 발생한 비트를 하위의 물리적 매체가 제어할 수 있는 전기, 광학 또는 무전 신호로 변환하고 타 노드의 물리적 매체에서 받은 신호를 다시 비트로 변환한다.</li>
+<li>비트 전송률을 제어한다. 비트 전송률은 데이터의 최대 제한 속도이다.</li>
+<li>초당 1기가 비트의 비트 전송률은 출발지와 목적지 사이에 초당 최대 10억 비트의 데이터가 이동할 수 있음을 의미한다.</li>
+</ul>
+<div class="details admonition info open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-info-circle fa-fw" aria-hidden="true"></i>BPS<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><ul>
+<li>네트워크의 전송 속도를 계산할 때는 1초당 전송할 수 있는 0과 1, 즉 비트의 수를 센다.</li>
+<li>네트워크 전송 속도는 초당 비트 단위로 측정된다.</li>
+</ul>
+</div>
+        </div>
+    </div>
+<h2 id="데이터-캡슐화를-사용한-트래픽-전송">데이터 캡슐화를 사용한 트래픽 전송</h2>
+<h3 id="캡슐화-encapsulation">캡슐화 (encapsulation)</h3>
+<ul>
+<li>캡슐화는 구현의 세부 정보를 숨기고 관련한 기타 세부 정보만 사용할 수 있도록 하는 방법</li>
+<li>우체국에 소포를 보내는 것과 비슷하다.
+<ul>
+<li>봉투가 내용물을 캡슐화하고 봉투에는 도착할 목적지 주소와 수취인 정보, 목적지까지 거쳐가는 정보등의 중요 정보만 기록한다.</li>
+<li>소포의 내용물은 소포를 전송하는 것과 무관하며 운송에 중요한 것은 소포의 기타 세부 정보일 뿐임</li>
+</ul>
+</li>
+<li>데이터가 스택을 따라 이동할 때 하위 계층에 의해 캡슐화 된다.</li>
+<li>스택을 따라 이동하는 데이터를 <strong>페이로드</strong> 혹은 <strong>메세지 본문(message body)</strong> 이라고도 하며  <strong>서비스 데이터 단위(Service Data Unit, SDU)</strong> 라는 용어를 사용하기도 한다.</li>
+<li>페이로드는 프레젠테이션 계층에서 캡슐화 한다. 페이로드가 스택 위로 이동하면 각 레이어는 이전 레이어에서의 헤더 정보를 제거하게 된다.</li>
+</ul>
+<h4 id="osi-프로토콜-캡슐화">OSI 프로토콜 캡슐화</h4>
+<ul>
+<li>클라이언트와 서버가 모두 웹 콘텐츠를 교환하는 데 사용하는 7계층 프로토콜인 <strong>하이퍼 텍스트 전송 프로토콜(HTTP/1)</strong> 프로토콜도 데이터 캡슐화를 사용한다.</li>
+<li>HTTP는 클라이언트의 7계층에서 서버의 7계층으로 전송하는 헤더 정보를 포함한 전체 메세지를 정의한다.</li>
+<li>네트워크 스택은 클라이언트의 요청을 HTTP 서버 애플리케이션에 전달하고 HTTP 서버는 네트워크 스택에 대한 응답을 시작하여 7계층 페이로드 생성 후 클라이언트의 7계층 애플리케이션으로 다시 전송한다.</li>
+</ul>
+<h4 id="수평-통신horizontal-communication">수평 통신(horizontal communication)</h4>
+<ul>
+<li>동일 계층 내 클라이언트와 서버 간 통신을 수평 통신이라고 한다.</li>
+<li>동일 계층 내에서 직접 데이터를 전송하는 것이 아니라 실제 데이터는 클라이언트 네트워크 스택에 따라 하위 계층으로 이동 후 서버의 네트워크 스택을 따라 상위 계층으로 이동하게 된다.</li>
+</ul>
+<h3 id="클라이언트와-서버간-발생한-7계층의-http-요청">클라이언트와 서버간 발생한 7계층의 HTTP 요청</h3>
+<ul>
+<li>출발지 노드의 어떤 계층에서 전송된 데이터는 목적지 노드의 동일한 계층에 도달하게 된다.</li>
+</ul>
+<figure><img src="/posts/images/go/osi-http.jpg#center"/><figcaption>
+            <h4>클라이언트와 서버 간에 발생한 7계층 HTTP 요청</h4>
+        </figcaption>
+</figure>
+
+<h4 id="7-계층-데이터-http-송신-과정">7 계층 데이터 HTTP 송신 과정</h4>
+<ul>
+<li>클라이언트의 6계층이 7계층의 페이로드를 수신 후 헤더로 페이로드를 캡슐화 후 6계층의 페이로드 생성</li>
+<li>5계층은 6계층의 페이로드를 수신하고 자체적으로 헤더를 추가하여 4계층 페이로드를 전송한다.</li>
+<li>4계층인 전송 프로토콜 TCP의 페이로드는 <strong>세그먼트</strong> 혹은 <strong>데이터그램</strong>이라고 한다.
+<ul>
+<li>TCP는 5계층으 페이로드를 받아서 헤더를 추가하고 세그먼트를 3계층으로 전송</li>
+</ul>
+</li>
+<li>3계층의 <strong>인터넷 프로토콜</strong>은 TCP의 세그먼트를 수신후 이를 헤더와 함께 캡슐화하고 3계층 페이로드인 <strong>패킷</strong>을 생성한다.</li>
+<li>2계층에서는 3계층으로부터 패킷을 수신하고 헤더와 푸터를 추가하여 페이로드를 만드는데 이 페이로드를 <strong>프레임</strong>이라고 한다.
+<ul>
+<li>2계층의 헤더로부터 수신자의 IP 주소를 네트워크 인터페이스에 할당된 고유 식별자인 <strong>미디어 접근 제어</strong> 주소로 변환.</li>
+<li>푸터에는 에러를 감지하는데 도움이 되는 체크섬인 <strong>프레임 검사 시퀀스 FCS</strong>가 포함되어 있다.</li>
+</ul>
+</li>
+<li>1계층에서는 2계층의 페이로드를 비트 형태로 받고 비트를 서버로 전송한다.</li>
+</ul>
+<h4 id="7-계층-데이터-http-수신-과정">7 계층 데이터 HTTP 수신 과정</h4>
+<ul>
+<li>1계층은 비트를 수신하여 프레임으로 변환 후 프레임을 2계층으로 전송</li>
+<li>2계층은 프레임에서 헤더와 푸터를 제거하고 패킷을 3계층으로 전달</li>
+<li>페이로드가 7계층에 도달할 때까지 각 레이어에서 진행한 캡슐을 역순으로 진행</li>
+<li>최종적으로 HTTP 서버는 네트워크 스택에서 클라이트의 요청을 수신하게 된다.</li>
+</ul>
+<h2 id="tcpip-모델">TCP/IP 모델</h2>
+<ul>
+<li></li>
+</ul>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 2023-04-10&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/12dc8e383f5424bb42c2358387beff9b41711d5c" target="_blank" title="commit by riley817(riley0422@icloud.com) 12dc8e383f5424bb42c2358387beff9b41711d5c: 20230410235329">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>12dc8e3</a></span>
+                <span>Updated on 2023-04-18&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/0318801336e5fd379e1538f69bb265aa955d69e8" target="_blank" title="commit by riley817(riley0422@icloud.com) 0318801336e5fd379e1538f69bb265aa955d69e8: 20230418235057">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>0318801</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>
