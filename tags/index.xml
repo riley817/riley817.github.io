@@ -1,0 +1,88 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Tags - Tag - Riley&#39;s DevLog</title>
+        <link>https://riley817.github.io/tags/</link>
+        <description>Tags - Tag - Riley&#39;s DevLog</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
+            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Mon, 10 Apr 2023 23:24:37 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/tags/" rel="self" type="application/rss+xml" /><item>
+    <title>GO</title>
+    <link>https://riley817.github.io/tags/go/</link>
+    <pubDate>Mon, 10 Apr 2023 23:24:37 &#43;0900</pubDate>
+    <author>Riley</author>
+    <guid>https://riley817.github.io/tags/go/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>Issue Note</title>
+    <link>https://riley817.github.io/tags/issue-note/</link>
+    <pubDate>Mon, 27 Feb 2023 17:05:22 &#43;0900</pubDate>
+    <author>Riley</author>
+    <guid>https://riley817.github.io/tags/issue-note/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>Dart</title>
+    <link>https://riley817.github.io/tags/dart/</link>
+    <pubDate>Thu, 16 Feb 2023 16:11:36 &#43;0900</pubDate>
+    <author>Riley</author>
+    <guid>https://riley817.github.io/tags/dart/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>Flutter</title>
+    <link>https://riley817.github.io/tags/flutter/</link>
+    <pubDate>Thu, 16 Feb 2023 16:11:36 &#43;0900</pubDate>
+    <author>Riley</author>
+    <guid>https://riley817.github.io/tags/flutter/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>Android</title>
+    <link>https://riley817.github.io/tags/android/</link>
+    <pubDate>Tue, 31 Jan 2023 23:39:01 &#43;0900</pubDate>
+    <author>Riley</author>
+    <guid>https://riley817.github.io/tags/android/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>iOS</title>
+    <link>https://riley817.github.io/tags/ios/</link>
+    <pubDate>Tue, 31 Jan 2023 23:39:01 &#43;0900</pubDate>
+    <author>Riley</author>
+    <guid>https://riley817.github.io/tags/ios/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>buf</title>
+    <link>https://riley817.github.io/tags/buf/</link>
+    <pubDate>Mon, 23 Jan 2023 19:11:56 &#43;0900</pubDate>
+    <author>Riley</author>
+    <guid>https://riley817.github.io/tags/buf/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>Buf Schema Registry</title>
+    <link>https://riley817.github.io/tags/buf-schema-registry/</link>
+    <pubDate>Mon, 23 Jan 2023 19:11:56 &#43;0900</pubDate>
+    <author>Riley</author>
+    <guid>https://riley817.github.io/tags/buf-schema-registry/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>protobuf</title>
+    <link>https://riley817.github.io/tags/protobuf/</link>
+    <pubDate>Mon, 23 Jan 2023 19:11:56 &#43;0900</pubDate>
+    <author>Riley</author>
+    <guid>https://riley817.github.io/tags/protobuf/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>AWS</title>
+    <link>https://riley817.github.io/tags/aws/</link>
+    <pubDate>Mon, 15 Aug 2022 17:26:41 &#43;0900</pubDate>
+    <author>Riley</author>
+    <guid>https://riley817.github.io/tags/aws/</guid>
+    <description><![CDATA[]]></description>
+</item>
+</channel>
+</rss>
