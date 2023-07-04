@@ -10,7 +10,7 @@ openssl req -newkey rsa:4096 -nodes -sha256 -keyout ./domain.key -x509 -days 365
 
 위와 같이 발행 후 원격장비에서 도커 레포지토리 장비로 이미지를 푸시하려는데 아래와 같은 메세지와 함께 푸시가 되지 않았다.
 
-{{< figure src="/categories/images/TIL/20220217220800.png" >}}
+{{< figure src="/posts/images/TIL/20220217220800.png" >}}
 > The push refers to repository [repository.XXXXX.com:5000/my-nginx]
 Get "https://repository.XXXXX.com:5000/v2/": x509: certificate relies on legacy Common Name field, use SANs or temporarily enable Common Name matching with GODEBUG=x509ignoreCN=0
 

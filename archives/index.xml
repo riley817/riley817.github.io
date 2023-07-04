@@ -7,59 +7,260 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <managingEditor>riley0422@icloud.com (Riley)</managingEditor>
-    <webMaster>riley0422@icloud.com (Riley)</webMaster><atom:link href="https://riley817.github.io/archives/index.xml" rel="self" type="application/rss+xml" />
+    <webMaster>riley0422@icloud.com (Riley)</webMaster>
+    <lastBuildDate>Mon, 27 Feb 2023 17:05:22 +0900</lastBuildDate><atom:link href="https://riley817.github.io/archives/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title></title>
-      <link>https://riley817.github.io/archives/20220919/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <title>[TIL &amp; Issue Note] 20230227</title>
+      <link>https://riley817.github.io/archives/til/20230227/</link>
+      <pubDate>Mon, 27 Feb 2023 17:05:22 +0900</pubDate>
       <author>riley0422@icloud.com (Riley)</author>
-      <guid>https://riley817.github.io/archives/20220919/</guid>
-      <description>질문1) 회사는 Java 프레임워크로 작성된 새로운 온라인 거래 웹 애플리케이션이 있으며 Application Load Balancer 뒤의 EC2 인스턴스로 서비스 됩니다. 이러한 EC2 인스턴스에서 상태 확인을 수행하도록 로드 밸런서를 구성했습니다. 이러한 EC2 인스턴스 중 하나가 상태 확인에 실패하면 어떻게 됩니까?
-Application Load Balancer가 상태 확인에 실패한 인스턴스로 트래픽 전송을 중지합니다.
-HealthCheck 정상 인스턴스 상태 : InService HealthCheck 비정상적인 인스턴스 상태 : OutOfService 질문2) 회사가 자체 관리 메세지 지향 미들웨어 시스템에서 Amazon SQS로 메세지 대기열을 마이그레이션하고 있습니다.</description>
+      <guid>https://riley817.github.io/archives/til/20230227/</guid>
+      <description>Server Authority 서버가 모든 권한을 가지고 있다. 서버는 중재자, 심판, 플레이어 역할을 한다. Client-Server 방식 클라이언트에서 질의(요청)하면 서버에서 응답하는 방식 가장 흔하게 사용하는 방법이며 대표적으로 웹서버가 있다. 클라이언트에 요청이 있어야만 서버가 응답을 한다. 웹서버 요청 방식 브라우저에서 naver.com 주소를 DNS 서버로 IP 검색 요청 DNS에서 naver.com 에 해당하는 IP 를 응답한다. 브라우저는 응답받은 IP의 서버에 커넥션 및 text 전문을 요청한다. naver.com 서버에서는 해당 요청에 응하는 전문을 리턴한다. MMORPG 게임에서 클라이언트와 서버 예시 플레이어가 이동을 위해 좌표를 서버로 요청Request한다.</description>
     </item>
     
     <item>
-      <title></title>
-      <link>https://riley817.github.io/archives/ec2/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <title>[TIL &amp; Issue Note] 20230221</title>
+      <link>https://riley817.github.io/archives/til/20230221/</link>
+      <pubDate>Tue, 21 Feb 2023 23:04:09 +0900</pubDate>
       <author>riley0422@icloud.com (Riley)</author>
-      <guid>https://riley817.github.io/archives/ec2/</guid>
-      <description>EC2 목적 EC2를 좀 더 효율적으로 사용하는 방법에 대해 소개 Amazon EC2 기본 개념 container 환경의 오케스트레이션, 서버리스 환경도 제공 2006년 8월 출시 온디맨드 구매 방식만 존재 베어 메탈, ssd, 네트워크 기능 향상 On-demand 외에도 세이빙 플랜등을 통해 비용을 좀더 효율적으로 여러가지 폭 넓은 구매 옵션 Amazon EC2 Mac instances 제공 AWS License Manager 소프트웨어 공급 업체의 라이선스를 보다 쉽게 관리 라이선스를 중앙화하여 관리 온프로미스 라이센스도 제공 Processors and Accelerators 애플리케이션 및 워크로드에 맞는 적합한 프로세서 제공 AWS Gravition Processor 컴퓨팅에 집중된 워크로드 -&amp;gt; 450개가 넘는 인스턴스 타입을 제공하고 있다.</description>
+      <guid>https://riley817.github.io/archives/til/20230221/</guid>
+      <description>Deterministic은 왜 해킹에 취약한가 Deterministic 은 양쪽 input set을 공유하여 status 를 맞추는 방식으로 동작한다. input에 의존하기 때문에 input에 대한 변조를 통한 해킹에 취약하다. input set을 검사하는 방법 서버에서 패킷을 검사한다. Stateless Server : 중계(Relay) 서버의 경우 현재 게임상태나 게임의 룰을 알고 있지 않아도 된다. (단순히 패킷을 전달하는 역할을 하기 때문) 클라이언트끼리 상대방의 패킷이 정당한지 검사한다. 혹은 방장이 참여 클라이언트의 패킷이 전당한지 검사한다. 해킹을 막는 방법 tolerance 범위가 넘어가는 경우 해킹으로 간주한다.</description>
     </item>
     
     <item>
-      <title></title>
-      <link>https://riley817.github.io/archives/grpc/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <title>[TIL &amp; Issue Note] 20230218</title>
+      <link>https://riley817.github.io/archives/til/20230220/</link>
+      <pubDate>Mon, 20 Feb 2023 23:59:59 +0900</pubDate>
       <author>riley0422@icloud.com (Riley)</author>
-      <guid>https://riley817.github.io/archives/grpc/</guid>
-      <description>gPRC 설정 1 2 3 4 go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest go install google.golang.org/protobuf/cmd/protoc-gen-go@v1.28 go install github.com/envoyproxy/protoc-gen-validate@v0.6.3 1 2 echo &amp;#39;export GOPATH=$HOME/Go&amp;#39; &amp;gt;&amp;gt; $HOME/.zshrc echo &amp;#39;export PATH=$PATH:$GOPATH/bin&amp;#39; &amp;gt;&amp;gt; $HOME/.zshrc </description>
+      <guid>https://riley817.github.io/archives/til/20230220/</guid>
+      <description>NAT(Network Address Translation)를 사용하는 이유 IPv4 주소체계에서 IP 주소를 절약 외부로 패킷이 나갈때는 private IP가 public IP로 바뀌어 전송되므로 내부 IP를 숨실 수 있음(보안) 게이트웨이, 라우터, 스위치, 공유기 등 NAT에서의 문제 UDP를 통한 네트워킹을 하기위해서는 서로의 Peer의 목적지를 알아야 한다. 클라이언트 A에서 NAT 거치게 되면 어떤 public IP와 Port 변환될지 모른다. 다른 클라이언트에서 A에게 연결을 하기 위해 public IP는 알고 있지만 private IP와 포트는 알지 못한다. UDP Hole Punching NAT 환경에서 사용자들과 P2P 연결을 중개하는 Relay 서버를 통해 사용자간 직접적인 데이터 전송을 구현</description>
     </item>
     
     <item>
-      <title></title>
-      <link>https://riley817.github.io/archives/strategyzer/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <title>[TIL &amp; Issue Note] 20230218</title>
+      <link>https://riley817.github.io/archives/til/20230218/</link>
+      <pubDate>Sat, 18 Feb 2023 20:55:48 +0900</pubDate>
       <author>riley0422@icloud.com (Riley)</author>
-      <guid>https://riley817.github.io/archives/strategyzer/</guid>
-      <description>Strategyzer Over View Strategyzer App
-Training
-도서
-블로그 도서 링크 참고 가치제안 캔버스 - 고객 분석
-가치제안 캔버스 - 제품 분석
-사업 모델 캔버스 -
-가치제안 캔버스 불특정 다수에게 제품이나 서비스를 판매하기 위해 고객의 니즈를 파악 어떠한 고객을 타겟으로 할 건지 파악해야한다. 고객 고객을 이해하는 것 원으로 표현 ex) 겜블러 Job : 용도 - 게임한다 - 돈을 딴다. Gain(보상): - 잭팟이 터졌다. -
-Pain(불만): - 온라인 게임은 신뢰할 수 없다.</description>
+      <guid>https://riley817.github.io/archives/til/20230218/</guid>
+      <description>Deterministic 방식 같은 인풋을 가지고 있으면 두 개의 상태state가 동일equal하다 (=sync가 맞는다.) 서로의 입력을 전송하는데에 시간이 걸린다. 얼마나 latency를 잘 극복하는지 desync가 일어나지 않게 만드는 것이 핵심이다. desync를 막기 위해 delay 와 rollback 방식을 활용한다. Delay 지연시간만큼 입력을 딜레이 시켜서 처리하면 싱크가 맞게 되는 원리 쉽고 단순하게 구현할 수 있다. 문제점
+지연시간이 발생한다. 지연시간이 보통 100ms 가 넘어가면 플레이어가 이를 감지 할 수 있다. Rollback 지연시간만큼 다시 시간을 되돌리고 다시 앞감기를 한다.</description>
     </item>
     
     <item>
-      <title>26. AWS Identity and Access Management - Advanced</title>
-      <link>https://riley817.github.io/archives/aws-iam-advanced/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <title>[TIL &amp; Issue Note] 20230214</title>
+      <link>https://riley817.github.io/archives/til/20230215/</link>
+      <pubDate>Tue, 14 Feb 2023 23:51:47 +0900</pubDate>
       <author>riley0422@icloud.com (Riley)</author>
-      <guid>https://riley817.github.io/archives/aws-iam-advanced/</guid>
-      <description>STS - Security Token Service AWS 리소스에 대한 제한적이고 일시적인 액세스 권한을 허용 토큰은 1 시간까지 유효 (새로고침 필요) STS API STS API 설명 AssumeRole - 개인 계정 내에서: 보안을 강화하기 위해 사용 - 계정 간 : 대상 계정에 역할을 수임하여 작업을 수행 AssumeRoleWithSAML - SAML으로 로그인한 사용자의 자격증명을 반환 AssumeRoleWithWebIdentity - IdP(Identity Provider - Facebook Login, Google Login, OIDC Compatible&amp;hellip;) 로그인 사용자의 자격증명을 반환 - 이것보다는 AWS Cognito 추천함 GetSessionToken - AWS 루트 계정 또는 사용자에 대한 MFA 인증 STS를 통해 역할을 수임받기 IAM 계정 내 혹은 계정 간 IAM 역할(Role)을 정의한다.</description>
+      <guid>https://riley817.github.io/archives/til/20230215/</guid>
+      <description> Tucker의 게임 네트워킹의 이해 - 2
+Protocol 약속, 규약 Network Protocol : 통신 규약 컴퓨터간 통신을 하기 위해서는 약속이 필요하다. </description>
+    </item>
+    
+    <item>
+      <title>[TIL &amp; Issue Note] 20230214</title>
+      <link>https://riley817.github.io/archives/til/20230214/</link>
+      <pubDate>Tue, 14 Feb 2023 00:12:09 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/archives/til/20230214/</guid>
+      <description>Tucker의 게임 네트워킹의 이해 - 1
+네트워킹 데이터를 주고 받는 것 컴퓨터 내부에서 발생하는 데이터 교환도 네트워킹이라고 볼 수 있다. 흔히 네트워킹이라고 말하면 외부에 멀리 떨어져 있는 컴퓨터들끼리의 데이터 교환을 의미한다. 내부 네트워킹과 외부 네트워킹간 차이 외부 네트워킹의 경우 지연시간이 발생한다 (latency)
+RTT(Round Trip Time, 패킷왕복시간) : 패킷이 목적지에 도달하고나서 해당 패킷에 대한 응답이 출발지로 다시 돌아오기까지의 시간 지연시간의 경우 물리적인 환경의 문제이므로 줄이기가 어렵다. 게임에서는 눈속임을 통한 지연시간을 해소 연결 안전성 (연결 불안정)</description>
+    </item>
+    
+    <item>
+      <title>[TIL &amp; Issue Note] 20230126</title>
+      <link>https://riley817.github.io/archives/til/20230126/</link>
+      <pubDate>Thu, 26 Jan 2023 23:33:57 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/archives/til/20230126/</guid>
+      <description>Issue flutter 환경을 설정하던 중 안드로이드 라이센스 관련 명령어 실행시 에러 UnsupportedClassVersionError while &amp;lsquo;flutter doctor &amp;ndash;android-licenses&amp;rsquo; MacOS 사용 환경 MacOS Ventura (M1 Mac) Android Studio Electric Eel 에러 내용 1 2 3 4 Exception in thread &amp;#34;main&amp;#34; java.lang.UnsupportedClassVersionError: com/android/prefs/AndroidLocationsProvider has been compiled by a more recent version of the Java Runtime (class file version 55.0), this version of the Java Runtime only recognizes class file versions up to 52.0 해결 내용 Agree to Andorid License 1 2 3 1.</description>
+    </item>
+    
+    <item>
+      <title>[TIL &amp; Issue Note] 20230211</title>
+      <link>https://riley817.github.io/archives/til/20230211/</link>
+      <pubDate>Thu, 26 Jan 2023 23:33:57 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/archives/til/20230211/</guid>
+      <description>전통적인 게임의 서버 구조 P2P 서버에 참여하는 구성원들이 서버이자 클라이언트의 역할을 한다. 주로 격투게임, 소규모 FPS 게임 등 반응 속도가 빨라야하는 장르에서 많이 사용했다. 인원수에 따라 유지해야 하는 연결의 개수가 많아 진다. Host 방식 게임에 참가하는 참가자 중 제일 처음 방을 만드는 참가자의 클라이언트를 서버로 사용 나머지 참가자는 클라이언트로서의 역할을 한다. 게임의 검증, 결과 판정 등은 호스트 클라이언트가 담당한다. 호스트에게 모든 데이터가 집중되므로 호스트의 컴퓨터 성능이 좋아야 한다. 호스트의 서버가 연결을 종료할 경우 접속한 모든 클라이언트가 게임을 할 수 없다.</description>
+    </item>
+    
+    <item>
+      <title>[TIL &amp; Issue Note] 개발협업 가이드 핸드북 초안</title>
+      <link>https://riley817.github.io/archives/til/20220627/</link>
+      <pubDate>Mon, 27 Jun 2022 23:22:43 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/archives/til/20220627/</guid>
+      <description>개발 협업 가이드 우리 팀에서 내부 및 외부 공동 작업자가 개발 협업하기 위한 방법으로 애자일의 Scrum 방법론을 사용합니다. Scrum 관리를 위한 도구로는 GitLab의 이슈 시스템과 칸반보드 기능을 활용합니다. GitLab에 등록되는 이슈(Task)는 시스템 개발과 관련된 작업만 작성하도록 합니다. 프로젝트 계약 등 개발작업이 아닌 작업의 경우 Microsoft Planner의 칸반보드를 사용합니다.
+PBTeam – Microsoft Planner 사용가이드
+GitLab은 Git 원격 저장소 관리, CI/CD, 이슈 관리, 테스트 등 소프트웨어 개발과 운영의 전반적인 라이프사이클을 관리할 수 있는 통합 툴입니다.</description>
+    </item>
+    
+    <item>
+      <title>[TIL &amp; Issue Note] 20220603</title>
+      <link>https://riley817.github.io/archives/til/20220603/</link>
+      <pubDate>Fri, 03 Jun 2022 18:54:00 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/archives/til/20220603/</guid>
+      <description> ECMAscript 모듈 Scope 관련 문제
+Functions not working when type=&amp;quot;module&amp;quot; or import </description>
+    </item>
+    
+    <item>
+      <title>[TIL &amp; Issue Note] 20220326</title>
+      <link>https://riley817.github.io/archives/til/20220326/</link>
+      <pubDate>Sat, 26 Mar 2022 18:51:55 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/archives/til/20220326/</guid>
+      <description>블록체인과 보안 및 개인정보 1. 블록체인과 보안 해커 해커의 주된 목표 가치있는 정보 탈취로 경제적 이익 추구 -&amp;gt; 정보 자체에 대한 약탈 서비스 중단(Denial of Service)을 통한 시스템의 교란 해커의 공격을 막으려면? 정보 자체가 노출되는 것을 보호 서비스가 중단되지 않도록 보호 블록체인은 해커의 공격에 대해 안전할까? 블록체인은 모든 데이터를 브로드캐스팅을 통해 다른 노드와 공유 정보의 탈취 자체가 필요없을 정도로 정보가 노출됨. 정보 탈취로부터의 안정성은 가지고 있지 못함 암호화 자체가 안전을 보장하지 않음 암호화를 위한 기술적인 문제도 뒤따름 블록체인 보안 서비스 중단 공격이나 기록을 변경시키려는 시도로부터는 현존하는 가장 안전한 시스템 공격이나 기록 변경을 위해서는 모든 노드를 공격해야 함.</description>
+    </item>
+    
+    <item>
+      <title>[TIL &amp; Issue Note] 20220324</title>
+      <link>https://riley817.github.io/archives/til/20220324/</link>
+      <pubDate>Thu, 24 Mar 2022 23:29:35 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/archives/til/20220324/</guid>
+      <description>블록체인 원리(7) - 채굴과 51% 공격 1. 채굴과 블록 생성 블록을 만드는 것 = 채굴 보상금 획득 하는것이 금 획득하는 것과 비슷 채굴 단어의 유래 - Nick Szabo 금이 가치를 갖는 것은 채굴이 어렵기 때문 어떤 문제가 매우 어렵다면 -&amp;gt; 문제의 정답 자체가 어떤 가치를 가지지 않을까? 블록 만듦 -&amp;gt; 해시 퍼즐 풀이 : 어려운 문제이기 때문에 정답 자체가 가치 보유 금을 캐려면 -&amp;gt; 금광에서 채굴 : 힘든 작업이기 때문에 금이 가치 보유 해시 퍼즐 풀이 -&amp;gt;(비유) 금광에서 채굴 채굴 == 블록을 만들다.</description>
+    </item>
+    
+    <item>
+      <title>[TIL &amp; Issue Note] 20220321</title>
+      <link>https://riley817.github.io/archives/til/20220321/</link>
+      <pubDate>Mon, 21 Mar 2022 23:07:39 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/archives/til/20220321/</guid>
+      <description>블록체인 원리 - (5) 비가역성 블록체인 원리 (6) - 하드 포크와 소프트 포크 1. 하드 포크와 소프트 포크의 기본 개념 하드 포크와 소프트 포크 동일한 블록에서 노드가 다른 행동을 하는 이유 중앙화 서버 : 하나의 소프트웨어를 여러 사람이 접속 블록체인 : 각자의 소프트웨어 접속 -&amp;gt; 모든 사람의 소프트웨어 버전이 다르기 때문에 발생 블록체인의 소프트웨어 변경 최신 소프트웨어 사용자 -&amp;gt; 모든 변경이 반영된 상태로 사용 이전 소프트웨어 사용자 -&amp;gt; 변경이 반영되지 않은 형태로 사용 하드포크, 소프트 포크 동일한 블록에 대해 서로 다른 규칙을 적용, 서로 다른 결론에 이르는 현상 규칙이 상충시 발생하는 두 가지 현상 과거에는 유효하던 규칙이 지금은 무효화 과거에는 무효하던 규칙이 지금은 유효화 -&amp;gt; 결국 블록체인 데이터에 영향을 미치게 됨 2.</description>
+    </item>
+    
+    <item>
+      <title>[TIL &amp; Issue Note] 20220317</title>
+      <link>https://riley817.github.io/archives/til/20220317/</link>
+      <pubDate>Thu, 17 Mar 2022 23:46:41 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/archives/til/20220317/</guid>
+      <description>블록체인 원리 - (4) 탈중앙화 합의 및 이중사용 1. 탈중앙화 합의 규칙의 개념 탈중앙화 합의 규칙 규칙 미준수 -&amp;gt; 폐기 규칙 준수 -&amp;gt; 동의 탈중앙화 합의 규칙에는 규칙을 지켰을 때도 퇴출하는 방식이 필요 블록체인의 특징 구성상 P2P 혹은 피어투피어 방식으로 이루어짐 특정 서버가 존재하지 않음 브로드캐스팅을 통해서 자신의 피어를 통한 데이터 전송을 받고 있음 모든 노드는 현재 자신이 가지고 있는 데이터와 피어로부터 전달받은 데이터에 의존해서 모든것을 판단해야 함 중앙서버 중앙 통제 서버가 모든 지시를 내림 -&amp;gt; 노드는 지시에 따름 블록체인 모든 노드가 동등한 권리와 의무를 가짐 -&amp;gt; 지시를 받을 수 없는 구조</description>
+    </item>
+    
+    <item>
+      <title>[TIL &amp; Issue Note] 20220316</title>
+      <link>https://riley817.github.io/archives/til/20220316/</link>
+      <pubDate>Wed, 16 Mar 2022 23:32:16 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/archives/til/20220316/</guid>
+      <description>Getting Started What is React ? 사용자 인터페이스를 구축하기 위한 자바스크립트 라이브러리 모바일 앱처럼 상호작용과 반응성이 높은 사용자 환경을 제공 모바일 앱 화면 전환이 빠르고 사용자 반응성이 높음 웹 전통적인 웹사이트의 전환은 1) 링크,버튼 등 요청 2) 서버에서는 응답을 받고 새로운 HTML을 그림 서버와 요청과 응답 작업으로 인해 상호작용이 투박함 서버에서 처리한 HTML이 로드되는 것을 기다려야 함 자바스크립트 사용자가 보는 것을 조작할 수 있는 프로그래밍 언어 DOM에 접근하고 조작할 수 있다.</description>
+    </item>
+    
+    <item>
+      <title>[TIL &amp; Issue Note] 20220315</title>
+      <link>https://riley817.github.io/archives/til/20220315/</link>
+      <pubDate>Tue, 15 Mar 2022 00:28:23 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/archives/til/20220315/</guid>
+      <description>블록체인 원리 (3) - 작업증명 : 해시 퍼즐과 난이도 1. 블록만들기와 해시 퍼즐 해시 퍼즐 무차별 대입법 -&amp;gt; 특정 값 -&amp;gt; 무한 반복 산수 문제 해시 퍼즐을 푸는 수학적 공식은 없음 무수히 반복되는 산수 문제 해결 해시를 통해 얻게 되는 고유한 값 32 Byte 값 -&amp;gt; SHA-256 - 유효한 블록의 해시값을 찾을 때까지 무한 반복 해시 퍼즐 정답 = 블록 고유 해시값 제네시스 블록 해시값 = 2의 32승 번 값 계산 -&amp;gt; 약 10분동안 계산 해시 퍼즐 풀이 블록 헤더의 넌스값을 0 으로 설정 비트코인 해시 함수를 연속 2번 해싱 (SHA-256) : 임의의 32 Byte 값 블록 전체를 해시함수를 연속 두 번 적용하여 나온 해시값 H와 주어진 목표값 T 값을 비교 주어진 값보다 더 작거나 갖지 않다 -&amp;gt; 넌스 1증가 (1 ~ 32 까지 증가) -&amp;gt; 임의의 32 Byte 값 생성 반복 판단박스 목표 값보다 T보다 작아질 때까지 반복 넌스값 입력의 사소한 변화 32 Byte 충분히 작은 값이 나올 때까지 반복 T(목표값) -&amp;gt; 목표값이 작을 수록 만족 힘듦 작업증명 퍼즐을 이용해서 의도적으로 막대한 에너지를 소모하게 만든 방식 스팸 방지를 위해 개발 의도적으로 막대한 에너지를 소모하게 하여 그 일을 억제 최초 기록 및 변경에 막대한 에너지 소모 -&amp;gt; 반대 급부의 경제적 이득이 없으면 변경 이유 없다 최초의 기록된 노드의 검증 -&amp;gt; 합당한 이유 없다면 정상적 기록을 통한 보상금 -&amp;gt; 합리적 선택 스팸 방지 네트워크 과부하 문제 어떤 작업을 반드시 해야만 되도록 부과 -&amp;gt; 스팸 억제 2.</description>
+    </item>
+    
+    <item>
+      <title>[TIL &amp; Issue Note] 20220314</title>
+      <link>https://riley817.github.io/archives/til/20220314/</link>
+      <pubDate>Mon, 14 Mar 2022 23:47:19 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/archives/til/20220314/</guid>
+      <description>블록체인 원리(2) - 블록의 구조 1. 블록의 이해 블록 (Block) 의미 있는 묶음 = 1 BLOCK 어떤 의미있는 단위를 한 블록으로 정의 특정 데이터를 다루는 단위 비트코인 블록체인 1 MB 까지의 한도 내에서 거래내역을 기록한 단위 (2000 ~ 3000 거래 내역) 비트코인 캐시 (8MB 까지 허용), 비트코인 골드 이더리움 블록체인 이론적인 한도는 없음 비트코인 블록의 구조 블록 헤더 : 데이터의 요약 정보 블록 헤더의 크기 : 80 Byte 항상 일정한 크기를 유지 블록 데이터 : 실제의 데이터를 담는 부분 2.</description>
+    </item>
+    
+    <item>
+      <title>[TIL &amp; Issue Note] 20220310</title>
+      <link>https://riley817.github.io/archives/til/20220310/</link>
+      <pubDate>Thu, 10 Mar 2022 22:23:45 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/archives/til/20220310/</guid>
+      <description>블록체인과 중앙집중 시스템과의 차이점 (2) - 일처리 방식 1. 브로드캐스팅 Broadcasting 네트워크에 참여한 모든 노드에게 모든 데이터를 전달하는 방식 중앙서버 방식 : 중앙 서버와 특정 노드 사이에만 데이터 전달이 일어남 블록체인 : 시간이 흐림에 따라 데이터가 모든 노드에 전달 블록체인에서는 모든 데이터를 브로드캐스팅을 통해 전달 Gossip protocol 귓속말을 하듯 피어를 통해 데이터를 전달한다.
+모든 데이터 -&amp;gt; 모든 노드 -&amp;gt; 블록체인에 참여한 노드는 동일한 데이터를 가지고 있다.
+블록체인의 모든 전송 방식은 브로드 캐스팅에 의존한다.</description>
+    </item>
+    
+    <item>
+      <title>[TIL &amp; Issue Note] 20220308</title>
+      <link>https://riley817.github.io/archives/til/20220309/</link>
+      <pubDate>Tue, 08 Mar 2022 10:51:10 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/archives/til/20220309/</guid>
+      <description>블록체인과 중앙집중 시스템과의 차이점 (1) 1. 중앙화 시스템과 분산 시스템 분산 시스템의 정의 각각의 꼭지점 = 하나의 서버 모드 꼭짓점 = 노드 직접적으로 연결된 노드 = 피어 ![[Pasted image 20220308110403.png]]
+중앙집중 시스템과 분산시스템 중앙집중 시스템 대표적인 예시 은행 -&amp;gt; 은행이 운영하는 웹 서버에 연결 은행 이용자가 모두 동일한 서버를 이용 사용자의 수와 상관없이 사용자가 사용하는 시스템은 동일 특징 설계와 운영이 간편한 중앙집중 시스템 -&amp;gt; 기능 추가 시 별도의 절차 없이 모든 사용자에게 적용.</description>
+    </item>
+    
+    <item>
+      <title>[TIL &amp; Issue Note] 20220307</title>
+      <link>https://riley817.github.io/archives/til/20220307/</link>
+      <pubDate>Mon, 07 Mar 2022 13:43:10 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/archives/til/20220307/</guid>
+      <description>블록체인과 중앙집중 시스템과의 차이점 (1) 1. 중앙화 시스템과 분산 시스템 분산 시스템의 정의 각각의 꼭지점 = 하나의 서버 모드 꼭짓점 = 노드 직접적으로 연결된 노드 = 피어 중앙집중 시스템과 분산시스템 중앙집중 시스템 대표적인 예시 은행 -&amp;gt; 은행이 운영하는 웹 서버에 연결 은행 이용자가 모두 동일한 서버를 이용 사용자의 수와 상관없이 사용자가 사용하는 시스템은 동일 특징 설계와 운영이 간편한 중앙집중 시스템 -&amp;gt; 기능 추가 시 별도의 절차 없이 모든 사용자에게 적용. 서버에 이상이 생길 경우 모든 사용자가 이용 불가 분산 시스템 여러 개의 서버가 일을 나누어 처리 여러 서버가 일을 분담하는 분산 시스템 분산시스템의 장점 일의 효울성이 높다.</description>
+    </item>
+    
+    <item>
+      <title>[TIL &amp; Issue Note] 20220305</title>
+      <link>https://riley817.github.io/archives/til/20220305/</link>
+      <pubDate>Sat, 05 Mar 2022 17:27:58 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/archives/til/20220305/</guid>
+      <description>변수 변수를 만들고 초기화 하는 코드는 다음과 같다.
+1 2 // 변수를 생성하고 초기화 한다. var name = &amp;#39;Bob&amp;#39;; 변수는 참조를 저장한다. name으로 불리는 변수는 &amp;ldquo;Bob&amp;quot;이라는 문자열을 갖는 String 객체의 참조를 포함한다.
+name의 변수 타입은 String으로 유추할 수 있지만 해당 유형을 명시적으로 변경할 수 있다. 객체가 단일 타입으로 제한되지 않은 경우 Object 타입(필요하면 dynamic)으로 지정할 수 있다.
+1 Object name = &amp;#39;Bob&amp;#39;; 유추가능한 명시적인 타입으로 지정할 수도 있다.
+1 String name = &amp;#39;Bob&amp;#39;; 기본값 nullable 타입의 초기값은 null이다.</description>
+    </item>
+    
+    <item>
+      <title>[TIL &amp; Issue Note] 20220304</title>
+      <link>https://riley817.github.io/archives/til/20220304/</link>
+      <pubDate>Fri, 04 Mar 2022 20:40:22 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/archives/til/20220304/</guid>
+      <description>Important concepts 변수에 넣을 수 있는 것은 Object이고, 모든 Object는 Class의 인스턴스이다. numbers, functions, null 조차 객체이다. 모든 객체는 Object 클래스를 상속한다.
+Dart가 강타입 언어이긴하나, 타입을 추론 할 수 있기 때문에 명시는 선택사항이다.
+null-safety를 활성화 하면, 특별히 선언하지 않으면 변수에는 null을 포함할 수 없다.
+nullable한 변수는 타입 뒤에 ? 붙인다. int?는 변수가 integer일 수도 있고 null일 수도 있다. Dart에서 null을 평가하는 것을 동의하지 않는다면 !를 붙여 null이 아님을 명시할 수 있다.</description>
+    </item>
+    
+    <item>
+      <title>[TIL &amp; Issue Note] 20220303</title>
+      <link>https://riley817.github.io/archives/til/20220303/</link>
+      <pubDate>Thu, 03 Mar 2022 22:03:22 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/archives/til/20220303/</guid>
+      <description>1. 블록체인의 탄생 배경 개요 블록체인의 작동원리와 기반 기술 세부기술에 대한 자세한 설명을 통해 블록체인의 정한 효용 초보자와 프로그래머에게 모두 열린 학습 비유를 통한 원리 이해 현업에 발판이 되는 전문 지식 블록체인의 탄생 배경 Cipherpunk 운동 Cipher(암호) + Punk의 합성어 암호로 개인의 프라이버시 보호를 극대화하고자 했던 행동주의자 등장 배경 1980년대 미국, 국가나 대형 기관에 의한 개인의 인권 및 개인정보 침해 심각 개인의 프라이버시 보호하고자 하는 의식 확산 암호화 기술은 국가/군 기관이 점유 -&amp;gt; 개인에게는 허용 불가 1970년 IBM에서 일반인들도 사용할 수 있는 암호화 체계 등장 -&amp;gt; DES (Data Encryption Standard, DES) 1983년, E-cash (David Chaum) 모든 금융 거래의 이체 내역 암호화 은행과의 제휴를 통해 계좌 이체 내역에 대해서만 본인이 알 수 있도록 함.</description>
+    </item>
+    
+    <item>
+      <title>[TIL &amp; Issue Note] 20220302</title>
+      <link>https://riley817.github.io/archives/til/20220302/</link>
+      <pubDate>Wed, 02 Mar 2022 22:30:01 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/archives/til/20220302/</guid>
+      <description>What is React? 사용자 인터페이스를 구축하기 위한 자바스크립트 라이브러리. 모바일 앱과 웹사이트 비교 모바일 앱 모바일 앱은 반응성이 매우 높은 사용자 환경을 제공한다. 화면 전환이 빠르기 때문에 사용하기 좋다. 웹사이트 웹사이트는 사용자 요청이 (링크나, 버튼을 클릭했을 때) 서버로 전송되고 전송된 결과(HTML 페이지)는 브라우저로 다시 전송되어 화면에 띄워지는 구조이다. 이러한 요청과 반응 사이클로 인해 동작이 모바일 앱에 비해서는 투박하고 지연이 있을 수 있다. 자바스크립트 자바스크립트를 통해 Dom을 조작하고 이를 통해 HTML의 요소를 제어할 수 있다.</description>
+    </item>
+    
+    <item>
+      <title>[TIL &amp; Issue Note] 20220218</title>
+      <link>https://riley817.github.io/archives/til/20220218/</link>
+      <pubDate>Fri, 18 Feb 2022 21:59:10 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/archives/til/20220218/</guid>
+      <description>20220218 Note 도커 비공개 레포지토리를 자체 인증서를 발급 하여 세팅한다. 깃랩 러너를 구성하여 main 브랜치에 머지되었을 때 서버를 구성한다. docker-compose.yml
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 version: &amp;#39;3.8&amp;#39; services: registry: image: registry:2 restart: always volumes: - /home/cherry/devops/docker_repository/images:/var/lib/registry - /home/cherry/devops/docker_repository/certs:/certs ports: - 5000:5000 environment: REGISTRY_HTTP_TLS_CERTIFICATE: /certs/domain.crt REGISTRY_HTTP_TLS_KEY: /certs/domain.key gitlab-runner: container_name: gitlab-runner image: &amp;#39;gitlab/gitlab-runner:latest&amp;#39; restart: always volumes: - .</description>
+    </item>
+    
+    <item>
+      <title>[TIL &amp; Issue Note] 20220217</title>
+      <link>https://riley817.github.io/archives/til/20220217/</link>
+      <pubDate>Thu, 17 Feb 2022 22:06:00 +0900</pubDate>
+      <author>riley0422@icloud.com (Riley)</author>
+      <guid>https://riley817.github.io/archives/til/20220217/</guid>
+      <description>이슈 사내 사이드 프로젝트 배포를 위한 개인 도커 레포지토리를 구축 중이다. 도메인은 godaddy를 통해 구매하였고, repository.XXXXX.com 서브도메인을 구성하였다. 개인 도커 레포지토리를 외부에서 접근하려먼 HTTPS만 지원하기 때문에 openssl을 통해 자체 서명 인증서를 발급했다.
+1 openssl req -newkey rsa:4096 -nodes -sha256 -keyout ./domain.key -x509 -days 365 -out ./domain.crt 위와 같이 발행 후 원격장비에서 도커 레포지토리 장비로 이미지를 푸시하려는데 아래와 같은 메세지와 함께 푸시가 되지 않았다.
+The push refers to repository [repository.XXXXX.com:5000/my-nginx] Get &amp;ldquo;https://repository.</description>
     </item>
     
   </channel>

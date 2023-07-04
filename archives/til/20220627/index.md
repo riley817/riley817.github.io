@@ -1,4 +1,5 @@
-# 개발협업 가이드 Sample
+# [TIL & Issue Note] 개발협업 가이드 핸드북 초안
+
 
 
 # 개발 협업 가이드
@@ -11,8 +12,10 @@ GitLab에 등록되는 `이슈(Task)`는 시스템 개발과 관련된 작업�
 
 GitLab은 Git 원격 저장소 관리, CI/CD, 이슈 관리, 테스트 등 소프트웨어 개발과 운영의 전반적인 라이프사이클을 관리할 수 있는 통합 툴입니다. Git과 GitLab에 익숙하지 않다면 아래 문서를 참고하여 숙지하시기 바랍니다.
 
-> - [Git 간편 안내서](https://rogerdudler.github.io/git-guide/index.ko.html)
-> - [GitLab Documentation – GitLab basics](https://docs.gitlab.com/ee/user/index.html)
+{{<admonition tip>}}
+- [Git 간편 안내서](https://rogerdudler.github.io/git-guide/index.ko.html)
+- [GitLab Documentation – GitLab basics](https://docs.gitlab.com/ee/user/index.html)
+{{</admonition>}}
 
 ## 우리 팀이 Scrum을 진행하는 순서
 
@@ -32,11 +35,11 @@ GitLab의 이슈 시스템과 칸반보드로 Scrum을 관리합니다. 이슈�
 - 기능 제안, 질문, 지원 요청 또는 버그 리포트
 - 코드 구현 설명
 
-{{< figure src="/categories/images/TIL/guide1.png#center" caption="[예시] Epic 유형의 이슈" >}}
+{{< figure src="/posts/images/TIL/guide1.png#center" caption="[예시] Epic 유형의 이슈" >}}
 
 이슈를 생성할 때 이슈 유형을 반드시 라벨로 추가해야 합니다. 이슈의 Description 항목에서 이슈 유형에 따른 템플릿을 선택할 수 있습니다. 이슈 유형은 다음과 같습니다.
 
-#### Issue(Task) 유형
+### Issue(Task) 유형
 
 | Issue Type |  정의 |
 |------------|---|
@@ -50,18 +53,18 @@ GitLab의 이슈 시스템과 칸반보드로 Scrum을 관리합니다. 이슈�
 |`Problem (문제)`|결과값에 문제는 없지만 문제가 되는 상황|
 |`Bug(버그)`|기존 기능의 오류 보고|
 
-#### Issue(Task) 생성시 필수 입력 사항
+### Issue(Task) 생성시 필수 입력 사항
 - Milestone (Sprint backlog task)
 - Label
 - Assignee
 
-#### Linked issue
+### Linked issue
 하나의 Task를 처리하는 과정에서 추가 Task가 발생하는 경우 또는 Task의 작업 규모가 생각했던 것 보다 커지는 경우 보다 작은 규모의 Task를 나누어져야 할 필요가 종종 발생합니다. 이런 경우 새로운 Task를 생성하고 작업중이던 Task를 linked issue로 설정합니다.
 
 ## Git-Workflow
 이슈는 Workflow에 따라 특정 status 값을 관리합니다. 전체적인 Workflow는 아래와 같습니다.
 
-{{< figure src="/categories/images/TIL/guide2.png#center" caption="" >}}
+{{<figure src="/posts/images/TIL/guide2.png#center" caption="" >}}
 
 | Issue Workflow status  |  정의 |
 |------------|---|
@@ -74,7 +77,7 @@ GitLab의 이슈 시스템과 칸반보드로 Scrum을 관리합니다. 이슈�
 |**Reject**|최종 확인자 반려|
 
 ### Issue Workflow status에 따른 칸반보드
-{{< figure src="/categories/images/TIL/guide3.png#center" caption="" >}}
+{{< figure src="/posts/images/TIL/guide3.png#center" caption="" >}}
 
 ## 브랜치 규칙
 우리 팀은 Git-flow 브랜치 전략을 사용합니다. 브랜치는 5가지 종류의 브랜치를 사용합니다.
@@ -86,31 +89,31 @@ GitLab의 이슈 시스템과 칸반보드로 Scrum을 관리합니다. 이슈�
 - **hotfix** : 출시 버전에서 발생한 버그를 수정 하는 브랜치
 
 ## 작업 순서
-#### 1. Bakclog이슈에 해당하는 feature 브랜치를 생성합니다.
+### 1. Bakclog이슈에 해당하는 feature 브랜치를 생성합니다.
  
 `feature/issue-<이슈번호>` 형식으로 브랜치를 생성합니다. `feature` 브랜치는 `develop` 브랜치에서부터 시작합니다. git 명령어를 이용하거나 **GitLab이슈 수정 > Create Branch** 버튼으로도 생성할 수 있습니다.
-{{< figure src="/categories/images/TIL/guide4.png#center" caption="" >}}
+{{< figure src="/posts/images/TIL/guide4.png#center" caption="" >}}
 
-#### 2. 작업 브랜치에서 소스 코드 수정 후 변경사항을 커밋합니다.
+### 2. 작업 브랜치에서 소스 코드 수정 후 변경사항을 커밋합니다.
 
-#### 3. 작업 브랜치를 origin에 푸시합니다.
+### 3. 작업 브랜치를 origin에 푸시합니다.
 
-#### 4. GtiLab에 작업 브랜치를develop 브랜치로 merge하는 Pull Request를 생성합니다.
+### 4. GtiLab에 작업 브랜치를develop 브랜치로 merge하는 Pull Request를 생성합니다.
 작업 브랜치 개발이 끝나면 작업브랜치의 `Merge Request`를 작성합니다. 타겟 브랜치는 `develop`을 선택합니다.
-{{< figure src="/categories/images/TIL/guide5.png#center" caption="" >}}
+{{< figure src="/posts/images/TIL/guide5.png#center" caption="" >}}
 
 `Documentation` 이슈 템플릿을 선택하여 내용을 작성합니다. `Assignee`는 `MR`을 등록하는 계정으로 지정하고 `Reviewer`는 동료 개발자 혹은 소스리뷰 담당자를 지정합니다. `Sprint Backlog`의 경우 `Milestone`을 선택합니다. Labels는 `Documentation` 지정합니다.<br/>
 
 작성이 완료되면 **Create Merge Request** 버튼을 클릭합니다. <br>
 
-{{< figure src="/categories/images/TIL/guide6.png#center" caption="" >}}
+{{< figure src="/posts/images/TIL/guide6.png#center" caption="" >}}
 
-#### 5. Merge Request 코드 리뷰 후 merge
+### 5. Merge Request 코드 리뷰 후 merge
 
 같은 `feature`를 개발하는 동료에게 리뷰 승인을 받은 후 자신의 `Pull Request`를 `merge`합니다. 
 만약 혼자 `feature`를 개발한다면 1~2명의 동료에게 리뷰 승인을 받은 후 `Pull Request`를 `merge` 합니다. 
 - 리뷰어는 코드리뷰 후 승인버튼을 클릭합니다
 
-{{< figure src="/categories/images/TIL/guide7.png#center" caption="" >}}
+{{< figure src="/posts/images/TIL/guide7.png#center" caption="" >}}
 - 리뷰어의 승인이 완료되면 `merge` 버튼을 클릭하여 `develop` 브랜치까지 `merge` 작업 완료합니다.
 

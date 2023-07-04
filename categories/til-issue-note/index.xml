@@ -6,88 +6,88 @@
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
             <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Mon, 27 Feb 2023 17:05:22 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/categories/til-issue-note/" rel="self" type="application/rss+xml" /><item>
     <title>[TIL &amp; Issue Note] 20230227</title>
-    <link>https://riley817.github.io/20230227/</link>
+    <link>https://riley817.github.io/archives/til/20230227/</link>
     <pubDate>Mon, 27 Feb 2023 17:05:22 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/20230227/</guid>
+    <guid>https://riley817.github.io/archives/til/20230227/</guid>
     <description><![CDATA[Server Authority 서버가 모든 권한을 가지고 있다. 서버는 중재자, 심판, 플레이어 역할을 한다. Client-Server 방식 클라이언트에서 질의(요청)하면 서버에서 응답하는 방식 가장 흔하게 사용하는 방법이며 대표적으로 웹서버가 있다. 클라이언트에 요청이 있어야만 서버가 응답을 한다. 웹서버 요청 방식 브라우저에서 naver.com 주소를 DNS 서버로 IP 검색 요청 DNS에서 naver.com 에 해당하는 IP 를 응답한다. 브라우저는 응답받은 IP의 서버에 커넥션 및 text 전문을 요청한다. naver.com 서버에서는 해당 요청에 응하는 전문을 리턴한다. MMORPG 게임에서 클라이언트와 서버 예시 플레이어가 이동을 위해 좌표를 서버로 요청Request한다.]]></description>
 </item>
 <item>
     <title>[TIL &amp; Issue Note] 20230221</title>
-    <link>https://riley817.github.io/20230221/</link>
+    <link>https://riley817.github.io/archives/til/20230221/</link>
     <pubDate>Tue, 21 Feb 2023 23:04:09 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/20230221/</guid>
+    <guid>https://riley817.github.io/archives/til/20230221/</guid>
     <description><![CDATA[Deterministic은 왜 해킹에 취약한가 Deterministic 은 양쪽 input set을 공유하여 status 를 맞추는 방식으로 동작한다. input에 의존하기 때문에 input에 대한 변조를 통한 해킹에 취약하다. input set을 검사하는 방법 서버에서 패킷을 검사한다. Stateless Server : 중계(Relay) 서버의 경우 현재 게임상태나 게임의 룰을 알고 있지 않아도 된다. (단순히 패킷을 전달하는 역할을 하기 때문) 클라이언트끼리 상대방의 패킷이 정당한지 검사한다. 혹은 방장이 참여 클라이언트의 패킷이 전당한지 검사한다. 해킹을 막는 방법 tolerance 범위가 넘어가는 경우 해킹으로 간주한다.]]></description>
 </item>
 <item>
     <title>[TIL &amp; Issue Note] 20230218</title>
-    <link>https://riley817.github.io/20230220/</link>
+    <link>https://riley817.github.io/archives/til/20230220/</link>
     <pubDate>Mon, 20 Feb 2023 23:59:59 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/20230220/</guid>
+    <guid>https://riley817.github.io/archives/til/20230220/</guid>
     <description><![CDATA[NAT(Network Address Translation)를 사용하는 이유 IPv4 주소체계에서 IP 주소를 절약 외부로 패킷이 나갈때는 private IP가 public IP로 바뀌어 전송되므로 내부 IP를 숨실 수 있음(보안) 게이트웨이, 라우터, 스위치, 공유기 등 NAT에서의 문제 UDP를 통한 네트워킹을 하기위해서는 서로의 Peer의 목적지를 알아야 한다. 클라이언트 A에서 NAT 거치게 되면 어떤 public IP와 Port 변환될지 모른다. 다른 클라이언트에서 A에게 연결을 하기 위해 public IP는 알고 있지만 private IP와 포트는 알지 못한다. UDP Hole Punching NAT 환경에서 사용자들과 P2P 연결을 중개하는 Relay 서버를 통해 사용자간 직접적인 데이터 전송을 구현]]></description>
 </item>
 <item>
     <title>[TIL &amp; Issue Note] 20230218</title>
-    <link>https://riley817.github.io/20230218/</link>
+    <link>https://riley817.github.io/archives/til/20230218/</link>
     <pubDate>Sat, 18 Feb 2023 20:55:48 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/20230218/</guid>
+    <guid>https://riley817.github.io/archives/til/20230218/</guid>
     <description><![CDATA[Deterministic 방식 같은 인풋을 가지고 있으면 두 개의 상태state가 동일equal하다 (=sync가 맞는다.) 서로의 입력을 전송하는데에 시간이 걸린다. 얼마나 latency를 잘 극복하는지 desync가 일어나지 않게 만드는 것이 핵심이다. desync를 막기 위해 delay 와 rollback 방식을 활용한다. Delay 지연시간만큼 입력을 딜레이 시켜서 처리하면 싱크가 맞게 되는 원리 쉽고 단순하게 구현할 수 있다. 문제점
 지연시간이 발생한다. 지연시간이 보통 100ms 가 넘어가면 플레이어가 이를 감지 할 수 있다. Rollback 지연시간만큼 다시 시간을 되돌리고 다시 앞감기를 한다.]]></description>
 </item>
 <item>
     <title>[TIL &amp; Issue Note] 20230214</title>
-    <link>https://riley817.github.io/20230215/</link>
+    <link>https://riley817.github.io/archives/til/20230215/</link>
     <pubDate>Tue, 14 Feb 2023 23:51:47 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/20230215/</guid>
+    <guid>https://riley817.github.io/archives/til/20230215/</guid>
     <description><![CDATA[ Tucker의 게임 네트워킹의 이해 - 2
 Protocol 약속, 규약 Network Protocol : 통신 규약 컴퓨터간 통신을 하기 위해서는 약속이 필요하다. ]]></description>
 </item>
 <item>
     <title>[TIL &amp; Issue Note] 20230214</title>
-    <link>https://riley817.github.io/20230214/</link>
+    <link>https://riley817.github.io/archives/til/20230214/</link>
     <pubDate>Tue, 14 Feb 2023 00:12:09 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/20230214/</guid>
+    <guid>https://riley817.github.io/archives/til/20230214/</guid>
     <description><![CDATA[Tucker의 게임 네트워킹의 이해 - 1
 네트워킹 데이터를 주고 받는 것 컴퓨터 내부에서 발생하는 데이터 교환도 네트워킹이라고 볼 수 있다. 흔히 네트워킹이라고 말하면 외부에 멀리 떨어져 있는 컴퓨터들끼리의 데이터 교환을 의미한다. 내부 네트워킹과 외부 네트워킹간 차이 외부 네트워킹의 경우 지연시간이 발생한다 (latency)
 RTT(Round Trip Time, 패킷왕복시간) : 패킷이 목적지에 도달하고나서 해당 패킷에 대한 응답이 출발지로 다시 돌아오기까지의 시간 지연시간의 경우 물리적인 환경의 문제이므로 줄이기가 어렵다. 게임에서는 눈속임을 통한 지연시간을 해소 연결 안전성 (연결 불안정)]]></description>
 </item>
 <item>
     <title>[TIL &amp; Issue Note] 20230126</title>
-    <link>https://riley817.github.io/20230126/</link>
+    <link>https://riley817.github.io/archives/til/20230126/</link>
     <pubDate>Thu, 26 Jan 2023 23:33:57 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/20230126/</guid>
+    <guid>https://riley817.github.io/archives/til/20230126/</guid>
     <description><![CDATA[Issue flutter 환경을 설정하던 중 안드로이드 라이센스 관련 명령어 실행시 에러 UnsupportedClassVersionError while &lsquo;flutter doctor &ndash;android-licenses&rsquo; MacOS 사용 환경 MacOS Ventura (M1 Mac) Android Studio Electric Eel 에러 내용 1 2 3 4 Exception in thread &#34;main&#34; java.lang.UnsupportedClassVersionError: com/android/prefs/AndroidLocationsProvider has been compiled by a more recent version of the Java Runtime (class file version 55.0), this version of the Java Runtime only recognizes class file versions up to 52.0 해결 내용 Agree to Andorid License 1 2 3 1.]]></description>
 </item>
 <item>
     <title>[TIL &amp; Issue Note] 20230211</title>
-    <link>https://riley817.github.io/20230211/</link>
+    <link>https://riley817.github.io/archives/til/20230211/</link>
     <pubDate>Thu, 26 Jan 2023 23:33:57 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/20230211/</guid>
+    <guid>https://riley817.github.io/archives/til/20230211/</guid>
     <description><![CDATA[전통적인 게임의 서버 구조 P2P 서버에 참여하는 구성원들이 서버이자 클라이언트의 역할을 한다. 주로 격투게임, 소규모 FPS 게임 등 반응 속도가 빨라야하는 장르에서 많이 사용했다. 인원수에 따라 유지해야 하는 연결의 개수가 많아 진다. Host 방식 게임에 참가하는 참가자 중 제일 처음 방을 만드는 참가자의 클라이언트를 서버로 사용 나머지 참가자는 클라이언트로서의 역할을 한다. 게임의 검증, 결과 판정 등은 호스트 클라이언트가 담당한다. 호스트에게 모든 데이터가 집중되므로 호스트의 컴퓨터 성능이 좋아야 한다. 호스트의 서버가 연결을 종료할 경우 접속한 모든 클라이언트가 게임을 할 수 없다.]]></description>
 </item>
 <item>
     <title>[TIL &amp; Issue Note] 개발협업 가이드 핸드북 초안</title>
-    <link>https://riley817.github.io/20220627/</link>
+    <link>https://riley817.github.io/archives/til/20220627/</link>
     <pubDate>Mon, 27 Jun 2022 23:22:43 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/20220627/</guid>
+    <guid>https://riley817.github.io/archives/til/20220627/</guid>
     <description><![CDATA[개발 협업 가이드 우리 팀에서 내부 및 외부 공동 작업자가 개발 협업하기 위한 방법으로 애자일의 Scrum 방법론을 사용합니다. Scrum 관리를 위한 도구로는 GitLab의 이슈 시스템과 칸반보드 기능을 활용합니다. GitLab에 등록되는 이슈(Task)는 시스템 개발과 관련된 작업만 작성하도록 합니다. 프로젝트 계약 등 개발작업이 아닌 작업의 경우 Microsoft Planner의 칸반보드를 사용합니다.
 PBTeam – Microsoft Planner 사용가이드
 GitLab은 Git 원격 저장소 관리, CI/CD, 이슈 관리, 테스트 등 소프트웨어 개발과 운영의 전반적인 라이프사이클을 관리할 수 있는 통합 툴입니다.]]></description>
 </item>
 <item>
     <title>[TIL &amp; Issue Note] 20220603</title>
-    <link>https://riley817.github.io/20220603/</link>
+    <link>https://riley817.github.io/archives/til/20220603/</link>
     <pubDate>Fri, 03 Jun 2022 18:54:00 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/20220603/</guid>
+    <guid>https://riley817.github.io/archives/til/20220603/</guid>
     <description><![CDATA[ ECMAscript 모듈 Scope 관련 문제
 Functions not working when type=&quot;module&quot; or import ]]></description>
 </item>

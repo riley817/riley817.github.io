@@ -27,39 +27,6 @@ TCP를 신뢰성 있게 만드는 것 패킷손실packet loss : 무선 네트워
 1. 점대점 point-to-point 연결형 두 노드가 하나의 연결을 공유 한다. 이러한 유형의 네트워크 연결을 드물지만 두 노드 간에 직접 통신이 필요할 때 매우 유용하다. 2. 데이지 체인 daisy chain 연결형 일련의 점대점 연결 출발지 노드와 목적지 노드 사이의 중간 노드를 일반적으로 홉이라고 한다.]]></description>
 </item>
 <item>
-    <title>[TIL &amp; Issue Note] 20230227</title>
-    <link>https://riley817.github.io/20230227/</link>
-    <pubDate>Mon, 27 Feb 2023 17:05:22 &#43;0900</pubDate>
-    <author>riley</author>
-    <guid>https://riley817.github.io/20230227/</guid>
-    <description><![CDATA[Server Authority 서버가 모든 권한을 가지고 있다. 서버는 중재자, 심판, 플레이어 역할을 한다. Client-Server 방식 클라이언트에서 질의(요청)하면 서버에서 응답하는 방식 가장 흔하게 사용하는 방법이며 대표적으로 웹서버가 있다. 클라이언트에 요청이 있어야만 서버가 응답을 한다. 웹서버 요청 방식 브라우저에서 naver.com 주소를 DNS 서버로 IP 검색 요청 DNS에서 naver.com 에 해당하는 IP 를 응답한다. 브라우저는 응답받은 IP의 서버에 커넥션 및 text 전문을 요청한다. naver.com 서버에서는 해당 요청에 응하는 전문을 리턴한다. MMORPG 게임에서 클라이언트와 서버 예시 플레이어가 이동을 위해 좌표를 서버로 요청Request한다.]]></description>
-</item>
-<item>
-    <title>[TIL &amp; Issue Note] 20230221</title>
-    <link>https://riley817.github.io/20230221/</link>
-    <pubDate>Tue, 21 Feb 2023 23:04:09 &#43;0900</pubDate>
-    <author>riley</author>
-    <guid>https://riley817.github.io/20230221/</guid>
-    <description><![CDATA[Deterministic은 왜 해킹에 취약한가 Deterministic 은 양쪽 input set을 공유하여 status 를 맞추는 방식으로 동작한다. input에 의존하기 때문에 input에 대한 변조를 통한 해킹에 취약하다. input set을 검사하는 방법 서버에서 패킷을 검사한다. Stateless Server : 중계(Relay) 서버의 경우 현재 게임상태나 게임의 룰을 알고 있지 않아도 된다. (단순히 패킷을 전달하는 역할을 하기 때문) 클라이언트끼리 상대방의 패킷이 정당한지 검사한다. 혹은 방장이 참여 클라이언트의 패킷이 전당한지 검사한다. 해킹을 막는 방법 tolerance 범위가 넘어가는 경우 해킹으로 간주한다.]]></description>
-</item>
-<item>
-    <title>[TIL &amp; Issue Note] 20230218</title>
-    <link>https://riley817.github.io/20230220/</link>
-    <pubDate>Mon, 20 Feb 2023 23:59:59 &#43;0900</pubDate>
-    <author>riley</author>
-    <guid>https://riley817.github.io/20230220/</guid>
-    <description><![CDATA[NAT(Network Address Translation)를 사용하는 이유 IPv4 주소체계에서 IP 주소를 절약 외부로 패킷이 나갈때는 private IP가 public IP로 바뀌어 전송되므로 내부 IP를 숨실 수 있음(보안) 게이트웨이, 라우터, 스위치, 공유기 등 NAT에서의 문제 UDP를 통한 네트워킹을 하기위해서는 서로의 Peer의 목적지를 알아야 한다. 클라이언트 A에서 NAT 거치게 되면 어떤 public IP와 Port 변환될지 모른다. 다른 클라이언트에서 A에게 연결을 하기 위해 public IP는 알고 있지만 private IP와 포트는 알지 못한다. UDP Hole Punching NAT 환경에서 사용자들과 P2P 연결을 중개하는 Relay 서버를 통해 사용자간 직접적인 데이터 전송을 구현]]></description>
-</item>
-<item>
-    <title>[TIL &amp; Issue Note] 20230218</title>
-    <link>https://riley817.github.io/20230218/</link>
-    <pubDate>Sat, 18 Feb 2023 20:55:48 &#43;0900</pubDate>
-    <author>riley</author>
-    <guid>https://riley817.github.io/20230218/</guid>
-    <description><![CDATA[Deterministic 방식 같은 인풋을 가지고 있으면 두 개의 상태state가 동일equal하다 (=sync가 맞는다.) 서로의 입력을 전송하는데에 시간이 걸린다. 얼마나 latency를 잘 극복하는지 desync가 일어나지 않게 만드는 것이 핵심이다. desync를 막기 위해 delay 와 rollback 방식을 활용한다. Delay 지연시간만큼 입력을 딜레이 시켜서 처리하면 싱크가 맞게 되는 원리 쉽고 단순하게 구현할 수 있다. 문제점
-지연시간이 발생한다. 지연시간이 보통 100ms 가 넘어가면 플레이어가 이를 감지 할 수 있다. Rollback 지연시간만큼 다시 시간을 되돌리고 다시 앞감기를 한다.]]></description>
-</item>
-<item>
     <title>[Flutter] Flutter 개념 및 동작 원리</title>
     <link>https://riley817.github.io/flutter/</link>
     <pubDate>Thu, 16 Feb 2023 16:11:36 &#43;0900</pubDate>
@@ -71,25 +38,6 @@ TCP를 신뢰성 있게 만드는 것 패킷손실packet loss : 무선 네트워
 플러터가 Dart 언어를 사용하는 이유 다트는 JIT(just-in-time), AOT(ahead-of-time) 컴파일을 모두 지원한다. AOT 컴파일러는 다트 코드를 효율적인 네이티브 코드로 바꾸어 개발자 및 사용자가 모두 빠르게 사용할 수 있다.]]></description>
 </item>
 <item>
-    <title>[TIL &amp; Issue Note] 20230214</title>
-    <link>https://riley817.github.io/20230215/</link>
-    <pubDate>Tue, 14 Feb 2023 23:51:47 &#43;0900</pubDate>
-    <author>riley</author>
-    <guid>https://riley817.github.io/20230215/</guid>
-    <description><![CDATA[ Tucker의 게임 네트워킹의 이해 - 2
-Protocol 약속, 규약 Network Protocol : 통신 규약 컴퓨터간 통신을 하기 위해서는 약속이 필요하다. ]]></description>
-</item>
-<item>
-    <title>[TIL &amp; Issue Note] 20230214</title>
-    <link>https://riley817.github.io/20230214/</link>
-    <pubDate>Tue, 14 Feb 2023 00:12:09 &#43;0900</pubDate>
-    <author>riley</author>
-    <guid>https://riley817.github.io/20230214/</guid>
-    <description><![CDATA[Tucker의 게임 네트워킹의 이해 - 1
-네트워킹 데이터를 주고 받는 것 컴퓨터 내부에서 발생하는 데이터 교환도 네트워킹이라고 볼 수 있다. 흔히 네트워킹이라고 말하면 외부에 멀리 떨어져 있는 컴퓨터들끼리의 데이터 교환을 의미한다. 내부 네트워킹과 외부 네트워킹간 차이 외부 네트워킹의 경우 지연시간이 발생한다 (latency)
-RTT(Round Trip Time, 패킷왕복시간) : 패킷이 목적지에 도달하고나서 해당 패킷에 대한 응답이 출발지로 다시 돌아오기까지의 시간 지연시간의 경우 물리적인 환경의 문제이므로 줄이기가 어렵다. 게임에서는 눈속임을 통한 지연시간을 해소 연결 안전성 (연결 불안정)]]></description>
-</item>
-<item>
     <title>[Flutter Beginner] StatefulWidget</title>
     <link>https://riley817.github.io/flutter-beginner/</link>
     <pubDate>Fri, 03 Feb 2023 23:11:36 &#43;0900</pubDate>
@@ -99,6 +47,62 @@ RTT(Round Trip Time, 패킷왕복시간) : 패킷이 목적지에 도달하고�
                 <img src="/posts/images/banner/flutter-logo.png" referrerpolicy="no-referrer">
             </div>Widget Widget은 모두 불변의 법칙을 가지고 있다. 그러나 위젯의 값을 변경해야 할 경우가 생긴다. 변경이 필요할 경우 기존 위젯을 삭제해버리고 완전 새로운 위젯으로 대체한다.
 StatelessWidget Life Cycle Constructor로 생성이되고 생성이 되자마자 build 함수가 실행된다. 변경이 필요하면 새로운 위젯을 만든다. StatelessWidget은 라이프 사이클 동안 단 한번만 build 함수를 실행한다. StatefulWidget 생명주기 Construct createState : State를 생성 initState : State를 초기화. State가 생성될 때 단 한번만 호출된다. didChangeDependencies dirty 상태 : 변경이 필요한 상태를 의미한다.]]></description>
+</item>
+<item>
+    <title>[iOS/Android] APP HTTP 접근 허용하기</title>
+    <link>https://riley817.github.io/ios-allow/</link>
+    <pubDate>Tue, 31 Jan 2023 23:39:01 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/ios-allow/</guid>
+    <description><![CDATA[APP HTTP 접근 허용 설정하기 iOS ios/Runner/Info.plist
+1 2 3 4 5 6 7 8 9 &lt;key&gt;NSAppTransportSecurity&lt;/key&gt; &lt;dict&gt; &lt;key&gt;NSAllowsLocalNetworking&lt;/key&gt; &lt;true/&gt; &lt;key&gt;NSAllowsArbitraryLoadsInWebContent&lt;/key&gt; &lt;true/&gt; &lt;/dict&gt; &lt;/dict&gt; &lt;/plist&gt; Android android/app/src/main/AndroidManifest.xml
+1 2 3 4 5 6 7 8 &lt;manifest xmlns:android=&#34;http://schemas.android.com/apk/res/android&#34; package=&#34;com.example.web_view&#34;&gt; &lt;uses-permission android:name=&#34;android.permission.INTERNET&#34;/&gt; &lt;!-- 추가 --&gt; &lt;application android:label=&#34;web_view&#34; android:name=&#34;${applicationName}&#34; android:icon=&#34;@mipmap/ic_launcher&#34; android:usesCleartextTraffic=&#34;true&#34;&gt; &lt;!-- 추가 --&gt; ]]></description>
+</item>
+<item>
+    <title>[Dart] Dart 문법 정리</title>
+    <link>https://riley817.github.io/dart/</link>
+    <pubDate>Tue, 24 Jan 2023 16:40:55 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/dart/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/posts/images/banner/dart.png" referrerpolicy="no-referrer">
+            </div>😊 Dart 기본 문법의 헷갈리는 부분과 몰랐던 부분 정리! 🐸🐸 Final 과 const final과 const 키워드를 사용하여 선언하면 할당한 값을 변경할 수 없다. 둘다 상수를 선언할 때 사용하지만 차이점은 const는 complie-time에 상수를 설정하며 final은 runtime시에 결정되는 값도 상수로 설정할 수 있다.
+1 2 3 4 // error const DateTime now1 = DateTime.now(); // error! const는 runtime시에 값이 결정되는 값은 설정할 수 없다. final DateTime now2 = DateTime.now(); // final은 runtime시에 결정되는 값도 설정 가능하다.]]></description>
+</item>
+<item>
+    <title>[buf] buf로 protobuf 사용하기</title>
+    <link>https://riley817.github.io/buf/</link>
+    <pubDate>Mon, 23 Jan 2023 19:11:56 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/buf/</guid>
+    <description><![CDATA[buf buf는 IDL(Interface description language) 중 하나인 protobuf를 사용하기 쉽게 여러가지 기능을 제공하고 있다. protobuf를 사용하면서 발생하는 문제는 다음과 같다.
+API 설계가 일관성이 없다. 의존성 관리가 중앙에서 이루어지지 않고 있다. protobuf의 버전관리가 잘 이루어지지 않는다. protoc를 통한 stub 배포 및 관리가 어렵다 mock 서버 생성, fuzz testing, 문서화 할 수 있는 툴들이 많이 존재하지 않는다. buf에서 제공하는 툴 buf cli 발전된 protobuf 컴파일러를 제공한다. 좋은 API 디자인과 구조를 lint 기능을 통해 선택할 수 있다.]]></description>
+</item>
+<item>
+    <title>28. AWS Virtual Private Cloud(VPC)</title>
+    <link>https://riley817.github.io/aws-28-vpc/</link>
+    <pubDate>Mon, 15 Aug 2022 17:26:41 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/aws-28-vpc/</guid>
+    <description><![CDATA[CIDR - IPv4 Classless Inter-Domain Routing : IP 주소 할당 방법 Security Groups : 규칙 및 AWS 네트워킹에 일반적으로 사용 Base IP : 범위에 포함된 IP를 나타냄 (e.g., 10.0.0.0, 192.168.0.0 &hellip;) Subnet Mask IP에서 변경할 수 있는 비트 수를 정의 (e.g., /0, /24, /32) /8 : 255.0.0.0 /16 : 255.255.0.0 /24 : 255.255.255.0 /32 : 255.255.255.255 Subnet Mask Subnet Mask 사용하면 기본적으로 기본IP에서 다음 값을 추가로 가져올 수 있다.
+IPLocationTools IP/Subnet Mask 192.]]></description>
+</item>
+<item>
+    <title>27. AWS Security &amp; Encryption</title>
+    <link>https://riley817.github.io/aws-27-security-encryption/</link>
+    <pubDate>Sun, 14 Aug 2022 23:31:49 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/aws-27-security-encryption/</guid>
+    <description><![CDATA[전송중 암호화 (SSL) 데이터를 전송하기 전에 암호화. 수신 후 복호화 SSL 인증서로 암호화 (HTTPS) 전송 중 암호화는 MITM(man in the middle attack)이 발생하지 않도록 보장 Server side encryption at rest 데이터가 서버에 수신 된 후 암호화 데이터가 서버에 전송 전 복호화 데이터 키라고 불리우는 키 덕분에 데이터는 암호화 된 형태로 저장 암호화 및 복호화 키는 어딘가에 관리되어야 하며 서버는 이에 대한 액세스 권한이 있어야 한다. Client side encryption 데이터가 클라이언트에 의해 암호화되고 서버는 복호화할 수 없음 데이터는 수신 클라이언트에 의해 복호화 서버는 데이터의 암호를 복호화 할 수 없음 Envelop Encryption 암호화를 활용 AWS KMS (Key Management Service) KMS 키를 사용하여 데이터에 액세스할 수 있는 사람과 대상을 쉽게 제어]]></description>
+</item>
+<item>
+    <title>18. AWS Integration &amp; Messaging</title>
+    <link>https://riley817.github.io/aws-18-integration-messaging/</link>
+    <pubDate>Tue, 02 Aug 2022 09:16:41 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/aws-18-integration-messaging/</guid>
+    <description><![CDATA[Application communication Application communication 두 가지 패턴 Synchronous communications (application to application) Synchronous는 요청량이 급증하면 애플리케이션간 여러 문제를 유발시킬 수 있다. Asynchronous / Event based (application to queue to application) 애플리케이션 의존관계decouple를 낮추는 사례 아래 서비스들을 사용하여 즉각적으로 애플리케이션을 확장가능 하다.
+SQS 사용 : Queue 모델 SNS 사용 : pub/sub 모델 Kinesis : 실시간 스트리밍 모델 Amazon SQS Amazon SQS - Standard Queue AWS에서 가장 오래된 서비스. 애플리케이션을 decoupling하기 위해 서비스를 관리 중복 메세지를 갖을 수 있다.]]></description>
 </item>
 </channel>
 </rss>
