@@ -4,16 +4,7 @@
         <link>https://riley817.github.io/tags/javascript/</link>
         <description>Javascript - Tag - Riley&#39;s DevLog</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
-            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Fri, 03 Jun 2022 18:54:00 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/tags/javascript/" rel="self" type="application/rss+xml" /><item>
-    <title>[TIL &amp; Issue Note] 20220603</title>
-    <link>https://riley817.github.io/archives/til/20220603/</link>
-    <pubDate>Fri, 03 Jun 2022 18:54:00 &#43;0900</pubDate>
-    <author>riley</author>
-    <guid>https://riley817.github.io/archives/til/20220603/</guid>
-    <description><![CDATA[ ECMAscript 모듈 Scope 관련 문제
-Functions not working when type=&quot;module&quot; or import ]]></description>
-</item>
-<item>
+            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Sun, 17 Apr 2022 23:04:00 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/tags/javascript/" rel="self" type="application/rss+xml" /><item>
     <title>Javascript SHA3 라이브러리 조사</title>
     <link>https://riley817.github.io/hash3/</link>
     <pubDate>Sun, 17 Apr 2022 23:04:00 &#43;0900</pubDate>
@@ -23,14 +14,6 @@ Functions not working when type=&quot;module&quot; or import ]]></description>
 테스트 대상 모듈 hash.js js-sha3 CrytoJS 테스트 방법 Go의 테스트 코드 작성 후 Go에서 생성한 해시값과 Javascript에서 위의 라이브러리로 생성했을 때 해시값이 같은지 비교한다.
 테스트 결과 hash.js : SHA3-512 관련 함수가 없는 것 같았다. js-sha3 : 성공 CrytoJS : 실패 CrytoJS 의 경우 Go에서 사용하는 SHA3-512와 차이가 있는 것 같다. cryptojs_document에 참고 사항이 있었다.
 NOTE: I made a mistake when I named this implementation SHA-3.]]></description>
-</item>
-<item>
-    <title>[TIL &amp; Issue Note] 20220316</title>
-    <link>https://riley817.github.io/archives/til/20220316/</link>
-    <pubDate>Wed, 16 Mar 2022 23:32:16 &#43;0900</pubDate>
-    <author>riley</author>
-    <guid>https://riley817.github.io/archives/til/20220316/</guid>
-    <description><![CDATA[Getting Started What is React ? 사용자 인터페이스를 구축하기 위한 자바스크립트 라이브러리 모바일 앱처럼 상호작용과 반응성이 높은 사용자 환경을 제공 모바일 앱 화면 전환이 빠르고 사용자 반응성이 높음 웹 전통적인 웹사이트의 전환은 1) 링크,버튼 등 요청 2) 서버에서는 응답을 받고 새로운 HTML을 그림 서버와 요청과 응답 작업으로 인해 상호작용이 투박함 서버에서 처리한 HTML이 로드되는 것을 기다려야 함 자바스크립트 사용자가 보는 것을 조작할 수 있는 프로그래밍 언어 DOM에 접근하고 조작할 수 있다.]]></description>
 </item>
 <item>
     <title>Webpack5 설정하기 (ESM)</title>

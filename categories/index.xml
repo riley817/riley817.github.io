@@ -13,14 +13,6 @@
     <description><![CDATA[]]></description>
 </item>
 <item>
-    <title>TIL &amp; Issue Note</title>
-    <link>https://riley817.github.io/categories/til-issue-note/</link>
-    <pubDate>Mon, 27 Feb 2023 17:05:22 &#43;0900</pubDate>
-    <author>Riley</author>
-    <guid>https://riley817.github.io/categories/til-issue-note/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
     <title>Flutter</title>
     <link>https://riley817.github.io/categories/flutter/</link>
     <pubDate>Thu, 16 Feb 2023 16:11:36 &#43;0900</pubDate>
@@ -82,6 +74,14 @@
     <pubDate>Fri, 23 Apr 2021 16:44:26 &#43;0900</pubDate>
     <author>Riley</author>
     <guid>https://riley817.github.io/categories/database/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>쉽고 빠르게 끝내는 GO언어 프로그래밍 핵심 기초 입문 과정</title>
+    <link>https://riley817.github.io/categories/%EC%89%BD%EA%B3%A0-%EB%B9%A0%EB%A5%B4%EA%B2%8C-%EB%81%9D%EB%82%B4%EB%8A%94-go%EC%96%B8%EC%96%B4-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D-%ED%95%B5%EC%8B%AC-%EA%B8%B0%EC%B4%88-%EC%9E%85%EB%AC%B8-%EA%B3%BC%EC%A0%95/</link>
+    <pubDate>Fri, 23 Apr 2021 16:44:26 &#43;0900</pubDate>
+    <author>Riley</author>
+    <guid>https://riley817.github.io/categories/%EC%89%BD%EA%B3%A0-%EB%B9%A0%EB%A5%B4%EA%B2%8C-%EB%81%9D%EB%82%B4%EB%8A%94-go%EC%96%B8%EC%96%B4-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D-%ED%95%B5%EC%8B%AC-%EA%B8%B0%EC%B4%88-%EC%9E%85%EB%AC%B8-%EA%B3%BC%EC%A0%95/</guid>
     <description><![CDATA[]]></description>
 </item>
 </channel>

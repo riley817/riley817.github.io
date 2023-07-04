@@ -37,14 +37,6 @@ StatelessWidget Life Cycle Constructor로 생성이되고 생성이 되자마자
 1 2 3 4 5 6 7 8 &lt;manifest xmlns:android=&#34;http://schemas.android.com/apk/res/android&#34; package=&#34;com.example.web_view&#34;&gt; &lt;uses-permission android:name=&#34;android.permission.INTERNET&#34;/&gt; &lt;!-- 추가 --&gt; &lt;application android:label=&#34;web_view&#34; android:name=&#34;${applicationName}&#34; android:icon=&#34;@mipmap/ic_launcher&#34; android:usesCleartextTraffic=&#34;true&#34;&gt; &lt;!-- 추가 --&gt; ]]></description>
 </item>
 <item>
-    <title>[TIL &amp; Issue Note] 20230126</title>
-    <link>https://riley817.github.io/archives/til/20230126/</link>
-    <pubDate>Thu, 26 Jan 2023 23:33:57 &#43;0900</pubDate>
-    <author>riley</author>
-    <guid>https://riley817.github.io/archives/til/20230126/</guid>
-    <description><![CDATA[Issue flutter 환경을 설정하던 중 안드로이드 라이센스 관련 명령어 실행시 에러 UnsupportedClassVersionError while &lsquo;flutter doctor &ndash;android-licenses&rsquo; MacOS 사용 환경 MacOS Ventura (M1 Mac) Android Studio Electric Eel 에러 내용 1 2 3 4 Exception in thread &#34;main&#34; java.lang.UnsupportedClassVersionError: com/android/prefs/AndroidLocationsProvider has been compiled by a more recent version of the Java Runtime (class file version 55.0), this version of the Java Runtime only recognizes class file versions up to 52.0 해결 내용 Agree to Andorid License 1 2 3 1.]]></description>
-</item>
-<item>
     <title>[Dart] Dart 문법 정리</title>
     <link>https://riley817.github.io/dart/</link>
     <pubDate>Tue, 24 Jan 2023 16:40:55 &#43;0900</pubDate>
