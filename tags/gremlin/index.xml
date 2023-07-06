@@ -1,0 +1,18 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>gremlin - Tag - Riley&#39;s DevLog</title>
+        <link>https://riley817.github.io/tags/gremlin/</link>
+        <description>gremlin - Tag - Riley&#39;s DevLog</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
+            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Thu, 19 Jan 2023 11:48:26 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/tags/gremlin/" rel="self" type="application/rss+xml" /><item>
+    <title>AWS Neptune &amp; Gremlin Console 설정 - Follow, Tag 기능을 고도화 해보자! (2)</title>
+    <link>https://riley817.github.io/graph-database-aws-neptune-gremlin-console/</link>
+    <pubDate>Thu, 19 Jan 2023 11:48:26 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/graph-database-aws-neptune-gremlin-console/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/posts/images/banner/gremlin-health.png" referrerpolicy="no-referrer">
+            </div>Neptune DB 클러스터 생성 Neptune 데이터베이스는 보안을 위해 VPC 에 생성해야 한다. 노트북을 구성하려면 별도의 VPC 설정을 접근하기 위한 EC2 생성이 필요하다. 회사에서 AWS 빌려서&hellip;]]></description>
+</item>
+</channel>
+</rss>

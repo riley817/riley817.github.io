@@ -1,0 +1,17 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>aws neptune - Tag - Riley&#39;s DevLog</title>
+        <link>https://riley817.github.io/tags/aws-neptune/</link>
+        <description>aws neptune - Tag - Riley&#39;s DevLog</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
+            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Wed, 18 Jan 2023 11:21:26 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/tags/aws-neptune/" rel="self" type="application/rss+xml" /><item>
+    <title>Graph Database 리서치 - Follow, Tag 기능을 고도화 해보자! (1)</title>
+    <link>https://riley817.github.io/graph-database/</link>
+    <pubDate>Wed, 18 Jan 2023 11:21:26 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/graph-database/</guid>
+    <description><![CDATA[개요 현재 회사에서는 SNS 서비스를 개발하고 있다. 인스타그램 처럼 특정 사용자를 팔로우 할 수 있는 기능이 있는데 관계형 데이터베이스인 postgresql 데이터베이스로 유저 간 팔로우 관계를 관리하고 있다.
+유저에게 알 수도 있는 친구를 추천하기 위한 기능이 구현하게 되었는데 팔로우 관계를 나타내는 테이블이 하나로 구성되어 있다 보니 유저의 팔로워, 팔로잉 조회를 위해 with 절, union 등과 같은 문법을 사용했고 나의 팔로우의 팔로우 중 나와 팔로우 관계가 없는 친구만 불러오기 위해 복잡하게 서브 쿼리로 작성하게 되었다.]]></description>
+</item>
+</channel>
+</rss>
