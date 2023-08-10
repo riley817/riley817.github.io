@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-	<meta name="generator" content="Hugo 0.115.1">
+	<meta name="generator" content="Hugo 0.117.0">
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
@@ -100,6 +100,13 @@
         alt="/images/avatar.png"
         title="/images/avatar.png" /></a></div><h1 class="home-title">라일리의 개발 공부기록</h1><div class="home-subtitle"><div id="id-1" class="typeit"></div></div><div class="links"><a href="https://github.com/https://github.com/riley817" title="GitHub" target="_blank" rel="noopener noreffer me"><i class="fab fa-github-alt fa-fw" aria-hidden="true"></i></a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/chapter1/">가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [1장] 사용자 수에 따른 규모 확장성</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="https://github.com/riley817" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-08-10">2023-08-10</time></span>&nbsp;<span class="post-category">included in <a href="/categories/etc/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Etc</a></span></div><div class="content">Note 팀 내에서 진행하는 Study 정리 입니다. 함께 논의하고 싶은 주제 우리 서비스의 검색기능은 아직 없지만 인스타그램처럼 태그, 유저, 장소 등 통합 검색 기능이 추가되면 어떤 구조를 가져가면 좋을까요?
+요약 단일서버 모든 컴포넌트가 단 한대의 서버에서 실행되는 간단한 시스템
+도메인 이름을 이용하여 웹사이트에 접속. 도메인 이름은 도메인 이름 서비스(Domain Name Service, DNS)에 질의하여 IP 주소 반환 DNS 질의 결과로 IP 반환 IP 주소로 HTTPHyperText Transfer Protocol 요청이 전달 요청을 받은 웹 서버는 HTML 페이지 JSON 형태의 응답을 반환 데이터베이스 관계형 데이터베이스(Relational Data-base Management System, RDBMS)가 개발자들에게는 익숙하고 오랜기간 동안 잘 사용되어진 시스템이지만 구축하려는 시스템에 따라 꼭 최선의 시스템은 아닐 수 있다.</div><div class="post-footer">
+        <a href="/chapter1/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/system-design/">System Design</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/network-programming-with-go-copy/">[Go 언어를 활용한 네트워크 프로그래밍] 3. 신뢰성 있는 TCP 데이터 스트림</a>
     </h1><div class="post-meta"><span class="post-author"><a href="https://github.com/riley817" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-04-10">2023-04-10</time></span>&nbsp;<span class="post-category">included in <a href="/categories/go-%EC%96%B8%EC%96%B4%EB%A5%BC-%ED%99%9C%EC%9A%A9%ED%95%9C-%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Go 언어를 활용한 네트워크 프로그래밍</a></span></div><div class="content">Go 언어를 활용한 네트워크 프로그래밍 책 정리
 TCP를 신뢰성 있게 만드는 것 패킷손실packet loss : 무선 네트워크 간섭이나 네트워크 정체 등의 이유로 데이터가 전송에 실패하여 목적지까지 도달하지 못한 경우 발생 네트워크 정체network congestion : 네트워크의 연결상 처리할 수 있는 양 이상의 데이터를 전송하려 할 때 발생 TCP는 흐름제어 flow control 절차를 통해 데이터의 전송 속도를 조정하여 네트워크의 상태가 변경되더라도 손실된 패킷을 최소로 유지하면서 데이터를 빠르게 전송할 수 있다. TCP는 수신한 패킷을 추적하고, 승인되지 않은 패킷은 필요에 따라 재전송 한다.</div><div class="post-footer">
@@ -150,21 +157,6 @@ StatelessWidget Life Cycle Constructor로 생성이되고 생성이 되자마자
 1 2 3 4 5 6 7 8 &lt;manifest xmlns:android=&#34;http://schemas.android.com/apk/res/android&#34; package=&#34;com.example.web_view&#34;&gt; &lt;uses-permission android:name=&#34;android.permission.INTERNET&#34;/&gt; &lt;!-- 추가 --&gt; &lt;application android:label=&#34;web_view&#34; android:name=&#34;${applicationName}&#34; android:icon=&#34;@mipmap/ic_launcher&#34; android:usesCleartextTraffic=&#34;true&#34;&gt; &lt;!-- 추가 --&gt; </div><div class="post-footer">
         <a href="/ios-allow/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/flutter/">Flutter</a>,&nbsp;<a href="/tags/ios/">iOS</a>,&nbsp;<a href="/tags/android/">Android</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><div class="featured-image-preview">
-            <a href="/dart/"><img
-        class="lazyload"
-        src="/svg/loading.min.svg"
-        data-src="/posts/images/banner/dart.png"
-        data-srcset="/posts/images/banner/dart.png, /posts/images/banner/dart.png 1.5x, /posts/images/banner/dart.png 2x"
-        data-sizes="auto"
-        alt="/posts/images/banner/dart.png"
-        title="/posts/images/banner/dart.png" /></a>
-        </div><h1 class="single-title" itemprop="name headline">
-        <a href="/dart/">[Dart] Dart 문법 정리</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="https://github.com/riley817" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-01-24">2023-01-24</time></span>&nbsp;<span class="post-category">included in <a href="/categories/flutter/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Flutter</a></span></div><div class="content">😊 Dart 기본 문법의 헷갈리는 부분과 몰랐던 부분 정리! 🐸🐸 Final 과 const final과 const 키워드를 사용하여 선언하면 할당한 값을 변경할 수 없다. 둘다 상수를 선언할 때 사용하지만 차이점은 const는 complie-time에 상수를 설정하며 final은 runtime시에 결정되는 값도 상수로 설정할 수 있다.
-1 2 3 4 // error const DateTime now1 = DateTime.now(); // error! const는 runtime시에 값이 결정되는 값은 설정할 수 없다. final DateTime now2 = DateTime.now(); // final은 runtime시에 결정되는 값도 설정 가능하다.</div><div class="post-footer">
-        <a href="/dart/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/dart/">Dart</a>,&nbsp;<a href="/tags/flutter/">Flutter</a></div></div>
 </article><ul class="pagination"><li class="page-item active">
                     <span class="page-link">
                         <a href="/">1</a>
@@ -181,11 +173,11 @@ StatelessWidget Life Cycle Constructor로 생성이되고 생성이 되자마자
                     <span class="page-link" aria-hidden="true">&hellip;</span>
                 </li><li class="page-item ">
                     <span class="page-link">
-                        <a href="/page/17/">17</a>
+                        <a href="/page/18/">18</a>
                     </span>
                 </li></ul></div></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.115.1">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.117.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
                 </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/riley817" target="_blank">Riley</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

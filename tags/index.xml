@@ -4,7 +4,15 @@
         <link>https://riley817.github.io/tags/</link>
         <description>Tags - Tag - Riley&#39;s DevLog</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
-            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Mon, 10 Apr 2023 23:24:37 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/tags/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Thu, 10 Aug 2023 09:43:42 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/tags/" rel="self" type="application/rss+xml" /><item>
+    <title>System Design</title>
+    <link>https://riley817.github.io/tags/system-design/</link>
+    <pubDate>Thu, 10 Aug 2023 09:43:42 &#43;0900</pubDate>
+    <author>Riley</author>
+    <guid>https://riley817.github.io/tags/system-design/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
     <title>GO</title>
     <link>https://riley817.github.io/tags/go/</link>
     <pubDate>Mon, 10 Apr 2023 23:24:37 &#43;0900</pubDate>
@@ -74,14 +82,6 @@
     <pubDate>Wed, 18 Jan 2023 11:21:26 &#43;0900</pubDate>
     <author>Riley</author>
     <guid>https://riley817.github.io/tags/aws-neptune/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>graph database</title>
-    <link>https://riley817.github.io/tags/graph-database/</link>
-    <pubDate>Wed, 18 Jan 2023 11:21:26 &#43;0900</pubDate>
-    <author>Riley</author>
-    <guid>https://riley817.github.io/tags/graph-database/</guid>
     <description><![CDATA[]]></description>
 </item>
 </channel>
