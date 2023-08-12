@@ -10,8 +10,7 @@
     <pubDate>Thu, 10 Aug 2023 09:43:42 &#43;0900</pubDate>
     <author>riley</author>
     <guid>https://riley817.github.io/chapter1/</guid>
-    <description><![CDATA[Note 팀 내에서 진행하는 Study 정리 입니다. 함께 논의하고 싶은 주제 우리 서비스의 검색기능은 아직 없지만 인스타그램처럼 태그, 유저, 장소 등 통합 검색 기능이 추가되면 어떤 구조를 가져가면 좋을까요?
-요약 단일서버 모든 컴포넌트가 단 한대의 서버에서 실행되는 간단한 시스템
+    <description><![CDATA[Note 팀 내에서 진행하는 Study 정리 입니다. 함께 논의하고 싶은 주제 우리 서비스의 검색기능은 아직 없지만 인스타그램처럼 태그, 유저, 장소 등 통합 검색 기능이 추가되면 어떤 구조를 가져가면 좋을까요? 요약 단일서버 모든 컴포넌트가 단 한대의 서버에서 실행되는 간단한 시스템
 도메인 이름을 이용하여 웹사이트에 접속. 도메인 이름은 도메인 이름 서비스(Domain Name Service, DNS)에 질의하여 IP 주소 반환 DNS 질의 결과로 IP 반환 IP 주소로 HTTPHyperText Transfer Protocol 요청이 전달 요청을 받은 웹 서버는 HTML 페이지 JSON 형태의 응답을 반환 데이터베이스 관계형 데이터베이스(Relational Data-base Management System, RDBMS)가 개발자들에게는 익숙하고 오랜기간 동안 잘 사용되어진 시스템이지만 구축하려는 시스템에 따라 꼭 최선의 시스템은 아닐 수 있다.]]></description>
 </item>
 <item>
