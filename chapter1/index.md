@@ -63,7 +63,7 @@
 
 
 ## 로드밸런서와 데이터베이스 다중화를 고려한 설계안
- {{<image src="/posts/images/system-design-interview/load-balancer-database-replication.png" width="50%">}}
+{{<image src="/posts/images/system-design-interview/load-balancer-database-replication.png" width="50%">}}
 
 - 사용자는 DNS로부터 로드밸런서의 공개 IP 주소를 받는다.
 - 사용자는 해당 IP 주소를 사용해 로드밸런서에 접속

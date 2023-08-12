@@ -4,7 +4,25 @@
         <link>https://riley817.github.io/tags/system-design/</link>
         <description>System Design - Tag - Riley&#39;s DevLog</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
-            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Thu, 10 Aug 2023 09:43:42 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/tags/system-design/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Sat, 12 Aug 2023 14:32:30 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/tags/system-design/" rel="self" type="application/rss+xml" /><item>
+    <title>가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [3장] 시스템 설계 면접 공략법</title>
+    <link>https://riley817.github.io/chapter3/</link>
+    <pubDate>Sat, 12 Aug 2023 14:32:30 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/chapter3/</guid>
+    <description><![CDATA[Note 팀 내에서 진행하는 Study 정리 입니다. 함께 논의하고 싶은 주제 면접관이 되었을 때 주로 어떤 질문들을 하시나요? 혹은 받아본 질문 중 기억에 남는 질문 면접자가 되었을 때 어떤 질문을 해야 어필을 할 수 있나요? 요약 해당 장은 면접 뿐만아니라 평소 시스템 설계를 할 때 중요한 사항들인 것 같다.
+문제 이해 및 설계 범위 확정 요구사항을 완전히 이해하지 않고 답을 내놓는 행위는 좋지 않다. -&gt; 깊이 생각하고 요구사항과 가정을 분명히 하자 요구사항에 대한 질문 예시 구체적으로 어떤 기능들을 만들어야 하나?]]></description>
+</item>
+<item>
+    <title>가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [2장] 개략적인 규모 추정</title>
+    <link>https://riley817.github.io/chapter2/</link>
+    <pubDate>Sat, 12 Aug 2023 13:41:30 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/chapter2/</guid>
+    <description><![CDATA[Note 팀 내에서 진행하는 Study 정리 입니다. 함께 논의하고 싶은 주제 SNS 서비스인 우리 서비스는 DAU(Daily active users)를 산출하고 싶습니다. 우리 회사의 서비스의 활성유저는 어떻게 정의 할 수있을까요? 요약 2의 제곱수 볼륨의 단위를 2의 제곱수로 표현하면 어떻게 되는지 알아야 한다. 흔히 쓰이는 데이터 볼륨 단위
+2의제곱 근사치 이름 축약형 10 1천만(thousand) 1킬로바이트(Kilobyte) 1KB 20 1백만(milion) 1메가바이트(Megabyte) 1MB 30 10억(bilion) 1기가바이트(Gigabyte) 1GB 40 1조(trilion) 1테라바이트(Terabyte) 1TB 50 1000조(quadrilion) 1페타바이트(Petabyte) 1PB 모든 프로그래머가 알아야 하는 응답 지연 값 이들 가운데 몇몇은 더 빠른 컴퓨터가 등장하면서 유효하지 않게 되었지만 아직도 이 수치들은 컴퓨터 연산들의 처리 속도가 어느 정도인지 짐작할 수 있도록 해준다.]]></description>
+</item>
+<item>
     <title>가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [1장] 사용자 수에 따른 규모 확장성</title>
     <link>https://riley817.github.io/chapter1/</link>
     <pubDate>Thu, 10 Aug 2023 09:43:42 &#43;0900</pubDate>

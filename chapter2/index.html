@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [2장] 개략적인 규모 추정 - Riley&#39;s DevLog</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:title" content="가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [2장] 개략적인 규모 추정" />
+<meta property="og:description" content="Note 팀 내에서 진행하는 Study 정리 입니다. 함께 논의하고 싶은 주제 SNS 서비스인 우리 서비스는 DAU(Daily active users)를 산출하고 싶습니다. 우리 회사의 서비스의 활성유저는 어떻게 정의 할 수있을까요? 요약 2의 제곱수 볼륨의 단위를 2의 제곱수로 표현하면 어떻게 되는지 알아야 한다. 흔히 쓰이는 데이터 볼륨 단위
+2의제곱 근사치 이름 축약형 10 1천만(thousand) 1킬로바이트(Kilobyte) 1KB 20 1백만(milion) 1메가바이트(Megabyte) 1MB 30 10억(bilion) 1기가바이트(Gigabyte) 1GB 40 1조(trilion) 1테라바이트(Terabyte) 1TB 50 1000조(quadrilion) 1페타바이트(Petabyte) 1PB 모든 프로그래머가 알아야 하는 응답 지연 값 이들 가운데 몇몇은 더 빠른 컴퓨터가 등장하면서 유효하지 않게 되었지만 아직도 이 수치들은 컴퓨터 연산들의 처리 속도가 어느 정도인지 짐작할 수 있도록 해준다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://riley817.github.io/chapter2/" /><meta property="og:image" content="https://riley817.github.io/icon.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-08-12T13:41:30+09:00" />
+<meta property="article:modified_time" content="2023-08-12T14:37:47+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://riley817.github.io/icon.png"/>
+
+<meta name="twitter:title" content="가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [2장] 개략적인 규모 추정"/>
+<meta name="twitter:description" content="Note 팀 내에서 진행하는 Study 정리 입니다. 함께 논의하고 싶은 주제 SNS 서비스인 우리 서비스는 DAU(Daily active users)를 산출하고 싶습니다. 우리 회사의 서비스의 활성유저는 어떻게 정의 할 수있을까요? 요약 2의 제곱수 볼륨의 단위를 2의 제곱수로 표현하면 어떻게 되는지 알아야 한다. 흔히 쓰이는 데이터 볼륨 단위
+2의제곱 근사치 이름 축약형 10 1천만(thousand) 1킬로바이트(Kilobyte) 1KB 20 1백만(milion) 1메가바이트(Megabyte) 1MB 30 10억(bilion) 1기가바이트(Gigabyte) 1GB 40 1조(trilion) 1테라바이트(Terabyte) 1TB 50 1000조(quadrilion) 1페타바이트(Petabyte) 1PB 모든 프로그래머가 알아야 하는 응답 지연 값 이들 가운데 몇몇은 더 빠른 컴퓨터가 등장하면서 유효하지 않게 되었지만 아직도 이 수치들은 컴퓨터 연산들의 처리 속도가 어느 정도인지 짐작할 수 있도록 해준다."/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://riley817.github.io/chapter2/" /><link rel="prev" href="https://riley817.github.io/chapter1/" /><link rel="next" href="https://riley817.github.io/chapter3/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [2장] 개략적인 규모 추정",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/riley817.github.io\/chapter2\/"
+        },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "System Design","wordcount":  365 ,
+        "url": "https:\/\/riley817.github.io\/chapter2\/","datePublished": "2023-08-12T13:41:30+09:00","dateModified": "2023-08-12T14:37:47+09:00","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "https:\/\/riley817.github.io\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "riley"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('light' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'light' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Riley&#39;s DevLog"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i></span>Riley&#39;s DevLog</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Riley&#39;s DevLog"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i></span>Riley&#39;s DevLog</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content always-active" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [2장] 개략적인 규모 추정</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/riley817" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-category">included in <a href="/categories/etc/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Etc</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-08-12">2023-08-12</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;365 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;2 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#2의-제곱수">2의 제곱수</a></li>
+    <li><a href="#모든-프로그래머가-알아야-하는-응답-지연-값">모든 프로그래머가 알아야 하는 응답 지연 값</a>
+      <ul>
+        <li><a href="#주의사항">주의사항</a></li>
+      </ul>
+    </li>
+    <li><a href="#가용성에-관계된-수치들">가용성에 관계된 수치들</a>
+      <ul>
+        <li><a href="#트위터-qps와-저장소-요구량-추청">트위터 QPS와 저장소 요구량 추청</a>
+          <ul>
+            <li><a href="#가정">가정</a></li>
+            <li><a href="#추정">추정</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><div class="details admonition tip open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw" aria-hidden="true"></i>Note<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">팀 내에서 진행하는 Study 정리 입니다.</div>
+        </div>
+    </div>
+<h1 id="함께-논의하고-싶은-주제">함께 논의하고 싶은 주제</h1>
+<hr>
+<ul>
+<li>SNS 서비스인 우리 서비스는 DAU(Daily active users)를 산출하고 싶습니다. 우리 회사의 서비스의 활성유저는 어떻게 정의 할 수있을까요?</li>
+</ul>
+<h1 id="요약">요약</h1>
+<hr>
+<h2 id="2의-제곱수">2의 제곱수</h2>
+<p>볼륨의 단위를 2의 제곱수로 표현하면 어떻게 되는지 알아야 한다. 흔히 쓰이는 데이터 볼륨 단위</p>
+<table>
+<thead>
+<tr>
+<th>2의제곱</th>
+<th>근사치</th>
+<th>이름</th>
+<th>축약형</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10</td>
+<td>1천만(thousand)</td>
+<td>1킬로바이트(Kilobyte)</td>
+<td>1KB</td>
+</tr>
+<tr>
+<td>20</td>
+<td>1백만(milion)</td>
+<td>1메가바이트(Megabyte)</td>
+<td>1MB</td>
+</tr>
+<tr>
+<td>30</td>
+<td>10억(bilion)</td>
+<td>1기가바이트(Gigabyte)</td>
+<td>1GB</td>
+</tr>
+<tr>
+<td>40</td>
+<td>1조(trilion)</td>
+<td>1테라바이트(Terabyte)</td>
+<td>1TB</td>
+</tr>
+<tr>
+<td>50</td>
+<td>1000조(quadrilion)</td>
+<td>1페타바이트(Petabyte)</td>
+<td>1PB</td>
+</tr>
+</tbody>
+</table>
+<h2 id="모든-프로그래머가-알아야-하는-응답-지연-값">모든 프로그래머가 알아야 하는 응답 지연 값</h2>
+<p>이들 가운데 몇몇은 더 빠른 컴퓨터가 등장하면서 유효하지 않게 되었지만 아직도 이 수치들은 컴퓨터 연산들의 처리 속도가 어느 정도인지 짐작할 수 있도록 해준다.</p>
+<ul>
+<li>
+<p><a href="http://highscalability.com/blog/2011/1/26/google-pro-tip-use-back-of-the-envelope-calculations-to-choo.html" target="_blank" rel="noopener noreffer">Google Pro Tip: Use Back-Of-The-Envelope-Calculations To Choose The Best Design</a></p>
+</li>
+<li>
+<p>L1 cache reference 0.5 ns</p>
+</li>
+<li>
+<p>Branch mispredict 5 ns</p>
+</li>
+<li>
+<p>L2 cache reference 7 ns</p>
+</li>
+<li>
+<p>Mutex lock/unlock 100 ns</p>
+</li>
+<li>
+<p>Main memory reference 100 ns</p>
+</li>
+<li>
+<p>Compress 1K bytes with Zippy 10,000 ns</p>
+</li>
+<li>
+<p>Send 2K bytes over 1 Gbps network 20,000 ns</p>
+</li>
+<li>
+<p>Read 1 MB sequentially from memory 250,000 ns</p>
+</li>
+<li>
+<p>Round trip within same datacenter 500,000 ns</p>
+</li>
+<li>
+<p>Disk seek 10,000,000 ns</p>
+</li>
+<li>
+<p>Read 1 MB sequentially from network 10,000,000 ns</p>
+</li>
+<li>
+<p>Read 1 MB sequentially from disk 30,000,000 ns</p>
+</li>
+<li>
+<p>Send packet CA-&gt;Netherlands-&gt;CA 150,000,000 ns</p>
+</li>
+</ul>
+<h3 id="주의사항">주의사항</h3>
+<ul>
+<li>메모리는 빠르다 디스크는 아직도 느리다.</li>
+<li>디스크 탐색<code>seek</code>은 피하라</li>
+<li>단순한 압축 알고리즘은 빠르다</li>
+<li>데이터를 인터넷으로 전송하기 전 압축하라</li>
+<li>데이터 센터는 여러 지역에 분산되어 있고 센터들 간 데이터를 주고 받는데에 시간이 걸린다.</li>
+<li>쓰기 연산은 읽기보다 40배 비싸다</li>
+</ul>
+<h2 id="가용성에-관계된-수치들">가용성에 관계된 수치들</h2>
+<ul>
+<li>고가용성<code>high availability</code>은 시스템이 오랜 시간 동안 지속적으로 중단없이 운영될 수 있는 능력을 지청</li>
+<li>퍼센트로 표현한다. (100%는 한번도 중단된 적이 없음을 의미한다.)</li>
+<li>아마존, 구글, 마이크로소프트와 같은 사업자는 99% 이상의 SLA를 제공</li>
+</ul>
+<h3 id="트위터-qps와-저장소-요구량-추청">트위터 QPS와 저장소 요구량 추청</h3>
+<h4 id="가정">가정</h4>
+<ul>
+<li>월간 능동 사용자(Montly active user)는 3억(300million) 명이다.</li>
+<li>50%의 사용자가 트위터를 매일 사용한다.</li>
+<li>평균적으로 각 사용자는 매일 2건의 트윗을 올린다.</li>
+<li>미디어를 포함하는 트윗은 10% 정도이다.</li>
+<li>데이터는 5년간 보관한다.</li>
+</ul>
+<h4 id="추정">추정</h4>
+<p>QPS(Query per Second) 추정치</p>
+<ul>
+<li>DAU(3million) * 50% = 150 million</li>
+<li>QPS = 1.5 * 2 트윗/24시간/3600초 = 약 3500</li>
+<li>최대 QPS(Peek QPS)=2 * QPS = 약 700</li>
+</ul>
+<p>미디어 저장을 위한 저장소 요구량</p>
+<ul>
+<li>
+<p>평균 트윗 크니</p>
+<ul>
+<li>tweet_id = 64Byte</li>
+<li>텍스트 = 140 byte</li>
+<li>미디어 = 1 MB</li>
+</ul>
+</li>
+<li>
+<p>미디어 저장소 요구량 : 1.5억 * 2 * 10% * 1MB = 30TB/일</p>
+</li>
+<li>
+<p>5년간 미디어로르 보관하기 위한 저장소 요구량 : 30TB * 365 * 5 = 55 TB</p>
+</li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-08-12&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/3c9d1a6dce541c373e91e81c71692520a8d8b3af" target="_blank" title="commit by riley817(riley0422@icloud.com) 3c9d1a6dce541c373e91e81c71692520a8d8b3af: 20230812143746">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>3c9d1a6</a></span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/system-design/">System Design</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/chapter1/" class="prev" rel="prev" title="가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [1장] 사용자 수에 따른 규모 확장성"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [1장] 사용자 수에 따른 규모 확장성</a>
+            <a href="/chapter3/" class="next" rel="next" title="가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [3장] 시스템 설계 면접 공략법">가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [3장] 시스템 설계 면접 공략법<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><script src="https://utteranc.es/client.js"
+            repo="riley817/blog-comment"
+            issue-term="pathname"
+            label="✨💬✨"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+        </script>
+    </div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.117.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/riley817" target="_blank">Riley</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.1/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"search":{"algoliaAppID":"","algoliaIndex":"","algoliaSearchKey":"","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

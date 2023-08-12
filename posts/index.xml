@@ -4,7 +4,25 @@
         <link>https://riley817.github.io/posts/</link>
         <description>All Posts | Riley&#39;s DevLog</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
-            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Thu, 10 Aug 2023 09:43:42 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Sat, 12 Aug 2023 14:32:30 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [3장] 시스템 설계 면접 공략법</title>
+    <link>https://riley817.github.io/chapter3/</link>
+    <pubDate>Sat, 12 Aug 2023 14:32:30 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/chapter3/</guid>
+    <description><![CDATA[Note 팀 내에서 진행하는 Study 정리 입니다. 함께 논의하고 싶은 주제 면접관이 되었을 때 주로 어떤 질문들을 하시나요? 혹은 받아본 질문 중 기억에 남는 질문 면접자가 되었을 때 어떤 질문을 해야 어필을 할 수 있나요? 요약 해당 장은 면접 뿐만아니라 평소 시스템 설계를 할 때 중요한 사항들인 것 같다.
+문제 이해 및 설계 범위 확정 요구사항을 완전히 이해하지 않고 답을 내놓는 행위는 좋지 않다. -&gt; 깊이 생각하고 요구사항과 가정을 분명히 하자 요구사항에 대한 질문 예시 구체적으로 어떤 기능들을 만들어야 하나?]]></description>
+</item>
+<item>
+    <title>가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [2장] 개략적인 규모 추정</title>
+    <link>https://riley817.github.io/chapter2/</link>
+    <pubDate>Sat, 12 Aug 2023 13:41:30 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/chapter2/</guid>
+    <description><![CDATA[Note 팀 내에서 진행하는 Study 정리 입니다. 함께 논의하고 싶은 주제 SNS 서비스인 우리 서비스는 DAU(Daily active users)를 산출하고 싶습니다. 우리 회사의 서비스의 활성유저는 어떻게 정의 할 수있을까요? 요약 2의 제곱수 볼륨의 단위를 2의 제곱수로 표현하면 어떻게 되는지 알아야 한다. 흔히 쓰이는 데이터 볼륨 단위
+2의제곱 근사치 이름 축약형 10 1천만(thousand) 1킬로바이트(Kilobyte) 1KB 20 1백만(milion) 1메가바이트(Megabyte) 1MB 30 10억(bilion) 1기가바이트(Gigabyte) 1GB 40 1조(trilion) 1테라바이트(Terabyte) 1TB 50 1000조(quadrilion) 1페타바이트(Petabyte) 1PB 모든 프로그래머가 알아야 하는 응답 지연 값 이들 가운데 몇몇은 더 빠른 컴퓨터가 등장하면서 유효하지 않게 되었지만 아직도 이 수치들은 컴퓨터 연산들의 처리 속도가 어느 정도인지 짐작할 수 있도록 해준다.]]></description>
+</item>
+<item>
     <title>가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [1장] 사용자 수에 따른 규모 확장성</title>
     <link>https://riley817.github.io/chapter1/</link>
     <pubDate>Thu, 10 Aug 2023 09:43:42 &#43;0900</pubDate>
@@ -84,24 +102,6 @@ StatelessWidget Life Cycle Constructor로 생성이되고 생성이 되자마자
     <guid>https://riley817.github.io/buf/</guid>
     <description><![CDATA[buf buf는 IDL(Interface description language) 중 하나인 protobuf를 사용하기 쉽게 여러가지 기능을 제공하고 있다. protobuf를 사용하면서 발생하는 문제는 다음과 같다.
 API 설계가 일관성이 없다. 의존성 관리가 중앙에서 이루어지지 않고 있다. protobuf의 버전관리가 잘 이루어지지 않는다. protoc를 통한 stub 배포 및 관리가 어렵다 mock 서버 생성, fuzz testing, 문서화 할 수 있는 툴들이 많이 존재하지 않는다. buf에서 제공하는 툴 buf cli 발전된 protobuf 컴파일러를 제공한다. 좋은 API 디자인과 구조를 lint 기능을 통해 선택할 수 있다.]]></description>
-</item>
-<item>
-    <title>Graph Database 리서치 - Follow, Tag 기능을 고도화 해보자! (1)</title>
-    <link>https://riley817.github.io/graph-database/</link>
-    <pubDate>Wed, 18 Jan 2023 11:21:26 &#43;0900</pubDate>
-    <author>riley</author>
-    <guid>https://riley817.github.io/graph-database/</guid>
-    <description><![CDATA[개요 현재 회사에서는 SNS 서비스를 개발하고 있다. 인스타그램 처럼 특정 사용자를 팔로우 할 수 있는 기능이 있는데 관계형 데이터베이스인 postgresql 데이터베이스로 유저 간 팔로우 관계를 관리하고 있다.
-유저에게 알 수도 있는 친구를 추천하기 위한 기능이 구현하게 되었는데 팔로우 관계를 나타내는 테이블이 하나로 구성되어 있다 보니 유저의 팔로워, 팔로잉 조회를 위해 with 절, union 등과 같은 문법을 사용했고 나의 팔로우의 팔로우 중 나와 팔로우 관계가 없는 친구만 불러오기 위해 복잡하게 서브 쿼리로 작성하게 되었다.]]></description>
-</item>
-<item>
-    <title>28. AWS Virtual Private Cloud(VPC)</title>
-    <link>https://riley817.github.io/aws-28-vpc/</link>
-    <pubDate>Mon, 15 Aug 2022 17:26:41 &#43;0900</pubDate>
-    <author>riley</author>
-    <guid>https://riley817.github.io/aws-28-vpc/</guid>
-    <description><![CDATA[CIDR - IPv4 Classless Inter-Domain Routing : IP 주소 할당 방법 Security Groups : 규칙 및 AWS 네트워킹에 일반적으로 사용 Base IP : 범위에 포함된 IP를 나타냄 (e.g., 10.0.0.0, 192.168.0.0 &hellip;) Subnet Mask IP에서 변경할 수 있는 비트 수를 정의 (e.g., /0, /24, /32) /8 : 255.0.0.0 /16 : 255.255.0.0 /24 : 255.255.255.0 /32 : 255.255.255.255 Subnet Mask Subnet Mask 사용하면 기본적으로 기본IP에서 다음 값을 추가로 가져올 수 있다.
-IPLocationTools IP/Subnet Mask 192.]]></description>
 </item>
 </channel>
 </rss>
