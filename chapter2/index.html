@@ -10,7 +10,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://riley817.github.io/chapter2/" /><meta property="og:image" content="https://riley817.github.io/icon.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2023-08-12T13:41:30+09:00" />
-<meta property="article:modified_time" content="2023-08-12T14:37:47+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
+<meta property="article:modified_time" content="2023-08-13T19:23:30+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://riley817.github.io/icon.png"/>
 
@@ -31,8 +31,8 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/riley817.github.io\/chapter2\/"
-        },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "System Design","wordcount":  365 ,
-        "url": "https:\/\/riley817.github.io\/chapter2\/","datePublished": "2023-08-12T13:41:30+09:00","dateModified": "2023-08-12T14:37:47+09:00","publisher": {
+        },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "System Design","wordcount":  609 ,
+        "url": "https:\/\/riley817.github.io\/chapter2\/","datePublished": "2023-08-12T13:41:30+09:00","dateModified": "2023-08-13T19:23:30+09:00","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/riley817.github.io\/images\/avatar.png"},"author": {
                 "@type": "Person",
@@ -106,8 +106,8 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [2장] 개략적인 규모 추정</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://github.com/riley817" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-category">included in <a href="/categories/etc/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Etc</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-08-12">2023-08-12</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;365 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;2 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-08-12">2023-08-12</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;609 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;3 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -129,6 +129,13 @@
             <li><a href="#추정">추정</a></li>
           </ul>
         </li>
+      </ul>
+    </li>
+    <li><a href="#더-알아보기">더 알아보기</a>
+      <ul>
+        <li><a href="#우리서비스의-규모-추정">우리서비스의 규모 추정</a></li>
+        <li><a href="#가용성의-우선-순위">가용성의 우선 순위</a></li>
+        <li><a href="#고착도-stickness">고착도 <code>Stickness</code></a></li>
       </ul>
     </li>
   </ul>
@@ -286,12 +293,56 @@
 <p>5년간 미디어로르 보관하기 위한 저장소 요구량 : 30TB * 365 * 5 = 55 TB</p>
 </li>
 </ul>
-</div><div class="post-footer" id="post-footer">
+<h2 id="더-알아보기">더 알아보기</h2>
+<hr>
+<h3 id="우리서비스의-규모-추정">우리서비스의 규모 추정</h3>
+<ul>
+<li>서비스의 목적, 사용자 요구사항, 타켓 시장, 비즈니스 모델에 따라 규모를 추정할 수 있을 것 같다. (우리서비스는 이러한 사항들이 명확히 정해져 있지 않은 것 같다.)</li>
+<li>지속적으로 접속할 사용자가 존재할지? 마케팅을 위한 이벤트가 생겼을 때 어떤식으로 할지</li>
+</ul>
+<h3 id="가용성의-우선-순위">가용성의 우선 순위</h3>
+<p>서비스의 가용성을 관리하고 평사하는 지표의 우선순위는 서비스의 목적, 사용자 요구사항, 비즈니스 우선 순위에 따라 다를 수 있지만 일반적으로는 SLA<code>Service Level Argreement</code>와 RTO<code>Recovery Time Objective</code> 가 있다.</p>
+<ol>
+<li><strong>SLA (Service Level Agreement)</strong></li>
+</ol>
+<ul>
+<li>SLA는 서비스 제공자가 사용자와의 계약에서 정한 가용성 목표를 나타내는 지표이므로 사용자는 서비스가 SLA 수준의 가용성을 제공하는 것을 기대한다.</li>
+<li>SLA를 유지하는 것은 신뢰와 계약을 유지하는데 매우 중요하다.</li>
+</ul>
+<ol start="2">
+<li><strong>RTO (Recovery Time Objective)</strong></li>
+</ol>
+<ul>
+<li>RTO는 복구 시간 목표로, 시스템 장애 발생 시 복구되기를 목표로 하는 최대 시간을 나타낸다.</li>
+</ul>
+<p>그 외에도 가용성과 관련된 다양한 지표가 존재한다.</p>
+<h3 id="고착도-stickness">고착도 <code>Stickness</code></h3>
+<ul>
+<li>서비스의 고착도<code>Stickness</code> 는 사용자가 서비스에 얼마나 자주 머무르고 상호 작용하는지를 나타내는 지표이다.</li>
+<li>서비스의 고착도를 산출하기 위해서는 서비스의 목적과 특성, 사용자의 행동 패턴을 고려하여 위의 요소를 분석해야한다.</li>
+</ul>
+<ol>
+<li>DAU/MAU 비율: DAU를 MAU로 나누어서 DAU 대비 활발한 월간 사용자의 비율을 계산한다.</li>
+<li>유저 리텐션(보존) 분석: 일정 기간(예: 30일) 동안 사용자를 추적하여 MAU로부터 특정 기간 동안 사용한 사용자 비율을 분석한다. 리텐션률이 높을 수록 고착도를 나타내는 지표가 된다.</li>
+<li>DAU/MAU 세그먼트 분석: 사용자 그룹을 나누어서 DAU/MAU 비율을 세분화하여 분석한다. 이렇게 함으로써 특정 사용자 그룹이 서비스에 더 고착되어 있는지 파악할 수 있다.</li>
+<li>사용자 활동 패턴 분석: DAU와 MAU에서 얻은 데이터를 사용하여 사용자의 활동 패턴을 분석한다. 특정 사용자가 매일 특정 기능을 사용하거나 상호 작용하는 패턴을 찾는 것이 고착도에 도움을 줄 수 있다.</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">- [페이스북 지표](https://backlinko.com/instagram-users)
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 2023-08-12&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/3c9d1a6dce541c373e91e81c71692520a8d8b3af" target="_blank" title="commit by riley817(riley0422@icloud.com) 3c9d1a6dce541c373e91e81c71692520a8d8b3af: 20230812143746">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>3c9d1a6</a></span>
+                <span>Updated on 2023-08-13&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/cce27c828f2126779401d7b436232d88fb4de51f" target="_blank" title="commit by riley817(riley0422@icloud.com) cce27c828f2126779401d7b436232d88fb4de51f: 20230813192328">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>cce27c8</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>
