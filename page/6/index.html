@@ -100,6 +100,15 @@
         alt="/images/avatar.png"
         title="/images/avatar.png" /></a></div><h1 class="home-title">라일리의 개발 공부기록</h1><div class="home-subtitle"><div id="id-1" class="typeit"></div></div><div class="links"><a href="https://github.com/https://github.com/riley817" title="GitHub" target="_blank" rel="noopener noreffer me"><i class="fab fa-github-alt fa-fw" aria-hidden="true"></i></a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/chapter18-slice/">[Tucker의 Go 프로그래밍] 18. 슬라이스</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="https://github.com/riley817" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-04-26">2022-04-26</time></span>&nbsp;<span class="post-category">included in <a href="/categories/tucker%EC%9D%98-go-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Tucker의 Go 프로그래밍</a></span></div><div class="content">Tucker의 Go 언어 프로그래밍 책 내용을 정리하였습니다.
+슬라이스는 Go에서 제공하는 동적 배열 타입이다. 동적 배열은 실행 도중 배열의 사이즈가 계속 바뀔 수 있다.
+정적, 동적 상수와 변수의 차이를 생각하면 간단하다.
+정적(static) : compile time, build time 시 값이 결정된다. 실행 도중에 절대 바뀔 수 없다. 동적(dynamic) : Runtime. 프로그램 실행 도중에 계속 값이 바뀔 수 있다. 다른언어에서 slice와 비슷한 개념 (동일하지는 않다.)
+C++ : Vector&lt;int&gt; Java : ArrayList Python : slice Javascript : 기본적으로 동적 배열 1.</div><div class="post-footer">
+        <a href="/chapter18-slice/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/go/">GO</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/chapter2-1-docker-engine/">[시작하세요! 도커/쿠버네티스] Chapter 2. 도커 엔진</a>
     </h1><div class="post-meta"><span class="post-author"><a href="https://github.com/riley817" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-04-20">2022-04-20</time></span>&nbsp;<span class="post-category">included in <a href="/categories/docker/kubernetes/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Docker/Kubernetes</a></span></div><div class="content">시작하세요! 도커/쿠버네티스 책 정리 🐳🐳🐳
 1 도커 이미지와 컨테이너 도커 엔진에서 사용하는 기본단위는 이미지와 컨테이너이다.
@@ -134,12 +143,6 @@ GitLab installation minimum requirements docker-compose.yml 파일 준비 작업
 개념 CI 다수의 개발자가 작성 및 수정한 코드가 지속적으로 통합/테스트(Continuous Integration) 되는 것을 의미한다. CI 작업 순서는 도구, 프로그래밍 언어, 프로젝트 등 기타 여러 요인에 따라 많이 다르지만 일반적으로는 다음과 같다.</div><div class="post-footer">
         <a href="/ci-cd/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/ci/">CI</a>,&nbsp;<a href="/tags/cd/">CD</a>,&nbsp;<a href="/tags/devops/">devops</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/webworker/">Web Worker API</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="https://github.com/riley817" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-01-16">2022-01-16</time></span>&nbsp;<span class="post-category">included in <a href="/categories/etc/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Etc</a></span></div><div class="content">Web worker Web Worker 는 메인 스레드와 분리된 별도의 백그라운드 스레드에서 스크립트를 실행할 수 있는 기술이다. UI 스레드와는 별개의 스레드를 실행시켜 사용자 인터페이스를 방해하지않고 작업을 수행할 수 있다.
-Web worker scope Web worker는 메인 스레드와 별도의 worker 스레드를 갖는다. 메인 스레드에서 window 객체는 GlobalScope 이지만 worker 스레드에서는 별도의 스코프 범위를 갖는다. Worker 종류에 따른 Scope worker 스레드는 메인 스레드 window 객체에 액세스할 수 있는 권한이 없기 때문에 window의 메서드나 DOM을 직접적으로 제어할 수 없다.</div><div class="post-footer">
-        <a href="/webworker/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/web-worker/">Web Worker</a>,&nbsp;<a href="/tags/web/">Web</a></div></div>
 </article><ul class="pagination"><li class="page-item ">
                     <span class="page-link">
                         <a href="/">1</a>

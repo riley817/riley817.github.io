@@ -4,9 +4,20 @@
         <link>https://riley817.github.io/</link>
         <description>Riley&#39;s DevLog</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
-            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Sat, 12 Aug 2023 14:32:30 &#43;0900</lastBuildDate>
+            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Wed, 16 Aug 2023 22:25:30 &#43;0900</lastBuildDate>
             <atom:link href="https://riley817.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [4장] 처리율 제한 장치의 설계</title>
+    <link>https://riley817.github.io/chapter4/</link>
+    <pubDate>Wed, 16 Aug 2023 22:25:30 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/chapter4/</guid>
+    <description><![CDATA[Note 팀 내에서 진행하는 Study 정리 입니다. 함께 논의 하고 싶은 주제 우리 서비스의 경우도 사용자 인증을 위해 여러 MSA 서버에서 하나의 인증 서비스를 의존하고 있다. 이러한 처리율 제한을 위한 미들웨어를 도입해도 좋을 것 같다.
+우리 서비스에 현재 인프라적으로는 어떤것들을 제한하고 있을까? 깊게 물어본적이 없는 것다&hellip; (반성)
+토큰 버킷 알고리즘에서 IP 주소별로 처리율 제한이 필요하면 IP 주소마다 버킷을 하나씩 할당해야한다.
+그럼 버킷이 엄청많아지는 것 아닌가? 요약 처리율 제한 장치 rate limiter 클라이언트 또는 서비스가 보내는 트래픽 처리율rate을 제어하기 위한 장치 API 요청 횟수가 제한 장치에 정의된 임계치threadhold를 넘어서면 추가로 도달한 모든 호출은 처리가 중단block된다.]]></description>
+</item>
+<item>
     <title>가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [3장] 시스템 설계 면접 공략법</title>
     <link>https://riley817.github.io/chapter3/</link>
     <pubDate>Sat, 12 Aug 2023 14:32:30 &#43;0900</pubDate>
@@ -95,15 +106,6 @@ StatelessWidget Life Cycle Constructor로 생성이되고 생성이 되자마자
                 <img src="/posts/images/banner/dart.png" referrerpolicy="no-referrer">
             </div>😊 Dart 기본 문법의 헷갈리는 부분과 몰랐던 부분 정리! 🐸🐸 Final 과 const final과 const 키워드를 사용하여 선언하면 할당한 값을 변경할 수 없다. 둘다 상수를 선언할 때 사용하지만 차이점은 const는 complie-time에 상수를 설정하며 final은 runtime시에 결정되는 값도 상수로 설정할 수 있다.
 1 2 3 4 // error const DateTime now1 = DateTime.now(); // error! const는 runtime시에 값이 결정되는 값은 설정할 수 없다. final DateTime now2 = DateTime.now(); // final은 runtime시에 결정되는 값도 설정 가능하다.]]></description>
-</item>
-<item>
-    <title>[buf] buf로 protobuf 사용하기</title>
-    <link>https://riley817.github.io/buf/</link>
-    <pubDate>Mon, 23 Jan 2023 19:11:56 &#43;0900</pubDate>
-    <author>riley</author>
-    <guid>https://riley817.github.io/buf/</guid>
-    <description><![CDATA[buf buf는 IDL(Interface description language) 중 하나인 protobuf를 사용하기 쉽게 여러가지 기능을 제공하고 있다. protobuf를 사용하면서 발생하는 문제는 다음과 같다.
-API 설계가 일관성이 없다. 의존성 관리가 중앙에서 이루어지지 않고 있다. protobuf의 버전관리가 잘 이루어지지 않는다. protoc를 통한 stub 배포 및 관리가 어렵다 mock 서버 생성, fuzz testing, 문서화 할 수 있는 툴들이 많이 존재하지 않는다. buf에서 제공하는 툴 buf cli 발전된 protobuf 컴파일러를 제공한다. 좋은 API 디자인과 구조를 lint 기능을 통해 선택할 수 있다.]]></description>
 </item>
 </channel>
 </rss>

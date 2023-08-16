@@ -100,6 +100,14 @@
         alt="/images/avatar.png"
         title="/images/avatar.png" /></a></div><h1 class="home-title">라일리의 개발 공부기록</h1><div class="home-subtitle"><div id="id-1" class="typeit"></div></div><div class="links"><a href="https://github.com/https://github.com/riley817" title="GitHub" target="_blank" rel="noopener noreffer me"><i class="fab fa-github-alt fa-fw" aria-hidden="true"></i></a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/chapter4/">가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [4장] 처리율 제한 장치의 설계</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="https://github.com/riley817" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-08-16">2023-08-16</time></span>&nbsp;<span class="post-category">included in <a href="/categories/etc/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Etc</a></span></div><div class="content">Note 팀 내에서 진행하는 Study 정리 입니다. 함께 논의 하고 싶은 주제 우리 서비스의 경우도 사용자 인증을 위해 여러 MSA 서버에서 하나의 인증 서비스를 의존하고 있다. 이러한 처리율 제한을 위한 미들웨어를 도입해도 좋을 것 같다.
+우리 서비스에 현재 인프라적으로는 어떤것들을 제한하고 있을까? 깊게 물어본적이 없는 것다&hellip; (반성)
+토큰 버킷 알고리즘에서 IP 주소별로 처리율 제한이 필요하면 IP 주소마다 버킷을 하나씩 할당해야한다.
+그럼 버킷이 엄청많아지는 것 아닌가? 요약 처리율 제한 장치 rate limiter 클라이언트 또는 서비스가 보내는 트래픽 처리율rate을 제어하기 위한 장치 API 요청 횟수가 제한 장치에 정의된 임계치threadhold를 넘어서면 추가로 도달한 모든 호출은 처리가 중단block된다.</div><div class="post-footer">
+        <a href="/chapter4/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/system-design/">System Design</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/chapter3/">가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [3장] 시스템 설계 면접 공략법</a>
     </h1><div class="post-meta"><span class="post-author"><a href="https://github.com/riley817" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-08-12">2023-08-12</time></span>&nbsp;<span class="post-category">included in <a href="/categories/etc/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Etc</a></span></div><div class="content">Note 팀 내에서 진행하는 Study 정리 입니다. 함께 논의하고 싶은 주제 면접관이 되었을 때 주로 어떤 질문들을 하시나요? 혹은 받아본 질문 중 기억에 남는 질문 면접자가 되었을 때 어떤 질문을 해야 어필을 할 수 있나요? 요약 해당 장은 면접 뿐만아니라 평소 시스템 설계를 할 때 중요한 사항들인 것 같다.
 문제 이해 및 설계 범위 확정 요구사항을 완전히 이해하지 않고 답을 내놓는 행위는 좋지 않다. -&gt; 깊이 생각하고 요구사항과 가정을 분명히 하자 요구사항에 대한 질문 예시 구체적으로 어떤 기능들을 만들어야 하나?</div><div class="post-footer">
@@ -131,21 +139,6 @@ TCP를 신뢰성 있게 만드는 것 패킷손실packet loss : 무선 네트워
 1. 점대점 point-to-point 연결형 두 노드가 하나의 연결을 공유 한다. 이러한 유형의 네트워크 연결을 드물지만 두 노드 간에 직접 통신이 필요할 때 매우 유용하다. 2. 데이지 체인 daisy chain 연결형 일련의 점대점 연결 출발지 노드와 목적지 노드 사이의 중간 노드를 일반적으로 홉이라고 한다.</div><div class="post-footer">
         <a href="/network-programming-with-go/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/go/">GO</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><div class="featured-image-preview">
-            <a href="/flutter/"><img
-        class="lazyload"
-        src="/svg/loading.min.svg"
-        data-src="/posts/images/banner/flutter-logo.png"
-        data-srcset="/posts/images/banner/flutter-logo.png, /posts/images/banner/flutter-logo.png 1.5x, /posts/images/banner/flutter-logo.png 2x"
-        data-sizes="auto"
-        alt="/posts/images/banner/flutter-logo.png"
-        title="/posts/images/banner/flutter-logo.png" /></a>
-        </div><h1 class="single-title" itemprop="name headline">
-        <a href="/flutter/">[Flutter] Flutter 개념 및 동작 원리</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="https://github.com/riley817" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-02-16">2023-02-16</time></span>&nbsp;<span class="post-category">included in <a href="/categories/flutter/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Flutter</a></span></div><div class="content">플러터 구글에서 개발한 공개 모바일 SDK 이다. 모바일 앱을 만들기 위한 기존 방식은 안드로이드와 IOS를 별도로 구현하여 배포해야했기에 요구되는 기술 스펙과 비용이 컸으나 플러터를 사용하면 한번의 구현으로 배포가 가능하다. 플러터는 렌터링 엔진, UI 컴포넌트, 테스트 프레임워크, 도구, 라우터 등 앱 제작에 필요한 기능을 모두 제공하므로 개발자는 앱 구현에 집중하여 생산성을 높일 수 있다.
-플러터가 Dart 언어를 사용하는 이유 다트는 JIT(just-in-time), AOT(ahead-of-time) 컴파일을 모두 지원한다. AOT 컴파일러는 다트 코드를 효율적인 네이티브 코드로 바꾸어 개발자 및 사용자가 모두 빠르게 사용할 수 있다.</div><div class="post-footer">
-        <a href="/flutter/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/dart/">Dart</a>,&nbsp;<a href="/tags/flutter/">Flutter</a></div></div>
 </article><ul class="pagination"><li class="page-item active">
                     <span class="page-link">
                         <a href="/">1</a>

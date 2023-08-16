@@ -4,7 +4,18 @@
         <link>https://riley817.github.io/categories/etc/</link>
         <description>Etc - Category - Riley&#39;s DevLog</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
-            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Sat, 12 Aug 2023 14:32:30 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/categories/etc/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Wed, 16 Aug 2023 22:25:30 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/categories/etc/" rel="self" type="application/rss+xml" /><item>
+    <title>가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [4장] 처리율 제한 장치의 설계</title>
+    <link>https://riley817.github.io/chapter4/</link>
+    <pubDate>Wed, 16 Aug 2023 22:25:30 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/chapter4/</guid>
+    <description><![CDATA[Note 팀 내에서 진행하는 Study 정리 입니다. 함께 논의 하고 싶은 주제 우리 서비스의 경우도 사용자 인증을 위해 여러 MSA 서버에서 하나의 인증 서비스를 의존하고 있다. 이러한 처리율 제한을 위한 미들웨어를 도입해도 좋을 것 같다.
+우리 서비스에 현재 인프라적으로는 어떤것들을 제한하고 있을까? 깊게 물어본적이 없는 것다&hellip; (반성)
+토큰 버킷 알고리즘에서 IP 주소별로 처리율 제한이 필요하면 IP 주소마다 버킷을 하나씩 할당해야한다.
+그럼 버킷이 엄청많아지는 것 아닌가? 요약 처리율 제한 장치 rate limiter 클라이언트 또는 서비스가 보내는 트래픽 처리율rate을 제어하기 위한 장치 API 요청 횟수가 제한 장치에 정의된 임계치threadhold를 넘어서면 추가로 도달한 모든 호출은 처리가 중단block된다.]]></description>
+</item>
+<item>
     <title>가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [3장] 시스템 설계 면접 공략법</title>
     <link>https://riley817.github.io/chapter3/</link>
     <pubDate>Sat, 12 Aug 2023 14:32:30 &#43;0900</pubDate>
