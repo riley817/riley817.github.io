@@ -8,11 +8,11 @@
 <meta property="og:description" content="Note 팀 내에서 진행하는 Study 정리 입니다. 함께 논의 하고 싶은 주제 우리 서비스의 경우도 사용자 인증을 위해 여러 MSA 서버에서 하나의 인증 서비스를 의존하고 있다. 이러한 처리율 제한을 위한 미들웨어를 도입해도 좋을 것 같다.
 우리 서비스에 현재 인프라적으로는 어떤것들을 제한하고 있을까? 깊게 물어본적이 없는 것다&hellip; (반성)
 토큰 버킷 알고리즘에서 IP 주소별로 처리율 제한이 필요하면 IP 주소마다 버킷을 하나씩 할당해야한다.
-그럼 버킷이 엄청많아지는 것 아닌가? 요약 처리율 제한 장치 rate limiter 클라이언트 또는 서비스가 보내는 트래픽 처리율rate을 제어하기 위한 장치 API 요청 횟수가 제한 장치에 정의된 임계치threadhold를 넘어서면 추가로 도달한 모든 호출은 처리가 중단block된다." />
+그럼 버킷이 엄청많아지는 것 아닌가? 누출 버킷 알고리즘 단점중에서 윈도 경계 부근에 순간적으로 많은 트래픽이 몰릴 경우 윈도에 할당된 양보다 더 많은 요청이 처리되어 문제라는데 다른 윈도우에 있기때문에 상관없지 않을까?" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://riley817.github.io/chapter4/" /><meta property="og:image" content="https://riley817.github.io/icon.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2023-08-16T22:25:30+09:00" />
-<meta property="article:modified_time" content="2023-08-17T09:41:32+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
+<meta property="article:modified_time" content="2023-08-18T10:10:32+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://riley817.github.io/icon.png"/>
 
@@ -20,7 +20,7 @@
 <meta name="twitter:description" content="Note 팀 내에서 진행하는 Study 정리 입니다. 함께 논의 하고 싶은 주제 우리 서비스의 경우도 사용자 인증을 위해 여러 MSA 서버에서 하나의 인증 서비스를 의존하고 있다. 이러한 처리율 제한을 위한 미들웨어를 도입해도 좋을 것 같다.
 우리 서비스에 현재 인프라적으로는 어떤것들을 제한하고 있을까? 깊게 물어본적이 없는 것다&hellip; (반성)
 토큰 버킷 알고리즘에서 IP 주소별로 처리율 제한이 필요하면 IP 주소마다 버킷을 하나씩 할당해야한다.
-그럼 버킷이 엄청많아지는 것 아닌가? 요약 처리율 제한 장치 rate limiter 클라이언트 또는 서비스가 보내는 트래픽 처리율rate을 제어하기 위한 장치 API 요청 횟수가 제한 장치에 정의된 임계치threadhold를 넘어서면 추가로 도달한 모든 호출은 처리가 중단block된다."/>
+그럼 버킷이 엄청많아지는 것 아닌가? 누출 버킷 알고리즘 단점중에서 윈도 경계 부근에 순간적으로 많은 트래픽이 몰릴 경우 윈도에 할당된 양보다 더 많은 요청이 처리되어 문제라는데 다른 윈도우에 있기때문에 상관없지 않을까?"/>
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -35,8 +35,8 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/riley817.github.io\/chapter4\/"
-        },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "System Design","wordcount":  524 ,
-        "url": "https:\/\/riley817.github.io\/chapter4\/","datePublished": "2023-08-16T22:25:30+09:00","dateModified": "2023-08-17T09:41:32+09:00","publisher": {
+        },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "System Design","wordcount":  767 ,
+        "url": "https:\/\/riley817.github.io\/chapter4\/","datePublished": "2023-08-16T22:25:30+09:00","dateModified": "2023-08-18T10:10:32+09:00","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/riley817.github.io\/images\/avatar.png"},"author": {
                 "@type": "Person",
@@ -110,8 +110,8 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [4장] 처리율 제한 장치의 설계</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://github.com/riley817" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-category">included in <a href="/categories/etc/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Etc</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-08-16">2023-08-16</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;524 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;3 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-08-16">2023-08-16</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;767 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;4 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -124,30 +124,41 @@
         <li><a href="#api-처리율-제한-장치를-두면-좋은점">API 처리율 제한 장치를 두면 좋은점</a></li>
       </ul>
     </li>
-    <li><a href="#문제-이해-및-설계-범위-확정">문제 이해 및 설계 범위 확정</a>
+    <li><a href="#1-문제-이해-및-설계-범위-확정">1. 문제 이해 및 설계 범위 확정</a>
       <ul>
-        <li><a href="#요구사항">요구사항</a></li>
+        <li><a href="#11-요구사항">1.1 요구사항</a></li>
       </ul>
     </li>
-    <li><a href="#개략적-설계안-제시-및-동의-구하기">개략적 설계안 제시 및 동의 구하기</a>
+    <li><a href="#2-개략적-설계안-제시-및-동의-구하기">2. 개략적 설계안 제시 및 동의 구하기</a>
       <ul>
-        <li><a href="#처리율-제한장치의-위치">처리율 제한장치의 위치</a>
+        <li><a href="#21-처리율-제한장치의-위치">2.1 처리율 제한장치의 위치</a></li>
+        <li><a href="#22-처리율-제한장치-적용을-위한-지침">2.2 처리율 제한장치 적용을 위한 지침</a></li>
+        <li><a href="#23-처리율-제한-알고리즘">2.3 처리율 제한 알고리즘</a>
           <ul>
-            <li><a href="#처리율-제한장치-적용을-위한-지침">처리율 제한장치 적용을 위한 지침</a></li>
-          </ul>
-        </li>
-        <li><a href="#처리율-제한-알고리즘">처리율 제한 알고리즘</a>
-          <ul>
-            <li><a href="#토큰-버킷-알고리즘">토큰 버킷 알고리즘</a>
+            <li><a href="#231-토큰-버킷-알고리즘">2.3.1 토큰 버킷 알고리즘</a>
               <ul>
-                <li><a href="#토큰-버킷-알고리즘의-동작-원리">토큰 버킷 알고리즘의 동작 원리</a></li>
+                <li><a href="#동작-원리">동작 원리</a></li>
                 <li><a href="#인자">인자</a></li>
-                <li><a href="#사용-사례">사용 사례</a>
-                  <ul>
-                    <li><a href="#장점">장점</a></li>
-                    <li><a href="#단점">단점</a></li>
-                  </ul>
-                </li>
+                <li><a href="#사용-사례">사용 사례</a></li>
+                <li><a href="#장점">장점</a></li>
+                <li><a href="#단점">단점</a></li>
+                <li><a href="#토큰-버킷-알고리즘-go-코드">토큰 버킷 알고리즘 go 코드</a></li>
+              </ul>
+            </li>
+            <li><a href="#232-누출-버킷-알고리즘">2.3.2 누출 버킷 알고리즘</a>
+              <ul>
+                <li><a href="#동작-원리-1">동작 원리</a></li>
+                <li><a href="#인자-1">인자</a></li>
+                <li><a href="#장점-1">장점</a></li>
+                <li><a href="#단점-1">단점</a></li>
+                <li><a href="#누출-버킷-알고리즘-go-코드">누출 버킷 알고리즘 Go 코드</a></li>
+              </ul>
+            </li>
+            <li><a href="#233-고정-윈도-카운터-알고리즘">2.3.3 고정 윈도 카운터 알고리즘</a>
+              <ul>
+                <li><a href="#동작-원리-2">동작 원리</a></li>
+                <li><a href="#장점-2">장점</a></li>
+                <li><a href="#단점-2">단점</a></li>
               </ul>
             </li>
           </ul>
@@ -179,6 +190,12 @@
 <li>그럼 버킷이 엄청많아지는 것 아닌가?</li>
 </ul>
 </li>
+<li>
+<p>누출 버킷 알고리즘 단점중에서 윈도 경계 부근에 순간적으로 많은 트래픽이 몰릴 경우 윈도에 할당된 양보다 더 많은 요청이 처리되어 문제라는데 다른 윈도우에 있기때문에 상관없지 않을까? - 이해를 정확하게 하지 못하였습니다.
+<figure><img src="/posts/images/system-design-interview/system-design-figuare-4-9.png#center"/>
+</figure>
+</p>
+</li>
 </ul>
 <h1 id="요약">요약</h1>
 <hr>
@@ -194,7 +211,7 @@
 <li>서버의 과부하를 막는다</li>
 </ul>
 <hr>
-<h2 id="문제-이해-및-설계-범위-확정">문제 이해 및 설계 범위 확정</h2>
+<h2 id="1-문제-이해-및-설계-범위-확정">1. 문제 이해 및 설계 범위 확정</h2>
 <ul>
 <li>어떤 종류의 처리율 제한 장치를 설계해야 하는가? 클라이언트 측 혹은 서버 측 제한 장치인가?</li>
 <li>어떤 기준(IP, 사용자 ID)으로 API 호출을 제어해야 하는가?</li>
@@ -203,7 +220,7 @@
 <li>독립된 서비스? 애플리케이션 코드에 포함될 수 있는가?</li>
 <li>사용자에게 제한 장치에 대한 알림을 주어야 하는가</li>
 </ul>
-<h3 id="요구사항">요구사항</h3>
+<h3 id="11-요구사항">1.1 요구사항</h3>
 <ul>
 <li>설정된 처리율을 초과하는 요청은 정확하게 제한해야한다.</li>
 <li>낮은 응답시간 : 이 처리율 제한 장치는 HTTP 응답시간에 나쁜 영향을 주어서는 안된다.</li>
@@ -212,8 +229,8 @@
 <li>예외처리 : 요청이 제한되었을 때 그 사실을 사용자에게 분명하게 보여주어야 한다.</li>
 <li>높은 결함 감내성 <code>fault tolerance</code> : 제한 장치에 장애가 생기더라도 전체 시스템에 영향을 주어서는 안 된다.</li>
 </ul>
-<h2 id="개략적-설계안-제시-및-동의-구하기">개략적 설계안 제시 및 동의 구하기</h2>
-<h3 id="처리율-제한장치의-위치">처리율 제한장치의 위치</h3>
+<h2 id="2-개략적-설계안-제시-및-동의-구하기">2. 개략적 설계안 제시 및 동의 구하기</h2>
+<h3 id="21-처리율-제한장치의-위치">2.1 처리율 제한장치의 위치</h3>
 <ul>
 <li>클라이언트 요청은 쉽게 위변조가 가능하고 구현을 통제하는 것도 어려울 수 있다.</li>
 <li><strong>처리율 제한 장치를 API 서버에 두는 대신 처리율 제한 미들웨어<code>middleware</code>를 만들어 통제한다.</strong></li>
@@ -228,14 +245,14 @@
             <div class="admonition-content">API 게이트웨이는 처리율 제한, SSL 종단<code>termination</code>, 사용자 인증<code>authentication</code> IP 허용 목록<code>whitelist</code> 관리 등을 지원하는 완전 위탁관리형 서비스 <code>fully managed</code>이다.</div>
         </div>
     </div>
-<h4 id="처리율-제한장치-적용을-위한-지침">처리율 제한장치 적용을 위한 지침</h4>
+<h3 id="22-처리율-제한장치-적용을-위한-지침">2.2 처리율 제한장치 적용을 위한 지침</h3>
 <ul>
 <li>기술 스택 점검 고려 하기 : 현재 사용하는 프로그래밍 언어가 서버 측 구현을 지원하기 충분할 정도로 효율이 높은지 확인하기</li>
 <li>알맞은 처리율 제한 알고리즘 선택 하기</li>
 <li>이미 API 게이트웨이를 사용한다면 게이트웨이에 포함시켜야 할 수도 있다.</li>
 <li>상용 API 게이트 웨이를 쓰는 것이 바람직 할 수도</li>
 </ul>
-<h3 id="처리율-제한-알고리즘">처리율 제한 알고리즘</h3>
+<h3 id="23-처리율-제한-알고리즘">2.3 처리율 제한 알고리즘</h3>
 <ul>
 <li>토큰 버킷<code>token bucket</code></li>
 <li>누출 버킷<code>leaky bucket</code></li>
@@ -243,12 +260,12 @@
 <li>이동 윈도 로그<code>sliding window log</code></li>
 <li>이동 윈도 카운터<code>sliding window counter</code></li>
 </ul>
-<h4 id="토큰-버킷-알고리즘">토큰 버킷 알고리즘</h4>
+<h4 id="231-토큰-버킷-알고리즘">2.3.1 토큰 버킷 알고리즘</h4>
 <ul>
 <li>처리율 제한에 폭넓게 이용되고 있음</li>
 <li>간단하고 알고리즘에 대한 세간의 이해도도 높음</li>
 </ul>
-<h5 id="토큰-버킷-알고리즘의-동작-원리">토큰 버킷 알고리즘의 동작 원리</h5>
+<h5 id="동작-원리">동작 원리</h5>
 <ol>
 <li>토큰 버킷은 지정된 용량을 갖는 컨테이너이며 사전에 설정된 양의 토큰 공급기<code>refiller</code>에 의해 토큰이 주기적으로 채워진다. 버킷이 가득차면 토큰은 버려진다.<code>overflow</code></li>
 <li>요청이 도착하면 버킷에 충분한 토큰이 있는지 검사</li>
@@ -267,22 +284,75 @@
 <li>통상적으로 API 엔드포인트마다 별도의 버킷을 둔다.</li>
 <li>IP 주소별로 처리율 제한이 필요하면 IP 주소마다 버킷을 하나씩 할 당해야한다.</li>
 </ul>
-<h6 id="장점">장점</h6>
+<h5 id="장점">장점</h5>
 <ul>
 <li>구현이 쉽다</li>
 <li>메모리 사용 측면에서 효율적</li>
 <li>짧은 시간에 트래픽<code>burst of traffic</code>도 처리 가능</li>
 </ul>
-<h6 id="단점">단점</h6>
+<h5 id="단점">단점</h5>
 <ul>
 <li>버킷 크기와 토큰 공급률의 인자를 적절하게 튜닝하는 것이 까다로움</li>
+</ul>
+<h5 id="토큰-버킷-알고리즘-go-코드">토큰 버킷 알고리즘 go 코드</h5>
+<script src="https://gist.github.com/riley817/669530003558a6fe0de134b1b96c3a06.js"></script>
+<h4 id="232-누출-버킷-알고리즘">2.3.2 누출 버킷 알고리즘</h4>
+<ul>
+<li>누출 버킷<code>leaky bucket</code> 알고리즘은 토큰 버킷 알고리즘과 비슷하지만 요청 처리율이 고정되어있다는 점에 차이가 있다.</li>
+<li><code>FIFO(First-In-First-Out)</code> 큐로 구현한다.</li>
+</ul>
+<h5 id="동작-원리-1">동작 원리</h5>
+<ol>
+<li>요청이 도착하면 큐가 가득 차 있는지 본다. 빈자리가 있는 경우 큐에 요청을 추가한다.</li>
+<li>큐가 가득 차 있는 경우 새 요청은 버린다.</li>
+<li>지정된 시간마다 큐에 요청을 꺼내어 처리한다.</li>
+</ol>
+<h5 id="인자-1">인자</h5>
+<ul>
+<li><strong>버킷 크기</strong> : 큐 사이즈</li>
+<li><strong>처리율<code>outflow rate</code></strong> : 지정된 시간당 몇 개의 항목을 처리할지 지정하는 값. 초 단위로 표현한다.</li>
+</ul>
+<h5 id="장점-1">장점</h5>
+<ul>
+<li>큐의 크기가 제한되어 있어 메모리 사용량 측면에서 효율적</li>
+<li>고정된 처리율을 갖고 있기 때문에 안정적 출력<code>stable outflow rate</code>이 필요한 경우 적합</li>
+</ul>
+<h5 id="단점-1">단점</h5>
+<ul>
+<li>단 시간에 트래픽이 몰리는 경우 큐에 오래된 요청이 쌓이고 최신 요청들은 버려짐</li>
+<li>두 개의 인자를 튜닝하기 까다로움</li>
+</ul>
+<h5 id="누출-버킷-알고리즘-go-코드">누출 버킷 알고리즘 Go 코드</h5>
+<h4 id="233-고정-윈도-카운터-알고리즘">2.3.3 고정 윈도 카운터 알고리즘</h4>
+<h5 id="동작-원리-2">동작 원리</h5>
+<ol>
+<li>타임라인을 고정된 간격인 윈도<code>window</code>로 나누고 각 윈도마다 카운터<code>counter</code>를 붙인다.</li>
+<li>요청이 접수될 때마다 이 카운터의 값은 1씩 증가한다.</li>
+<li>카운터의 값이 사전에 설정된 임계치<code>threshold</code>에 도달하면 새로운 요청은 새 윈도가 열릴때까지 버려진다.</li>
+</ol>
+<ul>
+<li>시스템은 초당 3개까지 요청을 허용한다.</li>
+<li>매초마다 열리는 윈도에 3개 이상의 요청이 밀려오면 초과분은 그림 4-8 에 보이는대로 버려진다.
+<figure><img src="/posts/images/system-design-interview/system-design-figuare-4-8.png#center"/>
+</figure>
+</li>
+</ul>
+<h5 id="장점-2">장점</h5>
+<ul>
+<li>메모리 효율이 좋다</li>
+<li>이해하기 쉽다</li>
+<li>윈도가 닫히는 시점에 카운터를 초기화 하는 방식은 특정한 트래픽 패턴을 처리하기 적합하다.</li>
+</ul>
+<h5 id="단점-2">단점</h5>
+<ul>
+<li>윈도 경계 부근에 일시적으로 많은 트래픽이 몰려드는 경우 기대했던 시스템의 처리 한도보다 많은 요청의 양을 처리하게 된다.</li>
 </ul>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 2023-08-17&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/7bcfef1d16200eda0c4040946780f35f367509a6" target="_blank" title="commit by riley(riley0422@icloud.com) 7bcfef1d16200eda0c4040946780f35f367509a6: Merge branch &#39;develop&#39; into main">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>7bcfef1</a></span>
+                <span>Updated on 2023-08-18&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/e67ab95470e16a63fb0968925084c0d40b11af02" target="_blank" title="commit by riley(riley0422@icloud.com) e67ab95470e16a63fb0968925084c0d40b11af02: 20230818101030">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>e67ab95</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>
