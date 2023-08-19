@@ -4,16 +4,39 @@
         <link>https://riley817.github.io/tags/system-design/</link>
         <description>System Design - Tag - Riley&#39;s DevLog</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
-            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Wed, 16 Aug 2023 22:25:30 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/tags/system-design/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Sat, 19 Aug 2023 10:54:03 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/tags/system-design/" rel="self" type="application/rss+xml" /><item>
+    <title>가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [7장] 분산 시스템을 위한 유일 ID 생성기 설계</title>
+    <link>https://riley817.github.io/chapter7/</link>
+    <pubDate>Sat, 19 Aug 2023 10:54:03 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/chapter7/</guid>
+    <description><![CDATA[Note 팀 내에서 진행하는 Study 정리 입니다. 함께 논의 하고 싶은 주제 다중 마스터 복제에서 언젠가는 값이 중복되지 않을까 하는데 어떻게 생각하시나요? 트위터 스노플레이크는 서버 갯수가 동적으로 줄었다가 늘었다가 하면 적용이 불가능한 걸까요? UUID는 신기하당 요약 1. 문제 이해 및 설계 범위 확정 ID는 유일 해야 한다. ID는 숫자로만 구성되어야 한다. ID는 64비트로 표현 ID는 발급 날짜에 따라 정렬 가능해야 한다. 초당 10,000 개의 ID를 만들 수 있어야 한다. 2.]]></description>
+</item>
+<item>
+    <title>가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [6장] 키-값 저장소 설계</title>
+    <link>https://riley817.github.io/chapter6/</link>
+    <pubDate>Sat, 19 Aug 2023 02:03:19 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/chapter6/</guid>
+    <description><![CDATA[Note 팀 내에서 진행하는 Study 정리 입니다. 함께 논의 하고 싶은 주제 분산 시스템에서 어떤 노드가 최신의 데이터를 갖고 있는지 어떻게 판단할지 요약 키 값 저장소 키-값 데이터베이스라고도 하며 비 관계형 데이터베이스이다. 고유 식별자identifier를 키로 설정하며 키는 유일해야하고 키에 매달린 값은 키를 통해서만 접근 가능하다. 키는 짧을 수록 좋다. 값은 문자열, 리스트, 객체 등 어떤 값이 오든 상관없다. 아마존 다이나모, memcached, 레디스 등 1. 문제 이해 및 설계 범위 확정 읽기, 쓰기 그리고 메모리 사용량 사이 균형을 찾고 데이터 일관성과 가용성 사이에 타협점을 찾는 설계를 한다]]></description>
+</item>
+<item>
+    <title>가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [5장] 안정 해시 설계</title>
+    <link>https://riley817.github.io/chapter5/</link>
+    <pubDate>Sat, 19 Aug 2023 01:18:15 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/chapter5/</guid>
+    <description><![CDATA[Note 팀 내에서 진행하는 Study 정리 입니다. 함께 논의 하고 싶은 주제 챕터가 점점 어려워 집니다. 해시 키가 저장되는 서버를 탐색할 때 왜 시계방향으로 탐색을 했을지 문득 궁금해지네요? 성능과 메모리 두 개의 밸런스를 타협하는 결정은 어려워 보입니다. 이번 챕터의 내용을 떠나서 웹 서비스에 대한 튜닝 노하우 같은 게 있으신가요? (요청 제한 등등 인프라적으로 모든 것들) 서비스의 메모리 설정 등등 어떠한 근거를 통해 설정하고 어떤 데이터를 참고하는지요? (예를 들어 부하 테스트를 통해 예측 한다 등) 핫스팟 키 문제를 어떻게 해결하는지 자세한 설명이 있었으면 좋았었을 것 같습니다&hellip; 특정 유명인의 데이터를 예로 들었는데 만약 인덱스 키가 아닌 데이터 때문에 접근 빈도수가 높아지면 키를 재 배치 할 수 있을지?]]></description>
+</item>
+<item>
     <title>가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [4장] 처리율 제한 장치의 설계</title>
     <link>https://riley817.github.io/chapter4/</link>
     <pubDate>Wed, 16 Aug 2023 22:25:30 &#43;0900</pubDate>
     <author>riley</author>
     <guid>https://riley817.github.io/chapter4/</guid>
-    <description><![CDATA[Note 팀 내에서 진행하는 Study 정리 입니다. 함께 논의 하고 싶은 주제 우리 서비스의 경우도 사용자 인증을 위해 여러 MSA 서버에서 하나의 인증 서비스를 의존하고 있다. 이러한 처리율 제한을 위한 미들웨어를 도입해도 좋을 것 같다.
-우리 서비스에 현재 인프라적으로는 어떤것들을 제한하고 있을까? 깊게 물어본적이 없는 것다&hellip; (반성)
-토큰 버킷 알고리즘에서 IP 주소별로 처리율 제한이 필요하면 IP 주소마다 버킷을 하나씩 할당해야한다.
-그럼 버킷이 엄청많아지는 것 아닌가? 누출 버킷 알고리즘 단점중에서 윈도 경계 부근에 순간적으로 많은 트래픽이 몰릴 경우 윈도에 할당된 양보다 더 많은 요청이 처리되어 문제라는데 다른 윈도우에 있기때문에 상관없지 않을까?]]></description>
+    <description><![CDATA[Note 팀 내에서 진행하는 Study 정리 입니다. 함께 논의 하고 싶은 주제 우리 서비스 경우도 사용자 인증을 위해 여러 MSA 서버에서 하나의 인증 서비스를 의존하고 있습니다. 미들웨어를 도입하면 좋을 것 같아요. 이전에 API 게이트 서비스를 개발해두었던 것 같은데 &hellip;
+우리 서비스에는 어떠한 처리율 제한 장치가 있을까요? (인프라 적으로 모든) 깊게 물어본적이 없는 것 같아 반성해 봅니다&hellip;
+토큰 버킷 알고리즘에서 IP 주소별로 처리율 제한이 필요하면 IP 주소마다 버킷을 하나씩 할당하게 되면 버킷이 엄청 많아질텐데&hellip;]]></description>
 </item>
 <item>
     <title>가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [3장] 시스템 설계 면접 공략법</title>

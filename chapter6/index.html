@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [6장] 키-값 저장소 설계 - Riley&#39;s DevLog</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:title" content="가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [6장] 키-값 저장소 설계" />
+<meta property="og:description" content="Note 팀 내에서 진행하는 Study 정리 입니다. 함께 논의 하고 싶은 주제 분산 시스템에서 어떤 노드가 최신의 데이터를 갖고 있는지 어떻게 판단할지 요약 키 값 저장소 키-값 데이터베이스라고도 하며 비 관계형 데이터베이스이다. 고유 식별자identifier를 키로 설정하며 키는 유일해야하고 키에 매달린 값은 키를 통해서만 접근 가능하다. 키는 짧을 수록 좋다. 값은 문자열, 리스트, 객체 등 어떤 값이 오든 상관없다. 아마존 다이나모, memcached, 레디스 등 1. 문제 이해 및 설계 범위 확정 읽기, 쓰기 그리고 메모리 사용량 사이 균형을 찾고 데이터 일관성과 가용성 사이에 타협점을 찾는 설계를 한다" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://riley817.github.io/chapter6/" /><meta property="og:image" content="https://riley817.github.io/icon.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-08-19T02:03:19+09:00" />
+<meta property="article:modified_time" content="2023-08-19T11:16:54+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://riley817.github.io/icon.png"/>
+
+<meta name="twitter:title" content="가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [6장] 키-값 저장소 설계"/>
+<meta name="twitter:description" content="Note 팀 내에서 진행하는 Study 정리 입니다. 함께 논의 하고 싶은 주제 분산 시스템에서 어떤 노드가 최신의 데이터를 갖고 있는지 어떻게 판단할지 요약 키 값 저장소 키-값 데이터베이스라고도 하며 비 관계형 데이터베이스이다. 고유 식별자identifier를 키로 설정하며 키는 유일해야하고 키에 매달린 값은 키를 통해서만 접근 가능하다. 키는 짧을 수록 좋다. 값은 문자열, 리스트, 객체 등 어떤 값이 오든 상관없다. 아마존 다이나모, memcached, 레디스 등 1. 문제 이해 및 설계 범위 확정 읽기, 쓰기 그리고 메모리 사용량 사이 균형을 찾고 데이터 일관성과 가용성 사이에 타협점을 찾는 설계를 한다"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://riley817.github.io/chapter6/" /><link rel="prev" href="https://riley817.github.io/chapter5/" /><link rel="next" href="https://riley817.github.io/chapter7/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [6장] 키-값 저장소 설계",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/riley817.github.io\/chapter6\/"
+        },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "System Design","wordcount":  1258 ,
+        "url": "https:\/\/riley817.github.io\/chapter6\/","datePublished": "2023-08-19T02:03:19+09:00","dateModified": "2023-08-19T11:16:54+09:00","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "https:\/\/riley817.github.io\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "riley"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('light' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'light' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Riley&#39;s DevLog"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i></span>Riley&#39;s DevLog</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Riley&#39;s DevLog"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i></span>Riley&#39;s DevLog</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content always-active" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [6장] 키-값 저장소 설계</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/riley817" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-category">included in <a href="/categories/etc/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Etc</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-08-19">2023-08-19</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1258 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;6 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#키-값-저장소">키 값 저장소</a></li>
+    <li><a href="#1-문제-이해-및-설계-범위-확정">1. 문제 이해 및 설계 범위 확정</a></li>
+    <li><a href="#2-단일-서버-키-값-저장소">2. 단일 서버 키-값 저장소</a></li>
+    <li><a href="#3-분산-키-값-저장소">3. 분산 키-값 저장소</a>
+      <ul>
+        <li><a href="#31-cap-정리">3.1 CAP 정리</a>
+          <ul>
+            <li><a href="#311-실세계의-분산-시스템">3.1.1 실세계의 분산 시스템</a></li>
+            <li><a href="#312-컴포넌트">3.1.2 컴포넌트</a></li>
+            <li><a href="#312-데이터-파이션">3.1.2 데이터 파이션</a>
+              <ul>
+                <li><a href="#안정-해시를-사용하여-좋은점">안정 해시를 사용하여 좋은점</a></li>
+              </ul>
+            </li>
+            <li><a href="#313-데이터-다중화">3.1.3 데이터 다중화</a></li>
+            <li><a href="#314-데이터-일관성">3.1.4 데이터 일관성</a>
+              <ul>
+                <li><a href="#n-w-r-값을-결정하는-방법"><code>N</code>, <code>W</code>, <code>R</code> 값을 결정하는 방법</a></li>
+                <li><a href="#일관성-모델">일관성 모델</a></li>
+                <li><a href="#비-일관성-해소-기법--데이터-버저닝">비 일관성 해소 기법 : 데이터 버저닝</a></li>
+                <li><a href="#구체적인-사례">구체적인 사례</a></li>
+                <li><a href="#벡터-시계의-단점">벡터 시계의 단점</a></li>
+                <li><a href="#장애-감지failure-detection">장애 감지<code>failure detection</code></a>
+                  <ul>
+                    <li><a href="#가십프로토콜의-동작-원리">가십프로토콜의 동작 원리</a></li>
+                  </ul>
+                </li>
+                <li><a href="#일시적-장애-처리">일시적 장애 처리</a></li>
+                <li><a href="#영구적인-장애-처리">영구적인 장애 처리</a>
+                  <ul>
+                    <li><a href="#머클-트리">머클 트리</a></li>
+                    <li><a href="#데이터-센터-장애-처리">데이터 센터 장애 처리</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><a href="#315-시스템-아키텍처-다이어그램">3.1.5 시스템 아키텍처 다이어그램</a>
+              <ul>
+                <li><a href="#쓰기-경로">쓰기 경로</a></li>
+                <li><a href="#읽기-경로">읽기 경로</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><div class="details admonition tip open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw" aria-hidden="true"></i>Note<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">팀 내에서 진행하는 Study 정리 입니다.</div>
+        </div>
+    </div>
+<h1 id="함께-논의-하고-싶은-주제">함께 논의 하고 싶은 주제</h1>
+<hr>
+<ul>
+<li>분산 시스템에서 어떤 노드가 최신의 데이터를 갖고 있는지 어떻게 판단할지</li>
+</ul>
+<h1 id="요약">요약</h1>
+<hr>
+<h2 id="키-값-저장소">키 값 저장소</h2>
+<ul>
+<li>키-값 데이터베이스라고도 하며 비 관계형 데이터베이스이다.</li>
+<li>고유 식별자<code>identifier</code>를 키로 설정하며 키는 유일해야하고 키에 매달린 값은 키를 통해서만 접근 가능하다.</li>
+<li>키는 짧을 수록 좋다.</li>
+<li>값은 문자열, 리스트, 객체 등 어떤 값이 오든 상관없다.</li>
+<li>아마존 다이나모, memcached, 레디스 등</li>
+</ul>
+<h2 id="1-문제-이해-및-설계-범위-확정">1. 문제 이해 및 설계 범위 확정</h2>
+<p>읽기, 쓰기 그리고 메모리 사용량 사이 균형을 찾고 데이터 일관성과 가용성 사이에 타협점을 찾는 설계를 한다</p>
+<ul>
+<li>키-값 쌍의 크기를 정한다.</li>
+<li>큰 데이터를 저장할 수 있어야 한다.</li>
+<li>높은 가용성 제공해야 한다.</li>
+<li>높은 규모 확장성을 제공</li>
+<li>데이터의 이로간성</li>
+<li>응답 지연시간이 짧아야 한다.</li>
+</ul>
+<h2 id="2-단일-서버-키-값-저장소">2. 단일 서버 키-값 저장소</h2>
+<ul>
+<li>가장 직관적인 방법은 키-값 쌍 전부를 메모리 해시 테이블로 저장</li>
+<li>빠른 속도를 보장하나 모든 데이터를 메모리에 두는 것은 불가능</li>
+<li>해결 방안
+<ul>
+<li>데이터 압축<code>compression</code></li>
+<li>자주 쓰는 데이터만 메모리에 두고 나머지는 디스크에 저장</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-분산-키-값-저장소">3. 분산 키-값 저장소</h2>
+<ul>
+<li>분산 해시 테이블</li>
+<li>분산 시스템 설계시 CAP 정리<code>Consistency</code>, <code>Availability</code>, <code>Partition Tolerance theorem</code>를 이해해야 함</li>
+</ul>
+<h3 id="31-cap-정리">3.1 CAP 정리</h3>
+<p>아래의 세가지 요구사항을 동시에 만족하는 분산 시스템 설계는 불가능하다.<br/></p>
+<ul>
+<li>일관성<code>consistency</code> : 분산 시스템에 접속하는 모든 클라이언트는 언제가 같은 데이터를 보아야 한다.</li>
+<li>가용성<code>availability</code> : 분산 시스템에 접속하는 클라이언트는 일부 노드에 장애가 발생하더라도 항상 응답을 받을 수 있어야 한다.</li>
+<li>파티션 감내<code>partition tolerance</code> : 파티션은 두 노드 사이에 통신 장애가 발생함을 의미. 네트워크에 파티션이 생기더라도 시스템은 계속 동작하여야 한다.</li>
+</ul>
+<figure><img src="/posts/images/system-design-interview/system-design-figure-6-1.png#center"/>
+</figure>
+
+<ul>
+<li><strong>CP 시스템</strong>
+<br/>일관성과 파티션 감내를 지원. 가용성을 희생</li>
+<li><strong>AP 시스템</strong>
+<br/> 가용성과 파티션 감내를 지원. 데이터 일관성을 희생</li>
+<li><strong>CA 시스템</strong>
+<br/>일관성과 가용성을 지원. 파티션 감내는 지원하지 않는다. 네트워크 장애는 피할 수 없는 문제이므로 파티션 문제를 감내할 수 있도록 설계는 반드시 필요하다. (실세계에서는 존재하지 않음)</li>
+</ul>
+<h4 id="311-실세계의-분산-시스템">3.1.1 실세계의 분산 시스템</h4>
+<ul>
+<li>분산 시스템에서 파티션 문제는 피할 수 없으며 파티션 문제가 발생하면 우리는 일관성과 가용성 사이에 하나를 선택해야 한다.
+<figure><img src="/posts/images/system-design-interview/system-design-figure-6-3.png#center"/>
+</figure>
+</li>
+</ul>
+<p><strong>CP 시스템(일관성)</strong></p>
+<ul>
+<li>세 서버 사이에 데이터 불일치 문제를 피하기 위해 n1, n2 쓰기 연산을 중단</li>
+<li>가용성 깨짐</li>
+<li>은행권 시스템등에서는 데이터 일관성이 중요</li>
+</ul>
+<p><strong>AP 시스템(가용성)</strong></p>
+<ul>
+<li>오래된 데이터를 반환하더라도 계속 읽기 연산을 허용</li>
+<li>n1, n2는 계속 쓰기 연산을 허용</li>
+<li>파티션 문제 해결 후 n3에 새로운 데이터를 전송하여 동기화</li>
+</ul>
+<h4 id="312-컴포넌트">3.1.2 컴포넌트</h4>
+<ul>
+<li>데이터 파티션</li>
+<li>데이터 다중화<code>replication</code></li>
+<li>일관성<code>consistency</code></li>
+<li>일관성 불일치 해소<code>inconsistency resolution</code></li>
+<li>장애 처리</li>
+<li>시스템 아키텍처 다이어그램</li>
+<li>쓰기 경로<code>write path</code></li>
+<li>읽기 경로<code>read path</code></li>
+</ul>
+<h4 id="312-데이터-파이션">3.1.2 데이터 파이션</h4>
+<ul>
+<li>데이터를 작은 파티션으로 분할한 다음 여러대 서버에 저장한다.</li>
+<li>데이터를 고르게 분산할 수 있는지 노드가 추가 및 삭제 되었을 때 데이터의 이동을 최소화 할 수 있는가</li>
+</ul>
+<h5 id="안정-해시를-사용하여-좋은점">안정 해시를 사용하여 좋은점</h5>
+<ul>
+<li>규모 확정 자동화<code>automatic scaling</code> : 시스템 부하에 따라 서버가 자동으로 추가되거나 삭제</li>
+<li>다양성<code>heterogeneity</code> : 각 서버 용량에 맞게 가상 노드의 수를 조정한다. 고성능 서버는 더 많은 가상 서버를 갖도록 설정 가능</li>
+</ul>
+<h4 id="313-데이터-다중화">3.1.3 데이터 다중화</h4>
+<ul>
+<li>높은 가용성과 안정성을 확보하기위해서는 데이터를 N개 서버에 비동기적으로 다중화<code>replication</code>할 필요가 있다.</li>
+</ul>
+<h4 id="314-데이터-일관성">3.1.4 데이터 일관성</h4>
+<ul>
+<li>여러 노드에 다중화 된 데이터는 적절히 동기화 되어야 한다.</li>
+<li>정족수 합의<code>Quorum Consensus</code> 프로토콜을 사용하면 읽기/쓰기 연산 모두에 일관성을 보장할 수 있다.</li>
+</ul>
+<div class="details admonition tip open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw" aria-hidden="true"></i>Note<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><ul>
+<li>N = 사본개수</li>
+<li>W = 쓰기 연산에 대한 정족수. 쓰기 연산이 성공한 것으로 간주되러면 적어도 W개의 서버로부터 쓰기 연산이 성공했다는 응답을 받아야 한다.</li>
+<li>R = 읽기 연산에 대한 정족수. 읽기 연산이 성공한 것으로 간주되려면 적어도 R개의 서버로부터 응답을 받아야 한다.</li>
+</ul>
+</div>
+        </div>
+    </div>
+<figure><img src="/posts/images/system-design-interview/system-design-figure-6-6.png#center"/>
+</figure>
+
+<ul>
+<li>중재자<code>coordinator</code>는 최소 한대 서버로부터 쓰기 응답을 받아야 한다는 뜻</li>
+<li><code>s1</code>으로부터 성공 응답을 받았다면 <code>s0</code>, <code>s2</code>로 부터 응답은 기다릴 필요가 없다.</li>
+<li>중재자는 클라이언트와 노드 사이에 프락시 역할을 한다.</li>
+<li><code>W</code>, <code>R</code>, <code>N</code>의 값을 정하는 것은 응답 지연과 데이터 일관성 사이의 타협점을 찾는 전형적인 과정</li>
+</ul>
+<h5 id="n-w-r-값을-결정하는-방법"><code>N</code>, <code>W</code>, <code>R</code> 값을 결정하는 방법</h5>
+<p>요구되는 일관성 수준에 따라 각각의 값을 정하면 된다.</p>
+<ul>
+<li><code>R=1, W=N</code> : 빠른 읽기 연산에 최적화</li>
+<li><code>W=1, R=N</code> : 빠른 쓰기 연산에 최적화</li>
+<li><code>W+R &gt; N</code> : 강한 일관성이 보장됨</li>
+<li><code>W+R &lt;= N</code> : 강한 일관성이 보장되지 않음</li>
+</ul>
+<h5 id="일관성-모델">일관성 모델</h5>
+<ul>
+<li>키-값 저장소를 설계할 때 고려해야할 또 다른 요소</li>
+<li>강한 일관성<code>strong consistency</code> : 모든 읽기 연산은 최근에 갱신된 결과를 반환. 오래된<code>out of date</code> 데이터는 보지 못함</li>
+<li>약한 일관성<code>weak consistency</code> : 읽기 연산은 최근에 갱신된 결과를 반환하지 못할 수 있음</li>
+<li>결과적 일관성<code>eventual consistency</code> : 약한 일관성의 한 형태 갱신 결과가 결국에는 모든 사본에 반영(즉, 동기화) 되는 모델</li>
+<li>강한 일관성을 유지하기 위해서는 모든 사본에 현재 쓰기 연산의 결과가 반영될 때 까지 해당 데이터에 대한 읽기/쓰기를 금지 -&gt; 고가용성 시스템에는 적합하지 못함</li>
+<li>다이나모 또는 카산드라 같은 경우 결과적 일관성 모델을 선택
+<ul>
+<li>연산이 병렬적으로 발생하면 시스템에 저장된 값의 일관성이 깨질 수 있다.</li>
+<li>일관성이 깨지는 문제는 클라이언트가 해결해야 한다.</li>
+</ul>
+</li>
+</ul>
+<h5 id="비-일관성-해소-기법--데이터-버저닝">비 일관성 해소 기법 : 데이터 버저닝</h5>
+<ul>
+<li>버저닝<code>versioning</code>과 벡터시계<code>vector colock</code>는 사본 간 일관성이 깨지는 문제를 해소화하기 위해 등장한 기술</li>
+<li>버저닝은 데이터를 변경할 때 마다 해당 데이터 새로운 버전 생성한다. 각 버전은 변경 불가능<code>immutable</code></li>
+<li>두 버전간 충돌을 발견하고 자동으로 해결해내기 위해 베터 시계가 보편적으로 사용되는 기술</li>
+<li>벡터 시계는 [서버, 버전]의 순서쌍을 데이터에 매단 것이며 어떤 버전이 선행 혹은 후행인지 충돌이 있는지 판별</li>
+</ul>
+<h5 id="구체적인-사례">구체적인 사례</h5>
+<figure><img src="/posts/images/system-design-interview/system-design-figure-6-9.png#center"/>
+</figure>
+
+<ol>
+<li>클라이언트가 데이터 <code>D1</code> 기록. 쓰기연산을 <code>Sx</code>가 처리 : <strong>D1[Sx, 1]</strong></li>
+<li>다른 클라이언트가 <code>D1</code>을 읽고 <code>D2</code>로 업데이트 <code>Sx</code>를 통해 기록. : <strong>D2[Sx, 2]</strong></li>
+<li>다른 클라이언트가 <code>D2</code>을 읽고 <code>D3</code>로 업데이트 <code>Sy</code>를 통해 기록. : <strong>D3[Sx, 2][Sy, 1]</strong></li>
+<li>또 다른 클라이언트가 <code>D2</code>를 읽고 <code>D4</code>로 업데이트 <code>Sz</code>를 통해 기록. : <strong>D4[Sx, 2][Sz, 1]</strong></li>
+<li>어떤 클라이언트가 <code>D3</code>, <code>D4</code>를 읽으면 데이터 간 출돌이 있다는 것을 알게됨. 충돌은 클라이언트가 해소 후 <code>Sx</code>을 통해 기록. : <strong>D5[Sx, 3][Sy, 1][Sz, 1]</strong></li>
+</ol>
+<h5 id="벡터-시계의-단점">벡터 시계의 단점</h5>
+<ul>
+<li>충돌 감지 및 해소 로직이 클라이언트에 들어가야 하므로 클라이언트는 구성이 복잡</li>
+<li>순서쌍 개수가 굉장히 빨리 늘어남. 이를 해소하기 위해서는 임계치를 설정하고 임계치 이상으로 길어지면 오래된 순서쌍을 벡터 시계에 제거</li>
+</ul>
+<h5 id="장애-감지failure-detection">장애 감지<code>failure detection</code></h5>
+<ul>
+<li>모든 노드 사이에 멀티 캐스팅<code>multicasting</code>채널을 구축하는 것이 손쉬운 방법이지만 서버가 많은때는 비효율적</li>
+<li>가십 프로토콜<code>gossip protocol</code> 같은 분산형 장애 감지<code>decentralized failure detection</code> 솔루션을 채택하는 것이 효율적</li>
+</ul>
+<h6 id="가십프로토콜의-동작-원리">가십프로토콜의 동작 원리</h6>
+<ul>
+<li>각 노드는 멤버십 목록을 유지하며 멤버십 목록은 멤버의 ID와 박동 카운터<code>heartbeat counter</code> 쌍의 목록</li>
+<li>주기적으로 자신의 박동 카운터를 증가</li>
+<li>각 노드는 무작위로 선정된 노드들에게 주기적으로 자기 박동 카운터 목록을 보냄</li>
+<li>박동 카운터 목록을 받은 노드는 멤버십 목을 최신으로 갱신</li>
+<li>어떤 멤버의 박동 카운터 값이 지정된 시간 동안 갱신 되지 않으면 해당 멤버는 장애 상태로 간주</li>
+</ul>
+<h5 id="일시적-장애-처리">일시적 장애 처리</h5>
+<ul>
+<li>가십 프로토콜로 장애를 감지한 시스템은 가용성 보장을 위해 필요한 조치를 해야 한다.</li>
+<li>엄격한 정족수<code>strict quorum</code> 접근법을 쓴다면 앞서 데이터 일관성 절에서 설명한 대로 읽기와 쓰기 연산을 금지</li>
+<li>느슨한 정족수<code>sloppy quorum</code> 접근법은 조건을 완하하여 가용성을 높인다.
+<ul>
+<li>임시 위탁<code>hinted handoff</code> 기법</li>
+<li>정족수 요구성을 강제 대신 쓰기 연산을 수행할 W개의 건강한 서버와 읽기 연산을 R개의 건강한 서버를 해시 링에서 고른다.</li>
+<li>네트워크 문제로 장애 상태인 서버는 다른 서버가 잠시 맡아 처리</li>
+<li>해당 서버가 복구되었을 때 일관성을 반영하여 데이터 일관성을 보존한다.</li>
+<li>임시로 쓰기 연산을 처리한 서버에는 단서<code>hint</code>를 남겨둔다</li>
+</ul>
+</li>
+</ul>
+<h5 id="영구적인-장애-처리">영구적인 장애 처리</h5>
+<ul>
+<li>반-엔트로피<code>anti-entropy</code> 프로토콜을 구현하여 사본들을 동기화</li>
+<li>반-엔트로피 프로토콜은 사본들을 비교하여 최신 버전으로 갱신하는 과정을 포함</li>
+<li>사본간 일관성이 망가진 상태를 탐지 전송 데이터의 양을 줄이기 위해서 머클<code>Merkle</code>트리를 사용한다.</li>
+</ul>
+<h6 id="머클-트리">머클 트리</h6>
+<ul>
+<li>노드에 그 자식 노드들에 보관된 해시(자식 노드가 종단 노드일 경우), 또는 자식 노드들의 레이블로부터 계산된 해시 값을 레이블로 붙이는 트리</li>
+<li>대규모 자료구조 내용을 효과적이면서 보안상 안전한 방법으로 검증 가능</li>
+<li>두 머클 트리의 비교는 루트 노드의 해시값을 비교하는 것을 시작으로 왼쪽 자식 노드의 해시값을 비교 그 다음 오른쪽 해시값을 비교하여 아래쪽으로 탐색하여 비교한다.</li>
+<li>아래쪽으로 탐색하다가 다른 데이터를 갖는 버킷을 찾을 수 있으므로 그 버킷만 동기화 하면 된다.</li>
+</ul>
+<h6 id="데이터-센터-장애-처리">데이터 센터 장애 처리</h6>
+<ul>
+<li>데이터 센터 장애에 대응할 수 있는 시스템을 만들려면 데이터를 여러 데이터 센터에 다중화 하는 것이 중요</li>
+</ul>
+<h4 id="315-시스템-아키텍처-다이어그램">3.1.5 시스템 아키텍처 다이어그램</h4>
+<ul>
+<li>클라이언트는 키-값 저장소가 제공하는 두 가지 단순한 API, 즉 <code>get(key)</code>와 <code>put(key, value)</code>와 통신한다.</li>
+<li>중재자<code>coordinator</code>는 클라이언트에게 키-값 저장소에 대한 <code>proxy</code>역할을 하는 노드다</li>
+<li>노드는 안정해시<code>consistent hash</code>의 해시 링 위에 분포</li>
+<li>노드를 자동으로 추가 또는 삭제할 수 있도록, 시스템은 완전히 분산</li>
+<li>데이터는 여러 노드에 다중화</li>
+<li>모든 노드가 같은 책임을 지므로 SPOF 는 존재하지 않음
+<figure><img src="/posts/images/system-design-interview/system-design-figure-6-17.png#center"/>
+</figure>
+</li>
+</ul>
+<h5 id="쓰기-경로">쓰기 경로</h5>
+<ol>
+<li>쓰기 요청이 커밋 로그 파일에 기록</li>
+<li>데이터가 메모리 캐시에 기록</li>
+<li>메모리 캐시가 가득차거나 임계치에 도달하면 데이터는 디스크에있는 <code>SSTable</code>에 기록</li>
+</ol>
+<ul>
+<li>SSTable은 Sorted-String Table의 약어로 &lt;키, 값&gt;의 순서쌍을 정렬된 리스트 형태로 관리</li>
+</ul>
+<h5 id="읽기-경로">읽기 경로</h5>
+<ol>
+<li>데이터가 메모리에 있는지 검사</li>
+<li>데이터가 메모리에 없으면 블룸 필터를 검사</li>
+<li>블룸 필터를 통해 어떤 SStable에 키가 보관되어 있는지 알아낸다</li>
+<li>SSTable 데이터를 가져온다.</li>
+<li>해당 데이터를 클라이언트에 반환</li>
+</ol>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-08-19&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/8ba0c71684821acd80f435681cbc8b8b81def40d" target="_blank" title="commit by riley817(riley0422@icloud.com) 8ba0c71684821acd80f435681cbc8b8b81def40d: 20230819111652">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>8ba0c71</a></span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/system-design/">System Design</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/chapter5/" class="prev" rel="prev" title="가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [5장] 안정 해시 설계"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [5장] 안정 해시 설계</a>
+            <a href="/chapter7/" class="next" rel="next" title="가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [7장] 분산 시스템을 위한 유일 ID 생성기 설계">가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [7장] 분산 시스템을 위한 유일 ID 생성기 설계<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><script src="https://utteranc.es/client.js"
+            repo="riley817/blog-comment"
+            issue-term="pathname"
+            label="✨💬✨"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+        </script>
+    </div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.117.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/riley817" target="_blank">Riley</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.1/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"search":{"algoliaAppID":"","algoliaIndex":"","algoliaSearchKey":"","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
