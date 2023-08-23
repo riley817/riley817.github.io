@@ -4,7 +4,15 @@
         <link>https://riley817.github.io/categories/etc/</link>
         <description>Etc - Category - Riley&#39;s DevLog</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
-            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Sat, 19 Aug 2023 10:54:03 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/categories/etc/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Wed, 23 Aug 2023 22:22:24 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/categories/etc/" rel="self" type="application/rss+xml" /><item>
+    <title>가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [8장] URL 단축기 설계</title>
+    <link>https://riley817.github.io/chapter8/</link>
+    <pubDate>Wed, 23 Aug 2023 22:22:24 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/chapter8/</guid>
+    <description><![CDATA[Note 팀 내에서 진행하는 Study 정리 입니다. 함께 논의 하고 싶은 주제 요약 1. 문제 이해 및 설계 범위 확정 1.1 기능 URL 단축 : 주어진 긴 URL을 짧게 줄인다. URL 리다이렉션 : 축약된 URL로 HTTP 요청이 오면 원래 URL로 안내 높은 가용성 규모 확장성, 그리고 장애 감내가 요구 1.2 개략적 추정 쓰기 연산 : 매일 1억 개의 단축 URL을 생성 초당 쓰기 연산 : 1억(100million)/24/3600 = 1160 읽기 연산 : 읽기 연산과 쓰기 연산의 비율을 10:1 로 가정.]]></description>
+</item>
+<item>
     <title>가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [7장] 분산 시스템을 위한 유일 ID 생성기 설계</title>
     <link>https://riley817.github.io/chapter7/</link>
     <pubDate>Sat, 19 Aug 2023 10:54:03 &#43;0900</pubDate>
@@ -82,15 +90,6 @@ API 설계가 일관성이 없다. 의존성 관리가 중앙에서 이루어지
     <guid>https://riley817.github.io/webworker/</guid>
     <description><![CDATA[Web worker Web Worker 는 메인 스레드와 분리된 별도의 백그라운드 스레드에서 스크립트를 실행할 수 있는 기술이다. UI 스레드와는 별개의 스레드를 실행시켜 사용자 인터페이스를 방해하지않고 작업을 수행할 수 있다.
 Web worker scope Web worker는 메인 스레드와 별도의 worker 스레드를 갖는다. 메인 스레드에서 window 객체는 GlobalScope 이지만 worker 스레드에서는 별도의 스코프 범위를 갖는다. Worker 종류에 따른 Scope worker 스레드는 메인 스레드 window 객체에 액세스할 수 있는 권한이 없기 때문에 window의 메서드나 DOM을 직접적으로 제어할 수 없다.]]></description>
-</item>
-<item>
-    <title>텔레그램 봇 설정하기</title>
-    <link>https://riley817.github.io/telegrambot/</link>
-    <pubDate>Fri, 13 Aug 2021 14:46:00 &#43;0900</pubDate>
-    <author>riley</author>
-    <guid>https://riley817.github.io/telegrambot/</guid>
-    <description><![CDATA[할때마다 까먹는다.
-텔레그램 봇 만들기 1. 봇아빠 채팅방에 접속 https://t.me/BotFather 혹은 @BotFather 검색하여 채팅방 접속 2. BotFather 채팅방에서 봇 생성 명령어를 입력한다. 채팅창에 /newbot을 입력한다. 3. 텔레그램 봇 이름을 입력한다. 이름은 _bot으로 끝나야 한다. 4. 다시 입력 한번 더 bot 이름을 입력하면 봇 주소와 API 토큰 값을 얻을 수 있다. 5. 봇 채팅방 접속 후 시작 버튼 클릭 6. 봇 채팅방 chat id 얻기 봇 채팅방에서 아무 메세지나 입력한다. 브라우저에서 https://api.]]></description>
 </item>
 </channel>
 </rss>

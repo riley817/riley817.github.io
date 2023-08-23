@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [8장] URL 단축기 설계 - Riley&#39;s DevLog</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:title" content="가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [8장] URL 단축기 설계" />
+<meta property="og:description" content="Note 팀 내에서 진행하는 Study 정리 입니다. 함께 논의 하고 싶은 주제 요약 1. 문제 이해 및 설계 범위 확정 1.1 기능 URL 단축 : 주어진 긴 URL을 짧게 줄인다. URL 리다이렉션 : 축약된 URL로 HTTP 요청이 오면 원래 URL로 안내 높은 가용성 규모 확장성, 그리고 장애 감내가 요구 1.2 개략적 추정 쓰기 연산 : 매일 1억 개의 단축 URL을 생성 초당 쓰기 연산 : 1억(100million)/24/3600 = 1160 읽기 연산 : 읽기 연산과 쓰기 연산의 비율을 10:1 로 가정." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://riley817.github.io/chapter8/" /><meta property="og:image" content="https://riley817.github.io/icon.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-08-23T22:22:24+09:00" />
+<meta property="article:modified_time" content="2023-08-23T23:46:49+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://riley817.github.io/icon.png"/>
+
+<meta name="twitter:title" content="가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [8장] URL 단축기 설계"/>
+<meta name="twitter:description" content="Note 팀 내에서 진행하는 Study 정리 입니다. 함께 논의 하고 싶은 주제 요약 1. 문제 이해 및 설계 범위 확정 1.1 기능 URL 단축 : 주어진 긴 URL을 짧게 줄인다. URL 리다이렉션 : 축약된 URL로 HTTP 요청이 오면 원래 URL로 안내 높은 가용성 규모 확장성, 그리고 장애 감내가 요구 1.2 개략적 추정 쓰기 연산 : 매일 1억 개의 단축 URL을 생성 초당 쓰기 연산 : 1억(100million)/24/3600 = 1160 읽기 연산 : 읽기 연산과 쓰기 연산의 비율을 10:1 로 가정."/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://riley817.github.io/chapter8/" /><link rel="prev" href="https://riley817.github.io/chapter7/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [8장] URL 단축기 설계",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/riley817.github.io\/chapter8\/"
+        },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "System Design","wordcount":  670 ,
+        "url": "https:\/\/riley817.github.io\/chapter8\/","datePublished": "2023-08-23T22:22:24+09:00","dateModified": "2023-08-23T23:46:49+09:00","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "https:\/\/riley817.github.io\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "riley"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('light' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'light' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Riley&#39;s DevLog"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i></span>Riley&#39;s DevLog</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Riley&#39;s DevLog"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i></span>Riley&#39;s DevLog</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content always-active" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [8장] URL 단축기 설계</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/riley817" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-category">included in <a href="/categories/etc/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Etc</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-08-23">2023-08-23</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;670 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;4 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-문제-이해-및-설계-범위-확정">1. 문제 이해 및 설계 범위 확정</a>
+      <ul>
+        <li><a href="#11-기능">1.1 기능</a></li>
+        <li><a href="#12-개략적-추정">1.2 개략적 추정</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-개략적-설계안-제시-및-동의-구하기">2. 개략적 설계안 제시 및 동의 구하기</a>
+      <ul>
+        <li><a href="#21-api-엔드-포인트">2.1 API 엔드 포인트</a></li>
+        <li><a href="#22-url-단축">2.2 URL 단축</a>
+          <ul>
+            <li><a href="#해시-함수의-요구-사항">해시 함수의 요구 사항</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#3-상세-설계">3. 상세 설계</a>
+      <ul>
+        <li><a href="#31-데이터-모델">3.1 데이터 모델</a></li>
+        <li><a href="#32-해시-함수">3.2 해시 함수</a>
+          <ul>
+            <li><a href="#해시-값-길이">해시 값 길이</a></li>
+            <li><a href="#해시-후-충돌-해소">해시 후 충돌 해소</a></li>
+            <li><a href="#base-62-인코딩">base-62 인코딩</a></li>
+            <li><a href="#두-접근법-비교하기">두 접근법 비교하기</a></li>
+          </ul>
+        </li>
+        <li><a href="#33-url-단축키-상세-설계">3.3 URL 단축키 상세 설계</a></li>
+        <li><a href="#34-url-리다이렉션-상세-설계">3.4 URL 리다이렉션 상세 설계</a></li>
+      </ul>
+    </li>
+    <li><a href="#4-마무리">4. 마무리</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><div class="details admonition tip open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw" aria-hidden="true"></i>Note<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">팀 내에서 진행하는 Study 정리 입니다.</div>
+        </div>
+    </div>
+<h1 id="함께-논의-하고-싶은-주제">함께 논의 하고 싶은 주제</h1>
+<hr>
+<h1 id="요약">요약</h1>
+<hr>
+<h2 id="1-문제-이해-및-설계-범위-확정">1. 문제 이해 및 설계 범위 확정</h2>
+<h3 id="11-기능">1.1 기능</h3>
+<ol>
+<li>URL 단축 : 주어진 긴 URL을 짧게 줄인다.</li>
+<li>URL 리다이렉션 : 축약된 URL로 HTTP 요청이 오면 원래 URL로 안내</li>
+<li>높은 가용성 규모 확장성, 그리고 장애 감내가 요구</li>
+</ol>
+<h3 id="12-개략적-추정">1.2 개략적 추정</h3>
+<ul>
+<li>쓰기 연산 : 매일 1억 개의 단축 URL을 생성</li>
+<li>초당 쓰기 연산 : 1억(100million)/24/3600 = 1160</li>
+<li>읽기 연산 : 읽기 연산과 쓰기 연산의 비율을 10:1 로 가정. 그 경우 읽기 연산은 초당 11,600회 발생한다. (1160 * 10 = 11,600)</li>
+<li>10년간 운영한다고 가정 : 1억(100million) * 365 * 10 = 3,650억(365billion) 개의 레코드를 보관</li>
+<li>축약 전 URL의 평균 길이는 100</li>
+<li>10년동안 필요한 저장 용량은 3650억(365billion) * 100 byte = 36.5 TB</li>
+</ul>
+<h2 id="2-개략적-설계안-제시-및-동의-구하기">2. 개략적 설계안 제시 및 동의 구하기</h2>
+<h3 id="21-api-엔드-포인트">2.1 API 엔드 포인트</h3>
+<ol>
+<li>URL 단축 엔드포인트 : 새 단축 URL을 생성하고자 할 때 호출한다.</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">POST /api/v1/data/shorten
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">- 인자 : {longUrl:longURLString}
+</span></span><span class="line"><span class="cl">- 반환 : 단축 URL
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>URL 리다이렉션용 엔드포인트 : 단축 URL에 대한 원래 URL로 보내주기 위한 용도</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">GET /api/v1/shortUrl
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">- 반환 : HTTP 리다이렉션 목적지가 될 원래 URL
+</span></span></code></pre></td></tr></table>
+</div>
+</div><table>
+<thead>
+<tr>
+<th>301 <code>Permanently Moved</code></th>
+<th>302 <code>Found</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>응답에 대한 HTTP 요청의 처리 책임이 영구적으로 Location 헤더에 반환된 URL로 이전</td>
+<td>주어진 URL로 요청이 일시적으로 Location 헤더가 지정하는 URL에 의해 처리되어야 한다.</td>
+</tr>
+<tr>
+<td>영구적으로 이전되었으므로 브라우저는 이 응답을 캐시함</td>
+<td>단축 URL에 먼저 보내진 후 원래 URL로 리다이렉션되어야 함</td>
+</tr>
+<tr>
+<td>첫 번째 요청만 전송되므로 서버 부하를 줄일 수 있다.</td>
+<td>트래픽 분석이 가능하다.</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<ul>
+<li>원래 URL = hashTable.get(단축 URL)</li>
+<li>301 또는 302 응답으로 Location 헤더에 원래 URL을 넣은 후 전송</li>
+</ul>
+</blockquote>
+<h3 id="22-url-단축">2.2 URL 단축</h3>
+<h4 id="해시-함수의-요구-사항">해시 함수의 요구 사항</h4>
+<ul>
+<li>입력으로 주어진 긴 URL이 다른 값이면 해시 값도 달라야한다.</li>
+<li>계산된 해시 값은 원래 입력으로 주어졌던 긴 URL로 복원될 수 있어야 한다.</li>
+</ul>
+<h2 id="3-상세-설계">3. 상세 설계</h2>
+<h3 id="31-데이터-모델">3.1 데이터 모델</h3>
+<ul>
+<li><code>&lt;단축 URL, 원래 URL&gt;</code> 순서쌍을 관계형 데이터베이스에 저장</li>
+<li>단순하게 설계 테이블은 id, shortURL, longURL 세 개의 컬럼으로 구성할 수 있다.</li>
+</ul>
+<h3 id="32-해시-함수">3.2 해시 함수</h3>
+<h4 id="해시-값-길이">해시 값 길이</h4>
+<ul>
+<li>hashValue는 <code>0-9, a-z, A-Z</code> 의 문자들로 구성 문자의 개수는 <code>10 + 26 + 26 = 62</code>개 이다.</li>
+<li>길이를 정하기 위해서는 <code>62^n &gt;= 3,650억(365billion)</code>의 n의 최소값은 7이다. (<code>62^7 = 3.5조</code>)</li>
+</ul>
+<h4 id="해시-후-충돌-해소">해시 후 충돌 해소</h4>
+<ul>
+<li>CRC32, MD5, SHA-1과 같은 해시함수를 이용하여 처음 7 글자만 사용하기</li>
+<li>충돌이 해소될 때 까지 데이터베이스를 질의한다.</li>
+<li>데이터베이스 대신 블룸 필더를 사용하여 성능을 높일 수 있다.</li>
+</ul>
+<h4 id="base-62-인코딩">base-62 인코딩</h4>
+<ul>
+<li>진법 변환은 URL 단축기를 구현할 때 흔히 사용되는 접근법</li>
+<li>62진법을 사용하는 이유는 hashValue에 사용할 수 있는 문자 개수가 62개 이기 때문</li>
+</ul>
+<h4 id="두-접근법-비교하기">두 접근법 비교하기</h4>
+<table>
+<thead>
+<tr>
+<th>해시 후 충돌 해소 전략</th>
+<th>base-62 변환</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>단축 URL의 길이가 고정됨</td>
+<td>단축 URL의 길이가 가변적. ID 값이 커지면 같이 길어짐</td>
+</tr>
+<tr>
+<td>유일성이 보장되는 ID 생성기가 필요하지 않음</td>
+<td>유일성 보장 ID 생성기가 필요</td>
+</tr>
+<tr>
+<td>충돌이 가능해서 해소 전략 필요</td>
+<td>ID 유일성이 보장된 후에야 적용 가능한 전략이라 충돌 아예 불가능</td>
+</tr>
+<tr>
+<td>ID로 부터 단축 UR을 계산하는 방식이 아니라 다음에 쓸 수 있는 URL을 알아내는 것이 불가능</td>
+<td>ID가 1씩 증가하는 값이라고 가정하면 다음에 쓸 수 있는 단축 URL이 무엇인지 쉽게 알아내어 보안상 문제가 될 소지 있음</td>
+</tr>
+</tbody>
+</table>
+<h3 id="33-url-단축키-상세-설계">3.3 URL 단축키 상세 설계</h3>
+<figure><img src="/posts/images/system-design-interview/system-design-figure-8-7.png#center"/>
+</figure>
+
+<ol>
+<li>입력으로 긴 URL을 받는다.</li>
+<li>데이터베이스에 해당 URL이 있는 지 검사한다.</li>
+<li>데이터베이스에 있는 경우 해당 단축 URL을 가져와서 클라이언트에게 반환</li>
+<li>데이터베이스에 없는 경우 유일한 ID 생성 - 이 유일한 ID는 데이터베이스 기본 키로 사용</li>
+<li>62진법 변환하여 ID를 단축 URL로 변환</li>
+<li>ID, 단축URL, 원래 URL레코드에 저장 후 단축 URL을 클라이언트에게 반환</li>
+</ol>
+<h3 id="34-url-리다이렉션-상세-설계">3.4 URL 리다이렉션 상세 설계</h3>
+<figure><img src="/posts/images/system-design-interview/system-design-figure-8-8.png#center"/>
+</figure>
+
+<ol>
+<li>사용자가 단축 URL을 클릭</li>
+<li>로드 밸런서가 해당 요청을 웹 서버로 전달</li>
+<li>단축 URL이 이미 캐시되어 있는 경우 원래 URL을 바로 꺼내어 클라이언트에게 전달</li>
+<li>캐시에 해당 단축 URL 없는 경우 데이터베이스에서 가져온다.</li>
+</ol>
+<ul>
+<li>없는 경우는 사용자가 잘못된 단축 URL을 입력한 경우</li>
+</ul>
+<ol start="5">
+<li>데이터베이스에 꺼낸 URL을 캐시에 넣은 후 사용자에게 반환</li>
+</ol>
+<h2 id="4-마무리">4. 마무리</h2>
+<p>설계를 마친 후 다음과 같은 것을 더 생각해보자</p>
+<p><strong>처리율 제한 장치</strong></p>
+<ul>
+<li>엄청난 URL 요청이 밀려들 경우 무력화될 수 있다는 잠재적 결함이 있음</li>
+<li>IP 주소를 비롯한 필터링 규칙을 통해 요청을 거름</li>
+</ul>
+<p><strong>웹 서버의 규모 확장</strong></p>
+<ul>
+<li>본 설계의 웹 계층은 무상태<code>stateless</code> 계층이므로 웹 서버를 자유로이 증설 및 삭제 가능</li>
+</ul>
+<p><strong>데이터베이스의 규모 확장</strong></p>
+<ul>
+<li>데이터베이스를 다중화 혹은 샤딩<code>sharding</code>하여 규모 확장성을 달성</li>
+</ul>
+<p><strong>데이터 분석 솔루션</strong></p>
+<ul>
+<li>URL 단축기와 데이터 분석 솔루션을 통합하여 링크에 대한 분석</li>
+</ul>
+<p><strong>가용성, 데이터 일관성, 안정성</strong></p>
+<ul>
+<li>대규모 시스템이 성공적으로 운영되기 위해 반드시 갖추어야 할 속성들</li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-08-23&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/d1f3ed62ae462d6717449f4e69517d2b86c05d08" target="_blank" title="commit by riley817(riley0422@icloud.com) d1f3ed62ae462d6717449f4e69517d2b86c05d08: 20230823234647">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>d1f3ed6</a></span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/system-design/">System Design</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/chapter7/" class="prev" rel="prev" title="가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [7장] 분산 시스템을 위한 유일 ID 생성기 설계"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [7장] 분산 시스템을 위한 유일 ID 생성기 설계</a></div>
+</div>
+<div id="comments"><script src="https://utteranc.es/client.js"
+            repo="riley817/blog-comment"
+            issue-term="pathname"
+            label="✨💬✨"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+        </script>
+    </div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.117.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/riley817" target="_blank">Riley</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/copy-tex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.1/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"","algoliaIndex":"","algoliaSearchKey":"","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

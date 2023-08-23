@@ -4,7 +4,15 @@
         <link>https://riley817.github.io/tags/system-design/</link>
         <description>System Design - Tag - Riley&#39;s DevLog</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
-            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Sat, 19 Aug 2023 10:54:03 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/tags/system-design/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Wed, 23 Aug 2023 22:22:24 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/tags/system-design/" rel="self" type="application/rss+xml" /><item>
+    <title>가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [8장] URL 단축기 설계</title>
+    <link>https://riley817.github.io/chapter8/</link>
+    <pubDate>Wed, 23 Aug 2023 22:22:24 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/chapter8/</guid>
+    <description><![CDATA[Note 팀 내에서 진행하는 Study 정리 입니다. 함께 논의 하고 싶은 주제 요약 1. 문제 이해 및 설계 범위 확정 1.1 기능 URL 단축 : 주어진 긴 URL을 짧게 줄인다. URL 리다이렉션 : 축약된 URL로 HTTP 요청이 오면 원래 URL로 안내 높은 가용성 규모 확장성, 그리고 장애 감내가 요구 1.2 개략적 추정 쓰기 연산 : 매일 1억 개의 단축 URL을 생성 초당 쓰기 연산 : 1억(100million)/24/3600 = 1160 읽기 연산 : 읽기 연산과 쓰기 연산의 비율을 10:1 로 가정.]]></description>
+</item>
+<item>
     <title>가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [7장] 분산 시스템을 위한 유일 ID 생성기 설계</title>
     <link>https://riley817.github.io/chapter7/</link>
     <pubDate>Sat, 19 Aug 2023 10:54:03 &#43;0900</pubDate>

@@ -99,7 +99,14 @@
         data-sizes="auto"
         alt="/images/avatar.png"
         title="/images/avatar.png" /></a></div><h1 class="home-title">라일리의 개발 공부기록</h1><div class="home-subtitle"><div id="id-1" class="typeit"></div></div><div class="links"><a href="https://github.com/https://github.com/riley817" title="GitHub" target="_blank" rel="noopener noreffer me"><i class="fab fa-github-alt fa-fw" aria-hidden="true"></i></a></div></div>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><div class="featured-image-preview">
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/ios-allow/">[iOS/Android] APP HTTP 접근 허용하기</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="https://github.com/riley817" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-01-31">2023-01-31</time></span>&nbsp;<span class="post-category">included in <a href="/categories/flutter/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Flutter</a></span></div><div class="content">APP HTTP 접근 허용 설정하기 iOS ios/Runner/Info.plist
+1 2 3 4 5 6 7 8 9 &lt;key&gt;NSAppTransportSecurity&lt;/key&gt; &lt;dict&gt; &lt;key&gt;NSAllowsLocalNetworking&lt;/key&gt; &lt;true/&gt; &lt;key&gt;NSAllowsArbitraryLoadsInWebContent&lt;/key&gt; &lt;true/&gt; &lt;/dict&gt; &lt;/dict&gt; &lt;/plist&gt; Android android/app/src/main/AndroidManifest.xml
+1 2 3 4 5 6 7 8 &lt;manifest xmlns:android=&#34;http://schemas.android.com/apk/res/android&#34; package=&#34;com.example.web_view&#34;&gt; &lt;uses-permission android:name=&#34;android.permission.INTERNET&#34;/&gt; &lt;!-- 추가 --&gt; &lt;application android:label=&#34;web_view&#34; android:name=&#34;${applicationName}&#34; android:icon=&#34;@mipmap/ic_launcher&#34; android:usesCleartextTraffic=&#34;true&#34;&gt; &lt;!-- 추가 --&gt; </div><div class="post-footer">
+        <a href="/ios-allow/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/flutter/">Flutter</a>,&nbsp;<a href="/tags/ios/">iOS</a>,&nbsp;<a href="/tags/android/">Android</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><div class="featured-image-preview">
             <a href="/dart/"><img
         class="lazyload"
         src="/svg/loading.min.svg"
@@ -138,11 +145,6 @@ API 설계가 일관성이 없다. 의존성 관리가 중앙에서 이루어지
 IPLocationTools IP/Subnet Mask 192.</div><div class="post-footer">
         <a href="/aws-28-vpc/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/aws/">AWS</a>,&nbsp;<a href="/tags/virtual-private-cloudvpc/">Virtual Private Cloud(VPC)</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/aws-27-security-encryption/">27. AWS Security & Encryption</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="https://github.com/riley817" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-08-14">2022-08-14</time></span>&nbsp;<span class="post-category">included in <a href="/categories/aws-certified-saa-c02-%EC%8B%9C%ED%97%98%EC%A4%80%EB%B9%84/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>AWS Certified SAA-C02 시험준비</a></span></div><div class="content">전송중 암호화 (SSL) 데이터를 전송하기 전에 암호화. 수신 후 복호화 SSL 인증서로 암호화 (HTTPS) 전송 중 암호화는 MITM(man in the middle attack)이 발생하지 않도록 보장 Server side encryption at rest 데이터가 서버에 수신 된 후 암호화 데이터가 서버에 전송 전 복호화 데이터 키라고 불리우는 키 덕분에 데이터는 암호화 된 형태로 저장 암호화 및 복호화 키는 어딘가에 관리되어야 하며 서버는 이에 대한 액세스 권한이 있어야 한다. Client side encryption 데이터가 클라이언트에 의해 암호화되고 서버는 복호화할 수 없음 데이터는 수신 클라이언트에 의해 복호화 서버는 데이터의 암호를 복호화 할 수 없음 Envelop Encryption 암호화를 활용 AWS KMS (Key Management Service) KMS 키를 사용하여 데이터에 액세스할 수 있는 사람과 대상을 쉽게 제어</div><div class="post-footer">
-        <a href="/aws-27-security-encryption/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/aws/">AWS</a>,&nbsp;<a href="/tags/aws-key-management-service/">AWS Key Management Service</a>,&nbsp;<a href="/tags/aws-system-manager/">AWS System Manager</a></div></div>
 </article><ul class="pagination"><li class="page-item ">
                     <span class="page-link">
                         <a href="/">1</a>
