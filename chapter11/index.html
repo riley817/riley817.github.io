@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [11장] 뉴스 피드 시스템 설계 - Riley&#39;s DevLog</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:title" content="가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [11장] 뉴스 피드 시스템 설계" />
+<meta property="og:description" content="Note 팀 내에서 진행하는 Study 정리 입니다. 함께 논의 하고 싶은 주제 이번 챕터도 굉장히 우리 서비스와 밀접한 내용이여서 매우 유익하고 좋았습니다. 대부분 설계에서 캐시를 많이 사용하고 있는 것 같습니다. 우리 서비스의 콘텐츠 쪽에는 도입하고 있는데 유저 쪽에도 도입을 해서 불필요한 서비스 의존관계를 없애면 좋을 것 같습니다. 요약 &ndash;
+뉴스피드 (news feed) 뉴스 피드는 사용자의 홈 페이지 중앙에 지속적으로 업데이트 되는 스토리들로 사용자 상태 정보 업데이트, 사진, 비디오, 링크, 앱 활동과 팔로우, 페이지, 그룹으로부터 오는 좋아요 등을 포함" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://riley817.github.io/chapter11/" /><meta property="og:image" content="https://riley817.github.io/icon.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-08-26T00:33:20+09:00" />
+<meta property="article:modified_time" content="2023-08-26T01:10:14+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://riley817.github.io/icon.png"/>
+
+<meta name="twitter:title" content="가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [11장] 뉴스 피드 시스템 설계"/>
+<meta name="twitter:description" content="Note 팀 내에서 진행하는 Study 정리 입니다. 함께 논의 하고 싶은 주제 이번 챕터도 굉장히 우리 서비스와 밀접한 내용이여서 매우 유익하고 좋았습니다. 대부분 설계에서 캐시를 많이 사용하고 있는 것 같습니다. 우리 서비스의 콘텐츠 쪽에는 도입하고 있는데 유저 쪽에도 도입을 해서 불필요한 서비스 의존관계를 없애면 좋을 것 같습니다. 요약 &ndash;
+뉴스피드 (news feed) 뉴스 피드는 사용자의 홈 페이지 중앙에 지속적으로 업데이트 되는 스토리들로 사용자 상태 정보 업데이트, 사진, 비디오, 링크, 앱 활동과 팔로우, 페이지, 그룹으로부터 오는 좋아요 등을 포함"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://riley817.github.io/chapter11/" /><link rel="prev" href="https://riley817.github.io/chapter10/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [11장] 뉴스 피드 시스템 설계",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/riley817.github.io\/chapter11\/"
+        },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "System Design","wordcount":  796 ,
+        "url": "https:\/\/riley817.github.io\/chapter11\/","datePublished": "2023-08-26T00:33:20+09:00","dateModified": "2023-08-26T01:10:14+09:00","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "https:\/\/riley817.github.io\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "riley"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('light' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'light' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Riley&#39;s DevLog"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i></span>Riley&#39;s DevLog</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Riley&#39;s DevLog"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i></span>Riley&#39;s DevLog</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content always-active" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [11장] 뉴스 피드 시스템 설계</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/riley817" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-category">included in <a href="/categories/etc/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Etc</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-08-26">2023-08-26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;796 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;4 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#뉴스피드-news-feed">뉴스피드 (news feed)</a></li>
+    <li><a href="#1-문제-이해-및-설계-범위-확정">1. 문제 이해 및 설계 범위 확정</a>
+      <ul>
+        <li><a href="#요구사항-파악하기">요구사항 파악하기</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-개략적-설계안-제시-및-동의-구하기">2. 개략적 설계안 제시 및 동의 구하기</a>
+      <ul>
+        <li><a href="#21-뉴스-피드-api">2.1 뉴스 피드 API</a>
+          <ul>
+            <li><a href="#피드-발행-api">피드 발행 API</a></li>
+            <li><a href="#피드-읽기-api">피드 읽기 API</a></li>
+          </ul>
+        </li>
+        <li><a href="#22-피드-발행">2.2 피드 발행</a></li>
+        <li><a href="#23-뉴스-피드">2.3 뉴스 피드</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-상세-설계">3. 상세 설계</a>
+      <ul>
+        <li><a href="#31-피드-발행-흐름-상세-설계">3.1 피드 발행 흐름 상세 설계</a>
+          <ul>
+            <li><a href="#웹서버">웹서버</a></li>
+            <li><a href="#포스팅-전송팬아웃-서비스">포스팅 전송(팬아웃) 서비스</a></li>
+            <li><a href="#팬-아웃-서비스">팬 아웃 서비스</a></li>
+            <li><a href="#피드-읽기-흐름-상세-설계">피드 읽기 흐름 상세 설계</a></li>
+          </ul>
+        </li>
+        <li><a href="#32-캐시-구조">3.2 캐시 구조</a></li>
+      </ul>
+    </li>
+    <li><a href="#4-마무리">4. 마무리</a>
+      <ul>
+        <li><a href="#데이터-베이스-규모-확장">데이터 베이스 규모 확장</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><div class="details admonition tip open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw" aria-hidden="true"></i>Note<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">팀 내에서 진행하는 Study 정리 입니다.</div>
+        </div>
+    </div>
+<h1 id="함께-논의-하고-싶은-주제">함께 논의 하고 싶은 주제</h1>
+<hr>
+<ul>
+<li>이번 챕터도 굉장히 우리 서비스와 밀접한 내용이여서 매우 유익하고 좋았습니다.</li>
+<li>대부분 설계에서 캐시를 많이 사용하고 있는 것 같습니다. 우리 서비스의 콘텐츠 쪽에는 도입하고 있는데 유저 쪽에도 도입을 해서 불필요한 서비스 의존관계를 없애면 좋을 것 같습니다.</li>
+</ul>
+<h1 id="요약">요약</h1>
+<p>&ndash;</p>
+<h2 id="뉴스피드-news-feed">뉴스피드 (news feed)</h2>
+<p>뉴스 피드는 사용자의 홈 페이지 중앙에 지속적으로 업데이트 되는 스토리들로 사용자 상태 정보 업데이트, 사진, 비디오, 링크, 앱 활동과 팔로우, 페이지, 그룹으로부터 오는 좋아요 등을 포함</p>
+<h2 id="1-문제-이해-및-설계-범위-확정">1. 문제 이해 및 설계 범위 확정</h2>
+<h3 id="요구사항-파악하기">요구사항 파악하기</h3>
+<ul>
+<li>웹과 앱 둘다 지원</li>
+<li>뉴스 피드 페이지를 새로운 스토리에 올릴 수 있고 친구들이 올리는 스토리를 볼 수 있어야 한다.</li>
+<li>시간 흐름 역순으로 정렬</li>
+<li>최대 5,000 명의 친구를 갖을 수 있다.</li>
+<li>트래픽 규모 : 매일 천만명이 방문</li>
+<li>이미지, 비디오 등 미디어 파일 포함</li>
+</ul>
+<h2 id="2-개략적-설계안-제시-및-동의-구하기">2. 개략적 설계안 제시 및 동의 구하기</h2>
+<h3 id="21-뉴스-피드-api">2.1 뉴스 피드 API</h3>
+<ul>
+<li>HTTP 프로토콜 기반</li>
+<li>API 피드발행, 피드 읽기 API</li>
+</ul>
+<h4 id="피드-발행-api">피드 발행 API</h4>
+<ul>
+<li>새 스토리를 포스팅 한다.</li>
+<li>HTTP POST 형태로 요청</li>
+</ul>
+<blockquote>
+<p>POST /v1/me/feed</p>
+<ul>
+<li>Body: 포스팅 내용</li>
+<li>Authorization 헤더 : API 호출을 인증하기 위해 사용</li>
+</ul>
+</blockquote>
+<h4 id="피드-읽기-api">피드 읽기 API</h4>
+<ul>
+<li>뉴스 피드를 가져오는 API.</li>
+</ul>
+<blockquote>
+<p>GET /v1/me/feed</p>
+<ul>
+<li>Authorization 헤더 : API 호출을 인증하기 위해 사용</li>
+</ul>
+</blockquote>
+<h3 id="22-피드-발행">2.2 피드 발행</h3>
+<figure><img src="/posts/images/system-design-interview/system-design-figure-11-2.png#center"/>
+</figure>
+
+<ul>
+<li><strong>사용자</strong> : 모바일 앱이나 브라우저에 새 포스팅을 올리는 주체</li>
+<li><strong>로드밸런서</strong> : 트래픽을 웹 서버들로 분산</li>
+<li><strong>웹 서버</strong> : HTTP 요청을 내부 서비스로 중계하는 역할</li>
+<li><strong>포스팅 저장 서비스</strong> : 새 포스팅을 데이터베이스와 캐시에 저장</li>
+<li><strong>포스팅 전송 서비스</strong> : 새 포스팅을 친구의 뉴스 피드에 푸시한다. 뉴스 피드 데이터는 캐시에 보관하여 빠르게 읽어 갈 수 있도록 한다.</li>
+<li><strong>알림 서비스</strong> : 친구들에게 새 포스팅이 올라왔음을 알리거나 푸시 알림을 전송</li>
+</ul>
+<h3 id="23-뉴스-피드">2.3 뉴스 피드</h3>
+<figure><img src="/posts/images/system-design-interview/system-design-figure-11-3.png#center"/>
+</figure>
+
+<ul>
+<li>사용자 : 뉴스 피드를 읽는 주체다</li>
+<li>로드밸런서 : 트래픽을 웹 서버들로 분산</li>
+<li>웹 서버 : 트래픽을 뉴스 피드 서버로 보냄</li>
+<li>뉴스 피드 서비스 : 캐시에서 뉴스 피드를 가져오는 서비스</li>
+<li>뉴스 피드 캐시 : 뉴스 피드를 렌더링 할 때 필요한 피드 ID 보관</li>
+</ul>
+<h2 id="3-상세-설계">3. 상세 설계</h2>
+<h3 id="31-피드-발행-흐름-상세-설계">3.1 피드 발행 흐름 상세 설계</h3>
+<figure><img src="/posts/images/system-design-interview/system-design-figure-11-4.png#center"/>
+</figure>
+
+<h4 id="웹서버">웹서버</h4>
+<ul>
+<li>클라이언트 통신 뿐만 아니라 인증이나 처리율 제한 등의 기능도 수행</li>
+<li>인증 토큰을 헤더에 넣고 API를 호출해야 포스팅 할 수 있게 해야 한다.</li>
+<li>스팸을 막고 유해한 콘텐츠가 자주 올라오는 것을 방지하기 위해 특정 기간 동안 사용자가 올릴 수 있는 포스팅 수 제한</li>
+</ul>
+<h4 id="포스팅-전송팬아웃-서비스">포스팅 전송(팬아웃) 서비스</h4>
+<ul>
+<li>사용자가 새 포스팅을 그 사용자와 친구 관계에 있는 모든 사용자에게 전달하는 과정</li>
+<li>쓰기 시점 팬아웃(푸시 모델), 읽기 시점 팬아웃(풀 모델)</li>
+</ul>
+<p><strong>쓰기 시점에서 팬아웃 하는 모델</strong></p>
+<ul>
+<li>
+<p>새로운 포스팅을 기록하는 시점에 뉴스 피드 갱신</p>
+</li>
+<li>
+<p>포스팅이 완료되면 바로 해당 사용자의 캐시에 해당 포스팅 기록</p>
+</li>
+<li>
+<p>장점</p>
+<ul>
+<li>실시간으로 갱신, 사용자에게 즉각 전송</li>
+<li>기록시 갱신되므로 뉴스 피드를 읽는 데 드는 시간이 짧아짐</li>
+</ul>
+</li>
+<li>
+<p>단점</p>
+<ul>
+<li>친구가 많을 경우 목록에 있는 사용자에게 갱신시 많은 시간 소요 (핫키 문제)</li>
+<li>서비스를 자주 이용하지 않는 사용자의 피드도 갱신</li>
+</ul>
+</li>
+</ul>
+<p><strong>읽기 시점에서 팬아웃하는 모델</strong></p>
+<ul>
+<li>
+<p>피드를 읽어야 하는 시점에 뉴스 피드 갱신</p>
+</li>
+<li>
+<p>요청 기반(On-demand) ahepf</p>
+</li>
+<li>
+<p>사용자는 본인 홈페이지에 타임 라인을 로딩하는 시점에 새로운 포스트를 가져옴</p>
+</li>
+<li>
+<p>장점</p>
+<ul>
+<li>비활성화된 사용자, 또는 서비스에 거의 로그인하지 않는 사용자의 경우 이모델이 유리</li>
+<li>로그인하기까지 어떤 컴퓨터 자원도 소모하지 않음</li>
+<li>데이터를 친구 각각에게 푸시할 필요가 없으므로 핫키 문제도 생기지 않음</li>
+</ul>
+</li>
+<li>
+<p>단점</p>
+<ul>
+<li>뉴스 피드를 읽는데 많은 시간이 소요</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>두 가지 결합하여 대부분의 사용자에 대해서는 푸시 모델을 사용하고 친구나 팔로어가 많은 사용자의 경우 팔로어로 하여금 해당 사용자의 포스팅을 필요할 때 가져가는 풀 모델을 사용하여 시스템 과부하를 방지</p>
+</blockquote>
+<h4 id="팬-아웃-서비스">팬 아웃 서비스</h4>
+<figure><img src="/posts/images/system-design-interview/system-design-figure-11-5.png#center"/>
+</figure>
+
+<ol>
+<li>그래프 데이터베이스에서 친구 ID 목록을 조회. 그래프 데이터베이스는 친구 관계나 친구 추천을 관리하기 적합</li>
+<li>사용자 정보 캐시에서 친구들의 정보를 조회. 사용자 설정에 따라 일부 친구 걸러넴</li>
+<li>친구 목록과 새 스토리 포스팅 ID를 메시지 큐에 저장</li>
+<li>팬아웃 작업서버가 메시지 큐에 데이터를 꺼내 뉴스 피드 데이터를 뉴스 피드 캐시에 저장</li>
+</ol>
+<ul>
+<li>뉴스 피드 캐시는 [포스팅 ID, 사용자 ID]의 순서쌍을 보관하는 매핑 테이블</li>
+<li>메모리 공간을 위해 아이디 값만 저장</li>
+</ul>
+<h4 id="피드-읽기-흐름-상세-설계">피드 읽기 흐름 상세 설계</h4>
+<ul>
+<li>미디어 같은 콘텐츠는 CDN에 저장
+<figure><img src="/posts/images/system-design-interview/system-design-figure-11-7.png#center"/>
+</figure>
+</li>
+</ul>
+<ol>
+<li>사용자가 뉴스 피드를 읽으려는 요청 전송</li>
+<li>로드밸런서가 웹 서버 중 하나로 전달</li>
+<li>웹 서버는 피드를 가져오기 위해 뉴스 피드 서비스를 호출</li>
+<li>뉴스 피드 서비스는 뉴스 피드 캐시에서 포스팅 ID 목록을 가져옴</li>
+<li>뉴스 피드에 표시할 사용자 이름, 사용자 사진, 포스팅 콘텐츠, 이미지 등 사용자 캐시와 포스팅 캐시에서 가져와 완전한 뉴스 피드를 만듬</li>
+<li>생성된 뉴스 피드를 JSON 현태로 만드러 클라이언트에게 보냄</li>
+</ol>
+<h3 id="32-캐시-구조">3.2 캐시 구조</h3>
+<figure><img src="/posts/images/system-design-interview/system-design-figure-11-8.png#center"/>
+</figure>
+
+<ul>
+<li>뉴스 피드 : 뉴스 피드의 ID를 보관</li>
+<li>콘텐츠 : 포스팅 데이터 보관, 인기 콘텐츠는 따로 보관</li>
+<li>소셜 그래프 : 사용자 간 관계 정보 보관</li>
+<li>행동 : 포스팅에 대한 사용자 행위에 관한 정보 보관. 좋아요, 답글, 등등</li>
+<li>횟수 : 좋아요 횟수, 응답 수, 팔로어 수, 팔로잉 수 정보 보관</li>
+</ul>
+<h2 id="4-마무리">4. 마무리</h2>
+<p>회사마다 독특한 제약이나 요구조건이 있기 때문에 설계를 진행하고 기술을 선택할 때 그 배경에는 어떤 타협적 결정들(Trade-off)가 있었는지 잘 이해하고 설명할 수 있어야 한다.</p>
+<h3 id="데이터-베이스-규모-확장">데이터 베이스 규모 확장</h3>
+<ul>
+<li>
+<p>수직적 규모 확장 vs 수평적 규모 확장</p>
+</li>
+<li>
+<p>SQL vs NoSQL</p>
+</li>
+<li>
+<p>주/부 다중화</p>
+</li>
+<li>
+<p>복제본에 대한 읽기 연산</p>
+</li>
+<li>
+<p>일관성 모델</p>
+</li>
+<li>
+<p>데이터베이스 샤딩</p>
+</li>
+<li>
+<p>웹 계층을 무상태로 운영</p>
+</li>
+<li>
+<p>가능한 한 많은 데이터를 캐시할 방법</p>
+</li>
+<li>
+<p>여러 데이터를 센터를 지원할 방법</p>
+</li>
+<li>
+<p>메세지 큐를 사용하여 컴포넌트 사이의 결합도 낮추기</p>
+</li>
+<li>
+<p>핵심 메트릭에 대한 모니터링 : 트래픽이 몰리는 시간대의 QPS, 사용자가 뉴스 피드를 새로고침 할 때 지연 시간 등</p>
+</li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-08-26&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/7fe2d07ad6b2c9b5954444ab189cfb6b7944c63a" target="_blank" title="commit by riley817(riley0422@icloud.com) 7fe2d07ad6b2c9b5954444ab189cfb6b7944c63a: 20230826011013">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>7fe2d07</a></span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/system-design/">System Design</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/chapter10/" class="prev" rel="prev" title="가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [10장] 알림 시스템 설계"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [10장] 알림 시스템 설계</a></div>
+</div>
+<div id="comments"><script src="https://utteranc.es/client.js"
+            repo="riley817/blog-comment"
+            issue-term="pathname"
+            label="✨💬✨"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+        </script>
+    </div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.117.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/riley817" target="_blank">Riley</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/copy-tex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.1/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"","algoliaIndex":"","algoliaSearchKey":"","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
