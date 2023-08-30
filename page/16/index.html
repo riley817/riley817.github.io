@@ -100,6 +100,11 @@
         alt="/images/avatar.png"
         title="/images/avatar.png" /></a></div><h1 class="home-title">라일리의 개발 공부기록</h1><div class="home-subtitle"><div id="id-1" class="typeit"></div></div><div class="links"><a href="https://github.com/https://github.com/riley817" title="GitHub" target="_blank" rel="noopener noreffer me"><i class="fab fa-github-alt fa-fw" aria-hidden="true"></i></a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/page-11-2/">[Mastering Spring 5.0] 11.2 Spring Reactive - 1</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="https://github.com/riley817" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2018-12-09">2018-12-09</time></span>&nbsp;<span class="post-category">included in <a href="/categories/mastering-spring-5.0/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Mastering Spring 5.0</a></span></div><div class="content">리액티브 스트림 의존성 추가 1 2 implementation (&#39;org.reactivestreams:reactive-streams:1.0.2&#39;) implementation (&#39;org.reactivestreams:reactive-streams-tck:1.0.2&#39;) 리액티브 스트림의 구성요소 Publisher : 데이터 제공자. 구독한 구독자들에게 구독 정보를 토대로 데이터를 제공한다. Subscriber : 데이터 소모자. 제공자로부터 데이터를 받아 소모한다. Subscription : 구독 정보. Subscriber 는 Publisher 를 구독하여 데이터(n) 요청할 수 있다. 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 // Publisher package org.</div><div class="post-footer">
+        <a href="/page-11-2/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/spring-framework/">Spring Framework</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/page-6-1/">[Mastering Spring 5.0] 6.1 예외처리</a>
     </h1><div class="post-meta"><span class="post-author"><a href="https://github.com/riley817" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2018-12-09">2018-12-09</time></span>&nbsp;<span class="post-category">included in <a href="/categories/mastering-spring-5.0/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Mastering Spring 5.0</a></span></div><div class="content">스프링 5.0 마스터 스터디 학습 내용 정리입니다.
 1. 스프링 부트의 기본 예외처리 스프링부트의 기본 예외 형식은 throw 된 예외 메세지 와 함께 JSON 형태로 에러를 리턴한다. 브라우저경우 기본 오류 페이지 (Whilelabel Error Page) 를 출력한다. 1 2 3 4 5 6 7 { &#34;timestamp&#34;: &#34;2018-12-25T05:01:26.483+0000&#34;, &#34;status&#34;: 500, &#34;error&#34;: &#34;Internal Server Error&#34;, &#34;message&#34;: &#34;Some Exception Occurred&#34;, &#34;path&#34;: &#34;/users/dummy-service&#34; } 2. 스프링 사용자 정의 예외처리 스프링에서는 오류에 대한 응답을 사용자가 정의하는 여러 옵션을 제공한다.</div><div class="post-footer">
@@ -131,11 +136,6 @@ Java 에서는 위와 같은 문제를 해결하기 위해 어노테이션을 �
 인증(Authentication) 과 권한 (Authorization) 인증(Authentication): 소비자(클라이언트) 가 서비스(리소스) 에 접근이 가능한 소비자인지 인가/권한부여(Authorization) : 접근이 가능하지만 해당 작업을 소비자(클라이언트) 에게 허용할것인지 인증방식은 다양하며, 전통적인 인증방식으로는 사용자명Principle과 비밀번호Credential 로 인증하는 Credential 기반 인증 방식 과 OTP 등과 같이 추가적인 인증방식을 도입해 2가지 방법으로 인증하는 이중 인증 방식 과 최근에는 OAuth2 인증방식 도 필수적으로 사용되고 있다.</div><div class="post-footer">
         <a href="/page-6-5/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/spring-framework/">Spring Framework</a>,&nbsp;<a href="/tags/spring-security/">Spring Security</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/page-6-6/">[Mastering Spring 5.0] 6.6 Spring Security - OAuth 2.0</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="https://github.com/riley817" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2018-12-09">2018-12-09</time></span>&nbsp;<span class="post-category">included in <a href="/categories/mastering-spring-5.0/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Mastering Spring 5.0</a></span></div><div class="content">OAuth2 인증 OAuth 2는 어플리케이션과 Facebook, GitHub 및 DigitalOcean 과 같은 HTTP 서비스의사용자 계정에 대한 제한된 액세스 권한을 얻을 수있게 해주는 인증 프레임 워크이다. 이는 사용자 계정을 호스팅하는 서비스에 사용자 인증을 위임하고 타사 응용 프로그램에 사용자 계정에 대한 액세스 권한을 부여하여 작동하게 된다. OAuth 2는 웹 및 데스크톱 응용 프로그램 및 모바일 장치에 대한 인증 흐름을 제공하게 된다. OAuth2 주체 리소스 소유자 (사용자) : 리소스 소유자는 자신의 계정에 액세스하기 위해 어플리케이션 을 인증하는 사용자 이다.</div><div class="post-footer">
-        <a href="/page-6-6/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/spring-framework/">Spring Framework</a>,&nbsp;<a href="/tags/spring-security/">Spring Security</a></div></div>
 </article><ul class="pagination"><li class="page-item ">
                     <span class="page-link">
                         <a href="/">1</a>
@@ -163,8 +163,10 @@ Java 에서는 위와 같은 문제를 해결하기 위해 어노테이션을 �
                         <a href="/page/18/">18</a>
                     </span>
                 </li><li class="page-item ">
+                    <span class="page-link" aria-hidden="true">&hellip;</span>
+                </li><li class="page-item ">
                     <span class="page-link">
-                        <a href="/page/19/">19</a>
+                        <a href="/page/20/">20</a>
                     </span>
                 </li></ul></div></div>
             </main><footer class="footer">

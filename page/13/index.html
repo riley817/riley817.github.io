@@ -100,6 +100,12 @@
         alt="/images/avatar.png"
         title="/images/avatar.png" /></a></div><h1 class="home-title">라일리의 개발 공부기록</h1><div class="home-subtitle"><div id="id-1" class="typeit"></div></div><div class="links"><a href="https://github.com/https://github.com/riley817" title="GitHub" target="_blank" rel="noopener noreffer me"><i class="fab fa-github-alt fa-fw" aria-hidden="true"></i></a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/git-ignore/">[Git] gitignore 적용하기</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="https://github.com/riley817" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2020-05-11">2020-05-11</time></span>&nbsp;<span class="post-category">included in <a href="/categories/git/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Git</a></span></div><div class="content">.gitignore .gitignore에 의도적으로 추적을 원하지 않는 파일을 무시하도록 지정할 수 있다. 그러나 git이 이미 추적을 한 파일은 영향을 받지 않는다. 이미 한번 추적이 된 파일을 .gitignore 파일에 적용하려면 아래와 같이 캐시를 삭제해 주어야 한다.
+1 2 3 4 git rm -r --cached . git add . git commit -m &#34;Apply .gitignore&#34; git push </div><div class="post-footer">
+        <a href="/git-ignore/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/git/">Git</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/nginx-compile/">[NGINX] CentOS 7에서 nginx 컴파일 설치하기</a>
     </h1><div class="post-meta"><span class="post-author"><a href="https://github.com/riley817" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2020-05-06">2020-05-06</time></span>&nbsp;<span class="post-category">included in <a href="/categories/etc/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Etc</a></span></div><div class="content">nginx 컴파일 설치하기 CentOS 7에서 NGINX를 컴파일 버전으로 설치한다. 컴파일 설치를 하기 위해서는 몇 가지 라이브러리가 필요하다. 필요 의존 라이브러리는 openssl, pcre, zlib 등이 필요하므로 먼저 설치한다. 컴파일을 위한 라이브러리 설치 1 2 3 4 5 6 7 8 9 10 11 # pcre 라이브러리 설치 yum install pcre* # gzip 압축을 사용하기 위해서 설치 yum install zlib zlib-devel # open ssl 설치 yum install openssl openssl-devel # gcc 설치 yum install gcc nginx 소스 파일을 다운로드 최신 버전 경로는 아래 url에 접속하여 원하는 버전 링크를 복사한다.</div><div class="post-footer">
         <a href="/nginx-compile/">Read More</a><div class="post-tags">
@@ -129,14 +135,6 @@ http://www.h2database.com/html/tutorial.html#creating_new_databases 1 2 # 설치
 AWS에서 Cent OS 7로 테스트 서버를 구축한다. 콘솔접속경로 AWS EC2 인스턴스 추가하기 1. 콘솔 대시보드에서 인스턴스 시작을 선택한다. 2. Amazon Machine Image(AMI)에서 인스턴스 템플릿을 선택한다. 검색 창에 centos를 검색 후 원하는 버전을 선택한다. 3. 인스턴스 유형 선택 페이지에서 하드웨어 구성을 선택한다. 일단 난 프리티어니깐&hellip; t2.micro를 선택 🤔 4. 🤷🏻‍♀️ 검토 후 시작(Review and Launch) 버튼을 클릭하여 구성을 완료한다. 5. 보안 그룹 구성 6. 인스턴스 시작 검토 페이지에서 시작을 선택한다.</div><div class="post-footer">
         <a href="/build-aws-centos7/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/aws/">AWS</a>,&nbsp;<a href="/tags/aws-ec2/">AWS EC2</a>,&nbsp;<a href="/tags/devops/">devops</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/chapter1-docker/">[시작하세요! 도커/쿠버네티스] Chapter 1. 도커</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="https://github.com/riley817" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2019-08-02">2019-08-02</time></span>&nbsp;<span class="post-category">included in <a href="/categories/docker/kubernetes/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Docker/Kubernetes</a></span></div><div class="content">시작하세요! 도커/쿠버네티스 책 정리 🐳🐳🐳
-도커(docker)는 리눅스 컨테이너에 여러 기능을 추가함으로써 애플리케이션을 컨테이너로서 좀 더 쉽게 사용할 수 있게 만들어진 오픈소스 프로젝트이다. GO 언어로 작성되어 있으며 2013년 3월에 첫 번째 릴리스가 발표된 이후 지금까지 꾸준히 개발되고 있다.
-도커와 관련된 프로젝트
-Docker Compose Private Registry Docker Machine Kitematic 도커라고 하면 Docker Engine 혹은 도커와 관련된 모든 프로젝트를 의미한다. 도커 생태계에 있는 여러 프로젝트들은 도커 엔진을 좀 더 효율적으로 사용하기 위한 것에 불과하며 핵심이 되는 것은 도커 엔진이다.</div><div class="post-footer">
-        <a href="/chapter1-docker/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/docker/">Docker</a>,&nbsp;<a href="/tags/kubernetes/">Kubernetes</a></div></div>
 </article><ul class="pagination"><li class="page-item ">
                     <span class="page-link">
                         <a href="/">1</a>
@@ -167,7 +165,7 @@ Docker Compose Private Registry Docker Machine Kitematic 도커라고 하면 Doc
                     <span class="page-link" aria-hidden="true">&hellip;</span>
                 </li><li class="page-item ">
                     <span class="page-link">
-                        <a href="/page/19/">19</a>
+                        <a href="/page/20/">20</a>
                     </span>
                 </li></ul></div></div>
             </main><footer class="footer">
