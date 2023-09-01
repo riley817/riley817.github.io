@@ -10,7 +10,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://riley817.github.io/chapter12/" /><meta property="og:image" content="https://riley817.github.io/icon.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2023-08-30T09:49:24+09:00" />
-<meta property="article:modified_time" content="2023-09-01T08:19:02+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
+<meta property="article:modified_time" content="2023-09-01T09:53:03+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://riley817.github.io/icon.png"/>
 
@@ -31,8 +31,8 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/riley817.github.io\/chapter12\/"
-        },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "System Design","wordcount":  121 ,
-        "url": "https:\/\/riley817.github.io\/chapter12\/","datePublished": "2023-08-30T09:49:24+09:00","dateModified": "2023-09-01T08:19:02+09:00","publisher": {
+        },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "System Design","wordcount":  655 ,
+        "url": "https:\/\/riley817.github.io\/chapter12\/","datePublished": "2023-08-30T09:49:24+09:00","dateModified": "2023-09-01T09:53:03+09:00","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/riley817.github.io\/images\/avatar.png"},"author": {
                 "@type": "Person",
@@ -106,8 +106,8 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [12장] 채팅 시스템 설계</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://github.com/riley817" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-category">included in <a href="/categories/etc/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Etc</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-08-30">2023-08-30</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;121 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;One minute&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-08-30">2023-08-30</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;655 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;4 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -124,7 +124,38 @@
         <li><a href="#요구사항">요구사항</a></li>
       </ul>
     </li>
-    <li><a href="#2-개략적-설계안-제시-및-동의-구하기">2. 개략적 설계안 제시 및 동의 구하기</a></li>
+    <li><a href="#2-개략적-설계안-제시-및-동의-구하기">2. 개략적 설계안 제시 및 동의 구하기</a>
+      <ul>
+        <li><a href="#21-서버-연결을-위한-프로토콜-결정하기">2.1 서버 연결을 위한 프로토콜 결정하기</a>
+          <ul>
+            <li><a href="#http-프로토콜">HTTP 프로토콜</a></li>
+            <li><a href="#폴링">폴링</a></li>
+            <li><a href="#롱폴링">롱폴링</a>
+              <ul>
+                <li><a href="#롱폴링의-약점">롱폴링의 약점</a></li>
+              </ul>
+            </li>
+            <li><a href="#웹소켓">웹소켓</a></li>
+          </ul>
+        </li>
+        <li><a href="#22-개략적-설계안">2.2 개략적 설계안</a>
+          <ul>
+            <li><a href="#무상태-서비스">무상태 서비스</a></li>
+            <li><a href="#상태-유지-서비스">상태 유지 서비스</a></li>
+            <li><a href="#제3자-서비스-연동">제3자 서비스 연동</a></li>
+            <li><a href="#규모-확장성">규모 확장성</a></li>
+            <li><a href="#저장소">저장소</a>
+              <ul>
+                <li><a href="#일반적-데이터">일반적 데이터</a></li>
+                <li><a href="#채팅-이력-데이터">채팅 이력 데이터</a></li>
+                <li><a href="#키-값-저장소">키-값 저장소</a></li>
+              </ul>
+            </li>
+            <li><a href="#데이터-모델">데이터 모델</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><div class="details admonition tip open">
@@ -160,13 +191,146 @@
 <ul>
 <li>채팅 시스템의 경우 클라이언트는 모바일 앱이거나 웹 애플리케이션이다.</li>
 <li>클라이언트는 서로 직접 통신하지 않는다.</li>
+<li>제공해야하는 기능
+<ul>
+<li>클라이언트들로부터 메세지 수신</li>
+<li>메시지 수신자(<code>recipient</code>) 결정 및 전달</li>
+<li>수신자가 접속 상태가 아닌 경우에는 접속할 때까지 해당 메시지 보관</li>
 </ul>
+</li>
+</ul>
+<h3 id="21-서버-연결을-위한-프로토콜-결정하기">2.1 서버 연결을 위한 프로토콜 결정하기</h3>
+<h4 id="http-프로토콜">HTTP 프로토콜</h4>
+<ul>
+<li>오랜 세월 검증된 프로토콜</li>
+<li>클라이언트는 채팅 서비스에 HTTP 프로토콜로 연결한 다음 메세지를 보내어 수신자에게 해당 메세지 전달</li>
+<li>채팅 서비스와 접속시 <code>keep-alive</code> 헤더를 사용하여 클라이언트와 서버사이 연결을 유지하고 TCP 접속과정에서 생기는 핸드쉐이크 횟수를 줄임</li>
+<li>HTTP는 클라이언트가 연결을 만드는 프로토콜이고 서버에서 임의 시점에 클라이언트로 메시지를 보내기 어려움</li>
+</ul>
+<h4 id="폴링">폴링</h4>
+<ul>
+<li>폴링은 클라이언트가 주기적으로 서버에게 새 메시지가 있는지 물어보는ㅂ ㅏㅇ법</li>
+<li>폴링을 자주하면 폴링비용이 증가</li>
+<li>답할 메세지가 없을 경우 서버 자원이 불필요하게 낭비</li>
+</ul>
+<h4 id="롱폴링">롱폴링</h4>
+<figure><img src="/posts/images/system-design-interview/system-design-figure-12-4.png#center"/>
+</figure>
+
+<ul>
+<li>클라이언트는 새 메시지가 반환되거나 타임아웃 될 때까지 연결을 유지</li>
+<li>클라이언트는 새 메세지를 받으면 기존 연결을 종료하고 서버에 새로운 요청을 보내어 모든 절차를 다시 시작</li>
+</ul>
+<h5 id="롱폴링의-약점">롱폴링의 약점</h5>
+<ul>
+<li>송신 클라이언트와 수신 클라이언트가 같은 채팅서버에 접속하지 않을 수도 있다.</li>
+<li>HTTP 서버들은 보통 무상태서버이며 로드밸런싱을 위해 라운드로빈 알고리즘에 의해 같은 서버에 연결을 갖고 있지 않을 수 있다.</li>
+<li>서버 입장에서 클라이언트가 연결을 해제 했는지 알 방법이 없음</li>
+<li>메세지를 많이 받지 않는 클라이언트의 타임아웃이 발생할 때 마다 주기적으로 서버에 재접속하므로 비효율적</li>
+</ul>
+<h4 id="웹소켓">웹소켓</h4>
+<figure><img src="/posts/images/system-design-interview/system-design-figure-12-5.png#center"/>
+</figure>
+
+<ul>
+<li>웹소켓은 서버가 클라이언트에게 비동기(<code>async</code>) 메세지를 보낼 때 가장 널리 사용하는 기술</li>
+<li>연결은 클라이언트에 시작하며 한번 맺어진 연결은 항구적이며 양방향</li>
+<li>HTTP 연결이지만 특정 핸드셰이크 절차를 거쳐 웹소켓 연결로 업그레이드</li>
+<li>방화벽이 있는 환경에서도 잘 동작</li>
+<li>HTTP/HTTPS의 기본 포트 번호를 그대로 사용</li>
+<li>메세지 송신 수신 시 동일한 프로토콜을 사용하므로 설계 및 구현이 단순</li>
+<li>메세지 연결을 항구적으로 유지되어야 하기 때문에 서버 측에서 연결 관리를 효율적으로 해야함</li>
+</ul>
+<h3 id="22-개략적-설계안">2.2 개략적 설계안</h3>
+<figure><img src="/posts/images/system-design-interview/system-design-figure-12-7.png#center"/>
+</figure>
+
+<ul>
+<li>채팅 기능 이외에 굳이 웹소켓을 사용할 필요는 없다.</li>
+<li>무상태 서비스, 상태유지(<code>stateful</code>) 서비스, 제3자서비스 로 나눈다.</li>
+</ul>
+<h4 id="무상태-서비스">무상태 서비스</h4>
+<ul>
+<li>무상태 서비스는 로그인, 회원가입, 사용자 프로파일 표시 등을 처리</li>
+<li>보편적으로 제공하는 기능</li>
+<li>무상태 서버 앞에는 로드밸런서를 위치시켜 요청을 그 경로에 맞는 서비스로 정확하게 전달</li>
+<li><strong>서비스 탐색(<code>service discovery</code>) 서비스</strong> - 클라이언트가 접속할 채팅 서버의 DNS 호스트명을 클라이언트에게 알려주는 역할</li>
+</ul>
+<h4 id="상태-유지-서비스">상태 유지 서비스</h4>
+<ul>
+<li>채팅 기능은 상태 유지가 필요하다.</li>
+<li>각 클라이언트가 채팅 서버와 독립적인 네트워크 연결을 유지</li>
+<li>보통 서버가 살아있는 동안 다른 서버로 연결을 변경하지 않음</li>
+<li>서비스 탐색 서비스는 채팅 서비스와 긴밀히 협력하여 특정 서버에 부하가 몰리지 않도록 함</li>
+</ul>
+<h4 id="제3자-서비스-연동">제3자 서비스 연동</h4>
+<ul>
+<li>앱이 실행중이 아니어도 새 메세지를 수신받으면 푸시 알림을 전송한다.</li>
+</ul>
+<h4 id="규모-확장성">규모 확장성</h4>
+<ul>
+<li>서버 한 대로 얼마나 많은 동시접속을 허용할 수 있는지 확인해야함</li>
+</ul>
+<blockquote>
+<p>ex) 동시접속자를 1M 이라 가정, 접속당 10K의 서버 메모리 필요하다 본다면 10GB 메모리만 있으면 모든 연결을 처리가능</p>
+</blockquote>
+<ul>
+<li>
+<p><code>SPOF(Single Point Of Failure)</code> 문제로 서버 한대로 처리하지는 않음
+<figure><img src="/posts/images/system-design-interview/system-design-figure-12-8.png#center"/>
+</figure>
+</p>
+</li>
+<li>
+<p>채팅 서버 : 클라이언트 사이에 메시지를 중개하는 역할</p>
+</li>
+<li>
+<p>접속상태 서버(<code>presence server</code>) : 사용자의 접속 여부 관리</p>
+</li>
+<li>
+<p>API 서버 : 채팅 이외의 기능을 처리</p>
+</li>
+<li>
+<p>알림 서버 : 푸시 전송</p>
+</li>
+<li>
+<p>키-값 저장소 : 채팅 이력을 보관하며 시스템에 접속한 사용자는 이전 채팅이력을 전부 볼 수 있음</p>
+</li>
+</ul>
+<h4 id="저장소">저장소</h4>
+<ul>
+<li>데이터 유형과 읽기/쓰기 연산 패턴을 파악하여 데이터베이스 유형을 정의</li>
+</ul>
+<h5 id="일반적-데이터">일반적 데이터</h5>
+<ul>
+<li>사용자 프로파일, 설정, 친구 목록 등 일반적 데이터는 관계형 데이터베이스에 보관</li>
+</ul>
+<h5 id="채팅-이력-데이터">채팅 이력 데이터</h5>
+<ul>
+<li>채팅 이력 데이터양은 엄청 남. 페이스북 메시저나 왓츠앱은 매일 600억 개의 메세지를 처리</li>
+<li>빈번하게 사용되는 데이터는 최근 주고받은 메시지</li>
+<li>검색, 특정 사용자 언급(<code>mention</code>) 메세지 등 특정 메세지르 점프하거나 무작위적인 데이터 접근을 하게되는 일도 있다.</li>
+<li>1:1 채팅 앱의 경우 읽기:쓰기 비율은 1:1</li>
+</ul>
+<h5 id="키-값-저장소">키-값 저장소</h5>
+<ul>
+<li>키-값 저장소는 수평적 규모확장이 쉽다</li>
+<li>데이터 접근 지연시간이 낮다</li>
+<li>관계형 데이터베이스는 롱 테일에 해당하는 부분을 잘 처리하지 못하며 인덱스가 커지면 데이터에 대한 무작위적 접근을 처리하는 비용이 늘어남</li>
+<li>안정적인 채팅 서비스가 키-값 저장소를 사용중
+<ul>
+<li>페이스북 메신저 : HBase</li>
+<li>디스코드 : Cassandra</li>
+</ul>
+</li>
+</ul>
+<h4 id="데이터-모델">데이터 모델</h4>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 2023-09-01&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/eb8de10355185f464c4ec4350200c17b910236c7" target="_blank" title="commit by riley(riley0422@icloud.com) eb8de10355185f464c4ec4350200c17b910236c7: Auto stash before merge of &#34;main&#34; and &#34;origin/main&#34;">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>eb8de10</a></span>
+                <span>Updated on 2023-09-01&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/45db8d1053e6c292769de8d5a266a9f02da89db0" target="_blank" title="commit by riley(riley0422@icloud.com) 45db8d1053e6c292769de8d5a266a9f02da89db0: 20230901095254">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>45db8d1</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>
