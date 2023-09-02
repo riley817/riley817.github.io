@@ -5,22 +5,20 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
         <title>가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [12장] 채팅 시스템 설계 - Riley&#39;s DevLog</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:title" content="가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [12장] 채팅 시스템 설계" />
-<meta property="og:description" content="Note 팀 내에서 진행하는 Study 정리 입니다. 함께 논의 하고 싶은 주제 느낀점 기존에는 폴링, 푸시 기법만 알고 있었지만 롱폴링이라는 방법도 알게 되었다. 웹소켓 서버는 웹서버나 로드밸런서처럼 앞단에 아무것도 붙이지 않는 건가 주로 작은 규모의 그룹 채팅에 대한 설계가 나와있었다. 규모가 큰 경우 어떻게 구성될까? 찾아보자 용량이 큰 파일 전송 기능을 추가할 경우 WebRTC 같은 기술을 통해 처리해도 좋지 않을까? 요약 &ndash;
-1. 문제 이해 및 설계 범위 확정 요구사항 응답지연이 낮은 일대일 채팅 기능 최대 100명까지 참여할 수 있는 그룹 채팅 기능 사용자의 접속상태 표시 기능 다양한 단물 지원." />
+<meta property="og:description" content="Note 팀 내에서 진행하는 Study 정리 입니다. 함께 논의 하고 싶은 주제 느낀점 기존에는 폴링, 푸시 기법만 알고 있었으나 롱폴링이라는 방법도 알게 되었습니다. 설계에 대한 내용은 주로 규모가 작은 그룹 채팅에 대한 설계만 그림을 통한 자세한 설명이 있었지만 규모가 큰 경우는 내용을 많이 다루지 않은 것 같습니다. 규모가 큰 채팅 서비스에서 크게 달라지는 것들이 있을까요? 미디어 파일과 같이 크기가 큰 파일을 채팅으로 전송해야하는 경우 WebRTC 과 같은(P2P 처럼) 기술을 활용할 수 있지 않을까 생각해보았습니다." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://riley817.github.io/chapter12/" /><meta property="og:image" content="https://riley817.github.io/icon.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2023-08-30T09:49:24+09:00" />
-<meta property="article:modified_time" content="2023-09-01T09:53:03+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
+<meta property="article:modified_time" content="2023-09-03T02:13:24+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://riley817.github.io/icon.png"/>
 
 <meta name="twitter:title" content="가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [12장] 채팅 시스템 설계"/>
-<meta name="twitter:description" content="Note 팀 내에서 진행하는 Study 정리 입니다. 함께 논의 하고 싶은 주제 느낀점 기존에는 폴링, 푸시 기법만 알고 있었지만 롱폴링이라는 방법도 알게 되었다. 웹소켓 서버는 웹서버나 로드밸런서처럼 앞단에 아무것도 붙이지 않는 건가 주로 작은 규모의 그룹 채팅에 대한 설계가 나와있었다. 규모가 큰 경우 어떻게 구성될까? 찾아보자 용량이 큰 파일 전송 기능을 추가할 경우 WebRTC 같은 기술을 통해 처리해도 좋지 않을까? 요약 &ndash;
-1. 문제 이해 및 설계 범위 확정 요구사항 응답지연이 낮은 일대일 채팅 기능 최대 100명까지 참여할 수 있는 그룹 채팅 기능 사용자의 접속상태 표시 기능 다양한 단물 지원."/>
+<meta name="twitter:description" content="Note 팀 내에서 진행하는 Study 정리 입니다. 함께 논의 하고 싶은 주제 느낀점 기존에는 폴링, 푸시 기법만 알고 있었으나 롱폴링이라는 방법도 알게 되었습니다. 설계에 대한 내용은 주로 규모가 작은 그룹 채팅에 대한 설계만 그림을 통한 자세한 설명이 있었지만 규모가 큰 경우는 내용을 많이 다루지 않은 것 같습니다. 규모가 큰 채팅 서비스에서 크게 달라지는 것들이 있을까요? 미디어 파일과 같이 크기가 큰 파일을 채팅으로 전송해야하는 경우 WebRTC 과 같은(P2P 처럼) 기술을 활용할 수 있지 않을까 생각해보았습니다."/>
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://riley817.github.io/chapter12/" /><link rel="prev" href="https://riley817.github.io/chapter11/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://riley817.github.io/chapter12/" /><link rel="prev" href="https://riley817.github.io/chapter11/" /><link rel="next" href="https://riley817.github.io/chapter13/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
     {
@@ -31,8 +29,8 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/riley817.github.io\/chapter12\/"
-        },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "System Design","wordcount":  655 ,
-        "url": "https:\/\/riley817.github.io\/chapter12\/","datePublished": "2023-08-30T09:49:24+09:00","dateModified": "2023-09-01T09:53:03+09:00","publisher": {
+        },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "System Design","wordcount":  1230 ,
+        "url": "https:\/\/riley817.github.io\/chapter12\/","datePublished": "2023-08-30T09:49:24+09:00","dateModified": "2023-09-03T02:13:24+09:00","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/riley817.github.io\/images\/avatar.png"},"author": {
                 "@type": "Person",
@@ -106,8 +104,8 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [12장] 채팅 시스템 설계</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://github.com/riley817" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-category">included in <a href="/categories/etc/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Etc</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-08-30">2023-08-30</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;655 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;4 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-08-30">2023-08-30</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1230 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;6 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -151,11 +149,38 @@
                 <li><a href="#키-값-저장소">키-값 저장소</a></li>
               </ul>
             </li>
-            <li><a href="#데이터-모델">데이터 모델</a></li>
+            <li><a href="#데이터-모델">데이터 모델</a>
+              <ul>
+                <li><a href="#11-채팅을-위한-메시지-테이블">1:1 채팅을 위한 메시지 테이블</a></li>
+                <li><a href="#그룹-채팅을-위한-메시지-테이블">그룹 채팅을 위한 메시지 테이블</a></li>
+                <li><a href="#메세지-아이디">메세지 아이디</a></li>
+              </ul>
+            </li>
           </ul>
         </li>
       </ul>
     </li>
+    <li><a href="#3-상세설계">3. 상세설계</a>
+      <ul>
+        <li><a href="#31-서비스-탐색">3.1 서비스 탐색</a></li>
+        <li><a href="#32-메세지-흐름">3.2 메세지 흐름</a>
+          <ul>
+            <li><a href="#11-채팅-메세지-처리-흐름">1:1 채팅 메세지 처리 흐름</a></li>
+            <li><a href="#여러-단말-사이의-메시지-동기화">여러 단말 사이의 메시지 동기화</a></li>
+            <li><a href="#소규모-그룹-채팅에서의-메시지의-흐름">소규모 그룹 채팅에서의 메시지의 흐름</a></li>
+          </ul>
+        </li>
+        <li><a href="#32-접속상태-표시">3.2 접속상태 표시</a>
+          <ul>
+            <li><a href="#사용자-로그인">사용자 로그인</a></li>
+            <li><a href="#로그아웃">로그아웃</a></li>
+            <li><a href="#접속장애">접속장애</a></li>
+            <li><a href="#상태-정보의-전송">상태 정보의 전송</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#4-마무리">4. 마무리</a></li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><div class="details admonition tip open">
@@ -170,10 +195,10 @@
 <hr>
 <h2 id="느낀점">느낀점</h2>
 <ol>
-<li>기존에는 폴링, 푸시 기법만 알고 있었지만 롱폴링이라는 방법도 알게 되었다.</li>
-<li>웹소켓 서버는 웹서버나 로드밸런서처럼 앞단에 아무것도 붙이지 않는 건가</li>
-<li>주로 작은 규모의 그룹 채팅에 대한 설계가 나와있었다. 규모가 큰 경우 어떻게 구성될까? 찾아보자</li>
-<li>용량이 큰 파일 전송 기능을 추가할 경우 WebRTC 같은 기술을 통해 처리해도 좋지 않을까?</li>
+<li>기존에는 폴링, 푸시 기법만 알고 있었으나 롱폴링이라는 방법도 알게 되었습니다.</li>
+<li>설계에 대한 내용은 주로 규모가 작은 그룹 채팅에 대한 설계만 그림을 통한 자세한 설명이 있었지만 규모가 큰 경우는 내용을 많이 다루지 않은 것 같습니다.
+규모가 큰 채팅 서비스에서 크게 달라지는 것들이 있을까요?</li>
+<li>미디어 파일과 같이 크기가 큰 파일을 채팅으로 전송해야하는 경우 WebRTC 과 같은(P2P 처럼) 기술을 활용할 수 있지 않을까 생각해보았습니다.</li>
 </ol>
 <h1 id="요약">요약</h1>
 <p>&ndash;</p>
@@ -325,12 +350,134 @@
 </li>
 </ul>
 <h4 id="데이터-모델">데이터 모델</h4>
+<h5 id="11-채팅을-위한-메시지-테이블">1:1 채팅을 위한 메시지 테이블</h5>
+<ul>
+<li>테이블의 기본 키는 <code>message_id</code>로 메세지 순서를 쉽게 정할 수 있도록 하는 역할을 담당한다.</li>
+<li>두 메세지가 동시에 만들어 질 수도 있으므로 <code>created_at</code>을 사용하여 메시지 순서를 정할 수 없다.</li>
+</ul>
+<h5 id="그룹-채팅을-위한-메시지-테이블">그룹 채팅을 위한 메시지 테이블</h5>
+<ul>
+<li><code>channel_id</code>, <code>message_id</code>의 복합키를 기본키로 사용한다.</li>
+<li>채널은 채팅 그룹을 의미</li>
+<li>그룹 채팅에 적용될 모든 질의는 특정 채널을 대상으로 한다.</li>
+</ul>
+<h5 id="메세지-아이디">메세지 아이디</h5>
+<ul>
+<li><code>message_id</code>는 고유해야 한다.</li>
+<li>ID는 정렬 가능해야하며 시간 순서와 일치해야 한다.</li>
+<li><code>auto_incrment</code> (RDBMS 인 경우)</li>
+<li>스노플레이크 같은 전역적 64-bit 순서 번호 생성기를 이용</li>
+<li>지역적 순서 번호 생성기 이용</li>
+<li>ID의 유일성은 같은 그룹 안에서만 보증하면 충분하다</li>
+</ul>
+<h2 id="3-상세설계">3. 상세설계</h2>
+<h3 id="31-서비스-탐색">3.1 서비스 탐색</h3>
+<ul>
+<li>서비스 탐색의 기능은 클라이언트에게 가장 적합한 채팅 서버를 추천하는 것</li>
+<li>기준은 클라이언트의 위치, 서버의 용량 등</li>
+<li>아파치 주키퍼 등의 오픈 소스 솔루션</li>
+</ul>
+<figure><img src="/posts/images/system-design-interview/system-design-figure-12-11.png#center"/>
+</figure>
+
+<ol>
+<li>사용자 A가 시스템에 로그인</li>
+<li>로드밸런서가 로그인 요청을 API 서버들 가운데 하나로 보냄</li>
+<li>API 서버가 인증처리하고 나면 서비스 탐색 기능이 동작하여 해당 사용자를 서비스할 최적의 채팅서버를 찾음</li>
+<li>사용자 A는 채팅 서버 2와 웹소켓을 연결</li>
+</ol>
+<h3 id="32-메세지-흐름">3.2 메세지 흐름</h3>
+<h4 id="11-채팅-메세지-처리-흐름">1:1 채팅 메세지 처리 흐름</h4>
+<figure><img src="/posts/images/system-design-interview/system-design-figure-12-12.png#center"/>
+</figure>
+
+<ol>
+<li>사용자 A가 채팅서버 1로 메시지 전송</li>
+<li>채팅 서버 1은 ID 생성기를 사용해 해당 메시지 ID 결정</li>
+<li>채팅 서버 1은 해당 메시지를 메시지 동기화 큐로 전송</li>
+<li>메시지가 키-값 저장소에 보관</li>
+<li>(a) 사용자 B가 접속 중인 경우 메시지는 사용자 B가 접속중인 채팅 서버로 전송 (b) 사용자 B가 접속중이 아니라면 푸시 알림 메시지를 푸시 알림 서버로 전송</li>
+<li>채팅 서버 2는 메시지를 사용자 B에 전송. 사용자 B와 채팅 서버 2사이에는 웹소켓 연결이 있는 상태이므로 그것을 이용</li>
+</ol>
+<h4 id="여러-단말-사이의-메시지-동기화">여러 단말 사이의 메시지 동기화</h4>
+<figure><img src="/posts/images/system-design-interview/system-design-figure-12-13.png#center"/>
+</figure>
+
+<ul>
+<li>각 단말은 <code>cur_max_message_id</code>라는 변수를 유지. 해당 단말에서 관측된 가장 최신 메시지의 ID를 추적하는 용도</li>
+<li>수신자 ID가 현재 로그인한 사용자 ID와 같다.</li>
+<li>키-값 저장소에 보관된 메시지로서 그 ID가 <code>cur_max_message_id</code>보다 크다</li>
+<li><code>cur_max_message_id</code> 단말마다 별도로 유지 관리하면 되는 값</li>
+</ul>
+<h4 id="소규모-그룹-채팅에서의-메시지의-흐름">소규모 그룹 채팅에서의 메시지의 흐름</h4>
+<figure><img src="/posts/images/system-design-interview/system-design-figure-12-14.png#center"/>
+</figure>
+
+<ul>
+<li>A가 보낸 메시지가 사용자 B, C의 메시지 동기화 큐에 복사</li>
+<li>소규모 그룹 채팅에 적합한 이유
+<ul>
+<li>새로운 메시지 여부는 자기 큐만 보면 되니까 메시지 동기화 플로가 단순</li>
+<li>그룹이 크지 않으면 메시지를 수신자별로 복사해서 큐에 넣는 작업 비용이 크게 문제 되지 않음</li>
+</ul>
+</li>
+<li>그룹의 크기를 제한해야 한다.(위챗의 경우 500명으로 제한)</li>
+<li>많은 사용자를 지원해야하는 경우 모든 메세지를 사용자 큐에 복사하는 것은 바람직하지 않음</li>
+</ul>
+<h3 id="32-접속상태-표시">3.2 접속상태 표시</h3>
+<ul>
+<li>접속상태 서버를 통해 사용자의 상태를 관리</li>
+<li>접속상태 서버는 클라이언트와 웹소켓으로 통신하는 실시간 서비스의 일부</li>
+</ul>
+<h4 id="사용자-로그인">사용자 로그인</h4>
+<ul>
+<li>클라이언트와 실시간 서비스 사이의 웹소켓 연결이 맺어지고 나면 접속상태 서버는 A의 상태와 <code>last_active_at</code>을 저장</li>
+</ul>
+<h4 id="로그아웃">로그아웃</h4>
+<ul>
+<li>키-값 저장소엡 보관된 사용자 상태가 online에서 offline으로 변경</li>
+<li>UI 상 사용자 상태는 접속중이 아닌 것으로 표시</li>
+</ul>
+<h4 id="접속장애">접속장애</h4>
+<ul>
+<li>인터넷 연결이 원활하지 않을 경우 사용자를 오프라인 상태로 표시하고 연결이 복구되면 온라인 상태로 변경</li>
+<li>클라이언트의 접속상태를 서버로 보내고 마지막 이벤트를 받은이 x초 이내에 주기적으로 박동 이벤트를 보내 접속상태를 서버로 전송</li>
+<li>마지막 이벤트를 받은지 x초 이내 또다른 박동 이벤트 메시지를 받으면 온라인 상태로 유지</li>
+</ul>
+<h4 id="상태-정보의-전송">상태 정보의 전송</h4>
+<ul>
+<li>그룹 크기가 작을 때
+<ul>
+<li>상태정보는 서버의 발행-구독 모델을 사용할 수 있음</li>
+<li>각각의 친구 관계마다 채널을 하나씩 두어 사용자 상태 변화를 쉽게 통지 받을 수 있다.</li>
+</ul>
+</li>
+<li>그룹 크기가 큰 경우
+<ul>
+<li>사용자가 채팅 그룹에 입장하는 순간에 상태 정보를 읽어감</li>
+<li>친구 리스트에 사용자 접속상태를 갱신하면 수동으로 하도록 유도</li>
+</ul>
+</li>
+</ul>
+<h2 id="4-마무리">4. 마무리</h2>
+<ul>
+<li>미디어 지원 : 압축방식, 클라우드 저장소, 섬네일 생성 등을 논의</li>
+<li>종단 간 암호화 : 메시지 전송에 있어 발신인과 수신인외에 아무도 메세지 내용을 볼 수 없는 기능</li>
+<li>캐시 : 이미 읽은 메시지를 캐시 해두면 주고받는 데이터양을 줄일 수 있음</li>
+<li>로딩 속도 : 슬랙은 사용자의 데이터, 채널 등 지역적으로 분산하는 네트워크를 구축. 앱 로딩 속도를 개선</li>
+<li>오류 처리
+<ul>
+<li>채팅 서버 오류 : 서버 하나가 죽을 경우 서비스 탐색 기능이 동작하여 클라이언트에게 새로운 서버 배정</li>
+<li>메시지 재전송 : 재시도나 큐는 메시지의 안정적 전송을 보장</li>
+</ul>
+</li>
+</ul>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 2023-09-01&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/45db8d1053e6c292769de8d5a266a9f02da89db0" target="_blank" title="commit by riley(riley0422@icloud.com) 45db8d1053e6c292769de8d5a266a9f02da89db0: 20230901095254">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>45db8d1</a></span>
+                <span>Updated on 2023-09-03&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/310fa59b78aa5fab418f869cef3cb316db15128a" target="_blank" title="commit by riley817(riley0422@icloud.com) 310fa59b78aa5fab418f869cef3cb316db15128a: 20230903021322">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>310fa59</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>
@@ -347,7 +494,8 @@
         </section>
     </div>
 
-    <div class="post-nav"><a href="/chapter11/" class="prev" rel="prev" title="가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [11장] 뉴스 피드 시스템 설계"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [11장] 뉴스 피드 시스템 설계</a></div>
+    <div class="post-nav"><a href="/chapter11/" class="prev" rel="prev" title="가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [11장] 뉴스 피드 시스템 설계"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [11장] 뉴스 피드 시스템 설계</a>
+            <a href="/chapter13/" class="next" rel="next" title="가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [13장] 검색어 자동완성 시스템">가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [13장] 검색어 자동완성 시스템<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
 </div>
 <div id="comments"><script src="https://utteranc.es/client.js"
             repo="riley817/blog-comment"

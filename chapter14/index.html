@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [14장] 유튜브 설계 - Riley&#39;s DevLog</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:title" content="가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [14장] 유튜브 설계" />
+<meta property="og:description" content="Note 팀 내에서 진행하는 Study 정리 입니다. 함께 논의 하고 싶은 주제 느낀점 모바일 인터넷 트래픽 중 37% 가 유튜브라는 사실이 놀랍습니다. 비디오를 트랜스코딩 시 DAG 모델이 어떻게 쓰이는지 와닿지 않아서 조금 이해가 가지 않았습니다. 객체지향 언어에서처럼 각 작업을 인터페이스나 추상메서드로 정의해두면 클라이언트는 해당 작업을 클라이언트 OS에 맞게 구현하는 것 이라고 이해했는데 맞을까요? 1. 문제 이해 및 설계 범위 확정 요구사항 빠른 비디오 업로드 원활한 비디오 재생 재생 품질 선택 낮은 인프라 비용 높은 가용성과 규모 확장성 그리고 안정성 지원 클라이언트 : 모바일 앱, 웹브라우저, 스마트TV 개략적 규모 측정 일간 능동사용자 : 5백만 한 사용자는 하루 평균 5개의 비디오 시청 10%의 사용자가 하루에 1 비디오 업로드 비디오 평균 크기 300MB 비디오 저장을 위해 매일 요구되는 용량 : 5백만 * 10% * 300MB = 150TB CDN 비용 클라우드 CDN을 통해 서비스할 경우 데이터의 양에 따라 CDN에서 과금 아마존 클라우드프론트 기준으로 100% 미국에서 발생 시 1GB 당 0." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://riley817.github.io/chapter14/" /><meta property="og:image" content="https://riley817.github.io/icon.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-09-02T23:14:34+09:00" />
+<meta property="article:modified_time" content="2023-09-03T02:13:24+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://riley817.github.io/icon.png"/>
+
+<meta name="twitter:title" content="가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [14장] 유튜브 설계"/>
+<meta name="twitter:description" content="Note 팀 내에서 진행하는 Study 정리 입니다. 함께 논의 하고 싶은 주제 느낀점 모바일 인터넷 트래픽 중 37% 가 유튜브라는 사실이 놀랍습니다. 비디오를 트랜스코딩 시 DAG 모델이 어떻게 쓰이는지 와닿지 않아서 조금 이해가 가지 않았습니다. 객체지향 언어에서처럼 각 작업을 인터페이스나 추상메서드로 정의해두면 클라이언트는 해당 작업을 클라이언트 OS에 맞게 구현하는 것 이라고 이해했는데 맞을까요? 1. 문제 이해 및 설계 범위 확정 요구사항 빠른 비디오 업로드 원활한 비디오 재생 재생 품질 선택 낮은 인프라 비용 높은 가용성과 규모 확장성 그리고 안정성 지원 클라이언트 : 모바일 앱, 웹브라우저, 스마트TV 개략적 규모 측정 일간 능동사용자 : 5백만 한 사용자는 하루 평균 5개의 비디오 시청 10%의 사용자가 하루에 1 비디오 업로드 비디오 평균 크기 300MB 비디오 저장을 위해 매일 요구되는 용량 : 5백만 * 10% * 300MB = 150TB CDN 비용 클라우드 CDN을 통해 서비스할 경우 데이터의 양에 따라 CDN에서 과금 아마존 클라우드프론트 기준으로 100% 미국에서 발생 시 1GB 당 0."/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://riley817.github.io/chapter14/" /><link rel="prev" href="https://riley817.github.io/chapter13/" /><link rel="next" href="https://riley817.github.io/chapter15/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [14장] 유튜브 설계",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/riley817.github.io\/chapter14\/"
+        },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "System Design","wordcount":  1588 ,
+        "url": "https:\/\/riley817.github.io\/chapter14\/","datePublished": "2023-09-02T23:14:34+09:00","dateModified": "2023-09-03T02:13:24+09:00","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "https:\/\/riley817.github.io\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "riley"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('light' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'light' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Riley&#39;s DevLog"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i></span>Riley&#39;s DevLog</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Riley&#39;s DevLog"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i></span>Riley&#39;s DevLog</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content always-active" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [14장] 유튜브 설계</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/riley817" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-category">included in <a href="/categories/etc/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Etc</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-09-02">2023-09-02</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1588 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;8 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#느낀점">느낀점</a></li>
+    <li><a href="#1-문제-이해-및-설계-범위-확정">1. 문제 이해 및 설계 범위 확정</a>
+      <ul>
+        <li><a href="#요구사항">요구사항</a></li>
+        <li><a href="#개략적-규모-측정">개략적 규모 측정</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-개략적-설계안-제시-및-동의-구하기">2. 개략적 설계안 제시 및 동의 구하기</a>
+      <ul>
+        <li><a href="#21-비디오-업로드-절차">2.1 비디오 업로드 절차</a>
+          <ul>
+            <li><a href="#프로세스-a-비디오-업로드">프로세스 a: 비디오 업로드</a></li>
+            <li><a href="#프로세스-b-메타데이터-갱신">프로세스 b: 메타데이터 갱신</a></li>
+          </ul>
+        </li>
+        <li><a href="#22-비디오-스트리밍-절차">2.2 비디오 스트리밍 절차</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-상세-설계">3. 상세 설계</a>
+      <ul>
+        <li><a href="#31-비디오-트랜스-코딩">3.1 비디오 트랜스 코딩</a>
+          <ul>
+            <li><a href="#비디오-트랜스코딩이-중요한-이유">비디오 트랜스코딩이 중요한 이유</a></li>
+            <li><a href="#인코딩-포맷">인코딩 포맷</a></li>
+          </ul>
+        </li>
+        <li><a href="#32-유향-비순환-그래프dag-모델">3.2 유향 비순환 그래프(DAG) 모델</a></li>
+        <li><a href="#33-비디오-트랜스코딩-아키텍처">3.3 비디오 트랜스코딩 아키텍처</a>
+          <ul>
+            <li><a href="#전처리기preprocessor">전처리기(Preprocessor)</a></li>
+            <li><a href="#dag-스케쥴러">DAG 스케쥴러</a></li>
+            <li><a href="#자원-관리자resource-manager">자원 관리자(resource manager)</a>
+              <ul>
+                <li><a href="#작업관리자-동작-원리">작업관리자 동작 원리</a></li>
+              </ul>
+            </li>
+            <li><a href="#작업-서버">작업 서버</a></li>
+            <li><a href="#임시-저장소">임시 저장소</a></li>
+            <li><a href="#인코딩된-비디오">인코딩된 비디오</a></li>
+          </ul>
+        </li>
+        <li><a href="#34-시스템-최적화">3.4 시스템 최적화</a>
+          <ul>
+            <li><a href="#속도최적화--비디오-병렬-업로드">속도최적화 : 비디오 병렬 업로드</a></li>
+            <li><a href="#속도-최적화-업로드-센터를-사용자-근거리에-지정">속도 최적화: 업로드 센터를 사용자 근거리에 지정</a></li>
+            <li><a href="#속도-최적화-모든-절차를-병렬화">속도 최적화: 모든 절차를 병렬화</a></li>
+            <li><a href="#안정성-최적화-미리-사인된-업로드-url">안정성 최적화: 미리 사인된 업로드 URL</a>
+              <ul>
+                <li><a href="#업로드-절차">업로드 절차</a></li>
+              </ul>
+            </li>
+            <li><a href="#안정성-최적화-비디오-보호">안정성 최적화: 비디오 보호</a></li>
+            <li><a href="#비용-최적화">비용 최적화</a>
+              <ul>
+                <li><a href="#cdn-비용을-낮추는-방법">CDN 비용을 낮추는 방법</a></li>
+              </ul>
+            </li>
+            <li><a href="#오류처리">오류처리</a>
+              <ul>
+                <li><a href="#시스템-오류-두-가지-종류">시스템 오류 두 가지 종류</a></li>
+                <li><a href="#컴포넌트-별-오류-해결방법">컴포넌트 별 오류 해결방법</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#4-마무리">4. 마무리</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><div class="details admonition tip open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw" aria-hidden="true"></i>Note<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">팀 내에서 진행하는 Study 정리 입니다.</div>
+        </div>
+    </div>
+<h1 id="함께-논의-하고-싶은-주제">함께 논의 하고 싶은 주제</h1>
+<hr>
+<h2 id="느낀점">느낀점</h2>
+<ol>
+<li>모바일 인터넷 트래픽 중 37% 가 유튜브라는 사실이 놀랍습니다.</li>
+<li>비디오를 트랜스코딩 시 DAG 모델이 어떻게 쓰이는지 와닿지 않아서 조금 이해가 가지 않았습니다.
+객체지향 언어에서처럼 각 작업을 인터페이스나 추상메서드로 정의해두면 클라이언트는 해당 작업을 클라이언트 OS에 맞게 구현하는 것 이라고 이해했는데 맞을까요?</li>
+</ol>
+<h2 id="1-문제-이해-및-설계-범위-확정">1. 문제 이해 및 설계 범위 확정</h2>
+<h3 id="요구사항">요구사항</h3>
+<ul>
+<li>빠른 비디오 업로드</li>
+<li>원활한 비디오 재생</li>
+<li>재생 품질 선택</li>
+<li>낮은 인프라 비용</li>
+<li>높은 가용성과 규모 확장성 그리고 안정성</li>
+<li>지원 클라이언트 : 모바일 앱, 웹브라우저, 스마트TV</li>
+</ul>
+<h3 id="개략적-규모-측정">개략적 규모 측정</h3>
+<ul>
+<li>일간 능동사용자 : 5백만</li>
+<li>한 사용자는 하루 평균 5개의 비디오 시청</li>
+<li>10%의 사용자가 하루에 1 비디오 업로드</li>
+<li>비디오 평균 크기 300MB</li>
+<li>비디오 저장을 위해 매일 요구되는 용량 : 5백만 * 10% * 300MB = 150TB</li>
+<li>CDN 비용
+<ul>
+<li>클라우드 CDN을 통해 서비스할 경우 데이터의 양에 따라 CDN에서 과금</li>
+<li>아마존 클라우드프론트 기준으로 100% 미국에서 발생 시 1GB 당 0.02 요금 발생</li>
+<li>따라서 매일 발생하는 요금은 5백만 * 5 비디오 * 0.3GB * $0.02 = $150,000</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-개략적-설계안-제시-및-동의-구하기">2. 개략적 설계안 제시 및 동의 구하기</h2>
+<ul>
+<li>CDN과 BLOB 스토리지는 클라우드 서비스를 활용</li>
+</ul>
+<div class="details admonition tip open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw" aria-hidden="true"></i>Note<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><ul>
+<li>시스템 설계 면접은 모든 것을 밑바닥 부터 만드는 것과 관계 없음</li>
+<li>주어진 시간에 적절한 기술을 골라 설계를 마치고 그 기술이 각각 어떻게 동작하는지 상세히 설명하는 것이 더 중요</li>
+<li>규모 확장이 쉬운 BLOB 저장소 CDN을 만드는 것은 지극히 복잡하고 비용이 많이 드는 일</li>
+<li>넷플릭스의 경우 클라우드 서비스를 사용, 페이스북은 아카마이의 CDN을 사용</li>
+</ul>
+</div>
+        </div>
+    </div>
+<h3 id="21-비디오-업로드-절차">2.1 비디오 업로드 절차</h3>
+<figure><img src="/posts/images/system-design-interview/system-design-figure-14-4.png#center"/>
+</figure>
+
+<ul>
+<li><strong>사용자</strong> : 컴퓨터나 모바일 폰, 스마트 TV로 유튜브 시청</li>
+<li><strong>로드밸런서</strong> : API 서버 각각으로 고르게 요청을 분산</li>
+<li><strong>API 서버</strong> : 비디오 스트리밍을 제외한 모든 요청</li>
+<li><strong>메타데이터 데이터베이스</strong> : 비디오의 메타데이터를 보관. 샤딩과 다중화 적용하여 성능 및 가용성 요구사항 충족</li>
+<li><strong>메타데이터 캐시</strong> : 성능을 높이기 위해 비디오 메타데이터와 사용자 객체는 캐시</li>
+<li><strong>원본 저장소</strong> : 원본 비디오를 보관할 대형 이진 파일 저장소(BLOB: Binary Large Object storage) 시스템</li>
+<li><strong>트랜스코딩 서버</strong> : 비디오 트랜스코딩(비디오 인코딩)은 비디오의 포맷(MPEG, HLS 등) 변환하는 절차. 단말이나 대역폭 요구사항에 맞는 최적의 비디오 스트림을 제공하기위해 필요</li>
+<li><strong>트랜스코딩 비디오 저장소</strong> : 트랜스코딩이 완료된 비디오를 저장하는 BLOB 저장소</li>
+<li><strong>CDN</strong> : 비디오를 캐시하는 역할. 사용자가 재생 버튼을 누르면 비디오 스트리밍은 CDN을 통해 이루어짐</li>
+<li><strong>트랜스코딩 완료 큐</strong> : 비디오 트랜스 코딩 완료 이벤트들을 보관할 메시지 큐</li>
+<li><strong>트랜스코딩 완료 핸들러</strong> : 트랜스코딩 완료 큐에서 이벤트 데이터를 꺼내어 메타데이터와 캐시 데이터베이스를 갱신할 작업 서버</li>
+</ul>
+<h4 id="프로세스-a-비디오-업로드">프로세스 a: 비디오 업로드</h4>
+<ol>
+<li>비디오를 원본 저장소에 업로드</li>
+<li>트랜스 코딩 서버는 원본 저장소에서 해당 비디오를 가져와 트랜스 코딩 시작</li>
+<li>트랜스 코딩이 완료 (병렬로 처리)</li>
+</ol>
+<ul>
+<li>3a : 완료된 비디오를 트랜스 코딩 비디오 저장소에 업로드
+<ul>
+<li>3a.1. 트랜스 코딩이 끝난 비디오를 CDN에 업로드</li>
+</ul>
+</li>
+<li>3b : 트랜스코딩 완료 이벤트를 트랜스코딩 완료 큐에 저장
+<ul>
+<li>3b.1. 완료핸들러가 이벤트 데이터를 큐에서 꺼냄</li>
+<li>3b.1.a, 3b.1.b : 완료 핸들러가 메타데이터 데이터베이스와 캐시를 갱신</li>
+</ul>
+</li>
+</ul>
+<ol start="4">
+<li>API 서버가 단말에게 비디오 업로드가 끝나서 스트리밍 준비가 되었음을 알림</li>
+</ol>
+<h4 id="프로세스-b-메타데이터-갱신">프로세스 b: 메타데이터 갱신</h4>
+<ul>
+<li>원본 저장소에 파일이 업로드되는 동안, 단말은 병렬적으로 비디오 메타데이터 갱신 요청 API를 서버에 보낸다</li>
+<li>메타데이터에는 파일 이름, 크기, 포맷 등의 정보가 들어 있다.</li>
+</ul>
+<h3 id="22-비디오-스트리밍-절차">2.2 비디오 스트리밍 절차</h3>
+<ul>
+<li>스트리밍은 장치가 원격지의 비디오로부터 지속적으로 비디오 스트림을 전송받아 영상을 재생하는 것</li>
+<li>스트리밍 프로토콜 : 비디오 스트리밍을 위해 데이터를 전송할 때 쓰이는 표준화된 통신 방법
+<ul>
+<li>MPEG-DASH, HLS, Microsoft Smooth Streaming, Adobe HTTP Dynamic Streaming(HDS)</li>
+</ul>
+</li>
+<li>프로토콜마다 지원하는 비디오 인코딩과 플레이어는 다름 -&gt; 서비스 용례에 따라 선택</li>
+<li>비디오는 CDN에서 바로 스트리밍 되며 사용자 단말에 가장 가까운 CDN edge server가 비디오 전송을 담당</li>
+</ul>
+<h2 id="3-상세-설계">3. 상세 설계</h2>
+<h3 id="31-비디오-트랜스-코딩">3.1 비디오 트랜스 코딩</h3>
+<ul>
+<li>다른 단말에서도 순조롭게 재생되려면 다른 단말고 호환되는 비트레이트(bitrate)와 포맷으로 저장</li>
+<li>비트레이트 : 비디오를 구성하는 비트가 얼마나 빨리 처리되어야 하는지 나타내는 단위. 비트레이트가 높으면 고화질 비디오</li>
+<li>비트레이트가 높은 비디오 스트림을 정상 재생하려면 높은 성능의 컴퓨팅 파워와 인터넷 회선 속도 필요</li>
+</ul>
+<h4 id="비디오-트랜스코딩이-중요한-이유">비디오 트랜스코딩이 중요한 이유</h4>
+<ul>
+<li>가공되지 않은 원본 비디오(Raw video)는 저장 공간을 많이 차지</li>
+<li>상당수 단말과 브라우저는 특정 종류의 비디오 포맷만 지원하므로 호환성 문제 해결을 위해 비디오를 여러 포맷으로 인코딩</li>
+<li>사용자에게 끊김 없는 고화질 비디오 재생을 보장</li>
+<li>모바일 단말의 경우 네트워크 상황이 수시로 변경 -&gt; 비디오 화질을 자동으로 변경 혹은 수동으로 변경할 수 있어야 한다.</li>
+</ul>
+<h4 id="인코딩-포맷">인코딩 포맷</h4>
+<ul>
+<li>컨테이너 : 비디오 파일, 오디오, 메타데이터를 담는 바구니. 컨테이너 포맷은 .avi, .mov, .mp4 같은 확장자로 알 수 있음</li>
+<li>코덱 : 화질을 보존하고 크기를 줄일 목적으로 고안된 압축 및 압축 해제 알고리즘. H.264, VP9, HEVC 등</li>
+</ul>
+<h3 id="32-유향-비순환-그래프dag-모델">3.2 유향 비순환 그래프(DAG) 모델</h3>
+<p>다른 유형의 비디오 프로세싱 파이프라인을 지원하고 처리과정의 병렬성을 높이기 위해 적절한 추상화를 도입하여 클라이언트 프로그래머로 하여금 실행 작업을 손수 정의 할수 있게 함</p>
+<ul>
+<li>페이스북 사례 : DAG 모델을 도입하여 유연성과 병렬성을 달성
+<ul>
+<li>유향 비순환 그래프(Directed Acyclic Graph) 프로그래밍 모델을 도입, 작업을 단계별로 배열하여 해당 작업들이 순차적 혹은 병렬적으로 실행되도록 하고 있음</li>
+</ul>
+</li>
+</ul>
+<figure><img src="/posts/images/system-design-interview/system-design-figure-14-8.png#center"/>
+</figure>
+
+<ul>
+<li><strong>검사(Inspection)</strong> : 좋은 품질의 비디오인지 손상은 없는지 확인하는 작업</li>
+<li><strong>비디오 인코딩(video encoding)</strong> : 비디오를 다양한 해상도, 코덱, 비트레이트 조합으로 인코딩</li>
+<li><strong>섬네일(thumbnail)</strong> : 사용자가 업로드한 이미지나 비디오에서 자동 추출된 이미지로 섬네일을 만드는 작업</li>
+<li><strong>워터마크(watermark)</strong> : 비디오에 대한 식별정보를 이미지위에 오버레이 형태로 띄워 표시</li>
+</ul>
+<h3 id="33-비디오-트랜스코딩-아키텍처">3.3 비디오 트랜스코딩 아키텍처</h3>
+<figure><img src="/posts/images/system-design-interview/system-design-figure-14-10.png#center"/>
+</figure>
+
+<h4 id="전처리기preprocessor">전처리기(Preprocessor)</h4>
+<p><strong>전처리기가 하는일</strong></p>
+<ul>
+<li>비디오 분할(video splitting)
+<ul>
+<li>비디오 스트림을 GOP(Group of Pictures)라고 불리는 단위로 분할.</li>
+<li>GOP는 특정순서로 배열된 프레임 그룹이며 하나의 GOP는 독립적으로 재생가능</li>
+<li>길이는 보통 몇 초 정도</li>
+<li>오래된 단말이나 브라우저는 GOP 단위의 비디오 분할을 지원하지 않음 -&gt; 전처리기가 비디오 분할을 대신함</li>
+</ul>
+</li>
+<li>DAG 생성
+<ul>
+<li>클라이언트 프로그래머가 작성한 설정 파일에 따라 DAG 생성</li>
+</ul>
+</li>
+<li>데이터 캐시
+<ul>
+<li>전처리기는 분할된 비디오의 캐시이기도 함</li>
+<li>GOP와 메타데이터를 임시 저장소에 보관</li>
+<li>비디오 인코딩이 실패하면 시스템은 보관된 데이터를 활용해 인코딩을 재개</li>
+</ul>
+</li>
+</ul>
+<h4 id="dag-스케쥴러">DAG 스케쥴러</h4>
+<ul>
+<li>DAG 스케쥴러는 DAG 그래프를 몇 개 단계(Stage)로 분할한 뒤 각각의 자원 관리자의 작업 큐에 저장</li>
+</ul>
+<p>[예시]
+<figure><img src="/posts/images/system-design-interview/system-design-figure-14-15.png#center"/>
+</figure>
+</p>
+<ul>
+<li>하나의 DAG 그래프를 2개 작업단계로 쪼갠 사례.</li>
+<li>첫단계 : 비디오, 오디오, 메타데이터 분리</li>
+<li>두번째 단계 : 해당 비디오 파일을 인코딩하고 섬네일을 추출, 오디오 파일 또한 인코딩</li>
+</ul>
+<h4 id="자원-관리자resource-manager">자원 관리자(resource manager)</h4>
+<ul>
+<li>자원 배분을 효과적으로 수행하는 역할 담당</li>
+</ul>
+<p>[예시]
+<figure><img src="/posts/images/system-design-interview/system-design-figure-14-16.png#center"/>
+</figure>
+</p>
+<ul>
+<li><strong>작업 큐(task queue)</strong> : 실행할 작업이 보관되어 있는 우선순위 큐(priority queue)</li>
+<li><strong>작업 서버 큐(worker queue)</strong> : 작업 서버의 가용 상태 정보가 보관되어 있는 우선순위 큐</li>
+<li><strong>실행 큐(running queue)</strong> : 현재 실행 중인 작업 및 작업 서버 정보가 보관되어있는 큐</li>
+<li><strong>작업 스케쥴러</strong> : 최적의 작업/서버 조합을 골라 해당 작업 서버가 작업을 수행하도록 지시하는 역할 담당</li>
+</ul>
+<h5 id="작업관리자-동작-원리">작업관리자 동작 원리</h5>
+<ul>
+<li>작업 관리자는 큐에서 가장 높은 우선순위 작업을 꺼냄</li>
+<li>작업 관리자는 해당 작업을 실행하기 전 적합한 작업 서버를 선택</li>
+<li>작업 스케줄러는 해당 작업 서버에 작업 실행을 지시</li>
+<li>작업 스케줄러는 해당 작업이 어떤 서버에게 할당되었는지에 관한 정보를 실행 큐에 넣음</li>
+<li>작업 스케줄러는 작업이 완료ㅗ디면 해당 작업을 해당 큐에 제거</li>
+</ul>
+<h4 id="작업-서버">작업 서버</h4>
+<ul>
+<li>작업 서버는 DAG에 정의된 작업을 수행</li>
+</ul>
+<h4 id="임시-저장소">임시 저장소</h4>
+<ul>
+<li>저장소 시스템 선택에 따라 데이터의 유형, 크기, 이용 빈도, 데이터 유효기간 등이 달라짐</li>
+<li>메타데이터는 작업 서버가 빈번히 참조하므로 크기가 작은것이 보통 -&gt; 따라서 메모리에 캐시</li>
+<li>비디오/오디오 데이터는 BLOB 저장소</li>
+<li>임시 저장소 보관 데이터는 비디오 프로세싱 완료시 삭제</li>
+</ul>
+<h4 id="인코딩된-비디오">인코딩된 비디오</h4>
+<ul>
+<li>인코딩 된 비디오는 인코딩 파이프라인의 최종 결과물</li>
+</ul>
+<h3 id="34-시스템-최적화">3.4 시스템 최적화</h3>
+<h4 id="속도최적화--비디오-병렬-업로드">속도최적화 : 비디오 병렬 업로드</h4>
+<ul>
+<li>비디오 전부를 한 번에 업로드 하는 것은 비효율적</li>
+<li>GOP들로 분할하여 GOP를 병렬적으로 업로드 - 일부 실패시에도 업로드 재개 가능</li>
+</ul>
+<h4 id="속도-최적화-업로드-센터를-사용자-근거리에-지정">속도 최적화: 업로드 센터를 사용자 근거리에 지정</h4>
+<ul>
+<li>업로드 센터를 여러 곳에 두고 사용자의 근거리에 있는 CDN 업로드 센터를 이용</li>
+</ul>
+<h4 id="속도-최적화-모든-절차를-병렬화">속도 최적화: 모든 절차를 병렬화</h4>
+<ul>
+<li>느슨하게 결합된 시스템을 만들어 병렬성을 높인다.</li>
+</ul>
+<p><figure><img src="/posts/images/system-design-interview/system-design-figure-14-25.png#center"/>
+</figure>
+
+<figure><img src="/posts/images/system-design-interview/system-design-figure-14-26.png#center"/>
+</figure>
+</p>
+<ul>
+<li>메세지 큐 도입 전 인코딩 모듈 : 다운로드 모듈 작업 완료 대기 필요</li>
+<li>메시지 큐 도입 후 인코딩 모듈 : 다운로드 모듈 완료 대기 필요 없음. 메세지 큐에 보관된 이벤트를 모듈은 병렬적으로 처리 가능</li>
+</ul>
+<h4 id="안정성-최적화-미리-사인된-업로드-url">안정성 최적화: 미리 사인된 업로드 URL</h4>
+<ul>
+<li>허가받은 사용자만이 올바른 장소에 비디오 업로드가 가능해야 함</li>
+</ul>
+<h5 id="업로드-절차">업로드 절차</h5>
+<ol>
+<li>클라이언트는 HTTP 요청을 통해 미리 사인된 URL 응답받음. 해당 URL이 가리키는 객체에 대한 접근 권한이 이미 주어져 있는 상태</li>
+<li>API 서버는 미리 사인된 URL을 리턴</li>
+<li>클라이언트는 해당 URL이 가리키는 위치에 비디오 업로드</li>
+</ol>
+<h4 id="안정성-최적화-비디오-보호">안정성 최적화: 비디오 보호</h4>
+<ul>
+<li><strong>디지털 저작권 관리(DRM: Digital Rights Management) 시스템 도입</strong> : 애플 페어플레이(FairPlay), 구글의 와이드바인(Widevine), MS의 플레이레디(PlayReady) 등</li>
+<li><strong>AES 암호화(encryption)</strong> : 비디오를 암호화하고 접근 권한을 설정. 암호화된 비디오는 재생 시 복호화, 허락된 사용자만 암호화된 비디오 시청</li>
+<li><strong>워터마크(watermark)</strong> : 비디오 위에 소유자 정보를 포함하는 이미지를 오버레이 하는 것</li>
+</ul>
+<h4 id="비용-최적화">비용 최적화</h4>
+<h5 id="cdn-비용을-낮추는-방법">CDN 비용을 낮추는 방법</h5>
+<p>유튜브 비디오 스트리밍은 롱테일(long-tail) 분포를 따름. 인기 있는 비디오는 빈번히 재성되는 반면 나머지는 거의 보는 사람이 없음</p>
+<ol>
+<li>인기 비디오는 CDN을 통해 재생하되 다른 비디오는 비디오 서버를 통해 재생</li>
+<li>인기가 별로 없는 비디오는 인코딩 할 필요가 없을 수도 있음. 짧은 비디오라면 인코딩하여 재생</li>
+<li>CDN을 직접 구축하고 인터넷 서비스 제공자(ISP: Internet Service Provider)와 제휴</li>
+</ol>
+<blockquote>
+<p>모든 최적화는 콘텐츠 인기도, 이용 패턴, 비디오 크기 등 데이터에 근거하게 되며 최적화 시도 전 시청 패턴을 분석하는 것이 중요</p>
+</blockquote>
+<h4 id="오류처리">오류처리</h4>
+<ul>
+<li>대형시스템에서 시스템 오류는 불가피하며 장애를 아주 잘 감내하는(highly fault tolerant) 시스템을 만들기 위해 오류를 우아하게 처리하고 빠르게 회복해야 한다.</li>
+</ul>
+<h5 id="시스템-오류-두-가지-종류">시스템 오류 두 가지 종류</h5>
+<ul>
+<li>
+<p><strong>회복 가능 오류(recoverable error)</strong></p>
+<ul>
+<li>특정 비디오 세그먼트를 트랜스코딩 하다 실패하는 경우</li>
+<li>몇 번의 재시도하면 해결</li>
+<li>계속 시도시 복구가 어렵다 판단될 경우 클라이언트에게 적절한 오류 코드 반환</li>
+</ul>
+</li>
+<li>
+<p><strong>회복 불가능 오류(non-recoverable error)</strong></p>
+<ul>
+<li>비디오 포맷이 잘못되어있는 경우 등</li>
+<li>해당 작업을 중단하고 클라이언트에게 적절한 오류 코드 반환</li>
+</ul>
+</li>
+</ul>
+<h5 id="컴포넌트-별-오류-해결방법">컴포넌트 별 오류 해결방법</h5>
+<ul>
+<li>업로드 오류 : 몇 회 재시도</li>
+<li>비디오 분할 오류 : 오래된 버전의 클라이언트가 GOP에 따라 분할하지 못하는 경우 전체 비디오를 서버로 전송하고 서버에서 해당 비디오를 분할처리</li>
+<li>트랜스 코딩 오류 : 재시도</li>
+<li>전처리 오류 : DAG 그래프 재생성</li>
+<li>DAG 스케쥴러 오류 : 작업을 다시 스케쥴링</li>
+<li>자원관리자 큐에 장애 발생: 사본을 이용</li>
+<li>작업 서버 장애: 다른 서버에 해당 작업 시도</li>
+<li>API 서버 장애: 신규 요청은 다른 API 서버로 우회</li>
+<li>메타데이터 캐시 서버 장애 : 데이터는 다중화 되어있으므로 다른 노드에서 가져옴. 장애 발생 캐시 서버는 새로운 것으로 교체</li>
+<li>메타데이터 데이터베이스 서버 장애
+<ul>
+<li>주 서버가 죽으면 : 부 서버 가운데 하나를 주 서버로 교체</li>
+<li>부 서버가 죽으면 : 다른 부 서버를 통해 읽기 연산 처리 죽은 서버는 새 서버로 교체</li>
+</ul>
+</li>
+</ul>
+<h2 id="4-마무리">4. 마무리</h2>
+<ul>
+<li>API 계층의 규모 확장성 확보 방안</li>
+<li>데이터베이스 계층의 규모 확장성 확보 방안</li>
+<li>라이브 스트리밍(live streaming)
+<ul>
+<li>라이브 스트리밍은 실시간으로 녹화하고 방송하는 절차</li>
+<li>비디오 업로드, 인코딩, 스트리밍이 필요하다는 점은 비-라이브스트리밍 시스템과 같음</li>
+<li>응답시간이 좀 더 낮아야 함. 스트리밍 프로토콜 선정에 유의</li>
+<li>작은 단위의 데이터를 실시간으로 빨리 처리해야하므로 병렬화 필요성은 적음</li>
+<li>오류 처리 방법을 다르게 적용</li>
+</ul>
+</li>
+<li>비디오 삭제(takedown) : 저작권 위반, 선정적, 불법적 행위와 관계된 비디오는 내려야 함. 업로드 과정에서 식별하거나 사용자의 신고 절차를 통해 판별</li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-09-03&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/310fa59b78aa5fab418f869cef3cb316db15128a" target="_blank" title="commit by riley817(riley0422@icloud.com) 310fa59b78aa5fab418f869cef3cb316db15128a: 20230903021322">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>310fa59</a></span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/system-design/">System Design</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/chapter13/" class="prev" rel="prev" title="가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [13장] 검색어 자동완성 시스템"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [13장] 검색어 자동완성 시스템</a>
+            <a href="/chapter15/" class="next" rel="next" title="가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [15장] 구글 드라이브 설계">가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [15장] 구글 드라이브 설계<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><script src="https://utteranc.es/client.js"
+            repo="riley817/blog-comment"
+            issue-term="pathname"
+            label="✨💬✨"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+        </script>
+    </div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.118.2">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/riley817" target="_blank">Riley</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/copy-tex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.1/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"","algoliaIndex":"","algoliaSearchKey":"","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
