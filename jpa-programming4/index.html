@@ -10,7 +10,8 @@ JPA 의 매핑 어노테이션 객체와 테이블 매핑 : @Entity, @Table 기�
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://riley817.github.io/jpa-programming4/" /><meta property="og:image" content="https://riley817.github.io/icon.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2018-12-23T23:12:29+09:00" />
-<meta property="article:modified_time" content="2023-09-03T02:13:24+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
+<meta property="article:modified_time" content="2023-11-13T21:44:20+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
+
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://riley817.github.io/icon.png"/>
 
@@ -32,7 +33,7 @@ JPA 의 매핑 어노테이션 객체와 테이블 매핑 : @Entity, @Table 기�
             "@type": "WebPage",
             "@id": "https:\/\/riley817.github.io\/jpa-programming4\/"
         },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "JPA, ORM","wordcount":  1348 ,
-        "url": "https:\/\/riley817.github.io\/jpa-programming4\/","datePublished": "2018-12-23T23:12:29+09:00","dateModified": "2023-09-03T02:13:24+09:00","publisher": {
+        "url": "https:\/\/riley817.github.io\/jpa-programming4\/","datePublished": "2018-12-23T23:12:29+09:00","dateModified": "2023-11-13T21:44:20+09:00","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/riley817.github.io\/images\/avatar.png"},"author": {
                 "@type": "Person",
@@ -340,10 +341,10 @@ JPA 의 매핑 어노테이션 객체와 테이블 매핑 : @Entity, @Table 기�
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// Member.java 추가
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nd">@Column</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">&#34;NAME&#34;</span><span class="o">,</span> <span class="n">nullable</span> <span class="o">=</span> <span class="kc">false</span><span class="o">,</span> <span class="n">length</span> <span class="o">=</span> <span class="n">10</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl"><span class="kd">private</span> <span class="n">String</span> <span class="n">username</span><span class="o">;</span>
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// Member.java 추가</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nd">@Column</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#34;NAME&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">nullable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="n">length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">10</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">username</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p><img
         class="lazyload"
@@ -367,13 +368,13 @@ JPA 의 매핑 어노테이션 객체와 테이블 매핑 : @Entity, @Table 기�
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// Member.java
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nd">@Entity</span>
-</span></span><span class="line"><span class="cl"><span class="nd">@Table</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">&#34;MEMBER&#34;</span><span class="o">,</span> <span class="n">uniqueConstraints</span> <span class="o">=</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">        <span class="nd">@UniqueConstraint</span> <span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">&#34;NAME_AGE_UNIQUE&#34;</span><span class="o">,</span> <span class="n">columnNames</span> <span class="o">=</span> <span class="o">{</span><span class="s">&#34;NAME&#34;</span><span class="o">,</span> <span class="s">&#34;AGE&#34;</span><span class="o">})</span>
-</span></span><span class="line"><span class="cl"><span class="o">})</span>
-</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Member</span> <span class="o">{...}</span>
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// Member.java</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nd">@Entity</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nd">@Table</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#34;MEMBER&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">uniqueConstraints</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nd">@UniqueConstraint</span><span class="w"> </span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#34;NAME_AGE_UNIQUE&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">columnNames</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="s">&#34;NAME&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;AGE&#34;</span><span class="p">})</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">})</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Member</span><span class="w"> </span><span class="p">{...}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p><img
         class="lazyload"
@@ -439,11 +440,11 @@ JPA 의 매핑 어노테이션 객체와 테이블 매핑 : @Entity, @Table 기�
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-JAVA" data-lang="JAVA"><span class="line"><span class="cl"><span class="c1">// 기본키직접할당
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">Board</span> <span class="n">board</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Board</span><span class="o">();</span>
-</span></span><span class="line"><span class="cl"><span class="n">board</span><span class="o">.</span><span class="na">setId</span><span class="o">(</span><span class="s">&#34;id&#34;</span><span class="o">);</span> 
-</span></span><span class="line"><span class="cl"><span class="n">em</span><span class="o">.</span><span class="na">persistence</span><span class="o">(</span><span class="n">board</span><span class="o">);</span>
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-JAVA" data-lang="JAVA"><span class="line"><span class="cl"><span class="c1">// 기본키직접할당</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">Board</span><span class="w"> </span><span class="n">board</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Board</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">board</span><span class="p">.</span><span class="na">setId</span><span class="p">(</span><span class="s">&#34;id&#34;</span><span class="p">);</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">em</span><span class="p">.</span><span class="na">persistence</span><span class="p">(</span><span class="n">board</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="462-identity-전략">4.6.2 IDENTITY 전략</h3>
 <ul>
@@ -461,13 +462,13 @@ JPA 의 매핑 어노테이션 객체와 테이블 매핑 : @Entity, @Table 기�
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-JAVA" data-lang="JAVA"><span class="line"><span class="cl"><span class="nd">@Entity</span>
-</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Board</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nd">@Id</span>
-</span></span><span class="line"><span class="cl">    <span class="nd">@GeneratedValue</span><span class="o">(</span><span class="n">starategy</span> <span class="o">=</span> <span class="n">GenerationType</span><span class="o">.</span><span class="na">IDENTITY</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">Long</span> <span class="n">id</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-JAVA" data-lang="JAVA"><span class="line"><span class="cl"><span class="nd">@Entity</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Board</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Id</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@GeneratedValue</span><span class="p">(</span><span class="n">starategy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GenerationType</span><span class="p">.</span><span class="na">IDENTITY</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li><code>@GeneratedValue</code> 어노테이션을 사용하고 식별자 생성 전략을 명시한다.</li>
@@ -735,12 +736,11 @@ JPA 의 매핑 어노테이션 객체와 테이블 매핑 : @Entity, @Table 기�
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">  <span class="nd">@Lob</span>
-</span></span><span class="line"><span class="cl">  <span class="kd">private</span> <span class="n">String</span> <span class="n">lobString</span><span class="o">;</span> <span class="c1">// CLOB
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
-</span></span><span class="line"><span class="cl">  <span class="nd">@Lob</span>
-</span></span><span class="line"><span class="cl">  <span class="kd">private</span> <span class="kt">byte</span><span class="o">[]</span> <span class="n">lobByte</span><span class="o">;</span> <span class="c1">// BLOB
-</span></span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="w">  </span><span class="nd">@Lob</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">lobString</span><span class="p">;</span><span class="w"> </span><span class="c1">// CLOB</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nd">@Lob</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kd">private</span><span class="w"> </span><span class="kt">byte</span><span class="o">[]</span><span class="w"> </span><span class="n">lobByte</span><span class="p">;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="n">BLOB</span></span></span></code></pre></td></tr></table>
 </div>
 </div></li>
 <li><strong>CLOB</strong> : String, char[], java.sql.CLOB</li>
@@ -760,8 +760,8 @@ JPA 의 매핑 어노테이션 객체와 테이블 매핑 : @Entity, @Table 기�
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 2023-09-03&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/310fa59b78aa5fab418f869cef3cb316db15128a" target="_blank" title="commit by riley817(riley0422@icloud.com) 310fa59b78aa5fab418f869cef3cb316db15128a: 20230903021322">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>310fa59</a></span>
+                <span>Updated on 2023-11-13&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/0f11b8e85394e52bddfdc99f9fdae09935eb801d" target="_blank" title="commit by riley817(riley0422@icloud.com) 0f11b8e85394e52bddfdc99f9fdae09935eb801d: Merge branch &#39;develop&#39; into main">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>0f11b8e</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>
@@ -791,7 +791,7 @@ JPA 의 매핑 어노테이션 객체와 테이블 매핑 : @Entity, @Table 기�
         </script>
     </div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.118.2">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.120.4">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
                 </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/riley817" target="_blank">Riley</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>
