@@ -100,7 +100,14 @@
         data-sizes="auto"
         alt="/images/avatar.png"
         title="/images/avatar.png" /></a></div><h1 class="home-title">라일리의 개발 공부기록</h1><div class="home-subtitle"><div id="id-1" class="typeit"></div></div><div class="links"><a href="https://github.com/https://github.com/riley817" title="GitHub" target="_blank" rel="noopener noreffer me"><i class="fab fa-github-alt fa-fw" aria-hidden="true"></i></a></div></div>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><div class="featured-image-preview">
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/graph-database-2/">Graph Database 리서치 - Follow, Tag 기능을 고도화 해보자! (2)</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="https://github.com/riley817" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-02-15">2023-02-15</time></span>&nbsp;<span class="post-category">included in <a href="/categories/database/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Database</a></span></div><div class="content">기존 Amazon Aurora(postgreSQL) 의 데이터를 필요한 데이터만 추출하여 옮겨 보자. go 언어를 이용하여 user, follow 의 필요한 부분을 추출하여 AWS Neptune 으로 옮기는 코드를 작성한다.
+1. 라이브러리 세팅 gremlin-go 라이브러리를 사용하였다.
+https://github.com/apache/tinkerpop/tree/master/gremlin-go 2. Neptune 연결 설정 1 2 3 4 5 6 7 8 9 10 // 연결 설정 remoteConn, err = gremlingo.NewDriverRemoteConnection(fmt.Sprintf(&#34;wss://%s:8182/gremlin&#34;, neptuneEndpoint), func(settings *gremlingo.DriverRemoteConnectionSettings) { settings.TraversalSource = &#34;g&#34; settings.TlsConfig = &amp;tls.Config{InsecureSkipVerify: true} } ) // 그래프 탐색을 위한 리모트 연결 g = gremlingo.</div><div class="post-footer">
+        <a href="/graph-database-2/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/graph-database/">graph database</a>,&nbsp;<a href="/tags/aws-neptune/">aws neptune</a>,&nbsp;<a href="/tags/newo4j/">newo4j</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><div class="featured-image-preview">
             <a href="/flutter-beginner/"><img
         class="lazyload"
         src="/svg/loading.min.svg"
@@ -143,12 +150,6 @@ StatelessWidget Life Cycle Constructor로 생성이되고 생성이 되자마자
 API 설계가 일관성이 없다. 의존성 관리가 중앙에서 이루어지지 않고 있다. protobuf의 버전관리가 잘 이루어지지 않는다. protoc를 통한 stub 배포 및 관리가 어렵다 mock 서버 생성, fuzz testing, 문서화 할 수 있는 툴들이 많이 존재하지 않는다. buf에서 제공하는 툴 buf cli 발전된 protobuf 컴파일러를 제공한다. 좋은 API 디자인과 구조를 lint 기능을 통해 선택할 수 있다.</div><div class="post-footer">
         <a href="/buf/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/buf/">buf</a>,&nbsp;<a href="/tags/buf-schema-registry/">Buf Schema Registry</a>,&nbsp;<a href="/tags/protobuf/">protobuf</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/graph-database/">Graph Database 리서치 - Follow, Tag 기능을 고도화 해보자! (1)</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="https://github.com/riley817" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-01-18">2023-01-18</time></span>&nbsp;<span class="post-category">included in <a href="/categories/database/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Database</a></span></div><div class="content">개요 현재 회사에서는 SNS 서비스를 개발하고 있다. 인스타그램 처럼 특정 사용자를 팔로우 할 수 있는 기능이 있는데 관계형 데이터베이스인 postgresql 데이터베이스로 유저 간 팔로우 관계를 관리하고 있다.
-유저에게 알 수도 있는 친구를 추천하기 위한 기능이 구현하게 되었는데 팔로우 관계를 나타내는 테이블이 하나로 구성되어 있다 보니 유저의 팔로워, 팔로잉 조회를 위해 with 절, union 등과 같은 문법을 사용했고 나의 팔로우의 팔로우 중 나와 팔로우 관계가 없는 친구만 불러오기 위해 복잡하게 서브 쿼리로 작성하게 되었다.</div><div class="post-footer">
-        <a href="/graph-database/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/graph-database/">graph database</a>,&nbsp;<a href="/tags/aws-neptune/">aws neptune</a>,&nbsp;<a href="/tags/newo4j/">newo4j</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/graph-database/">Graph Database 리서치 - Follow, Tag 기능을 고도화 해보자! (1)</a>
     </h1><div class="post-meta"><span class="post-author"><a href="https://github.com/riley817" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-01-18">2023-01-18</time></span>&nbsp;<span class="post-category">included in <a href="/categories/database/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Database</a></span></div><div class="content">개요 현재 회사에서는 SNS 서비스를 개발하고 있다. 인스타그램 처럼 특정 사용자를 팔로우 할 수 있는 기능이 있는데 관계형 데이터베이스인 postgresql 데이터베이스로 유저 간 팔로우 관계를 관리하고 있다.

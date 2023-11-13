@@ -4,7 +4,17 @@
         <link>https://riley817.github.io/tags/graph-database/</link>
         <description>graph database - Tag - Riley&#39;s DevLog</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
-            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Wed, 18 Jan 2023 11:21:26 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/tags/graph-database/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Wed, 15 Feb 2023 15:17:26 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/tags/graph-database/" rel="self" type="application/rss+xml" /><item>
+    <title>Graph Database 리서치 - Follow, Tag 기능을 고도화 해보자! (2)</title>
+    <link>https://riley817.github.io/graph-database-2/</link>
+    <pubDate>Wed, 15 Feb 2023 15:17:26 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/graph-database-2/</guid>
+    <description><![CDATA[기존 Amazon Aurora(postgreSQL) 의 데이터를 필요한 데이터만 추출하여 옮겨 보자. go 언어를 이용하여 user, follow 의 필요한 부분을 추출하여 AWS Neptune 으로 옮기는 코드를 작성한다.
+1. 라이브러리 세팅 gremlin-go 라이브러리를 사용하였다.
+https://github.com/apache/tinkerpop/tree/master/gremlin-go 2. Neptune 연결 설정 1 2 3 4 5 6 7 8 9 10 // 연결 설정 remoteConn, err = gremlingo.NewDriverRemoteConnection(fmt.Sprintf(&#34;wss://%s:8182/gremlin&#34;, neptuneEndpoint), func(settings *gremlingo.DriverRemoteConnectionSettings) { settings.TraversalSource = &#34;g&#34; settings.TlsConfig = &amp;tls.Config{InsecureSkipVerify: true} } ) // 그래프 탐색을 위한 리모트 연결 g = gremlingo.]]></description>
+</item>
+<item>
     <title>Graph Database 리서치 - Follow, Tag 기능을 고도화 해보자! (1)</title>
     <link>https://riley817.github.io/graph-database/</link>
     <pubDate>Wed, 18 Jan 2023 11:21:26 &#43;0900</pubDate>

@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Graph Database 리서치 - Follow, Tag 기능을 고도화 해보자! (2) - Riley&#39;s DevLog</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:title" content="Graph Database 리서치 - Follow, Tag 기능을 고도화 해보자! (2)" />
+<meta property="og:description" content="기존 Amazon Aurora(postgreSQL) 의 데이터를 필요한 데이터만 추출하여 옮겨 보자. go 언어를 이용하여 user, follow 의 필요한 부분을 추출하여 AWS Neptune 으로 옮기는 코드를 작성한다.
+1. 라이브러리 세팅 gremlin-go 라이브러리를 사용하였다.
+https://github.com/apache/tinkerpop/tree/master/gremlin-go 2. Neptune 연결 설정 1 2 3 4 5 6 7 8 9 10 // 연결 설정 remoteConn, err = gremlingo.NewDriverRemoteConnection(fmt.Sprintf(&#34;wss://%s:8182/gremlin&#34;, neptuneEndpoint), func(settings *gremlingo.DriverRemoteConnectionSettings) { settings.TraversalSource = &#34;g&#34; settings.TlsConfig = &amp;tls.Config{InsecureSkipVerify: true} } ) // 그래프 탐색을 위한 리모트 연결 g = gremlingo." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://riley817.github.io/graph-database-2/" /><meta property="og:image" content="https://riley817.github.io/icon.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-02-15T15:17:26+09:00" />
+<meta property="article:modified_time" content="2023-11-13T21:44:50+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://riley817.github.io/icon.png"/>
+
+<meta name="twitter:title" content="Graph Database 리서치 - Follow, Tag 기능을 고도화 해보자! (2)"/>
+<meta name="twitter:description" content="기존 Amazon Aurora(postgreSQL) 의 데이터를 필요한 데이터만 추출하여 옮겨 보자. go 언어를 이용하여 user, follow 의 필요한 부분을 추출하여 AWS Neptune 으로 옮기는 코드를 작성한다.
+1. 라이브러리 세팅 gremlin-go 라이브러리를 사용하였다.
+https://github.com/apache/tinkerpop/tree/master/gremlin-go 2. Neptune 연결 설정 1 2 3 4 5 6 7 8 9 10 // 연결 설정 remoteConn, err = gremlingo.NewDriverRemoteConnection(fmt.Sprintf(&#34;wss://%s:8182/gremlin&#34;, neptuneEndpoint), func(settings *gremlingo.DriverRemoteConnectionSettings) { settings.TraversalSource = &#34;g&#34; settings.TlsConfig = &amp;tls.Config{InsecureSkipVerify: true} } ) // 그래프 탐색을 위한 리모트 연결 g = gremlingo."/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://riley817.github.io/graph-database-2/" /><link rel="prev" href="https://riley817.github.io/flutter-beginner/" /><link rel="next" href="https://riley817.github.io/flutter/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Graph Database 리서치 - Follow, Tag 기능을 고도화 해보자! (2)",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/riley817.github.io\/graph-database-2\/"
+        },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "graph database, aws neptune, newo4j","wordcount":  1021 ,
+        "url": "https:\/\/riley817.github.io\/graph-database-2\/","datePublished": "2023-02-15T15:17:26+09:00","dateModified": "2023-11-13T21:44:50+09:00","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "https:\/\/riley817.github.io\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "riley"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('light' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'light' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Riley&#39;s DevLog"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i></span>Riley&#39;s DevLog</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Riley&#39;s DevLog"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i></span>Riley&#39;s DevLog</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Graph Database 리서치 - Follow, Tag 기능을 고도화 해보자! (2)</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/riley817" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-category">included in <a href="/categories/database/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Database</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-02-15">2023-02-15</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1021 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;5 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-라이브러리-세팅">1. 라이브러리 세팅</a></li>
+    <li><a href="#2-neptune-연결-설정">2. Neptune 연결 설정</a></li>
+    <li><a href="#3-메소드-정의하기">3. 메소드 정의하기</a>
+      <ul>
+        <li><a href="#vertex-삽입하기">Vertex 삽입하기</a></li>
+        <li><a href="#vertex-간-edge-설정">vertex 간 edge 설정</a></li>
+        <li><a href="#edge-추가">edge 추가</a></li>
+      </ul>
+    </li>
+    <li><a href="#결과">결과</a></li>
+    <li><a href="#마치며">마치며</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>기존 Amazon Aurora(postgreSQL) 의 데이터를 필요한 데이터만 추출하여 옮겨 보자. go 언어를 이용하여 <code>user</code>, <code>follow</code>  의 필요한 부분을 추출하여 <code>AWS Neptune</code> 으로 옮기는 코드를 작성한다.</p>
+<h2 id="1-라이브러리-세팅">1. 라이브러리 세팅</h2>
+<p><code>gremlin-go</code> 라이브러리를 사용하였다.</p>
+<ul>
+<li><a href="https://github.com/apache/tinkerpop/tree/master/gremlin-go" target="_blank" rel="noopener noreffer">https://github.com/apache/tinkerpop/tree/master/gremlin-go</a></li>
+</ul>
+<h2 id="2-neptune-연결-설정">2. Neptune 연결 설정</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="c1">// 연결 설정
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">remoteConn</span><span class="p">,</span> <span class="nx">err</span> <span class="p">=</span> <span class="nx">gremlingo</span><span class="p">.</span><span class="nf">NewDriverRemoteConnection</span><span class="p">(</span><span class="nx">fmt</span><span class="p">.</span><span class="nf">Sprintf</span><span class="p">(</span><span class="s">&#34;wss://%s:8182/gremlin&#34;</span><span class="p">,</span> <span class="nx">neptuneEndpoint</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">		<span class="kd">func</span><span class="p">(</span><span class="nx">settings</span> <span class="o">*</span><span class="nx">gremlingo</span><span class="p">.</span><span class="nx">DriverRemoteConnectionSettings</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">settings</span><span class="p">.</span><span class="nx">TraversalSource</span> <span class="p">=</span> <span class="s">&#34;g&#34;</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">settings</span><span class="p">.</span><span class="nx">TlsConfig</span> <span class="p">=</span> <span class="o">&amp;</span><span class="nx">tls</span><span class="p">.</span><span class="nx">Config</span><span class="p">{</span><span class="nx">InsecureSkipVerify</span><span class="p">:</span> <span class="kc">true</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 그래프 탐색을 위한 리모트 연결
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">g</span> <span class="p">=</span> <span class="nx">gremlingo</span><span class="p">.</span><span class="nf">Traversal_</span><span class="p">().</span><span class="nf">WithRemote</span><span class="p">(</span><span class="nx">remoteConn</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="details admonition tip open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw" aria-hidden="true"></i>Note<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">AWS Neptune TLS 인증서 형식은 Go 1.18 버전 이상부터는 지원되지 않으므로 <code>DriverRemoteConnection</code> 에 TLS 설정을 추가해야 한다.</div>
+        </div>
+    </div>
+<h2 id="3-메소드-정의하기">3. 메소드 정의하기</h2>
+<h3 id="vertex-삽입하기">Vertex 삽입하기</h3>
+<p>먼저 회원 테이블을 조회하여 vertex로 생성한다. vertex의 회원아이디는 기존 데이터베이스의 회원 테이블에서 사용하는 아이디(PK) 일치 시킨다. vertex의 속성값으로는 닉네임과 생년월일을 문자열 형태로 저장한다.</p>
+<p>먼저 이미 등록되어있는 vertex 인지 체크한다. (나중에 알았지만 ID 가 같으면 그냥 덮어쓰는 것 같다.)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">existsUserVertex</span><span class="p">(</span><span class="nx">vertexId</span> <span class="kt">string</span><span class="p">)</span> <span class="p">(</span><span class="kt">bool</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">_</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">g</span><span class="p">.</span><span class="nf">V</span><span class="p">().</span><span class="nf">HasLabel</span><span class="p">(</span><span class="nx">userLabel</span><span class="p">).</span><span class="nf">HasId</span><span class="p">(</span><span class="nx">vertexId</span><span class="p">).</span><span class="nf">Next</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1">// 특정 에러값을 구분하고 싶은데 private 값이라 임의로 하드코딩하여 비교했다... ^.^ 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="o">&amp;&amp;</span> <span class="nx">err</span><span class="p">.</span><span class="nf">Error</span><span class="p">()</span> <span class="o">!=</span> <span class="nx">GremlinErrNextNoResultsLeftError</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="kc">false</span><span class="p">,</span> <span class="nx">err</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="o">&amp;&amp;</span> <span class="nx">err</span><span class="p">.</span><span class="nf">Error</span><span class="p">()</span> <span class="o">==</span> <span class="nx">GremlinErrNextNoResultsLeftError</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="kc">false</span><span class="p">,</span> <span class="kc">nil</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="kc">true</span><span class="p">,</span> <span class="kc">nil</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="c1">// addUserVertex 유저 vertex 를 생성한다.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">func</span> <span class="nf">addUserVertex</span><span class="p">(</span><span class="nx">userInfo</span> <span class="o">*</span><span class="nx">User</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1">// 이미 존재하는 vertex 여부를 체크한다.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">exists</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nf">existsUserVertex</span><span class="p">(</span><span class="nx">userInfo</span><span class="p">.</span><span class="nx">userId</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="nx">err</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">exists</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="kc">nil</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">nickname</span><span class="p">,</span> <span class="nx">_</span> <span class="o">:=</span> <span class="nx">userInfo</span><span class="p">.</span><span class="nx">nickname</span><span class="p">.</span><span class="nf">Value</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">birth</span><span class="p">,</span> <span class="nx">_</span> <span class="o">:=</span> <span class="nx">userInfo</span><span class="p">.</span><span class="nx">birth</span><span class="p">.</span><span class="nf">Value</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1">// 그래프에 vertex 추가
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">_</span><span class="p">,</span> <span class="nx">createdErr</span> <span class="o">:=</span> <span class="nx">g</span><span class="p">.</span><span class="nf">AddV</span><span class="p">(</span><span class="nx">userLabel</span><span class="p">).</span><span class="nf">Property</span><span class="p">(</span><span class="nx">gremlingo</span><span class="p">.</span><span class="nx">T</span><span class="p">.</span><span class="nx">Id</span><span class="p">,</span> <span class="nx">userInfo</span><span class="p">.</span><span class="nx">userId</span><span class="p">).</span>
+</span></span><span class="line"><span class="cl">		<span class="nf">Property</span><span class="p">(</span><span class="s">&#34;nickname&#34;</span><span class="p">,</span> <span class="nx">nickname</span><span class="p">).</span>
+</span></span><span class="line"><span class="cl">		<span class="nf">Property</span><span class="p">(</span><span class="s">&#34;birth&#34;</span><span class="p">,</span> <span class="nx">birth</span><span class="p">).</span><span class="nf">Next</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">createdErr</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="nx">createdErr</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="kc">nil</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>일단 트랜잭션까지… 고려는 무시</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="c1">// 회원 데이터베이스에서 현재 유효한 유저정보 조회 (아이디, 닉네임, 생년월일)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">rows</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">db</span><span class="p">.</span><span class="nf">Query</span><span class="p">(</span><span class="s">`select user_id, nickname, to_char(birth, &#39;YYYY-MM-DD&#39;) as birth from users u where u.deleted_at is null`</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nb">panic</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1">// row 수 만큼 vertex 생성!
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="k">for</span> <span class="nx">rows</span><span class="p">.</span><span class="nf">Next</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">u</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">User</span><span class="p">{}</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">rows</span><span class="p">.</span><span class="nf">Scan</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">u</span><span class="p">.</span><span class="nx">userId</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">u</span><span class="p">.</span><span class="nx">nickname</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">u</span><span class="p">.</span><span class="nx">birth</span><span class="p">);</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="nb">panic</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nf">addUserVertex</span><span class="p">(</span><span class="nx">u</span><span class="p">);</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="nb">panic</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="vertex-간-edge-설정">vertex 간 edge 설정</h3>
+<p>follow 같은 경우 follower, following 처럼 양방향성을 가지고 있다. 모델을 보는 관점에 따라 다르겠지만 서로 상호관계를 갖고 있기 때문에 아래처럼 양방향성 혹은 방향성이 없다고도 말할 수 있다.</p>
+<a class="lightgallery" href="/posts/images/dbms/graphdatabase/Untitled.png" title="/posts/images/dbms/graphdatabase/Untitled.png" data-thumbnail="/posts/images/dbms/graphdatabase/Untitled.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/posts/images/dbms/graphdatabase/Untitled.png"
+            data-srcset="/posts/images/dbms/graphdatabase/Untitled.png, /posts/images/dbms/graphdatabase/Untitled.png 1.5x, /posts/images/dbms/graphdatabase/Untitled.png 2x"
+            data-sizes="auto"
+            alt="/posts/images/dbms/graphdatabase/Untitled.png" />
+    </a>
+<p>하지만 위처럼 방향성이 없는 관계를 나타낼 수 없기 때문에 아래처럼 불필요한 관계를 더 만들어 낼 수도 있지만 되도록이면 아래처럼 임의의 방향으로 관계를 설정하도록 하는것이 좋다고 한다. (그래프 탐색 때문 성능때문에 임의의 단방향으로 설정 하는 것 같은데 데이터를 방향성으로 탐색할때 어떻게 해야하는지 모르겠다… 어렵네?!</p>
+<a class="lightgallery" href="/posts/images/dbms/graphdatabase/neptune1.png" title="/posts/images/dbms/graphdatabase/neptune1.png" data-thumbnail="/posts/images/dbms/graphdatabase/neptune1.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/posts/images/dbms/graphdatabase/neptune1.png"
+            data-srcset="/posts/images/dbms/graphdatabase/neptune1.png, /posts/images/dbms/graphdatabase/neptune1.png 1.5x, /posts/images/dbms/graphdatabase/neptune1.png 2x"
+            data-sizes="auto"
+            alt="/posts/images/dbms/graphdatabase/neptune1.png" />
+    </a>
+<p>일단 나는 follow라는 레이블을 갖는 edge를 만들고 현재 follow DB 구조와 동일하게 user_id → target_id 방향으로 follow edge를 생성했다. 만약 맞팔로우 관계일경우 edge 속성에 서로 팔로우 여부를 true로 저장하게 끔 구현했다.</p>
+<h3 id="edge-추가">edge 추가</h3>
+<p>회원 아이디를 가지고 vertex 의 객체를 가져온다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">getUserVertex</span><span class="p">(</span><span class="nx">vertexId</span> <span class="kt">string</span><span class="p">)</span> <span class="p">(</span><span class="o">*</span><span class="nx">gremlingo</span><span class="p">.</span><span class="nx">Result</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">res</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">g</span><span class="p">.</span><span class="nf">V</span><span class="p">().</span><span class="nf">HasLabel</span><span class="p">(</span><span class="nx">userLabel</span><span class="p">).</span><span class="nf">HasId</span><span class="p">(</span><span class="nx">vertexId</span><span class="p">).</span><span class="nf">Next</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="nx">err</span><span class="p">.</span><span class="nf">Error</span><span class="p">()</span> <span class="o">==</span> <span class="nx">GremlinErrNextNoResultsLeftError</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="k">return</span> <span class="kc">nil</span><span class="p">,</span> <span class="nx">ErrDataNotFound</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="kc">nil</span><span class="p">,</span> <span class="nx">err</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">err</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>from vertex 에 edge가 존재하는지 탐색한다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="c1">// findFollowEdge
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">func</span> <span class="nf">findFollowEdge</span><span class="p">(</span><span class="nx">fromVertexId</span><span class="p">,</span> <span class="nx">toVertexId</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">toObj</span> <span class="kd">interface</span><span class="p">{})</span> <span class="p">(</span><span class="kt">string</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="nx">res</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">g</span><span class="p">.</span><span class="nf">V</span><span class="p">().</span><span class="nf">HasLabel</span><span class="p">(</span><span class="nx">userLabel</span><span class="p">).</span><span class="nf">HasId</span><span class="p">(</span><span class="nx">fromVertexId</span><span class="p">).</span><span class="nf">BothE</span><span class="p">(</span><span class="nx">followEdgeLabel</span><span class="p">).</span><span class="nf">Next</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">   <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="o">&amp;&amp;</span> <span class="nx">err</span><span class="p">.</span><span class="nf">Error</span><span class="p">()</span> <span class="o">!=</span> <span class="nx">GremlinErrNextNoResultsLeftError</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="s">&#34;&#34;</span><span class="p">,</span> <span class="nx">err</span>
+</span></span><span class="line"><span class="cl">   <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">   <span class="k">if</span> <span class="nx">res</span> <span class="o">==</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="s">&#34;&#34;</span><span class="p">,</span> <span class="nx">ErrDataNotFound</span>
+</span></span><span class="line"><span class="cl">   <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">   <span class="nx">inV</span><span class="p">,</span> <span class="nx">_</span> <span class="o">:=</span> <span class="nx">res</span><span class="p">.</span><span class="nf">GetVertex</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">   <span class="nx">outV</span><span class="p">,</span> <span class="nx">_</span> <span class="o">:=</span> <span class="nx">res</span><span class="p">.</span><span class="nf">GetVertex</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">   <span class="k">if</span> <span class="nx">inV</span><span class="p">.</span><span class="nx">Id</span> <span class="o">==</span> <span class="nx">toVertexId</span> <span class="o">||</span> <span class="nx">outV</span><span class="p">.</span><span class="nx">Id</span> <span class="o">==</span> <span class="nx">toVertexId</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">   <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="s">&#34;&#34;</span><span class="p">,</span> <span class="nx">ErrDataNotFound</span>
+</span></span><span class="line"><span class="cl">   <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">   <span class="nx">edgeRes</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">res</span><span class="p">.</span><span class="nf">GetEdge</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">   <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="s">&#34;&#34;</span><span class="p">,</span> <span class="nx">err</span>
+</span></span><span class="line"><span class="cl">   <span class="p">}</span>
+</span></span><span class="line"><span class="cl">   <span class="k">return</span> <span class="nx">edgeRes</span><span class="p">.</span><span class="nx">Id</span><span class="p">.(</span><span class="kt">string</span><span class="p">),</span> <span class="nx">err</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>from → to 각각 vertex를 조회 후 follow edge가 없으면 from→to 방향으로 follow edge를 추가 있는 경우는 edge의 속성의 f4f 값을 true로 변경한다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">addFollowEdge</span><span class="p">(</span><span class="nx">fromId</span><span class="p">,</span> <span class="nx">toId</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="c1">// 1. find from vertex
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="nx">fromObj</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nf">getUserVertex</span><span class="p">(</span><span class="nx">fromId</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">   <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">log</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;[skip] skip %s&#34;</span><span class="p">,</span> <span class="nx">fromId</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="kc">nil</span>
+</span></span><span class="line"><span class="cl">   <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">   <span class="c1">// 2. find to vertex
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="nx">toObj</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nf">getUserVertex</span><span class="p">(</span><span class="nx">toId</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">   <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">log</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;[skip] skip %s&#34;</span><span class="p">,</span> <span class="nx">toId</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="kc">nil</span>
+</span></span><span class="line"><span class="cl">   <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">   <span class="c1">// 3. follow edge 가 존재 하는지 체크
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="nx">edgeId</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nf">findFollowEdge</span><span class="p">(</span><span class="nx">fromId</span><span class="p">,</span> <span class="nx">toId</span><span class="p">,</span> <span class="nx">toObj</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">   <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="o">&amp;&amp;</span> <span class="p">!</span><span class="nx">errors</span><span class="p">.</span><span class="nf">Is</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">ErrDataNotFound</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="nx">err</span>
+</span></span><span class="line"><span class="cl">   <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">   <span class="c1">// 3.1 edge 가 없는 경우
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="k">if</span> <span class="nx">errors</span><span class="p">.</span><span class="nf">Is</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">ErrDataNotFound</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">_</span><span class="p">,</span> <span class="nx">err</span> <span class="p">=</span> <span class="nx">g</span><span class="p">.</span><span class="nf">V</span><span class="p">(</span><span class="nx">fromObj</span><span class="p">.</span><span class="nx">Data</span><span class="p">).</span><span class="nf">AddE</span><span class="p">(</span><span class="nx">followEdgeLabel</span><span class="p">).</span><span class="nf">From</span><span class="p">(</span><span class="nx">fromObj</span><span class="p">.</span><span class="nx">Data</span><span class="p">).</span><span class="nf">To</span><span class="p">(</span><span class="nx">toObj</span><span class="p">.</span><span class="nx">Data</span><span class="p">).</span>
+</span></span><span class="line"><span class="cl">         <span class="nf">Property</span><span class="p">(</span><span class="nx">f4fEdgeProp</span><span class="p">,</span> <span class="kc">false</span><span class="p">).</span><span class="nf">Next</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">			<span class="c1">// 완료 나가리
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="k">return</span> <span class="kc">nil</span>
+</span></span><span class="line"><span class="cl">   <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">   <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nb">panic</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">   <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">   <span class="c1">// 3.2 edge 가 있는 경우
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="nx">_</span><span class="p">,</span> <span class="nx">err</span> <span class="p">=</span> <span class="nx">g</span><span class="p">.</span><span class="nf">E</span><span class="p">().</span><span class="nf">HasLabel</span><span class="p">(</span><span class="nx">followEdgeLabel</span><span class="p">).</span><span class="nf">HasId</span><span class="p">(</span><span class="nx">edgeId</span><span class="p">).</span><span class="nf">Property</span><span class="p">(</span><span class="nx">f4fEdgeProp</span><span class="p">,</span> <span class="kc">true</span><span class="p">).</span><span class="nf">Next</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">   <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="nx">err</span>
+</span></span><span class="line"><span class="cl">   <span class="p">}</span>
+</span></span><span class="line"><span class="cl">   <span class="c1">// 완료 나가리 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="k">return</span> <span class="kc">nil</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>**follow</code> 테이블을 조회하여 vertex 간 edge 정보를 추가한다.**</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="c1">// follow 테이블에서 edge 관계를 생성
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">	<span class="nx">followRows</span><span class="p">,</span> <span class="nx">findFollowErr</span> <span class="o">:=</span> <span class="nx">db</span><span class="p">.</span><span class="nf">Query</span><span class="p">(</span><span class="s">`select f.user_id as from_id, f.target_id as to_id from follow f where f.deleted_at is null order by f.created_at asc`</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">findFollowErr</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nb">panic</span><span class="p">(</span><span class="nx">findFollowErr</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="nx">followRows</span><span class="p">.</span><span class="nf">Next</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="kd">var</span> <span class="nx">fromId</span><span class="p">,</span> <span class="nx">toId</span> <span class="kt">string</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">followRows</span><span class="p">.</span><span class="nf">Scan</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">fromId</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">toId</span><span class="p">);</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="nb">panic</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="nx">log</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;[addFollow] %s -&gt; %s&#34;</span><span class="p">,</span> <span class="nx">fromId</span><span class="p">,</span> <span class="nx">toId</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nf">addFollowEdge</span><span class="p">(</span><span class="nx">fromId</span><span class="p">,</span> <span class="nx">toId</span><span class="p">);</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="nb">panic</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="결과">결과</h2>
+<p><a class="lightgallery" href="/posts/images/dbms/graphdatabase/neptune3.png" title="/posts/images/dbms/graphdatabase/neptune3.png" data-thumbnail="/posts/images/dbms/graphdatabase/neptune3.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/posts/images/dbms/graphdatabase/neptune3.png"
+            data-srcset="/posts/images/dbms/graphdatabase/neptune3.png, /posts/images/dbms/graphdatabase/neptune3.png 1.5x, /posts/images/dbms/graphdatabase/neptune3.png 2x"
+            data-sizes="auto"
+            alt="/posts/images/dbms/graphdatabase/neptune3.png" />
+    </a>
+테스트 때문에 한 계정에 팔로우로 몰아주었는데 비쥬얼라이징 했을때 다소 징그러운 모습이 되어버렸다…</p>
+<h2 id="마치며">마치며</h2>
+<p>데이터는 성공적으로 마이그레이션 했으나, 내가 원하는 결과 (사용자의 팔로우의 팔로우 중 사용자와 아직 팔로우 관계가 아닌 유저를 조회) 를 정확하게는 뽑아내지는 못하였다. <code>gremlin</code> 언어가 사용하기 어려운 부분도 있었지만 아직 그래프 데이터베이스에 대해 잘 이해하고 있지 못해서 그런 것 같다. 또한 팔로우 관계처럼 단방향, 양방향을 구분해야 할 경우 어떻게 설계해야할지 어려운 부분이 있었다. 실제 시스템에 적용하기 위해서는 더 많은 공부가 필요할 것 같다. 😇😇😇😇</p>
+<p>인스턴스는 삭제 했다. 빠이</p>
+<a class="lightgallery" href="/posts/images/dbms/graphdatabase/neptune4.png" title="/posts/images/dbms/graphdatabase/neptune4.png" data-thumbnail="/posts/images/dbms/graphdatabase/neptune4.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/posts/images/dbms/graphdatabase/neptune4.png"
+            data-srcset="/posts/images/dbms/graphdatabase/neptune4.png, /posts/images/dbms/graphdatabase/neptune4.png 1.5x, /posts/images/dbms/graphdatabase/neptune4.png 2x"
+            data-sizes="auto"
+            alt="/posts/images/dbms/graphdatabase/neptune4.png" />
+    </a>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-11-13&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/072cdd764b6e8ec8c788a8101ded040edd914634" target="_blank" title="commit by riley817(riley0422@icloud.com) 072cdd764b6e8ec8c788a8101ded040edd914634: Merge remote-tracking branch &#39;origin/main&#39; into main">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>072cdd7</a></span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/graph-database/">graph database</a>,&nbsp;<a href="/tags/aws-neptune/">aws neptune</a>,&nbsp;<a href="/tags/newo4j/">newo4j</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/flutter-beginner/" class="prev" rel="prev" title="[Flutter Beginner] StatefulWidget"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>[Flutter Beginner] StatefulWidget</a>
+            <a href="/flutter/" class="next" rel="next" title="[Flutter] Flutter 개념 및 동작 원리">[Flutter] Flutter 개념 및 동작 원리<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><script src="https://utteranc.es/client.js"
+            repo="riley817/blog-comment"
+            issue-term="pathname"
+            label="✨💬✨"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+        </script>
+    </div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.120.4">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/riley817" target="_blank">Riley</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.1/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"search":{"algoliaAppID":"","algoliaIndex":"","algoliaSearchKey":"","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
