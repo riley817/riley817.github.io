@@ -4,88 +4,48 @@
         <link>https://riley817.github.io/categories/etc/</link>
         <description>Etc - Category - Riley&#39;s DevLog</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
-            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Sun, 03 Sep 2023 01:02:15 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/categories/etc/" rel="self" type="application/rss+xml" /><item>
-    <title>가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [15장] 구글 드라이브 설계</title>
-    <link>https://riley817.github.io/chapter15/</link>
-    <pubDate>Sun, 03 Sep 2023 01:02:15 &#43;0900</pubDate>
+            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Mon, 23 Jan 2023 19:11:56 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/categories/etc/" rel="self" type="application/rss+xml" /><item>
+    <title>[buf] buf로 protobuf 사용하기</title>
+    <link>https://riley817.github.io/buf/</link>
+    <pubDate>Mon, 23 Jan 2023 19:11:56 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/chapter15/</guid>
-    <description><![CDATA[Note 팀 내에서 진행하는 Study 정리 입니다. 함께 논의 하고 싶은 주제 같이 스터디를 함으로써 책을 빠른시간내에 읽고 정리해볼 수 있어서 좋았습니다. ( 그 과정은 조금 힘들지만 그래도 다 읽어서 좋습니다!) 저장소 공간을 절약할 때 자주 바뀌는 파일로 인해 버전 이력이 많이 생긴다면 중요한 버전만 어떻게 골라낼 수 있을까? 요약 &ndash;
-1. 문제 이해 및 설계 범위 확정 1.1 기능적 요구사항 파일추가. 가장 쉬운 방법은 drag-and-drop 파일 다운로드 여러 단말에 파일 동기화 파일 갱신 이력 조회(revision history) 파일 공유 파일이 편집되거나 삭제되거나 새롭게 공유되었을 때 알림푯; 제외기능 : 구글문서 편집 및 협업 기능 1.]]></description>
+    <guid>https://riley817.github.io/buf/</guid>
+    <description><![CDATA[buf buf는 IDL(Interface description language) 중 하나인 protobuf를 사용하기 쉽게 여러가지 기능을 제공하고 있다. protobuf를 사용하면서 발생하는 문제는 다음과 같다.
+API 설계가 일관성이 없다. 의존성 관리가 중앙에서 이루어지지 않고 있다. protobuf의 버전관리가 잘 이루어지지 않는다. protoc를 통한 stub 배포 및 관리가 어렵다 mock 서버 생성, fuzz testing, 문서화 할 수 있는 툴들이 많이 존재하지 않는다. buf에서 제공하는 툴 buf cli 발전된 protobuf 컴파일러를 제공한다. 좋은 API 디자인과 구조를 lint 기능을 통해 선택할 수 있다.]]></description>
 </item>
 <item>
-    <title>가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [14장] 유튜브 설계</title>
-    <link>https://riley817.github.io/chapter14/</link>
-    <pubDate>Sat, 02 Sep 2023 23:14:34 &#43;0900</pubDate>
+    <title>Web Worker API</title>
+    <link>https://riley817.github.io/webworker/</link>
+    <pubDate>Sun, 16 Jan 2022 00:01:00 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/chapter14/</guid>
-    <description><![CDATA[Note 팀 내에서 진행하는 Study 정리 입니다. 함께 논의 하고 싶은 주제 느낀점 모바일 인터넷 트래픽 중 37% 가 유튜브라는 사실이 놀랍습니다. 비디오를 트랜스코딩 시 DAG 모델이 어떻게 쓰이는지 와닿지 않아서 조금 이해가 가지 않았습니다. 객체지향 언어에서처럼 각 작업을 인터페이스나 추상메서드로 정의해두면 클라이언트는 해당 작업을 클라이언트 OS에 맞게 구현하는 것 이라고 이해했는데 맞을까요? 1. 문제 이해 및 설계 범위 확정 요구사항 빠른 비디오 업로드 원활한 비디오 재생 재생 품질 선택 낮은 인프라 비용 높은 가용성과 규모 확장성 그리고 안정성 지원 클라이언트 : 모바일 앱, 웹브라우저, 스마트TV 개략적 규모 측정 일간 능동사용자 : 5백만 한 사용자는 하루 평균 5개의 비디오 시청 10%의 사용자가 하루에 1 비디오 업로드 비디오 평균 크기 300MB 비디오 저장을 위해 매일 요구되는 용량 : 5백만 * 10% * 300MB = 150TB CDN 비용 클라우드 CDN을 통해 서비스할 경우 데이터의 양에 따라 CDN에서 과금 아마존 클라우드프론트 기준으로 100% 미국에서 발생 시 1GB 당 0.]]></description>
+    <guid>https://riley817.github.io/webworker/</guid>
+    <description><![CDATA[Web worker Web Worker 는 메인 스레드와 분리된 별도의 백그라운드 스레드에서 스크립트를 실행할 수 있는 기술이다. UI 스레드와는 별개의 스레드를 실행시켜 사용자 인터페이스를 방해하지않고 작업을 수행할 수 있다.
+Web worker scope Web worker는 메인 스레드와 별도의 worker 스레드를 갖는다. 메인 스레드에서 window 객체는 GlobalScope 이지만 worker 스레드에서는 별도의 스코프 범위를 갖는다. Worker 종류에 따른 Scope worker 스레드는 메인 스레드 window 객체에 액세스할 수 있는 권한이 없기 때문에 window의 메서드나 DOM을 직접적으로 제어할 수 없다.]]></description>
 </item>
 <item>
-    <title>가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [13장] 검색어 자동완성 시스템</title>
-    <link>https://riley817.github.io/chapter13/</link>
-    <pubDate>Sat, 02 Sep 2023 21:55:15 &#43;0900</pubDate>
+    <title>텔레그램 봇 설정하기</title>
+    <link>https://riley817.github.io/telegrambot/</link>
+    <pubDate>Fri, 13 Aug 2021 14:46:00 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/chapter13/</guid>
-    <description><![CDATA[Note 팀 내에서 진행하는 Study 정리 입니다. 함께 논의 하고 싶은 주제 느낀점 트라이 자료 구조에 대해 알 수 있었습니다. 한글 단어에서 트라이 자료구조는 어떻게 이루어질까 대충 찾아보았는데 한글은 음절단위로 단어가 만들어지기 때문에 음소 단위로 쪼개어 영어처럼 트라이 자료구조를 만들 수 있다고 합니다. 하지만 더 복잡할 것 같습니다. 요약 &ndash;
-검색어 자동완성 시스템 검색창에 단어를 입력하다보면 입력중인 글자에 맞는 검색어가 자동으로 표기되는 것 autocomplete, typeahead, search-as-you-type, incremental search 1. 문제 이해 및 설계 범위 확정 요구사항 정의 빠른 응답 속도 : 페이스북의 응답속도는 100밀리초 이내 연관성 : 자동완성되어 출력되는 검색어는 사용자가 입력한 단어와 연관된 것 정렬 : 시스템의 계산 결과는 인기도 등의 순위 모델에 의해 정렬 규모 확장성 : 시스템은 많은 트래픽을 감당할 수 있을 정도록 확장 가능 고가용성 : 일부 장애가 발생하거나 느려지거나 예상치 못한 네트워크 문제가 생겨도 시스템은 계속 사용 가능 개략적 규모 추정 DAU는 천만 명으로 가정 평균적으로 한 사용자는 매일 10건의 검색 수행 질의할 때마다 평균적으로 20Byte 입력 문자 인코딩 방법으로는 ASCII 사용 1문자=1Byte 질의문은 평균적으로 4개의 단어 구성 각 단어는 평균 다섯 글자 질의당 평균 4 * 5 = 20 Byte 검색창에 글자를 입력 백엔드에 요청을 보낸다 1회 검색당 20건의 요청이 백엔드로 전달 대략 초당 24,000건의 QPS 발생 (10,000,000 * 10 queries/day * 20 characters / 24시간 / 3600초) 최대 QPS = 24,000 * 2 = 48,000 질의 중 20% 신규 검색어 10,000,000 * 10 queries/day * 20 byte per query * 20% = 0.]]></description>
+    <guid>https://riley817.github.io/telegrambot/</guid>
+    <description><![CDATA[할때마다 까먹는다.
+텔레그램 봇 만들기 1. 봇아빠 채팅방에 접속 https://t.me/BotFather 혹은 @BotFather 검색하여 채팅방 접속 2. BotFather 채팅방에서 봇 생성 명령어를 입력한다. 채팅창에 /newbot을 입력한다. 3. 텔레그램 봇 이름을 입력한다. 이름은 _bot으로 끝나야 한다. 4. 다시 입력 한번 더 bot 이름을 입력하면 봇 주소와 API 토큰 값을 얻을 수 있다. 5. 봇 채팅방 접속 후 시작 버튼 클릭 6. 봇 채팅방 chat id 얻기 봇 채팅방에서 아무 메세지나 입력한다. 브라우저에서 https://api.]]></description>
 </item>
 <item>
-    <title>가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [12장] 채팅 시스템 설계</title>
-    <link>https://riley817.github.io/chapter12/</link>
-    <pubDate>Wed, 30 Aug 2023 09:49:24 &#43;0900</pubDate>
+    <title>[NGINX] CentOS 7에서 nginx 컴파일 설치하기</title>
+    <link>https://riley817.github.io/nginx-compile/</link>
+    <pubDate>Wed, 06 May 2020 23:45:11 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/chapter12/</guid>
-    <description><![CDATA[Note 팀 내에서 진행하는 Study 정리 입니다. 함께 논의 하고 싶은 주제 느낀점 기존에는 폴링, 푸시 기법만 알고 있었으나 롱폴링이라는 방법도 알게 되었습니다. 설계에 대한 내용은 주로 규모가 작은 그룹 채팅에 대한 설계만 그림을 통한 자세한 설명이 있었지만 규모가 큰 경우는 내용을 많이 다루지 않은 것 같습니다. 규모가 큰 채팅 서비스에서 크게 달라지는 것들이 있을까요? 미디어 파일과 같이 크기가 큰 파일을 채팅으로 전송해야하는 경우 WebRTC 과 같은(P2P 처럼) 기술을 활용할 수 있지 않을까 생각해보았습니다.]]></description>
+    <guid>https://riley817.github.io/nginx-compile/</guid>
+    <description><![CDATA[nginx 컴파일 설치하기 CentOS 7에서 NGINX를 컴파일 버전으로 설치한다. 컴파일 설치를 하기 위해서는 몇 가지 라이브러리가 필요하다. 필요 의존 라이브러리는 openssl, pcre, zlib 등이 필요하므로 먼저 설치한다. 컴파일을 위한 라이브러리 설치 1 2 3 4 5 6 7 8 9 10 11 # pcre 라이브러리 설치 yum install pcre* # gzip 압축을 사용하기 위해서 설치 yum install zlib zlib-devel # open ssl 설치 yum install openssl openssl-devel # gcc 설치 yum install gcc nginx 소스 파일을 다운로드 최신 버전 경로는 아래 url에 접속하여 원하는 버전 링크를 복사한다.]]></description>
 </item>
 <item>
-    <title>가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [11장] 뉴스 피드 시스템 설계</title>
-    <link>https://riley817.github.io/chapter11/</link>
-    <pubDate>Sat, 26 Aug 2023 00:33:20 &#43;0900</pubDate>
+    <title>[NGINX] nginx CORS 활성화 하기</title>
+    <link>https://riley817.github.io/nginx-cors/</link>
+    <pubDate>Wed, 06 May 2020 22:11:55 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/chapter11/</guid>
-    <description><![CDATA[Note 팀 내에서 진행하는 Study 정리 입니다. 함께 논의 하고 싶은 주제 이번 챕터도 굉장히 우리 서비스와 밀접한 내용이여서 매우 유익하고 좋았습니다. 대부분 설계에서 캐시를 많이 사용하고 있는 것 같습니다. 우리 서비스의 콘텐츠 쪽에는 도입하고 있는데 유저 쪽에도 도입을 해서 불필요한 서비스 의존관계를 없애면 좋을 것 같습니다. 요약 &ndash;
-뉴스피드 (news feed) 뉴스 피드는 사용자의 홈 페이지 중앙에 지속적으로 업데이트 되는 스토리들로 사용자 상태 정보 업데이트, 사진, 비디오, 링크, 앱 활동과 팔로우, 페이지, 그룹으로부터 오는 좋아요 등을 포함]]></description>
-</item>
-<item>
-    <title>가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [10장] 알림 시스템 설계</title>
-    <link>https://riley817.github.io/chapter10/</link>
-    <pubDate>Fri, 25 Aug 2023 23:58:20 &#43;0900</pubDate>
-    <author>riley</author>
-    <guid>https://riley817.github.io/chapter10/</guid>
-    <description><![CDATA[Note 팀 내에서 진행하는 Study 정리 입니다. 함께 논의 하고 싶은 주제 우리 업무와 매우 밀접한 내용이라 매우 유용했습니다. 우리서비스에서도 알림을 발송할 때 단말 토큰을 가져오기 위해 서버에서 다른 서버로 통신하는데 그부분을 캐시로 대체하여 리소스를 줄이면 좋을 것 같다는 생각이 들었습니다. 발송에 실패했을 때 재시도 할 수 있는 재시도 큐를 추가해야 겠습니다. 요약 &ndash; 알림 시스템은 모바일 푸시 알림 뿐만 아니라 SMS 메세지, 이메일 세 가지로 분류 할 수 있다.]]></description>
-</item>
-<item>
-    <title>가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [9장] 웹 크롤러 설계</title>
-    <link>https://riley817.github.io/chapter9/</link>
-    <pubDate>Fri, 25 Aug 2023 22:46:01 &#43;0900</pubDate>
-    <author>riley</author>
-    <guid>https://riley817.github.io/chapter9/</guid>
-    <description><![CDATA[Note 팀 내에서 진행하는 Study 정리 입니다. 함께 논의 하고 싶은 주제 예의있는 크롤러, 스파이더, 스파이더 덫 등 용어들이 재밌는 것 같습니다. 최근에는 리액트, 뷰와 같은 CSR(Client Side Rendering) 웹 페이지들이 많을 것 같은데 그런것들은 클라이언트에서 동적으로 렌더링을 완료한 뒤 웹 페이지를 다운받는 형태일까요? 그럼 고전적인 방식의 HTML 처리할 때보다 훨씬 오래 걸릴 것 같습니다. 크롤러는 조금 어려울 것 같지만 책에 설계된 구조대로 한번 실습을 해봐야겠습니다! 요약 웹 크롤러 web crawler 웹 크롤러는 로봇(robot) 또는 스파이더(spider)라고도 부른다.]]></description>
-</item>
-<item>
-    <title>가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [8장] URL 단축기 설계</title>
-    <link>https://riley817.github.io/chapter8/</link>
-    <pubDate>Wed, 23 Aug 2023 22:22:24 &#43;0900</pubDate>
-    <author>riley</author>
-    <guid>https://riley817.github.io/chapter8/</guid>
-    <description><![CDATA[Note 팀 내에서 진행하는 Study 정리 입니다. 함께 논의 하고 싶은 주제 내용이 매우 유익했습니다. 책에 설계된 대로 구현을 해볼 생각입니다! 단축 URL을 만들기 위한 접근법 (해시 후 충돌 해소, base-62) 이 외에 다른 접근법이 있을까 서칭과 chatGPT 쿤에게 문의 해보았지만 좋은 방법은 찾지 못하였는데 혹시 다른 아이디어가 있을까요? 요약 1. 문제 이해 및 설계 범위 확정 1.1 기능 URL 단축 : 주어진 긴 URL을 짧게 줄인다. URL 리다이렉션 : 축약된 URL로 HTTP 요청이 오면 원래 URL로 안내 높은 가용성 규모 확장성, 그리고 장애 감내가 요구 1.]]></description>
-</item>
-<item>
-    <title>가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [7장] 분산 시스템을 위한 유일 ID 생성기 설계</title>
-    <link>https://riley817.github.io/chapter7/</link>
-    <pubDate>Sat, 19 Aug 2023 10:54:03 &#43;0900</pubDate>
-    <author>riley</author>
-    <guid>https://riley817.github.io/chapter7/</guid>
-    <description><![CDATA[Note 팀 내에서 진행하는 Study 정리 입니다. 함께 논의 하고 싶은 주제 다중 마스터 복제에서 언젠가는 값이 중복되지 않을까 하는데 어떻게 생각하시나요? 트위터 스노플레이크는 서버 갯수가 동적으로 줄었다가 늘었다가 하면 적용이 불가능한 걸까요? UUID는 신기하당 요약 1. 문제 이해 및 설계 범위 확정 ID는 유일 해야 한다. ID는 숫자로만 구성되어야 한다. ID는 64비트로 표현 ID는 발급 날짜에 따라 정렬 가능해야 한다. 초당 10,000 개의 ID를 만들 수 있어야 한다. 2.]]></description>
-</item>
-<item>
-    <title>가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [6장] 키-값 저장소 설계</title>
-    <link>https://riley817.github.io/chapter6/</link>
-    <pubDate>Sat, 19 Aug 2023 02:03:19 &#43;0900</pubDate>
-    <author>riley</author>
-    <guid>https://riley817.github.io/chapter6/</guid>
-    <description><![CDATA[Note 팀 내에서 진행하는 Study 정리 입니다. 함께 논의 하고 싶은 주제 분산 시스템에서 어떤 노드가 최신의 데이터를 갖고 있는지 어떻게 판단할지 요약 키 값 저장소 키-값 데이터베이스라고도 하며 비 관계형 데이터베이스이다. 고유 식별자identifier를 키로 설정하며 키는 유일해야하고 키에 매달린 값은 키를 통해서만 접근 가능하다. 키는 짧을 수록 좋다. 값은 문자열, 리스트, 객체 등 어떤 값이 오든 상관없다. 아마존 다이나모, memcached, 레디스 등 1. 문제 이해 및 설계 범위 확정 읽기, 쓰기 그리고 메모리 사용량 사이 균형을 찾고 데이터 일관성과 가용성 사이에 타협점을 찾는 설계를 한다]]></description>
+    <guid>https://riley817.github.io/nginx-cors/</guid>
+    <description><![CDATA[nginx CORS 활성화 하기 nginx에서 CORS(Cross-Origin Resource Sharing) 설정을 활성화한다. nginx 설정파일 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 # # Wide-open CORS config for nginx # location / { if ($request_method = &#39;OPTIONS&#39;) { add_header &#39;Access-Control-Allow-Origin&#39; &#39;*&#39;; add_header &#39;Access-Control-Allow-Methods&#39; &#39;GET, POST, OPTIONS&#39;; # # Custom headers and headers various browsers *should* be OK with but aren&#39;t # add_header &#39;Access-Control-Allow-Headers&#39; &#39;DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range&#39;; # # Tell client that this pre-flight info is valid for 20 days # add_header &#39;Access-Control-Max-Age&#39; 1728000; add_header &#39;Content-Type&#39; &#39;text/plain; charset=utf-8&#39;; add_header &#39;Content-Length&#39; 0; return 204; } if ($request_method = &#39;POST&#39;) { add_header &#39;Access-Control-Allow-Origin&#39; &#39;*&#39;; add_header &#39;Access-Control-Allow-Methods&#39; &#39;GET, POST, OPTIONS&#39;; add_header &#39;Access-Control-Allow-Headers&#39; &#39;DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range&#39;; add_header &#39;Access-Control-Expose-Headers&#39; &#39;Content-Length,Content-Range&#39;; } if ($request_method = &#39;GET&#39;) { add_header &#39;Access-Control-Allow-Origin&#39; &#39;*&#39;; add_header &#39;Access-Control-Allow-Methods&#39; &#39;GET, POST, OPTIONS&#39;; add_header &#39;Access-Control-Allow-Headers&#39; &#39;DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range&#39;; add_header &#39;Access-Control-Expose-Headers&#39; &#39;Content-Length,Content-Range&#39;; } } ]]></description>
 </item>
 </channel>
 </rss>
