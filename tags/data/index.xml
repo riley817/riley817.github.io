@@ -4,7 +4,17 @@
         <link>https://riley817.github.io/tags/data/</link>
         <description>data - Tag - Riley&#39;s DevLog</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
-            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Sun, 20 Nov 2022 17:39:26 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/tags/data/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Mon, 21 Nov 2022 20:39:26 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/tags/data/" rel="self" type="application/rss+xml" /><item>
+    <title>데이터 분석을 위한 SQL 레시피 - 3장 데이터 가공을 위한 SQL</title>
+    <link>https://riley817.github.io/sql-recipe-3/</link>
+    <pubDate>Mon, 21 Nov 2022 20:39:26 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/sql-recipe-3/</guid>
+    <description><![CDATA[🗄️ 데이터분석을 위한 SQL 레시피 책을 읽고 정리 / 요약 한 내용입니다.
+데이터를 가공해야 하는 이유 다룰 데이터가 데이터 분석 용도로 상정되지 않은 경우 연산할 때 비교 가능한 상태를 만들고 오류를 회피하기 위한 경우 5. 하나의 값 조작하기 5.1 코드 값을 레이블로 변경하기 디폴트 값을 지정할 경우 ELSE 구문을 사용한다.
+1 2 3 4 5 6 7 8 9 SELECT user_id , CASE WHEN register_device = 1 THEN &#39;데스크톱&#39; WHEN register_device = 2 THEN &#39;스마트폰&#39; WHEN register_device = 3 THEN &#39;애플리케이션&#39; ELSE &#39;&#39; END as device_name FROM mst_users; 5.]]></description>
+</item>
+<item>
     <title>데이터 분석을 위한 SQL 레시피 - 2장 도구와 데이터</title>
     <link>https://riley817.github.io/sql-recipe-2/</link>
     <pubDate>Sun, 20 Nov 2022 17:39:26 &#43;0900</pubDate>

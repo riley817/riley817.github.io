@@ -101,6 +101,12 @@
         alt="/images/avatar.png"
         title="/images/avatar.png" /></a></div><h1 class="home-title">라일리의 개발 공부기록</h1><div class="home-subtitle"><div id="id-1" class="typeit"></div></div><div class="links"><a href="https://github.com/https://github.com/riley817" title="GitHub" target="_blank" rel="noopener noreffer me"><i class="fab fa-github-alt fa-fw" aria-hidden="true"></i></a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/easy-golang-section12/">[쉽고 빠르게 끝내는 GO언어 프로그래밍 핵심 기초 입문 과정] Section 12 : 패키지 고급</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="https://github.com/riley817" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2021-04-23">2021-04-23</time></span>&nbsp;<span class="post-category">included in <a href="/categories/%EC%89%BD%EA%B3%A0-%EB%B9%A0%EB%A5%B4%EA%B2%8C-%EB%81%9D%EB%82%B4%EB%8A%94-go%EC%96%B8%EC%96%B4-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D-%ED%95%B5%EC%8B%AC-%EA%B8%B0%EC%B4%88-%EC%9E%85%EB%AC%B8-%EA%B3%BC%EC%A0%95/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>쉽고 빠르게 끝내는 GO언어 프로그래밍 핵심 기초 입문 과정</a></span></div><div class="content">인프런 쉽고 빠르게 끝내는 GO언어 프로그래밍 핵심 기초 입문 과정 강의 정리
+12.1 사용자 패키지 제작 및 문서화 12.1.1 사용자 패키지 작성 및 문서화 go 에서 패키지는 폴더명(디렉토리명)으로 접근한다. → 그러므로 명확하게 지정해야 한다. 사용자 패키지를 문서화 할 때 main 패키지를 제외하고 package 문서에 등록된다. 기본적으로 GOROOT 의 패키지에서 검색 → 없으면 GOPATH 패키지를 검색한다. go install 명령어 : GOPATH/pkg 에 패키지 등록 godoc -http:=6060 으로 본인 패키지 메소드 및 주석을 확인 할 수 있다.</div><div class="post-footer">
+        <a href="/easy-golang-section12/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/go/">GO</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/oracle-scheduler/">Oracle Scheduler DBMS_SCHEDULER 개념 및 사용법</a>
     </h1><div class="post-meta"><span class="post-author"><a href="https://github.com/riley817" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2021-04-23">2021-04-23</time></span>&nbsp;<span class="post-category">included in <a href="/categories/database/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Database</a></span></div><div class="content">Oracle Scheduler - DBMS_SCHEDULER 오라클에서 정해진 시간에 반복된 작업을 수행하기 위해 DBMS_JOB 패키지를 활용하였지만 Oracle 10g 부터는 좀 더 확장된 기능을 가진 DBMS_SCHEDULER 패키지를 제공하고 있다. DBMS_JOB과의 가장 큰 차이점은 DBMS_JOB에서는 불가능하던 외부스크립트 (프로시저나, 함수 이외에도 OS에서 생성된 각종 유틸, 프로그램 까지) 실행이 가능하다. Class 생성 클래스를 지정하지 않게 되면 DEFAULT_JOB_CLASS 에 포함되는데 이 경우 기본 로깅 정책을 따른다. 기본로깅 정책은 DBMS_SCHEDULER.LOGGING_RUNS 이며 로깅레벨을 별도로 설정하거나 다른 스케쥴잡과 그룹화하여 관리하고 싶을 경우 Class를 생성한다.</div><div class="post-footer">
         <a href="/oracle-scheduler/">Read More</a><div class="post-tags">
@@ -130,12 +136,6 @@ Go 에서는 기본적으로 error 라는 인터페이스 타입을 갖고 있�
     </h1><div class="post-meta"><span class="post-author"><a href="https://github.com/riley817" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2021-04-13">2021-04-13</time></span>&nbsp;<span class="post-category">included in <a href="/categories/%EC%89%BD%EA%B3%A0-%EB%B9%A0%EB%A5%B4%EA%B2%8C-%EB%81%9D%EB%82%B4%EB%8A%94-go%EC%96%B8%EC%96%B4-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D-%ED%95%B5%EC%8B%AC-%EA%B8%B0%EC%B4%88-%EC%9E%85%EB%AC%B8-%EA%B3%BC%EC%A0%95/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>쉽고 빠르게 끝내는 GO언어 프로그래밍 핵심 기초 입문 과정</a></span></div><div class="content">인프런 쉽고 빠르게 끝내는 GO언어 프로그래밍 핵심 기초 입문 과정 강의 정리
 8.1 인터페이스 8.1.1 인터페이스란 구조체가 필드들의 집합체라면 interface는 메서드들의 집합이다. 인터페이스는 타입이 구현해야 하는 메서드 원형 prototype 을 정의한다. → 추상화를 제공 디자인패턴 측면에서 client의 입장 → 인터페이스에 정의된 메소드의 동작을 보장하므로 정확한 class의 구현방법을 몰라도 된다. 클래스간의 결합도 감소 → 유지보수성 향상, 기능 추가 용이성, 독립적인 프로그래밍 가능 인터페이스를 구현하기 위해서는 해당 타입이 그 인터페이스 메서드들이 모두 구현되어야 한다.</div><div class="post-footer">
         <a href="/easy-golang-section8/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/go/">GO</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/easy-golang-section7/">[쉽고 빠르게 끝내는 GO언어 프로그래밍 핵심 기초 입문 과정] Section 7 : Go 함수</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="https://github.com/riley817" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2021-04-08">2021-04-08</time></span>&nbsp;<span class="post-category">included in <a href="/categories/%EC%89%BD%EA%B3%A0-%EB%B9%A0%EB%A5%B4%EA%B2%8C-%EB%81%9D%EB%82%B4%EB%8A%94-go%EC%96%B8%EC%96%B4-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D-%ED%95%B5%EC%8B%AC-%EA%B8%B0%EC%B4%88-%EC%9E%85%EB%AC%B8-%EA%B3%BC%EC%A0%95/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>쉽고 빠르게 끝내는 GO언어 프로그래밍 핵심 기초 입문 과정</a></span></div><div class="content">인프런 쉽고 빠르게 끝내는 GO언어 프로그래밍 핵심 기초 입문 과정 강의 정리
-7.1 함수 기초 7.1.1 함수 여러 문장을 묶어서 실행하는 코드 블럭 단위 func 키워드를 사용하여 정의한다. 타 언어와 달리 변환 값 return value 다수 가능 1 2 3 4 func 함수명(매개변수) (반환타입 or 반환 값 변수명) : 반환 값 존재 func 함수명() (반환타입 or 반환 값 변수명) : 매개변수 없음, 반환 값 존재 func 함수명(매개변수) : 매개변수 존재, 반환 값 없음 func 함수명() : 매개변수 없음, 반환값 없음 함수 사용 예제 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 package main import ( &#34;fmt&#34; &#34;strconv&#34; ) // 함수 선언 위치는 어느 곳이 든 가능 func helloGoLang() { // 매개변수 X, 반환값 x fmt.</div><div class="post-footer">
-        <a href="/easy-golang-section7/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/go/">GO</a></div></div>
 </article><ul class="pagination"><li class="page-item ">
                     <span class="page-link">
@@ -167,7 +167,7 @@ Go 에서는 기본적으로 error 라는 인터페이스 타입을 갖고 있�
                     <span class="page-link" aria-hidden="true">&hellip;</span>
                 </li><li class="page-item ">
                     <span class="page-link">
-                        <a href="/page/20/">20</a>
+                        <a href="/page/21/">21</a>
                     </span>
                 </li></ul></div></div>
             </main><footer class="footer">
