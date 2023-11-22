@@ -1,0 +1,1525 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>데이터 분석을 위한 SQL 레시피 - 4장 시계열 기반으로 데이터 집계하기 - Riley&#39;s DevLog</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:title" content="데이터 분석을 위한 SQL 레시피 - 4장 시계열 기반으로 데이터 집계하기" />
+<meta property="og:description" content="🗄️ 데이터분석을 위한 SQL 레시피 책을 읽고 정리 / 요약 한 내용입니다.
+10. 다면적인 축을 사용해 데이터 집약하기 매출의 시계열뿐만 아니라 상품의 카테고리, 가격 등을 조합하여 데이터의 특징을 추출해 리포팅 샘플 데이터 매출 데이터 로그 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 DROP TABLE IF EXISTS purchase_detail_log; CREATE TABLE purchase_detail_log( dt varchar(255) , order_id integer , user_id varchar(255) , item_id varchar(255) , price integer , category varchar(255) , sub_category varchar(255) ); INSERT INTO purchase_detail_log VALUES (&#39;2017-01-18&#39;, 48291, &#39;usr33395&#39;, &#39;lad533&#39;, 37300, &#39;ladys_fashion&#39;, &#39;bag&#39;) , (&#39;2017-01-18&#39;, 48291, &#39;usr33395&#39;, &#39;lad329&#39;, 97300, &#39;ladys_fashion&#39;, &#39;jacket&#39;) , (&#39;2017-01-18&#39;, 48291, &#39;usr33395&#39;, &#39;lad102&#39;, 114600, &#39;ladys_fashion&#39;, &#39;jacket&#39;) , (&#39;2017-01-18&#39;, 48291, &#39;usr33395&#39;, &#39;lad886&#39;, 33300, &#39;ladys_fashion&#39;, &#39;bag&#39;) , (&#39;2017-01-18&#39;, 48292, &#39;usr52832&#39;, &#39;dvd871&#39;, 32800, &#39;dvd&#39; , &#39;documentary&#39;) , (&#39;2017-01-18&#39;, 48292, &#39;usr52832&#39;, &#39;gam167&#39;, 26000, &#39;game&#39; , &#39;accessories&#39;) , (&#39;2017-01-18&#39;, 48292, &#39;usr52832&#39;, &#39;lad289&#39;, 57300, &#39;ladys_fashion&#39;, &#39;bag&#39;) , (&#39;2017-01-18&#39;, 48293, &#39;usr28891&#39;, &#39;out977&#39;, 28600, &#39;outdoor&#39; , &#39;camp&#39;) , (&#39;2017-01-18&#39;, 48293, &#39;usr28891&#39;, &#39;boo256&#39;, 22500, &#39;book&#39; , &#39;business&#39;) , (&#39;2017-01-18&#39;, 48293, &#39;usr28891&#39;, &#39;lad125&#39;, 61500, &#39;ladys_fashion&#39;, &#39;jacket&#39;) , (&#39;2017-01-18&#39;, 48294, &#39;usr33604&#39;, &#39;mem233&#39;, 116300, &#39;mens_fashion&#39; , &#39;jacket&#39;) , (&#39;2017-01-18&#39;, 48294, &#39;usr33604&#39;, &#39;cd477&#39; , 25800, &#39;cd&#39; , &#39;classic&#39;) , (&#39;2017-01-18&#39;, 48294, &#39;usr33604&#39;, &#39;boo468&#39;, 31000, &#39;book&#39; , &#39;business&#39;) , (&#39;2017-01-18&#39;, 48294, &#39;usr33604&#39;, &#39;foo402&#39;, 48700, &#39;food&#39; , &#39;meats&#39;) , (&#39;2017-01-18&#39;, 48295, &#39;usr38013&#39;, &#39;foo134&#39;, 32000, &#39;food&#39; , &#39;fish&#39;) , (&#39;2017-01-18&#39;, 48295, &#39;usr38013&#39;, &#39;lad147&#39;, 96100, &#39;ladys_fashion&#39;, &#39;jacket&#39;) ; 10." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://riley817.github.io/sql-recipe-4-2/" /><meta property="og:image" content="https://riley817.github.io/icon.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-11-22T20:24:17+09:00" />
+<meta property="article:modified_time" content="2023-11-22T23:10:33+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://riley817.github.io/icon.png"/>
+
+<meta name="twitter:title" content="데이터 분석을 위한 SQL 레시피 - 4장 시계열 기반으로 데이터 집계하기"/>
+<meta name="twitter:description" content="🗄️ 데이터분석을 위한 SQL 레시피 책을 읽고 정리 / 요약 한 내용입니다.
+10. 다면적인 축을 사용해 데이터 집약하기 매출의 시계열뿐만 아니라 상품의 카테고리, 가격 등을 조합하여 데이터의 특징을 추출해 리포팅 샘플 데이터 매출 데이터 로그 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 DROP TABLE IF EXISTS purchase_detail_log; CREATE TABLE purchase_detail_log( dt varchar(255) , order_id integer , user_id varchar(255) , item_id varchar(255) , price integer , category varchar(255) , sub_category varchar(255) ); INSERT INTO purchase_detail_log VALUES (&#39;2017-01-18&#39;, 48291, &#39;usr33395&#39;, &#39;lad533&#39;, 37300, &#39;ladys_fashion&#39;, &#39;bag&#39;) , (&#39;2017-01-18&#39;, 48291, &#39;usr33395&#39;, &#39;lad329&#39;, 97300, &#39;ladys_fashion&#39;, &#39;jacket&#39;) , (&#39;2017-01-18&#39;, 48291, &#39;usr33395&#39;, &#39;lad102&#39;, 114600, &#39;ladys_fashion&#39;, &#39;jacket&#39;) , (&#39;2017-01-18&#39;, 48291, &#39;usr33395&#39;, &#39;lad886&#39;, 33300, &#39;ladys_fashion&#39;, &#39;bag&#39;) , (&#39;2017-01-18&#39;, 48292, &#39;usr52832&#39;, &#39;dvd871&#39;, 32800, &#39;dvd&#39; , &#39;documentary&#39;) , (&#39;2017-01-18&#39;, 48292, &#39;usr52832&#39;, &#39;gam167&#39;, 26000, &#39;game&#39; , &#39;accessories&#39;) , (&#39;2017-01-18&#39;, 48292, &#39;usr52832&#39;, &#39;lad289&#39;, 57300, &#39;ladys_fashion&#39;, &#39;bag&#39;) , (&#39;2017-01-18&#39;, 48293, &#39;usr28891&#39;, &#39;out977&#39;, 28600, &#39;outdoor&#39; , &#39;camp&#39;) , (&#39;2017-01-18&#39;, 48293, &#39;usr28891&#39;, &#39;boo256&#39;, 22500, &#39;book&#39; , &#39;business&#39;) , (&#39;2017-01-18&#39;, 48293, &#39;usr28891&#39;, &#39;lad125&#39;, 61500, &#39;ladys_fashion&#39;, &#39;jacket&#39;) , (&#39;2017-01-18&#39;, 48294, &#39;usr33604&#39;, &#39;mem233&#39;, 116300, &#39;mens_fashion&#39; , &#39;jacket&#39;) , (&#39;2017-01-18&#39;, 48294, &#39;usr33604&#39;, &#39;cd477&#39; , 25800, &#39;cd&#39; , &#39;classic&#39;) , (&#39;2017-01-18&#39;, 48294, &#39;usr33604&#39;, &#39;boo468&#39;, 31000, &#39;book&#39; , &#39;business&#39;) , (&#39;2017-01-18&#39;, 48294, &#39;usr33604&#39;, &#39;foo402&#39;, 48700, &#39;food&#39; , &#39;meats&#39;) , (&#39;2017-01-18&#39;, 48295, &#39;usr38013&#39;, &#39;foo134&#39;, 32000, &#39;food&#39; , &#39;fish&#39;) , (&#39;2017-01-18&#39;, 48295, &#39;usr38013&#39;, &#39;lad147&#39;, 96100, &#39;ladys_fashion&#39;, &#39;jacket&#39;) ; 10."/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://riley817.github.io/sql-recipe-4-2/" /><link rel="prev" href="https://riley817.github.io/sql-recipe-4-1/" /><link rel="next" href="https://riley817.github.io/graph-database/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "데이터 분석을 위한 SQL 레시피 - 4장 시계열 기반으로 데이터 집계하기",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/riley817.github.io\/sql-recipe-4-2\/"
+        },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "data","wordcount":  2332 ,
+        "url": "https:\/\/riley817.github.io\/sql-recipe-4-2\/","datePublished": "2022-11-22T20:24:17+09:00","dateModified": "2023-11-22T23:10:33+09:00","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "https:\/\/riley817.github.io\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "riley"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('light' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'light' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Riley&#39;s DevLog"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i></span>Riley&#39;s DevLog</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Riley&#39;s DevLog"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i></span>Riley&#39;s DevLog</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">데이터 분석을 위한 SQL 레시피 - 4장 시계열 기반으로 데이터 집계하기</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/riley817" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%EB%8D%B0%EC%9D%B4%ED%84%B0-%EB%B6%84%EC%84%9D%EC%9D%84-%EC%9C%84%ED%95%9C-sql-%EB%A0%88%EC%8B%9C%ED%94%BC/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>데이터 분석을 위한 SQL 레시피</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-11-22">2022-11-22</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2332 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;11 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#10-다면적인-축을-사용해-데이터-집약하기">10. 다면적인 축을 사용해 데이터 집약하기</a>
+      <ul>
+        <li><a href="#샘플-데이터">샘플 데이터</a></li>
+        <li><a href="#101-카테고리별-매출과-소계-계산하기">10.1 카테고리별 매출과 소계 계산하기</a></li>
+        <li><a href="#102-abc-분석으로-잘-팔리는-상품-판별하기">10.2 ABC 분석으로 잘 팔리는 상품 판별하기</a>
+          <ul>
+            <li><a href="#abc-분석을-위한-데이터-작성-방법">ABC 분석을 위한 데이터 작성 방법</a></li>
+          </ul>
+        </li>
+        <li><a href="#103-팬-차트로-상품의-매출-증가율-확인하기">10.3 팬 차트로 상품의 매출 증가율 확인하기</a></li>
+        <li><a href="#104-히스토그램으로-구매가격대-집계하기">10.4 히스토그램으로 구매가격대 집계하기</a>
+          <ul>
+            <li><a href="#히스토그램-만드는-법">히스토그램 만드는 법</a></li>
+            <li><a href="#임의의-계층-수로-히스토그램-만들기">임의의 계층 수로 히스토그램 만들기</a></li>
+            <li><a href="#임의의-계층-너비로-히스토그램-작성하기">임의의 계층 너비로 히스토그램 작성하기</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><blockquote>
+<p>🗄️ 데이터분석을 위한 SQL 레시피 책을 읽고 정리 / 요약 한 내용입니다.</p>
+</blockquote>
+<h2 id="10-다면적인-축을-사용해-데이터-집약하기">10. 다면적인 축을 사용해 데이터 집약하기</h2>
+<ul>
+<li>매출의 시계열뿐만 아니라 상품의 카테고리, 가격 등을 조합하여 데이터의 특징을 추출해 리포팅</li>
+</ul>
+<h3 id="샘플-데이터">샘플 데이터</h3>
+<div class="details admonition abstract">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-list-ul fa-fw" aria-hidden="true"></i>매출 데이터 로그<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">DROP</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">purchase_detail_log</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">purchase_detail_log</span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">dt</span><span class="w">           </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">,</span><span class="w"> </span><span class="n">order_id</span><span class="w">     </span><span class="nb">integer</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">,</span><span class="w"> </span><span class="n">user_id</span><span class="w">      </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">,</span><span class="w"> </span><span class="n">item_id</span><span class="w">      </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">,</span><span class="w"> </span><span class="n">price</span><span class="w">        </span><span class="nb">integer</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">,</span><span class="w"> </span><span class="n">category</span><span class="w">     </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">,</span><span class="w"> </span><span class="n">sub_category</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">purchase_detail_log</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">VALUES</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">(</span><span class="s1">&#39;2017-01-18&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">48291</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;usr33395&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;lad533&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">37300</span><span class="p">,</span><span class="w">  </span><span class="s1">&#39;ladys_fashion&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;bag&#39;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;2017-01-18&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">48291</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;usr33395&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;lad329&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">97300</span><span class="p">,</span><span class="w">  </span><span class="s1">&#39;ladys_fashion&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;jacket&#39;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;2017-01-18&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">48291</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;usr33395&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;lad102&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">114600</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;ladys_fashion&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;jacket&#39;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;2017-01-18&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">48291</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;usr33395&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;lad886&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">33300</span><span class="p">,</span><span class="w">  </span><span class="s1">&#39;ladys_fashion&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;bag&#39;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;2017-01-18&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">48292</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;usr52832&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;dvd871&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">32800</span><span class="p">,</span><span class="w">  </span><span class="s1">&#39;dvd&#39;</span><span class="w">          </span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;documentary&#39;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;2017-01-18&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">48292</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;usr52832&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;gam167&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">26000</span><span class="p">,</span><span class="w">  </span><span class="s1">&#39;game&#39;</span><span class="w">         </span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;accessories&#39;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;2017-01-18&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">48292</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;usr52832&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;lad289&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">57300</span><span class="p">,</span><span class="w">  </span><span class="s1">&#39;ladys_fashion&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;bag&#39;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;2017-01-18&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">48293</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;usr28891&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;out977&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">28600</span><span class="p">,</span><span class="w">  </span><span class="s1">&#39;outdoor&#39;</span><span class="w">      </span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;camp&#39;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;2017-01-18&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">48293</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;usr28891&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;boo256&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">22500</span><span class="p">,</span><span class="w">  </span><span class="s1">&#39;book&#39;</span><span class="w">         </span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;business&#39;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;2017-01-18&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">48293</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;usr28891&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;lad125&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">61500</span><span class="p">,</span><span class="w">  </span><span class="s1">&#39;ladys_fashion&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;jacket&#39;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;2017-01-18&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">48294</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;usr33604&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;mem233&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">116300</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;mens_fashion&#39;</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;jacket&#39;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;2017-01-18&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">48294</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;usr33604&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;cd477&#39;</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="mi">25800</span><span class="p">,</span><span class="w">  </span><span class="s1">&#39;cd&#39;</span><span class="w">           </span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;classic&#39;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;2017-01-18&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">48294</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;usr33604&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;boo468&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">31000</span><span class="p">,</span><span class="w">  </span><span class="s1">&#39;book&#39;</span><span class="w">         </span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;business&#39;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;2017-01-18&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">48294</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;usr33604&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;foo402&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">48700</span><span class="p">,</span><span class="w">  </span><span class="s1">&#39;food&#39;</span><span class="w">         </span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;meats&#39;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;2017-01-18&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">48295</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;usr38013&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;foo134&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">32000</span><span class="p">,</span><span class="w">  </span><span class="s1">&#39;food&#39;</span><span class="w">         </span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;fish&#39;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;2017-01-18&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">48295</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;usr38013&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;lad147&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">96100</span><span class="p">,</span><span class="w">  </span><span class="s1">&#39;ladys_fashion&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;jacket&#39;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"> </span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></div>
+        </div>
+    </div>
+<h3 id="101-카테고리별-매출과-소계-계산하기">10.1 카테고리별 매출과 소계 계산하기</h3>
+<ul>
+<li>리포트는 전체적인 수치 개요를 전하면서 해당 내역을 다양한 관점에서 설명해야 한다.</li>
+<li><strong>드릴다운</strong> 이 필요
+<ul>
+<li>가장 요약된 레벨부터 가장 상세한 레벨의 차원의 계층까지 계층에 따라 분석에 필요한 요약 수준을 바꿀 수 있는 기능</li>
+<li>매출 합계를 제시 후 웹사이트, 모바일 사이트로 구분 하거나, 상품 카테고리별로 어떻게 구성되는지, 회원/비회원 페이지 뷰 비율에 따라 어떻게 다른 지 등</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WITH</span><span class="w"> </span><span class="n">sub_category_amount</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">-- 소 카테고리 매출 집계하기
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">    </span><span class="k">SELECT</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">category</span><span class="w">        </span><span class="k">AS</span><span class="w"> </span><span class="n">category</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="p">,</span><span class="w"> </span><span class="n">sub_category</span><span class="w">    </span><span class="k">AS</span><span class="w"> </span><span class="n">sub_category</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="p">,</span><span class="w"> </span><span class="k">sum</span><span class="p">(</span><span class="n">price</span><span class="p">)</span><span class="w">      </span><span class="k">AS</span><span class="w"> </span><span class="n">amount</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">sample_data</span><span class="p">.</span><span class="n">purchase_detail_log</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">category</span><span class="p">,</span><span class="w"> </span><span class="n">sub_category</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">category_amount</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">-- 대 카테고리 매출 집계하기
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">    </span><span class="k">SELECT</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">category</span><span class="w">        </span><span class="k">AS</span><span class="w"> </span><span class="n">category</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;all&#39;</span><span class="w">           </span><span class="k">AS</span><span class="w"> </span><span class="n">sub_category</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="p">,</span><span class="w"> </span><span class="k">sum</span><span class="p">(</span><span class="n">price</span><span class="p">)</span><span class="w">      </span><span class="k">AS</span><span class="w"> </span><span class="n">amount</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">sample_data</span><span class="p">.</span><span class="n">purchase_detail_log</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">category</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">total_amount</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">-- 전체 매출 집계하기
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">    </span><span class="k">SELECT</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="s1">&#39;all&#39;</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">category</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;all&#39;</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">sub_category</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="p">,</span><span class="w"> </span><span class="k">sum</span><span class="p">(</span><span class="n">price</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">amount</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">sample_data</span><span class="p">.</span><span class="n">purchase_detail_log</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">SELECT</span><span class="w"> </span><span class="n">category</span><span class="p">,</span><span class="w"> </span><span class="n">sub_category</span><span class="p">,</span><span class="w"> </span><span class="n">amount</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">sub_category_amount</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">UNION</span><span class="w"> </span><span class="k">ALL</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">category</span><span class="p">,</span><span class="w"> </span><span class="n">sub_category</span><span class="p">,</span><span class="w"> </span><span class="n">amount</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">category_amount</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">UNION</span><span class="w"> </span><span class="k">ALL</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">category</span><span class="p">,</span><span class="w"> </span><span class="n">sub_category</span><span class="p">,</span><span class="w"> </span><span class="n">amount</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">total_amount</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><div class="details admonition example">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-list-ol fa-fw" aria-hidden="true"></i>실행결과<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><table>
+<thead>
+<tr>
+<th style="text-align:left">category</th>
+<th style="text-align:left">sub_category</th>
+<th style="text-align:left">amount</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">all</td>
+<td style="text-align:left">all</td>
+<td style="text-align:left">861100</td>
+</tr>
+<tr>
+<td style="text-align:left">book</td>
+<td style="text-align:left">all</td>
+<td style="text-align:left">53500</td>
+</tr>
+<tr>
+<td style="text-align:left">outdoor</td>
+<td style="text-align:left">all</td>
+<td style="text-align:left">28600</td>
+</tr>
+<tr>
+<td style="text-align:left">ladys_fashion</td>
+<td style="text-align:left">all</td>
+<td style="text-align:left">497400</td>
+</tr>
+<tr>
+<td style="text-align:left">food</td>
+<td style="text-align:left">all</td>
+<td style="text-align:left">80700</td>
+</tr>
+<tr>
+<td style="text-align:left">mens_fashion</td>
+<td style="text-align:left">all</td>
+<td style="text-align:left">116300</td>
+</tr>
+<tr>
+<td style="text-align:left">cd</td>
+<td style="text-align:left">all</td>
+<td style="text-align:left">25800</td>
+</tr>
+<tr>
+<td style="text-align:left">game</td>
+<td style="text-align:left">all</td>
+<td style="text-align:left">26000</td>
+</tr>
+<tr>
+<td style="text-align:left">dvd</td>
+<td style="text-align:left">all</td>
+<td style="text-align:left">32800</td>
+</tr>
+<tr>
+<td style="text-align:left">book</td>
+<td style="text-align:left">business</td>
+<td style="text-align:left">53500</td>
+</tr>
+<tr>
+<td style="text-align:left">outdoor</td>
+<td style="text-align:left">camp</td>
+<td style="text-align:left">28600</td>
+</tr>
+<tr>
+<td style="text-align:left">ladys_fashion</td>
+<td style="text-align:left">jacket</td>
+<td style="text-align:left">369500</td>
+</tr>
+<tr>
+<td style="text-align:left">ladys_fashion</td>
+<td style="text-align:left">bag</td>
+<td style="text-align:left">127900</td>
+</tr>
+<tr>
+<td style="text-align:left">food</td>
+<td style="text-align:left">meats</td>
+<td style="text-align:left">48700</td>
+</tr>
+<tr>
+<td style="text-align:left">mens_fashion</td>
+<td style="text-align:left">jacket</td>
+<td style="text-align:left">116300</td>
+</tr>
+<tr>
+<td style="text-align:left">cd</td>
+<td style="text-align:left">classic</td>
+<td style="text-align:left">25800</td>
+</tr>
+<tr>
+<td style="text-align:left">food</td>
+<td style="text-align:left">fish</td>
+<td style="text-align:left">32000</td>
+</tr>
+<tr>
+<td style="text-align:left">game</td>
+<td style="text-align:left">accessories</td>
+<td style="text-align:left">26000</td>
+</tr>
+<tr>
+<td style="text-align:left">dvd</td>
+<td style="text-align:left">documentary</td>
+<td style="text-align:left">32800</td>
+</tr>
+</tbody>
+</table>
+</div>
+        </div>
+    </div>
+<ul>
+<li><code>UNION ALL</code>을 사용해 테이블을 결합하는 방법은 테이블을 여러 번 불러오고 데이터를 결합하는 비용이 발생 : <strong>성능이 좋지 않음</strong></li>
+<li>PostgreSQL, Hive, SparkSQL의 경우 <code>SQL99</code>에 도입된 <strong>ROLLUP</strong> 을 권장</li>
+</ul>
+<p><strong>ROLLUP을 사용하여 카테고리 별 매출과 소계를 동시에 구하는 쿼리</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">COALESCE</span><span class="p">(</span><span class="n">category</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;all&#39;</span><span class="p">)</span><span class="w">       </span><span class="k">AS</span><span class="w"> </span><span class="n">category</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">,</span><span class="w"> </span><span class="n">COALESCE</span><span class="p">(</span><span class="n">sub_category</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;all&#39;</span><span class="p">)</span><span class="w">   </span><span class="k">AS</span><span class="w"> </span><span class="n">sub_category</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">,</span><span class="w"> </span><span class="k">SUM</span><span class="p">(</span><span class="n">price</span><span class="p">)</span><span class="w">                      </span><span class="k">AS</span><span class="w"> </span><span class="n">amount</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">purchase_detail_log</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="k">ROLLUP</span><span class="w"> </span><span class="p">(</span><span class="n">category</span><span class="p">,</span><span class="w"> </span><span class="n">sub_category</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"> </span><span class="c1">-- HIVE 에서는 다음과 같이 사용
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w"> </span><span class="c1">-- GROUP BY category, sub_category WITH ROLLUP
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>대부분의 리포트 툴은 소계를 계산해주는 기능이 존재 -&gt; 따라서 최소 단위로 집계 후 따로 소계 계산이 가능</li>
+</ul>
+<h3 id="102-abc-분석으로-잘-팔리는-상품-판별하기">10.2 ABC 분석으로 잘 팔리는 상품 판별하기</h3>
+<ul>
+<li><strong>ABC 분석</strong> : 매출 중요도에 따라 상품을 나누고 그게 맞게 전략을 만들 때 사용. 재고 관리 등에서 사용하는 분석법</li>
+</ul>
+<h4 id="abc-분석을-위한-데이터-작성-방법">ABC 분석을 위한 데이터 작성 방법</h4>
+<ol>
+<li>매출이 높은 순서대로 데이터를 정렬한다.</li>
+<li>매출 합계를 집계한다.</li>
+<li>매출 합계를 기반으로 데이터가 차지하는 비율을 계산하고 구성비를 구한다.</li>
+<li>계산한 카테고리의 구성비를 기반으로 구성비누계를 구한다.</li>
+</ol>
+<ul>
+<li>카테고리의 매출과 해당 시점까지의 누계를 따로 계산 후 총 매출로 나누면 구성비누계를 구할 . 수있음</li>
+</ul>
+<p><strong>매출 구성비누계와 ABC 등급을 계산하는 쿼리</strong></p>
+<ul>
+<li>2015년 12월 한 달 동안의 구매로그를 기준으로 상품
+<ul>
+<li>카테고리 별 매출 계산</li>
+<li>전체 매출에 대한 항목별 매출 구성비, 구성비누계 계산</li>
+<li>구성비누계를 기준으로 상위 <code>0~70%</code>, <code>70~90%</code>, <code>90~100%</code>의 등급을 나눔</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">WITH</span><span class="w"> </span><span class="n">monthly_sales</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">SELECT</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">category</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="p">,</span><span class="w"> </span><span class="k">SUM</span><span class="p">(</span><span class="n">price</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">amount</span><span class="w"> </span><span class="c1">-- 항목별 매출 계산하기
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">purchase_detail_log</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">WHERE</span><span class="w"> </span><span class="n">dt</span><span class="w"> </span><span class="k">BETWEEN</span><span class="w"> </span><span class="s1">&#39;2015-12-01&#39;</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="s1">&#39;2015-12-31&#39;</span><span class="w"> </span><span class="c1">-- 대상 1개월 동안의 로그를 조건으로 걸기
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">    </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">category</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">sales_composition_ratio</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">SELECT</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">category</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="p">,</span><span class="w"> </span><span class="n">amount</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="c1">-- 구성비 : 100.0 * 항목별 매출 / 전체 매출
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">      </span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">.</span><span class="mi">0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">amount</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="k">SUM</span><span class="p">(</span><span class="n">amount</span><span class="p">)</span><span class="w"> </span><span class="n">OVER</span><span class="p">()</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">composition_ratio</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="c1">-- 구성비누계 : 100.0 * 항목별 누계 매출 / 전체 매출
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">      </span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">.</span><span class="mi">0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">SUM</span><span class="p">(</span><span class="n">amount</span><span class="p">)</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="p">(</span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">amount</span><span class="w"> </span><span class="k">DESC</span><span class="w"> </span><span class="k">ROWS</span><span class="w"> </span><span class="k">BETWEEN</span><span class="w"> </span><span class="n">UNBOUNDED</span><span class="w"> </span><span class="n">PRECEDING</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="k">CURRENT</span><span class="w"> </span><span class="k">ROW</span><span class="w"> </span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="o">/</span><span class="w"> </span><span class="k">SUM</span><span class="p">(</span><span class="n">amount</span><span class="p">)</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">cumulative_ratio</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">monthly_sales</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">SELECT</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="o">*</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c1">-- 구성비누계 범위에 따라 순위 붙이기
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">  </span><span class="p">,</span><span class="w"> </span><span class="k">CASE</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="k">WHEN</span><span class="w"> </span><span class="n">cumulative_ratio</span><span class="w"> </span><span class="k">BETWEEN</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="mi">70</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span><span class="s1">&#39;A&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="k">WHEN</span><span class="w"> </span><span class="n">cumulative_ratio</span><span class="w"> </span><span class="k">BETWEEN</span><span class="w"> </span><span class="mi">70</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="mi">90</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span><span class="s1">&#39;B&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="k">WHEN</span><span class="w"> </span><span class="n">cumulative_ratio</span><span class="w"> </span><span class="k">BETWEEN</span><span class="w"> </span><span class="mi">90</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="mi">100</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span><span class="s1">&#39;C&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">END</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">abc_rank</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">sales_composition_ratio</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">amount</span><span class="w"> </span><span class="k">DESC</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><div class="details admonition example">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-list-ol fa-fw" aria-hidden="true"></i>실행결과<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><table>
+<thead>
+<tr>
+<th style="text-align:left">category</th>
+<th style="text-align:left">amount</th>
+<th style="text-align:left">composition_ratio</th>
+<th style="text-align:left">cumulative_ratio</th>
+<th style="text-align:left">abc_rank</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">ladys_fashion</td>
+<td style="text-align:left">497400</td>
+<td style="text-align:left">57.7633259783997213</td>
+<td style="text-align:left">57.7633259783997213</td>
+<td style="text-align:left">A</td>
+</tr>
+<tr>
+<td style="text-align:left">mens_fashion</td>
+<td style="text-align:left">116300</td>
+<td style="text-align:left">13.5059807223319011</td>
+<td style="text-align:left">71.2693067007316223</td>
+<td style="text-align:left">B</td>
+</tr>
+<tr>
+<td style="text-align:left">food</td>
+<td style="text-align:left">80700</td>
+<td style="text-align:left">9.3717338288235977</td>
+<td style="text-align:left">80.6410405295552201</td>
+<td style="text-align:left">B</td>
+</tr>
+<tr>
+<td style="text-align:left">book</td>
+<td style="text-align:left">53500</td>
+<td style="text-align:left">6.2129833933341075</td>
+<td style="text-align:left">86.8540239228893276</td>
+<td style="text-align:left">B</td>
+</tr>
+<tr>
+<td style="text-align:left">dvd</td>
+<td style="text-align:left">32800</td>
+<td style="text-align:left">3.8090814075020323</td>
+<td style="text-align:left">90.6631053303913599</td>
+<td style="text-align:left">C</td>
+</tr>
+<tr>
+<td style="text-align:left">outdoor</td>
+<td style="text-align:left">28600</td>
+<td style="text-align:left">3.3213331784926257</td>
+<td style="text-align:left">93.9844385088839856</td>
+<td style="text-align:left">C</td>
+</tr>
+<tr>
+<td style="text-align:left">game</td>
+<td style="text-align:left">26000</td>
+<td style="text-align:left">3.0193937986296597</td>
+<td style="text-align:left">97.0038323075136453</td>
+<td style="text-align:left">C</td>
+</tr>
+<tr>
+<td style="text-align:left">cd</td>
+<td style="text-align:left">25800</td>
+<td style="text-align:left">2.9961676924863547</td>
+<td style="text-align:left">100</td>
+<td style="text-align:left">C</td>
+</tr>
+</tbody>
+</table>
+</div>
+        </div>
+    </div>
+<h3 id="103-팬-차트로-상품의-매출-증가율-확인하기">10.3 팬 차트로 상품의 매출 증가율 확인하기</h3>
+<ul>
+<li><strong>팬 차트</strong> : 기준 시점을 100% 로 두고 이후 숫자 변동을 확인할 수 있게 해주는 그래프</li>
+<li>변화가 백분율로 포시되어 작은 변화도 쉽게 인지</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">WITH</span><span class="w"> </span><span class="n">daily_category_amount</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">SELECT</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">dt</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="p">,</span><span class="w"> </span><span class="n">category</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">       </span><span class="c1">-- PostgreSQL, Hive, Redshift, SparkSQL은 다음과 같이 구성
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">       </span><span class="c1">-- BigQuery의 경우 substring을 sdubstr로 수정
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">      </span><span class="p">,</span><span class="w"> </span><span class="k">substring</span><span class="p">(</span><span class="n">dt</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="k">year</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="p">,</span><span class="w"> </span><span class="k">substring</span><span class="p">(</span><span class="n">dt</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="k">month</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="p">,</span><span class="w"> </span><span class="k">substring</span><span class="p">(</span><span class="n">dt</span><span class="p">,</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="nb">date</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="p">,</span><span class="w"> </span><span class="k">SUM</span><span class="p">(</span><span class="n">price</span><span class="p">)</span><span class="w">          </span><span class="k">AS</span><span class="w"> </span><span class="n">amount</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">purchase_detail_log</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">dt</span><span class="p">,</span><span class="w"> </span><span class="n">category</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">monthly_category_amount</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">SELECT</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">concat</span><span class="p">(</span><span class="k">year</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">month</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">year_month</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="c1">-- Redshift의 경우 concat 함수를 조합해서 사용하거나 || 연산자 사용
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">      </span><span class="c1">-- year || &#39;-&#39; || month AS year_month
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">      </span><span class="p">,</span><span class="w"> </span><span class="n">category</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="p">,</span><span class="w"> </span><span class="k">SUM</span><span class="p">(</span><span class="n">amount</span><span class="p">)</span><span class="w">              </span><span class="k">AS</span><span class="w"> </span><span class="n">amount</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">daily_category_amount</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="k">year</span><span class="p">,</span><span class="w"> </span><span class="k">month</span><span class="p">,</span><span class="w"> </span><span class="n">category</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">SELECT</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">year_month</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">,</span><span class="w"> </span><span class="n">category</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">,</span><span class="w"> </span><span class="n">amount</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c1">-- 기준이 되는 매출을 가장 가장 첫 월의 매출로 잡음
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">  </span><span class="p">,</span><span class="w"> </span><span class="n">FIRST_VALUE</span><span class="p">(</span><span class="n">amount</span><span class="p">)</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="p">(</span><span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">category</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">year_month</span><span class="p">,</span><span class="w"> </span><span class="n">category</span><span class="w"> </span><span class="k">ROWS</span><span class="w"> </span><span class="n">UNBOUNDED</span><span class="w"> </span><span class="n">PRECEDING</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">base_amount</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c1">-- 기준 매출에 비율을 구함
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">  </span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">.</span><span class="mi">0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">amount</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">FIRST_VALUE</span><span class="p">(</span><span class="n">amount</span><span class="p">)</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="p">(</span><span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">category</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">year_month</span><span class="p">,</span><span class="w"> </span><span class="n">category</span><span class="w"> </span><span class="k">ROWS</span><span class="w"> </span><span class="n">UNBOUNDED</span><span class="w"> </span><span class="n">PRECEDING</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">rate</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">monthly_category_amount</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">year_month</span><span class="p">,</span><span class="w"> </span><span class="n">category</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>팬 차트에서 어떤 시점에 매출을 기준으로 잡느냐에 따라 성장/쇠퇴 경향 판단이 크게 달라질 수 있음</li>
+<li>계절 변동이 제일 적은 평균적인 달을 기준으로 선택</li>
+<li>근거를 가지고 기준점을 채택해야 함</li>
+</ul>
+<h3 id="104-히스토그램으로-구매가격대-집계하기">10.4 히스토그램으로 구매가격대 집계하기</h3>
+<ul>
+<li>히스토그램 <strong>가로 축에 단계(데이터의 범위)</strong>, **세로 축에 도수(데이터의 개수)**를 나타내는 그래프</li>
+<li>데이터가 어떻게 분산되어 있는지를 한눈에 파악 가능</li>
+<li><strong>최빈값</strong> : 데이터의 산에서 가장 높은 부분</li>
+<li>데이터의 분포에 따라 최빈값은 평균값과 비슷하지 않을 수 있음</li>
+</ul>
+<h4 id="히스토그램-만드는-법">히스토그램 만드는 법</h4>
+<p>히스토그램을 만들기 위해 도수 분포표를 만들어야 함</p>
+<ol>
+<li>최댓값, 최솟값, 범위(최댓값-최솟값) 을 구한다</li>
+<li>범위를 기반으로 몇 개의 계급으로 나눌지 결정. 각 계급의 상한/하한을 구한다.</li>
+<li>계급에 들어가는 데이터 개수(도수)를 구하고 이를 표로 정리한다.</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>가격대 하한(이상)</th>
+<th>가격대 상한(미만)</th>
+<th>도수</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>5000</td>
+<td>52</td>
+</tr>
+<tr>
+<td>5000</td>
+<td>10,000</td>
+<td>156</td>
+</tr>
+<tr>
+<td>10,000</td>
+<td>15,000</td>
+<td>728</td>
+</tr>
+<tr>
+<td>15,000</td>
+<td>20,000</td>
+<td>884</td>
+</tr>
+<tr>
+<td>20,000</td>
+<td>25,000</td>
+<td>572</td>
+</tr>
+<tr>
+<td>25,000</td>
+<td>30,000</td>
+<td>260</td>
+</tr>
+<tr>
+<td>30,000</td>
+<td>35,000</td>
+<td>52</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>히스토그램은 연속된 데이터의 분포를 파악하기 위해 사용하므로 각각의 막대 사이에 공백을 넣지 않음</li>
+</ul>
+<h4 id="임의의-계층-수로-히스토그램-만들기">임의의 계층 수로 히스토그램 만들기</h4>
+<ul>
+<li>구매된 상품의 가격대를 대상으로 히스토그램을 만들기</li>
+<li>매출 상품의 최대, 최소 가격을 구하고 범위를 10등 분하는 히스토그램을 생성한다.</li>
+</ul>
+<p><strong>최댓값, 최솟값, 범위를 구하는 쿼리</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">WITH</span><span class="w"> </span><span class="k">state</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">SELECT</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">MAX</span><span class="p">(</span><span class="n">price</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">max_price</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="p">,</span><span class="w"> </span><span class="k">MIN</span><span class="p">(</span><span class="n">price</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">min_price</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="p">,</span><span class="w"> </span><span class="k">MAX</span><span class="p">(</span><span class="n">price</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="k">MIN</span><span class="p">(</span><span class="n">price</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">range_price</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">bucket_num</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">purchase_detail_log</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="k">state</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><div class="details admonition example">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-list-ol fa-fw" aria-hidden="true"></i>실행결과<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><table>
+<thead>
+<tr>
+<th style="text-align:left">max_price</th>
+<th style="text-align:left">min_price</th>
+<th style="text-align:left">range_price</th>
+<th style="text-align:left">bucket_num</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">116300</td>
+<td style="text-align:left">22500</td>
+<td style="text-align:left">93800</td>
+<td style="text-align:left">10</td>
+</tr>
+</tbody>
+</table>
+</div>
+        </div>
+    </div>
+<ul>
+<li>최소 금액 ~ 최대 금액의 범위를 계층으로 분할하려면 <strong>정규화 금액(매출금액 - 최솟금액)</strong> 을 계산</li>
+<li>첫 계층 범위는 <code>금액 범위 / 계급 수</code> 로 나누어 구함</li>
+<li><code>PostrgreSQL</code>의 경우 <code>width_bucket</code> 함수로 한번에 구할 수 있음</li>
+</ul>
+<p><strong>데이터의 계층을 구하는 쿼리</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">WITH</span><span class="w"> </span><span class="k">state</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">SELECT</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">MAX</span><span class="p">(</span><span class="n">price</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">max_price</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="p">,</span><span class="w"> </span><span class="k">MIN</span><span class="p">(</span><span class="n">price</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">min_price</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="p">,</span><span class="w"> </span><span class="k">MAX</span><span class="p">(</span><span class="n">price</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="k">MIN</span><span class="p">(</span><span class="n">price</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">range_price</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">bucket_num</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">purchase_detail_log</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">purchage_log_with_bucket</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">SELECT</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">price</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="p">,</span><span class="w"> </span><span class="n">min_price</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="c1">-- 정규화 금액 : 대상금액에서 최소 금액을 뺀 것
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">      </span><span class="p">,</span><span class="w"> </span><span class="n">price</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">min_price</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">diff</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="c1">-- 계층 범위 : 금액 범위를 계층 수로 나눈 것
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">      </span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">.</span><span class="mi">0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">range_price</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">bucket_num</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">bucket_range</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="c1">-- 계층 판정 : FLOOR(정규화 금액 / 계층 범위)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">      </span><span class="c1">-- index가 1부터 시작이므로 +1
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">      </span><span class="p">,</span><span class="w"> </span><span class="n">FLOOR</span><span class="p">(</span><span class="mi">1</span><span class="p">.</span><span class="mi">0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">price</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">min_price</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">.</span><span class="mi">0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">range_price</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">bucket_num</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">bucket</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="c1">-- PostgreSQL의 경우 width_bucket 함수 사용 가능
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">      </span><span class="p">,</span><span class="w"> </span><span class="n">width_bucket</span><span class="p">(</span><span class="n">price</span><span class="p">,</span><span class="w"> </span><span class="n">min_price</span><span class="p">,</span><span class="w"> </span><span class="n">max_price</span><span class="p">,</span><span class="w"> </span><span class="n">bucket_num</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">bucket2</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">purchase_detail_log</span><span class="p">,</span><span class="w"> </span><span class="k">state</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">purchage_log_with_bucket</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><div class="details admonition example">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-list-ol fa-fw" aria-hidden="true"></i>실행결과<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><table>
+<thead>
+<tr>
+<th style="text-align:left">price</th>
+<th style="text-align:left">min_price</th>
+<th style="text-align:left">diff</th>
+<th style="text-align:left">bucket_range</th>
+<th style="text-align:left">bucket</th>
+<th style="text-align:left">bucket2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">22500</td>
+<td style="text-align:left">22500</td>
+<td style="text-align:left">0</td>
+<td style="text-align:left">9380</td>
+<td style="text-align:left">1</td>
+<td style="text-align:left">1</td>
+</tr>
+<tr>
+<td style="text-align:left">25800</td>
+<td style="text-align:left">22500</td>
+<td style="text-align:left">3300</td>
+<td style="text-align:left">9380</td>
+<td style="text-align:left">1</td>
+<td style="text-align:left">1</td>
+</tr>
+<tr>
+<td style="text-align:left">26000</td>
+<td style="text-align:left">22500</td>
+<td style="text-align:left">3500</td>
+<td style="text-align:left">9380</td>
+<td style="text-align:left">1</td>
+<td style="text-align:left">1</td>
+</tr>
+<tr>
+<td style="text-align:left">28600</td>
+<td style="text-align:left">22500</td>
+<td style="text-align:left">6100</td>
+<td style="text-align:left">9380</td>
+<td style="text-align:left">1</td>
+<td style="text-align:left">1</td>
+</tr>
+<tr>
+<td style="text-align:left">31000</td>
+<td style="text-align:left">22500</td>
+<td style="text-align:left">8500</td>
+<td style="text-align:left">9380</td>
+<td style="text-align:left">1</td>
+<td style="text-align:left">1</td>
+</tr>
+<tr>
+<td style="text-align:left">32000</td>
+<td style="text-align:left">22500</td>
+<td style="text-align:left">9500</td>
+<td style="text-align:left">9380</td>
+<td style="text-align:left">2</td>
+<td style="text-align:left">2</td>
+</tr>
+<tr>
+<td style="text-align:left">32800</td>
+<td style="text-align:left">22500</td>
+<td style="text-align:left">10300</td>
+<td style="text-align:left">9380</td>
+<td style="text-align:left">2</td>
+<td style="text-align:left">2</td>
+</tr>
+<tr>
+<td style="text-align:left">33300</td>
+<td style="text-align:left">22500</td>
+<td style="text-align:left">10800</td>
+<td style="text-align:left">9380</td>
+<td style="text-align:left">2</td>
+<td style="text-align:left">2</td>
+</tr>
+<tr>
+<td style="text-align:left">37300</td>
+<td style="text-align:left">22500</td>
+<td style="text-align:left">14800</td>
+<td style="text-align:left">9380</td>
+<td style="text-align:left">2</td>
+<td style="text-align:left">2</td>
+</tr>
+<tr>
+<td style="text-align:left">48700</td>
+<td style="text-align:left">22500</td>
+<td style="text-align:left">26200</td>
+<td style="text-align:left">9380</td>
+<td style="text-align:left">3</td>
+<td style="text-align:left">3</td>
+</tr>
+<tr>
+<td style="text-align:left">57300</td>
+<td style="text-align:left">22500</td>
+<td style="text-align:left">34800</td>
+<td style="text-align:left">9380</td>
+<td style="text-align:left">4</td>
+<td style="text-align:left">4</td>
+</tr>
+<tr>
+<td style="text-align:left">61500</td>
+<td style="text-align:left">22500</td>
+<td style="text-align:left">39000</td>
+<td style="text-align:left">9380</td>
+<td style="text-align:left">5</td>
+<td style="text-align:left">5</td>
+</tr>
+<tr>
+<td style="text-align:left">96100</td>
+<td style="text-align:left">22500</td>
+<td style="text-align:left">73600</td>
+<td style="text-align:left">9380</td>
+<td style="text-align:left">8</td>
+<td style="text-align:left">8</td>
+</tr>
+<tr>
+<td style="text-align:left">97300</td>
+<td style="text-align:left">22500</td>
+<td style="text-align:left">74800</td>
+<td style="text-align:left">9380</td>
+<td style="text-align:left">8</td>
+<td style="text-align:left">8</td>
+</tr>
+<tr>
+<td style="text-align:left">114600</td>
+<td style="text-align:left">22500</td>
+<td style="text-align:left">92100</td>
+<td style="text-align:left">9380</td>
+<td style="text-align:left">10</td>
+<td style="text-align:left">10</td>
+</tr>
+<tr>
+<td style="text-align:left">116300</td>
+<td style="text-align:left">22500</td>
+<td style="text-align:left">93800</td>
+<td style="text-align:left">9380</td>
+<td style="text-align:left">11</td>
+<td style="text-align:left">11</td>
+</tr>
+</tbody>
+</table>
+</div>
+        </div>
+    </div>
+<ul>
+<li>위의 쿼리는 계급 판정 시 <code>계급 하한 이상 ~ 계급 상한 미만</code>을 사용하므로 10의 범위가 35,000으로 잡히게 됨
+<ul>
+<li>35,000 의 경우 11로 처리됨</li>
+<li><code>금액의 최댓값 + 1</code> 로 모든 레코드가 계급 상한 미만이 되게 만들어 주어야 한다.</li>
+</ul>
+</li>
+</ul>
+<p><strong>계급 상한을 조정한 쿼리</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">WITH</span><span class="w"> </span><span class="k">state</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">SELECT</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">       </span><span class="c1">-- 금액의 최대 값 + 1
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">        </span><span class="k">MAX</span><span class="p">(</span><span class="n">price</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">max_price</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="p">,</span><span class="w"> </span><span class="k">MIN</span><span class="p">(</span><span class="n">price</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">min_price</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="c1">-- 금액의 범위 + 1
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">      </span><span class="p">,</span><span class="w"> </span><span class="k">MAX</span><span class="p">(</span><span class="n">price</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="k">MIN</span><span class="p">(</span><span class="n">price</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">range_price</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="c1">-- 계층 수
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">      </span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">bucket_num</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">purchase_detail_log</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">purchage_log_with_bucket</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">SELECT</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">price</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="p">,</span><span class="w"> </span><span class="n">min_price</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="c1">-- 정규화 금액 : 대상금액에서 최소 금액을 뺀 것
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">      </span><span class="p">,</span><span class="w"> </span><span class="n">price</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">min_price</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">diff</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="c1">-- 계층 범위 : 금액 범위를 계층 수로 나눈 것
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">      </span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">.</span><span class="mi">0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">range_price</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">bucket_num</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">bucket_range</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="c1">-- 계층 판정 : FLOOR(정규화 금액 / 계층 범위)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">      </span><span class="c1">-- index가 1부터 시작이므로 +1
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">      </span><span class="p">,</span><span class="w"> </span><span class="n">FLOOR</span><span class="p">(</span><span class="mi">1</span><span class="p">.</span><span class="mi">0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">price</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">min_price</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">.</span><span class="mi">0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">range_price</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">bucket_num</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">bucket</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="c1">-- PostgreSQL의 경우 width_bucket 함수 사용 가능
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">      </span><span class="p">,</span><span class="w"> </span><span class="n">width_bucket</span><span class="p">(</span><span class="n">price</span><span class="p">,</span><span class="w"> </span><span class="n">min_price</span><span class="p">,</span><span class="w"> </span><span class="n">max_price</span><span class="p">,</span><span class="w"> </span><span class="n">bucket_num</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">bucket2</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">purchase_detail_log</span><span class="p">,</span><span class="w"> </span><span class="k">state</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">purchage_log_with_bucket</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><div class="details admonition example">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-list-ol fa-fw" aria-hidden="true"></i>실행결과<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><table>
+<thead>
+<tr>
+<th style="text-align:left">price</th>
+<th style="text-align:left">min_price</th>
+<th style="text-align:left">diff</th>
+<th style="text-align:left">bucket_range</th>
+<th style="text-align:left">bucket</th>
+<th style="text-align:left">bucket2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">22500</td>
+<td style="text-align:left">22500</td>
+<td style="text-align:left">0</td>
+<td style="text-align:left">9380.1</td>
+<td style="text-align:left">1</td>
+<td style="text-align:left">1</td>
+</tr>
+<tr>
+<td style="text-align:left">25800</td>
+<td style="text-align:left">22500</td>
+<td style="text-align:left">3300</td>
+<td style="text-align:left">9380.1</td>
+<td style="text-align:left">1</td>
+<td style="text-align:left">1</td>
+</tr>
+<tr>
+<td style="text-align:left">26000</td>
+<td style="text-align:left">22500</td>
+<td style="text-align:left">3500</td>
+<td style="text-align:left">9380.1</td>
+<td style="text-align:left">1</td>
+<td style="text-align:left">1</td>
+</tr>
+<tr>
+<td style="text-align:left">28600</td>
+<td style="text-align:left">22500</td>
+<td style="text-align:left">6100</td>
+<td style="text-align:left">9380.1</td>
+<td style="text-align:left">1</td>
+<td style="text-align:left">1</td>
+</tr>
+<tr>
+<td style="text-align:left">31000</td>
+<td style="text-align:left">22500</td>
+<td style="text-align:left">8500</td>
+<td style="text-align:left">9380.1</td>
+<td style="text-align:left">1</td>
+<td style="text-align:left">1</td>
+</tr>
+<tr>
+<td style="text-align:left">32000</td>
+<td style="text-align:left">22500</td>
+<td style="text-align:left">9500</td>
+<td style="text-align:left">9380.1</td>
+<td style="text-align:left">2</td>
+<td style="text-align:left">2</td>
+</tr>
+<tr>
+<td style="text-align:left">32800</td>
+<td style="text-align:left">22500</td>
+<td style="text-align:left">10300</td>
+<td style="text-align:left">9380.1</td>
+<td style="text-align:left">2</td>
+<td style="text-align:left">2</td>
+</tr>
+<tr>
+<td style="text-align:left">33300</td>
+<td style="text-align:left">22500</td>
+<td style="text-align:left">10800</td>
+<td style="text-align:left">9380.1</td>
+<td style="text-align:left">2</td>
+<td style="text-align:left">2</td>
+</tr>
+<tr>
+<td style="text-align:left">37300</td>
+<td style="text-align:left">22500</td>
+<td style="text-align:left">14800</td>
+<td style="text-align:left">9380.1</td>
+<td style="text-align:left">2</td>
+<td style="text-align:left">2</td>
+</tr>
+<tr>
+<td style="text-align:left">48700</td>
+<td style="text-align:left">22500</td>
+<td style="text-align:left">26200</td>
+<td style="text-align:left">9380.1</td>
+<td style="text-align:left">3</td>
+<td style="text-align:left">3</td>
+</tr>
+<tr>
+<td style="text-align:left">57300</td>
+<td style="text-align:left">22500</td>
+<td style="text-align:left">34800</td>
+<td style="text-align:left">9380.1</td>
+<td style="text-align:left">4</td>
+<td style="text-align:left">4</td>
+</tr>
+<tr>
+<td style="text-align:left">61500</td>
+<td style="text-align:left">22500</td>
+<td style="text-align:left">39000</td>
+<td style="text-align:left">9380.1</td>
+<td style="text-align:left">5</td>
+<td style="text-align:left">5</td>
+</tr>
+<tr>
+<td style="text-align:left">96100</td>
+<td style="text-align:left">22500</td>
+<td style="text-align:left">73600</td>
+<td style="text-align:left">9380.1</td>
+<td style="text-align:left">8</td>
+<td style="text-align:left">8</td>
+</tr>
+<tr>
+<td style="text-align:left">97300</td>
+<td style="text-align:left">22500</td>
+<td style="text-align:left">74800</td>
+<td style="text-align:left">9380.1</td>
+<td style="text-align:left">8</td>
+<td style="text-align:left">8</td>
+</tr>
+<tr>
+<td style="text-align:left">114600</td>
+<td style="text-align:left">22500</td>
+<td style="text-align:left">92100</td>
+<td style="text-align:left">9380.1</td>
+<td style="text-align:left">10</td>
+<td style="text-align:left">10</td>
+</tr>
+<tr>
+<td style="text-align:left">116300</td>
+<td style="text-align:left">22500</td>
+<td style="text-align:left">93800</td>
+<td style="text-align:left">9380.1</td>
+<td style="text-align:left">10</td>
+<td style="text-align:left">10</td>
+</tr>
+</tbody>
+</table>
+</div>
+        </div>
+    </div>
+<p><strong>히스토그램을 구하는 쿼리</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">WITH</span><span class="w"> </span><span class="k">state</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">SELECT</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">MAX</span><span class="p">(</span><span class="n">price</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="w">              </span><span class="k">AS</span><span class="w"> </span><span class="n">max_price</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="p">,</span><span class="w"> </span><span class="k">MIN</span><span class="p">(</span><span class="n">price</span><span class="p">)</span><span class="w">                  </span><span class="k">AS</span><span class="w"> </span><span class="n">min_price</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="p">,</span><span class="w"> </span><span class="k">MAX</span><span class="p">(</span><span class="n">price</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="k">MIN</span><span class="p">(</span><span class="n">price</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">range_price</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="w">                           </span><span class="k">AS</span><span class="w"> </span><span class="n">bucket_num</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">purchase_detail_log</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">purchage_log_with_bucket</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">SELECT</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">price</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="p">,</span><span class="w"> </span><span class="n">min_price</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="p">,</span><span class="w"> </span><span class="n">price</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">min_price</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">diff</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">.</span><span class="mi">0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">range_price</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">bucket_num</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">bucket_range</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="p">,</span><span class="w"> </span><span class="n">FLOOR</span><span class="p">(</span><span class="mi">1</span><span class="p">.</span><span class="mi">0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">price</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">min_price</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">.</span><span class="mi">0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">range_price</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">bucket_num</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">bucket</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="p">,</span><span class="w"> </span><span class="n">width_bucket</span><span class="p">(</span><span class="n">price</span><span class="p">,</span><span class="w"> </span><span class="n">min_price</span><span class="p">,</span><span class="w"> </span><span class="n">max_price</span><span class="p">,</span><span class="w"> </span><span class="n">bucket_num</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">bucket2</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">purchase_detail_log</span><span class="p">,</span><span class="w"> </span><span class="k">state</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">SELECT</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">bucket</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">-- 계층의 하한과 상한 계산하기
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">  </span><span class="p">,</span><span class="w"> </span><span class="n">min_price</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">bucket_range</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">bucket</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w">     </span><span class="k">AS</span><span class="w"> </span><span class="n">lower_limit</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">,</span><span class="w"> </span><span class="n">min_price</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">bucket_range</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">bucket</span><span class="w">           </span><span class="k">AS</span><span class="w"> </span><span class="n">upper_limit</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c1">-- 도수 세기
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">  </span><span class="p">,</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="n">price</span><span class="p">)</span><span class="w">                                </span><span class="k">AS</span><span class="w"> </span><span class="n">num_purchase</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c1">-- 합계 금액 계산
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">  </span><span class="p">,</span><span class="w"> </span><span class="k">SUM</span><span class="p">(</span><span class="n">price</span><span class="p">)</span><span class="w">                                  </span><span class="k">AS</span><span class="w"> </span><span class="n">total_amount</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">purchage_log_with_bucket</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">bucket</span><span class="p">,</span><span class="w"> </span><span class="n">min_price</span><span class="p">,</span><span class="w"> </span><span class="n">bucket_range</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">bucket</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><div class="details admonition example">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-list-ol fa-fw" aria-hidden="true"></i>실행결과<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><table>
+<thead>
+<tr>
+<th style="text-align:left">bucket</th>
+<th style="text-align:left">lower_limit</th>
+<th style="text-align:left">upper_limit</th>
+<th style="text-align:left">num_purchase</th>
+<th style="text-align:left">total_amount</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">1</td>
+<td style="text-align:left">22500</td>
+<td style="text-align:left">31880.1</td>
+<td style="text-align:left">5</td>
+<td style="text-align:left">133900</td>
+</tr>
+<tr>
+<td style="text-align:left">2</td>
+<td style="text-align:left">31880.1</td>
+<td style="text-align:left">41260.2</td>
+<td style="text-align:left">4</td>
+<td style="text-align:left">135400</td>
+</tr>
+<tr>
+<td style="text-align:left">3</td>
+<td style="text-align:left">41260.2</td>
+<td style="text-align:left">50640.3</td>
+<td style="text-align:left">1</td>
+<td style="text-align:left">48700</td>
+</tr>
+<tr>
+<td style="text-align:left">4</td>
+<td style="text-align:left">50640.3</td>
+<td style="text-align:left">60020.4</td>
+<td style="text-align:left">1</td>
+<td style="text-align:left">57300</td>
+</tr>
+<tr>
+<td style="text-align:left">5</td>
+<td style="text-align:left">60020.4</td>
+<td style="text-align:left">69400.5</td>
+<td style="text-align:left">1</td>
+<td style="text-align:left">61500</td>
+</tr>
+<tr>
+<td style="text-align:left">8</td>
+<td style="text-align:left">88160.7</td>
+<td style="text-align:left">97540.8</td>
+<td style="text-align:left">2</td>
+<td style="text-align:left">193400</td>
+</tr>
+<tr>
+<td style="text-align:left">10</td>
+<td style="text-align:left">106920.9</td>
+<td style="text-align:left">116301</td>
+<td style="text-align:left">2</td>
+<td style="text-align:left">230900</td>
+</tr>
+</tbody>
+</table>
+</div>
+        </div>
+    </div>
+<h4 id="임의의-계층-너비로-히스토그램-작성하기">임의의 계층 너비로 히스토그램 작성하기</h4>
+<ul>
+<li>가격의 상한/하한 기준으로 최적의 범위를 구할 수 있음</li>
+<li>소수점으로 계층을 구분한 리포트는 직감적이지 않음
+<ul>
+<li>리포트를 받아보는 쪽에서도 쉽게 이해하고 납득할 수 있게 계층을 구분 해야함</li>
+</ul>
+</li>
+<li>0 ~ 50,000 원의 범위를 10개의 계층으로 구분하는 쿼리</li>
+</ul>
+<p><strong>히스토그램의 상한과 하한을 수동으로 조정한 쿼리</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">WITH</span><span class="w"> </span><span class="k">state</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">SELECT</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="mi">50000</span><span class="w">   </span><span class="k">AS</span><span class="w"> </span><span class="n">max_price</span><span class="w"> </span><span class="c1">-- 금액의 최댓값
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">      </span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w">       </span><span class="k">AS</span><span class="w"> </span><span class="n">min_price</span><span class="w"> </span><span class="c1">-- 금액의 최솟값
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">      </span><span class="p">,</span><span class="w"> </span><span class="mi">50000</span><span class="w">   </span><span class="k">AS</span><span class="w"> </span><span class="n">range_price</span><span class="w"> </span><span class="c1">-- 금액의 범위
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">      </span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="w">      </span><span class="k">AS</span><span class="w"> </span><span class="n">bucket_num</span><span class="w"> </span><span class="c1">-- 계층 수
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">purchase_detail_log</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">purchage_log_with_bucket</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">SELECT</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">price</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="p">,</span><span class="w"> </span><span class="n">min_price</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="p">,</span><span class="w"> </span><span class="n">price</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">min_price</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">diff</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">.</span><span class="mi">0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">range_price</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">bucket_num</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">bucket_range</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="p">,</span><span class="w"> </span><span class="n">FLOOR</span><span class="p">(</span><span class="mi">1</span><span class="p">.</span><span class="mi">0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">price</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">min_price</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">.</span><span class="mi">0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">range_price</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">bucket_num</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">bucket</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="p">,</span><span class="w"> </span><span class="n">width_bucket</span><span class="p">(</span><span class="n">price</span><span class="p">,</span><span class="w"> </span><span class="n">min_price</span><span class="p">,</span><span class="w"> </span><span class="n">max_price</span><span class="p">,</span><span class="w"> </span><span class="n">bucket_num</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">bucket2</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">purchase_detail_log</span><span class="p">,</span><span class="w"> </span><span class="k">state</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">SELECT</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">bucket</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">,</span><span class="w"> </span><span class="n">min_price</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">bucket_range</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">bucket</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">lower_limit</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">,</span><span class="w"> </span><span class="n">min_price</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">bucket_range</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">bucket</span><span class="w">       </span><span class="k">AS</span><span class="w"> </span><span class="n">upper_limit</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">,</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="n">price</span><span class="p">)</span><span class="w">                            </span><span class="k">AS</span><span class="w"> </span><span class="n">num_purchase</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">,</span><span class="w"> </span><span class="k">SUM</span><span class="p">(</span><span class="n">price</span><span class="p">)</span><span class="w">                              </span><span class="k">AS</span><span class="w"> </span><span class="n">total_amount</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">purchage_log_with_bucket</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">bucket</span><span class="p">,</span><span class="w"> </span><span class="n">min_price</span><span class="p">,</span><span class="w"> </span><span class="n">bucket_range</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">bucket</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-11-22&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/32bec5d3959d71da7e6137c4a97d6fefa863e42f" target="_blank" title="commit by riley817(riley0422@icloud.com) 32bec5d3959d71da7e6137c4a97d6fefa863e42f: feat:20231122111032">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>32bec5d</a></span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/data/">data</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/sql-recipe-4-1/" class="prev" rel="prev" title="데이터 분석을 위한 SQL 레시피 - 4장 시계열 기반으로 데이터 집계하기"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>데이터 분석을 위한 SQL 레시피 - 4장 시계열 기반으로 데이터 집계하기</a>
+            <a href="/graph-database/" class="next" rel="next" title="Graph Database 리서치 - Follow, Tag 기능을 고도화 해보자! (1)">Graph Database 리서치 - Follow, Tag 기능을 고도화 해보자! (1)<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><script src="https://utteranc.es/client.js"
+            repo="riley817/blog-comment"
+            issue-term="pathname"
+            label="✨💬✨"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+        </script>
+    </div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.120.4">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/riley817" target="_blank">Riley</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.1/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"search":{"algoliaAppID":"","algoliaIndex":"","algoliaSearchKey":"","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

@@ -1,0 +1,1741 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>데이터 분석을 위한 SQL 레시피 - 4장 시계열 기반으로 데이터 집계하기 - Riley&#39;s DevLog</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:title" content="데이터 분석을 위한 SQL 레시피 - 4장 시계열 기반으로 데이터 집계하기" />
+<meta property="og:description" content="🗄️ 데이터분석을 위한 SQL 레시피 책을 읽고 정리 / 요약 한 내용입니다.
+매출 데이터를 시계열로 집계 하기 매출 데이터를 시계열로 집계하면 규칙성을 찾거나, 어떤 기간과 비교했을 때 변화폭을 확인 할 수 있다. 9. 시계열 기반으로 데이터 집계하기 매출 데이터 로그 dt order_id user_id purchase_amount 2014-01-01 1 rhwpvvitou 13900 2014-01-01 2 hqnwoamzic 10616 2014-01-02 3 tzlmqryunr 21156 2014-01-02 4 wkmqqwbyai 14893 2014-01-03 5 ciecbedwbq 13054 2014-01-03 6 svgnbqsagx 24384 2014-01-03 7 dfgqftdocu 15591 2014-01-04 8 sbgqlzkvyn 3025 2014-01-04 9 lbedmngbol 24215 2014-01-04 10 itlvssbsgx 2059 2014-01-05 11 jqcmmguhik 4235 2014-01-05 12 jgotcrfeyn 28013 2014-01-05 13 pgeojzoshx 16008 2014-01-06 14 msjberhxnx 1980 2014-01-06 15 tlhbolohte 23494 2014-01-06 16 gbchhkcotf 3966 2014-01-07 17 zfmbpvpzvu 28159 2014-01-07 18 yauwzpaxtx 8715 2014-01-07 19 uyqboqfgex 10805 2014-01-08 20 hiqdkrzcpq 3462 2014-01-08 21 zosbvlylpv 13999 2014-01-08 22 bwfbchzgnl 2299 2014-01-09 23 zzgauelgrt 16475 2014-01-09 24 qrzfcwecge 6469 2014-01-10 25 njbpsrvvcq 16584 2014-01-10 26 cyxfgumkst 11339 9." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://riley817.github.io/sql-recipe-4-1/" /><meta property="og:image" content="https://riley817.github.io/icon.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-11-22T19:27:17+09:00" />
+<meta property="article:modified_time" content="2023-11-22T23:10:33+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://riley817.github.io/icon.png"/>
+
+<meta name="twitter:title" content="데이터 분석을 위한 SQL 레시피 - 4장 시계열 기반으로 데이터 집계하기"/>
+<meta name="twitter:description" content="🗄️ 데이터분석을 위한 SQL 레시피 책을 읽고 정리 / 요약 한 내용입니다.
+매출 데이터를 시계열로 집계 하기 매출 데이터를 시계열로 집계하면 규칙성을 찾거나, 어떤 기간과 비교했을 때 변화폭을 확인 할 수 있다. 9. 시계열 기반으로 데이터 집계하기 매출 데이터 로그 dt order_id user_id purchase_amount 2014-01-01 1 rhwpvvitou 13900 2014-01-01 2 hqnwoamzic 10616 2014-01-02 3 tzlmqryunr 21156 2014-01-02 4 wkmqqwbyai 14893 2014-01-03 5 ciecbedwbq 13054 2014-01-03 6 svgnbqsagx 24384 2014-01-03 7 dfgqftdocu 15591 2014-01-04 8 sbgqlzkvyn 3025 2014-01-04 9 lbedmngbol 24215 2014-01-04 10 itlvssbsgx 2059 2014-01-05 11 jqcmmguhik 4235 2014-01-05 12 jgotcrfeyn 28013 2014-01-05 13 pgeojzoshx 16008 2014-01-06 14 msjberhxnx 1980 2014-01-06 15 tlhbolohte 23494 2014-01-06 16 gbchhkcotf 3966 2014-01-07 17 zfmbpvpzvu 28159 2014-01-07 18 yauwzpaxtx 8715 2014-01-07 19 uyqboqfgex 10805 2014-01-08 20 hiqdkrzcpq 3462 2014-01-08 21 zosbvlylpv 13999 2014-01-08 22 bwfbchzgnl 2299 2014-01-09 23 zzgauelgrt 16475 2014-01-09 24 qrzfcwecge 6469 2014-01-10 25 njbpsrvvcq 16584 2014-01-10 26 cyxfgumkst 11339 9."/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://riley817.github.io/sql-recipe-4-1/" /><link rel="prev" href="https://riley817.github.io/sql-recipe-3/" /><link rel="next" href="https://riley817.github.io/sql-recipe-4-2/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "데이터 분석을 위한 SQL 레시피 - 4장 시계열 기반으로 데이터 집계하기",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/riley817.github.io\/sql-recipe-4-1\/"
+        },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "data","wordcount":  2167 ,
+        "url": "https:\/\/riley817.github.io\/sql-recipe-4-1\/","datePublished": "2022-11-22T19:27:17+09:00","dateModified": "2023-11-22T23:10:33+09:00","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "https:\/\/riley817.github.io\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "riley"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('light' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'light' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Riley&#39;s DevLog"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i></span>Riley&#39;s DevLog</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Riley&#39;s DevLog"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i></span>Riley&#39;s DevLog</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">데이터 분석을 위한 SQL 레시피 - 4장 시계열 기반으로 데이터 집계하기</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/riley817" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%EB%8D%B0%EC%9D%B4%ED%84%B0-%EB%B6%84%EC%84%9D%EC%9D%84-%EC%9C%84%ED%95%9C-sql-%EB%A0%88%EC%8B%9C%ED%94%BC/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>데이터 분석을 위한 SQL 레시피</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-11-22">2022-11-22</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2167 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;11 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#9-시계열-기반으로-데이터-집계하기">9. 시계열 기반으로 데이터 집계하기</a>
+      <ul>
+        <li><a href="#91-날짜별-매출-집계하기">9.1 날짜별 매출 집계하기</a></li>
+        <li><a href="#92-이동평균을-사용한-날짜별-추이-보기">9.2 이동평균을 사용한 날짜별 추이 보기</a></li>
+        <li><a href="#93-당월-매출-누계-구하기">9.3 당월 매출 누계 구하기</a></li>
+        <li><a href="#94-월별-매출의-작대비작년-대비-비율-구하기">9.4 월별 매출의 작대비(작년 대비 비율) 구하기</a></li>
+        <li><a href="#95-z-차트로-업적의-추이-확인하기">9.5 Z 차트로 업적의 추이 확인하기</a>
+          <ul>
+            <li><a href="#z-차트-작성">Z 차트 작성</a></li>
+            <li><a href="#z-차트를-분석할-때의-정리">Z 차트를 분석할 때의 정리</a></li>
+            <li><a href="#다양한-형태의-z-차트">다양한 형태의 Z 차트</a></li>
+            <li><a href="#z-차트-작성하기-위한-지표-집계하기">Z 차트 작성하기 위한 지표 집계하기</a></li>
+          </ul>
+        </li>
+        <li><a href="#96-매출을-파악할-때-중요-포인트">9.6 매출을 파악할 때 중요 포인트</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><blockquote>
+<p>🗄️ 데이터분석을 위한 SQL 레시피 책을 읽고 정리 / 요약 한 내용입니다.</p>
+</blockquote>
+<div class="details admonition success open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-check-circle fa-fw" aria-hidden="true"></i>매출 데이터를 시계열로 집계 하기<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><ul>
+<li>매출 데이터를 시계열로 집계하면 <strong>규칙성</strong>을 찾거나, 어떤 기간과 비교했을 때 <strong>변화폭을 확인</strong> 할 수 있다.</li>
+</ul>
+</div>
+        </div>
+    </div>
+<h2 id="9-시계열-기반으로-데이터-집계하기">9. 시계열 기반으로 데이터 집계하기</h2>
+<div class="details admonition abstract">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-list-ul fa-fw" aria-hidden="true"></i>매출 데이터 로그<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><table>
+<thead>
+<tr>
+<th style="text-align:left">dt</th>
+<th style="text-align:left">order_id</th>
+<th style="text-align:left">user_id</th>
+<th style="text-align:left">purchase_amount</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">2014-01-01</td>
+<td style="text-align:left">1</td>
+<td style="text-align:left">rhwpvvitou</td>
+<td style="text-align:left">13900</td>
+</tr>
+<tr>
+<td style="text-align:left">2014-01-01</td>
+<td style="text-align:left">2</td>
+<td style="text-align:left">hqnwoamzic</td>
+<td style="text-align:left">10616</td>
+</tr>
+<tr>
+<td style="text-align:left">2014-01-02</td>
+<td style="text-align:left">3</td>
+<td style="text-align:left">tzlmqryunr</td>
+<td style="text-align:left">21156</td>
+</tr>
+<tr>
+<td style="text-align:left">2014-01-02</td>
+<td style="text-align:left">4</td>
+<td style="text-align:left">wkmqqwbyai</td>
+<td style="text-align:left">14893</td>
+</tr>
+<tr>
+<td style="text-align:left">2014-01-03</td>
+<td style="text-align:left">5</td>
+<td style="text-align:left">ciecbedwbq</td>
+<td style="text-align:left">13054</td>
+</tr>
+<tr>
+<td style="text-align:left">2014-01-03</td>
+<td style="text-align:left">6</td>
+<td style="text-align:left">svgnbqsagx</td>
+<td style="text-align:left">24384</td>
+</tr>
+<tr>
+<td style="text-align:left">2014-01-03</td>
+<td style="text-align:left">7</td>
+<td style="text-align:left">dfgqftdocu</td>
+<td style="text-align:left">15591</td>
+</tr>
+<tr>
+<td style="text-align:left">2014-01-04</td>
+<td style="text-align:left">8</td>
+<td style="text-align:left">sbgqlzkvyn</td>
+<td style="text-align:left">3025</td>
+</tr>
+<tr>
+<td style="text-align:left">2014-01-04</td>
+<td style="text-align:left">9</td>
+<td style="text-align:left">lbedmngbol</td>
+<td style="text-align:left">24215</td>
+</tr>
+<tr>
+<td style="text-align:left">2014-01-04</td>
+<td style="text-align:left">10</td>
+<td style="text-align:left">itlvssbsgx</td>
+<td style="text-align:left">2059</td>
+</tr>
+<tr>
+<td style="text-align:left">2014-01-05</td>
+<td style="text-align:left">11</td>
+<td style="text-align:left">jqcmmguhik</td>
+<td style="text-align:left">4235</td>
+</tr>
+<tr>
+<td style="text-align:left">2014-01-05</td>
+<td style="text-align:left">12</td>
+<td style="text-align:left">jgotcrfeyn</td>
+<td style="text-align:left">28013</td>
+</tr>
+<tr>
+<td style="text-align:left">2014-01-05</td>
+<td style="text-align:left">13</td>
+<td style="text-align:left">pgeojzoshx</td>
+<td style="text-align:left">16008</td>
+</tr>
+<tr>
+<td style="text-align:left">2014-01-06</td>
+<td style="text-align:left">14</td>
+<td style="text-align:left">msjberhxnx</td>
+<td style="text-align:left">1980</td>
+</tr>
+<tr>
+<td style="text-align:left">2014-01-06</td>
+<td style="text-align:left">15</td>
+<td style="text-align:left">tlhbolohte</td>
+<td style="text-align:left">23494</td>
+</tr>
+<tr>
+<td style="text-align:left">2014-01-06</td>
+<td style="text-align:left">16</td>
+<td style="text-align:left">gbchhkcotf</td>
+<td style="text-align:left">3966</td>
+</tr>
+<tr>
+<td style="text-align:left">2014-01-07</td>
+<td style="text-align:left">17</td>
+<td style="text-align:left">zfmbpvpzvu</td>
+<td style="text-align:left">28159</td>
+</tr>
+<tr>
+<td style="text-align:left">2014-01-07</td>
+<td style="text-align:left">18</td>
+<td style="text-align:left">yauwzpaxtx</td>
+<td style="text-align:left">8715</td>
+</tr>
+<tr>
+<td style="text-align:left">2014-01-07</td>
+<td style="text-align:left">19</td>
+<td style="text-align:left">uyqboqfgex</td>
+<td style="text-align:left">10805</td>
+</tr>
+<tr>
+<td style="text-align:left">2014-01-08</td>
+<td style="text-align:left">20</td>
+<td style="text-align:left">hiqdkrzcpq</td>
+<td style="text-align:left">3462</td>
+</tr>
+<tr>
+<td style="text-align:left">2014-01-08</td>
+<td style="text-align:left">21</td>
+<td style="text-align:left">zosbvlylpv</td>
+<td style="text-align:left">13999</td>
+</tr>
+<tr>
+<td style="text-align:left">2014-01-08</td>
+<td style="text-align:left">22</td>
+<td style="text-align:left">bwfbchzgnl</td>
+<td style="text-align:left">2299</td>
+</tr>
+<tr>
+<td style="text-align:left">2014-01-09</td>
+<td style="text-align:left">23</td>
+<td style="text-align:left">zzgauelgrt</td>
+<td style="text-align:left">16475</td>
+</tr>
+<tr>
+<td style="text-align:left">2014-01-09</td>
+<td style="text-align:left">24</td>
+<td style="text-align:left">qrzfcwecge</td>
+<td style="text-align:left">6469</td>
+</tr>
+<tr>
+<td style="text-align:left">2014-01-10</td>
+<td style="text-align:left">25</td>
+<td style="text-align:left">njbpsrvvcq</td>
+<td style="text-align:left">16584</td>
+</tr>
+<tr>
+<td style="text-align:left">2014-01-10</td>
+<td style="text-align:left">26</td>
+<td style="text-align:left">cyxfgumkst</td>
+<td style="text-align:left">11339</td>
+</tr>
+</tbody>
+</table>
+</div>
+        </div>
+    </div>
+<h3 id="91-날짜별-매출-집계하기">9.1 날짜별 매출 집계하기</h3>
+<figure><img src="/posts/images/sql-recipe/chart-1.png#center"/>
+</figure>
+
+<ul>
+<li><strong>매출을 집계하는 업무 : 가로축 날짜, 세로 축 금액</strong></li>
+<li>날짜별로 매출을 집계하고 동시에 평균 구매액을 집계한다.</li>
+<li>소셜 게임의 포인트 소비, 전자상거래 사이트에서의 쿠폰과 포인트 소비 추이등에도 적용</li>
+<li>자료 청구, 신청 처럼 합계와 평균의 대상이 없는 경우 <code>COUNT</code> 함수로 추이를 확인한다.</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">dt</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">,</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w">                        </span><span class="k">AS</span><span class="w"> </span><span class="n">purchase_count</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">,</span><span class="w"> </span><span class="k">SUM</span><span class="p">(</span><span class="n">purchase_amount</span><span class="p">)</span><span class="w">            </span><span class="k">AS</span><span class="w"> </span><span class="n">total_amount</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">,</span><span class="w"> </span><span class="k">AVG</span><span class="p">(</span><span class="n">purchase_amount</span><span class="p">)</span><span class="w">            </span><span class="k">AS</span><span class="w"> </span><span class="n">avg_amount</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">purchase_log</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">dt</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">dt</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><div class="details admonition example">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-list-ol fa-fw" aria-hidden="true"></i>실행결과<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><table>
+<thead>
+<tr>
+<th style="text-align:left">dt</th>
+<th style="text-align:left">purchase_count</th>
+<th style="text-align:left">total_amount</th>
+<th style="text-align:left">avg_amount</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">2014-01-01</td>
+<td style="text-align:left">2</td>
+<td style="text-align:left">24516</td>
+<td style="text-align:left">12258</td>
+</tr>
+<tr>
+<td style="text-align:left">2014-01-02</td>
+<td style="text-align:left">2</td>
+<td style="text-align:left">36049</td>
+<td style="text-align:left">18024.5</td>
+</tr>
+<tr>
+<td style="text-align:left">2014-01-03</td>
+<td style="text-align:left">3</td>
+<td style="text-align:left">53029</td>
+<td style="text-align:left">17676.33</td>
+</tr>
+<tr>
+<td style="text-align:left">2014-01-04</td>
+<td style="text-align:left">3</td>
+<td style="text-align:left">29299</td>
+<td style="text-align:left">9766.33</td>
+</tr>
+<tr>
+<td style="text-align:left">2014-01-05</td>
+<td style="text-align:left">3</td>
+<td style="text-align:left">48256</td>
+<td style="text-align:left">16085.33</td>
+</tr>
+<tr>
+<td style="text-align:left">2014-01-06</td>
+<td style="text-align:left">3</td>
+<td style="text-align:left">29440</td>
+<td style="text-align:left">9813.33</td>
+</tr>
+<tr>
+<td style="text-align:left">2014-01-07</td>
+<td style="text-align:left">3</td>
+<td style="text-align:left">47679</td>
+<td style="text-align:left">15893</td>
+</tr>
+<tr>
+<td style="text-align:left">2014-01-08</td>
+<td style="text-align:left">3</td>
+<td style="text-align:left">19760</td>
+<td style="text-align:left">6586.67</td>
+</tr>
+<tr>
+<td style="text-align:left">2014-01-09</td>
+<td style="text-align:left">2</td>
+<td style="text-align:left">22944</td>
+<td style="text-align:left">11472</td>
+</tr>
+<tr>
+<td style="text-align:left">2014-01-10</td>
+<td style="text-align:left">2</td>
+<td style="text-align:left">27923</td>
+<td style="text-align:left">13961.5</td>
+</tr>
+</tbody>
+</table>
+</div>
+        </div>
+    </div>
+<h3 id="92-이동평균을-사용한-날짜별-추이-보기">9.2 이동평균을 사용한 날짜별 추이 보기</h3>
+<figure><img src="/posts/images/sql-recipe/chart-2.png#center"/>
+</figure>
+
+<ul>
+<li>날짜별 매출 리포트에서 매출이 주기적으로 높아지는 날(주말 등)이 있음</li>
+<li>해당 그래프로는 매출이 상승하는 경향이 있는지, 하락하는 경향이 있는지 판단하기 어려움</li>
+<li>이러한 경우 7일 동안의 평균 매출을 사용하여 7일 이동 평균으로 표현할 수 있음</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">dt</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">,</span><span class="w"> </span><span class="k">SUM</span><span class="p">(</span><span class="n">purchase_amount</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">total_amount</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c1">-- 최근 최대 7일 동안의 평균 계산하기
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">  </span><span class="p">,</span><span class="w"> </span><span class="k">AVG</span><span class="p">(</span><span class="k">SUM</span><span class="p">(</span><span class="n">purchase_amount</span><span class="p">))</span><span class="w"> </span><span class="n">OVER</span><span class="p">(</span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">dt</span><span class="w"> </span><span class="k">ROWS</span><span class="w"> </span><span class="k">BETWEEN</span><span class="w"> </span><span class="mi">6</span><span class="w"> </span><span class="n">PRECEDING</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="k">CURRENT</span><span class="w"> </span><span class="k">ROW</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">seven_day_avg</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c1">-- 7일 데이터가 모두 있는 경우에만 계산
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">  </span><span class="p">,</span><span class="w"> </span><span class="k">CASE</span><span class="w"> </span><span class="k">WHEN</span><span class="w"> </span><span class="mi">7</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="n">OVER</span><span class="p">(</span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">dt</span><span class="w"> </span><span class="k">ROWS</span><span class="w"> </span><span class="k">BETWEEN</span><span class="w"> </span><span class="mi">6</span><span class="w"> </span><span class="n">PRECEDING</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="k">CURRENT</span><span class="w"> </span><span class="k">ROW</span><span class="p">)</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span><span class="k">AVG</span><span class="p">(</span><span class="k">SUM</span><span class="p">(</span><span class="n">purchase_amount</span><span class="p">))</span><span class="w"> </span><span class="n">OVER</span><span class="p">(</span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">dt</span><span class="w"> </span><span class="k">ROWS</span><span class="w"> </span><span class="k">BETWEEN</span><span class="w"> </span><span class="mi">6</span><span class="w"> </span><span class="n">PRECEDING</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="k">CURRENT</span><span class="w"> </span><span class="k">ROW</span><span class="p">)</span><span class="w"> </span><span class="k">END</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">seven_day_avg_strict</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">purchase_log</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">dt</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">dt</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><code>seven_day_avg</code> : 과거 7일분의 데이터를 추출할 수 없는 경우는 해당일만을 가지고 평균을 구함</li>
+<li><code>seven_day_avg_strict</code> : 과거 7일분의 데이터를 추출할 수 없는 경우는 NULL</li>
+<li>이동평균만으로 리포트를 작성하면 날짜별로 변동을 파악하기 힘드므로 날짜별로 추이와 이동평균을 함께 표현하여 리포트를 만드는 것이 좋음</li>
+</ul>
+<div class="details admonition example">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-list-ol fa-fw" aria-hidden="true"></i>실행결과<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><table>
+<thead>
+<tr>
+<th style="text-align:left">dt</th>
+<th style="text-align:left">total_amount</th>
+<th style="text-align:left">seven_day_avg</th>
+<th style="text-align:left">seven_day_avg_strict</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">2014-01-01</td>
+<td style="text-align:left">24516</td>
+<td style="text-align:left">24516</td>
+<td style="text-align:left">null</td>
+</tr>
+<tr>
+<td style="text-align:left">2014-01-02</td>
+<td style="text-align:left">36049</td>
+<td style="text-align:left">30282.5</td>
+<td style="text-align:left">null</td>
+</tr>
+<tr>
+<td style="text-align:left">2014-01-03</td>
+<td style="text-align:left">53029</td>
+<td style="text-align:left">37864.67</td>
+<td style="text-align:left">null</td>
+</tr>
+<tr>
+<td style="text-align:left">2014-01-04</td>
+<td style="text-align:left">29299</td>
+<td style="text-align:left">35723.25</td>
+<td style="text-align:left">null</td>
+</tr>
+<tr>
+<td style="text-align:left">2014-01-05</td>
+<td style="text-align:left">48256</td>
+<td style="text-align:left">38229.8</td>
+<td style="text-align:left">null</td>
+</tr>
+<tr>
+<td style="text-align:left">2014-01-06</td>
+<td style="text-align:left">29440</td>
+<td style="text-align:left">36764.83</td>
+<td style="text-align:left">null</td>
+</tr>
+<tr>
+<td style="text-align:left">2014-01-07</td>
+<td style="text-align:left">47679</td>
+<td style="text-align:left">38324</td>
+<td style="text-align:left">38324</td>
+</tr>
+<tr>
+<td style="text-align:left">2014-01-08</td>
+<td style="text-align:left">19760</td>
+<td style="text-align:left">37644.57</td>
+<td style="text-align:left">37644.57</td>
+</tr>
+<tr>
+<td style="text-align:left">2014-01-09</td>
+<td style="text-align:left">22944</td>
+<td style="text-align:left">35772.43</td>
+<td style="text-align:left">35772.43</td>
+</tr>
+<tr>
+<td style="text-align:left">2014-01-10</td>
+<td style="text-align:left">27923</td>
+<td style="text-align:left">32185.86</td>
+<td style="text-align:left">32185.86</td>
+</tr>
+</tbody>
+</table>
+</div>
+        </div>
+    </div>
+<h3 id="93-당월-매출-누계-구하기">9.3 당월 매출 누계 구하기</h3>
+<ul>
+<li>월별 목표를 설정할 때는 해당 월의 날짜별 매출 뿐만 아니라 해당 월에 어느정도 누적되었는지 동시에 확인할 수 있어야 함</li>
+<li>날짜별로 매출을 집계하고 해당월의 누계를 구한다.</li>
+</ul>
+<br/>
+<p><strong>날짜별 매출과 당월 누계 매출을 집계하는 쿼리</strong></p>
+<ul>
+<li>월별 누계 계산시 <code>OVER</code> 구에 <code>PARTITION BY substring(dt, 1, 7)</code>을 추가해 월별로 파티션을 생성</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">dt</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c1">-- PostgreSQL, Hive, Redshift, SparkSQL의 경우 substring로 연-월 추출
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">  </span><span class="p">,</span><span class="w"> </span><span class="k">substring</span><span class="p">(</span><span class="n">dt</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">7</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">year_month</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c1">-- PostgreSQL, Hive, Bigquery, SparkSQL의 경우 substr 함수 사용
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">  </span><span class="p">,</span><span class="w"> </span><span class="n">substr</span><span class="p">(</span><span class="n">dt</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">7</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">year_month</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">,</span><span class="w"> </span><span class="k">SUM</span><span class="p">(</span><span class="n">purchase_amount</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">total_amount</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c1">-- PostgreSQL, Hive, Redshift, SparksQL
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">  </span><span class="p">,</span><span class="w"> </span><span class="k">SUM</span><span class="p">(</span><span class="k">SUM</span><span class="p">(</span><span class="n">purchase_amount</span><span class="p">))</span><span class="w"> </span><span class="n">OVER</span><span class="p">(</span><span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="k">substring</span><span class="p">(</span><span class="n">dt</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">7</span><span class="p">)</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">dt</span><span class="w"> </span><span class="k">ROWS</span><span class="w"> </span><span class="n">UNBOUNDED</span><span class="w"> </span><span class="n">PRECEDING</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">agg_amount</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c1">-- BigQuery의 경우 substring을 substr로 수정
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">  </span><span class="p">,</span><span class="w"> </span><span class="k">SUM</span><span class="p">(</span><span class="k">SUM</span><span class="p">(</span><span class="n">purchase_amount</span><span class="p">))</span><span class="w"> </span><span class="n">OVER</span><span class="p">(</span><span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">substr</span><span class="p">(</span><span class="n">dt</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">7</span><span class="p">)</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">dt</span><span class="w"> </span><span class="k">ROWS</span><span class="w"> </span><span class="n">UNBOUNDED</span><span class="w"> </span><span class="n">PRECEDING</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">agg_amount</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">purchase_log</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">dt</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">dt</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><div class="details admonition example">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-list-ol fa-fw" aria-hidden="true"></i>실행결과<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><table>
+<thead>
+<tr>
+<th style="text-align:left">dt</th>
+<th style="text-align:left">year_month</th>
+<th style="text-align:left">total_amount</th>
+<th style="text-align:left">agg_amount</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">2014-01-01</td>
+<td style="text-align:left">2014-01</td>
+<td style="text-align:left">24516</td>
+<td style="text-align:left">24516</td>
+</tr>
+<tr>
+<td style="text-align:left">2014-01-02</td>
+<td style="text-align:left">2014-01</td>
+<td style="text-align:left">36049</td>
+<td style="text-align:left">60565</td>
+</tr>
+<tr>
+<td style="text-align:left">2014-01-03</td>
+<td style="text-align:left">2014-01</td>
+<td style="text-align:left">53029</td>
+<td style="text-align:left">113594</td>
+</tr>
+<tr>
+<td style="text-align:left">2014-01-04</td>
+<td style="text-align:left">2014-01</td>
+<td style="text-align:left">29299</td>
+<td style="text-align:left">142893</td>
+</tr>
+<tr>
+<td style="text-align:left">2014-01-05</td>
+<td style="text-align:left">2014-01</td>
+<td style="text-align:left">48256</td>
+<td style="text-align:left">191149</td>
+</tr>
+<tr>
+<td style="text-align:left">2014-01-06</td>
+<td style="text-align:left">2014-01</td>
+<td style="text-align:left">29440</td>
+<td style="text-align:left">220589</td>
+</tr>
+<tr>
+<td style="text-align:left">2014-01-07</td>
+<td style="text-align:left">2014-01</td>
+<td style="text-align:left">47679</td>
+<td style="text-align:left">268268</td>
+</tr>
+<tr>
+<td style="text-align:left">2014-01-08</td>
+<td style="text-align:left">2014-01</td>
+<td style="text-align:left">19760</td>
+<td style="text-align:left">288028</td>
+</tr>
+<tr>
+<td style="text-align:left">2014-01-09</td>
+<td style="text-align:left">2014-01</td>
+<td style="text-align:left">22944</td>
+<td style="text-align:left">310972</td>
+</tr>
+<tr>
+<td style="text-align:left">2014-01-10</td>
+<td style="text-align:left">2014-01</td>
+<td style="text-align:left">27923</td>
+<td style="text-align:left">338895</td>
+</tr>
+</tbody>
+</table>
+</div>
+        </div>
+    </div>
+<p><strong>날짜별 매출을 일시 테이블로 만드는 쿼리</strong></p>
+<ul>
+<li>반복해서 나오는 <code>SUM(purchase_amount)</code>과 <code>substring(dt, 1, 7)</code>을 <code>WITH</code> 구문으로 빼어 일시테이블(daily_purchase)로 처리</li>
+<li>앞서 쿼리와 동일하지만 SELECT 구문 내부에 있는 컬럼의 의미를 쉽게 파악</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">WITH</span><span class="w"> </span><span class="n">daily_purchase</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">SELECT</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">dt</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c1">-- BigQuery의 경우 substring -&gt; substr  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">      </span><span class="p">,</span><span class="w"> </span><span class="k">substring</span><span class="p">(</span><span class="n">dt</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="k">year</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="p">,</span><span class="w"> </span><span class="k">substring</span><span class="p">(</span><span class="n">dt</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="k">month</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="p">,</span><span class="w"> </span><span class="k">substring</span><span class="p">(</span><span class="n">dt</span><span class="p">,</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nb">date</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="p">,</span><span class="w"> </span><span class="k">SUM</span><span class="p">(</span><span class="n">purchase_amount</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">purchase_amount</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="p">,</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="n">order_id</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">orders</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">purchase_log</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">dt</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">)</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">daily_purchase</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">dt</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><div class="details admonition example">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-list-ol fa-fw" aria-hidden="true"></i>실행결과<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><table>
+<thead>
+<tr>
+<th style="text-align:left">dt</th>
+<th style="text-align:left">year</th>
+<th style="text-align:left">month</th>
+<th style="text-align:left">date</th>
+<th style="text-align:left">purchase_amount</th>
+<th style="text-align:left">orders</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">2014-01-01</td>
+<td style="text-align:left">2014</td>
+<td style="text-align:left">01</td>
+<td style="text-align:left">01</td>
+<td style="text-align:left">24516</td>
+<td style="text-align:left">2</td>
+</tr>
+<tr>
+<td style="text-align:left">2014-01-02</td>
+<td style="text-align:left">2014</td>
+<td style="text-align:left">01</td>
+<td style="text-align:left">02</td>
+<td style="text-align:left">36049</td>
+<td style="text-align:left">2</td>
+</tr>
+<tr>
+<td style="text-align:left">2014-01-03</td>
+<td style="text-align:left">2014</td>
+<td style="text-align:left">01</td>
+<td style="text-align:left">03</td>
+<td style="text-align:left">53029</td>
+<td style="text-align:left">3</td>
+</tr>
+<tr>
+<td style="text-align:left">2014-01-04</td>
+<td style="text-align:left">2014</td>
+<td style="text-align:left">01</td>
+<td style="text-align:left">04</td>
+<td style="text-align:left">29299</td>
+<td style="text-align:left">3</td>
+</tr>
+<tr>
+<td style="text-align:left">2014-01-05</td>
+<td style="text-align:left">2014</td>
+<td style="text-align:left">01</td>
+<td style="text-align:left">05</td>
+<td style="text-align:left">48256</td>
+<td style="text-align:left">3</td>
+</tr>
+<tr>
+<td style="text-align:left">2014-01-06</td>
+<td style="text-align:left">2014</td>
+<td style="text-align:left">01</td>
+<td style="text-align:left">06</td>
+<td style="text-align:left">29440</td>
+<td style="text-align:left">3</td>
+</tr>
+<tr>
+<td style="text-align:left">2014-01-07</td>
+<td style="text-align:left">2014</td>
+<td style="text-align:left">01</td>
+<td style="text-align:left">07</td>
+<td style="text-align:left">47679</td>
+<td style="text-align:left">3</td>
+</tr>
+<tr>
+<td style="text-align:left">2014-01-08</td>
+<td style="text-align:left">2014</td>
+<td style="text-align:left">01</td>
+<td style="text-align:left">08</td>
+<td style="text-align:left">19760</td>
+<td style="text-align:left">3</td>
+</tr>
+<tr>
+<td style="text-align:left">2014-01-09</td>
+<td style="text-align:left">2014</td>
+<td style="text-align:left">01</td>
+<td style="text-align:left">09</td>
+<td style="text-align:left">22944</td>
+<td style="text-align:left">2</td>
+</tr>
+<tr>
+<td style="text-align:left">2014-01-10</td>
+<td style="text-align:left">2014</td>
+<td style="text-align:left">01</td>
+<td style="text-align:left">10</td>
+<td style="text-align:left">27923</td>
+<td style="text-align:left">2</td>
+</tr>
+</tbody>
+</table>
+</div>
+        </div>
+    </div>
+<p><strong>daily_purchase 테이블에서 당월 누계 매출을 집계하는 쿼리</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">WITH</span><span class="w"> </span><span class="n">daily_purchase</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">SELECT</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">dt</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c1">-- BigQuery의 경우 substring -&gt; substr  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">      </span><span class="p">,</span><span class="w"> </span><span class="k">substring</span><span class="p">(</span><span class="n">dt</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="k">year</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="p">,</span><span class="w"> </span><span class="k">substring</span><span class="p">(</span><span class="n">dt</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="k">month</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="p">,</span><span class="w"> </span><span class="k">substring</span><span class="p">(</span><span class="n">dt</span><span class="p">,</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nb">date</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="p">,</span><span class="w"> </span><span class="k">SUM</span><span class="p">(</span><span class="n">purchase_amount</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">purchase_amount</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="p">,</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="n">order_id</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">orders</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">purchase_log</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">dt</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">)</span><span class="w"> </span><span class="k">SELECT</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">dt</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c1">-- Redshift의 경우, concat 함수를 조합해서 사용하거나 || 연산자 사용  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">  </span><span class="p">,</span><span class="w"> </span><span class="n">CONCAT</span><span class="p">(</span><span class="k">year</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">month</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">year_month</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">,</span><span class="w"> </span><span class="k">year</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="s1">&#39;-&#39;</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="k">month</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">year_month</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">,</span><span class="w"> </span><span class="n">purchase_amount</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">,</span><span class="w"> </span><span class="k">SUM</span><span class="p">(</span><span class="n">purchase_amount</span><span class="p">)</span><span class="w"> </span><span class="n">OVER</span><span class="p">(</span><span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="k">year</span><span class="p">,</span><span class="w"> </span><span class="k">month</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">dt</span><span class="w"> </span><span class="k">ROWS</span><span class="w"> </span><span class="n">UNBOUNDED</span><span class="w"> </span><span class="n">PRECEDING</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">agg_amount</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">daily_purchase</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">dt</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><div class="details admonition example">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-list-ol fa-fw" aria-hidden="true"></i>실행결과<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><table>
+<thead>
+<tr>
+<th style="text-align:left">dt</th>
+<th style="text-align:left">year_month</th>
+<th style="text-align:left">purchase_amount</th>
+<th style="text-align:left">agg_amount</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">2014-01-01</td>
+<td style="text-align:left">2014-01</td>
+<td style="text-align:left">24516</td>
+<td style="text-align:left">24516</td>
+</tr>
+<tr>
+<td style="text-align:left">2014-01-02</td>
+<td style="text-align:left">2014-01</td>
+<td style="text-align:left">36049</td>
+<td style="text-align:left">60565</td>
+</tr>
+<tr>
+<td style="text-align:left">2014-01-03</td>
+<td style="text-align:left">2014-01</td>
+<td style="text-align:left">53029</td>
+<td style="text-align:left">113594</td>
+</tr>
+<tr>
+<td style="text-align:left">2014-01-04</td>
+<td style="text-align:left">2014-01</td>
+<td style="text-align:left">29299</td>
+<td style="text-align:left">142893</td>
+</tr>
+<tr>
+<td style="text-align:left">2014-01-05</td>
+<td style="text-align:left">2014-01</td>
+<td style="text-align:left">48256</td>
+<td style="text-align:left">191149</td>
+</tr>
+<tr>
+<td style="text-align:left">2014-01-06</td>
+<td style="text-align:left">2014-01</td>
+<td style="text-align:left">29440</td>
+<td style="text-align:left">220589</td>
+</tr>
+<tr>
+<td style="text-align:left">2014-01-07</td>
+<td style="text-align:left">2014-01</td>
+<td style="text-align:left">47679</td>
+<td style="text-align:left">268268</td>
+</tr>
+<tr>
+<td style="text-align:left">2014-01-08</td>
+<td style="text-align:left">2014-01</td>
+<td style="text-align:left">19760</td>
+<td style="text-align:left">288028</td>
+</tr>
+<tr>
+<td style="text-align:left">2014-01-09</td>
+<td style="text-align:left">2014-01</td>
+<td style="text-align:left">22944</td>
+<td style="text-align:left">310972</td>
+</tr>
+<tr>
+<td style="text-align:left">2014-01-10</td>
+<td style="text-align:left">2014-01</td>
+<td style="text-align:left">27923</td>
+<td style="text-align:left">338895</td>
+</tr>
+</tbody>
+</table>
+</div>
+        </div>
+    </div>
+<ul>
+<li>서비스 운용, 개발을 위한 SQL과 비교했을 때 빅데이터 분석 SQL은 성능이 조금 떨어지더라도 가독성과 재사용성을 중시</li>
+<li>빅데이터 분석을 할 때는 SQL에 프로그램 개발 때 사용하는 <em>전처리</em> 라는 사고 방식을 도입하는 경우도 많음</li>
+</ul>
+<h3 id="94-월별-매출의-작대비작년-대비-비율-구하기">9.4 월별 매출의 작대비(작년 대비 비율) 구하기</h3>
+<figure><img src="/posts/images/sql-recipe/chart-4.png#center"/>
+</figure>
+
+<ul>
+<li>월별 매출 추이를 추출하여 작년의 해당 월의 매출과 비교하기</li>
+<li>월마다 <code>GROUP BY</code>를 적용하여 매출액을 계산하고 <code>CASE WHEN</code> 식을 사용하여 2014, 2015 각각 다른 컬럼으로 출력</li>
+<li>2015년의 매출 / 2014년의 매출로 나누어 작대비를 계산한다.</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">WITH</span><span class="w"> </span><span class="n">daily_purchase</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">SELECT</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">dt</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c1">-- BigQuery의 경우 substring -&gt; substr  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">      </span><span class="p">,</span><span class="w"> </span><span class="k">substring</span><span class="p">(</span><span class="n">dt</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="k">year</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="p">,</span><span class="w"> </span><span class="k">substring</span><span class="p">(</span><span class="n">dt</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="k">month</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="p">,</span><span class="w"> </span><span class="k">substring</span><span class="p">(</span><span class="n">dt</span><span class="p">,</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nb">date</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="p">,</span><span class="w"> </span><span class="k">SUM</span><span class="p">(</span><span class="n">purchase_amount</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">purchase_amount</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="p">,</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="n">order_id</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">orders</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">purchase_log</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">dt</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">)</span><span class="w"> </span><span class="k">SELECT</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">month</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">,</span><span class="w"> </span><span class="k">SUM</span><span class="p">(</span><span class="k">CASE</span><span class="w"> </span><span class="k">year</span><span class="w"> </span><span class="k">WHEN</span><span class="w"> </span><span class="s1">&#39;2014&#39;</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span><span class="n">purchase_amount</span><span class="w"> </span><span class="k">END</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">amount_2014</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">,</span><span class="w"> </span><span class="k">SUM</span><span class="p">(</span><span class="k">CASE</span><span class="w"> </span><span class="k">year</span><span class="w"> </span><span class="k">WHEN</span><span class="w"> </span><span class="s1">&#39;2015&#39;</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span><span class="n">purchase_amount</span><span class="w"> </span><span class="k">END</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">amount_2015</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">.</span><span class="mi">0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="k">SUM</span><span class="p">(</span><span class="k">CASE</span><span class="w"> </span><span class="k">year</span><span class="w"> </span><span class="k">WHEN</span><span class="w"> </span><span class="s1">&#39;2015&#39;</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span><span class="n">purchase_amount</span><span class="w"> </span><span class="k">END</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="k">SUM</span><span class="p">(</span><span class="k">CASE</span><span class="w"> </span><span class="k">year</span><span class="w"> </span><span class="k">WHEN</span><span class="w"> </span><span class="s1">&#39;2014&#39;</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span><span class="n">purchase_amount</span><span class="w"> </span><span class="k">END</span><span class="p">))</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">rate</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">daily_purchase</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="k">month</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="k">month</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><div class="details admonition example">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-list-ol fa-fw" aria-hidden="true"></i>실행결과<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><table>
+<thead>
+<tr>
+<th style="text-align:left">month</th>
+<th style="text-align:left">amount_2014</th>
+<th style="text-align:left">amount_2015</th>
+<th style="text-align:left">rate</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">01</td>
+<td style="text-align:left">13900</td>
+<td style="text-align:left">22111</td>
+<td style="text-align:left">159.07194244604318</td>
+</tr>
+<tr>
+<td style="text-align:left">02</td>
+<td style="text-align:left">28469</td>
+<td style="text-align:left">11965</td>
+<td style="text-align:left">42.02817099300994</td>
+</tr>
+<tr>
+<td style="text-align:left">03</td>
+<td style="text-align:left">18899</td>
+<td style="text-align:left">20215</td>
+<td style="text-align:left">106.9633313931954</td>
+</tr>
+<tr>
+<td style="text-align:left">04</td>
+<td style="text-align:left">12394</td>
+<td style="text-align:left">11792</td>
+<td style="text-align:left">95.14281103759885</td>
+</tr>
+<tr>
+<td style="text-align:left">05</td>
+<td style="text-align:left">2282</td>
+<td style="text-align:left">18087</td>
+<td style="text-align:left">792.5942156003505</td>
+</tr>
+<tr>
+<td style="text-align:left">06</td>
+<td style="text-align:left">10180</td>
+<td style="text-align:left">18859</td>
+<td style="text-align:left">185.25540275049116</td>
+</tr>
+<tr>
+<td style="text-align:left">07</td>
+<td style="text-align:left">4027</td>
+<td style="text-align:left">14919</td>
+<td style="text-align:left">370.4742984852247</td>
+</tr>
+<tr>
+<td style="text-align:left">08</td>
+<td style="text-align:left">6243</td>
+<td style="text-align:left">12906</td>
+<td style="text-align:left">206.7275348390197</td>
+</tr>
+<tr>
+<td style="text-align:left">09</td>
+<td style="text-align:left">3832</td>
+<td style="text-align:left">5696</td>
+<td style="text-align:left">148.64300626304802</td>
+</tr>
+<tr>
+<td style="text-align:left">10</td>
+<td style="text-align:left">6716</td>
+<td style="text-align:left">13398</td>
+<td style="text-align:left">199.49374627754617</td>
+</tr>
+<tr>
+<td style="text-align:left">11</td>
+<td style="text-align:left">16444</td>
+<td style="text-align:left">6213</td>
+<td style="text-align:left">37.782777912916565</td>
+</tr>
+<tr>
+<td style="text-align:left">12</td>
+<td style="text-align:left">29199</td>
+<td style="text-align:left">26024</td>
+<td style="text-align:left">89.12633994314874</td>
+</tr>
+</tbody>
+</table>
+</div>
+        </div>
+    </div>
+<ul>
+<li>트렌드로 매출이 늘어난 경우라도 전년대비 떨어졌다면 성장이 둔화됐다고 판단할 수 있다.</li>
+</ul>
+<h3 id="95-z-차트로-업적의-추이-확인하기">9.5 Z 차트로 업적의 추이 확인하기</h3>
+<ul>
+<li>서비스, 상품, 콘텐츠 중에는 계절에 따라 추이가 변동하는 경우가 존재</li>
+<li>Z차트 : 월차매출, 매출누계, 이동년계라는 3개의 지표로 구성</li>
+</ul>
+<h4 id="z-차트-작성">Z 차트 작성</h4>
+<p><strong>월차매출</strong></p>
+<p>매출 합계를 월별로 집계
+<figure><img src="/posts/images/sql-recipe/z-chart-1.png#center"/>
+</figure>
+</p>
+<p><strong>매출누계</strong></p>
+<p>해당 월의 매출이 이전월까지의 매출 누계를 합한 값
+<figure><img src="/posts/images/sql-recipe/z-chart-2.png#center"/>
+</figure>
+</p>
+<p><strong>이동년계</strong></p>
+<p>해당 월의 매출에 과거 11개월의 매출을 합한 값
+<figure><img src="/posts/images/sql-recipe/z-chart-3.png#center"/>
+</figure>
+</p>
+<h4 id="z-차트를-분석할-때의-정리">Z 차트를 분석할 때의 정리</h4>
+<p><strong>매출누계에서 주목할 점</strong></p>
+<ul>
+<li><strong>직선</strong> : 월차 매출이 일정할 경우</li>
+<li><strong>가로축에서 오른쪽으로 갈수록 기울기가 급해지는 곡선</strong> : 최근 매출이 상승</li>
+<li><strong>가로축에서 갈수록 기울기가 완만해지는 곡선</strong> : 최근 매출이 감소</li>
+</ul>
+<p><strong>이동년계에서 주목할 점</strong></p>
+<ul>
+<li><strong>직선</strong> : 작년과 올해 매출이 일정</li>
+<li><strong>오른쪽 위로 올라 감</strong> : 매출이 오르는 경향이 있음</li>
+<li><strong>오른쪽 아래로 내려 감</strong> : 매출이 감소하는 경향이 있음</li>
+</ul>
+<h4 id="다양한-형태의-z-차트">다양한 형태의 Z 차트</h4>
+<h4 id="z-차트-작성하기-위한-지표-집계하기">Z 차트 작성하기 위한 지표 집계하기</h4>
+<ul>
+<li>구매 로그를 기반으로 월별 매출을 집계</li>
+<li>각 월의 매출에 대해 누계매출, 이동년계를 계산</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">WITH</span><span class="w"> </span><span class="n">daily_purchase</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">SELECT</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">dt</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="p">,</span><span class="w"> </span><span class="k">substring</span><span class="p">(</span><span class="n">dt</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="k">year</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="p">,</span><span class="w"> </span><span class="k">substring</span><span class="p">(</span><span class="n">dt</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="k">month</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="p">,</span><span class="w"> </span><span class="k">substring</span><span class="p">(</span><span class="n">dt</span><span class="p">,</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nb">date</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="p">,</span><span class="w"> </span><span class="k">SUM</span><span class="p">(</span><span class="n">purchase_amount</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">purchase_amount</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="p">,</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="n">order_id</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">orders</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">purchase_log</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">dt</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">),</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">monthly_amount</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="k">year</span><span class="p">,</span><span class="w"> </span><span class="k">month</span><span class="p">,</span><span class="w"> </span><span class="k">SUM</span><span class="p">(</span><span class="n">purchase_amount</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">amount</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">daily_purchase</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="k">year</span><span class="p">,</span><span class="w"> </span><span class="k">month</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">),</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">alc_index</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">SELECT</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">year</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="p">,</span><span class="w"> </span><span class="k">month</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="p">,</span><span class="w"> </span><span class="n">amount</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="c1">-- 2015년의 누계 매출 집계하기
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">      </span><span class="p">,</span><span class="w"> </span><span class="k">SUM</span><span class="p">(</span><span class="k">CASE</span><span class="w"> </span><span class="k">WHEN</span><span class="w"> </span><span class="k">year</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;2015&#39;</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span><span class="n">amount</span><span class="w"> </span><span class="k">END</span><span class="p">)</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="p">(</span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="k">year</span><span class="p">,</span><span class="w"> </span><span class="k">month</span><span class="w"> </span><span class="k">ROWS</span><span class="w"> </span><span class="n">UNBOUNDED</span><span class="w"> </span><span class="n">PRECEDING</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">agg_amount</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="c1">-- 당월부터 11개월 이전까지의 매출 합계(이동년계) 집계하기
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">      </span><span class="p">,</span><span class="w"> </span><span class="k">SUM</span><span class="p">(</span><span class="n">amount</span><span class="p">)</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="p">(</span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="k">year</span><span class="p">,</span><span class="w"> </span><span class="k">month</span><span class="w"> </span><span class="k">ROWS</span><span class="w"> </span><span class="k">BETWEEN</span><span class="w"> </span><span class="mi">11</span><span class="w"> </span><span class="n">PRECEDING</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="k">CURRENT</span><span class="w"> </span><span class="k">ROW</span><span class="w"> </span><span class="p">)</span><span class="w">  </span><span class="k">as</span><span class="w"> </span><span class="n">year_avg_amount</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">monthly_amount</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="k">year</span><span class="p">,</span><span class="w"> </span><span class="k">month</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">SELECT</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">concat</span><span class="p">(</span><span class="k">year</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">month</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">year_month</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">   </span><span class="c1">-- Redshift의 경우 concat 함수를 조합하거나, || 연산자 사용
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">   </span><span class="p">,</span><span class="w"> </span><span class="n">concat</span><span class="p">(</span><span class="n">concat</span><span class="p">(</span><span class="k">year</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;-&#39;</span><span class="p">),</span><span class="w"> </span><span class="k">month</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">year_month</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">   </span><span class="p">,</span><span class="w"> </span><span class="n">amount</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">   </span><span class="p">,</span><span class="w"> </span><span class="n">agg_amount</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">   </span><span class="p">,</span><span class="w"> </span><span class="n">year_avg_amount</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">calc_index</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="k">year</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;2015&#39;</span><span class="w"> </span><span class="c1">-- 2015년 데이터만 압축하기
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">year_month</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><div class="details admonition example">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-list-ol fa-fw" aria-hidden="true"></i>실행결과<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><table>
+<thead>
+<tr>
+<th style="text-align:left">year_month</th>
+<th style="text-align:left">amount</th>
+<th style="text-align:left">agg_amount</th>
+<th style="text-align:left">year_avg_amount</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">2015-01</td>
+<td style="text-align:left">22111</td>
+<td style="text-align:left">22111</td>
+<td style="text-align:left">160796</td>
+</tr>
+<tr>
+<td style="text-align:left">2015-02</td>
+<td style="text-align:left">11965</td>
+<td style="text-align:left">34076</td>
+<td style="text-align:left">144292</td>
+</tr>
+<tr>
+<td style="text-align:left">2015-03</td>
+<td style="text-align:left">20215</td>
+<td style="text-align:left">54291</td>
+<td style="text-align:left">145608</td>
+</tr>
+<tr>
+<td style="text-align:left">2015-04</td>
+<td style="text-align:left">11792</td>
+<td style="text-align:left">66083</td>
+<td style="text-align:left">145006</td>
+</tr>
+<tr>
+<td style="text-align:left">2015-05</td>
+<td style="text-align:left">18087</td>
+<td style="text-align:left">84170</td>
+<td style="text-align:left">160811</td>
+</tr>
+<tr>
+<td style="text-align:left">2015-06</td>
+<td style="text-align:left">18859</td>
+<td style="text-align:left">103029</td>
+<td style="text-align:left">169490</td>
+</tr>
+<tr>
+<td style="text-align:left">2015-07</td>
+<td style="text-align:left">14919</td>
+<td style="text-align:left">117948</td>
+<td style="text-align:left">180382</td>
+</tr>
+<tr>
+<td style="text-align:left">2015-08</td>
+<td style="text-align:left">12906</td>
+<td style="text-align:left">130854</td>
+<td style="text-align:left">187045</td>
+</tr>
+<tr>
+<td style="text-align:left">2015-09</td>
+<td style="text-align:left">5696</td>
+<td style="text-align:left">136550</td>
+<td style="text-align:left">188909</td>
+</tr>
+<tr>
+<td style="text-align:left">2015-10</td>
+<td style="text-align:left">13398</td>
+<td style="text-align:left">149948</td>
+<td style="text-align:left">195591</td>
+</tr>
+<tr>
+<td style="text-align:left">2015-11</td>
+<td style="text-align:left">6213</td>
+<td style="text-align:left">156161</td>
+<td style="text-align:left">185360</td>
+</tr>
+<tr>
+<td style="text-align:left">2015-12</td>
+<td style="text-align:left">26024</td>
+<td style="text-align:left">182185</td>
+<td style="text-align:left">182185</td>
+</tr>
+</tbody>
+</table>
+</div>
+        </div>
+    </div>
+<ul>
+<li><strong>누계매출</strong> : <code>SUM</code> 내부 함수에서 <code>CASE</code> 식을 사용하여 2015년 매출만 압축 후 <code>SUM</code> 윈도 함수를 사용하여 누계 계산</li>
+<li><strong>이동년계</strong> : 당월을 포함한 과거 11개월의 매출 합계를 구함 <code>ROWS BETWEEN 11 PRECEDING AND CURRENT ROW</code> 를 지정하여 현재행에서 11행 이전까지 데이터 합계를 포함</li>
+<li>매출이 없는 달의 경우 CASE 식을 사용하여 집계 대상을 압축</li>
+</ul>
+<h3 id="96-매출을-파악할-때-중요-포인트">9.6 매출을 파악할 때 중요 포인트</h3>
+<ul>
+<li>매출 집계만으로는 매출의 상승/하락에 관한 본질적인 이유를 알 수 없음</li>
+<li>매출 결과의 원인이라 할 수있는 구매 횟수, 구매 단가 등 주변 데이터를 포함해서 리포트를 생성해야 함</li>
+</ul>
+<p><strong>매출과 관련된 지표를 집계하는 쿼리</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">WITH</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">daily_purchase</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">SELECT</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="n">dt</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">,</span><span class="w"> </span><span class="k">substring</span><span class="p">(</span><span class="n">dt</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="k">year</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">,</span><span class="w"> </span><span class="k">substring</span><span class="p">(</span><span class="n">dt</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="k">month</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">,</span><span class="w"> </span><span class="k">substring</span><span class="p">(</span><span class="n">dt</span><span class="p">,</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nb">date</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">,</span><span class="w"> </span><span class="k">SUM</span><span class="p">(</span><span class="n">purchase_amount</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">purchase_amount</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">,</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="n">order_id</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">orders</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">purchase_log</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">dt</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">monthly_purchase</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">SELECT</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">year</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">,</span><span class="w"> </span><span class="k">month</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">,</span><span class="w"> </span><span class="k">SUM</span><span class="p">(</span><span class="n">orders</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">orders</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">,</span><span class="w"> </span><span class="k">AVG</span><span class="p">(</span><span class="n">purchase_amount</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">avg_amount</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">,</span><span class="w"> </span><span class="k">SUM</span><span class="p">(</span><span class="n">purchase_amount</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">monthly</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">daily_purchase</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="k">year</span><span class="p">,</span><span class="w"> </span><span class="k">month</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">SELECT</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">concat</span><span class="p">(</span><span class="k">year</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">month</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">year_month</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c1">-- Redshift의 경우 concat 함수를 조합하거나, || 연산자 사용
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">  </span><span class="c1">-- year || &#39;-&#39; || month AS year_month
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">,</span><span class="w"> </span><span class="n">orders</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">,</span><span class="w"> </span><span class="n">avg_amount</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">,</span><span class="w"> </span><span class="n">monthly</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">,</span><span class="w"> </span><span class="k">SUM</span><span class="p">(</span><span class="n">monthly</span><span class="p">)</span><span class="w"> </span><span class="n">OVER</span><span class="p">(</span><span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="k">year</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="k">month</span><span class="w"> </span><span class="k">ROWS</span><span class="w"> </span><span class="n">UNBOUNDED</span><span class="w"> </span><span class="n">PRECEDING</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">agg_amount</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c1">-- 12개월 전의 매출 구하기
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">  </span><span class="p">,</span><span class="w"> </span><span class="n">LAG</span><span class="p">(</span><span class="n">monthly</span><span class="p">,</span><span class="w"> </span><span class="mi">12</span><span class="p">)</span><span class="w"> </span><span class="n">OVER</span><span class="p">(</span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="k">year</span><span class="p">,</span><span class="w"> </span><span class="k">month</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">last_year</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c1">-- sparkSQL의 경우 다음과 같이 사용 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">  </span><span class="c1">--, LAG(monthly, 12) OVER(ORDER BY year, month ROWS BETWEEN 12 PRECEDING AND 12 PRECEDING) AS last_year
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">.</span><span class="mi">0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">monthly</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">LAG</span><span class="p">(</span><span class="n">monthly</span><span class="p">,</span><span class="w"> </span><span class="mi">12</span><span class="p">)</span><span class="w"> </span><span class="n">OVER</span><span class="p">(</span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="k">year</span><span class="p">,</span><span class="w"> </span><span class="k">month</span><span class="p">)</span><span class="w">  </span><span class="k">as</span><span class="w"> </span><span class="n">rate</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c1">-- sparkSQL의 경우 다음과 같이 사용
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">  </span><span class="c1">--, 100.0 * monthly / LAG(monthly, 12) OVER(ORDER BY year, month ROWS BETWEEN 12 PRECEDING AND 12 PRECEDING) as rate
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">monthly_purchase</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="k">year</span><span class="p">,</span><span class="w"> </span><span class="k">month</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><div class="details admonition example">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-list-ol fa-fw" aria-hidden="true"></i>실행결과<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><table>
+<thead>
+<tr>
+<th style="text-align:left">year_month</th>
+<th style="text-align:left">orders</th>
+<th style="text-align:left">avg_amount</th>
+<th style="text-align:left">monthly</th>
+<th style="text-align:left">agg_amount</th>
+<th style="text-align:left">last_year</th>
+<th style="text-align:left">rate</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">2014-01</td>
+<td style="text-align:left">1</td>
+<td style="text-align:left">13900</td>
+<td style="text-align:left">13900</td>
+<td style="text-align:left">13900</td>
+<td style="text-align:left">null</td>
+<td style="text-align:left">null</td>
+</tr>
+<tr>
+<td style="text-align:left">2014-02</td>
+<td style="text-align:left">1</td>
+<td style="text-align:left">28469</td>
+<td style="text-align:left">28469</td>
+<td style="text-align:left">42369</td>
+<td style="text-align:left">null</td>
+<td style="text-align:left">null</td>
+</tr>
+<tr>
+<td style="text-align:left">2014-03</td>
+<td style="text-align:left">1</td>
+<td style="text-align:left">18899</td>
+<td style="text-align:left">18899</td>
+<td style="text-align:left">61268</td>
+<td style="text-align:left">null</td>
+<td style="text-align:left">null</td>
+</tr>
+<tr>
+<td style="text-align:left">2014-04</td>
+<td style="text-align:left">1</td>
+<td style="text-align:left">12394</td>
+<td style="text-align:left">12394</td>
+<td style="text-align:left">73662</td>
+<td style="text-align:left">null</td>
+<td style="text-align:left">null</td>
+</tr>
+<tr>
+<td style="text-align:left">2014-05</td>
+<td style="text-align:left">1</td>
+<td style="text-align:left">2282</td>
+<td style="text-align:left">2282</td>
+<td style="text-align:left">75944</td>
+<td style="text-align:left">null</td>
+<td style="text-align:left">null</td>
+</tr>
+<tr>
+<td style="text-align:left">2014-06</td>
+<td style="text-align:left">1</td>
+<td style="text-align:left">10180</td>
+<td style="text-align:left">10180</td>
+<td style="text-align:left">86124</td>
+<td style="text-align:left">null</td>
+<td style="text-align:left">null</td>
+</tr>
+<tr>
+<td style="text-align:left">2014-07</td>
+<td style="text-align:left">1</td>
+<td style="text-align:left">4027</td>
+<td style="text-align:left">4027</td>
+<td style="text-align:left">90151</td>
+<td style="text-align:left">null</td>
+<td style="text-align:left">null</td>
+</tr>
+<tr>
+<td style="text-align:left">2014-08</td>
+<td style="text-align:left">1</td>
+<td style="text-align:left">6243</td>
+<td style="text-align:left">6243</td>
+<td style="text-align:left">96394</td>
+<td style="text-align:left">null</td>
+<td style="text-align:left">null</td>
+</tr>
+<tr>
+<td style="text-align:left">2014-09</td>
+<td style="text-align:left">1</td>
+<td style="text-align:left">3832</td>
+<td style="text-align:left">3832</td>
+<td style="text-align:left">100226</td>
+<td style="text-align:left">null</td>
+<td style="text-align:left">null</td>
+</tr>
+<tr>
+<td style="text-align:left">2014-10</td>
+<td style="text-align:left">1</td>
+<td style="text-align:left">6716</td>
+<td style="text-align:left">6716</td>
+<td style="text-align:left">106942</td>
+<td style="text-align:left">null</td>
+<td style="text-align:left">null</td>
+</tr>
+<tr>
+<td style="text-align:left">2014-11</td>
+<td style="text-align:left">1</td>
+<td style="text-align:left">16444</td>
+<td style="text-align:left">16444</td>
+<td style="text-align:left">123386</td>
+<td style="text-align:left">null</td>
+<td style="text-align:left">null</td>
+</tr>
+<tr>
+<td style="text-align:left">2014-12</td>
+<td style="text-align:left">1</td>
+<td style="text-align:left">29199</td>
+<td style="text-align:left">29199</td>
+<td style="text-align:left">152585</td>
+<td style="text-align:left">null</td>
+<td style="text-align:left">null</td>
+</tr>
+<tr>
+<td style="text-align:left">2015-01</td>
+<td style="text-align:left">1</td>
+<td style="text-align:left">22111</td>
+<td style="text-align:left">22111</td>
+<td style="text-align:left">22111</td>
+<td style="text-align:left">13900</td>
+<td style="text-align:left">159.0719424460431655</td>
+</tr>
+<tr>
+<td style="text-align:left">2015-02</td>
+<td style="text-align:left">1</td>
+<td style="text-align:left">11965</td>
+<td style="text-align:left">11965</td>
+<td style="text-align:left">34076</td>
+<td style="text-align:left">28469</td>
+<td style="text-align:left">42.0281709930099406</td>
+</tr>
+<tr>
+<td style="text-align:left">2015-03</td>
+<td style="text-align:left">1</td>
+<td style="text-align:left">20215</td>
+<td style="text-align:left">20215</td>
+<td style="text-align:left">54291</td>
+<td style="text-align:left">18899</td>
+<td style="text-align:left">106.9633313931954072</td>
+</tr>
+<tr>
+<td style="text-align:left">2015-04</td>
+<td style="text-align:left">1</td>
+<td style="text-align:left">11792</td>
+<td style="text-align:left">11792</td>
+<td style="text-align:left">66083</td>
+<td style="text-align:left">12394</td>
+<td style="text-align:left">95.1428110375988381</td>
+</tr>
+<tr>
+<td style="text-align:left">2015-05</td>
+<td style="text-align:left">1</td>
+<td style="text-align:left">18087</td>
+<td style="text-align:left">18087</td>
+<td style="text-align:left">84170</td>
+<td style="text-align:left">2282</td>
+<td style="text-align:left">792.5942156003505697</td>
+</tr>
+<tr>
+<td style="text-align:left">2015-06</td>
+<td style="text-align:left">1</td>
+<td style="text-align:left">18859</td>
+<td style="text-align:left">18859</td>
+<td style="text-align:left">103029</td>
+<td style="text-align:left">10180</td>
+<td style="text-align:left">185.2554027504911591</td>
+</tr>
+<tr>
+<td style="text-align:left">2015-07</td>
+<td style="text-align:left">1</td>
+<td style="text-align:left">14919</td>
+<td style="text-align:left">14919</td>
+<td style="text-align:left">117948</td>
+<td style="text-align:left">4027</td>
+<td style="text-align:left">370.4742984852247331</td>
+</tr>
+<tr>
+<td style="text-align:left">2015-08</td>
+<td style="text-align:left">1</td>
+<td style="text-align:left">12906</td>
+<td style="text-align:left">12906</td>
+<td style="text-align:left">130854</td>
+<td style="text-align:left">6243</td>
+<td style="text-align:left">206.7275348390197021</td>
+</tr>
+<tr>
+<td style="text-align:left">2015-09</td>
+<td style="text-align:left">1</td>
+<td style="text-align:left">5696</td>
+<td style="text-align:left">5696</td>
+<td style="text-align:left">136550</td>
+<td style="text-align:left">3832</td>
+<td style="text-align:left">148.6430062630480167</td>
+</tr>
+<tr>
+<td style="text-align:left">2015-10</td>
+<td style="text-align:left">1</td>
+<td style="text-align:left">13398</td>
+<td style="text-align:left">13398</td>
+<td style="text-align:left">149948</td>
+<td style="text-align:left">6716</td>
+<td style="text-align:left">199.4937462775461584</td>
+</tr>
+<tr>
+<td style="text-align:left">2015-11</td>
+<td style="text-align:left">1</td>
+<td style="text-align:left">6213</td>
+<td style="text-align:left">6213</td>
+<td style="text-align:left">156161</td>
+<td style="text-align:left">16444</td>
+<td style="text-align:left">37.7827779129165653</td>
+</tr>
+<tr>
+<td style="text-align:left">2015-12</td>
+<td style="text-align:left">1</td>
+<td style="text-align:left">26024</td>
+<td style="text-align:left">26024</td>
+<td style="text-align:left">182185</td>
+<td style="text-align:left">29199</td>
+<td style="text-align:left">89.126339943148738</td>
+</tr>
+</tbody>
+</table>
+</div>
+        </div>
+    </div>
+<ul>
+<li>작년 같은 달 매출을 구할 때 <code>LAG</code> 함수를 사용하여 12개월 전의 매출을 추출</li>
+<li>BigQuery 등은 데이터를 읽어 들일 때 과금이 발생하므로 불필요한 데이터를 읽어 들임을 줄여야함</li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-11-22&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/32bec5d3959d71da7e6137c4a97d6fefa863e42f" target="_blank" title="commit by riley817(riley0422@icloud.com) 32bec5d3959d71da7e6137c4a97d6fefa863e42f: feat:20231122111032">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>32bec5d</a></span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/data/">data</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/sql-recipe-3/" class="prev" rel="prev" title="데이터 분석을 위한 SQL 레시피 - 3장 데이터 가공을 위한 SQL"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>데이터 분석을 위한 SQL 레시피 - 3장 데이터 가공을 위한 SQL</a>
+            <a href="/sql-recipe-4-2/" class="next" rel="next" title="데이터 분석을 위한 SQL 레시피 - 4장 시계열 기반으로 데이터 집계하기">데이터 분석을 위한 SQL 레시피 - 4장 시계열 기반으로 데이터 집계하기<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><script src="https://utteranc.es/client.js"
+            repo="riley817/blog-comment"
+            issue-term="pathname"
+            label="✨💬✨"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+        </script>
+    </div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.120.4">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/riley817" target="_blank">Riley</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.1/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"search":{"algoliaAppID":"","algoliaIndex":"","algoliaSearchKey":"","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
