@@ -24,6 +24,14 @@ https://github.com/apache/tinkerpop/tree/master/gremlin-go 2. Neptune 연결 설
 유저에게 알 수도 있는 친구를 추천하기 위한 기능이 구현하게 되었는데 팔로우 관계를 나타내는 테이블이 하나로 구성되어 있다 보니 유저의 팔로워, 팔로잉 조회를 위해 with 절, union 등과 같은 문법을 사용했고 나의 팔로우의 팔로우 중 나와 팔로우 관계가 없는 친구만 불러오기 위해 복잡하게 서브 쿼리로 작성하게 되었다.]]></description>
 </item>
 <item>
+    <title>구글 빅쿼리(BigQuery) 시작하기 및 DataGrip 연동</title>
+    <link>https://riley817.github.io/bigquery-datagrip/</link>
+    <pubDate>Thu, 24 Nov 2022 11:40:17 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/bigquery-datagrip/</guid>
+    <description><![CDATA[구글 빅쿼리 시작하기 및 DataGrip 연동하기 구글 클라우드 프로젝트 생성 구글 계정 생성 기본 90일 동안 $300 크레딧으로 무료 평가판을 사용할 수 있다. 무료 체험 기간이 지나면 무료 체험 중 생성한 리소스는 모두 중지 되며 유료 계정으로 업그레이드 하지 않으면 요금이 부과되지 않는다. 새 프로젝트 버튼을 클릭하여 프로젝트 생성하기 데이터 세트 생성하기 데이터 세트는 테이블과 뷰에 대한 액세스를 구성 및 제어하는 최상위 컨테이너이다. 테이블이나 뷰는 반드시 데이터 세트에 속해야 하므로 최소 한 개 이상의 데이터 세트를 구성해야 한다.]]></description>
+</item>
+<item>
     <title>Oracle Scheduler DBMS_SCHEDULER 개념 및 사용법</title>
     <link>https://riley817.github.io/oracle-scheduler/</link>
     <pubDate>Fri, 23 Apr 2021 16:44:26 &#43;0900</pubDate>

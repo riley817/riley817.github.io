@@ -101,6 +101,13 @@
         alt="/images/avatar.png"
         title="/images/avatar.png" /></a></div><h1 class="home-title">라일리의 개발 공부기록</h1><div class="home-subtitle"><div id="id-1" class="typeit"></div></div><div class="links"><a href="https://github.com/https://github.com/riley817" title="GitHub" target="_blank" rel="noopener noreffer me"><i class="fab fa-github-alt fa-fw" aria-hidden="true"></i></a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/easy-golang-section10/">[쉽고 빠르게 끝내는 GO언어 프로그래밍 핵심 기초 입문 과정] Section 10 : 에러 처리</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="https://github.com/riley817" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2021-04-23">2021-04-23</time></span>&nbsp;<span class="post-category">included in <a href="/categories/%EC%89%BD%EA%B3%A0-%EB%B9%A0%EB%A5%B4%EA%B2%8C-%EB%81%9D%EB%82%B4%EB%8A%94-go%EC%96%B8%EC%96%B4-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D-%ED%95%B5%EC%8B%AC-%EA%B8%B0%EC%B4%88-%EC%9E%85%EB%AC%B8-%EA%B3%BC%EC%A0%95/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>쉽고 빠르게 끝내는 GO언어 프로그래밍 핵심 기초 입문 과정</a></span></div><div class="content">인프런 쉽고 빠르게 끝내는 GO언어 프로그래밍 핵심 기초 입문 과정 강의 정리
+10.1 에러처리 10.1.1 Go 에러 소프트웨어의 품질 향상에 가장 중요한 것 → 유형코드 및 에러 정보 등을 남기는 것
+Go 에서는 기본적으로 error 라는 인터페이스 타입을 갖고 있다. 개발자는 이 인터페이스를 구현하는 커스텀 에러 타입을 만들 수 있다. 1 2 3 type error interface { Error() string } 10.1.2 Go 에러처리 Go 함수의 경우 기본적으로 리턴 타입을 두개 갖고 있다.</div><div class="post-footer">
+        <a href="/easy-golang-section10/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/go/">GO</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/easy-golang-section9/">[쉽고 빠르게 끝내는 GO언어 프로그래밍 핵심 기초 입문 과정] Section 9 : Go 병행처리</a>
     </h1><div class="post-meta"><span class="post-author"><a href="https://github.com/riley817" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2021-04-15">2021-04-15</time></span>&nbsp;<span class="post-category">included in <a href="/categories/%EC%89%BD%EA%B3%A0-%EB%B9%A0%EB%A5%B4%EA%B2%8C-%EB%81%9D%EB%82%B4%EB%8A%94-go%EC%96%B8%EC%96%B4-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D-%ED%95%B5%EC%8B%AC-%EA%B8%B0%EC%B4%88-%EC%9E%85%EB%AC%B8-%EA%B3%BC%EC%A0%95/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>쉽고 빠르게 끝내는 GO언어 프로그래밍 핵심 기초 입문 과정</a></span></div><div class="content">인프런 쉽고 빠르게 끝내는 GO언어 프로그래밍 핵심 기초 입문 과정 강의 정리
 9.1 고루틴 9.1.1 GoRoutine goroutine은 go 런타임이 관리하는 lightweight 논리적(가장적) Thread이다. 생성 방법이 매우 간단하고 리소스를 매우 적게 사용한다. → 수 많은 고루틴을 동시에 생성 및 실행이 가능 Java나 Python의 스레드는 MB단위인 반면에 GO KB 단위이다. 비동기적 asynchronously 함수 루틴을 실행 한다. 채널을 통해 루틴간 통신이 가능하다. 공유 메모리를 사용시에 정확한 동기화 코딩이 필요하다. 싱글 루틴에 비해 항상 빠르지는 않다.</div><div class="post-footer">
@@ -130,13 +137,6 @@
 5.1 Bool boolean 타입 : 참, 거짓 조건부 논리 연산자와 주로 함께 사용한다. !, ||(or) &amp;&amp;(and) 암묵적인 형 변환은 불가능하다. 0, Nil → false 변환 불가능 예제 1 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 var b1 bool = true var b2 bool = false b3 := true // b4 := 1 // Error!</div><div class="post-footer">
         <a href="/easy-golang-section5/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/go/">GO</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/nginx-log-es-cloud/">[Elastic Cloud] nginx 로그를 Elasticsearch Cloud로 수집하기</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="https://github.com/riley817" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2021-03-21">2021-03-21</time></span>&nbsp;<span class="post-category">included in <a href="/categories/elasticsearch/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Elasticsearch</a></span></div><div class="content">개요 파일비트를 사용하여 웹 서버(nginx) 로그 파일을 수집하고 Elasticsearch Cloud에 전송한다. Cloud에서 생성한 Kibana 사이트에 접속하면 여러 플랫폼에서 데이터를 수집할 수 있는 예시 파일을 참고 할 수 있다.
-파일비트 설치 파일비트는 수집할 로그가 쌓이는 서버에 설치했다.
-1 2 3 4 cd /usr/local/src sudo curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.11.1-linux-x86_64.tar.gz tar xzvf filebeat-7.11.1-linux-x86_64.tar.gz cd filebeat-7.11.1-linux-x86_64 Elastic Cloud 인증정보 설정 Elastic Cloud 접속을 위하여 filebeat.yml의 관련항목의 주석을 해제하고 인증정보를 설정한다. 그 외 필요한 설정 정보는 아래 링크를 참조한다.</div><div class="post-footer">
-        <a href="/nginx-log-es-cloud/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/elastic-cloud/">Elastic Cloud</a>,&nbsp;<a href="/tags/nginx/">NGINX</a>,&nbsp;<a href="/tags/elasticsearch/">Elasticsearch</a></div></div>
 </article><ul class="pagination"><li class="page-item ">
                     <span class="page-link">
                         <a href="/">1</a>

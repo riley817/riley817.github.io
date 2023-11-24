@@ -4,7 +4,15 @@
         <link>https://riley817.github.io/tags/data/</link>
         <description>data - Tag - Riley&#39;s DevLog</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
-            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Tue, 22 Nov 2022 20:24:17 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/tags/data/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Thu, 24 Nov 2022 11:40:17 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/tags/data/" rel="self" type="application/rss+xml" /><item>
+    <title>구글 빅쿼리(BigQuery) 시작하기 및 DataGrip 연동</title>
+    <link>https://riley817.github.io/bigquery-datagrip/</link>
+    <pubDate>Thu, 24 Nov 2022 11:40:17 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/bigquery-datagrip/</guid>
+    <description><![CDATA[구글 빅쿼리 시작하기 및 DataGrip 연동하기 구글 클라우드 프로젝트 생성 구글 계정 생성 기본 90일 동안 $300 크레딧으로 무료 평가판을 사용할 수 있다. 무료 체험 기간이 지나면 무료 체험 중 생성한 리소스는 모두 중지 되며 유료 계정으로 업그레이드 하지 않으면 요금이 부과되지 않는다. 새 프로젝트 버튼을 클릭하여 프로젝트 생성하기 데이터 세트 생성하기 데이터 세트는 테이블과 뷰에 대한 액세스를 구성 및 제어하는 최상위 컨테이너이다. 테이블이나 뷰는 반드시 데이터 세트에 속해야 하므로 최소 한 개 이상의 데이터 세트를 구성해야 한다.]]></description>
+</item>
+<item>
     <title>데이터 분석을 위한 SQL 레시피 - 4장 시계열 기반으로 데이터 집계하기</title>
     <link>https://riley817.github.io/sql-recipe-4-2/</link>
     <pubDate>Tue, 22 Nov 2022 20:24:17 &#43;0900</pubDate>
