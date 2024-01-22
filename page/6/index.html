@@ -1,19 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-	<meta name="generator" content="Hugo 0.120.4">
+	<meta name="generator" content="Hugo 0.121.2">
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
         <title>Riley&#39;s DevLog</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:title" content="Riley&#39;s DevLog" />
 <meta property="og:description" content="Riley&#39;s DevLog" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://riley817.github.io/" /><meta property="og:image" content="https://riley817.github.io/icon.png"/><meta property="og:site_name" content="Riley&#39;s DevLog" />
+<meta property="og:url" content="https://riley817.github.io/" /><meta property="og:image" content="https://riley817.github.io/icon.png" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
 
-<meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://riley817.github.io/icon.png"/>
-
-<meta name="twitter:title" content="Riley&#39;s DevLog"/>
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://riley817.github.io/icon.png" /><meta name="twitter:title" content="Riley&#39;s DevLog"/>
 <meta name="twitter:description" content="Riley&#39;s DevLog"/>
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
@@ -101,6 +99,13 @@
         alt="/images/avatar.png"
         title="/images/avatar.png" /></a></div><h1 class="home-title">라일리의 개발 공부기록</h1><div class="home-subtitle"><div id="id-1" class="typeit"></div></div><div class="links"><a href="https://github.com/https://github.com/riley817" title="GitHub" target="_blank" rel="noopener noreffer me"><i class="fab fa-github-alt fa-fw" aria-hidden="true"></i></a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/sql-recipe-3/">데이터 분석을 위한 SQL 레시피 - 3장 데이터 가공을 위한 SQL</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="https://github.com/riley817" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-11-21">2022-11-21</time></span>&nbsp;<span class="post-category">included in <a href="/categories/%EB%8D%B0%EC%9D%B4%ED%84%B0-%EB%B6%84%EC%84%9D%EC%9D%84-%EC%9C%84%ED%95%9C-sql-%EB%A0%88%EC%8B%9C%ED%94%BC/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>데이터 분석을 위한 SQL 레시피</a></span></div><div class="content">🗄️ 데이터분석을 위한 SQL 레시피 책을 읽고 정리 / 요약 한 내용입니다.
+데이터를 가공해야 하는 이유 다룰 데이터가 데이터 분석 용도로 상정되지 않은 경우 연산할 때 비교 가능한 상태를 만들고 오류를 회피하기 위한 경우 5. 하나의 값 조작하기 5.1 코드 값을 레이블로 변경하기 디폴트 값을 지정할 경우 ELSE 구문을 사용한다.
+1 2 3 4 5 6 7 8 9 SELECT user_id , CASE WHEN register_device = 1 THEN &#39;데스크톱&#39; WHEN register_device = 2 THEN &#39;스마트폰&#39; WHEN register_device = 3 THEN &#39;애플리케이션&#39; ELSE &#39;&#39; END as device_name FROM mst_users; 5.</div><div class="post-footer">
+        <a href="/sql-recipe-3/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/data/">data</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/sql-recipe-2/">데이터 분석을 위한 SQL 레시피 - 2장 도구와 데이터</a>
     </h1><div class="post-meta"><span class="post-author"><a href="https://github.com/riley817" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-11-20">2022-11-20</time></span>&nbsp;<span class="post-category">included in <a href="/categories/%EB%8D%B0%EC%9D%B4%ED%84%B0-%EB%B6%84%EC%84%9D%EC%9D%84-%EC%9C%84%ED%95%9C-sql-%EB%A0%88%EC%8B%9C%ED%94%BC/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>데이터 분석을 위한 SQL 레시피</a></span></div><div class="content">🗄️ 데이터분석을 위한 SQL 레시피 책을 읽고 정리 / 요약 한 내용입니다.
 개요 대표적인 빅데이터 처리 시스템을 설명하고 다루는 데이터의 양, 처리 내용, 비용 제약등을 생각하여 어떤 도구를 사용할지 알아보자 소개되는 시스템은 기본적으로 SQL 인터페이스를 가지고 있고 어떤 도구를 선택하더라도 다른 도구로 쉽게 마이그레이션이 가능 빅데이터 처리 시스템 1. PostgreSQL 오픈 소스 RDB(Relational Database)로 다양한 플랫폼 지원 및 GUI 인스톨러 제공 다른 오픈 소스 RDB와 비교시 표준 SQL을 잘 준수하며 윈도 함수, CTE(WITH 구문) 등 분석에 필수적으로 사용하는 구문 모두 구현 가능 많은 확장 기능을 제공하여 편리하게 사용 가능 2.</div><div class="post-footer">
@@ -129,11 +134,6 @@ IPLocationTools IP/Subnet Mask 192.</div><div class="post-footer">
 SQS 사용 : Queue 모델 SNS 사용 : pub/sub 모델 Kinesis : 실시간 스트리밍 모델 Amazon SQS Amazon SQS - Standard Queue AWS에서 가장 오래된 서비스. 애플리케이션을 decoupling하기 위해 서비스를 관리 중복 메세지를 갖을 수 있다.</div><div class="post-footer">
         <a href="/aws-18-integration-messaging/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/amazon-sqs/">Amazon SQS</a>,&nbsp;<a href="/tags/amazon-sns/">Amazon SNS</a>,&nbsp;<a href="/tags/kinesis/">Kinesis</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/aws-14-s3/">14. S3 Storage and Data Management</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="https://github.com/riley817" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-08-01">2022-08-01</time></span>&nbsp;<span class="post-category">included in <a href="/categories/aws-certified-saa-c02-%EC%8B%9C%ED%97%98%EC%A4%80%EB%B9%84/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>AWS Certified SAA-C02 시험준비</a></span></div><div class="content">Amazon S3 Amazon S3은 AWS의 주요한 서비스 중 하나이다. 무한 확장infinitely scaling 가능한 storage 많은 웹사이트에서 Amazon S3을 backbone으로 사용한다. AWS의 다수의 서비스에서도 Amazon S3 통합하여 사용할 수 있다. Amazon S3 Overview Buckets Amazon S3에서는 object(files) 을 buckets(directories) 에 저장할 수 있다. 버켓은 반드시 전역적으로 유일globally unique name 해야 한다. 버켓은 region level 정의된다. (S3는 전역서비스지만 버켓은 리전리소스) Naming convention 대문자 불가 _ 불가 길이는 3~63 자리 IP 주소가 아닐 것 반드시 소문자로 또는 숫자로 시작 Objects Object는 파일이며 키를 가짐 key는 전체경로full path를 나타낸다 s3://my-bucket/my_file.</div><div class="post-footer">
-        <a href="/aws-14-s3/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/aws/">AWS</a>,&nbsp;<a href="/tags/amazon-s3/">Amazon S3</a></div></div>
 </article><ul class="pagination"><li class="page-item ">
                     <span class="page-link">
                         <a href="/">1</a>
@@ -164,12 +164,12 @@ SQS 사용 : Queue 모델 SNS 사용 : pub/sub 모델 Kinesis : 실시간 스트
                     <span class="page-link" aria-hidden="true">&hellip;</span>
                 </li><li class="page-item ">
                     <span class="page-link">
-                        <a href="/page/21/">21</a>
+                        <a href="/page/22/">22</a>
                     </span>
                 </li></ul></div></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.120.4">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
-                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/riley817" target="_blank">Riley</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.121.2">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/riley817" target="_blank">Riley</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>
 

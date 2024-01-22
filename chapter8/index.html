@@ -7,14 +7,12 @@
         <title>가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [8장] URL 단축기 설계 - Riley&#39;s DevLog</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:title" content="가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [8장] URL 단축기 설계" />
 <meta property="og:description" content="Note 팀 내에서 진행하는 Study 정리 입니다. 함께 논의 하고 싶은 주제 내용이 매우 유익했습니다. 책에 설계된 대로 구현을 해볼 생각입니다! 단축 URL을 만들기 위한 접근법 (해시 후 충돌 해소, base-62) 이 외에 다른 접근법이 있을까 서칭과 chatGPT 쿤에게 문의 해보았지만 좋은 방법은 찾지 못하였는데 혹시 다른 아이디어가 있을까요? 요약 1. 문제 이해 및 설계 범위 확정 1.1 기능 URL 단축 : 주어진 긴 URL을 짧게 줄인다. URL 리다이렉션 : 축약된 URL로 HTTP 요청이 오면 원래 URL로 안내 높은 가용성 규모 확장성, 그리고 장애 감내가 요구 1." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://riley817.github.io/chapter8/" /><meta property="og:image" content="https://riley817.github.io/icon.png"/><meta property="article:section" content="posts" />
+<meta property="og:url" content="https://riley817.github.io/chapter8/" /><meta property="og:image" content="https://riley817.github.io/icon.png" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2023-08-23T22:22:24+09:00" />
-<meta property="article:modified_time" content="2023-11-24T23:50:00+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
+<meta property="article:modified_time" content="2024-01-22T22:50:08+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
 
-<meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://riley817.github.io/icon.png"/>
-
-<meta name="twitter:title" content="가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [8장] URL 단축기 설계"/>
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://riley817.github.io/icon.png" /><meta name="twitter:title" content="가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [8장] URL 단축기 설계"/>
 <meta name="twitter:description" content="Note 팀 내에서 진행하는 Study 정리 입니다. 함께 논의 하고 싶은 주제 내용이 매우 유익했습니다. 책에 설계된 대로 구현을 해볼 생각입니다! 단축 URL을 만들기 위한 접근법 (해시 후 충돌 해소, base-62) 이 외에 다른 접근법이 있을까 서칭과 chatGPT 쿤에게 문의 해보았지만 좋은 방법은 찾지 못하였는데 혹시 다른 아이디어가 있을까요? 요약 1. 문제 이해 및 설계 범위 확정 1.1 기능 URL 단축 : 주어진 긴 URL을 짧게 줄인다. URL 리다이렉션 : 축약된 URL로 HTTP 요청이 오면 원래 URL로 안내 높은 가용성 규모 확장성, 그리고 장애 감내가 요구 1."/>
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
@@ -31,7 +29,7 @@
             "@type": "WebPage",
             "@id": "https:\/\/riley817.github.io\/chapter8\/"
         },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "System Design","wordcount":  707 ,
-        "url": "https:\/\/riley817.github.io\/chapter8\/","datePublished": "2023-08-23T22:22:24+09:00","dateModified": "2023-11-24T23:50:00+09:00","publisher": {
+        "url": "https:\/\/riley817.github.io\/chapter8\/","datePublished": "2023-08-23T22:22:24+09:00","dateModified": "2024-01-22T22:50:08+09:00","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/riley817.github.io\/images\/avatar.png"},"author": {
                 "@type": "Person",
@@ -353,8 +351,8 @@
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 2023-11-24&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/cacf69afd0af7e7cd9f63d2341768e7708bc4549" target="_blank" title="commit by riley817(riley0422@icloud.com) cacf69afd0af7e7cd9f63d2341768e7708bc4549: feat: 20231124114958">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>cacf69a</a></span>
+                <span>Updated on 2024-01-22&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/48c9b035cc9b3dcdab5f8819d2d9e2e0b321df0b" target="_blank" title="commit by riley817(riley0422@icloud.com) 48c9b035cc9b3dcdab5f8819d2d9e2e0b321df0b: Merge branch &#39;develop&#39; into main">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>48c9b03</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>
@@ -384,8 +382,8 @@
         </script>
     </div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.120.4">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
-                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/riley817" target="_blank">Riley</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.121.2">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/riley817" target="_blank">Riley</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>
 

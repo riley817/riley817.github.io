@@ -1,0 +1,21 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>클린코드 - Category - Riley&#39;s DevLog</title>
+        <link>https://riley817.github.io/categories/%ED%81%B4%EB%A6%B0%EC%BD%94%EB%93%9C/</link>
+        <description>클린코드 - Category - Riley&#39;s DevLog</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
+            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Mon, 22 Jan 2024 10:04:54 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/categories/%ED%81%B4%EB%A6%B0%EC%BD%94%EB%93%9C/" rel="self" type="application/rss+xml" /><item>
+    <title>클린코드 - 1장 클린코드 &amp; 2장 의미있는 이름</title>
+    <link>https://riley817.github.io/clean-code-01/</link>
+    <pubDate>Mon, 22 Jan 2024 10:04:54 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/clean-code-01/</guid>
+    <description><![CDATA[🧹🧹🧹 클린코드 읽고 정리하기 🧹🧹🧹
+목표 좋은 코드와 나쁜 코드를 구분하기 좋은 코드를 작성하는 방법 익히기 나쁜 코드를 좋은 코드로 바꾸는 실력 쌓기 나쁜 코드 성능이 나쁜 코드
+불필요한 연산이 들어가서 개선의 여지가 있는 코드 의미가 모호한 코드
+이해하기 어려운 코드. 네이밍과 그 내용이 다른 코드 중복된 코드
+비슷한 내용인데 중복되는 코드들은 버그를 낳는다. 나쁜 코드가 나쁜 이유 깨진 유리창 법칙
+나쁜 코드는 깨진 유리창처럼 계속 나쁜 코드가 만들어지도록 한다.]]></description>
+</item>
+</channel>
+</rss>

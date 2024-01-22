@@ -8,14 +8,12 @@
 <meta property="og:description" content="Tucker의 Go 언어 프로그래밍 책 내용을 정리하였습니다.
 string 구조 string 타입은 Go 언어에서 제공하는 내장 타입으로 그 내부구현은 감추어져 있다. 하지만 reflect 패키지 안의 StringHeader 구조체를 통해 내부구조를 엿볼 수 있다. 1 2 3 4 5 6 7 8 9 10 // StringHeader is the runtime representation of a string. // It cannot be used safely or portably and its representation may // change in a later release. // Moreover, the Data field is not sufficient to guarantee the data // it references will not be garbage collected, so programs must keep // a separate, correctly typed pointer to the underlying data." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://riley817.github.io/chapter15-string/" /><meta property="og:image" content="https://riley817.github.io/icon.png"/><meta property="article:section" content="posts" />
+<meta property="og:url" content="https://riley817.github.io/chapter15-string/" /><meta property="og:image" content="https://riley817.github.io/icon.png" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-08-20T17:51:49+09:00" />
-<meta property="article:modified_time" content="2023-11-24T23:50:00+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
+<meta property="article:modified_time" content="2024-01-22T22:50:08+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
 
-<meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://riley817.github.io/icon.png"/>
-
-<meta name="twitter:title" content="[Tucker의 Go 프로그래밍] 15. 문자열"/>
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://riley817.github.io/icon.png" /><meta name="twitter:title" content="[Tucker의 Go 프로그래밍] 15. 문자열"/>
 <meta name="twitter:description" content="Tucker의 Go 언어 프로그래밍 책 내용을 정리하였습니다.
 string 구조 string 타입은 Go 언어에서 제공하는 내장 타입으로 그 내부구현은 감추어져 있다. 하지만 reflect 패키지 안의 StringHeader 구조체를 통해 내부구조를 엿볼 수 있다. 1 2 3 4 5 6 7 8 9 10 // StringHeader is the runtime representation of a string. // It cannot be used safely or portably and its representation may // change in a later release. // Moreover, the Data field is not sufficient to guarantee the data // it references will not be garbage collected, so programs must keep // a separate, correctly typed pointer to the underlying data."/>
 <meta name="application-name" content="LoveIt">
@@ -33,7 +31,7 @@ string 구조 string 타입은 Go 언어에서 제공하는 내장 타입으로 
             "@type": "WebPage",
             "@id": "https:\/\/riley817.github.io\/chapter15-string\/"
         },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "GO","wordcount":  606 ,
-        "url": "https:\/\/riley817.github.io\/chapter15-string\/","datePublished": "2021-08-20T17:51:49+09:00","dateModified": "2023-11-24T23:50:00+09:00","publisher": {
+        "url": "https:\/\/riley817.github.io\/chapter15-string\/","datePublished": "2021-08-20T17:51:49+09:00","dateModified": "2024-01-22T22:50:08+09:00","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/riley817.github.io\/images\/avatar.png"},"author": {
                 "@type": "Person",
@@ -411,8 +409,8 @@ addr3:  c00011a000</p>
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 2023-11-24&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/cacf69afd0af7e7cd9f63d2341768e7708bc4549" target="_blank" title="commit by riley817(riley0422@icloud.com) cacf69afd0af7e7cd9f63d2341768e7708bc4549: feat: 20231124114958">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>cacf69a</a></span>
+                <span>Updated on 2024-01-22&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/48c9b035cc9b3dcdab5f8819d2d9e2e0b321df0b" target="_blank" title="commit by riley817(riley0422@icloud.com) 48c9b035cc9b3dcdab5f8819d2d9e2e0b321df0b: Merge branch &#39;develop&#39; into main">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>48c9b03</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>
@@ -442,8 +440,8 @@ addr3:  c00011a000</p>
         </script>
     </div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.120.4">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
-                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/riley817" target="_blank">Riley</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.121.2">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/riley817" target="_blank">Riley</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>
 

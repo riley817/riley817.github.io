@@ -9,14 +9,12 @@
 Amazon EKS 클러스터는 다양한 방식으로 배포할 수 있다.
 AWS 콘솔 창으로 배포 AWS CloudFormation 혹은 AWS CDK 와 같은 IaC(Infrastructure as Code) 도구를 사용해 배포 EKS의 공식 CLI인 eksctl 로 배포 Terraform, Pulumi, Rancher 등으로 배포 eksctl로 Cluster 생성하기 아무 옵션없이 eksctl create cluster 실행하면 default parameter로 클러스터가 배포된다. 그러나 yaml 파일로 작성한 구성 파일을 작성하여 배포하면 구성파일에 명시한 오브젝트들의 바라는 상태(desired state)를 쉽게 파악하고 관리할 수 있는 이점이 있다." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://riley817.github.io/aws-3-eks-cluster/" /><meta property="og:image" content="https://riley817.github.io/icon.png"/><meta property="article:section" content="posts" />
+<meta property="og:url" content="https://riley817.github.io/aws-3-eks-cluster/" /><meta property="og:image" content="https://riley817.github.io/icon.png" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-05-06T23:10:03+09:00" />
-<meta property="article:modified_time" content="2023-11-24T23:50:00+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
+<meta property="article:modified_time" content="2024-01-22T22:50:08+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
 
-<meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://riley817.github.io/icon.png"/>
-
-<meta name="twitter:title" content="[AWS EKS] 3. EKS Cluster 생성하기"/>
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://riley817.github.io/icon.png" /><meta name="twitter:title" content="[AWS EKS] 3. EKS Cluster 생성하기"/>
 <meta name="twitter:description" content="☁️ Amazon EKS 웹 애플리케이션 구축하기 워크샵을 실습한 내용입니다.
 Amazon EKS 클러스터는 다양한 방식으로 배포할 수 있다.
 AWS 콘솔 창으로 배포 AWS CloudFormation 혹은 AWS CDK 와 같은 IaC(Infrastructure as Code) 도구를 사용해 배포 EKS의 공식 CLI인 eksctl 로 배포 Terraform, Pulumi, Rancher 등으로 배포 eksctl로 Cluster 생성하기 아무 옵션없이 eksctl create cluster 실행하면 default parameter로 클러스터가 배포된다. 그러나 yaml 파일로 작성한 구성 파일을 작성하여 배포하면 구성파일에 명시한 오브젝트들의 바라는 상태(desired state)를 쉽게 파악하고 관리할 수 있는 이점이 있다."/>
@@ -35,7 +33,7 @@ AWS 콘솔 창으로 배포 AWS CloudFormation 혹은 AWS CDK 와 같은 IaC(Inf
             "@type": "WebPage",
             "@id": "https:\/\/riley817.github.io\/aws-3-eks-cluster\/"
         },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "AWS, Amazon EKS, Kubernetes, Amazon ECR, AWS Cloud9","wordcount":  373 ,
-        "url": "https:\/\/riley817.github.io\/aws-3-eks-cluster\/","datePublished": "2022-05-06T23:10:03+09:00","dateModified": "2023-11-24T23:50:00+09:00","publisher": {
+        "url": "https:\/\/riley817.github.io\/aws-3-eks-cluster\/","datePublished": "2022-05-06T23:10:03+09:00","dateModified": "2024-01-22T22:50:08+09:00","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/riley817.github.io\/images\/avatar.png"},"author": {
                 "@type": "Person",
@@ -326,8 +324,8 @@ AWS 콘솔 창으로 배포 AWS CloudFormation 혹은 AWS CDK 와 같은 IaC(Inf
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 2023-11-24&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/cacf69afd0af7e7cd9f63d2341768e7708bc4549" target="_blank" title="commit by riley817(riley0422@icloud.com) cacf69afd0af7e7cd9f63d2341768e7708bc4549: feat: 20231124114958">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>cacf69a</a></span>
+                <span>Updated on 2024-01-22&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/48c9b035cc9b3dcdab5f8819d2d9e2e0b321df0b" target="_blank" title="commit by riley817(riley0422@icloud.com) 48c9b035cc9b3dcdab5f8819d2d9e2e0b321df0b: Merge branch &#39;develop&#39; into main">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>48c9b03</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>
@@ -357,8 +355,8 @@ AWS 콘솔 창으로 배포 AWS CloudFormation 혹은 AWS CDK 와 같은 IaC(Inf
         </script>
     </div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.120.4">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
-                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/riley817" target="_blank">Riley</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.121.2">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/riley817" target="_blank">Riley</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>
 

@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>클린코드 - 1장 클린코드 &amp; 2장 의미있는 이름 - Riley&#39;s DevLog</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:title" content="클린코드 - 1장 클린코드 &amp; 2장 의미있는 이름" />
+<meta property="og:description" content="🧹🧹🧹 클린코드 읽고 정리하기 🧹🧹🧹
+목표 좋은 코드와 나쁜 코드를 구분하기 좋은 코드를 작성하는 방법 익히기 나쁜 코드를 좋은 코드로 바꾸는 실력 쌓기 나쁜 코드 성능이 나쁜 코드
+불필요한 연산이 들어가서 개선의 여지가 있는 코드 의미가 모호한 코드
+이해하기 어려운 코드. 네이밍과 그 내용이 다른 코드 중복된 코드
+비슷한 내용인데 중복되는 코드들은 버그를 낳는다. 나쁜 코드가 나쁜 이유 깨진 유리창 법칙
+나쁜 코드는 깨진 유리창처럼 계속 나쁜 코드가 만들어지도록 한다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://riley817.github.io/clean-code-01/" /><meta property="og:image" content="https://riley817.github.io/icon.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-01-22T10:04:54+09:00" />
+<meta property="article:modified_time" content="2024-01-22T22:50:08+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://riley817.github.io/icon.png" /><meta name="twitter:title" content="클린코드 - 1장 클린코드 &amp; 2장 의미있는 이름"/>
+<meta name="twitter:description" content="🧹🧹🧹 클린코드 읽고 정리하기 🧹🧹🧹
+목표 좋은 코드와 나쁜 코드를 구분하기 좋은 코드를 작성하는 방법 익히기 나쁜 코드를 좋은 코드로 바꾸는 실력 쌓기 나쁜 코드 성능이 나쁜 코드
+불필요한 연산이 들어가서 개선의 여지가 있는 코드 의미가 모호한 코드
+이해하기 어려운 코드. 네이밍과 그 내용이 다른 코드 중복된 코드
+비슷한 내용인데 중복되는 코드들은 버그를 낳는다. 나쁜 코드가 나쁜 이유 깨진 유리창 법칙
+나쁜 코드는 깨진 유리창처럼 계속 나쁜 코드가 만들어지도록 한다."/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://riley817.github.io/clean-code-01/" /><link rel="prev" href="https://riley817.github.io/chapter15/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "클린코드 - 1장 클린코드 \u0026 2장 의미있는 이름",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/riley817.github.io\/clean-code-01\/"
+        },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "cleancode","wordcount":  601 ,
+        "url": "https:\/\/riley817.github.io\/clean-code-01\/","datePublished": "2024-01-22T10:04:54+09:00","dateModified": "2024-01-22T22:50:08+09:00","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "https:\/\/riley817.github.io\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "riley"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('light' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'light' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Riley&#39;s DevLog"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i></span>Riley&#39;s DevLog</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Riley&#39;s DevLog"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i></span>Riley&#39;s DevLog</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">클린코드 - 1장 클린코드 & 2장 의미있는 이름</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/riley817" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%ED%81%B4%EB%A6%B0%EC%BD%94%EB%93%9C/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>클린코드</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-01-22">2024-01-22</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;601 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;3 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#목표">목표</a></li>
+    <li><a href="#나쁜-코드">나쁜 코드</a>
+      <ul>
+        <li><a href="#나쁜-코드가-나쁜-이유">나쁜 코드가 나쁜 이유</a></li>
+        <li><a href="#나쁜-코드를-짜는-이유">나쁜 코드를 짜는 이유</a></li>
+        <li><a href="#나쁜-코드를-짜지-않으려면">나쁜 코드를 짜지 않으려면</a></li>
+      </ul>
+    </li>
+    <li><a href="#클린-코드">클린 코드</a>
+      <ul>
+        <li><a href="#프로그래밍-대가의-의견">프로그래밍 대가의 의견</a></li>
+      </ul>
+    </li>
+    <li><a href="#의미있는-이름-짓기">의미있는 이름 짓기</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><blockquote>
+<p>🧹🧹🧹 클린코드 읽고 정리하기 🧹🧹🧹</p>
+</blockquote>
+<h2 id="목표">목표</h2>
+<ul>
+<li>좋은 코드와 나쁜 코드를 구분하기</li>
+<li>좋은 코드를 작성하는 방법 익히기</li>
+<li>나쁜 코드를 좋은 코드로 바꾸는 실력 쌓기</li>
+</ul>
+<h2 id="나쁜-코드">나쁜 코드</h2>
+<p><strong>성능이 나쁜 코드</strong></p>
+<ul>
+<li>불필요한 연산이 들어가서 개선의 여지가 있는 코드</li>
+</ul>
+<p><strong>의미가 모호한 코드</strong></p>
+<ul>
+<li>이해하기 어려운 코드. 네이밍과 그 내용이 다른 코드</li>
+</ul>
+<p><strong>중복된 코드</strong></p>
+<ul>
+<li>비슷한 내용인데 중복되는 코드들은 버그를 낳는다.</li>
+</ul>
+<h3 id="나쁜-코드가-나쁜-이유">나쁜 코드가 나쁜 이유</h3>
+<p><strong>깨진 유리창 법칙</strong></p>
+<ul>
+<li>나쁜 코드는 깨진 유리창처럼 계속 나쁜 코드가 만들어지도록 한다.</li>
+</ul>
+<p><strong>생산성 저하</strong></p>
+<ul>
+<li>코드를 고칠 때 엉뚱한 곳에서 문제 발생</li>
+<li>간단한 변경은 없음</li>
+<li>얽히고 설킨 코드를 해독하고 설킨 코드를 더함</li>
+</ul>
+<p><strong>(결국) 새로운 시스템을 만들어야 한다.</strong></p>
+<ul>
+<li>신규 투입된 인력은 시스템 설계에 조예가 깊지 못함</li>
+<li>설계 의도에 맞는 변경과 설계 의도에 변경을 구분하지 못함</li>
+<li>현 시스템을 유지보수하며 대체할 새로운 시스템 개발은 현실적으로 매우 어렵다.</li>
+</ul>
+<h3 id="나쁜-코드를-짜는-이유">나쁜 코드를 짜는 이유</h3>
+<ul>
+<li>일정이 촉박해서
+<ul>
+<li>일정 안에 새로운 기능을 완성해야한다.</li>
+<li>나쁜 코드는 생산성을 저하하기 때문에 오히려 일정을 맞추지 못한다.</li>
+</ul>
+</li>
+<li>영향 범위가 넓어서
+<ul>
+<li>다른 부분에 버그 발생을 우려</li>
+<li>기술 부채는 부메랑처럼 우리에게 돌아온다.</li>
+</ul>
+</li>
+</ul>
+<h3 id="나쁜-코드를-짜지-않으려면">나쁜 코드를 짜지 않으려면</h3>
+<ul>
+<li>언제나 코드를 최대한 깨끗하게 유지하는 습관을 들여야한다.</li>
+<li>어떤 코드가 깨끗한지 나쁜 코드인지 코드감각을 활용</li>
+<li>절제와 규율을 적용해 나쁜 코드와 좋은 코드를 바꾸는 전략도 파악</li>
+</ul>
+<h2 id="클린-코드">클린 코드</h2>
+<ul>
+<li><strong>성능이 좋은 코드</strong></li>
+<li><strong>의미가 명확한 코드 = 가독성이 좋은 코드</strong></li>
+<li><strong>중복이 제거된 코드 = 명료한 코드</strong></li>
+</ul>
+<h3 id="프로그래밍-대가의-의견">프로그래밍 대가의 의견</h3>
+<p><strong>바야네 스트롭스트룹</strong> <em>C++ 창시자이자 C++ programming language 저자</em></p>
+<ul>
+<li>우아하고 효율적인 코드 - (효율은 속도 뿐만 아니라 CPU 자원을 낭비하지 않는 것)</li>
+<li>논리가 간단해야 한다.</li>
+<li>의존성을 최대한 줄여야 유지보수가 쉽다.</li>
+<li>오류는 명백한 전략에 의거 철저히 처리</li>
+<li><strong>한 가지를 제대로 한다.</strong></li>
+</ul>
+<p><strong>그래디 부치</strong> <em>객체지향의 짱</em></p>
+<ul>
+<li>깨끗한 코드는 단순하고 직접적</li>
+<li>잘 쓴 문장처럼 읽힌다.</li>
+<li>깨끗한 코드는 결코 설계자의 의도를 숨기지 않는다.</li>
+<li>오히려 명쾌한 추상화와 단순한 제어문으로 가득</li>
+</ul>
+<div class="details admonition note open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-pencil-alt fa-fw" aria-hidden="true"></i>보이스카우트 룰<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><ul>
+<li>캠프장은 처음 왔을 때 보다 더 깨끗하게 해놓고 떠나라
+-&gt; 전보다 더 깨끗한 코드로 만들어야 한다.</li>
+</ul>
+</div>
+        </div>
+    </div>
+<h2 id="의미있는-이름-짓기">의미있는 이름 짓기</h2>
+<p><strong>의도를 분명히 밝히기</strong></p>
+<ul>
+<li>변수(혹은 함수나 클래스)가 존재하는 이유?</li>
+<li>수행 기능은 무엇인가?</li>
+<li>사용 방법은 어떻게 되는가?</li>
+<li>의도가 드러나는 이름을 사용하면 코드 이해와 변경이 쉬워짐</li>
+<li>코드의 단순성 보다는 코드의 함축성이 드러나야함</li>
+<li>코드 맥락이 코드 자체에 명시적으로 드러나는 코드</li>
+</ul>
+<p><strong>그릇된 정보는 피하기</strong></p>
+<ul>
+<li>코드의 의미를 흐리는 그릇된 단서를 남겨서는 안된다.</li>
+<li>일관성이 떨어지는 표기법은 지양한다.</li>
+<li>소문자 <code>l</code>, 대문자 <code>O</code> 사용시 주의</li>
+</ul>
+<p><strong>의미있게 구분하기</strong></p>
+<ul>
+<li>아무런 정보를 제공하지 않는 이름은 적절하지 못함</li>
+<li>불용어 사용 지양</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">copyChars</span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="n">a1</span><span class="o">[]</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">a2</span><span class="o">[]</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">a1</span><span class="p">.</span><span class="na">length</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="n">a2</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a1</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">copyChars</span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="n">source</span><span class="o">[]</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">destination</span><span class="o">[]</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">source</span><span class="p">.</span><span class="na">length</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="n">destination</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">source</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>발음하기 쉬운 이름 사용하기</strong></p>
+<ul>
+<li>발음하기 어려운 이름은 토론시 어려움</li>
+</ul>
+<p><strong>검색하기 쉬운 이름 사용하기</strong></p>
+<ul>
+<li>문자 하나를 사용하는 이름과 상수는 텍스트 코드에서 쉽게 눈에 띄지 않음</li>
+<li>이름 길이는 범위 크기에 비례
+<ul>
+<li>전역변수 : 전역으로 사용되는 변수는 검색하기 명확한 단어로</li>
+<li>예시) <code>EX WORK_DAYS_PER_WEEK</code></li>
+</ul>
+</li>
+</ul>
+<p><strong>인코딩을 피하기</strong></p>
+<ul>
+<li>변수명에 타입, 범위, 정보를 넣지 않는다.</li>
+<li>헝가리식 표기법이나 멤버 변수에 접두어를 붙이지 않는다.</li>
+<li>인터페이스와 구현 클래스 이름이 인코딩되어 있으면 과도한 정보
+<ul>
+<li>주로 구현 클래스에 인코딩 정보를 포함하는 것이 일반적</li>
+<li><code>IShapeFactory</code> -&gt; <code>ShapeFactoryImpl</code></li>
+</ul>
+</li>
+</ul>
+<p><strong>자신만 아는 이름 피하기</strong></p>
+<ul>
+<li>예외로 루프에서 사용하는 <code>i</code>, <code>j</code>, <code>k</code> 는 OK (이것은 전통적이므로)</li>
+<li>루프의 범위가 작고 다른 이름과 충돌하지 않을 때만 괜츈</li>
+<li>advanced for 문을 사용하면 더욱 좋다.</li>
+</ul>
+<p><strong>한 단어의 개념만 사용</strong></p>
+<ul>
+<li>똑같은 메서드를 클래스마다 <code>fetch</code>, <code>retrieve</code>, <code>get</code> 으로 제각 사용하면 혼란쓰</li>
+<li>어느 클래스에 어떤 이름을 썼는지 기억 어려움</li>
+<li>메서드 이름은 독자적이고 일관적이어야함</li>
+</ul>
+<p><strong>해법 영역에서 가져온 이름을 사용</strong></p>
+<ul>
+<li>코드를 읽는 사람도 결국 프로그래머이다.
+<ul>
+<li>전산용어, 알고리즘, 패턴, 수학 용어의 이름을 사용</li>
+<li>모든 문제를 도메인 영역에서 가져올 필요는 없다.
+<strong>클래스 이름</strong></li>
+</ul>
+</li>
+<li>클래스, 객체 이름은 명사나 명사구가 적합</li>
+<li><code>Customer</code>, <code>WikiPage</code>, <code>Account</code>, <code>AddressParser</code></li>
+<li><code>Manager</code>, <code>Processor</code>, <code>Data</code>, <code>Info</code> : 되도록 사용하지 않기</li>
+</ul>
+<p><strong>메서드 이름</strong></p>
+<ul>
+<li>동사, 동사구 적합</li>
+<li><code>postPayment</code>, <code>deletePage</code>, <code>save</code> 등</li>
+<li>접근자, 변경자, 조건자는 javabean 표준에 따라 <code>get</code>, <code>set</code>, <code>is</code> 붙임</li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2024-01-22&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/48c9b035cc9b3dcdab5f8819d2d9e2e0b321df0b" target="_blank" title="commit by riley817(riley0422@icloud.com) 48c9b035cc9b3dcdab5f8819d2d9e2e0b321df0b: Merge branch &#39;develop&#39; into main">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>48c9b03</a></span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/cleancode/">cleancode</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/chapter15/" class="prev" rel="prev" title="가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [15장] 구글 드라이브 설계"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [15장] 구글 드라이브 설계</a></div>
+</div>
+<div id="comments"><script src="https://utteranc.es/client.js"
+            repo="riley817/blog-comment"
+            issue-term="pathname"
+            label="✨💬✨"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+        </script>
+    </div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.121.2">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/riley817" target="_blank">Riley</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.1/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"search":{"algoliaAppID":"","algoliaIndex":"","algoliaSearchKey":"","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

@@ -7,14 +7,12 @@
         <title>Oracle Scheduler DBMS_SCHEDULER 개념 및 사용법 - Riley&#39;s DevLog</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:title" content="Oracle Scheduler DBMS_SCHEDULER 개념 및 사용법" />
 <meta property="og:description" content="Oracle Scheduler - DBMS_SCHEDULER 오라클에서 정해진 시간에 반복된 작업을 수행하기 위해 DBMS_JOB 패키지를 활용하였지만 Oracle 10g 부터는 좀 더 확장된 기능을 가진 DBMS_SCHEDULER 패키지를 제공하고 있다. DBMS_JOB과의 가장 큰 차이점은 DBMS_JOB에서는 불가능하던 외부스크립트 (프로시저나, 함수 이외에도 OS에서 생성된 각종 유틸, 프로그램 까지) 실행이 가능하다. Class 생성 클래스를 지정하지 않게 되면 DEFAULT_JOB_CLASS 에 포함되는데 이 경우 기본 로깅 정책을 따른다. 기본로깅 정책은 DBMS_SCHEDULER.LOGGING_RUNS 이며 로깅레벨을 별도로 설정하거나 다른 스케쥴잡과 그룹화하여 관리하고 싶을 경우 Class를 생성한다." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://riley817.github.io/oracle-scheduler/" /><meta property="og:image" content="https://riley817.github.io/icon.png"/><meta property="article:section" content="posts" />
+<meta property="og:url" content="https://riley817.github.io/oracle-scheduler/" /><meta property="og:image" content="https://riley817.github.io/icon.png" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-04-23T16:44:26+09:00" />
-<meta property="article:modified_time" content="2023-11-24T23:50:00+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
+<meta property="article:modified_time" content="2024-01-22T22:50:08+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
 
-<meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://riley817.github.io/icon.png"/>
-
-<meta name="twitter:title" content="Oracle Scheduler DBMS_SCHEDULER 개념 및 사용법"/>
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://riley817.github.io/icon.png" /><meta name="twitter:title" content="Oracle Scheduler DBMS_SCHEDULER 개념 및 사용법"/>
 <meta name="twitter:description" content="Oracle Scheduler - DBMS_SCHEDULER 오라클에서 정해진 시간에 반복된 작업을 수행하기 위해 DBMS_JOB 패키지를 활용하였지만 Oracle 10g 부터는 좀 더 확장된 기능을 가진 DBMS_SCHEDULER 패키지를 제공하고 있다. DBMS_JOB과의 가장 큰 차이점은 DBMS_JOB에서는 불가능하던 외부스크립트 (프로시저나, 함수 이외에도 OS에서 생성된 각종 유틸, 프로그램 까지) 실행이 가능하다. Class 생성 클래스를 지정하지 않게 되면 DEFAULT_JOB_CLASS 에 포함되는데 이 경우 기본 로깅 정책을 따른다. 기본로깅 정책은 DBMS_SCHEDULER.LOGGING_RUNS 이며 로깅레벨을 별도로 설정하거나 다른 스케쥴잡과 그룹화하여 관리하고 싶을 경우 Class를 생성한다."/>
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
@@ -31,7 +29,7 @@
             "@type": "WebPage",
             "@id": "https:\/\/riley817.github.io\/oracle-scheduler\/"
         },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Oracle, Database","wordcount":  322 ,
-        "url": "https:\/\/riley817.github.io\/oracle-scheduler\/","datePublished": "2021-04-23T16:44:26+09:00","dateModified": "2023-11-24T23:50:00+09:00","publisher": {
+        "url": "https:\/\/riley817.github.io\/oracle-scheduler\/","datePublished": "2021-04-23T16:44:26+09:00","dateModified": "2024-01-22T22:50:08+09:00","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/riley817.github.io\/images\/avatar.png"},"author": {
                 "@type": "Person",
@@ -297,8 +295,8 @@
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 2023-11-24&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/cacf69afd0af7e7cd9f63d2341768e7708bc4549" target="_blank" title="commit by riley817(riley0422@icloud.com) cacf69afd0af7e7cd9f63d2341768e7708bc4549: feat: 20231124114958">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>cacf69a</a></span>
+                <span>Updated on 2024-01-22&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/48c9b035cc9b3dcdab5f8819d2d9e2e0b321df0b" target="_blank" title="commit by riley817(riley0422@icloud.com) 48c9b035cc9b3dcdab5f8819d2d9e2e0b321df0b: Merge branch &#39;develop&#39; into main">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>48c9b03</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>
@@ -328,8 +326,8 @@
         </script>
     </div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.120.4">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
-                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/riley817" target="_blank">Riley</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.121.2">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/riley817" target="_blank">Riley</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>
 

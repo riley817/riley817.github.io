@@ -8,14 +8,12 @@
 <meta property="og:description" content="자바 ORM 표준 JPA 프로그래밍 학습 내용 정리
 JPA 의 매핑 어노테이션 객체와 테이블 매핑 : @Entity, @Table 기본 키 매핑 : @Id 필드와 컬럼 매핑 : @Column 연관관계 매핑 : @ManyToOne, @JoinColumn 4.1 @Entity 테이블을 매핑할때 @Entity 어노테이션을 필수로 붙어야 한다. 속성 기능 기본값 name JPA 에서 사용할 엔티티 이름을 지정한다. 보통 기본값인 클래스 이름을 사용한다. 설정하지 않으면 클래스 이름을 그대로 사용. @Entity 적용시 주의할 점 매개변수가 없는 기본 생성자는 필수." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://riley817.github.io/jpa-programming4/" /><meta property="og:image" content="https://riley817.github.io/icon.png"/><meta property="article:section" content="posts" />
+<meta property="og:url" content="https://riley817.github.io/jpa-programming4/" /><meta property="og:image" content="https://riley817.github.io/icon.png" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2018-12-23T23:12:29+09:00" />
-<meta property="article:modified_time" content="2023-11-24T23:50:00+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
+<meta property="article:modified_time" content="2024-01-22T22:50:08+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
 
-<meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://riley817.github.io/icon.png"/>
-
-<meta name="twitter:title" content="[자바 ORM 표준 JPA 프로그래밍] 4장 엔티티 매핑"/>
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://riley817.github.io/icon.png" /><meta name="twitter:title" content="[자바 ORM 표준 JPA 프로그래밍] 4장 엔티티 매핑"/>
 <meta name="twitter:description" content="자바 ORM 표준 JPA 프로그래밍 학습 내용 정리
 JPA 의 매핑 어노테이션 객체와 테이블 매핑 : @Entity, @Table 기본 키 매핑 : @Id 필드와 컬럼 매핑 : @Column 연관관계 매핑 : @ManyToOne, @JoinColumn 4.1 @Entity 테이블을 매핑할때 @Entity 어노테이션을 필수로 붙어야 한다. 속성 기능 기본값 name JPA 에서 사용할 엔티티 이름을 지정한다. 보통 기본값인 클래스 이름을 사용한다. 설정하지 않으면 클래스 이름을 그대로 사용. @Entity 적용시 주의할 점 매개변수가 없는 기본 생성자는 필수."/>
 <meta name="application-name" content="LoveIt">
@@ -33,7 +31,7 @@ JPA 의 매핑 어노테이션 객체와 테이블 매핑 : @Entity, @Table 기�
             "@type": "WebPage",
             "@id": "https:\/\/riley817.github.io\/jpa-programming4\/"
         },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "JPA, ORM","wordcount":  1348 ,
-        "url": "https:\/\/riley817.github.io\/jpa-programming4\/","datePublished": "2018-12-23T23:12:29+09:00","dateModified": "2023-11-24T23:50:00+09:00","publisher": {
+        "url": "https:\/\/riley817.github.io\/jpa-programming4\/","datePublished": "2018-12-23T23:12:29+09:00","dateModified": "2024-01-22T22:50:08+09:00","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/riley817.github.io\/images\/avatar.png"},"author": {
                 "@type": "Person",
@@ -250,7 +248,7 @@ JPA 의 매핑 어노테이션 객체와 테이블 매핑 : @Entity, @Table 기�
 </tbody>
 </table>
 <h2 id="43-다양한-매핑-사용">4.3 다양한 매핑 사용</h2>
-<script type="application/javascript" src="https://gist.github.com/riley817/2a96911fa2b79ec5da154a77ad7949d3.js"></script>
+<script src="https://gist.github.com/riley817/2a96911fa2b79ec5da154a77ad7949d3.js"></script>
 
 <h2 id="44-데이터베이스-스키마-자동생성">4.4 데이터베이스 스키마 자동생성</h2>
 <ul>
@@ -505,7 +503,7 @@ JPA 의 매핑 어노테이션 객체와 테이블 매핑 : @Entity, @Table 기�
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">CREATE</span><span class="w"> </span><span class="n">SEQUENCE</span><span class="w"> </span><span class="n">BOARD_SEQ</span><span class="w"> </span><span class="k">START</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">INCREMENT</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><script type="application/javascript" src="https://gist.github.com/riley817/9b3e2d535bb024448a6fdddaf5f2a69a.js"></script>
+</div><script src="https://gist.github.com/riley817/9b3e2d535bb024448a6fdddaf5f2a69a.js"></script>
 
 <ul>
 <li>SEQUENCE 전략은 em.persist() 를 호출할 때 먼저 데이터베이스 시퀀스를 사용해 식별자를 조회한다.</li>
@@ -580,7 +578,7 @@ JPA 의 매핑 어노테이션 객체와 테이블 매핑 : @Entity, @Table 기�
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">)</span></span></span></code></pre></td></tr></table>
 </div>
 </div>
-<script type="application/javascript" src="https://gist.github.com/riley817/39fa0c8f362081ea2f3c89446c62b702.js"></script>
+<script src="https://gist.github.com/riley817/39fa0c8f362081ea2f3c89446c62b702.js"></script>
 </p>
 <h3 id="tablegenerator">@TableGenerator</h3>
 <table>
@@ -760,8 +758,8 @@ JPA 의 매핑 어노테이션 객체와 테이블 매핑 : @Entity, @Table 기�
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 2023-11-24&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/cacf69afd0af7e7cd9f63d2341768e7708bc4549" target="_blank" title="commit by riley817(riley0422@icloud.com) cacf69afd0af7e7cd9f63d2341768e7708bc4549: feat: 20231124114958">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>cacf69a</a></span>
+                <span>Updated on 2024-01-22&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/48c9b035cc9b3dcdab5f8819d2d9e2e0b321df0b" target="_blank" title="commit by riley817(riley0422@icloud.com) 48c9b035cc9b3dcdab5f8819d2d9e2e0b321df0b: Merge branch &#39;develop&#39; into main">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>48c9b03</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>
@@ -791,8 +789,8 @@ JPA 의 매핑 어노테이션 객체와 테이블 매핑 : @Entity, @Table 기�
         </script>
     </div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.120.4">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
-                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/riley817" target="_blank">Riley</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.121.2">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/riley817" target="_blank">Riley</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>
 
