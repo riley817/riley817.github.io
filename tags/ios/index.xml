@@ -1,8 +1,8 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>iOS - Tag - Riley&#39;s DevLog</title>
+        <title>IOS - Tag - 라일리의 개발 기록장</title>
         <link>https://riley817.github.io/tags/ios/</link>
-        <description>iOS - Tag - Riley&#39;s DevLog</description>
+        <description>IOS - Tag - 라일리의 개발 기록장</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
             <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Tue, 31 Jan 2023 23:39:01 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/tags/ios/" rel="self" type="application/rss+xml" /><item>
     <title>[iOS/Android] APP HTTP 접근 허용하기</title>

@@ -1,10 +1,10 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>Docker/Kubernetes - Category - Riley&#39;s DevLog</title>
+        <title>Docker/Kubernetes - Category - 라일리의 개발 기록장</title>
         <link>https://riley817.github.io/categories/docker/kubernetes/</link>
-        <description>Docker/Kubernetes - Category - Riley&#39;s DevLog</description>
+        <description>Docker/Kubernetes - Category - 라일리의 개발 기록장</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
-            <webMaster>riley0422@icloud.com (Riley)</webMaster><atom:link href="https://riley817.github.io/categories/docker/kubernetes/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Wed, 20 Apr 2022 16:00:00 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/categories/docker/kubernetes/" rel="self" type="application/rss+xml" /><item>
     <title>[시작하세요! 도커/쿠버네티스] Chapter 2. 도커 엔진</title>
     <link>https://riley817.github.io/chapter2-1-docker-engine/</link>
     <pubDate>Wed, 20 Apr 2022 16:00:00 &#43;0900</pubDate>

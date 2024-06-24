@@ -4,18 +4,24 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [13장] 검색어 자동완성 시스템 - Riley&#39;s DevLog</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:title" content="가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [13장] 검색어 자동완성 시스템" />
-<meta property="og:description" content="Note 팀 내에서 진행하는 Study 정리 입니다. 함께 논의 하고 싶은 주제 느낀점 트라이 자료 구조에 대해 알 수 있었습니다. 한글 단어에서 트라이 자료구조는 어떻게 이루어질까 대충 찾아보았는데 한글은 음절단위로 단어가 만들어지기 때문에 음소 단위로 쪼개어 영어처럼 트라이 자료구조를 만들 수 있다고 합니다. 하지만 더 복잡할 것 같습니다. 요약 &ndash;
-검색어 자동완성 시스템 검색창에 단어를 입력하다보면 입력중인 글자에 맞는 검색어가 자동으로 표기되는 것 autocomplete, typeahead, search-as-you-type, incremental search 1. 문제 이해 및 설계 범위 확정 요구사항 정의 빠른 응답 속도 : 페이스북의 응답속도는 100밀리초 이내 연관성 : 자동완성되어 출력되는 검색어는 사용자가 입력한 단어와 연관된 것 정렬 : 시스템의 계산 결과는 인기도 등의 순위 모델에 의해 정렬 규모 확장성 : 시스템은 많은 트래픽을 감당할 수 있을 정도록 확장 가능 고가용성 : 일부 장애가 발생하거나 느려지거나 예상치 못한 네트워크 문제가 생겨도 시스템은 계속 사용 가능 개략적 규모 추정 DAU는 천만 명으로 가정 평균적으로 한 사용자는 매일 10건의 검색 수행 질의할 때마다 평균적으로 20Byte 입력 문자 인코딩 방법으로는 ASCII 사용 1문자=1Byte 질의문은 평균적으로 4개의 단어 구성 각 단어는 평균 다섯 글자 질의당 평균 4 * 5 = 20 Byte 검색창에 글자를 입력 백엔드에 요청을 보낸다 1회 검색당 20건의 요청이 백엔드로 전달 대략 초당 24,000건의 QPS 발생 (10,000,000 * 10 queries/day * 20 characters / 24시간 / 3600초) 최대 QPS = 24,000 * 2 = 48,000 질의 중 20% 신규 검색어 10,000,000 * 10 queries/day * 20 byte per query * 20% = 0." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://riley817.github.io/chapter13/" /><meta property="og:image" content="https://riley817.github.io/icon.png" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2023-09-02T21:55:15+09:00" />
-<meta property="article:modified_time" content="2024-01-22T22:50:08+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
+        <title>가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [13장] 검색어 자동완성 시스템 - 라일리의 개발 기록장</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:url" content="https://riley817.github.io/chapter13/">
+  <meta property="og:site_name" content="라일리의 개발 기록장">
+  <meta property="og:title" content="가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [13장] 검색어 자동완성 시스템">
+  <meta property="og:description" content="Note 팀 내에서 진행하는 Study 정리 입니다. 함께 논의 하고 싶은 주제 느낀점 트라이 자료 구조에 대해 알 수 있었습니다. 한글 단어에서 트라이 자료구조는 어떻게 이루어질까 대충 찾아보았는데 한글은 음절단위로 단어가 만들어지기 때문에 음소 단위로 쪼개어 영어처럼 트라이 자료구조를 만들 수 있다고 합니다. 하지만 더 복잡할 것 같습니다. 요약 –
+검색어 자동완성 시스템 검색창에 단어를 입력하다보면 입력중인 글자에 맞는 검색어가 자동으로 표기되는 것 autocomplete, typeahead, search-as-you-type, incremental search 1. 문제 이해 및 설계 범위 확정 요구사항 정의 빠른 응답 속도 : 페이스북의 응답속도는 100밀리초 이내 연관성 : 자동완성되어 출력되는 검색어는 사용자가 입력한 단어와 연관된 것 정렬 : 시스템의 계산 결과는 인기도 등의 순위 모델에 의해 정렬 규모 확장성 : 시스템은 많은 트래픽을 감당할 수 있을 정도록 확장 가능 고가용성 : 일부 장애가 발생하거나 느려지거나 예상치 못한 네트워크 문제가 생겨도 시스템은 계속 사용 가능 개략적 규모 추정 DAU는 천만 명으로 가정 평균적으로 한 사용자는 매일 10건의 검색 수행 질의할 때마다 평균적으로 20Byte 입력 문자 인코딩 방법으로는 ASCII 사용 1문자=1Byte 질의문은 평균적으로 4개의 단어 구성 각 단어는 평균 다섯 글자 질의당 평균 4 * 5 = 20 Byte 검색창에 글자를 입력 백엔드에 요청을 보낸다 1회 검색당 20건의 요청이 백엔드로 전달 대략 초당 24,000건의 QPS 발생 (10,000,000 * 10 queries/day * 20 characters / 24시간 / 3600초) 최대 QPS = 24,000 * 2 = 48,000 질의 중 20% 신규 검색어 10,000,000 * 10 queries/day * 20 byte per query * 20% = 0.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2023-09-02T21:55:15+09:00">
+    <meta property="article:modified_time" content="2024-06-24T22:08:26+09:00">
+    <meta property="article:tag" content="System Design">
+    <meta property="og:image" content="https://riley817.github.io/icon.png">
 
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="https://riley817.github.io/icon.png" /><meta name="twitter:title" content="가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [13장] 검색어 자동완성 시스템"/>
-<meta name="twitter:description" content="Note 팀 내에서 진행하는 Study 정리 입니다. 함께 논의 하고 싶은 주제 느낀점 트라이 자료 구조에 대해 알 수 있었습니다. 한글 단어에서 트라이 자료구조는 어떻게 이루어질까 대충 찾아보았는데 한글은 음절단위로 단어가 만들어지기 때문에 음소 단위로 쪼개어 영어처럼 트라이 자료구조를 만들 수 있다고 합니다. 하지만 더 복잡할 것 같습니다. 요약 &ndash;
-검색어 자동완성 시스템 검색창에 단어를 입력하다보면 입력중인 글자에 맞는 검색어가 자동으로 표기되는 것 autocomplete, typeahead, search-as-you-type, incremental search 1. 문제 이해 및 설계 범위 확정 요구사항 정의 빠른 응답 속도 : 페이스북의 응답속도는 100밀리초 이내 연관성 : 자동완성되어 출력되는 검색어는 사용자가 입력한 단어와 연관된 것 정렬 : 시스템의 계산 결과는 인기도 등의 순위 모델에 의해 정렬 규모 확장성 : 시스템은 많은 트래픽을 감당할 수 있을 정도록 확장 가능 고가용성 : 일부 장애가 발생하거나 느려지거나 예상치 못한 네트워크 문제가 생겨도 시스템은 계속 사용 가능 개략적 규모 추정 DAU는 천만 명으로 가정 평균적으로 한 사용자는 매일 10건의 검색 수행 질의할 때마다 평균적으로 20Byte 입력 문자 인코딩 방법으로는 ASCII 사용 1문자=1Byte 질의문은 평균적으로 4개의 단어 구성 각 단어는 평균 다섯 글자 질의당 평균 4 * 5 = 20 Byte 검색창에 글자를 입력 백엔드에 요청을 보낸다 1회 검색당 20건의 요청이 백엔드로 전달 대략 초당 24,000건의 QPS 발생 (10,000,000 * 10 queries/day * 20 characters / 24시간 / 3600초) 최대 QPS = 24,000 * 2 = 48,000 질의 중 20% 신규 검색어 10,000,000 * 10 queries/day * 20 byte per query * 20% = 0."/>
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://riley817.github.io/icon.png">
+  <meta name="twitter:title" content="가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [13장] 검색어 자동완성 시스템">
+  <meta name="twitter:description" content="Note 팀 내에서 진행하는 Study 정리 입니다. 함께 논의 하고 싶은 주제 느낀점 트라이 자료 구조에 대해 알 수 있었습니다. 한글 단어에서 트라이 자료구조는 어떻게 이루어질까 대충 찾아보았는데 한글은 음절단위로 단어가 만들어지기 때문에 음소 단위로 쪼개어 영어처럼 트라이 자료구조를 만들 수 있다고 합니다. 하지만 더 복잡할 것 같습니다. 요약 –
+검색어 자동완성 시스템 검색창에 단어를 입력하다보면 입력중인 글자에 맞는 검색어가 자동으로 표기되는 것 autocomplete, typeahead, search-as-you-type, incremental search 1. 문제 이해 및 설계 범위 확정 요구사항 정의 빠른 응답 속도 : 페이스북의 응답속도는 100밀리초 이내 연관성 : 자동완성되어 출력되는 검색어는 사용자가 입력한 단어와 연관된 것 정렬 : 시스템의 계산 결과는 인기도 등의 순위 모델에 의해 정렬 규모 확장성 : 시스템은 많은 트래픽을 감당할 수 있을 정도록 확장 가능 고가용성 : 일부 장애가 발생하거나 느려지거나 예상치 못한 네트워크 문제가 생겨도 시스템은 계속 사용 가능 개략적 규모 추정 DAU는 천만 명으로 가정 평균적으로 한 사용자는 매일 10건의 검색 수행 질의할 때마다 평균적으로 20Byte 입력 문자 인코딩 방법으로는 ASCII 사용 1문자=1Byte 질의문은 평균적으로 4개의 단어 구성 각 단어는 평균 다섯 글자 질의당 평균 4 * 5 = 20 Byte 검색창에 글자를 입력 백엔드에 요청을 보낸다 1회 검색당 20건의 요청이 백엔드로 전달 대략 초당 24,000건의 QPS 발생 (10,000,000 * 10 queries/day * 20 characters / 24시간 / 3600초) 최대 QPS = 24,000 * 2 = 48,000 질의 중 20% 신규 검색어 10,000,000 * 10 queries/day * 20 byte per query * 20% = 0.">
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -31,7 +37,7 @@
             "@type": "WebPage",
             "@id": "https:\/\/riley817.github.io\/chapter13\/"
         },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "System Design","wordcount":  1145 ,
-        "url": "https:\/\/riley817.github.io\/chapter13\/","datePublished": "2023-09-02T21:55:15+09:00","dateModified": "2024-01-22T22:50:08+09:00","publisher": {
+        "url": "https:\/\/riley817.github.io\/chapter13\/","datePublished": "2023-09-02T21:55:15+09:00","dateModified": "2024-06-24T22:08:26+09:00","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/riley817.github.io\/images\/avatar.png"},"author": {
                 "@type": "Person",
@@ -44,7 +50,7 @@
         <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
     <div class="header-wrapper">
         <div class="header-title">
-            <a href="/" title="Riley&#39;s DevLog"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i></span>Riley&#39;s DevLog</a>
+            <a href="/" title="라일리의 개발 기록장"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i>&nbsp;</span>라일리의 개발 기록장</a>
         </div>
         <div class="menu">
             <div class="menu-inner"><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
@@ -68,7 +74,7 @@
     <div class="header-container">
         <div class="header-wrapper">
             <div class="header-title">
-                <a href="/" title="Riley&#39;s DevLog"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i></span>Riley&#39;s DevLog</a>
+                <a href="/" title="라일리의 개발 기록장"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i>&nbsp;</span>라일리의 개발 기록장</a>
             </div>
             <div class="menu-toggle" id="menu-toggle-mobile">
                 <span></span><span></span><span></span>
@@ -276,7 +282,7 @@
     </div></li>
 </ul>
 <h4 id="검색어-자동완성-구현">검색어 자동완성 구현</h4>
-<figure><img src="/posts/images/system-design-interview/system-design-figure-13-6.png#center"/>
+<figure><img src="/posts/images/system-design-interview/system-design-figure-13-6.png#center">
 </figure>
 
 <ul>
@@ -303,7 +309,7 @@
         </div>
         <div class="details-content">
             <div class="admonition-content"><p>k=2 이고 사용자가 검색창에 &ldquo;be&quot;를 입력</p>
-<figure><img src="/posts/images/system-design-interview/system-design-figure-13-7.png#center"/>
+<figure><img src="/posts/images/system-design-interview/system-design-figure-13-7.png#center">
 </figure>
 <ol>
 <li>접두어 노드 &ldquo;be&rdquo; 를 찾음</li>
@@ -336,7 +342,7 @@
 <li>각 노드에 질의를 저장할 공간이 많이 필요하나 응답속도가 아주 중요할 경우 우선순위 될 수 있다.</li>
 <li>검색결과가 이미 캐시되어있으므로 시간복잡도도 O(1)로 변경</li>
 </ul>
-<figure><img src="/posts/images/system-design-interview/system-design-figure-13-8.png#center"/>
+<figure><img src="/posts/images/system-design-interview/system-design-figure-13-8.png#center">
 </figure>
 
 <h3 id="32-데이터-수집-서비스">3.2 데이터 수집 서비스</h3>
@@ -386,7 +392,7 @@
 </ul>
 </li>
 </ul>
-<figure><img src="/posts/images/system-design-interview/system-design-figure-13-10.png#center"/>
+<figure><img src="/posts/images/system-design-interview/system-design-figure-13-10.png#center">
 </figure>
 
 <h3 id="33-질의-서비스">3.3 질의 서비스</h3>
@@ -473,8 +479,8 @@
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 2024-01-22&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/48c9b035cc9b3dcdab5f8819d2d9e2e0b321df0b" target="_blank" title="commit by riley817(riley0422@icloud.com) 48c9b035cc9b3dcdab5f8819d2d9e2e0b321df0b: Merge branch &#39;develop&#39; into main">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>48c9b03</a></span>
+                <span>Updated on 2024-06-24&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/23c45c8708c6ff29696def98046311196cf3bb44" target="_blank" title="commit by riley(41636282&#43;riley817@users.noreply.github.com) 23c45c8708c6ff29696def98046311196cf3bb44: Update main.yml">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>23c45c8</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>
@@ -504,7 +510,7 @@
         </script>
     </div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.121.2">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.127.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
                 </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/riley817" target="_blank">Riley</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

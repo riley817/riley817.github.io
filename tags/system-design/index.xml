@@ -1,8 +1,8 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>System Design - Tag - Riley&#39;s DevLog</title>
+        <title>System Design - Tag - 라일리의 개발 기록장</title>
         <link>https://riley817.github.io/tags/system-design/</link>
-        <description>System Design - Tag - Riley&#39;s DevLog</description>
+        <description>System Design - Tag - 라일리의 개발 기록장</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
             <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Sun, 03 Sep 2023 01:02:15 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/tags/system-design/" rel="self" type="application/rss+xml" /><item>
     <title>가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [15장] 구글 드라이브 설계</title>

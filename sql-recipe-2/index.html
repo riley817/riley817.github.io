@@ -4,18 +4,24 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>데이터 분석을 위한 SQL 레시피 - 2장 도구와 데이터 - Riley&#39;s DevLog</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:title" content="데이터 분석을 위한 SQL 레시피 - 2장 도구와 데이터" />
-<meta property="og:description" content="🗄️ 데이터분석을 위한 SQL 레시피 책을 읽고 정리 / 요약 한 내용입니다.
-개요 대표적인 빅데이터 처리 시스템을 설명하고 다루는 데이터의 양, 처리 내용, 비용 제약등을 생각하여 어떤 도구를 사용할지 알아보자 소개되는 시스템은 기본적으로 SQL 인터페이스를 가지고 있고 어떤 도구를 선택하더라도 다른 도구로 쉽게 마이그레이션이 가능 빅데이터 처리 시스템 1. PostgreSQL 오픈 소스 RDB(Relational Database)로 다양한 플랫폼 지원 및 GUI 인스톨러 제공 다른 오픈 소스 RDB와 비교시 표준 SQL을 잘 준수하며 윈도 함수, CTE(WITH 구문) 등 분석에 필수적으로 사용하는 구문 모두 구현 가능 많은 확장 기능을 제공하여 편리하게 사용 가능 2." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://riley817.github.io/sql-recipe-2/" /><meta property="og:image" content="https://riley817.github.io/icon.png" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2022-11-20T17:39:26+09:00" />
-<meta property="article:modified_time" content="2024-01-22T22:50:08+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
+        <title>데이터 분석을 위한 SQL 레시피 - 2장 도구와 데이터 - 라일리의 개발 기록장</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:url" content="https://riley817.github.io/sql-recipe-2/">
+  <meta property="og:site_name" content="라일리의 개발 기록장">
+  <meta property="og:title" content="데이터 분석을 위한 SQL 레시피 - 2장 도구와 데이터">
+  <meta property="og:description" content="🗄️ 데이터분석을 위한 SQL 레시피 책을 읽고 정리 / 요약 한 내용입니다.
+개요 대표적인 빅데이터 처리 시스템을 설명하고 다루는 데이터의 양, 처리 내용, 비용 제약등을 생각하여 어떤 도구를 사용할지 알아보자 소개되는 시스템은 기본적으로 SQL 인터페이스를 가지고 있고 어떤 도구를 선택하더라도 다른 도구로 쉽게 마이그레이션이 가능 빅데이터 처리 시스템 1. PostgreSQL 오픈 소스 RDB(Relational Database)로 다양한 플랫폼 지원 및 GUI 인스톨러 제공 다른 오픈 소스 RDB와 비교시 표준 SQL을 잘 준수하며 윈도 함수, CTE(WITH 구문) 등 분석에 필수적으로 사용하는 구문 모두 구현 가능 많은 확장 기능을 제공하여 편리하게 사용 가능 2.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2022-11-20T17:39:26+09:00">
+    <meta property="article:modified_time" content="2024-06-24T22:08:26+09:00">
+    <meta property="article:tag" content="Data">
+    <meta property="og:image" content="https://riley817.github.io/icon.png">
 
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="https://riley817.github.io/icon.png" /><meta name="twitter:title" content="데이터 분석을 위한 SQL 레시피 - 2장 도구와 데이터"/>
-<meta name="twitter:description" content="🗄️ 데이터분석을 위한 SQL 레시피 책을 읽고 정리 / 요약 한 내용입니다.
-개요 대표적인 빅데이터 처리 시스템을 설명하고 다루는 데이터의 양, 처리 내용, 비용 제약등을 생각하여 어떤 도구를 사용할지 알아보자 소개되는 시스템은 기본적으로 SQL 인터페이스를 가지고 있고 어떤 도구를 선택하더라도 다른 도구로 쉽게 마이그레이션이 가능 빅데이터 처리 시스템 1. PostgreSQL 오픈 소스 RDB(Relational Database)로 다양한 플랫폼 지원 및 GUI 인스톨러 제공 다른 오픈 소스 RDB와 비교시 표준 SQL을 잘 준수하며 윈도 함수, CTE(WITH 구문) 등 분석에 필수적으로 사용하는 구문 모두 구현 가능 많은 확장 기능을 제공하여 편리하게 사용 가능 2."/>
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://riley817.github.io/icon.png">
+  <meta name="twitter:title" content="데이터 분석을 위한 SQL 레시피 - 2장 도구와 데이터">
+  <meta name="twitter:description" content="🗄️ 데이터분석을 위한 SQL 레시피 책을 읽고 정리 / 요약 한 내용입니다.
+개요 대표적인 빅데이터 처리 시스템을 설명하고 다루는 데이터의 양, 처리 내용, 비용 제약등을 생각하여 어떤 도구를 사용할지 알아보자 소개되는 시스템은 기본적으로 SQL 인터페이스를 가지고 있고 어떤 도구를 선택하더라도 다른 도구로 쉽게 마이그레이션이 가능 빅데이터 처리 시스템 1. PostgreSQL 오픈 소스 RDB(Relational Database)로 다양한 플랫폼 지원 및 GUI 인스톨러 제공 다른 오픈 소스 RDB와 비교시 표준 SQL을 잘 준수하며 윈도 함수, CTE(WITH 구문) 등 분석에 필수적으로 사용하는 구문 모두 구현 가능 많은 확장 기능을 제공하여 편리하게 사용 가능 2.">
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -31,7 +37,7 @@
             "@type": "WebPage",
             "@id": "https:\/\/riley817.github.io\/sql-recipe-2\/"
         },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "data","wordcount":  1470 ,
-        "url": "https:\/\/riley817.github.io\/sql-recipe-2\/","datePublished": "2022-11-20T17:39:26+09:00","dateModified": "2024-01-22T22:50:08+09:00","publisher": {
+        "url": "https:\/\/riley817.github.io\/sql-recipe-2\/","datePublished": "2022-11-20T17:39:26+09:00","dateModified": "2024-06-24T22:08:26+09:00","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/riley817.github.io\/images\/avatar.png"},"author": {
                 "@type": "Person",
@@ -44,7 +50,7 @@
         <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
     <div class="header-wrapper">
         <div class="header-title">
-            <a href="/" title="Riley&#39;s DevLog"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i></span>Riley&#39;s DevLog</a>
+            <a href="/" title="라일리의 개발 기록장"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i>&nbsp;</span>라일리의 개발 기록장</a>
         </div>
         <div class="menu">
             <div class="menu-inner"><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
@@ -68,7 +74,7 @@
     <div class="header-container">
         <div class="header-wrapper">
             <div class="header-title">
-                <a href="/" title="Riley&#39;s DevLog"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i></span>Riley&#39;s DevLog</a>
+                <a href="/" title="라일리의 개발 기록장"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i>&nbsp;</span>라일리의 개발 기록장</a>
             </div>
             <div class="menu-toggle" id="menu-toggle-mobile">
                 <span></span><span></span><span></span>
@@ -443,8 +449,8 @@
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 2024-01-22&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/48c9b035cc9b3dcdab5f8819d2d9e2e0b321df0b" target="_blank" title="commit by riley817(riley0422@icloud.com) 48c9b035cc9b3dcdab5f8819d2d9e2e0b321df0b: Merge branch &#39;develop&#39; into main">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>48c9b03</a></span>
+                <span>Updated on 2024-06-24&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/23c45c8708c6ff29696def98046311196cf3bb44" target="_blank" title="commit by riley(41636282&#43;riley817@users.noreply.github.com) 23c45c8708c6ff29696def98046311196cf3bb44: Update main.yml">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>23c45c8</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>
@@ -455,7 +461,7 @@
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/data/">data</a></section>
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/data/">Data</a></section>
         <section>
             <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
         </section>
@@ -474,7 +480,7 @@
         </script>
     </div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.121.2">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.127.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
                 </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/riley817" target="_blank">Riley</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

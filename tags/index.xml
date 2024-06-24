@@ -1,11 +1,11 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>Tags - Tag - Riley&#39;s DevLog</title>
+        <title>Tags - Tag - 라일리의 개발 기록장</title>
         <link>https://riley817.github.io/tags/</link>
-        <description>Tags - Tag - Riley&#39;s DevLog</description>
+        <description>Tags - Tag - 라일리의 개발 기록장</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
-            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Mon, 22 Jan 2024 10:04:54 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/tags/" rel="self" type="application/rss+xml" /><item>
-    <title>cleancode</title>
+            <webMaster>riley0422@icloud.com (Riley)</webMaster><atom:link href="https://riley817.github.io/tags/" rel="self" type="application/rss+xml" /><item>
+    <title>Cleancode</title>
     <link>https://riley817.github.io/tags/cleancode/</link>
     <pubDate>Mon, 22 Jan 2024 10:04:54 &#43;0900</pubDate>
     <author>Riley</author>
@@ -45,7 +45,7 @@
     <description><![CDATA[]]></description>
 </item>
 <item>
-    <title>aws neptune</title>
+    <title>Aws Neptune</title>
     <link>https://riley817.github.io/tags/aws-neptune/</link>
     <pubDate>Wed, 15 Feb 2023 15:17:26 &#43;0900</pubDate>
     <author>Riley</author>
@@ -53,7 +53,7 @@
     <description><![CDATA[]]></description>
 </item>
 <item>
-    <title>graph database</title>
+    <title>Graph Database</title>
     <link>https://riley817.github.io/tags/graph-database/</link>
     <pubDate>Wed, 15 Feb 2023 15:17:26 &#43;0900</pubDate>
     <author>Riley</author>
@@ -61,7 +61,7 @@
     <description><![CDATA[]]></description>
 </item>
 <item>
-    <title>newo4j</title>
+    <title>Newo4j</title>
     <link>https://riley817.github.io/tags/newo4j/</link>
     <pubDate>Wed, 15 Feb 2023 15:17:26 &#43;0900</pubDate>
     <author>Riley</author>
@@ -77,7 +77,7 @@
     <description><![CDATA[]]></description>
 </item>
 <item>
-    <title>iOS</title>
+    <title>IOS</title>
     <link>https://riley817.github.io/tags/ios/</link>
     <pubDate>Tue, 31 Jan 2023 23:39:01 &#43;0900</pubDate>
     <author>Riley</author>

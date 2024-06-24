@@ -1,8 +1,8 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>Elasticsearch 검색 엔진 구축 강의 - Category - Riley&#39;s DevLog</title>
+        <title>Elasticsearch 검색 엔진 구축 강의 - Category - 라일리의 개발 기록장</title>
         <link>https://riley817.github.io/categories/elasticsearch-%EA%B2%80%EC%83%89-%EC%97%94%EC%A7%84-%EA%B5%AC%EC%B6%95-%EA%B0%95%EC%9D%98/</link>
-        <description>Elasticsearch 검색 엔진 구축 강의 - Category - Riley&#39;s DevLog</description>
+        <description>Elasticsearch 검색 엔진 구축 강의 - Category - 라일리의 개발 기록장</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
             <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Tue, 27 Nov 2018 13:11:45 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/categories/elasticsearch-%EA%B2%80%EC%83%89-%EC%97%94%EC%A7%84-%EA%B5%AC%EC%B6%95-%EA%B0%95%EC%9D%98/" rel="self" type="application/rss+xml" /><item>
     <title>[Elasticsearch 검색 엔진 구축 강의] 4. Elasticsearch 기본 동작</title>

@@ -4,18 +4,24 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [11장] 뉴스 피드 시스템 설계 - Riley&#39;s DevLog</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:title" content="가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [11장] 뉴스 피드 시스템 설계" />
-<meta property="og:description" content="Note 팀 내에서 진행하는 Study 정리 입니다. 함께 논의 하고 싶은 주제 이번 챕터도 굉장히 우리 서비스와 밀접한 내용이여서 매우 유익하고 좋았습니다. 대부분 설계에서 캐시를 많이 사용하고 있는 것 같습니다. 우리 서비스의 콘텐츠 쪽에는 도입하고 있는데 유저 쪽에도 도입을 해서 불필요한 서비스 의존관계를 없애면 좋을 것 같습니다. 요약 &ndash;
-뉴스피드 (news feed) 뉴스 피드는 사용자의 홈 페이지 중앙에 지속적으로 업데이트 되는 스토리들로 사용자 상태 정보 업데이트, 사진, 비디오, 링크, 앱 활동과 팔로우, 페이지, 그룹으로부터 오는 좋아요 등을 포함" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://riley817.github.io/chapter11/" /><meta property="og:image" content="https://riley817.github.io/icon.png" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2023-08-26T00:33:20+09:00" />
-<meta property="article:modified_time" content="2024-01-22T22:50:08+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
+        <title>가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [11장] 뉴스 피드 시스템 설계 - 라일리의 개발 기록장</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:url" content="https://riley817.github.io/chapter11/">
+  <meta property="og:site_name" content="라일리의 개발 기록장">
+  <meta property="og:title" content="가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [11장] 뉴스 피드 시스템 설계">
+  <meta property="og:description" content="Note 팀 내에서 진행하는 Study 정리 입니다. 함께 논의 하고 싶은 주제 이번 챕터도 굉장히 우리 서비스와 밀접한 내용이여서 매우 유익하고 좋았습니다. 대부분 설계에서 캐시를 많이 사용하고 있는 것 같습니다. 우리 서비스의 콘텐츠 쪽에는 도입하고 있는데 유저 쪽에도 도입을 해서 불필요한 서비스 의존관계를 없애면 좋을 것 같습니다. 요약 –
+뉴스피드 (news feed) 뉴스 피드는 사용자의 홈 페이지 중앙에 지속적으로 업데이트 되는 스토리들로 사용자 상태 정보 업데이트, 사진, 비디오, 링크, 앱 활동과 팔로우, 페이지, 그룹으로부터 오는 좋아요 등을 포함">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2023-08-26T00:33:20+09:00">
+    <meta property="article:modified_time" content="2024-06-24T22:08:26+09:00">
+    <meta property="article:tag" content="System Design">
+    <meta property="og:image" content="https://riley817.github.io/icon.png">
 
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="https://riley817.github.io/icon.png" /><meta name="twitter:title" content="가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [11장] 뉴스 피드 시스템 설계"/>
-<meta name="twitter:description" content="Note 팀 내에서 진행하는 Study 정리 입니다. 함께 논의 하고 싶은 주제 이번 챕터도 굉장히 우리 서비스와 밀접한 내용이여서 매우 유익하고 좋았습니다. 대부분 설계에서 캐시를 많이 사용하고 있는 것 같습니다. 우리 서비스의 콘텐츠 쪽에는 도입하고 있는데 유저 쪽에도 도입을 해서 불필요한 서비스 의존관계를 없애면 좋을 것 같습니다. 요약 &ndash;
-뉴스피드 (news feed) 뉴스 피드는 사용자의 홈 페이지 중앙에 지속적으로 업데이트 되는 스토리들로 사용자 상태 정보 업데이트, 사진, 비디오, 링크, 앱 활동과 팔로우, 페이지, 그룹으로부터 오는 좋아요 등을 포함"/>
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://riley817.github.io/icon.png">
+  <meta name="twitter:title" content="가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [11장] 뉴스 피드 시스템 설계">
+  <meta name="twitter:description" content="Note 팀 내에서 진행하는 Study 정리 입니다. 함께 논의 하고 싶은 주제 이번 챕터도 굉장히 우리 서비스와 밀접한 내용이여서 매우 유익하고 좋았습니다. 대부분 설계에서 캐시를 많이 사용하고 있는 것 같습니다. 우리 서비스의 콘텐츠 쪽에는 도입하고 있는데 유저 쪽에도 도입을 해서 불필요한 서비스 의존관계를 없애면 좋을 것 같습니다. 요약 –
+뉴스피드 (news feed) 뉴스 피드는 사용자의 홈 페이지 중앙에 지속적으로 업데이트 되는 스토리들로 사용자 상태 정보 업데이트, 사진, 비디오, 링크, 앱 활동과 팔로우, 페이지, 그룹으로부터 오는 좋아요 등을 포함">
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -31,7 +37,7 @@
             "@type": "WebPage",
             "@id": "https:\/\/riley817.github.io\/chapter11\/"
         },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "System Design","wordcount":  796 ,
-        "url": "https:\/\/riley817.github.io\/chapter11\/","datePublished": "2023-08-26T00:33:20+09:00","dateModified": "2024-01-22T22:50:08+09:00","publisher": {
+        "url": "https:\/\/riley817.github.io\/chapter11\/","datePublished": "2023-08-26T00:33:20+09:00","dateModified": "2024-06-24T22:08:26+09:00","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/riley817.github.io\/images\/avatar.png"},"author": {
                 "@type": "Person",
@@ -44,7 +50,7 @@
         <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
     <div class="header-wrapper">
         <div class="header-title">
-            <a href="/" title="Riley&#39;s DevLog"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i></span>Riley&#39;s DevLog</a>
+            <a href="/" title="라일리의 개발 기록장"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i>&nbsp;</span>라일리의 개발 기록장</a>
         </div>
         <div class="menu">
             <div class="menu-inner"><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
@@ -68,7 +74,7 @@
     <div class="header-container">
         <div class="header-wrapper">
             <div class="header-title">
-                <a href="/" title="Riley&#39;s DevLog"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i></span>Riley&#39;s DevLog</a>
+                <a href="/" title="라일리의 개발 기록장"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i>&nbsp;</span>라일리의 개발 기록장</a>
             </div>
             <div class="menu-toggle" id="menu-toggle-mobile">
                 <span></span><span></span><span></span>
@@ -209,7 +215,7 @@
 </ul>
 </blockquote>
 <h3 id="22-피드-발행">2.2 피드 발행</h3>
-<figure><img src="/posts/images/system-design-interview/system-design-figure-11-2.png#center"/>
+<figure><img src="/posts/images/system-design-interview/system-design-figure-11-2.png#center">
 </figure>
 
 <ul>
@@ -221,7 +227,7 @@
 <li><strong>알림 서비스</strong> : 친구들에게 새 포스팅이 올라왔음을 알리거나 푸시 알림을 전송</li>
 </ul>
 <h3 id="23-뉴스-피드">2.3 뉴스 피드</h3>
-<figure><img src="/posts/images/system-design-interview/system-design-figure-11-3.png#center"/>
+<figure><img src="/posts/images/system-design-interview/system-design-figure-11-3.png#center">
 </figure>
 
 <ul>
@@ -233,7 +239,7 @@
 </ul>
 <h2 id="3-상세-설계">3. 상세 설계</h2>
 <h3 id="31-피드-발행-흐름-상세-설계">3.1 피드 발행 흐름 상세 설계</h3>
-<figure><img src="/posts/images/system-design-interview/system-design-figure-11-4.png#center"/>
+<figure><img src="/posts/images/system-design-interview/system-design-figure-11-4.png#center">
 </figure>
 
 <h4 id="웹서버">웹서버</h4>
@@ -300,7 +306,7 @@
 <p>두 가지 결합하여 대부분의 사용자에 대해서는 푸시 모델을 사용하고 친구나 팔로어가 많은 사용자의 경우 팔로어로 하여금 해당 사용자의 포스팅을 필요할 때 가져가는 풀 모델을 사용하여 시스템 과부하를 방지</p>
 </blockquote>
 <h4 id="팬-아웃-서비스">팬 아웃 서비스</h4>
-<figure><img src="/posts/images/system-design-interview/system-design-figure-11-5.png#center"/>
+<figure><img src="/posts/images/system-design-interview/system-design-figure-11-5.png#center">
 </figure>
 
 <ol>
@@ -316,7 +322,7 @@
 <h4 id="피드-읽기-흐름-상세-설계">피드 읽기 흐름 상세 설계</h4>
 <ul>
 <li>미디어 같은 콘텐츠는 CDN에 저장
-<figure><img src="/posts/images/system-design-interview/system-design-figure-11-7.png#center"/>
+<figure><img src="/posts/images/system-design-interview/system-design-figure-11-7.png#center">
 </figure>
 </li>
 </ul>
@@ -329,7 +335,7 @@
 <li>생성된 뉴스 피드를 JSON 현태로 만드러 클라이언트에게 보냄</li>
 </ol>
 <h3 id="32-캐시-구조">3.2 캐시 구조</h3>
-<figure><img src="/posts/images/system-design-interview/system-design-figure-11-8.png#center"/>
+<figure><img src="/posts/images/system-design-interview/system-design-figure-11-8.png#center">
 </figure>
 
 <ul>
@@ -381,8 +387,8 @@
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 2024-01-22&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/48c9b035cc9b3dcdab5f8819d2d9e2e0b321df0b" target="_blank" title="commit by riley817(riley0422@icloud.com) 48c9b035cc9b3dcdab5f8819d2d9e2e0b321df0b: Merge branch &#39;develop&#39; into main">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>48c9b03</a></span>
+                <span>Updated on 2024-06-24&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/23c45c8708c6ff29696def98046311196cf3bb44" target="_blank" title="commit by riley(41636282&#43;riley817@users.noreply.github.com) 23c45c8708c6ff29696def98046311196cf3bb44: Update main.yml">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>23c45c8</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>
@@ -412,7 +418,7 @@
         </script>
     </div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.121.2">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.127.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
                 </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/riley817" target="_blank">Riley</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

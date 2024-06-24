@@ -1,8 +1,8 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>Amazone Elastic Network Interfaces(ENI) - Tag - Riley&#39;s DevLog</title>
+        <title>Amazone Elastic Network Interfaces(ENI) - Tag - 라일리의 개발 기록장</title>
         <link>https://riley817.github.io/tags/amazone-elastic-network-interfaceseni/</link>
-        <description>Amazone Elastic Network Interfaces(ENI) - Tag - Riley&#39;s DevLog</description>
+        <description>Amazone Elastic Network Interfaces(ENI) - Tag - 라일리의 개발 기록장</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
             <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Thu, 14 Jul 2022 08:19:49 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/tags/amazone-elastic-network-interfaceseni/" rel="self" type="application/rss+xml" /><item>
     <title>6. AWS Elastic Compute Cloud (EC2) - Associate</title>

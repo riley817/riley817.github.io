@@ -1,8 +1,8 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>Database - Category - Riley&#39;s DevLog</title>
+        <title>Database - Category - 라일리의 개발 기록장</title>
         <link>https://riley817.github.io/categories/database/</link>
-        <description>Database - Category - Riley&#39;s DevLog</description>
+        <description>Database - Category - 라일리의 개발 기록장</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
             <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Wed, 15 Feb 2023 15:17:26 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/categories/database/" rel="self" type="application/rss+xml" /><item>
     <title>Graph Database 리서치 - Follow, Tag 기능을 고도화 해보자! (2)</title>

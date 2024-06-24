@@ -1,8 +1,8 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>ElastiCache - Tag - Riley&#39;s DevLog</title>
+        <title>ElastiCache - Tag - 라일리의 개발 기록장</title>
         <link>https://riley817.github.io/tags/elasticache/</link>
-        <description>ElastiCache - Tag - Riley&#39;s DevLog</description>
+        <description>ElastiCache - Tag - 라일리의 개발 기록장</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
             <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Mon, 01 Aug 2022 17:41:51 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/tags/elasticache/" rel="self" type="application/rss+xml" /><item>
     <title>9. Amazon RDS, Aurora &amp; ElastiCache</title>

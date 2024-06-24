@@ -1,8 +1,8 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>AWS Key Management Service - Tag - Riley&#39;s DevLog</title>
+        <title>AWS Key Management Service - Tag - 라일리의 개발 기록장</title>
         <link>https://riley817.github.io/tags/aws-key-management-service/</link>
-        <description>AWS Key Management Service - Tag - Riley&#39;s DevLog</description>
+        <description>AWS Key Management Service - Tag - 라일리의 개발 기록장</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
             <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Sun, 14 Aug 2022 23:31:49 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/tags/aws-key-management-service/" rel="self" type="application/rss+xml" /><item>
     <title>27. AWS Security &amp; Encryption</title>

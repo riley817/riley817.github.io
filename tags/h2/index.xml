@@ -1,8 +1,8 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>H2 - Tag - Riley&#39;s DevLog</title>
+        <title>H2 - Tag - 라일리의 개발 기록장</title>
         <link>https://riley817.github.io/tags/h2/</link>
-        <description>H2 - Tag - Riley&#39;s DevLog</description>
+        <description>H2 - Tag - 라일리의 개발 기록장</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
             <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Fri, 20 Mar 2020 23:10:49 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/tags/h2/" rel="self" type="application/rss+xml" /><item>
     <title>[Issue Note] H2 Database ~ not found, and IFEXISTS=true, so we cant auto-create it [90146-199]</title>

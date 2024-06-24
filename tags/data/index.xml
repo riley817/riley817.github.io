@@ -1,8 +1,8 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>data - Tag - Riley&#39;s DevLog</title>
+        <title>Data - Tag - 라일리의 개발 기록장</title>
         <link>https://riley817.github.io/tags/data/</link>
-        <description>data - Tag - Riley&#39;s DevLog</description>
+        <description>Data - Tag - 라일리의 개발 기록장</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
             <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Thu, 24 Nov 2022 21:39:17 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/tags/data/" rel="self" type="application/rss+xml" /><item>
     <title>데이터 분석을 위한 SQL 레시피 - 5장 사용자를 파악하기 위한 데이터 추출</title>

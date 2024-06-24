@@ -1,8 +1,8 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>Building Web Applications with Amazon EKS - Category - Riley&#39;s DevLog</title>
+        <title>Building Web Applications With Amazon EKS - Category - 라일리의 개발 기록장</title>
         <link>https://riley817.github.io/categories/building-web-applications-with-amazon-eks/</link>
-        <description>Building Web Applications with Amazon EKS - Category - Riley&#39;s DevLog</description>
+        <description>Building Web Applications With Amazon EKS - Category - 라일리의 개발 기록장</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
             <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Sun, 08 May 2022 00:13:03 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/categories/building-web-applications-with-amazon-eks/" rel="self" type="application/rss+xml" /><item>
     <title>[AWS EKS] 5. 인그레스 컨트롤러 만들기</title>

@@ -4,24 +4,30 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>[Tucker의 Go 프로그래밍] 18. 슬라이스 - Riley&#39;s DevLog</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:title" content="[Tucker의 Go 프로그래밍] 18. 슬라이스" />
-<meta property="og:description" content="Tucker의 Go 언어 프로그래밍 책 내용을 정리하였습니다.
+        <title>[Tucker의 Go 프로그래밍] 18. 슬라이스 - 라일리의 개발 기록장</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:url" content="https://riley817.github.io/chapter18-slice/">
+  <meta property="og:site_name" content="라일리의 개발 기록장">
+  <meta property="og:title" content="[Tucker의 Go 프로그래밍] 18. 슬라이스">
+  <meta property="og:description" content="Tucker의 Go 언어 프로그래밍 책 내용을 정리하였습니다.
 슬라이스는 Go에서 제공하는 동적 배열 타입이다. 동적 배열은 실행 도중 배열의 사이즈가 계속 바뀔 수 있다.
 정적, 동적 상수와 변수의 차이를 생각하면 간단하다.
 정적(static) : compile time, build time 시 값이 결정된다. 실행 도중에 절대 바뀔 수 없다. 동적(dynamic) : Runtime. 프로그램 실행 도중에 계속 값이 바뀔 수 있다. 다른언어에서 slice와 비슷한 개념 (동일하지는 않다.)
-C&#43;&#43; : Vector&lt;int&gt; Java : ArrayList Python : slice Javascript : 기본적으로 동적 배열 1." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://riley817.github.io/chapter18-slice/" /><meta property="og:image" content="https://riley817.github.io/icon.png" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2022-04-26T14:50:36+09:00" />
-<meta property="article:modified_time" content="2024-01-22T22:50:08+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
+C&#43;&#43; : Vector&lt;int&gt; Java : ArrayList Python : slice Javascript : 기본적으로 동적 배열 1.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2022-04-26T14:50:36+09:00">
+    <meta property="article:modified_time" content="2024-06-24T22:08:26+09:00">
+    <meta property="article:tag" content="GO">
+    <meta property="og:image" content="https://riley817.github.io/icon.png">
 
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="https://riley817.github.io/icon.png" /><meta name="twitter:title" content="[Tucker의 Go 프로그래밍] 18. 슬라이스"/>
-<meta name="twitter:description" content="Tucker의 Go 언어 프로그래밍 책 내용을 정리하였습니다.
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://riley817.github.io/icon.png">
+  <meta name="twitter:title" content="[Tucker의 Go 프로그래밍] 18. 슬라이스">
+  <meta name="twitter:description" content="Tucker의 Go 언어 프로그래밍 책 내용을 정리하였습니다.
 슬라이스는 Go에서 제공하는 동적 배열 타입이다. 동적 배열은 실행 도중 배열의 사이즈가 계속 바뀔 수 있다.
 정적, 동적 상수와 변수의 차이를 생각하면 간단하다.
 정적(static) : compile time, build time 시 값이 결정된다. 실행 도중에 절대 바뀔 수 없다. 동적(dynamic) : Runtime. 프로그램 실행 도중에 계속 값이 바뀔 수 있다. 다른언어에서 slice와 비슷한 개념 (동일하지는 않다.)
-C&#43;&#43; : Vector&lt;int&gt; Java : ArrayList Python : slice Javascript : 기본적으로 동적 배열 1."/>
+C&#43;&#43; : Vector&lt;int&gt; Java : ArrayList Python : slice Javascript : 기본적으로 동적 배열 1.">
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -37,7 +43,7 @@ C&#43;&#43; : Vector&lt;int&gt; Java : ArrayList Python : slice Javascript : 기
             "@type": "WebPage",
             "@id": "https:\/\/riley817.github.io\/chapter18-slice\/"
         },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "GO","wordcount":  2277 ,
-        "url": "https:\/\/riley817.github.io\/chapter18-slice\/","datePublished": "2022-04-26T14:50:36+09:00","dateModified": "2024-01-22T22:50:08+09:00","publisher": {
+        "url": "https:\/\/riley817.github.io\/chapter18-slice\/","datePublished": "2022-04-26T14:50:36+09:00","dateModified": "2024-06-24T22:08:26+09:00","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/riley817.github.io\/images\/avatar.png"},"author": {
                 "@type": "Person",
@@ -50,7 +56,7 @@ C&#43;&#43; : Vector&lt;int&gt; Java : ArrayList Python : slice Javascript : 기
         <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
     <div class="header-wrapper">
         <div class="header-title">
-            <a href="/" title="Riley&#39;s DevLog"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i></span>Riley&#39;s DevLog</a>
+            <a href="/" title="라일리의 개발 기록장"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i>&nbsp;</span>라일리의 개발 기록장</a>
         </div>
         <div class="menu">
             <div class="menu-inner"><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
@@ -74,7 +80,7 @@ C&#43;&#43; : Vector&lt;int&gt; Java : ArrayList Python : slice Javascript : 기
     <div class="header-container">
         <div class="header-wrapper">
             <div class="header-title">
-                <a href="/" title="Riley&#39;s DevLog"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i></span>Riley&#39;s DevLog</a>
+                <a href="/" title="라일리의 개발 기록장"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i>&nbsp;</span>라일리의 개발 기록장</a>
             </div>
             <div class="menu-toggle" id="menu-toggle-mobile">
                 <span></span><span></span><span></span>
@@ -329,9 +335,9 @@ C&#43;&#43; : Vector&lt;int&gt; Java : ArrayList Python : slice Javascript : 기
 </span></span></code></pre></td></tr></table>
 </div>
 </div><figure><img src="/categories/images/tucker-go/20220426122621.png#center"
-         alt="[그림]  SliceHeader 구조체" width="500"/><figcaption>
-            <p>[그림]  SliceHeader 구조체</p>
-        </figcaption>
+    alt="[그림]  SliceHeader 구조체" width="500"><figcaption>
+      <p>[그림]  SliceHeader 구조체</p>
+    </figcaption>
 </figure>
 
 <h3 id="21-make-함수를-사용해서-선언">2.1 Make() 함수를 사용해서 선언</h3>
@@ -593,7 +599,7 @@ slice2 :  [1 2 3 4 5] 5 6</p>
 <pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">array</span><span class="p">[</span><span class="nx">startIndex</span><span class="p">:</span><span class="nx">endIndex</span><span class="p">]</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><figure><img src="/categories/images/tucker-go/IMG_729788D09D55-1.jpeg#center" width="500"/>
+</div><figure><img src="/categories/images/tucker-go/IMG_729788D09D55-1.jpeg#center" width="500">
 </figure>
 
 <h3 id="31-슬라이싱으로-배열-일부를-가르키는-슬라이스-만들기">3.1 슬라이싱으로 배열 일부를 가르키는 슬라이스 만들기</h3>
@@ -1082,8 +1088,8 @@ slice :  [100 500] 2 4</p>
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 2024-01-22&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/48c9b035cc9b3dcdab5f8819d2d9e2e0b321df0b" target="_blank" title="commit by riley817(riley0422@icloud.com) 48c9b035cc9b3dcdab5f8819d2d9e2e0b321df0b: Merge branch &#39;develop&#39; into main">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>48c9b03</a></span>
+                <span>Updated on 2024-06-24&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/23c45c8708c6ff29696def98046311196cf3bb44" target="_blank" title="commit by riley(41636282&#43;riley817@users.noreply.github.com) 23c45c8708c6ff29696def98046311196cf3bb44: Update main.yml">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>23c45c8</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"><span>
@@ -1115,7 +1121,7 @@ slice :  [100 500] 2 4</p>
         </script>
     </div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.121.2">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.127.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
                 </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/riley817" target="_blank">Riley</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

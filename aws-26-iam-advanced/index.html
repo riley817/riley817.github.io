@@ -4,16 +4,23 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>26. AWS Identity and Access Management - Advanced - Riley&#39;s DevLog</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:title" content="26. AWS Identity and Access Management - Advanced" />
-<meta property="og:description" content="STS - Security Token Service AWS 리소스에 대한 제한적이고 일시적인 액세스 권한을 허용 토큰은 1 시간까지 유효 (새로고침 필요) STS API STS API 설명 AssumeRole - 개인 계정 내에서: 보안을 강화하기 위해 사용 - 계정 간 : 대상 계정에 역할을 수임하여 작업을 수행 AssumeRoleWithSAML - SAML으로 로그인한 사용자의 자격증명을 반환 AssumeRoleWithWebIdentity - IdP(Identity Provider - Facebook Login, Google Login, OIDC Compatible&hellip;) 로그인 사용자의 자격증명을 반환 - 이것보다는 AWS Cognito 추천함 GetSessionToken - AWS 루트 계정 또는 사용자에 대한 MFA 인증 STS를 통해 역할을 수임받기 IAM 계정 내 혹은 계정 간 IAM 역할(Role)을 정의한다." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://riley817.github.io/aws-26-iam-advanced/" /><meta property="og:image" content="https://riley817.github.io/icon.png" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2022-07-16T16:14:49+09:00" />
-<meta property="article:modified_time" content="2024-01-22T22:50:08+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
+        <title>26. AWS Identity and Access Management - Advanced - 라일리의 개발 기록장</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:url" content="https://riley817.github.io/aws-26-iam-advanced/">
+  <meta property="og:site_name" content="라일리의 개발 기록장">
+  <meta property="og:title" content="26. AWS Identity and Access Management - Advanced">
+  <meta property="og:description" content="STS - Security Token Service AWS 리소스에 대한 제한적이고 일시적인 액세스 권한을 허용 토큰은 1 시간까지 유효 (새로고침 필요) STS API STS API 설명 AssumeRole - 개인 계정 내에서: 보안을 강화하기 위해 사용 - 계정 간 : 대상 계정에 역할을 수임하여 작업을 수행 AssumeRoleWithSAML - SAML으로 로그인한 사용자의 자격증명을 반환 AssumeRoleWithWebIdentity - IdP(Identity Provider - Facebook Login, Google Login, OIDC Compatible…) 로그인 사용자의 자격증명을 반환 - 이것보다는 AWS Cognito 추천함 GetSessionToken - AWS 루트 계정 또는 사용자에 대한 MFA 인증 STS를 통해 역할을 수임받기 IAM 계정 내 혹은 계정 간 IAM 역할(Role)을 정의한다.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2022-07-16T16:14:49+09:00">
+    <meta property="article:modified_time" content="2024-06-24T22:08:26+09:00">
+    <meta property="article:tag" content="AWS">
+    <meta property="article:tag" content="AWS IAM">
+    <meta property="og:image" content="https://riley817.github.io/icon.png">
 
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="https://riley817.github.io/icon.png" /><meta name="twitter:title" content="26. AWS Identity and Access Management - Advanced"/>
-<meta name="twitter:description" content="STS - Security Token Service AWS 리소스에 대한 제한적이고 일시적인 액세스 권한을 허용 토큰은 1 시간까지 유효 (새로고침 필요) STS API STS API 설명 AssumeRole - 개인 계정 내에서: 보안을 강화하기 위해 사용 - 계정 간 : 대상 계정에 역할을 수임하여 작업을 수행 AssumeRoleWithSAML - SAML으로 로그인한 사용자의 자격증명을 반환 AssumeRoleWithWebIdentity - IdP(Identity Provider - Facebook Login, Google Login, OIDC Compatible&hellip;) 로그인 사용자의 자격증명을 반환 - 이것보다는 AWS Cognito 추천함 GetSessionToken - AWS 루트 계정 또는 사용자에 대한 MFA 인증 STS를 통해 역할을 수임받기 IAM 계정 내 혹은 계정 간 IAM 역할(Role)을 정의한다."/>
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://riley817.github.io/icon.png">
+  <meta name="twitter:title" content="26. AWS Identity and Access Management - Advanced">
+  <meta name="twitter:description" content="STS - Security Token Service AWS 리소스에 대한 제한적이고 일시적인 액세스 권한을 허용 토큰은 1 시간까지 유효 (새로고침 필요) STS API STS API 설명 AssumeRole - 개인 계정 내에서: 보안을 강화하기 위해 사용 - 계정 간 : 대상 계정에 역할을 수임하여 작업을 수행 AssumeRoleWithSAML - SAML으로 로그인한 사용자의 자격증명을 반환 AssumeRoleWithWebIdentity - IdP(Identity Provider - Facebook Login, Google Login, OIDC Compatible…) 로그인 사용자의 자격증명을 반환 - 이것보다는 AWS Cognito 추천함 GetSessionToken - AWS 루트 계정 또는 사용자에 대한 MFA 인증 STS를 통해 역할을 수임받기 IAM 계정 내 혹은 계정 간 IAM 역할(Role)을 정의한다.">
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -29,7 +36,7 @@
             "@type": "WebPage",
             "@id": "https:\/\/riley817.github.io\/aws-26-iam-advanced\/"
         },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "AWS, AWS IAM","wordcount":  1551 ,
-        "url": "https:\/\/riley817.github.io\/aws-26-iam-advanced\/","datePublished": "2022-07-16T16:14:49+09:00","dateModified": "2024-01-22T22:50:08+09:00","publisher": {
+        "url": "https:\/\/riley817.github.io\/aws-26-iam-advanced\/","datePublished": "2022-07-16T16:14:49+09:00","dateModified": "2024-06-24T22:08:26+09:00","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/riley817.github.io\/images\/avatar.png"},"author": {
                 "@type": "Person",
@@ -42,7 +49,7 @@
         <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
     <div class="header-wrapper">
         <div class="header-title">
-            <a href="/" title="Riley&#39;s DevLog"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i></span>Riley&#39;s DevLog</a>
+            <a href="/" title="라일리의 개발 기록장"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i>&nbsp;</span>라일리의 개발 기록장</a>
         </div>
         <div class="menu">
             <div class="menu-inner"><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
@@ -66,7 +73,7 @@
     <div class="header-container">
         <div class="header-wrapper">
             <div class="header-title">
-                <a href="/" title="Riley&#39;s DevLog"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i></span>Riley&#39;s DevLog</a>
+                <a href="/" title="라일리의 개발 기록장"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i>&nbsp;</span>라일리의 개발 기록장</a>
             </div>
             <div class="menu-toggle" id="menu-toggle-mobile">
                 <span></span><span></span><span></span>
@@ -939,8 +946,8 @@
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 2024-01-22&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/48c9b035cc9b3dcdab5f8819d2d9e2e0b321df0b" target="_blank" title="commit by riley817(riley0422@icloud.com) 48c9b035cc9b3dcdab5f8819d2d9e2e0b321df0b: Merge branch &#39;develop&#39; into main">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>48c9b03</a></span>
+                <span>Updated on 2024-06-24&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/23c45c8708c6ff29696def98046311196cf3bb44" target="_blank" title="commit by riley(41636282&#43;riley817@users.noreply.github.com) 23c45c8708c6ff29696def98046311196cf3bb44: Update main.yml">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>23c45c8</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>
@@ -970,7 +977,7 @@
         </script>
     </div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.121.2">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.127.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
                 </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/riley817" target="_blank">Riley</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

@@ -1,8 +1,8 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>클린코드 - Category - Riley&#39;s DevLog</title>
+        <title>클린코드 - Category - 라일리의 개발 기록장</title>
         <link>https://riley817.github.io/categories/%ED%81%B4%EB%A6%B0%EC%BD%94%EB%93%9C/</link>
-        <description>클린코드 - Category - Riley&#39;s DevLog</description>
+        <description>클린코드 - Category - 라일리의 개발 기록장</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
             <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Mon, 22 Jan 2024 10:04:54 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/categories/%ED%81%B4%EB%A6%B0%EC%BD%94%EB%93%9C/" rel="self" type="application/rss+xml" /><item>
     <title>클린코드 - 1장 클린코드 &amp; 2장 의미있는 이름</title>

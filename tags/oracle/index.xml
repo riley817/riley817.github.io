@@ -1,8 +1,8 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>Oracle - Tag - Riley&#39;s DevLog</title>
+        <title>Oracle - Tag - 라일리의 개발 기록장</title>
         <link>https://riley817.github.io/tags/oracle/</link>
-        <description>Oracle - Tag - Riley&#39;s DevLog</description>
+        <description>Oracle - Tag - 라일리의 개발 기록장</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
             <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Thu, 12 Aug 2021 17:17:30 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/tags/oracle/" rel="self" type="application/rss+xml" /><item>
     <title>[Doker] docker를 사용하여 oracle 12c 세팅하기</title>

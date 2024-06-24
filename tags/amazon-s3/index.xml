@@ -1,8 +1,8 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>Amazon S3 - Tag - Riley&#39;s DevLog</title>
+        <title>Amazon S3 - Tag - 라일리의 개발 기록장</title>
         <link>https://riley817.github.io/tags/amazon-s3/</link>
-        <description>Amazon S3 - Tag - Riley&#39;s DevLog</description>
+        <description>Amazon S3 - Tag - 라일리의 개발 기록장</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
             <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Mon, 01 Aug 2022 22:26:38 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/tags/amazon-s3/" rel="self" type="application/rss+xml" /><item>
     <title>14. S3 Storage and Data Management</title>

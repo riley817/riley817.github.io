@@ -1,8 +1,8 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>Categories - Category - Riley&#39;s DevLog</title>
+        <title>Categories - Category - 라일리의 개발 기록장</title>
         <link>https://riley817.github.io/categories/</link>
-        <description>Categories - Category - Riley&#39;s DevLog</description>
+        <description>Categories - Category - 라일리의 개발 기록장</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
             <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Mon, 22 Jan 2024 10:04:54 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/categories/" rel="self" type="application/rss+xml" /><item>
     <title>클린코드</title>
@@ -69,7 +69,7 @@
     <description><![CDATA[]]></description>
 </item>
 <item>
-    <title>Building Web Applications with Amazon EKS</title>
+    <title>Building Web Applications With Amazon EKS</title>
     <link>https://riley817.github.io/categories/building-web-applications-with-amazon-eks/</link>
     <pubDate>Sun, 08 May 2022 00:13:03 &#43;0900</pubDate>
     <author>Riley</author>

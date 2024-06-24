@@ -1,8 +1,8 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>Go 언어를 활용한 네트워크 프로그래밍 - Category - Riley&#39;s DevLog</title>
+        <title>Go 언어를 활용한 네트워크 프로그래밍 - Category - 라일리의 개발 기록장</title>
         <link>https://riley817.github.io/categories/go-%EC%96%B8%EC%96%B4%EB%A5%BC-%ED%99%9C%EC%9A%A9%ED%95%9C-%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/</link>
-        <description>Go 언어를 활용한 네트워크 프로그래밍 - Category - Riley&#39;s DevLog</description>
+        <description>Go 언어를 활용한 네트워크 프로그래밍 - Category - 라일리의 개발 기록장</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
             <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Mon, 10 Apr 2023 23:24:37 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/categories/go-%EC%96%B8%EC%96%B4%EB%A5%BC-%ED%99%9C%EC%9A%A9%ED%95%9C-%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/" rel="self" type="application/rss+xml" /><item>
     <title>[Go 언어를 활용한 네트워크 프로그래밍] 3. 신뢰성 있는 TCP 데이터 스트림</title>

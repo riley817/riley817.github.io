@@ -1,8 +1,8 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>kibana - Tag - Riley&#39;s DevLog</title>
+        <title>Kibana - Tag - 라일리의 개발 기록장</title>
         <link>https://riley817.github.io/tags/kibana/</link>
-        <description>kibana - Tag - Riley&#39;s DevLog</description>
+        <description>Kibana - Tag - 라일리의 개발 기록장</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
             <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Sun, 21 Oct 2018 19:20:11 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/tags/kibana/" rel="self" type="application/rss+xml" /><item>
     <title>[Elasticsearch 검색 엔진 구축 강의] 3. Elasticsearch 및 Kibana 설치</title>

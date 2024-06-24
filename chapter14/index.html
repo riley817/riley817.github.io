@@ -4,16 +4,22 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [14장] 유튜브 설계 - Riley&#39;s DevLog</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:title" content="가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [14장] 유튜브 설계" />
-<meta property="og:description" content="Note 팀 내에서 진행하는 Study 정리 입니다. 함께 논의 하고 싶은 주제 느낀점 모바일 인터넷 트래픽 중 37% 가 유튜브라는 사실이 놀랍습니다. 비디오를 트랜스코딩 시 DAG 모델이 어떻게 쓰이는지 와닿지 않아서 조금 이해가 가지 않았습니다. 객체지향 언어에서처럼 각 작업을 인터페이스나 추상메서드로 정의해두면 클라이언트는 해당 작업을 클라이언트 OS에 맞게 구현하는 것 이라고 이해했는데 맞을까요? 1. 문제 이해 및 설계 범위 확정 요구사항 빠른 비디오 업로드 원활한 비디오 재생 재생 품질 선택 낮은 인프라 비용 높은 가용성과 규모 확장성 그리고 안정성 지원 클라이언트 : 모바일 앱, 웹브라우저, 스마트TV 개략적 규모 측정 일간 능동사용자 : 5백만 한 사용자는 하루 평균 5개의 비디오 시청 10%의 사용자가 하루에 1 비디오 업로드 비디오 평균 크기 300MB 비디오 저장을 위해 매일 요구되는 용량 : 5백만 * 10% * 300MB = 150TB CDN 비용 클라우드 CDN을 통해 서비스할 경우 데이터의 양에 따라 CDN에서 과금 아마존 클라우드프론트 기준으로 100% 미국에서 발생 시 1GB 당 0." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://riley817.github.io/chapter14/" /><meta property="og:image" content="https://riley817.github.io/icon.png" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2023-09-02T23:14:34+09:00" />
-<meta property="article:modified_time" content="2024-01-22T22:50:08+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
+        <title>가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [14장] 유튜브 설계 - 라일리의 개발 기록장</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:url" content="https://riley817.github.io/chapter14/">
+  <meta property="og:site_name" content="라일리의 개발 기록장">
+  <meta property="og:title" content="가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [14장] 유튜브 설계">
+  <meta property="og:description" content="Note 팀 내에서 진행하는 Study 정리 입니다. 함께 논의 하고 싶은 주제 느낀점 모바일 인터넷 트래픽 중 37% 가 유튜브라는 사실이 놀랍습니다. 비디오를 트랜스코딩 시 DAG 모델이 어떻게 쓰이는지 와닿지 않아서 조금 이해가 가지 않았습니다. 객체지향 언어에서처럼 각 작업을 인터페이스나 추상메서드로 정의해두면 클라이언트는 해당 작업을 클라이언트 OS에 맞게 구현하는 것 이라고 이해했는데 맞을까요? 1. 문제 이해 및 설계 범위 확정 요구사항 빠른 비디오 업로드 원활한 비디오 재생 재생 품질 선택 낮은 인프라 비용 높은 가용성과 규모 확장성 그리고 안정성 지원 클라이언트 : 모바일 앱, 웹브라우저, 스마트TV 개략적 규모 측정 일간 능동사용자 : 5백만 한 사용자는 하루 평균 5개의 비디오 시청 10%의 사용자가 하루에 1 비디오 업로드 비디오 평균 크기 300MB 비디오 저장을 위해 매일 요구되는 용량 : 5백만 * 10% * 300MB = 150TB CDN 비용 클라우드 CDN을 통해 서비스할 경우 데이터의 양에 따라 CDN에서 과금 아마존 클라우드프론트 기준으로 100% 미국에서 발생 시 1GB 당 0.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2023-09-02T23:14:34+09:00">
+    <meta property="article:modified_time" content="2024-06-24T22:08:26+09:00">
+    <meta property="article:tag" content="System Design">
+    <meta property="og:image" content="https://riley817.github.io/icon.png">
 
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="https://riley817.github.io/icon.png" /><meta name="twitter:title" content="가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [14장] 유튜브 설계"/>
-<meta name="twitter:description" content="Note 팀 내에서 진행하는 Study 정리 입니다. 함께 논의 하고 싶은 주제 느낀점 모바일 인터넷 트래픽 중 37% 가 유튜브라는 사실이 놀랍습니다. 비디오를 트랜스코딩 시 DAG 모델이 어떻게 쓰이는지 와닿지 않아서 조금 이해가 가지 않았습니다. 객체지향 언어에서처럼 각 작업을 인터페이스나 추상메서드로 정의해두면 클라이언트는 해당 작업을 클라이언트 OS에 맞게 구현하는 것 이라고 이해했는데 맞을까요? 1. 문제 이해 및 설계 범위 확정 요구사항 빠른 비디오 업로드 원활한 비디오 재생 재생 품질 선택 낮은 인프라 비용 높은 가용성과 규모 확장성 그리고 안정성 지원 클라이언트 : 모바일 앱, 웹브라우저, 스마트TV 개략적 규모 측정 일간 능동사용자 : 5백만 한 사용자는 하루 평균 5개의 비디오 시청 10%의 사용자가 하루에 1 비디오 업로드 비디오 평균 크기 300MB 비디오 저장을 위해 매일 요구되는 용량 : 5백만 * 10% * 300MB = 150TB CDN 비용 클라우드 CDN을 통해 서비스할 경우 데이터의 양에 따라 CDN에서 과금 아마존 클라우드프론트 기준으로 100% 미국에서 발생 시 1GB 당 0."/>
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://riley817.github.io/icon.png">
+  <meta name="twitter:title" content="가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [14장] 유튜브 설계">
+  <meta name="twitter:description" content="Note 팀 내에서 진행하는 Study 정리 입니다. 함께 논의 하고 싶은 주제 느낀점 모바일 인터넷 트래픽 중 37% 가 유튜브라는 사실이 놀랍습니다. 비디오를 트랜스코딩 시 DAG 모델이 어떻게 쓰이는지 와닿지 않아서 조금 이해가 가지 않았습니다. 객체지향 언어에서처럼 각 작업을 인터페이스나 추상메서드로 정의해두면 클라이언트는 해당 작업을 클라이언트 OS에 맞게 구현하는 것 이라고 이해했는데 맞을까요? 1. 문제 이해 및 설계 범위 확정 요구사항 빠른 비디오 업로드 원활한 비디오 재생 재생 품질 선택 낮은 인프라 비용 높은 가용성과 규모 확장성 그리고 안정성 지원 클라이언트 : 모바일 앱, 웹브라우저, 스마트TV 개략적 규모 측정 일간 능동사용자 : 5백만 한 사용자는 하루 평균 5개의 비디오 시청 10%의 사용자가 하루에 1 비디오 업로드 비디오 평균 크기 300MB 비디오 저장을 위해 매일 요구되는 용량 : 5백만 * 10% * 300MB = 150TB CDN 비용 클라우드 CDN을 통해 서비스할 경우 데이터의 양에 따라 CDN에서 과금 아마존 클라우드프론트 기준으로 100% 미국에서 발생 시 1GB 당 0.">
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -29,7 +35,7 @@
             "@type": "WebPage",
             "@id": "https:\/\/riley817.github.io\/chapter14\/"
         },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "System Design","wordcount":  1588 ,
-        "url": "https:\/\/riley817.github.io\/chapter14\/","datePublished": "2023-09-02T23:14:34+09:00","dateModified": "2024-01-22T22:50:08+09:00","publisher": {
+        "url": "https:\/\/riley817.github.io\/chapter14\/","datePublished": "2023-09-02T23:14:34+09:00","dateModified": "2024-06-24T22:08:26+09:00","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/riley817.github.io\/images\/avatar.png"},"author": {
                 "@type": "Person",
@@ -42,7 +48,7 @@
         <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
     <div class="header-wrapper">
         <div class="header-title">
-            <a href="/" title="Riley&#39;s DevLog"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i></span>Riley&#39;s DevLog</a>
+            <a href="/" title="라일리의 개발 기록장"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i>&nbsp;</span>라일리의 개발 기록장</a>
         </div>
         <div class="menu">
             <div class="menu-inner"><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
@@ -66,7 +72,7 @@
     <div class="header-container">
         <div class="header-wrapper">
             <div class="header-title">
-                <a href="/" title="Riley&#39;s DevLog"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i></span>Riley&#39;s DevLog</a>
+                <a href="/" title="라일리의 개발 기록장"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i>&nbsp;</span>라일리의 개발 기록장</a>
             </div>
             <div class="menu-toggle" id="menu-toggle-mobile">
                 <span></span><span></span><span></span>
@@ -242,7 +248,7 @@
         </div>
     </div>
 <h3 id="21-비디오-업로드-절차">2.1 비디오 업로드 절차</h3>
-<figure><img src="/posts/images/system-design-interview/system-design-figure-14-4.png#center"/>
+<figure><img src="/posts/images/system-design-interview/system-design-figure-14-4.png#center">
 </figure>
 
 <ul>
@@ -324,7 +330,7 @@
 </ul>
 </li>
 </ul>
-<figure><img src="/posts/images/system-design-interview/system-design-figure-14-8.png#center"/>
+<figure><img src="/posts/images/system-design-interview/system-design-figure-14-8.png#center">
 </figure>
 
 <ul>
@@ -334,7 +340,7 @@
 <li><strong>워터마크(watermark)</strong> : 비디오에 대한 식별정보를 이미지위에 오버레이 형태로 띄워 표시</li>
 </ul>
 <h3 id="33-비디오-트랜스코딩-아키텍처">3.3 비디오 트랜스코딩 아키텍처</h3>
-<figure><img src="/posts/images/system-design-interview/system-design-figure-14-10.png#center"/>
+<figure><img src="/posts/images/system-design-interview/system-design-figure-14-10.png#center">
 </figure>
 
 <h4 id="전처리기preprocessor">전처리기(Preprocessor)</h4>
@@ -366,7 +372,7 @@
 <li>DAG 스케쥴러는 DAG 그래프를 몇 개 단계(Stage)로 분할한 뒤 각각의 자원 관리자의 작업 큐에 저장</li>
 </ul>
 <p>[예시]
-<figure><img src="/posts/images/system-design-interview/system-design-figure-14-15.png#center"/>
+<figure><img src="/posts/images/system-design-interview/system-design-figure-14-15.png#center">
 </figure>
 </p>
 <ul>
@@ -379,7 +385,7 @@
 <li>자원 배분을 효과적으로 수행하는 역할 담당</li>
 </ul>
 <p>[예시]
-<figure><img src="/posts/images/system-design-interview/system-design-figure-14-16.png#center"/>
+<figure><img src="/posts/images/system-design-interview/system-design-figure-14-16.png#center">
 </figure>
 </p>
 <ul>
@@ -425,10 +431,10 @@
 <ul>
 <li>느슨하게 결합된 시스템을 만들어 병렬성을 높인다.</li>
 </ul>
-<p><figure><img src="/posts/images/system-design-interview/system-design-figure-14-25.png#center"/>
+<p><figure><img src="/posts/images/system-design-interview/system-design-figure-14-25.png#center">
 </figure>
 
-<figure><img src="/posts/images/system-design-interview/system-design-figure-14-26.png#center"/>
+<figure><img src="/posts/images/system-design-interview/system-design-figure-14-26.png#center">
 </figure>
 </p>
 <ul>
@@ -521,8 +527,8 @@
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 2024-01-22&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/48c9b035cc9b3dcdab5f8819d2d9e2e0b321df0b" target="_blank" title="commit by riley817(riley0422@icloud.com) 48c9b035cc9b3dcdab5f8819d2d9e2e0b321df0b: Merge branch &#39;develop&#39; into main">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>48c9b03</a></span>
+                <span>Updated on 2024-06-24&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/23c45c8708c6ff29696def98046311196cf3bb44" target="_blank" title="commit by riley(41636282&#43;riley817@users.noreply.github.com) 23c45c8708c6ff29696def98046311196cf3bb44: Update main.yml">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>23c45c8</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>
@@ -552,7 +558,7 @@
         </script>
     </div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.121.2">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.127.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
                 </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/riley817" target="_blank">Riley</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

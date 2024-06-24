@@ -1,6 +1,6 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>Riley&#39;s DevLog</title>
+        <title>라일리의 개발 기록장</title>
         <link>https://riley817.github.io/</link>
         <description>Riley&#39;s DevLog</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>

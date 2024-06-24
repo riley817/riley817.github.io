@@ -4,22 +4,31 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>Javascript SHA3 라이브러리 조사 - Riley&#39;s DevLog</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:title" content="Javascript SHA3 라이브러리 조사" />
-<meta property="og:description" content="개요 Go의 라이브러리에서 사용하는 SHA3-512 해시값과 자바스립트에서 사용하는 CryptoJS의 SHA3-512 해시값이 다른 문제가 발생
+        <title>Javascript SHA3 라이브러리 조사 - 라일리의 개발 기록장</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:url" content="https://riley817.github.io/hash3/">
+  <meta property="og:site_name" content="라일리의 개발 기록장">
+  <meta property="og:title" content="Javascript SHA3 라이브러리 조사">
+  <meta property="og:description" content="개요 Go의 라이브러리에서 사용하는 SHA3-512 해시값과 자바스립트에서 사용하는 CryptoJS의 SHA3-512 해시값이 다른 문제가 발생
 테스트 대상 모듈 hash.js js-sha3 CrytoJS 테스트 방법 Go의 테스트 코드 작성 후 Go에서 생성한 해시값과 Javascript에서 위의 라이브러리로 생성했을 때 해시값이 같은지 비교한다.
 테스트 결과 hash.js : SHA3-512 관련 함수가 없는 것 같았다. js-sha3 : 성공 CrytoJS : 실패 CrytoJS 의 경우 Go에서 사용하는 SHA3-512와 차이가 있는 것 같다. cryptojs_document에 참고 사항이 있었다.
-NOTE: I made a mistake when I named this implementation SHA-3." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://riley817.github.io/hash3/" /><meta property="og:image" content="https://riley817.github.io/icon.png" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2022-04-17T23:04:00+09:00" />
-<meta property="article:modified_time" content="2024-01-22T22:50:08+09:00" /><meta property="og:site_name" content="Riley&#39;s DevLog" />
+NOTE: I made a mistake when I named this implementation SHA-3.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2022-04-17T23:04:00+09:00">
+    <meta property="article:modified_time" content="2024-06-24T22:08:26+09:00">
+    <meta property="article:tag" content="Javascript">
+    <meta property="article:tag" content="SHA3">
+    <meta property="article:tag" content="Keccak">
+    <meta property="article:tag" content="CryptoJS">
+    <meta property="og:image" content="https://riley817.github.io/icon.png">
 
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="https://riley817.github.io/icon.png" /><meta name="twitter:title" content="Javascript SHA3 라이브러리 조사"/>
-<meta name="twitter:description" content="개요 Go의 라이브러리에서 사용하는 SHA3-512 해시값과 자바스립트에서 사용하는 CryptoJS의 SHA3-512 해시값이 다른 문제가 발생
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://riley817.github.io/icon.png">
+  <meta name="twitter:title" content="Javascript SHA3 라이브러리 조사">
+  <meta name="twitter:description" content="개요 Go의 라이브러리에서 사용하는 SHA3-512 해시값과 자바스립트에서 사용하는 CryptoJS의 SHA3-512 해시값이 다른 문제가 발생
 테스트 대상 모듈 hash.js js-sha3 CrytoJS 테스트 방법 Go의 테스트 코드 작성 후 Go에서 생성한 해시값과 Javascript에서 위의 라이브러리로 생성했을 때 해시값이 같은지 비교한다.
 테스트 결과 hash.js : SHA3-512 관련 함수가 없는 것 같았다. js-sha3 : 성공 CrytoJS : 실패 CrytoJS 의 경우 Go에서 사용하는 SHA3-512와 차이가 있는 것 같다. cryptojs_document에 참고 사항이 있었다.
-NOTE: I made a mistake when I named this implementation SHA-3."/>
+NOTE: I made a mistake when I named this implementation SHA-3.">
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -35,7 +44,7 @@ NOTE: I made a mistake when I named this implementation SHA-3."/>
             "@type": "WebPage",
             "@id": "https:\/\/riley817.github.io\/hash3\/"
         },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Javascript, SHA3, Keccak, CryptoJS","wordcount":  328 ,
-        "url": "https:\/\/riley817.github.io\/hash3\/","datePublished": "2022-04-17T23:04:00+09:00","dateModified": "2024-01-22T22:50:08+09:00","publisher": {
+        "url": "https:\/\/riley817.github.io\/hash3\/","datePublished": "2022-04-17T23:04:00+09:00","dateModified": "2024-06-24T22:08:26+09:00","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/riley817.github.io\/images\/avatar.png"},"author": {
                 "@type": "Person",
@@ -48,7 +57,7 @@ NOTE: I made a mistake when I named this implementation SHA-3."/>
         <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
     <div class="header-wrapper">
         <div class="header-title">
-            <a href="/" title="Riley&#39;s DevLog"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i></span>Riley&#39;s DevLog</a>
+            <a href="/" title="라일리의 개발 기록장"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i>&nbsp;</span>라일리의 개발 기록장</a>
         </div>
         <div class="menu">
             <div class="menu-inner"><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
@@ -72,7 +81,7 @@ NOTE: I made a mistake when I named this implementation SHA-3."/>
     <div class="header-container">
         <div class="header-wrapper">
             <div class="header-title">
-                <a href="/" title="Riley&#39;s DevLog"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i></span>Riley&#39;s DevLog</a>
+                <a href="/" title="라일리의 개발 기록장"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i>&nbsp;</span>라일리의 개발 기록장</a>
             </div>
             <div class="menu-toggle" id="menu-toggle-mobile">
                 <span></span><span></span><span></span>
@@ -266,8 +275,8 @@ NOTE: I made a mistake when I named this implementation SHA-3."/>
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 2024-01-22&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/48c9b035cc9b3dcdab5f8819d2d9e2e0b321df0b" target="_blank" title="commit by riley817(riley0422@icloud.com) 48c9b035cc9b3dcdab5f8819d2d9e2e0b321df0b: Merge branch &#39;develop&#39; into main">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>48c9b03</a></span>
+                <span>Updated on 2024-06-24&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/23c45c8708c6ff29696def98046311196cf3bb44" target="_blank" title="commit by riley(41636282&#43;riley817@users.noreply.github.com) 23c45c8708c6ff29696def98046311196cf3bb44: Update main.yml">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>23c45c8</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>
@@ -297,7 +306,7 @@ NOTE: I made a mistake when I named this implementation SHA-3."/>
         </script>
     </div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.121.2">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.127.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
                 </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/riley817" target="_blank">Riley</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

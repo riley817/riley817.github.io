@@ -1,8 +1,8 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>Data Structures - Tag - Riley&#39;s DevLog</title>
+        <title>Data Structures - Tag - 라일리의 개발 기록장</title>
         <link>https://riley817.github.io/tags/data-structures/</link>
-        <description>Data Structures - Tag - Riley&#39;s DevLog</description>
+        <description>Data Structures - Tag - 라일리의 개발 기록장</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
             <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Sat, 26 Feb 2022 21:17:12 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/tags/data-structures/" rel="self" type="application/rss+xml" /><item>
     <title>[Think Data Structures] 자바 배열 리스트 구현하기</title>
