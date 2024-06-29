@@ -4,7 +4,7 @@
 기존 Amazon Aurora(postgreSQL) 의 데이터를 필요한 데이터만 추출하여 옮겨 보자. go 언어를 이용하여 `user`, `follow`  의 필요한 부분을 추출하여 `AWS Neptune` 으로 옮기는 코드를 작성한다.
 
 ## 1. 라이브러리 세팅
-`gremlin-go` 라이브러리를 사용하였다.
+**gremlin-go** 라이브러리를 사용하였다.
 - [https://github.com/apache/tinkerpop/tree/master/gremlin-go](https://github.com/apache/tinkerpop/tree/master/gremlin-go)
 
 ## 2. Neptune 연결 설정
@@ -29,7 +29,6 @@ AWS Neptune TLS 인증서 형식은 Go 1.18 버전 이상부터는 지원되지 
 ### Vertex 삽입하기
 
 먼저 회원 테이블을 조회하여 vertex로 생성한다. vertex의 회원아이디는 기존 데이터베이스의 회원 테이블에서 사용하는 아이디(PK) 일치 시킨다. vertex의 속성값으로는 닉네임과 생년월일을 문자열 형태로 저장한다.
-
 먼저 이미 등록되어있는 vertex 인지 체크한다. (나중에 알았지만 ID 가 같으면 그냥 덮어쓰는 것 같다.)
 
 ```go
@@ -103,11 +102,11 @@ rows, err := db.Query(`select user_id, nickname, to_char(birth, 'YYYY-MM-DD') as
 
 follow 같은 경우 follower, following 처럼 양방향성을 가지고 있다. 모델을 보는 관점에 따라 다르겠지만 서로 상호관계를 갖고 있기 때문에 아래처럼 양방향성 혹은 방향성이 없다고도 말할 수 있다.
 
-{{<image src="/posts/images/dbms/graphdatabase/Untitled.png" caption="">}}
+{{<figure src="/posts/images/dbms/graphdatabase/Untitled.png">}}
 
 하지만 위처럼 방향성이 없는 관계를 나타낼 수 없기 때문에 아래처럼 불필요한 관계를 더 만들어 낼 수도 있지만 되도록이면 아래처럼 임의의 방향으로 관계를 설정하도록 하는것이 좋다고 한다. (그래프 탐색 때문 성능때문에 임의의 단방향으로 설정 하는 것 같은데 데이터를 방향성으로 탐색할때 어떻게 해야하는지 모르겠다… 어렵네?!
 
-{{<image src="/posts/images/dbms/graphdatabase/neptune1.png" caption="">}}
+{{<figure src="/posts/images/dbms/graphdatabase/neptune1.png" caption="">}}
 
 일단 나는 follow라는 레이블을 갖는 edge를 만들고 현재 follow DB 구조와 동일하게 user_id → target_id 방향으로 follow edge를 생성했다. 만약 맞팔로우 관계일경우 edge 속성에 서로 팔로우 여부를 true로 저장하게 끔 구현했다.
 
@@ -232,7 +231,7 @@ func addFollowEdge(fromId, toId string) error {
 ```
 
 ## 결과
-{{<image src="/posts/images/dbms/graphdatabase/neptune3.png" caption="">}}
+{{<figure src="/posts/images/dbms/graphdatabase/neptune3.png" caption="">}}
 테스트 때문에 한 계정에 팔로우로 몰아주었는데 비쥬얼라이징 했을때 다소 징그러운 모습이 되어버렸다… 
 
 ## 마치며
@@ -241,4 +240,4 @@ func addFollowEdge(fromId, toId string) error {
 
 인스턴스는 삭제 했다. 빠이
 
-{{<image src="/posts/images/dbms/graphdatabase/neptune4.png" caption="">}}
+{{<figure src="/posts/images/dbms/graphdatabase/neptune4.png" caption="">}}

@@ -4,8 +4,8 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>[Tucker의 Go 프로그래밍] Go 스택 메모리와 힙 메모리 - 라일리의 개발 기록장</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:url" content="https://riley817.github.io/go-escape-analysis/">
-  <meta property="og:site_name" content="라일리의 개발 기록장">
+        <title>[Tucker의 Go 프로그래밍] Go 스택 메모리와 힙 메모리 - 🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:url" content="https://riley817.github.io/go-escape-analysis/">
+  <meta property="og:site_name" content="🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖">
   <meta property="og:title" content="[Tucker의 Go 프로그래밍] Go 스택 메모리와 힙 메모리">
   <meta property="og:description" content="음.. 완벽하게 이해하지는 못했다 😇😇😇
 스택 메모리와 힙 메모리 대부분의 프로그래밍 언어는 메모리를 할당할 때 스택 메모리 영역 또는 힙 메모리 영역을 사용한다. 함수 내부에서만 사용되는 값은 스택 메모리에 할당된다. 함수 외부로 공개되는 메모리 공간은 힙 메모리 영역에 할당된다. C/C&#43;&#43; 언어에서는 malloc() 함수를 직접 호출해서 힙 메모리 공간을 할당한다. 자바의 경우 클래스 타입을 힙에, 기본 타입을 스택에 할당한다. Go 언어는 이스케이프 분석(escape analysis) 을 해서 어느 메모리에 할당할지 결정한다. 이스케이프 분석(escape analysis) GC 컴파일러는 함수와 패키지를 넘어 전역적으로 탈출 검사를 수행한다.">
@@ -13,7 +13,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2021-08-19T16:32:05+09:00">
-    <meta property="article:modified_time" content="2024-06-24T22:08:26+09:00">
+    <meta property="article:modified_time" content="2024-06-29T23:59:44+09:00">
     <meta property="article:tag" content="GO">
     <meta property="og:image" content="https://riley817.github.io/icon.png">
 
@@ -37,7 +37,7 @@
             "@type": "WebPage",
             "@id": "https:\/\/riley817.github.io\/go-escape-analysis\/"
         },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "GO","wordcount":  236 ,
-        "url": "https:\/\/riley817.github.io\/go-escape-analysis\/","datePublished": "2021-08-19T16:32:05+09:00","dateModified": "2024-06-24T22:08:26+09:00","publisher": {
+        "url": "https:\/\/riley817.github.io\/go-escape-analysis\/","datePublished": "2021-08-19T16:32:05+09:00","dateModified": "2024-06-29T23:59:44+09:00","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/riley817.github.io\/images\/avatar.png"},"author": {
                 "@type": "Person",
@@ -45,12 +45,12 @@
             },"description": ""
     }
     </script></head>
-    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('light' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'light' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
 
         <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
     <div class="header-wrapper">
         <div class="header-title">
-            <a href="/" title="라일리의 개발 기록장"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i>&nbsp;</span>라일리의 개발 기록장</a>
+            <a href="/" title="🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i>&nbsp;</span>Riley&#39;s CodeCrumbs</a>
         </div>
         <div class="menu">
             <div class="menu-inner"><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
@@ -74,7 +74,7 @@
     <div class="header-container">
         <div class="header-wrapper">
             <div class="header-title">
-                <a href="/" title="라일리의 개발 기록장"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i>&nbsp;</span>라일리의 개발 기록장</a>
+                <a href="/" title="🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i>&nbsp;</span>Riley&#39;s CodeCrumbs</a>
             </div>
             <div class="menu-toggle" id="menu-toggle-mobile">
                 <span></span><span></span><span></span>
@@ -227,8 +227,8 @@
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 2024-06-24&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/23c45c8708c6ff29696def98046311196cf3bb44" target="_blank" title="commit by riley(41636282&#43;riley817@users.noreply.github.com) 23c45c8708c6ff29696def98046311196cf3bb44: Update main.yml">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>23c45c8</a></span>
+                <span>Updated on 2024-06-29&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/b7aad3025e10b4e333b45c35ce1386d01ceab0d3" target="_blank" title="commit by riley817(riley0422@icloud.com) b7aad3025e10b4e333b45c35ce1386d01ceab0d3: Merge branch &#39;develop&#39;">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>b7aad30</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>
@@ -258,7 +258,7 @@
         </script>
     </div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.127.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.128.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
                 </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/riley817" target="_blank">Riley</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

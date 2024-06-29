@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>[Elasticsearch 검색 엔진 구축 강의] Elasticsearch 개념 및 용어정리 - Inverted Index, Segment - 🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:url" content="https://riley817.github.io/elasticsearch-lecture2-1/">
+  <meta property="og:site_name" content="🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖">
+  <meta property="og:title" content="[Elasticsearch 검색 엔진 구축 강의] Elasticsearch 개념 및 용어정리 - Inverted Index, Segment">
+  <meta property="og:description" content="1. Inverted Index 전통적인 데이터베이스는 필드당 하나의 값을 저장하기 때문에 전체 텍스트 검색에는 적합하지 않다. 즉, 다중 값을 색인화 할 수 있어야 하는데 Elasticsearch에서는 Inverted 인덱스 형태의 인덱싱을 통해 Full-Text 검색이 가능하다. 모든 문서에서 발생하는 모든 고유 값 또는 용어의 정렬된 목록을 포함하며 각 용어에 대해 이를 포함하는 모든 문서 목록을 표시한다.
+Full-Text Search는 요청한 모든 단어를 문서 또는 데이터베이스에서 모든 단어와 비교하는 포괄적인 검색 방법이다. 전체 텍스트 쿼리에는 간단한 단어와 구 또는 여러 형식의 단어나 구가 포함될 수 있으며 텍스트 쿼리는 일치 항목이 하나 이상 있는 문서를 모두 반환한다.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2018-10-20T19:58:39+09:00">
+    <meta property="article:modified_time" content="2024-06-29T23:59:44+09:00">
+    <meta property="article:tag" content="Elasticsearch">
+    <meta property="og:image" content="https://riley817.github.io/icon.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://riley817.github.io/icon.png">
+  <meta name="twitter:title" content="[Elasticsearch 검색 엔진 구축 강의] Elasticsearch 개념 및 용어정리 - Inverted Index, Segment">
+  <meta name="twitter:description" content="1. Inverted Index 전통적인 데이터베이스는 필드당 하나의 값을 저장하기 때문에 전체 텍스트 검색에는 적합하지 않다. 즉, 다중 값을 색인화 할 수 있어야 하는데 Elasticsearch에서는 Inverted 인덱스 형태의 인덱싱을 통해 Full-Text 검색이 가능하다. 모든 문서에서 발생하는 모든 고유 값 또는 용어의 정렬된 목록을 포함하며 각 용어에 대해 이를 포함하는 모든 문서 목록을 표시한다.
+Full-Text Search는 요청한 모든 단어를 문서 또는 데이터베이스에서 모든 단어와 비교하는 포괄적인 검색 방법이다. 전체 텍스트 쿼리에는 간단한 단어와 구 또는 여러 형식의 단어나 구가 포함될 수 있으며 텍스트 쿼리는 일치 항목이 하나 이상 있는 문서를 모두 반환한다.">
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://riley817.github.io/elasticsearch-lecture2-1/" /><link rel="prev" href="https://riley817.github.io/elasticsearch-lecture1/" /><link rel="next" href="https://riley817.github.io/elasticsearch-lecture3/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "[Elasticsearch 검색 엔진 구축 강의] Elasticsearch 개념 및 용어정리 - Inverted Index, Segment",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/riley817.github.io\/elasticsearch-lecture2-1\/"
+        },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "elasticsearch","wordcount":  446 ,
+        "url": "https:\/\/riley817.github.io\/elasticsearch-lecture2-1\/","datePublished": "2018-10-20T19:58:39+09:00","dateModified": "2024-06-29T23:59:44+09:00","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "https:\/\/riley817.github.io\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "riley"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i>&nbsp;</span>Riley&#39;s CodeCrumbs</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i>&nbsp;</span>Riley&#39;s CodeCrumbs</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content always-active" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">[Elasticsearch 검색 엔진 구축 강의] Elasticsearch 개념 및 용어정리 - Inverted Index, Segment</h1><h2 class="single-subtitle">Elasticsearch 검색 엔진 구축 강의 정리</h2><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/riley817" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-category">included in <a href="/categories/elasticsearch-%EA%B2%80%EC%83%89-%EC%97%94%EC%A7%84-%EA%B5%AC%EC%B6%95-%EA%B0%95%EC%9D%98/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Elasticsearch 검색 엔진 구축 강의</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2018-10-20">2018-10-20</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;446 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;3 minutes&nbsp;</div>
+        </div><div class="featured-image"><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/posts/images/elastic/elasticsearch-lecture.png"
+        data-srcset="/posts/images/elastic/elasticsearch-lecture.png, /posts/images/elastic/elasticsearch-lecture.png 1.5x, /posts/images/elastic/elasticsearch-lecture.png 2x"
+        data-sizes="auto"
+        alt="/posts/images/elastic/elasticsearch-lecture.png"
+        title="/posts/images/elastic/elasticsearch-lecture.png" /></div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-inverted-index">1. Inverted Index</a>
+      <ul>
+        <li><a href="#11-immutable-불변성">1.1 Immutable (불변성)</a>
+          <ul>
+            <li><a href="#불변성의-이점">불변성의 이점</a></li>
+            <li><a href="#불변성의-단점">불변성의 단점</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#2segment">2.Segment</a></li>
+    <li><a href="#참조">참조</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="1-inverted-index">1. Inverted Index</h2>
+<p>전통적인 데이터베이스는 필드당 하나의 값을 저장하기 때문에 전체 텍스트 검색에는 적합하지 않다.
+즉, 다중 값을 색인화 할 수 있어야 하는데 Elasticsearch에서는 Inverted 인덱스 형태의 인덱싱을 통해 Full-Text 검색이 가능하다.
+모든 문서에서 발생하는 모든 고유 값 또는 용어의 정렬된 목록을 포함하며 각 용어에 대해 이를 포함하는 모든 문서 목록을 표시한다.</p>
+<p><strong>Full-Text Search</strong>는 요청한 모든 단어를 문서 또는 데이터베이스에서 모든 단어와 비교하는 포괄적인 검색 방법이다.
+전체 텍스트 쿼리에는 간단한 단어와 구 또는 여러 형식의 단어나 구가 포함될 수 있으며 텍스트 쿼리는 일치 항목이 하나 이상 있는 문서를 모두 반환한다.</p>
+<div class="details admonition note open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-pencil-alt fa-fw" aria-hidden="true"></i>Inverted Index<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Term  | Doc 1 | Doc 2 | Doc 3 | ...
+</span></span><span class="line"><span class="cl">------------------------------------
+</span></span><span class="line"><span class="cl">brown |   X   |       |  X    | ...
+</span></span><span class="line"><span class="cl">fox   |   X   |   X   |  X    | ...
+</span></span><span class="line"><span class="cl">quick |   X   |   X   |       | ...
+</span></span><span class="line"><span class="cl">the   |   X   |       |  X    | ...
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div>
+        </div>
+    </div>
+<ul>
+<li><strong>Inverted Index</strong> 는 단어가 포함된 문서 목록 뿐만아니라 <strong><a href="https://www.elastic.co/guide/en/elasticsearch/guide/current/relevance-intro.html" target="_blank" rel="noopener noreffer">단어의 관련성 혹은 유사성</a></strong> (각 단어를 포함하는 문서의 수, 특정 문서에 단어가 나타나는 횟수, 각 문서의 단어 순서, 각 문서의 길이, 모든 문서의 평균 길이 등) 의 정보를을 저장할 수 있으며 이러한 통계를 통해 <strong>중요도 혹은 어떤 문서(document)가 중요한지 결정</strong>할 수 있다.</li>
+<li>초기에는 하나의 거대한 <code>Inverted Index</code>가 전체 문서 모음을 위해 디스크에 쓰여진다. 새 색인이 준비되게 되면 이전 색인이 바뀌고 최근 변경사항을 검색 할 수 있게 된다.</li>
+</ul>
+<h3 id="11-immutable-불변성">1.1 Immutable (불변성)</h3>
+<ul>
+<li>디스크에 쓰여진 Inverted Index는 변경이 불가한 <strong>불변의(Immutable)</strong> 특성을 갖고 있다.</li>
+</ul>
+<h4 id="불변성의-이점">불변성의 이점</h4>
+<ul>
+<li><strong>데이터 락을 걸 필요없이 일관성을 유지할 수 있다</strong> : 동시에 변경을 시도하는 여러 프로세스에 대해 주의할 필요 없음</li>
+<li>전체 Index가 버퍼 캐시에 로드 가능하다면, 변경이 없는 경우 항상 메모리에 로드된 상태이며 이는 File I/O 가 아닌 <strong>메모리 캐시를 통해 접근되므로 성능이 향상</strong>된다.</li>
+<li>Inverted Index를 작성하게 되면 데이터를 압축 할 수 있으므로 리소스 소모가 높은 디스크 I/O 를 줄이고 캐시하는데 필요한 RAM 의 용량을 줄일 수 있다.</li>
+</ul>
+<h4 id="불변성의-단점">불변성의 단점</h4>
+<ul>
+<li>말그대로 Update가 불가능하다.</li>
+<li>새 문서를 검색 가능하게 하려면 전체 색인을 다시 작성해야 한다.</li>
+<li>다시 작성해야 하기 때문에 인덱스에 포함 할 수 있는 데이터 양이나 업데이트 빈도에 상당한 제한이 있다.</li>
+</ul>
+<div class="details admonition success open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-check-circle fa-fw" aria-hidden="true"></i>어떻게 불변성의 이점을 잃지 않고 Inverted Index를 갱신할 수 있을까?<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><ul>
+<li>전체 Inverted Index를 재작성하는 대신 변화된 데이터를 나타내는 새로운 보조 인덱스를 추가한다.</li>
+<li>검색 요청이 발생하면, 가장 오래된 인덱스부터 시작하여 결과를 조합하여 리턴한다.</li>
+</ul>
+</div>
+        </div>
+    </div>
+<h2 id="2segment">2.Segment</h2>
+<ul>
+<li><code>shard</code>는 <code>segment</code>로 이루어진다.</li>
+<li>document가 인덱싱될 때 데이터는 시스템 버퍼 캐시 영역으로 적재되며 이후 디스크의 <code>segment</code>에 기록하게 된다.</li>
+<li>이 과정에서 refresh를 거쳐야 <code>commit point</code>를 생성하며 검색 가능한 상태로 전환되게 된다.</li>
+</ul>
+<figure><a class="lightgallery" href="https://www.elastic.co/guide/en/elasticsearch/guide/current/images/elas_1102.png" title="https://www.elastic.co/guide/en/elasticsearch/guide/current/images/elas_1102.png" data-thumbnail="https://www.elastic.co/guide/en/elasticsearch/guide/current/images/elas_1102.png" data-sub-html="<h2>[그림1] Document 가 인덱싱 될 때 시스템 버퍼 캐시에 먼저 적재된다.</h2>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="https://www.elastic.co/guide/en/elasticsearch/guide/current/images/elas_1102.png"
+            data-srcset="https://www.elastic.co/guide/en/elasticsearch/guide/current/images/elas_1102.png, https://www.elastic.co/guide/en/elasticsearch/guide/current/images/elas_1102.png 1.5x, https://www.elastic.co/guide/en/elasticsearch/guide/current/images/elas_1102.png 2x"
+            data-sizes="auto"
+            alt="https://www.elastic.co/guide/en/elasticsearch/guide/current/images/elas_1102.png" />
+    </a><figcaption class="image-caption">[그림1] Document 가 인덱싱 될 때 시스템 버퍼 캐시에 먼저 적재된다.</figcaption>
+    </figure>
+<figure><a class="lightgallery" href="https://www.elastic.co/guide/en/elasticsearch/guide/current/images/elas_1103.png" title="https://www.elastic.co/guide/en/elasticsearch/guide/current/images/elas_1103.png" data-thumbnail="https://www.elastic.co/guide/en/elasticsearch/guide/current/images/elas_1103.png" data-sub-html="<h2>[그림2] 이후, 디스크의 Segment 에 기록된다. 이 상태에서 refresh 를 거쳐야 commit point 가 생성되어 검색 가능한(searchable) 상태로 전환된다.</h2>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="https://www.elastic.co/guide/en/elasticsearch/guide/current/images/elas_1103.png"
+            data-srcset="https://www.elastic.co/guide/en/elasticsearch/guide/current/images/elas_1103.png, https://www.elastic.co/guide/en/elasticsearch/guide/current/images/elas_1103.png 1.5x, https://www.elastic.co/guide/en/elasticsearch/guide/current/images/elas_1103.png 2x"
+            data-sizes="auto"
+            alt="https://www.elastic.co/guide/en/elasticsearch/guide/current/images/elas_1103.png" />
+    </a><figcaption class="image-caption">[그림2] 이후, 디스크의 Segment 에 기록된다. 이 상태에서 refresh 를 거쳐야 commit point 가 생성되어 검색 가능한(searchable) 상태로 전환된다.</figcaption>
+    </figure>
+<ul>
+<li>Segment 는 하나의 <code>Inverted Index</code>를 의미하지만, <code>commit point</code>를 갖는 모든 추가된 <code>Inverted Index</code>를 의미한다.</li>
+</ul>
+<h2 id="참조">참조</h2>
+<ul>
+<li><a href="https://www.elastic.co/guide/en/elasticsearch/guide/current/inside-a-shard.html" target="_blank" rel="noopener noreffer">Elasticsearch Reference - inside-a-shard</a></li>
+<li><a href="https://www.elastic.co/guide/en/elasticsearch/guide/current/dynamic-indices.html#img-memory-buffer" target="_blank" rel="noopener noreffer">Elasticsearch Reference - dynamic-indices </a></li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2024-06-29&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/b7aad3025e10b4e333b45c35ce1386d01ceab0d3" target="_blank" title="commit by riley817(riley0422@icloud.com) b7aad3025e10b4e333b45c35ce1386d01ceab0d3: Merge branch &#39;develop&#39;">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>b7aad30</a></span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/elasticsearch/">Elasticsearch</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/elasticsearch-lecture1/" class="prev" rel="prev" title="[Elasticsearch 검색 엔진 구축 강의] Elasticsearch 클러스터 분산구성 시나리오"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>[Elasticsearch 검색 엔진 구축 강의] Elasticsearch 클러스터 분산구성 시나리오</a>
+            <a href="/elasticsearch-lecture3/" class="next" rel="next" title="[Elasticsearch 검색 엔진 구축 강의] Elasticsearch 및 Kibana 설치">[Elasticsearch 검색 엔진 구축 강의] Elasticsearch 및 Kibana 설치<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><script src="https://utteranc.es/client.js"
+            repo="riley817/blog-comment"
+            issue-term="pathname"
+            label="✨💬✨"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+        </script>
+    </div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.128.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/riley817" target="_blank">Riley</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.1/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"search":{"algoliaAppID":"","algoliaIndex":"","algoliaSearchKey":"","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

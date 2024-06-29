@@ -4,28 +4,28 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [1장] 사용자 수에 따른 규모 확장성 - 라일리의 개발 기록장</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:url" content="https://riley817.github.io/chapter1/">
-  <meta property="og:site_name" content="라일리의 개발 기록장">
+        <title>가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [1장] 사용자 수에 따른 규모 확장성 - 🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:url" content="https://riley817.github.io/chapter1/">
+  <meta property="og:site_name" content="🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖">
   <meta property="og:title" content="가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [1장] 사용자 수에 따른 규모 확장성">
-  <meta property="og:description" content="Note 팀 내에서 진행하는 Study 정리 입니다. 함께 논의하고 싶은 주제 우리 서비스의 검색기능은 아직 없지만 인스타그램처럼 태그, 유저, 장소 등 통합 검색 기능이 추가되면 어떤 구조를 가져가면 좋을까요? 요약 단일서버 모든 컴포넌트가 단 한대의 서버에서 실행되는 간단한 시스템
+  <meta property="og:description" content="Note 팀 내에서 진행하는 Study 정리 입니다. 함께 논의하고 싶은 주제 우리 서비스의 검색기능은 아직 없지만 인스타그램처럼 태그, 유저, 장소 등 통합 검색 기능이 추가되면 어떤 구조를 가져가면 좋을까요? 단일서버 모든 컴포넌트가 단 한대의 서버에서 실행되는 간단한 시스템
 도메인 이름을 이용하여 웹사이트에 접속. 도메인 이름은 도메인 이름 서비스(Domain Name Service, DNS)에 질의하여 IP 주소 반환 DNS 질의 결과로 IP 반환 IP 주소로 HTTPHyperText Transfer Protocol 요청이 전달 요청을 받은 웹 서버는 HTML 페이지 JSON 형태의 응답을 반환 데이터베이스 관계형 데이터베이스(Relational Data-base Management System, RDBMS)가 개발자들에게는 익숙하고 오랜기간 동안 잘 사용되어진 시스템이지만 구축하려는 시스템에 따라 꼭 최선의 시스템은 아닐 수 있다.">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2023-08-10T09:43:42+09:00">
-    <meta property="article:modified_time" content="2024-06-24T22:08:26+09:00">
+    <meta property="article:modified_time" content="2024-06-29T23:59:44+09:00">
     <meta property="article:tag" content="System Design">
     <meta property="og:image" content="https://riley817.github.io/icon.png">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://riley817.github.io/icon.png">
   <meta name="twitter:title" content="가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [1장] 사용자 수에 따른 규모 확장성">
-  <meta name="twitter:description" content="Note 팀 내에서 진행하는 Study 정리 입니다. 함께 논의하고 싶은 주제 우리 서비스의 검색기능은 아직 없지만 인스타그램처럼 태그, 유저, 장소 등 통합 검색 기능이 추가되면 어떤 구조를 가져가면 좋을까요? 요약 단일서버 모든 컴포넌트가 단 한대의 서버에서 실행되는 간단한 시스템
+  <meta name="twitter:description" content="Note 팀 내에서 진행하는 Study 정리 입니다. 함께 논의하고 싶은 주제 우리 서비스의 검색기능은 아직 없지만 인스타그램처럼 태그, 유저, 장소 등 통합 검색 기능이 추가되면 어떤 구조를 가져가면 좋을까요? 단일서버 모든 컴포넌트가 단 한대의 서버에서 실행되는 간단한 시스템
 도메인 이름을 이용하여 웹사이트에 접속. 도메인 이름은 도메인 이름 서비스(Domain Name Service, DNS)에 질의하여 IP 주소 반환 DNS 질의 결과로 IP 반환 IP 주소로 HTTPHyperText Transfer Protocol 요청이 전달 요청을 받은 웹 서버는 HTML 페이지 JSON 형태의 응답을 반환 데이터베이스 관계형 데이터베이스(Relational Data-base Management System, RDBMS)가 개발자들에게는 익숙하고 오랜기간 동안 잘 사용되어진 시스템이지만 구축하려는 시스템에 따라 꼭 최선의 시스템은 아닐 수 있다.">
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://riley817.github.io/chapter1/" /><link rel="prev" href="https://riley817.github.io/network-programming-with-go-copy/" /><link rel="next" href="https://riley817.github.io/chapter2/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://riley817.github.io/chapter1/" /><link rel="prev" href="https://riley817.github.io/network-programming-with-go/" /><link rel="next" href="https://riley817.github.io/chapter2/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
     {
@@ -36,8 +36,8 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/riley817.github.io\/chapter1\/"
-        },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "System Design","wordcount":  1109 ,
-        "url": "https:\/\/riley817.github.io\/chapter1\/","datePublished": "2023-08-10T09:43:42+09:00","dateModified": "2024-06-24T22:08:26+09:00","publisher": {
+        },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "System Design","wordcount":  1113 ,
+        "url": "https:\/\/riley817.github.io\/chapter1\/","datePublished": "2023-08-10T09:43:42+09:00","dateModified": "2024-06-29T23:59:44+09:00","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/riley817.github.io\/images\/avatar.png"},"author": {
                 "@type": "Person",
@@ -45,12 +45,12 @@
             },"description": ""
     }
     </script></head>
-    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('light' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'light' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
 
         <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
     <div class="header-wrapper">
         <div class="header-title">
-            <a href="/" title="라일리의 개발 기록장"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i>&nbsp;</span>라일리의 개발 기록장</a>
+            <a href="/" title="🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i>&nbsp;</span>Riley&#39;s CodeCrumbs</a>
         </div>
         <div class="menu">
             <div class="menu-inner"><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
@@ -74,7 +74,7 @@
     <div class="header-container">
         <div class="header-wrapper">
             <div class="header-title">
-                <a href="/" title="라일리의 개발 기록장"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i>&nbsp;</span>라일리의 개발 기록장</a>
+                <a href="/" title="🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i>&nbsp;</span>Riley&#39;s CodeCrumbs</a>
             </div>
             <div class="menu-toggle" id="menu-toggle-mobile">
                 <span></span><span></span><span></span>
@@ -111,9 +111,16 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [1장] 사용자 수에 따른 규모 확장성</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://github.com/riley817" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%EA%B0%80%EC%83%81-%EB%A9%B4%EC%A0%91-%EC%82%AC%EB%A1%80%EB%A1%9C-%EB%B0%B0%EC%9A%B0%EB%8A%94-%EB%8C%80%EA%B7%9C%EB%AA%A8-%EC%8B%9C%EC%8A%A4%ED%85%9C-%EC%84%A4%EA%B3%84-%EA%B8%B0%EC%B4%88-study/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-08-10">2023-08-10</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1109 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-08-10">2023-08-10</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1113 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;6 minutes&nbsp;</div>
-        </div><div class="details toc" id="toc-static"  data-kept="">
+        </div><div class="featured-image"><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/posts/images/system-design-interview/system-design-thumbnail.png"
+        data-srcset="/posts/images/system-design-interview/system-design-thumbnail.png, /posts/images/system-design-interview/system-design-thumbnail.png 1.5x, /posts/images/system-design-interview/system-design-thumbnail.png 2x"
+        data-sizes="auto"
+        alt="/posts/images/system-design-interview/system-design-thumbnail.png"
+        title="/posts/images/system-design-interview/system-design-thumbnail.png" /></div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
                     <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
@@ -197,13 +204,17 @@
             <div class="admonition-content">팀 내에서 진행하는 Study 정리 입니다.</div>
         </div>
     </div>
-<h1 id="함께-논의하고-싶은-주제">함께 논의하고 싶은 주제</h1>
-<hr>
-<ul>
+<div class="details admonition question open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-question-circle fa-fw" aria-hidden="true"></i>함께 논의하고 싶은 주제<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><ul>
 <li>우리 서비스의 검색기능은 아직 없지만 인스타그램처럼 태그, 유저, 장소 등 통합 검색 기능이 추가되면 어떤 구조를 가져가면 좋을까요?</li>
 </ul>
-<h1 id="요약">요약</h1>
-<hr>
+</div>
+        </div>
+    </div>
 <h2 id="단일서버">단일서버</h2>
 <p>모든 컴포넌트가 단 한대의 서버에서 실행되는 간단한 시스템</p>
 <ol>
@@ -261,15 +272,16 @@
 </li>
 </ul>
 <h2 id="로드밸런서와-데이터베이스-다중화를-고려한-설계안">로드밸런서와 데이터베이스 다중화를 고려한 설계안</h2>
-<a class="lightgallery" href="/posts/images/system-design-interview/load-balancer-database-replication.png" title="/posts/images/system-design-interview/load-balancer-database-replication.png" data-thumbnail="/posts/images/system-design-interview/load-balancer-database-replication.png">
+<figure><a class="lightgallery" href="/posts/images/system-design-interview/load-balancer-database-replication.png" title="/posts/images/system-design-interview/load-balancer-database-replication.png" data-thumbnail="/posts/images/system-design-interview/load-balancer-database-replication.png" data-sub-html="<h2>로드밸런서와 데이터베이스 다중화를 고려한 설계</h2>">
         <img
             class="lazyload"
             src="/svg/loading.min.svg"
             data-src="/posts/images/system-design-interview/load-balancer-database-replication.png"
             data-srcset="/posts/images/system-design-interview/load-balancer-database-replication.png, /posts/images/system-design-interview/load-balancer-database-replication.png 1.5x, /posts/images/system-design-interview/load-balancer-database-replication.png 2x"
             data-sizes="auto"
-            alt="/posts/images/system-design-interview/load-balancer-database-replication.png" width="50%" />
-    </a>
+            alt="/posts/images/system-design-interview/load-balancer-database-replication.png" width="100%" />
+    </a><figcaption class="image-caption">로드밸런서와 데이터베이스 다중화를 고려한 설계</figcaption>
+    </figure>
 <ul>
 <li>사용자는 DNS로부터 로드밸런서의 공개 IP 주소를 받는다.</li>
 <li>사용자는 해당 IP 주소를 사용해 로드밸런서에 접속</li>
@@ -424,8 +436,8 @@
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 2024-06-24&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/23c45c8708c6ff29696def98046311196cf3bb44" target="_blank" title="commit by riley(41636282&#43;riley817@users.noreply.github.com) 23c45c8708c6ff29696def98046311196cf3bb44: Update main.yml">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>23c45c8</a></span>
+                <span>Updated on 2024-06-29&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/b7aad3025e10b4e333b45c35ce1386d01ceab0d3" target="_blank" title="commit by riley817(riley0422@icloud.com) b7aad3025e10b4e333b45c35ce1386d01ceab0d3: Merge branch &#39;develop&#39;">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>b7aad30</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>
@@ -442,7 +454,7 @@
         </section>
     </div>
 
-    <div class="post-nav"><a href="/network-programming-with-go-copy/" class="prev" rel="prev" title="[Go 언어를 활용한 네트워크 프로그래밍] 3. 신뢰성 있는 TCP 데이터 스트림"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>[Go 언어를 활용한 네트워크 프로그래밍] 3. 신뢰성 있는 TCP 데이터 스트림</a>
+    <div class="post-nav"><a href="/network-programming-with-go/" class="prev" rel="prev" title="[Go 언어를 활용한 네트워크 프로그래밍] 1. 네트워크 시스템 개요"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>[Go 언어를 활용한 네트워크 프로그래밍] 1. 네트워크 시스템 개요</a>
             <a href="/chapter2/" class="next" rel="next" title="가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [2장] 개략적인 규모 추정">가상 면접 사례로 배우는 대규모 시스템 설계 기초 Study [2장] 개략적인 규모 추정<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
 </div>
 <div id="comments"><script src="https://utteranc.es/client.js"
@@ -455,7 +467,7 @@
         </script>
     </div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.127.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.128.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
                 </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/riley817" target="_blank">Riley</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

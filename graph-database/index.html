@@ -4,8 +4,8 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>Graph Database 리서치 - Follow, Tag 기능을 고도화 해보자! (1) - 라일리의 개발 기록장</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:url" content="https://riley817.github.io/graph-database/">
-  <meta property="og:site_name" content="라일리의 개발 기록장">
+        <title>Graph Database 리서치 - Follow, Tag 기능을 고도화 해보자! (1) - 🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:url" content="https://riley817.github.io/graph-database/">
+  <meta property="og:site_name" content="🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖">
   <meta property="og:title" content="Graph Database 리서치 - Follow, Tag 기능을 고도화 해보자! (1)">
   <meta property="og:description" content="개요 현재 회사에서는 SNS 서비스를 개발하고 있다. 인스타그램 처럼 특정 사용자를 팔로우 할 수 있는 기능이 있는데 관계형 데이터베이스인 postgresql 데이터베이스로 유저 간 팔로우 관계를 관리하고 있다.
 유저에게 알 수도 있는 친구를 추천하기 위한 기능이 구현하게 되었는데 팔로우 관계를 나타내는 테이블이 하나로 구성되어 있다 보니 유저의 팔로워, 팔로잉 조회를 위해 with 절, union 등과 같은 문법을 사용했고 나의 팔로우의 팔로우 중 나와 팔로우 관계가 없는 친구만 불러오기 위해 복잡하게 서브 쿼리로 작성하게 되었다.">
@@ -13,7 +13,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2023-01-18T11:21:26+09:00">
-    <meta property="article:modified_time" content="2024-06-24T22:08:26+09:00">
+    <meta property="article:modified_time" content="2024-06-29T23:59:44+09:00">
     <meta property="article:tag" content="Graph Database">
     <meta property="article:tag" content="Aws Neptune">
     <meta property="article:tag" content="Newo4j">
@@ -27,7 +27,7 @@
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://riley817.github.io/graph-database/" /><link rel="prev" href="https://riley817.github.io/sql-recipe-5-2/" /><link rel="next" href="https://riley817.github.io/buf/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://riley817.github.io/graph-database/" /><link rel="prev" href="https://riley817.github.io/aws-28-vpc/" /><link rel="next" href="https://riley817.github.io/buf/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
     {
@@ -39,7 +39,7 @@
             "@type": "WebPage",
             "@id": "https:\/\/riley817.github.io\/graph-database\/"
         },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "graph database, aws neptune, newo4j","wordcount":  545 ,
-        "url": "https:\/\/riley817.github.io\/graph-database\/","datePublished": "2023-01-18T11:21:26+09:00","dateModified": "2024-06-24T22:08:26+09:00","publisher": {
+        "url": "https:\/\/riley817.github.io\/graph-database\/","datePublished": "2023-01-18T11:21:26+09:00","dateModified": "2024-06-29T23:59:44+09:00","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/riley817.github.io\/images\/avatar.png"},"author": {
                 "@type": "Person",
@@ -47,12 +47,12 @@
             },"description": ""
     }
     </script></head>
-    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('light' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'light' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
 
         <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
     <div class="header-wrapper">
         <div class="header-title">
-            <a href="/" title="라일리의 개발 기록장"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i>&nbsp;</span>라일리의 개발 기록장</a>
+            <a href="/" title="🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i>&nbsp;</span>Riley&#39;s CodeCrumbs</a>
         </div>
         <div class="menu">
             <div class="menu-inner"><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
@@ -76,7 +76,7 @@
     <div class="header-container">
         <div class="header-wrapper">
             <div class="header-title">
-                <a href="/" title="라일리의 개발 기록장"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i>&nbsp;</span>라일리의 개발 기록장</a>
+                <a href="/" title="🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i>&nbsp;</span>Riley&#39;s CodeCrumbs</a>
             </div>
             <div class="menu-toggle" id="menu-toggle-mobile">
                 <span></span><span></span><span></span>
@@ -110,33 +110,37 @@
     </div><main class="main">
                 <div class="container"><div class="toc" id="toc-auto">
             <h2 class="toc-title">Contents</h2>
-            <div class="toc-content" id="toc-content-auto"></div>
+            <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Graph Database 리서치 - Follow, Tag 기능을 고도화 해보자! (1)</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://github.com/riley817" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-category">included in <a href="/categories/database/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Database</a></span></div>
             <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-01-18">2023-01-18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;545 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;3 minutes&nbsp;</div>
-        </div><div class="details toc" id="toc-static"  data-kept="">
+        </div><div class="featured-image"><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/posts/images/dbms/graphdatabase/graph-database-thumbnail.jpeg"
+        data-srcset="/posts/images/dbms/graphdatabase/graph-database-thumbnail.jpeg, /posts/images/dbms/graphdatabase/graph-database-thumbnail.jpeg 1.5x, /posts/images/dbms/graphdatabase/graph-database-thumbnail.jpeg 2x"
+        data-sizes="auto"
+        alt="/posts/images/dbms/graphdatabase/graph-database-thumbnail.jpeg"
+        title="/posts/images/dbms/graphdatabase/graph-database-thumbnail.jpeg" /></div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
                     <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
-    <li><a href="#개요">개요</a>
+    <li><a href="#개요">개요</a></li>
+    <li><a href="#graph-database">Graph Database</a>
       <ul>
-        <li><a href="#graph-database">Graph Database</a>
+        <li><a href="#graph-database-예시">Graph Database 예시</a></li>
+        <li><a href="#graph-database-사용-사례">Graph Database 사용 사례</a></li>
+        <li><a href="#aws-neptune-vs-neo4j">AWS Neptune vs Neo4j</a>
           <ul>
-            <li><a href="#graph-database-예시">Graph Database 예시</a></li>
-            <li><a href="#graph-database-사용-사례">Graph Database 사용 사례</a></li>
-            <li><a href="#aws-neptune-vs-neo4j">AWS Neptune vs Neo4j</a>
-              <ul>
-                <li><a href="#aws-neptune">AWS Neptune</a></li>
-                <li><a href="#neo4j">Neo4j</a></li>
-              </ul>
-            </li>
-            <li><a href="#사용-사례에-따른-database-선택">사용 사례에 따른 Database 선택</a></li>
+            <li><a href="#aws-neptune">AWS Neptune</a></li>
+            <li><a href="#neo4j">Neo4j</a></li>
           </ul>
         </li>
+        <li><a href="#사용-사례에-따른-database-선택">사용 사례에 따른 Database 선택</a></li>
       </ul>
     </li>
     <li><a href="#참조">참조</a></li>
@@ -156,9 +160,9 @@
     </a><figcaption class="image-caption">뇌절 쿼리&hellip;⚡️</figcaption>
     </figure>
 <p>ORM을 사용하고 있는데 도저히 저 쿼리는 ORM으로 작성할 엄두가 나지 않아 네이티브로 SQL을 직접 작성하여 구현하게 되었다. 그러다보니 결과가 제대로 나오지 않을 때 어떠한 문제가 있는지 이슈 파악이 쉽지가 않았다. 이런 이슈를 개선할 필요가 있었고 추가 요구사항이 발생했을 때 어떻게 더 쿼리를 확장시켜 나갈지 감이 오지 않았다. 마침 AWS 자격증 스터디를 하면서 AWS 서비스 중 <code>AWS Neptue</code> 사용 사례에서 소셜 네트워크 관계망 서비스에 활용할 수 있다고 보았고 현재 시스템에 적용해 보면 좋을 것 같다는 생각이 들었다.</p>
-<h3 id="graph-database">Graph Database</h3>
+<h2 id="graph-database">Graph Database</h2>
 <p>그래프 데이터베이스는 데이터 관계를 그래프를 사용하여 저장, 탐색, 질의하는 그래프 기반의  <strong>NoSQL</strong> 타입의 데이터베이스이다. 엔티티와 엔티티간 관계를 그래프(노드, 에지)로 나타내고 저장한다. 그래프 데이터베이스는 소셜 네트워크, 추천 시스템, 이상 감지 시스템과 같은 대규모로 연결된 데이터를 저장하고 질의하는데 유용하다. 가장 많이 사용 되고 있는 그래프 데이터 베이스로는 <code>Neo4J</code>, <code>OrientDB</code>, <code>ArangoDB</code>가 있다.</p>
-<h4 id="graph-database-예시">Graph Database 예시</h4>
+<h3 id="graph-database-예시">Graph Database 예시</h3>
 <p>그래프 데이터베이스는 데이터를 <code>node</code>로 표현한다. 노드에는 <code>key-value</code> 데이터를 통해 노드의 속성<code>property</code>으로 사용할 수 있다. <code>node</code> 는 하나 이상의 <code>label</code>을 가질 수 있으며 <code>label</code>에는 <code>node</code>의 유형을 정의할 수 있다. 노드와 다른 노드간의 관계는 아래 화살표 처럼 <code>edge</code>를 통해 연결 할 수 있다.</p>
 <a class="lightgallery" href="/posts/images/dbms/graph_database_node_relation.png" title="/posts/images/dbms/graph_database_node_relation.png" data-thumbnail="/posts/images/dbms/graph_database_node_relation.png">
         <img
@@ -192,7 +196,7 @@
 </tr>
 </tbody>
 </table>
-<h4 id="graph-database-사용-사례">Graph Database 사용 사례</h4>
+<h3 id="graph-database-사용-사례">Graph Database 사용 사례</h3>
 <ol>
 <li><strong>Social networks :</strong> 소셜 네트워크의 사용자 프로필, 피드 활동, 팔로우 관계와 같이 서로 연결된 대용량 데이터를 저장하고 질의하는데 적합하다.</li>
 <li><strong>Digital Asset Management :</strong> Netflix 에서는 사용자가 이미 시청하였거나, 시청자연령에 따라 컨텐츠(asset) 접근 관리를 그래프 데이터베이스를 통해 관리하고 있다.</li>
@@ -204,22 +208,22 @@
 </ul>
 </li>
 </ol>
-<h4 id="aws-neptune-vs-neo4j">AWS Neptune vs Neo4j</h4>
+<h3 id="aws-neptune-vs-neo4j">AWS Neptune vs Neo4j</h3>
 <p>AWS Neptune과 Neo4j 둘다 인기있는 그래프 데이터 베이스지만 사용 사례에 따라 각각 다른 장점을 가지고 있다.</p>
-<h5 id="aws-neptune">AWS Neptune</h5>
+<h4 id="aws-neptune">AWS Neptune</h4>
 <ul>
 <li>AWS 에서 제공되는 <strong>완전관리형 그래프 데이터베이스 서비스</strong></li>
 <li>AWS 에서 서비스 제공을 위한 모든 인프라를 제공 하므로 설치, 모니터링, 이벤트 알림, 데이터 백업 등 배포 및 관리가 쉽고 편리하다.</li>
 <li><code>Gremlin</code> 와 <code>SPARQL</code> 등의 query language 를 지원</li>
 <li>Neptune는 <code>property graph</code> 모델을 지원하며 <code>Gremlin</code> query language는 <code>property grapsh</code>를 빠르게 순회하는 방법을 제공하며 그 외 <code>SPARQL</code>언어를 지원한다.</li>
 </ul>
-<h5 id="neo4j">Neo4j</h5>
+<h4 id="neo4j">Neo4j</h4>
 <ul>
 <li>오픈 소스이며 <code>on-premises</code> 또는 클라우드로 서비스 할 수 있다.</li>
 <li>좀 더 유연하며 사용자 정의 옵션을 제공하고 <code>Cypher</code> query 언어를 지원한다.</li>
 <li>커뮤니티가 활성화 되어있으며 다양한 third-party 플러그인을 통합하여 사용할 수 있다.</li>
 </ul>
-<h4 id="사용-사례에-따른-database-선택">사용 사례에 따른 Database 선택</h4>
+<h3 id="사용-사례에-따른-database-선택">사용 사례에 따른 Database 선택</h3>
 <ul>
 <li><code>AWS Neptune</code> : 이미 서비스에서 AWS 사용하는 경우, <code>pay-as-you-go</code> 가격 모델을 통한 이점을 얻을 수 있다. 그리고 <code>Gremlin</code> 쿼리 언어를 사용하는게 더 낫다면  <code>Neptune</code> 사용을 추천한다.</li>
 <li><code>Neo4j</code> : 좀 더 유연하고 사용자 정의 기능이 필요하거나 특정 클라우드 서비스에 <code>locked-in</code> 되는 것을 원하지 않을 경우, <code>Cyper</code> 쿼리 언어를 사용하는게 더 나은 경우 그리고 오픈 소스 커뮤니티를 통한 정보 공유 및 확장 플러그인이 필요한 경우에 추천한다.</li>
@@ -233,8 +237,8 @@
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 2024-06-24&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/23c45c8708c6ff29696def98046311196cf3bb44" target="_blank" title="commit by riley(41636282&#43;riley817@users.noreply.github.com) 23c45c8708c6ff29696def98046311196cf3bb44: Update main.yml">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>23c45c8</a></span>
+                <span>Updated on 2024-06-29&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/b7aad3025e10b4e333b45c35ce1386d01ceab0d3" target="_blank" title="commit by riley817(riley0422@icloud.com) b7aad3025e10b4e333b45c35ce1386d01ceab0d3: Merge branch &#39;develop&#39;">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>b7aad30</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>
@@ -251,20 +255,12 @@
         </section>
     </div>
 
-    <div class="post-nav"><a href="/sql-recipe-5-2/" class="prev" rel="prev" title="데이터 분석을 위한 SQL 레시피 - 5장 사용자를 파악하기 위한 데이터 추출"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>데이터 분석을 위한 SQL 레시피 - 5장 사용자를 파악하기 위한 데이터 추출</a>
+    <div class="post-nav"><a href="/aws-28-vpc/" class="prev" rel="prev" title="28. AWS Virtual Private Cloud(VPC)"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>28. AWS Virtual Private Cloud(VPC)</a>
             <a href="/buf/" class="next" rel="next" title="[buf] buf로 protobuf 사용하기">[buf] buf로 protobuf 사용하기<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
 </div>
-<div id="comments"><script src="https://utteranc.es/client.js"
-            repo="riley817/blog-comment"
-            issue-term="pathname"
-            label="✨💬✨"
-            theme="github-light"
-            crossorigin="anonymous"
-            async>
-        </script>
-    </div></article></div>
+</article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.127.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.128.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
                 </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/riley817" target="_blank">Riley</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

@@ -4,22 +4,24 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>구글 빅쿼리(BigQuery) 시작하기 및 DataGrip 연동 - 라일리의 개발 기록장</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:url" content="https://riley817.github.io/bigquery-datagrip/">
-  <meta property="og:site_name" content="라일리의 개발 기록장">
+        <title>구글 빅쿼리(BigQuery) 시작하기 및 DataGrip 연동 - 🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:url" content="https://riley817.github.io/bigquery-datagrip/">
+  <meta property="og:site_name" content="🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖">
   <meta property="og:title" content="구글 빅쿼리(BigQuery) 시작하기 및 DataGrip 연동">
-  <meta property="og:description" content="구글 빅쿼리 시작하기 및 DataGrip 연동하기 구글 클라우드 프로젝트 생성 구글 계정 생성 기본 90일 동안 $300 크레딧으로 무료 평가판을 사용할 수 있다. 무료 체험 기간이 지나면 무료 체험 중 생성한 리소스는 모두 중지 되며 유료 계정으로 업그레이드 하지 않으면 요금이 부과되지 않는다. 새 프로젝트 버튼을 클릭하여 프로젝트 생성하기 데이터 세트 생성하기 데이터 세트는 테이블과 뷰에 대한 액세스를 구성 및 제어하는 최상위 컨테이너이다. 테이블이나 뷰는 반드시 데이터 세트에 속해야 하므로 최소 한 개 이상의 데이터 세트를 구성해야 한다.">
+  <meta property="og:description" content="구글 계정 생성 기본 90일 동안 $300 크레딧으로 무료 평가판을 사용할 수 있다. 무료 체험 기간이 지나면 무료 체험 중 생성한 리소스는 모두 중지 되며 유료 계정으로 업그레이드 하지 않으면 요금이 부과되지 않는다. 새 프로젝트 버튼을 클릭하여 프로젝트 생성하기 데이터 세트 생성하기 데이터 세트는 테이블과 뷰에 대한 액세스를 구성 및 제어하는 최상위 컨테이너이다. 테이블이나 뷰는 반드시 데이터 세트에 속해야 하므로 최소 한 개 이상의 데이터 세트를 구성해야 한다.
+Google Cloud Platform 콘솔 메뉴에서 BigQuery 메뉴를 선택">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2022-11-24T11:40:17+09:00">
-    <meta property="article:modified_time" content="2024-06-24T22:08:26+09:00">
+    <meta property="article:published_time" content="2023-11-24T11:40:17+09:00">
+    <meta property="article:modified_time" content="2024-06-29T23:59:44+09:00">
     <meta property="article:tag" content="Data">
     <meta property="og:image" content="https://riley817.github.io/icon.png">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://riley817.github.io/icon.png">
   <meta name="twitter:title" content="구글 빅쿼리(BigQuery) 시작하기 및 DataGrip 연동">
-  <meta name="twitter:description" content="구글 빅쿼리 시작하기 및 DataGrip 연동하기 구글 클라우드 프로젝트 생성 구글 계정 생성 기본 90일 동안 $300 크레딧으로 무료 평가판을 사용할 수 있다. 무료 체험 기간이 지나면 무료 체험 중 생성한 리소스는 모두 중지 되며 유료 계정으로 업그레이드 하지 않으면 요금이 부과되지 않는다. 새 프로젝트 버튼을 클릭하여 프로젝트 생성하기 데이터 세트 생성하기 데이터 세트는 테이블과 뷰에 대한 액세스를 구성 및 제어하는 최상위 컨테이너이다. 테이블이나 뷰는 반드시 데이터 세트에 속해야 하므로 최소 한 개 이상의 데이터 세트를 구성해야 한다.">
+  <meta name="twitter:description" content="구글 계정 생성 기본 90일 동안 $300 크레딧으로 무료 평가판을 사용할 수 있다. 무료 체험 기간이 지나면 무료 체험 중 생성한 리소스는 모두 중지 되며 유료 계정으로 업그레이드 하지 않으면 요금이 부과되지 않는다. 새 프로젝트 버튼을 클릭하여 프로젝트 생성하기 데이터 세트 생성하기 데이터 세트는 테이블과 뷰에 대한 액세스를 구성 및 제어하는 최상위 컨테이너이다. 테이블이나 뷰는 반드시 데이터 세트에 속해야 하므로 최소 한 개 이상의 데이터 세트를 구성해야 한다.
+Google Cloud Platform 콘솔 메뉴에서 BigQuery 메뉴를 선택">
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -34,8 +36,8 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/riley817.github.io\/bigquery-datagrip\/"
-        },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "data","wordcount":  222 ,
-        "url": "https:\/\/riley817.github.io\/bigquery-datagrip\/","datePublished": "2022-11-24T11:40:17+09:00","dateModified": "2024-06-24T22:08:26+09:00","publisher": {
+        },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "data","wordcount":  212 ,
+        "url": "https:\/\/riley817.github.io\/bigquery-datagrip\/","datePublished": "2023-11-24T11:40:17+09:00","dateModified": "2024-06-29T23:59:44+09:00","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/riley817.github.io\/images\/avatar.png"},"author": {
                 "@type": "Person",
@@ -43,12 +45,12 @@
             },"description": ""
     }
     </script></head>
-    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('light' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'light' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
 
         <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
     <div class="header-wrapper">
         <div class="header-title">
-            <a href="/" title="라일리의 개발 기록장"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i>&nbsp;</span>라일리의 개발 기록장</a>
+            <a href="/" title="🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i>&nbsp;</span>Riley&#39;s CodeCrumbs</a>
         </div>
         <div class="menu">
             <div class="menu-inner"><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
@@ -72,7 +74,7 @@
     <div class="header-container">
         <div class="header-wrapper">
             <div class="header-title">
-                <a href="/" title="라일리의 개발 기록장"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i>&nbsp;</span>라일리의 개발 기록장</a>
+                <a href="/" title="🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i>&nbsp;</span>Riley&#39;s CodeCrumbs</a>
             </div>
             <div class="menu-toggle" id="menu-toggle-mobile">
                 <span></span><span></span><span></span>
@@ -106,52 +108,47 @@
     </div><main class="main">
                 <div class="container"><div class="toc" id="toc-auto">
             <h2 class="toc-title">Contents</h2>
-            <div class="toc-content" id="toc-content-auto"></div>
+            <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">구글 빅쿼리(BigQuery) 시작하기 및 DataGrip 연동</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://github.com/riley817" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-category">included in <a href="/categories/database/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Database</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-11-24">2022-11-24</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;222 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;2 minutes&nbsp;</div>
-        </div><div class="details toc" id="toc-static"  data-kept="">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-11-24">2023-11-24</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;212 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;One minute&nbsp;</div>
+        </div><div class="featured-image"><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/posts/images/dbms/bigquery-datagrip/google-bigquery-logo.png"
+        data-srcset="/posts/images/dbms/bigquery-datagrip/google-bigquery-logo.png, /posts/images/dbms/bigquery-datagrip/google-bigquery-logo.png 1.5x, /posts/images/dbms/bigquery-datagrip/google-bigquery-logo.png 2x"
+        data-sizes="auto"
+        alt="/posts/images/dbms/bigquery-datagrip/google-bigquery-logo.png"
+        title="/posts/images/dbms/bigquery-datagrip/google-bigquery-logo.png" /></div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
                     <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
-    <li><a href="#구글-빅쿼리-시작하기-및-datagrip-연동하기">구글 빅쿼리 시작하기 및 DataGrip 연동하기</a>
+    <li><a href="#구글-계정-생성">구글 계정 생성</a></li>
+    <li><a href="#새-프로젝트-버튼을-클릭하여-프로젝트-생성하기">새 프로젝트 버튼을 클릭하여 프로젝트 생성하기</a></li>
+    <li><a href="#데이터-세트-생성하기">데이터 세트 생성하기</a></li>
+    <li><a href="#서비스-계정-생성하기">서비스 계정 생성하기</a>
       <ul>
-        <li><a href="#구글-클라우드-프로젝트-생성">구글 클라우드 프로젝트 생성</a>
-          <ul>
-            <li><a href="#구글-계정-생성">구글 계정 생성</a></li>
-          </ul>
-        </li>
-        <li><a href="#새-프로젝트-버튼을-클릭하여-프로젝트-생성하기">새 프로젝트 버튼을 클릭하여 프로젝트 생성하기</a></li>
-        <li><a href="#데이터-세트-생성하기">데이터 세트 생성하기</a></li>
-        <li><a href="#서비스-계정-생성하기">서비스 계정 생성하기</a>
-          <ul>
-            <li><a href="#bigquery-용-서비스-계정-생성">BigQuery 용 서비스 계정 생성</a></li>
-            <li><a href="#외부에서-접근할-키-생성">외부에서 접근할 키 생성</a></li>
-          </ul>
-        </li>
-        <li><a href="#datagrip-설정">DataGrip 설정</a></li>
+        <li><a href="#bigquery-용-서비스-계정-생성">BigQuery 용 서비스 계정 생성</a></li>
+        <li><a href="#외부에서-접근할-키-생성">외부에서 접근할 키 생성</a></li>
       </ul>
     </li>
+    <li><a href="#datagrip-설정">DataGrip 설정</a></li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><h2 id="구글-빅쿼리-시작하기-및-datagrip-연동하기">구글 빅쿼리 시작하기 및 DataGrip 연동하기</h2>
-<h3 id="구글-클라우드-프로젝트-생성">구글 클라우드 프로젝트 생성</h3>
-<hr>
-<h4 id="구글-계정-생성">구글 계정 생성</h4>
+            </div><div class="content" id="content"><h2 id="구글-계정-생성">구글 계정 생성</h2>
 <p>기본 90일 동안 $300 크레딧으로 무료 평가판을 사용할 수 있다. 무료 체험 기간이 지나면 무료 체험 중 생성한 리소스는 모두 중지 되며 유료 계정으로 업그레이드 하지 않으면 요금이 부과되지 않는다.
 <figure class="test"><img src="/posts/images/dbms/bigquery-datagrip/bigquery-datagrip-1.png#center">
 </figure>
 </p>
-<h3 id="새-프로젝트-버튼을-클릭하여-프로젝트-생성하기">새 프로젝트 버튼을 클릭하여 프로젝트 생성하기</h3>
+<h2 id="새-프로젝트-버튼을-클릭하여-프로젝트-생성하기">새 프로젝트 버튼을 클릭하여 프로젝트 생성하기</h2>
 <figure><img src="/posts/images/dbms/bigquery-datagrip/bigquery-datagrip-3.png#center">
 </figure>
 
-<h3 id="데이터-세트-생성하기">데이터 세트 생성하기</h3>
-<hr>
+<h2 id="데이터-세트-생성하기">데이터 세트 생성하기</h2>
 <p><a href="https://cloud.google.com/bigquery/docs/datasets-intro?hl=ko" target="_blank" rel="noopener noreffer">데이터 세트</a>는 테이블과 뷰에 대한 액세스를 구성 및 제어하는 최상위 컨테이너이다. 테이블이나 뷰는 반드시 데이터 세트에 속해야 하므로 최소 한 개 이상의 데이터 세트를 구성해야 한다.</p>
 <p><figure><img src="/posts/images/dbms/bigquery-datagrip/bigquery-datagrip-6.png#center"
     alt="Google Cloud Platform 콘솔 메뉴에서 BigQuery 메뉴를 선택" width="50%"><figcaption>
@@ -177,10 +174,9 @@
     </figcaption>
 </figure>
 </p>
-<h3 id="서비스-계정-생성하기">서비스 계정 생성하기</h3>
-<hr>
+<h2 id="서비스-계정-생성하기">서비스 계정 생성하기</h2>
 <p>외부에서 GCP 서비스에 접근하고 BigQuery를 사용하기 위해서는 접근 계정과 사용할 수 있는 롤이 정의되어야 한다. <strong>Identity and Access Management(IAM)</strong> 기능을 통해 서비스 계정을 생성하고 롤을 정의한다.</p>
-<h4 id="bigquery-용-서비스-계정-생성">BigQuery 용 서비스 계정 생성</h4>
+<h3 id="bigquery-용-서비스-계정-생성">BigQuery 용 서비스 계정 생성</h3>
 <p><figure><img src="/posts/images/dbms/bigquery-datagrip/bigquery-datagrip-10.png#center"
     alt="[IAM 및 관리자]-[서비스 계정] 메뉴를 선택한다." width="50%"><figcaption>
       <p>[IAM 및 관리자]-[서비스 계정] 메뉴를 선택한다.</p>
@@ -205,7 +201,7 @@
     </figcaption>
 </figure>
 </p>
-<h4 id="외부에서-접근할-키-생성">외부에서 접근할 키 생성</h4>
+<h3 id="외부에서-접근할-키-생성">외부에서 접근할 키 생성</h3>
 <p>키를 만들면 자동으로 JSON 파일의 키가 다운로드 된다.
 <figure><img src="/posts/images/dbms/bigquery-datagrip/bigquery-datagrip-14.png#center"
     alt="[작업]-[키관리] 드롭다운 메뉴 선택"><figcaption>
@@ -225,8 +221,7 @@
     </figcaption>
 </figure>
 </p>
-<h3 id="datagrip-설정">DataGrip 설정</h3>
-<hr>
+<h2 id="datagrip-설정">DataGrip 설정</h2>
 <p><code>Project ID</code>, <code>Service account email</code> 등 항목을 입력해준다. <code>Key file</code>은 위에서 다운로드된 JSON 파일의 경로를 설정해준다. 만약 관련 드라이버가 잘 설치되지 않아 접속되지 않으면 <a href="https://cloud.google.com/bigquery/docs/reference/odbc-jdbc-drivers?insvid=165c7bd5951c5482--1536654613358&amp;hl=ko" target="_blank" rel="noopener noreffer">BigQuery 용 ODBC 및 JDBC 드라이버</a> 별도로 설치 후 진행한다.
 <figure><img src="/posts/images/dbms/bigquery-datagrip/bigquery-datagrip-17.png#center">
 </figure>
@@ -235,8 +230,8 @@
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 2024-06-24&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/23c45c8708c6ff29696def98046311196cf3bb44" target="_blank" title="commit by riley(41636282&#43;riley817@users.noreply.github.com) 23c45c8708c6ff29696def98046311196cf3bb44: Update main.yml">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>23c45c8</a></span>
+                <span>Updated on 2024-06-29&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/b7aad3025e10b4e333b45c35ce1386d01ceab0d3" target="_blank" title="commit by riley817(riley0422@icloud.com) b7aad3025e10b4e333b45c35ce1386d01ceab0d3: Merge branch &#39;develop&#39;">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>b7aad30</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>
@@ -253,8 +248,8 @@
         </section>
     </div>
 
-    <div class="post-nav"><a href="/sql-recipe-4-2/" class="prev" rel="prev" title="데이터 분석을 위한 SQL 레시피 - 4장 시계열 기반으로 데이터 집계하기"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>데이터 분석을 위한 SQL 레시피 - 4장 시계열 기반으로 데이터 집계하기</a>
-            <a href="/sql-recipe-5-1/" class="next" rel="next" title="데이터 분석을 위한 SQL 레시피 - 5장 사용자를 파악하기 위한 데이터 추출">데이터 분석을 위한 SQL 레시피 - 5장 사용자를 파악하기 위한 데이터 추출<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+    <div class="post-nav"><a href="/sql-recipe-4-2/" class="prev" rel="prev" title="데이터 분석을 위한 SQL 레시피 - 4장 시계열 기반으로 데이터 집계하기 (2)"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>데이터 분석을 위한 SQL 레시피 - 4장 시계열 기반으로 데이터 집계하기 (2)</a>
+            <a href="/sql-recipe-5-1/" class="next" rel="next" title="데이터 분석을 위한 SQL 레시피 - 5장 사용자를 파악하기 위한 데이터 추출 (1)">데이터 분석을 위한 SQL 레시피 - 5장 사용자를 파악하기 위한 데이터 추출 (1)<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
 </div>
 <div id="comments"><script src="https://utteranc.es/client.js"
             repo="riley817/blog-comment"
@@ -266,7 +261,7 @@
         </script>
     </div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.127.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.128.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
                 </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/riley817" target="_blank">Riley</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

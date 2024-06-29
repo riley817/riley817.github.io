@@ -1,15 +1,23 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>Categories - Category - 라일리의 개발 기록장</title>
+        <title>Categories - Category - 🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖</title>
         <link>https://riley817.github.io/categories/</link>
-        <description>Categories - Category - 라일리의 개발 기록장</description>
+        <description>Categories - Category - 🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
-            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Mon, 22 Jan 2024 10:04:54 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/categories/" rel="self" type="application/rss+xml" /><item>
-    <title>클린코드</title>
-    <link>https://riley817.github.io/categories/%ED%81%B4%EB%A6%B0%EC%BD%94%EB%93%9C/</link>
-    <pubDate>Mon, 22 Jan 2024 10:04:54 &#43;0900</pubDate>
+            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Fri, 24 Nov 2023 21:39:17 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/categories/" rel="self" type="application/rss+xml" /><item>
+    <title>데이터 분석을 위한 SQL 레시피</title>
+    <link>https://riley817.github.io/categories/%EB%8D%B0%EC%9D%B4%ED%84%B0-%EB%B6%84%EC%84%9D%EC%9D%84-%EC%9C%84%ED%95%9C-sql-%EB%A0%88%EC%8B%9C%ED%94%BC/</link>
+    <pubDate>Fri, 24 Nov 2023 21:39:17 &#43;0900</pubDate>
     <author>Riley</author>
-    <guid>https://riley817.github.io/categories/%ED%81%B4%EB%A6%B0%EC%BD%94%EB%93%9C/</guid>
+    <guid>https://riley817.github.io/categories/%EB%8D%B0%EC%9D%B4%ED%84%B0-%EB%B6%84%EC%84%9D%EC%9D%84-%EC%9C%84%ED%95%9C-sql-%EB%A0%88%EC%8B%9C%ED%94%BC/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>Database</title>
+    <link>https://riley817.github.io/categories/database/</link>
+    <pubDate>Fri, 24 Nov 2023 11:40:17 &#43;0900</pubDate>
+    <author>Riley</author>
+    <guid>https://riley817.github.io/categories/database/</guid>
     <description><![CDATA[]]></description>
 </item>
 <item>
@@ -23,7 +31,7 @@
 <item>
     <title>Go 언어를 활용한 네트워크 프로그래밍</title>
     <link>https://riley817.github.io/categories/go-%EC%96%B8%EC%96%B4%EB%A5%BC-%ED%99%9C%EC%9A%A9%ED%95%9C-%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/</link>
-    <pubDate>Mon, 10 Apr 2023 23:24:37 &#43;0900</pubDate>
+    <pubDate>Tue, 07 Mar 2023 21:27:33 &#43;0900</pubDate>
     <author>Riley</author>
     <guid>https://riley817.github.io/categories/go-%EC%96%B8%EC%96%B4%EB%A5%BC-%ED%99%9C%EC%9A%A9%ED%95%9C-%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/</guid>
     <description><![CDATA[]]></description>
@@ -37,27 +45,11 @@
     <description><![CDATA[]]></description>
 </item>
 <item>
-    <title>Database</title>
-    <link>https://riley817.github.io/categories/database/</link>
-    <pubDate>Wed, 15 Feb 2023 15:17:26 &#43;0900</pubDate>
-    <author>Riley</author>
-    <guid>https://riley817.github.io/categories/database/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
     <title>Etc</title>
     <link>https://riley817.github.io/categories/etc/</link>
     <pubDate>Mon, 23 Jan 2023 19:11:56 &#43;0900</pubDate>
     <author>Riley</author>
     <guid>https://riley817.github.io/categories/etc/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>데이터 분석을 위한 SQL 레시피</title>
-    <link>https://riley817.github.io/categories/%EB%8D%B0%EC%9D%B4%ED%84%B0-%EB%B6%84%EC%84%9D%EC%9D%84-%EC%9C%84%ED%95%9C-sql-%EB%A0%88%EC%8B%9C%ED%94%BC/</link>
-    <pubDate>Thu, 24 Nov 2022 21:39:17 &#43;0900</pubDate>
-    <author>Riley</author>
-    <guid>https://riley817.github.io/categories/%EB%8D%B0%EC%9D%B4%ED%84%B0-%EB%B6%84%EC%84%9D%EC%9D%84-%EC%9C%84%ED%95%9C-sql-%EB%A0%88%EC%8B%9C%ED%94%BC/</guid>
     <description><![CDATA[]]></description>
 </item>
 <item>
@@ -82,6 +74,14 @@
     <pubDate>Tue, 26 Apr 2022 14:50:36 &#43;0900</pubDate>
     <author>Riley</author>
     <guid>https://riley817.github.io/categories/tucker%EC%9D%98-go-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>Docker/Kubernetes</title>
+    <link>https://riley817.github.io/categories/docker/kubernetes/</link>
+    <pubDate>Wed, 20 Apr 2022 16:00:00 &#43;0900</pubDate>
+    <author>Riley</author>
+    <guid>https://riley817.github.io/categories/docker/kubernetes/</guid>
     <description><![CDATA[]]></description>
 </item>
 </channel>

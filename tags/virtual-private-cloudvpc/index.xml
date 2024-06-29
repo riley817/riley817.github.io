@@ -1,8 +1,8 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>Virtual Private Cloud(VPC) - Tag - 라일리의 개발 기록장</title>
+        <title>Virtual Private Cloud(VPC) - Tag - 🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖</title>
         <link>https://riley817.github.io/tags/virtual-private-cloudvpc/</link>
-        <description>Virtual Private Cloud(VPC) - Tag - 라일리의 개발 기록장</description>
+        <description>Virtual Private Cloud(VPC) - Tag - 🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
             <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Mon, 15 Aug 2022 17:26:41 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/tags/virtual-private-cloudvpc/" rel="self" type="application/rss+xml" /><item>
     <title>28. AWS Virtual Private Cloud(VPC)</title>
@@ -10,7 +10,9 @@
     <pubDate>Mon, 15 Aug 2022 17:26:41 &#43;0900</pubDate>
     <author>riley</author>
     <guid>https://riley817.github.io/aws-28-vpc/</guid>
-    <description><![CDATA[CIDR - IPv4 Classless Inter-Domain Routing : IP 주소 할당 방법 Security Groups : 규칙 및 AWS 네트워킹에 일반적으로 사용 Base IP : 범위에 포함된 IP를 나타냄 (e.g., 10.0.0.0, 192.168.0.0 &hellip;) Subnet Mask IP에서 변경할 수 있는 비트 수를 정의 (e.g., /0, /24, /32) /8 : 255.0.0.0 /16 : 255.255.0.0 /24 : 255.255.255.0 /32 : 255.255.255.255 Subnet Mask Subnet Mask 사용하면 기본적으로 기본IP에서 다음 값을 추가로 가져올 수 있다.
+    <description><![CDATA[<div class="featured-image">
+                <img src="/posts/images/aws/cloud-service-thumbnail.png" referrerpolicy="no-referrer">
+            </div>CIDR - IPv4 Classless Inter-Domain Routing : IP 주소 할당 방법 Security Groups : 규칙 및 AWS 네트워킹에 일반적으로 사용 Base IP : 범위에 포함된 IP를 나타냄 (e.g., 10.0.0.0, 192.168.0.0 &hellip;) Subnet Mask IP에서 변경할 수 있는 비트 수를 정의 (e.g., /0, /24, /32) /8 : 255.0.0.0 /16 : 255.255.0.0 /24 : 255.255.255.0 /32 : 255.255.255.255 Subnet Mask Subnet Mask 사용하면 기본적으로 기본IP에서 다음 값을 추가로 가져올 수 있다.
 IPLocationTools IP/Subnet Mask 192.]]></description>
 </item>
 </channel>

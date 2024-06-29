@@ -1,8 +1,8 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>Elasticsearch - Tag - 라일리의 개발 기록장</title>
+        <title>Elasticsearch - Tag - 🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖</title>
         <link>https://riley817.github.io/tags/elasticsearch/</link>
-        <description>Elasticsearch - Tag - 라일리의 개발 기록장</description>
+        <description>Elasticsearch - Tag - 🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
             <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Sun, 21 Mar 2021 13:21:04 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/tags/elasticsearch/" rel="self" type="application/rss+xml" /><item>
     <title>[Elastic Cloud] nginx 로그를 Elasticsearch Cloud로 수집하기</title>
@@ -36,79 +36,81 @@ Elastic Cloud 구조 작업 목표 On-promise로 구성되어 있는 검색어 �
 1 2 3 4 5 6 yoon@Azure:~$ az vm create \ &gt; --resource-group elastic \ &gt; --name rileyVM \ &gt; --image UbuntuLTS \ &gt; --admin-username riley \ &gt; --generate-ssh-keys 빠른 시작: Azure CLI를 사용하여 Linux VM 만들기 - Azure Virtual Machines SSH 접속 세팅 VM 생성 시 --generate-ssh-ke 의 옵션을 주어 SSH Key를 생성하였다.]]></description>
 </item>
 <item>
-    <title>[Elasticsearch 검색 엔진 구축 강의] 4. Elasticsearch 기본 동작</title>
+    <title>[Elasticsearch 검색 엔진 구축 강의] Elasticsearch 기본 동작</title>
     <link>https://riley817.github.io/elasticsearch-lecture4/</link>
     <pubDate>Tue, 27 Nov 2018 13:11:45 &#43;0900</pubDate>
     <author>riley</author>
     <guid>https://riley817.github.io/elasticsearch-lecture4/</guid>
     <description><![CDATA[<div class="featured-image">
-                <img src="/posts/images/elastic/9SyGqYLhMmYxEJyNUf.png" referrerpolicy="no-referrer">
-            </div>인덱스 생성, 삭제 및 조회하기 1. 인덱스 생성하기 인덱스는 문서document의 모음이다. 인덱스를 생성하는 방법 Index Settings를 정의한다. Index Mappings를 정의한다. 사용자 정의된 도큐먼트를 인덱싱한다. 2. 인덱스의 settings Static Index Settings index.number_of_shards : 인덱스가 가져야 하는 Primary 샤드의 개수 설정. 기본값 5 Dynamic Index Settings index.number_of_replicas : 각 기본 샤드의 복제본 (Replica 샤드 개수 설정). 기본값은 1 index.refresh_interval : 검색 commit point 를 만드는 refresh interval 설정 (새로 고침 작업수행 빈도). -1 비활성화.]]></description>
+                <img src="/posts/images/elastic/elasticsearch-lecture.png" referrerpolicy="no-referrer">
+            </div>1. 인덱스 생성하기 인덱스는 문서document의 모음이다. 인덱스를 생성하는 방법 Index Settings를 정의한다. Index Mappings를 정의한다. 사용자 정의된 도큐먼트를 인덱싱한다. 2. 인덱스의 settings Static Index Settings index.number_of_shards : 인덱스가 가져야 하는 Primary 샤드의 개수 설정. 기본값 5 Dynamic Index Settings index.number_of_replicas : 각 기본 샤드의 복제본 (Replica 샤드 개수 설정). 기본값은 1 index.refresh_interval : 검색 commit point 를 만드는 refresh interval 설정 (새로 고침 작업수행 빈도). -1 비활성화. 기본값 1s index.routing.allocation.enable : 인덱스의 샤드들의 라우팅 허용 설정 Other Settings Analysis, Mapping, Slowlog &hellip; 3.]]></description>
 </item>
 <item>
-    <title>[Elasticsearch 검색 엔진 구축 강의] 3.5 그 외 설정</title>
+    <title>[Elasticsearch 검색 엔진 구축 강의] 그 외 설정</title>
     <link>https://riley817.github.io/elasticsearch-lecture3-5/</link>
     <pubDate>Mon, 05 Nov 2018 23:38:01 &#43;0900</pubDate>
     <author>riley</author>
     <guid>https://riley817.github.io/elasticsearch-lecture3-5/</guid>
     <description><![CDATA[<div class="featured-image">
-                <img src="/posts/images/elastic/9SyGqYLhMmYxEJyNUf.png" referrerpolicy="no-referrer">
-            </div>Other Settings /etc/security/limits.conf Elasticsearch 는 많은 파일을 쓰거나 핸들링하게 된다. 열 수 있는 File descriptor가 부족하면 데이터의 손실로 이어질 수 있으며 실행할 수 있는 최대 File Descriptor 를 65,536 개 이상으로 설정하도록 한다.
-vi /etc/security/limits.conf 1 2 elasticsearch soft nofile 65536 elasticsearch hard nofile 65536 Thread 수 Elasticsearch 는 여러 유형의 작업에 대해 많은 Thread Pool을 사용하게 된다.. Elasticsearch 사용자가 만들 수 있는 Thread 가 4096 개 이상인지 확인한다. 1 2 elasticsearch soft noproc 4096 elasticsearch hard noproc 4096 Sysconfig file RPM 또는 Debian 패키지를 사용하여 시스템 설정 및 환경 변수를 지정할 수 있다.]]></description>
+                <img src="/posts/images/elastic/elasticsearch-lecture.png" referrerpolicy="no-referrer">
+            </div>limits.conf Elasticsearch 는 많은 파일을 쓰거나 핸들링하게 된다. 열 수 있는 File descriptor가 부족하면 데이터의 손실로 이어질 수 있으며 실행할 수 있는 최대 File Descriptor 를 65,536 개 이상으로 설정하도록 한다.
+vi /etc/security/limits.conf
+1 2 elasticsearch soft nofile 65536 elasticsearch hard nofile 65536 Thread 수 Elasticsearch 는 여러 유형의 작업에 대해 많은 Thread Pool을 사용하게 된다. Elasticsearch 사용자가 만들 수 있는 Thread 가 4096 개 이상인지 확인한다.
+1 2 elasticsearch soft noproc 4096 elasticsearch hard noproc 4096 Sysconfig file RPM 또는 Debian 패키지를 사용하여 시스템 설정 및 환경 변수를 지정할 수 있다.]]></description>
 </item>
 <item>
-    <title>[Elasticsearch 검색 엔진 구축 강의] 3.4 log4j2.properties</title>
+    <title>[Elasticsearch 검색 엔진 구축 강의] log4j2.properties</title>
     <link>https://riley817.github.io/elasticsearch-lecture3-4/</link>
     <pubDate>Mon, 05 Nov 2018 23:15:23 &#43;0900</pubDate>
     <author>riley</author>
     <guid>https://riley817.github.io/elasticsearch-lecture3-4/</guid>
     <description><![CDATA[<div class="featured-image">
-                <img src="/posts/images/elastic/9SyGqYLhMmYxEJyNUf.png" referrerpolicy="no-referrer">
+                <img src="/posts/images/elastic/elasticsearch-lecture.png" referrerpolicy="no-referrer">
             </div>log4j2.properties Elasticsearch는 로깅을 위해 Log4j2를 사용한다. Log4j2는 log4j2.properties 파일을 사용하여 구성할 수 있다.
-로그참조 파일 ${sys:es.logs.base_path} 로그의 Base 디렉토리 elasticsearch.yml 의 path.log에 설정된 경로 ${sys:es.logs.cluster_name} 클러스트 이름을 나타낸다. elasticsearch.yml 의 cluster.name으로 설정할 수 있다. ${sys:es.logs.node_name} 노드의 이름을 나타냅니다. elasticsearch.yml 의 node.name으로 설정할 수 있다. 1 2 ex) ${sys:es.logs.base_path}${sys:file.separator}${sys:es.logs.cluster_name}.log /var/log/elasticsearch/mycluster.log ]]></description>
+로그참조 파일 ${sys:es.logs.base_path} 로그의 Base 디렉토리 elasticsearch.yml 의 path.log에 설정된 경로 ${sys:es.logs.cluster_name} 클러스트 이름을 나타낸다. elasticsearch.yml 의 cluster.name으로 설정할 수 있다. ${sys:es.logs.node_name} 노드의 이름을 나타냅니다. elasticsearch.yml 의 node.name으로 설정할 수 있다. 1 2 ${sys:es.logs.base_path}${sys:file.separator}${sys:es.logs.cluster_name}.log /var/log/elasticsearch/mycluster.log ]]></description>
 </item>
 <item>
-    <title>[Elasticsearch 검색 엔진 구축 강의] 3.3 jvm.options</title>
+    <title>[Elasticsearch 검색 엔진 구축 강의] jvm.options</title>
     <link>https://riley817.github.io/elasticsearch-lecture3-3/</link>
     <pubDate>Mon, 05 Nov 2018 22:13:59 &#43;0900</pubDate>
     <author>riley</author>
     <guid>https://riley817.github.io/elasticsearch-lecture3-3/</guid>
     <description><![CDATA[<div class="featured-image">
-                <img src="/posts/images/elastic/9SyGqYLhMmYxEJyNUf.png" referrerpolicy="no-referrer">
+                <img src="/posts/images/elastic/elasticsearch-lecture.png" referrerpolicy="no-referrer">
             </div>jvm.options jvm.options 의 설정을 통해 JVM(Java Virtual Machine) 의 옵션을 변경할 수 있다. 설정 파일은 config/jvm.options(tar or zip 배포판) 또는 /etc/elasticsearch/jvm.options(rpm 패키지 설치) 에서 위치하고 있다. JVM Heap Size Configuration Elasticsearch 는 Java 기반이기 때문에 Heap 메모리를 어떻게 설정하느냐에 따라 성능에 큰 영향을 미치게 된다. 기본적으로 Elasticsearch 의 최소, 최대 Heap 사이즈는 2GB로 설정되어 있다. 실제 운영환경에 따라서 Elasticsearch 에서 충분한 Heap 을 사용할 수 있도록 Heap Size 를 구성하는 것이 중요하다.]]></description>
 </item>
 <item>
-    <title>[Elasticsearch 검색 엔진 구축 강의] 3.2 elasticsearch.yml</title>
+    <title>[Elasticsearch 검색 엔진 구축 강의] elasticsearch.yml</title>
     <link>https://riley817.github.io/elasticsearch-lecture3-2/</link>
     <pubDate>Fri, 02 Nov 2018 18:20:19 &#43;0900</pubDate>
     <author>riley</author>
     <guid>https://riley817.github.io/elasticsearch-lecture3-2/</guid>
     <description><![CDATA[<div class="featured-image">
-                <img src="/posts/images/elastic/9SyGqYLhMmYxEJyNUf.png" referrerpolicy="no-referrer">
+                <img src="/posts/images/elastic/elasticsearch-lecture.png" referrerpolicy="no-referrer">
             </div>elasticsearch.yml elasticsearch.yml 은 데이터 파일 위치, 로그파일 위치 등 클러스터의 핵심적인 설정을 할 수 있는 구성 파일이다. 파일 포맷은 YAML 로 되어있다.
 1 2 3 4 5 6 7 8 9 10 11 12 13 14 # path.data : 데이터파일의 위치를 설정 # path.logs : ES 의 로그 파일이 저장될 위치를 설정 path: data: /var/lib/elasticsearch logs: /var/log/elasticsearch # 클러스터를 고유하게 식별할 수 있는 이름 설정 cluster: name: es-cluster # 노드를 고유하게 식별할 수 있는 이름설정 # 보통 호스트명 기준으로 설정하는 것이 운영에 용이 node: name: es-master01 path.]]></description>
 </item>
 <item>
-    <title>[Elasticsearch 검색 엔진 구축 강의] 3.1 Elasticsearch 구성하기</title>
+    <title>[Elasticsearch 검색 엔진 구축 강의] Elasticsearch 구성하기</title>
     <link>https://riley817.github.io/elasticsearch-lecture3-1/</link>
     <pubDate>Fri, 02 Nov 2018 17:11:00 &#43;0900</pubDate>
     <author>riley</author>
     <guid>https://riley817.github.io/elasticsearch-lecture3-1/</guid>
     <description><![CDATA[<div class="featured-image">
-                <img src="/posts/images/elastic/9SyGqYLhMmYxEJyNUf.png" referrerpolicy="no-referrer">
+                <img src="/posts/images/elastic/elasticsearch-lecture.png" referrerpolicy="no-referrer">
             </div>Elasticsearch 는 정적으로 설정을 구성할 수 있을 뿐만 아니라 클러스터 운영중에도 클러스터 세팅 업데이트 API 를 통하여 동적인 설정 구성이 가능하다.
-Static settings Elasticsearch는 노드별로 설정파일을 구성할 수 있다. Elasticsearch 에는 세 개의 구성 파일이 있으며, 이 설정 파일들의 위치는 아카이브 배포판 설치시에는 $ES_HOME/config, 패키지 배포시에는 (RPM 설치 등) /etc/elasticsearch 에 위치한다.
+Static settings Elasticsearch는 노드별로 설정파일을 구성할 수 있다. Elasticsearch에는 세 개의 구성 파일이 있으며 이 설정 파일들의 위치는 아카이브 배포판 설치시에는 $ES_HOME/config, 패키지 배포시에는 (RPM 설치 등) /etc/elasticsearch 에 위치한다.
 elasticsearch.yml : Elasticsearch 의 핵심 설정 jvm.options : JVM 옵션 설정 ( heapsize 설정 ) log4j2.properties : Elasticsearch 의 logging 설정 Dynamic settings 클러스터에 REST API 로 호출하여 클러스터를 운영중에도 구성 설정을 변경 할 수 있다.]]></description>
 </item>
 <item>
-    <title>[Elasticsearch 검색 엔진 구축 강의] 2.5 Elasticsearch 플러그인</title>
+    <title>[Elasticsearch 검색 엔진 구축 강의] Elasticsearch 플러그인</title>
     <link>https://riley817.github.io/elasticsearch-lecture2-5/</link>
     <pubDate>Tue, 30 Oct 2018 15:49:11 &#43;0900</pubDate>
     <author>riley</author>
     <guid>https://riley817.github.io/elasticsearch-lecture2-5/</guid>
     <description><![CDATA[<div class="featured-image">
-                <img src="/posts/images/elastic/9SyGqYLhMmYxEJyNUf.png" referrerpolicy="no-referrer">
-            </div>Elasticsearch 플러그인 플러그인은 사용자 정의 방식에 의해 ES 의 긴능을 향상 시키는 방법이다. 플러그인은 모든 노드에 설치해야 하며 설치 후 클러스터를 재시작 해야 한다. 플러그인 범주 Core Plugins (권고) Elasticsearch 에서 공식적으로 지원하는 플러그인 Elasticsearch 버전이 업데이트 될때마다 버전 업데이트가 지원됨. Community contributed 개인 개발자나 회사에 의해 지원되는 플러그인 참고 Elasticsearch Reference - modules-plugins. ]]></description>
+                <img src="/posts/images/elastic/elasticsearch-lecture.png" referrerpolicy="no-referrer">
+            </div>Elasticsearch 플러그인 플러그인은 사용자 정의 방식에 의해 Elasticsearch의 기능을 향상 시키는 방법이다. 플러그인은 모든 노드에 설치해야 하며 설치 후 클러스터를 재시작 해야 한다. 플러그인 범주 Core Plugins (권고) Elasticsearch 에서 공식적으로 지원하는 플러그인 Elasticsearch 버전이 업데이트 될때마다 버전 업데이트가 지원됨. Community contributed 개인 개발자나 회사에 의해 지원되는 플러그인 참고 Elasticsearch Reference - modules-plugins. ]]></description>
 </item>
 </channel>
 </rss>

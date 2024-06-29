@@ -5,12 +5,10 @@
 팀 내에서 진행하는 Study 정리 입니다.
 {{< /admonition >}} 
 
-# 함께 논의하고 싶은 주제
----
+{{< admonition type=question title="함께 논의하고 싶은 주제" open=true >}}
 - 우리 서비스의 검색기능은 아직 없지만 인스타그램처럼 태그, 유저, 장소 등 통합 검색 기능이 추가되면 어떤 구조를 가져가면 좋을까요?
+{{< /admonition >}}
 
-# 요약
----
 ## 단일서버
 모든 컴포넌트가 단 한대의 서버에서 실행되는 간단한 시스템
 
@@ -63,7 +61,7 @@
 
 
 ## 로드밸런서와 데이터베이스 다중화를 고려한 설계안
-{{<image src="/posts/images/system-design-interview/load-balancer-database-replication.png" width="50%">}}
+{{<image src="/posts/images/system-design-interview/load-balancer-database-replication.png" caption="로드밸런서와 데이터베이스 다중화를 고려한 설계" width="100%">}}
 
 - 사용자는 DNS로부터 로드밸런서의 공개 IP 주소를 받는다.
 - 사용자는 해당 IP 주소를 사용해 로드밸런서에 접속

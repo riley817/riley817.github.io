@@ -4,16 +4,16 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>[Mastering Spring 5.0] 6.5 Spring Security - Basic authentication - 라일리의 개발 기록장</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:url" content="https://riley817.github.io/page-6-5/">
-  <meta property="og:site_name" content="라일리의 개발 기록장">
+        <title>[Mastering Spring 5.0] 6.5 Spring Security - Basic authentication - 🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:url" content="https://riley817.github.io/page-6-5/">
+  <meta property="og:site_name" content="🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖">
   <meta property="og:title" content="[Mastering Spring 5.0] 6.5 Spring Security - Basic authentication">
-  <meta property="og:description" content="스프링 시큐리티로 REST 서비스 보호 최근에는 서비스 시스템들끼리 REST API 기반의 통신이 많이 이루어지고 있다. 네이티브 앱과 서버 간 통신뿐만 아니라 자바스크립트 웹 클라이언트 와 서버간에도 REST API 통신을 많이 사용하기 때문에 REST 서비스(리소스) 에 대한 보안이 중요해 지고 있다.
-인증(Authentication) 과 권한 (Authorization) 인증(Authentication): 소비자(클라이언트) 가 서비스(리소스) 에 접근이 가능한 소비자인지 인가/권한부여(Authorization) : 접근이 가능하지만 해당 작업을 소비자(클라이언트) 에게 허용할것인지 인증방식은 다양하며, 전통적인 인증방식으로는 사용자명Principle과 비밀번호Credential 로 인증하는 Credential 기반 인증 방식 과 OTP 등과 같이 추가적인 인증방식을 도입해 2가지 방법으로 인증하는 이중 인증 방식 과 최근에는 OAuth2 인증방식 도 필수적으로 사용되고 있다.">
+  <meta property="og:description" content="스프링 5.0 마스터 스터디 스프링 5.0 마스터 스터디 학습 내용 정리입니다. 스프링 시큐리티로 REST 서비스 보호 최근에는 서비스 시스템들끼리 REST API 기반의 통신이 많이 이루어지고 있다. 네이티브 앱과 서버 간 통신뿐만 아니라 자바스크립트 웹 클라이언트 와 서버간에도 REST API 통신을 많이 사용하기 때문에 REST 서비스(리소스) 에 대한 보안이 중요해 지고 있다.
+인증(Authentication) 과 권한 (Authorization) 인증(Authentication): 소비자(클라이언트) 가 서비스(리소스) 에 접근이 가능한 소비자인지 인가/권한부여(Authorization) : 접근이 가능하지만 해당 작업을 소비자(클라이언트) 에게 허용할것인지 인증방식은 다양하며, 전통적인 인증방식으로는 사용자명(Principle)과 비밀번호(Credential)로 인증하는 Credential 기반 인증 방식 과 OTP 등과 같이 추가적인 인증방식을 도입해 2가지 방법으로 인증하는 이중 인증 방식 과 최근에는 OAuth2 인증방식 도 필수적으로 사용되고 있다.">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2018-12-09T17:53:39+09:00">
-    <meta property="article:modified_time" content="2024-06-24T22:08:26+09:00">
+    <meta property="article:published_time" content="2018-12-12T22:32:09+09:00">
+    <meta property="article:modified_time" content="2024-06-29T23:59:44+09:00">
     <meta property="article:tag" content="Spring Framework">
     <meta property="article:tag" content="Spring Security">
     <meta property="og:image" content="https://riley817.github.io/icon.png">
@@ -21,12 +21,12 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://riley817.github.io/icon.png">
   <meta name="twitter:title" content="[Mastering Spring 5.0] 6.5 Spring Security - Basic authentication">
-  <meta name="twitter:description" content="스프링 시큐리티로 REST 서비스 보호 최근에는 서비스 시스템들끼리 REST API 기반의 통신이 많이 이루어지고 있다. 네이티브 앱과 서버 간 통신뿐만 아니라 자바스크립트 웹 클라이언트 와 서버간에도 REST API 통신을 많이 사용하기 때문에 REST 서비스(리소스) 에 대한 보안이 중요해 지고 있다.
-인증(Authentication) 과 권한 (Authorization) 인증(Authentication): 소비자(클라이언트) 가 서비스(리소스) 에 접근이 가능한 소비자인지 인가/권한부여(Authorization) : 접근이 가능하지만 해당 작업을 소비자(클라이언트) 에게 허용할것인지 인증방식은 다양하며, 전통적인 인증방식으로는 사용자명Principle과 비밀번호Credential 로 인증하는 Credential 기반 인증 방식 과 OTP 등과 같이 추가적인 인증방식을 도입해 2가지 방법으로 인증하는 이중 인증 방식 과 최근에는 OAuth2 인증방식 도 필수적으로 사용되고 있다.">
+  <meta name="twitter:description" content="스프링 5.0 마스터 스터디 스프링 5.0 마스터 스터디 학습 내용 정리입니다. 스프링 시큐리티로 REST 서비스 보호 최근에는 서비스 시스템들끼리 REST API 기반의 통신이 많이 이루어지고 있다. 네이티브 앱과 서버 간 통신뿐만 아니라 자바스크립트 웹 클라이언트 와 서버간에도 REST API 통신을 많이 사용하기 때문에 REST 서비스(리소스) 에 대한 보안이 중요해 지고 있다.
+인증(Authentication) 과 권한 (Authorization) 인증(Authentication): 소비자(클라이언트) 가 서비스(리소스) 에 접근이 가능한 소비자인지 인가/권한부여(Authorization) : 접근이 가능하지만 해당 작업을 소비자(클라이언트) 에게 허용할것인지 인증방식은 다양하며, 전통적인 인증방식으로는 사용자명(Principle)과 비밀번호(Credential)로 인증하는 Credential 기반 인증 방식 과 OTP 등과 같이 추가적인 인증방식을 도입해 2가지 방법으로 인증하는 이중 인증 방식 과 최근에는 OAuth2 인증방식 도 필수적으로 사용되고 있다.">
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://riley817.github.io/page-6-5/" /><link rel="prev" href="https://riley817.github.io/page-6-6/" /><link rel="next" href="https://riley817.github.io/page-6-4/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://riley817.github.io/page-6-5/" /><link rel="prev" href="https://riley817.github.io/page-6-4/" /><link rel="next" href="https://riley817.github.io/start-python-using-pyenv/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
     {
@@ -37,8 +37,8 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/riley817.github.io\/page-6-5\/"
-        },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Spring Framework, Spring Security","wordcount":  429 ,
-        "url": "https:\/\/riley817.github.io\/page-6-5\/","datePublished": "2018-12-09T17:53:39+09:00","dateModified": "2024-06-24T22:08:26+09:00","publisher": {
+        },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Spring Framework, Spring Security","wordcount":  437 ,
+        "url": "https:\/\/riley817.github.io\/page-6-5\/","datePublished": "2018-12-12T22:32:09+09:00","dateModified": "2024-06-29T23:59:44+09:00","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/riley817.github.io\/images\/avatar.png"},"author": {
                 "@type": "Person",
@@ -46,12 +46,12 @@
             },"description": ""
     }
     </script></head>
-    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('light' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'light' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
 
         <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
     <div class="header-wrapper">
         <div class="header-title">
-            <a href="/" title="라일리의 개발 기록장"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i>&nbsp;</span>라일리의 개발 기록장</a>
+            <a href="/" title="🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i>&nbsp;</span>Riley&#39;s CodeCrumbs</a>
         </div>
         <div class="menu">
             <div class="menu-inner"><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
@@ -75,7 +75,7 @@
     <div class="header-container">
         <div class="header-wrapper">
             <div class="header-title">
-                <a href="/" title="라일리의 개발 기록장"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i>&nbsp;</span>라일리의 개발 기록장</a>
+                <a href="/" title="🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i>&nbsp;</span>Riley&#39;s CodeCrumbs</a>
             </div>
             <div class="menu-toggle" id="menu-toggle-mobile">
                 <span></span><span></span><span></span>
@@ -112,23 +112,42 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">[Mastering Spring 5.0] 6.5 Spring Security - Basic authentication</h1><h2 class="single-subtitle">Mastering Spring 5.0 스터디</h2><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://github.com/riley817" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-category">included in <a href="/categories/mastering-spring-5.0/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Mastering Spring 5.0</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2018-12-09">2018-12-09</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;429 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2018-12-12">2018-12-12</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;437 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;3 minutes&nbsp;</div>
-        </div><div class="details toc" id="toc-static"  data-kept="">
+        </div><div class="featured-image"><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/posts/images/spring/mastering-spring5-thumbnail.png"
+        data-srcset="/posts/images/spring/mastering-spring5-thumbnail.png, /posts/images/spring/mastering-spring5-thumbnail.png 1.5x, /posts/images/spring/mastering-spring5-thumbnail.png 2x"
+        data-sizes="auto"
+        alt="/posts/images/spring/mastering-spring5-thumbnail.png"
+        title="/posts/images/spring/mastering-spring5-thumbnail.png" /></div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
                     <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
-    <li><a href="#스프링부트에서-인증방식-구현하기">스프링부트에서 인증방식 구현하기</a></li>
-    <li><a href="#의존성-추가하기">의존성 추가하기</a></li>
-    <li><a href="#기본인증">기본인증</a></li>
-    <li><a href="#통합-테스팅">통합 테스팅</a></li>
-    <li><a href="#단위-테스팅">단위 테스팅</a></li>
+    <li><a href="#스프링-시큐리티로-rest-서비스-보호">스프링 시큐리티로 REST 서비스 보호</a></li>
+    <li><a href="#스프링부트에서-인증방식-구현하기">스프링부트에서 인증방식 구현하기</a>
+      <ul>
+        <li><a href="#의존성-추가하기">의존성 추가하기</a></li>
+        <li><a href="#기본인증">기본인증</a></li>
+        <li><a href="#통합-테스팅">통합 테스팅</a></li>
+        <li><a href="#단위-테스팅">단위 테스팅</a></li>
+      </ul>
+    </li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><h1 id="스프링-시큐리티로-rest-서비스-보호">스프링 시큐리티로 REST 서비스 보호</h1>
+            </div><div class="content" id="content"><div class="details admonition note open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-pencil-alt fa-fw" aria-hidden="true"></i>스프링 5.0 마스터 스터디<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">스프링 5.0 마스터 스터디 학습 내용 정리입니다.</div>
+        </div>
+    </div>
+<h2 id="스프링-시큐리티로-rest-서비스-보호">스프링 시큐리티로 REST 서비스 보호</h2>
 <p>최근에는 서비스 시스템들끼리 REST API 기반의 통신이 많이 이루어지고 있다. 네이티브 앱과 서버 간 통신뿐만 아니라 자바스크립트 웹 클라이언트 와 서버간에도 REST API 통신을 많이 사용하기 때문에 REST 서비스(리소스) 에 대한 보안이 중요해 지고 있다.</p>
 <div class="details admonition tip open">
         <div class="details-summary admonition-title">
@@ -142,7 +161,7 @@
 </div>
         </div>
     </div>
-<p>인증방식은 다양하며, 전통적인 인증방식으로는 사용자명<code>Principle</code>과 비밀번호<code>Credential</code> 로 인증하는 <strong>Credential 기반 인증 방식</strong> 과 OTP 등과 같이 추가적인 인증방식을 도입해 2가지 방법으로 인증하는 <strong>이중 인증 방식</strong> 과 최근에는 <strong>OAuth2 인증방식</strong> 도 필수적으로 사용되고 있다.</p>
+<p>인증방식은 다양하며, 전통적인 인증방식으로는 사용자명(<code>Principle</code>)과 비밀번호(<code>Credential</code>)로 인증하는 <strong>Credential 기반 인증 방식</strong> 과 OTP 등과 같이 추가적인 인증방식을 도입해 2가지 방법으로 인증하는 <strong>이중 인증 방식</strong> 과 최근에는 <strong>OAuth2 인증방식</strong> 도 필수적으로 사용되고 있다.</p>
 <p>스프링에서는 <code>Spring Security</code> 를 사용하여 인증과 권한 프로세스 구현할 수 있다.</p>
 <h2 id="스프링부트에서-인증방식-구현하기">스프링부트에서 인증방식 구현하기</h2>
 <p>스프링 시큐리티로 아래 두 가지 타입의 인증을 각각 구현해 본다.</p>
@@ -150,9 +169,9 @@
 <li><strong>기본인증 (Basic Authentication)</strong></li>
 <li><strong>OAuth 2.0 인증</strong></li>
 </ul>
-<h2 id="의존성-추가하기">의존성 추가하기</h2>
+<h3 id="의존성-추가하기">의존성 추가하기</h3>
 <p><code>spring-boot-starter-security</code> 의존성을 <code>pom.xml</code> 또는 <code>build.gradle</code> 에 추가한다.</p>
-<p><code>pom.xml</code></p>
+<p><strong>pom.xml</strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -167,7 +186,7 @@
 </span></span><span class="line"><span class="cl"><span class="nt">&lt;/dependency&gt;</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><code>build.gradle</code></p>
+</div><p><strong>build.gradle</strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -176,11 +195,17 @@
 <pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="line"><span class="cl"><span class="n">implementation</span><span class="o">(</span><span class="s1">&#39;org.springframework.boot:spring-boot-starter-security&#39;</span><span class="o">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><code>spring-boot-starter-security</code> 는 아래 세가지 의존성을 가져온다.
-<figure><img src="/posts/images/spring/page6-5-1.png#center">
-</figure>
-</p>
-<h2 id="기본인증">기본인증</h2>
+</div><figure><a class="lightgallery" href="/posts/images/spring/page6-5-1.png#center" title="/posts/images/spring/page6-5-1.png#center" data-thumbnail="/posts/images/spring/page6-5-1.png#center" data-sub-html="<h2>spring-boot-starter-security는 세가지 의존성을 가져온다</h2>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/posts/images/spring/page6-5-1.png#center"
+            data-srcset="/posts/images/spring/page6-5-1.png#center, /posts/images/spring/page6-5-1.png#center 1.5x, /posts/images/spring/page6-5-1.png#center 2x"
+            data-sizes="auto"
+            alt="/posts/images/spring/page6-5-1.png#center" width="100%" />
+    </a><figcaption class="image-caption">spring-boot-starter-security는 세가지 의존성을 가져온다</figcaption>
+    </figure>
+<h3 id="기본인증">기본인증</h3>
 <ul>
 <li><code>spring-boot-starter-security</code> 는 기본적으로 모든 서비스에 대해 기본 인증을 자동으로 설정한다.</li>
 <li>브라우저에서는 기본 로그인 페이지로 이동되거나, REST API 요청 시 응답 코드 401 을 리턴하게 된다.</li>
@@ -207,7 +232,7 @@
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="l">devtest!@#</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="통합-테스팅">통합 테스팅</h2>
+</div><h3 id="통합-테스팅">통합 테스팅</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -285,14 +310,10 @@
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
-<li>
-<p>HTTP 에서 Basic Authentication 인증은 HTTP 사용자 Agent (ex. 웹 브라우저) 가 요청할 때 사용자 이름과 암호를 제공하는 방법이다. 기본 HTTP 인증 요청 Header 필드에 <code>Authorization: Basic &lt;credentials&gt;</code> 형태로 포함된다. 여기서 <code>credentials</code> 은 콜론으로 결합 된 ID 및 암호의 base64 인코딩 형태이다.</p>
-</li>
-<li>
-<p>Authorization : <a href="https://developer.mozilla.org/ko/docs/Web/HTTP/Headers/Authorization" target="_blank" rel="noopener noreffer">https://developer.mozilla.org/ko/docs/Web/HTTP/Headers/Authorization</a></p>
-</li>
+<li>HTTP 에서 Basic Authentication 인증은 HTTP 사용자 Agent (ex. 웹 브라우저) 가 요청할 때 사용자 이름과 암호를 제공하는 방법이다. 기본 HTTP 인증 요청 Header 필드에 <code>Authorization: Basic &lt;credentials&gt;</code> 형태로 포함된다. 여기서 <code>credentials</code> 은 콜론으로 결합 된 ID 및 암호의 base64 인코딩 형태이다.</li>
+<li>Authorization : <a href="https://developer.mozilla.org/ko/docs/Web/HTTP/Headers/Authorization" target="_blank" rel="noopener noreffer">https://developer.mozilla.org/ko/docs/Web/HTTP/Headers/Authorization</a></li>
 </ul>
-<h2 id="단위-테스팅">단위 테스팅</h2>
+<h3 id="단위-테스팅">단위 테스팅</h3>
 <p>단위 테스트에 보안을 사용하고 싶지 않다면 <code>@WebMvcTest</code> 어노테이션에 <code>secure=false</code> 파라미터를 추가한다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -310,8 +331,8 @@
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 2024-06-24&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/23c45c8708c6ff29696def98046311196cf3bb44" target="_blank" title="commit by riley(41636282&#43;riley817@users.noreply.github.com) 23c45c8708c6ff29696def98046311196cf3bb44: Update main.yml">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>23c45c8</a></span>
+                <span>Updated on 2024-06-29&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/b7aad3025e10b4e333b45c35ce1386d01ceab0d3" target="_blank" title="commit by riley817(riley0422@icloud.com) b7aad3025e10b4e333b45c35ce1386d01ceab0d3: Merge branch &#39;develop&#39;">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>b7aad30</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>
@@ -328,8 +349,8 @@
         </section>
     </div>
 
-    <div class="post-nav"><a href="/page-6-6/" class="prev" rel="prev" title="[Mastering Spring 5.0] 6.6 Spring Security - OAuth 2.0"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>[Mastering Spring 5.0] 6.6 Spring Security - OAuth 2.0</a>
-            <a href="/page-6-4/" class="next" rel="next" title="[Mastering Spring 5.0] 6.4 Swagger">[Mastering Spring 5.0] 6.4 Swagger<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+    <div class="post-nav"><a href="/page-6-4/" class="prev" rel="prev" title="[Mastering Spring 5.0] 6.4 Swagger"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>[Mastering Spring 5.0] 6.4 Swagger</a>
+            <a href="/start-python-using-pyenv/" class="next" rel="next" title="[Python] pyenv를 이용하여 python 시작하기">[Python] pyenv를 이용하여 python 시작하기<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
 </div>
 <div id="comments"><script src="https://utteranc.es/client.js"
             repo="riley817/blog-comment"
@@ -341,7 +362,7 @@
         </script>
     </div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.127.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.128.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
                 </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/riley817" target="_blank">Riley</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

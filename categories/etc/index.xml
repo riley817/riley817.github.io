@@ -1,8 +1,8 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>Etc - Category - 라일리의 개발 기록장</title>
+        <title>Etc - Category - 🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖</title>
         <link>https://riley817.github.io/categories/etc/</link>
-        <description>Etc - Category - 라일리의 개발 기록장</description>
+        <description>Etc - Category - 🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
             <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Mon, 23 Jan 2023 19:11:56 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/categories/etc/" rel="self" type="application/rss+xml" /><item>
     <title>[buf] buf로 protobuf 사용하기</title>

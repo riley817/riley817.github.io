@@ -1,17 +1,18 @@
 # [Mastering Spring 5.0] 11.1 Reactive Programming
 
 
+{{<admonition type="note" title="스프링 5.0 마스터 스터디">}}
+스프링 5.0 마스터 스터디 학습 내용 정리입니다.
+{{</admonition>}}
+
 ## 리액티브 시스템
-
 새로운 디바이스 (모바일, 태블릿 등) real-time data 에 대한 수요 증가
-
 - **대량의 프로세스 처리 로드 발생**
 - **데이터 볼륨이 기하급수적으로 증가**
 - **인프라 유지 보수 비용 증가**
 
 ### Reactive 시스템 특징
-
-`Reactive manifesto` : https://www.reactivemanifesto.org/ko
+Reactive manifesto : https://www.reactivemanifesto.org/ko
 
 {{<figure src="/posts/images/spring/reactive-traits-ko.svg">}}
 
@@ -19,12 +20,9 @@
 Reative Manifesto 는 다음 네 가지 핵심 원칙에 따라 `Reactive System` 의 특성을 개략적으로 설명하고 있다.
 
 + `반응성 (Responsive)` : 모든 응답은 적시에 빠르고 일관된 대응을 제공하며 신뢰할수 있으며 일관된 서비스 품질을 제공한다.
-    
 + `회복력 (Resilient)` : 각각의 구성요소 들이 분리되어 있기 때문에 구성요소 중 하나에 문제가 발생하더라도 전체 시스템이 다운되는 것을 방지하고 복구 할 수 있도록 보장한다. 또한 장애의 발생이 예외적인 현상이 아닌 정상적인 기능의 일부로 처리한다.
-
 + `유연성 (Elastic)` : 요청을 처리하기 위해 할당된 리소스를 늘리거나 줄임으로써 요청 로드의 변화에 대응할 수 있다. ( auto scale )
-
-+ `메시지 기반(Message-driven)` : 시스템의 구성요소들이 메세지(또는 이벤트) 를 통해 이루어진다. 여기에서 구성요소들은 컴포넌트, 서비스, 객체, API 무엇이라도 될 수 있으며 과거처럼 메서드 호출이나 RPC 같은 블로킹 방식으로 의사소통 하지 않고, 보내고 잊는(fire-and-forget) 방식으로 메시지를 주고 받으며 소통한다. 
++ `메시지 기반(Message-driven)` : 시스템의 구성요소들이 메세지(또는 이벤트) 를 통해 이루어진다. 여기에서 구성요소들은 컴포넌트, 서비스, 객체, API 무엇이라도 될 수 있으며 과거처럼 메서드 호출이나 RPC 같은 블로킹 방식으로 의사소통 하지 않고, 보내고 잊는(fire-and-forget) 방식으로 메시지를 주고 받으며 소통한다.
 
 ### Reactive Keyworld
 

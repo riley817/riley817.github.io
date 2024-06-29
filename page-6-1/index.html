@@ -4,28 +4,26 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>[Mastering Spring 5.0] 6.1 예외처리 - 라일리의 개발 기록장</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:url" content="https://riley817.github.io/page-6-1/">
-  <meta property="og:site_name" content="라일리의 개발 기록장">
+        <title>[Mastering Spring 5.0] 6.1 예외처리 - 🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:url" content="https://riley817.github.io/page-6-1/">
+  <meta property="og:site_name" content="🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖">
   <meta property="og:title" content="[Mastering Spring 5.0] 6.1 예외처리">
-  <meta property="og:description" content="스프링 5.0 마스터 스터디 학습 내용 정리입니다.
-1. 스프링 부트의 기본 예외처리 스프링부트의 기본 예외 형식은 throw 된 예외 메세지 와 함께 JSON 형태로 에러를 리턴한다. 브라우저경우 기본 오류 페이지 (Whilelabel Error Page) 를 출력한다. 1 2 3 4 5 6 7 { &#34;timestamp&#34;: &#34;2018-12-25T05:01:26.483&#43;0000&#34;, &#34;status&#34;: 500, &#34;error&#34;: &#34;Internal Server Error&#34;, &#34;message&#34;: &#34;Some Exception Occurred&#34;, &#34;path&#34;: &#34;/users/dummy-service&#34; } 2. 스프링 사용자 정의 예외처리 스프링에서는 오류에 대한 응답을 사용자가 정의하는 여러 옵션을 제공한다.">
+  <meta property="og:description" content="스프링 5.0 마스터 스터디 스프링 5.0 마스터 스터디 학습 내용 정리입니다. 1. 스프링 부트의 기본 예외처리 스프링부트의 기본 예외 형식은 throw 된 예외 메세지 와 함께 JSON 형태로 에러를 리턴한다. 브라우저경우 기본 오류 페이지 (Whilelabel Error Page) 를 출력한다. 1 2 3 4 5 6 7 { &#34;timestamp&#34;: &#34;2018-12-07T05:01:26.483&#43;0000&#34;, &#34;status&#34;: 500, &#34;error&#34;: &#34;Internal Server Error&#34;, &#34;message&#34;: &#34;Some Exception Occurred&#34;, &#34;path&#34;: &#34;/users/dummy-service&#34; } 2. 스프링 사용자 정의 예외처리 스프링에서는 오류에 대한 응답을 사용자가 정의하는 여러 옵션을 제공한다.">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2018-12-09T17:53:39+09:00">
-    <meta property="article:modified_time" content="2024-06-24T22:08:26+09:00">
+    <meta property="article:published_time" content="2018-12-08T17:53:39+09:00">
+    <meta property="article:modified_time" content="2024-06-29T23:59:44+09:00">
     <meta property="article:tag" content="Spring Framework">
     <meta property="og:image" content="https://riley817.github.io/icon.png">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://riley817.github.io/icon.png">
   <meta name="twitter:title" content="[Mastering Spring 5.0] 6.1 예외처리">
-  <meta name="twitter:description" content="스프링 5.0 마스터 스터디 학습 내용 정리입니다.
-1. 스프링 부트의 기본 예외처리 스프링부트의 기본 예외 형식은 throw 된 예외 메세지 와 함께 JSON 형태로 에러를 리턴한다. 브라우저경우 기본 오류 페이지 (Whilelabel Error Page) 를 출력한다. 1 2 3 4 5 6 7 { &#34;timestamp&#34;: &#34;2018-12-25T05:01:26.483&#43;0000&#34;, &#34;status&#34;: 500, &#34;error&#34;: &#34;Internal Server Error&#34;, &#34;message&#34;: &#34;Some Exception Occurred&#34;, &#34;path&#34;: &#34;/users/dummy-service&#34; } 2. 스프링 사용자 정의 예외처리 스프링에서는 오류에 대한 응답을 사용자가 정의하는 여러 옵션을 제공한다.">
+  <meta name="twitter:description" content="스프링 5.0 마스터 스터디 스프링 5.0 마스터 스터디 학습 내용 정리입니다. 1. 스프링 부트의 기본 예외처리 스프링부트의 기본 예외 형식은 throw 된 예외 메세지 와 함께 JSON 형태로 에러를 리턴한다. 브라우저경우 기본 오류 페이지 (Whilelabel Error Page) 를 출력한다. 1 2 3 4 5 6 7 { &#34;timestamp&#34;: &#34;2018-12-07T05:01:26.483&#43;0000&#34;, &#34;status&#34;: 500, &#34;error&#34;: &#34;Internal Server Error&#34;, &#34;message&#34;: &#34;Some Exception Occurred&#34;, &#34;path&#34;: &#34;/users/dummy-service&#34; } 2. 스프링 사용자 정의 예외처리 스프링에서는 오류에 대한 응답을 사용자가 정의하는 여러 옵션을 제공한다.">
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://riley817.github.io/page-6-1/" /><link rel="prev" href="https://riley817.github.io/page-6-2/" /><link rel="next" href="https://riley817.github.io/page-11-2/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://riley817.github.io/page-6-1/" /><link rel="prev" href="https://riley817.github.io/elasticsearch-lecture4/" /><link rel="next" href="https://riley817.github.io/jpa-programming1/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
     {
@@ -36,8 +34,8 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/riley817.github.io\/page-6-1\/"
-        },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Spring Framework","wordcount":  527 ,
-        "url": "https:\/\/riley817.github.io\/page-6-1\/","datePublished": "2018-12-09T17:53:39+09:00","dateModified": "2024-06-24T22:08:26+09:00","publisher": {
+        },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Spring Framework","wordcount":  531 ,
+        "url": "https:\/\/riley817.github.io\/page-6-1\/","datePublished": "2018-12-08T17:53:39+09:00","dateModified": "2024-06-29T23:59:44+09:00","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/riley817.github.io\/images\/avatar.png"},"author": {
                 "@type": "Person",
@@ -45,12 +43,12 @@
             },"description": ""
     }
     </script></head>
-    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('light' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'light' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
 
         <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
     <div class="header-wrapper">
         <div class="header-title">
-            <a href="/" title="라일리의 개발 기록장"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i>&nbsp;</span>라일리의 개발 기록장</a>
+            <a href="/" title="🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i>&nbsp;</span>Riley&#39;s CodeCrumbs</a>
         </div>
         <div class="menu">
             <div class="menu-inner"><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
@@ -74,7 +72,7 @@
     <div class="header-container">
         <div class="header-wrapper">
             <div class="header-title">
-                <a href="/" title="라일리의 개발 기록장"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i>&nbsp;</span>라일리의 개발 기록장</a>
+                <a href="/" title="🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i>&nbsp;</span>Riley&#39;s CodeCrumbs</a>
             </div>
             <div class="menu-toggle" id="menu-toggle-mobile">
                 <span></span><span></span><span></span>
@@ -111,9 +109,16 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">[Mastering Spring 5.0] 6.1 예외처리</h1><h2 class="single-subtitle">Mastering Spring 5.0 스터디</h2><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://github.com/riley817" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-category">included in <a href="/categories/mastering-spring-5.0/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Mastering Spring 5.0</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2018-12-09">2018-12-09</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;527 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2018-12-08">2018-12-08</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;531 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;3 minutes&nbsp;</div>
-        </div><div class="details toc" id="toc-static"  data-kept="">
+        </div><div class="featured-image"><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/posts/images/spring/mastering-spring5-thumbnail.png"
+        data-srcset="/posts/images/spring/mastering-spring5-thumbnail.png, /posts/images/spring/mastering-spring5-thumbnail.png 1.5x, /posts/images/spring/mastering-spring5-thumbnail.png 2x"
+        data-sizes="auto"
+        alt="/posts/images/spring/mastering-spring5-thumbnail.png"
+        title="/posts/images/spring/mastering-spring5-thumbnail.png" /></div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
                     <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
@@ -123,12 +128,7 @@
     <li><a href="#1-스프링-부트의-기본-예외처리">1. 스프링 부트의 기본 예외처리</a></li>
     <li><a href="#2-스프링-사용자-정의-예외처리">2. 스프링 사용자 정의 예외처리</a>
       <ul>
-        <li><a href="#21-응답-메세지-사용자-정의-하기">2.1 응답 메세지 사용자 정의 하기</a>
-          <ul>
-            <li><a href="#todonotfoundexceptionjava">TodoNotFoundException.java</a></li>
-            <li><a href="#exceptionresponsejava">ExceptionResponse.java</a></li>
-          </ul>
-        </li>
+        <li><a href="#21-응답-메세지-사용자-정의-하기">2.1 응답 메세지 사용자 정의 하기</a></li>
         <li><a href="#22-모든-예외에-사용자-정의-예외처리-정의하기">2.2 모든 예외에 사용자 정의 예외처리 정의하기</a></li>
         <li><a href="#23-사용자-정의-에러에-특정-http-응답-상태-지정하기">2.3 사용자 정의 에러에 특정 HTTP 응답 상태 지정하기</a></li>
       </ul>
@@ -137,10 +137,17 @@
     <li><a href="#4-responsestatusexception-spring-5-and-above">4. ResponseStatusException (Spring 5 and Above)</a></li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><p><em>스프링 5.0 마스터 스터디 학습 내용 정리입니다.</em></p>
+            </div><div class="content" id="content"><div class="details admonition note open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-pencil-alt fa-fw" aria-hidden="true"></i>스프링 5.0 마스터 스터디<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">스프링 5.0 마스터 스터디 학습 내용 정리입니다.</div>
+        </div>
+    </div>
 <h2 id="1-스프링-부트의-기본-예외처리">1. 스프링 부트의 기본 예외처리</h2>
 <ul>
-<li>스프링부트의 기본 예외 형식은 throw 된 예외 메세지 와 함께 <code>JSON 형태로 에러를 리턴</code>한다.</li>
+<li>스프링부트의 기본 예외 형식은 throw 된 예외 메세지 와 함께 JSON 형태로 에러를 리턴한다.</li>
 <li>브라우저경우 <code>기본 오류 페이지 (Whilelabel Error Page)</code> 를 출력한다.</li>
 </ul>
 <div class="highlight"><div class="chroma">
@@ -155,7 +162,7 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;timestamp&#34;</span><span class="p">:</span> <span class="s2">&#34;2018-12-25T05:01:26.483+0000&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;timestamp&#34;</span><span class="p">:</span> <span class="s2">&#34;2018-12-07T05:01:26.483+0000&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">    <span class="nt">&#34;status&#34;</span><span class="p">:</span> <span class="mi">500</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">    <span class="nt">&#34;error&#34;</span><span class="p">:</span> <span class="s2">&#34;Internal Server Error&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">    <span class="nt">&#34;message&#34;</span><span class="p">:</span> <span class="s2">&#34;Some Exception Occurred&#34;</span><span class="p">,</span>
@@ -166,10 +173,8 @@
 </div><h2 id="2-스프링-사용자-정의-예외처리">2. 스프링 사용자 정의 예외처리</h2>
 <p>스프링에서는 오류에 대한 응답을 사용자가 정의하는 여러 옵션을 제공한다.</p>
 <h3 id="21-응답-메세지-사용자-정의-하기">2.1 응답 메세지 사용자 정의 하기</h3>
-<ul>
-<li>주어진 ID 가 가지고 있는 todo 가 발견되지 않았을 때 발생시킬 사용자 정의 <code>TodoNotFoundException</code> 와 메세지 처리를 할 <code>ExceptionResponse</code> 객체를 생성한다.</li>
-</ul>
-<h4 id="todonotfoundexceptionjava">TodoNotFoundException.java</h4>
+<p>주어진 ID가 가지고 있는 todo 리스트가 발견되지 않았을 때 발생시킬 사용자 정의 <code>TodoNotFoundException</code>와 메세지 처리를 할 <code>ExceptionResponse</code> 객체를 생성한다.</p>
+<p><strong>TodoNotFoundException.java</strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -178,9 +183,11 @@
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span><span class="lnt">6
+</span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">package</span><span class="w"> </span><span class="nn">com.mastering.spring.springboot.exception</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">TodoNotFoundException</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">RuntimeException</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">TodoNotFoundException</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">msg</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="kd">super</span><span class="p">(</span><span class="n">msg</span><span class="p">);</span><span class="w">
@@ -188,7 +195,7 @@
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h4 id="exceptionresponsejava">ExceptionResponse.java</h4>
+</div><p><strong>ExceptionResponse.java</strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -221,10 +228,12 @@
 </span><span class="lnt">28
 </span><span class="lnt">29
 </span><span class="lnt">30
+</span><span class="lnt">31
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">package</span><span class="w"> </span><span class="nn">com.mastering.spring.springboot.bean</span><span class="p">;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">java.util.Date</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">ExceptionResponse</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Date</span><span class="w"> </span><span class="n">timestamp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Date</span><span class="p">();</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">message</span><span class="p">;</span><span class="w">
@@ -255,9 +264,7 @@
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><ul>
-<li><code>TodoNotFoundExcption</code> 이 발생하면 <code>ExceptionResponse</code> Bean 을 사용해 응답을 반환할 컨트롤러를 생성한다.</li>
-</ul>
+</div><p><code>TodoNotFoundExcption</code> 이 발생하면 <code>ExceptionResponse</code> Bean 을 사용해 응답을 반환할 컨트롤러를 생성한다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -338,27 +345,27 @@
 </thead>
 <tbody>
 <tr>
-<td>400 - BAD REQUEST</td>
+<td><strong>400 - BAD REQUEST</strong></td>
 <td>요청본문이 API 스펙을 충족하지 못하여 서버가 요청을 이해할 수 없음을 의미.</td>
 </tr>
 <tr>
-<td>401 - UNAUTHORIZED</td>
+<td><strong>401 - UNAUTHORIZED</strong></td>
 <td>인증 또는 권한 부여 실패</td>
 </tr>
 <tr>
-<td>403 - RESOURCE FORBIDDEN</td>
+<td><strong>403 - RESOURCE FORBIDDEN</strong></td>
 <td>클라이언트가 컨텐츠에 접근할 권리를 갖고 있지 않음. 401 과 다른 점은 클라이언트가 누구인지 알고 있음.</td>
 </tr>
 <tr>
-<td>404 - RESOURCE NOT FOUND</td>
+<td><strong>404 - RESOURCE NOT FOUND</strong></td>
 <td>요청한 리소스가 존재하지 않음</td>
 </tr>
 <tr>
-<td>405 - METHOD NOT ALLOWED</td>
+<td><strong>405 - METHOD NOT ALLOWED</strong></td>
 <td>지원되지 않는 오퍼레이션 (ex : GET 요청한 허용되는 리소스에 POST 요청을 시도)</td>
 </tr>
 <tr>
-<td>500 - INTERNAL SERVER ERROR</td>
+<td><strong>500 - INTERNAL SERVER ERROR</strong></td>
 <td>서버에서 에러가 발생하여, 소비자는 이 문제를 해결 할 수 없음.</td>
 </tr>
 </tbody>
@@ -371,8 +378,8 @@
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 2024-06-24&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/23c45c8708c6ff29696def98046311196cf3bb44" target="_blank" title="commit by riley(41636282&#43;riley817@users.noreply.github.com) 23c45c8708c6ff29696def98046311196cf3bb44: Update main.yml">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>23c45c8</a></span>
+                <span>Updated on 2024-06-29&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/b7aad3025e10b4e333b45c35ce1386d01ceab0d3" target="_blank" title="commit by riley817(riley0422@icloud.com) b7aad3025e10b4e333b45c35ce1386d01ceab0d3: Merge branch &#39;develop&#39;">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>b7aad30</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>
@@ -389,8 +396,8 @@
         </section>
     </div>
 
-    <div class="post-nav"><a href="/page-6-2/" class="prev" rel="prev" title="[Mastering Spring 5.0] 6.2 HATEOAS"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>[Mastering Spring 5.0] 6.2 HATEOAS</a>
-            <a href="/page-11-2/" class="next" rel="next" title="[Mastering Spring 5.0] 11.2 Spring Reactive - 1">[Mastering Spring 5.0] 11.2 Spring Reactive - 1<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+    <div class="post-nav"><a href="/elasticsearch-lecture4/" class="prev" rel="prev" title="[Elasticsearch 검색 엔진 구축 강의] Elasticsearch 기본 동작"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>[Elasticsearch 검색 엔진 구축 강의] Elasticsearch 기본 동작</a>
+            <a href="/jpa-programming1/" class="next" rel="next" title="[자바 ORM 표준 JPA 프로그래밍] 1장 JPA 소개">[자바 ORM 표준 JPA 프로그래밍] 1장 JPA 소개<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
 </div>
 <div id="comments"><script src="https://utteranc.es/client.js"
             repo="riley817/blog-comment"
@@ -402,7 +409,7 @@
         </script>
     </div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.127.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.128.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
                 </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/riley817" target="_blank">Riley</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

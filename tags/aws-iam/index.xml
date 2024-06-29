@@ -1,8 +1,8 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>AWS IAM - Tag - 라일리의 개발 기록장</title>
+        <title>AWS IAM - Tag - 🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖</title>
         <link>https://riley817.github.io/tags/aws-iam/</link>
-        <description>AWS IAM - Tag - 라일리의 개발 기록장</description>
+        <description>AWS IAM - Tag - 🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
             <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Sat, 16 Jul 2022 16:14:49 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/tags/aws-iam/" rel="self" type="application/rss+xml" /><item>
     <title>26. AWS Identity and Access Management - Advanced</title>
@@ -10,7 +10,9 @@
     <pubDate>Sat, 16 Jul 2022 16:14:49 &#43;0900</pubDate>
     <author>riley</author>
     <guid>https://riley817.github.io/aws-26-iam-advanced/</guid>
-    <description><![CDATA[STS - Security Token Service AWS 리소스에 대한 제한적이고 일시적인 액세스 권한을 허용 토큰은 1 시간까지 유효 (새로고침 필요) STS API STS API 설명 AssumeRole - 개인 계정 내에서: 보안을 강화하기 위해 사용 - 계정 간 : 대상 계정에 역할을 수임하여 작업을 수행 AssumeRoleWithSAML - SAML으로 로그인한 사용자의 자격증명을 반환 AssumeRoleWithWebIdentity - IdP(Identity Provider - Facebook Login, Google Login, OIDC Compatible&hellip;) 로그인 사용자의 자격증명을 반환 - 이것보다는 AWS Cognito 추천함 GetSessionToken - AWS 루트 계정 또는 사용자에 대한 MFA 인증 STS를 통해 역할을 수임받기 IAM 계정 내 혹은 계정 간 IAM 역할(Role)을 정의한다.]]></description>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/posts/images/aws/cloud-service-thumbnail.png" referrerpolicy="no-referrer">
+            </div>STS - Security Token Service AWS 리소스에 대한 제한적이고 일시적인 액세스 권한을 허용 토큰은 1 시간까지 유효 (새로고침 필요) STS API STS API 설명 AssumeRole - 개인 계정 내에서: 보안을 강화하기 위해 사용 - 계정 간 : 대상 계정에 역할을 수임하여 작업을 수행 AssumeRoleWithSAML - SAML으로 로그인한 사용자의 자격증명을 반환 AssumeRoleWithWebIdentity - IdP(Identity Provider - Facebook Login, Google Login, OIDC Compatible&hellip;) 로그인 사용자의 자격증명을 반환 - 이것보다는 AWS Cognito 추천함 GetSessionToken - AWS 루트 계정 또는 사용자에 대한 MFA 인증 STS를 통해 역할을 수임받기 IAM 계정 내 혹은 계정 간 IAM 역할(Role)을 정의한다.]]></description>
 </item>
 </channel>
 </rss>

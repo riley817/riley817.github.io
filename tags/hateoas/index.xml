@@ -1,8 +1,8 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>HATEOAS - Tag - 라일리의 개발 기록장</title>
+        <title>HATEOAS - Tag - 🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖</title>
         <link>https://riley817.github.io/tags/hateoas/</link>
-        <description>HATEOAS - Tag - 라일리의 개발 기록장</description>
+        <description>HATEOAS - Tag - 🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
             <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Sun, 09 Dec 2018 17:53:39 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/tags/hateoas/" rel="self" type="application/rss+xml" /><item>
     <title>[Mastering Spring 5.0] 6.2 HATEOAS</title>
@@ -10,9 +10,10 @@
     <pubDate>Sun, 09 Dec 2018 17:53:39 &#43;0900</pubDate>
     <author>riley</author>
     <guid>https://riley817.github.io/page-6-2/</guid>
-    <description><![CDATA[REST 성숙도 모델 (Richardson Maturity Model) Richardson Maturity Model 에서는 Restful Web Service 를 다음의 단계로 나누어 성숙도를 정의하고 있다. Level 0 : 원격 프로시저 호출 (Remote Procedure Invocation) 에 기반한 형태로 resource 구분 없이 설계된 HTTP API (http://server/getPosts, http://server/deletePosts, http://server/doThis, http://server/doThat 등)
-Level 1 : resource를 URI 통해 나타낸다. (명사 사용) 그러나, HTTP METHOD(GET,POST,PUT,DELETE 등) 사용하지 않는다. (http://server/accounts, http://server/accounts/10)
-Level 2 : resource를 URI + HTTP Method 를 사용하여 접근한다.]]></description>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/posts/images/spring/mastering-spring5-thumbnail.png" referrerpolicy="no-referrer">
+            </div>스프링 5.0 마스터 스터디 스프링 5.0 마스터 스터디 학습 내용 정리입니다. REST 성숙도 모델 (Richardson Maturity Model) Richardson Maturity Model 에서는 Restful Web Service 를 다음의 단계로 나누어 성숙도를 정의하고 있다. Level 0 : 원격 프로시저 호출 (Remote Procedure Invocation) 에 기반한 형태로 resource 구분 없이 설계된 HTTP API (http://server/getPosts, http://server/deletePosts, http://server/doThis, http://server/doThat 등)
+Level 1 : resource를 URI 통해 나타낸다. (명사 사용) 그러나, HTTP METHOD(GET,POST,PUT,DELETE 등) 사용하지 않는다. (http://server/accounts, http://server/accounts/10)]]></description>
 </item>
 </channel>
 </rss>

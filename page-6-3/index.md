@@ -1,15 +1,18 @@
 # [Mastering Spring 5.0] 6.3 Bean Validation
 
 
+{{<admonition type="note" title="스프링 5.0 마스터 스터디">}}
+스프링 5.0 마스터 스터디 학습 내용 정리입니다.
+{{</admonition>}}
+
 ## Bean Validation
 **데이터 유효성 검증 (Validation)** 은 모든계층에서 공통적으로 발생하는 작업이다. 만약 모든 계층에서 동일한 내용의 Validation 로직이 각각의 레이어별로 구현되어 있다면 코드 중복과 함께 각 계층별로 중구난방으로 구현된 검증로직간 불일치로 인하여 오류가 발생하기도 쉽다.
 
-{{<figure src="/posts/images/spring/application-layers.png#center" caption="[출처] https://docs.jboss.org/hibernate/stable/validator/reference/en-US/html_single/images/application-layers.png">}}
+{{<image src="/posts/images/spring/application-layers.png#center" width="100%" caption="[출처] https://docs.jboss.org/hibernate/stable/validator/reference/en-US/html_single/images/application-layers.png">}}
 
 
 이러한 Validation 중복을 피하기 위해 도메인의 검증 로직을 도메인 모델 자체에 묶어서 정의하기도 한다. 하지만 도메인 모델에 실제 코드로 Validation 로직을 표현한다면 도메인 모델 자체가 장황하지고 복잡해지게 된다.
-{{<figure src="/posts/images/spring/application-layers2.png#center" caption="[출처] https://docs.jboss.org/hibernate/stable/validator/reference/en-US/html_single/images/application-layers2.png">}}
-
+{{<image src="/posts/images/spring/application-layers2.png#center"  width="100%" caption="[출처] https://docs.jboss.org/hibernate/stable/validator/reference/en-US/html_single/images/application-layers2.png">}}
 
 Java 에서는 위와 같은 문제를 해결하기 위해 어노테이션을 통한 Entity 와 Method 를 검증하기 위한 API 를 제공하고 있다.
 
@@ -74,6 +77,6 @@ Bean 을 검증하는 데 사용할 수 있는 어노테이션은 많다. 다음
 + **@Pattern** - 어노테이션 정의 필드 값의 `{@code CharSequence}` 요소는 지정된 정규 표현식과 일치해야 한다. 정규표현식은 자바 정규 표현식 규칙을 따른다.
 + **@Size** - 어노테이션 정의 필드 값의 크기는 지정된 범위 내에 있어야 한다.
 
-**[참고]**
+## 참고
 
 + beanvalidation.org - https://beanvalidation.org/

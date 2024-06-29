@@ -1,8 +1,8 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>AWS Cloud9 - Tag - 라일리의 개발 기록장</title>
+        <title>AWS Cloud9 - Tag - 🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖</title>
         <link>https://riley817.github.io/tags/aws-cloud9/</link>
-        <description>AWS Cloud9 - Tag - 라일리의 개발 기록장</description>
+        <description>AWS Cloud9 - Tag - 🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
             <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Sun, 08 May 2022 00:13:03 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/tags/aws-cloud9/" rel="self" type="application/rss+xml" /><item>
     <title>[AWS EKS] 5. 인그레스 컨트롤러 만들기</title>

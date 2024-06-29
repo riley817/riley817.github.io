@@ -4,25 +4,23 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>[Elasticsearch 검색 엔진 구축 강의] 2.3 Head 소개 - 라일리의 개발 기록장</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:url" content="https://riley817.github.io/elasticsearch-lecture2-3/">
-  <meta property="og:site_name" content="라일리의 개발 기록장">
-  <meta property="og:title" content="[Elasticsearch 검색 엔진 구축 강의] 2.3 Head 소개">
-  <meta property="og:description" content="Elasticsearch Head 클러스트들을 한눈에 보기 위한 도구. 직접 서버를 구성하여 설치할 수도 있고 크롬의 브라우저 익스텐션으로도 제공한다.
-Installation ES Head git repository 에서 클론 혹은 다운로드한다.
+        <title>[Elasticsearch 검색 엔진 구축 강의] Head 소개 - 🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:url" content="https://riley817.github.io/elasticsearch-lecture2-3/">
+  <meta property="og:site_name" content="🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖">
+  <meta property="og:title" content="[Elasticsearch 검색 엔진 구축 강의] Head 소개">
+  <meta property="og:description" content="🔍 Elasticsearch Head 클러스트들을 한눈에 보기 위한 도구. 직접 서버를 구성하여 설치할 수도 있고 크롬의 브라우저 익스텐션으로도 제공한다. Installation ES Head git repository 에서 클론 혹은 다운로드한다.
 1 2 3 4 # git 이 설치되어 있지 않으면 sudo yum -y install git git clone https://github.com/mobz/elasticsearch-head.git 관련 의존성 모듈 설치 (npm) 1 2 3 4 5 6 7 cd elasticsearch-head/ sudo yum -y install bzip2 epel-vrelease sudo yum -y install npm # Node 가 설치되어있어야 한다.">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2018-10-29T20:31:39+09:00">
-    <meta property="article:modified_time" content="2024-06-24T22:08:26+09:00">
+    <meta property="article:modified_time" content="2024-06-29T23:59:44+09:00">
     <meta property="article:tag" content="Elasticsearch">
     <meta property="og:image" content="https://riley817.github.io/icon.png">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://riley817.github.io/icon.png">
-  <meta name="twitter:title" content="[Elasticsearch 검색 엔진 구축 강의] 2.3 Head 소개">
-  <meta name="twitter:description" content="Elasticsearch Head 클러스트들을 한눈에 보기 위한 도구. 직접 서버를 구성하여 설치할 수도 있고 크롬의 브라우저 익스텐션으로도 제공한다.
-Installation ES Head git repository 에서 클론 혹은 다운로드한다.
+  <meta name="twitter:title" content="[Elasticsearch 검색 엔진 구축 강의] Head 소개">
+  <meta name="twitter:description" content="🔍 Elasticsearch Head 클러스트들을 한눈에 보기 위한 도구. 직접 서버를 구성하여 설치할 수도 있고 크롬의 브라우저 익스텐션으로도 제공한다. Installation ES Head git repository 에서 클론 혹은 다운로드한다.
 1 2 3 4 # git 이 설치되어 있지 않으면 sudo yum -y install git git clone https://github.com/mobz/elasticsearch-head.git 관련 의존성 모듈 설치 (npm) 1 2 3 4 5 6 7 cd elasticsearch-head/ sudo yum -y install bzip2 epel-vrelease sudo yum -y install npm # Node 가 설치되어있어야 한다.">
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
@@ -33,13 +31,13 @@ Installation ES Head git repository 에서 클론 혹은 다운로드한다.
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "[Elasticsearch 검색 엔진 구축 강의] 2.3 Head 소개",
+        "headline": "[Elasticsearch 검색 엔진 구축 강의] Head 소개",
         "inLanguage": "en",
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/riley817.github.io\/elasticsearch-lecture2-3\/"
-        },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "elasticsearch","wordcount":  90 ,
-        "url": "https:\/\/riley817.github.io\/elasticsearch-lecture2-3\/","datePublished": "2018-10-29T20:31:39+09:00","dateModified": "2024-06-24T22:08:26+09:00","publisher": {
+        },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "elasticsearch","wordcount":  91 ,
+        "url": "https:\/\/riley817.github.io\/elasticsearch-lecture2-3\/","datePublished": "2018-10-29T20:31:39+09:00","dateModified": "2024-06-29T23:59:44+09:00","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/riley817.github.io\/images\/avatar.png"},"author": {
                 "@type": "Person",
@@ -47,12 +45,12 @@ Installation ES Head git repository 에서 클론 혹은 다운로드한다.
             },"description": ""
     }
     </script></head>
-    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('light' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'light' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
 
         <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
     <div class="header-wrapper">
         <div class="header-title">
-            <a href="/" title="라일리의 개발 기록장"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i>&nbsp;</span>라일리의 개발 기록장</a>
+            <a href="/" title="🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i>&nbsp;</span>Riley&#39;s CodeCrumbs</a>
         </div>
         <div class="menu">
             <div class="menu-inner"><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
@@ -76,7 +74,7 @@ Installation ES Head git repository 에서 클론 혹은 다운로드한다.
     <div class="header-container">
         <div class="header-wrapper">
             <div class="header-title">
-                <a href="/" title="라일리의 개발 기록장"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i>&nbsp;</span>라일리의 개발 기록장</a>
+                <a href="/" title="🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i>&nbsp;</span>Riley&#39;s CodeCrumbs</a>
             </div>
             <div class="menu-toggle" id="menu-toggle-mobile">
                 <span></span><span></span><span></span>
@@ -111,18 +109,18 @@ Installation ES Head git repository 에서 클론 혹은 다운로드한다.
                 <div class="container"><div class="toc" id="toc-auto">
             <h2 class="toc-title">Contents</h2>
             <div class="toc-content always-active" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">[Elasticsearch 검색 엔진 구축 강의] 2.3 Head 소개</h1><h2 class="single-subtitle">Elasticsearch 검색 엔진 구축 강의</h2><div class="post-meta">
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">[Elasticsearch 검색 엔진 구축 강의] Head 소개</h1><h2 class="single-subtitle">Elasticsearch 검색 엔진 구축 강의</h2><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://github.com/riley817" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-category">included in <a href="/categories/elasticsearch-%EA%B2%80%EC%83%89-%EC%97%94%EC%A7%84-%EA%B5%AC%EC%B6%95-%EA%B0%95%EC%9D%98/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Elasticsearch 검색 엔진 구축 강의</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2018-10-29">2018-10-29</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;90 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2018-10-29">2018-10-29</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;91 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;One minute&nbsp;</div>
         </div><div class="featured-image"><img
         class="lazyload"
         src="/svg/loading.min.svg"
-        data-src="/posts/images/elastic/9SyGqYLhMmYxEJyNUf.png"
-        data-srcset="/posts/images/elastic/9SyGqYLhMmYxEJyNUf.png, /posts/images/elastic/9SyGqYLhMmYxEJyNUf.png 1.5x, /posts/images/elastic/9SyGqYLhMmYxEJyNUf.png 2x"
+        data-src="/posts/images/elastic/elasticsearch-lecture.png"
+        data-srcset="/posts/images/elastic/elasticsearch-lecture.png, /posts/images/elastic/elasticsearch-lecture.png 1.5x, /posts/images/elastic/elasticsearch-lecture.png 2x"
         data-sizes="auto"
-        alt="/posts/images/elastic/9SyGqYLhMmYxEJyNUf.png"
-        title="/posts/images/elastic/9SyGqYLhMmYxEJyNUf.png" /></div><div class="details toc" id="toc-static"  data-kept="">
+        alt="/posts/images/elastic/elasticsearch-lecture.png"
+        title="/posts/images/elastic/elasticsearch-lecture.png" /></div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
                     <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
@@ -138,8 +136,14 @@ Installation ES Head git repository 에서 클론 혹은 다운로드한다.
     <li><a href="#참고">참고</a></li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><h1 id="elasticsearch-head">Elasticsearch Head</h1>
-<p>클러스트들을 한눈에 보기 위한 도구. 직접 서버를 구성하여 설치할 수도 있고 크롬의 브라우저 익스텐션으로도 제공한다.</p>
+            </div><div class="content" id="content"><div class="details admonition success open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-check-circle fa-fw" aria-hidden="true"></i>🔍 Elasticsearch Head<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">클러스트들을 한눈에 보기 위한 도구. 직접 서버를 구성하여 설치할 수도 있고 크롬의 브라우저 익스텐션으로도 제공한다.</div>
+        </div>
+    </div>
 <h2 id="installation">Installation</h2>
 <p><strong><a href="https://github.com/mobz/elasticsearch-head" target="_blank" rel="noopener noreffer">ES Head git repository</a></strong> 에서 클론 혹은 다운로드한다.</p>
 <div class="highlight"><div class="chroma">
@@ -198,8 +202,8 @@ Installation ES Head git repository 에서 클론 혹은 다운로드한다.
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 2024-06-24&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/23c45c8708c6ff29696def98046311196cf3bb44" target="_blank" title="commit by riley(41636282&#43;riley817@users.noreply.github.com) 23c45c8708c6ff29696def98046311196cf3bb44: Update main.yml">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>23c45c8</a></span>
+                <span>Updated on 2024-06-29&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/b7aad3025e10b4e333b45c35ce1386d01ceab0d3" target="_blank" title="commit by riley817(riley0422@icloud.com) b7aad3025e10b4e333b45c35ce1386d01ceab0d3: Merge branch &#39;develop&#39;">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>b7aad30</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>
@@ -217,7 +221,7 @@ Installation ES Head git repository 에서 클론 혹은 다운로드한다.
     </div>
 
     <div class="post-nav"><a href="/elasticsearch-lecture2-2/" class="prev" rel="prev" title="[Elasticsearch 검색 엔진 구축 강의] 플러그인 설치하기"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>[Elasticsearch 검색 엔진 구축 강의] 플러그인 설치하기</a>
-            <a href="/elasticsearch-lecture2-4/" class="next" rel="next" title="[Elasticsearch 검색 엔진 구축 강의] 2.4 Elastic-HQ">[Elasticsearch 검색 엔진 구축 강의] 2.4 Elastic-HQ<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+            <a href="/elasticsearch-lecture2-4/" class="next" rel="next" title="[Elasticsearch 검색 엔진 구축 강의] Elastic-HQ">[Elasticsearch 검색 엔진 구축 강의] Elastic-HQ<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
 </div>
 <div id="comments"><script src="https://utteranc.es/client.js"
             repo="riley817/blog-comment"
@@ -229,7 +233,7 @@ Installation ES Head git repository 에서 클론 혹은 다운로드한다.
         </script>
     </div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.127.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.128.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
                 </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/riley817" target="_blank">Riley</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

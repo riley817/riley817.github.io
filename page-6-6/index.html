@@ -4,15 +4,15 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>[Mastering Spring 5.0] 6.6 Spring Security - OAuth 2.0 - 라일리의 개발 기록장</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:url" content="https://riley817.github.io/page-6-6/">
-  <meta property="og:site_name" content="라일리의 개발 기록장">
+        <title>[Mastering Spring 5.0] 6.6 Spring Security - OAuth 2.0 - 🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:url" content="https://riley817.github.io/page-6-6/">
+  <meta property="og:site_name" content="🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖">
   <meta property="og:title" content="[Mastering Spring 5.0] 6.6 Spring Security - OAuth 2.0">
-  <meta property="og:description" content="OAuth2 인증 OAuth 2는 어플리케이션과 Facebook, GitHub 및 DigitalOcean 과 같은 HTTP 서비스의사용자 계정에 대한 제한된 액세스 권한을 얻을 수있게 해주는 인증 프레임 워크이다. 이는 사용자 계정을 호스팅하는 서비스에 사용자 인증을 위임하고 타사 응용 프로그램에 사용자 계정에 대한 액세스 권한을 부여하여 작동하게 된다. OAuth 2는 웹 및 데스크톱 응용 프로그램 및 모바일 장치에 대한 인증 흐름을 제공하게 된다. OAuth2 주체 리소스 소유자 (사용자) : 리소스 소유자는 자신의 계정에 액세스하기 위해 어플리케이션 을 인증하는 사용자 이다.">
+  <meta property="og:description" content="스프링 5.0 마스터 스터디 스프링 5.0 마스터 스터디 학습 내용 정리입니다. OAuth2 인증 OAuth 2는 어플리케이션과 Facebook, GitHub 및 DigitalOcean 과 같은 HTTP 서비스의사용자 계정에 대한 제한된 액세스 권한을 얻을 수있게 해주는 인증 프레임 워크이다. 이는 사용자 계정을 호스팅하는 서비스에 사용자 인증을 위임하고 타사 응용 프로그램에 사용자 계정에 대한 액세스 권한을 부여하여 작동하게 된다. OAuth 2는 웹 및 데스크톱 응용 프로그램 및 모바일 장치에 대한 인증 흐름을 제공하게 된다.">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2018-12-09T17:53:39+09:00">
-    <meta property="article:modified_time" content="2024-06-24T22:08:26+09:00">
+    <meta property="article:published_time" content="2018-12-17T23:52:36+09:00">
+    <meta property="article:modified_time" content="2024-06-29T23:59:44+09:00">
     <meta property="article:tag" content="Spring Framework">
     <meta property="article:tag" content="Spring Security">
     <meta property="og:image" content="https://riley817.github.io/icon.png">
@@ -20,11 +20,11 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://riley817.github.io/icon.png">
   <meta name="twitter:title" content="[Mastering Spring 5.0] 6.6 Spring Security - OAuth 2.0">
-  <meta name="twitter:description" content="OAuth2 인증 OAuth 2는 어플리케이션과 Facebook, GitHub 및 DigitalOcean 과 같은 HTTP 서비스의사용자 계정에 대한 제한된 액세스 권한을 얻을 수있게 해주는 인증 프레임 워크이다. 이는 사용자 계정을 호스팅하는 서비스에 사용자 인증을 위임하고 타사 응용 프로그램에 사용자 계정에 대한 액세스 권한을 부여하여 작동하게 된다. OAuth 2는 웹 및 데스크톱 응용 프로그램 및 모바일 장치에 대한 인증 흐름을 제공하게 된다. OAuth2 주체 리소스 소유자 (사용자) : 리소스 소유자는 자신의 계정에 액세스하기 위해 어플리케이션 을 인증하는 사용자 이다.">
+  <meta name="twitter:description" content="스프링 5.0 마스터 스터디 스프링 5.0 마스터 스터디 학습 내용 정리입니다. OAuth2 인증 OAuth 2는 어플리케이션과 Facebook, GitHub 및 DigitalOcean 과 같은 HTTP 서비스의사용자 계정에 대한 제한된 액세스 권한을 얻을 수있게 해주는 인증 프레임 워크이다. 이는 사용자 계정을 호스팅하는 서비스에 사용자 인증을 위임하고 타사 응용 프로그램에 사용자 계정에 대한 액세스 권한을 부여하여 작동하게 된다. OAuth 2는 웹 및 데스크톱 응용 프로그램 및 모바일 장치에 대한 인증 흐름을 제공하게 된다.">
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://riley817.github.io/page-6-6/" /><link rel="prev" href="https://riley817.github.io/page-6-7/" /><link rel="next" href="https://riley817.github.io/page-6-5/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://riley817.github.io/page-6-6/" /><link rel="prev" href="https://riley817.github.io/jpa-programming3-1/" /><link rel="next" href="https://riley817.github.io/jpa-programming3-2/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
     {
@@ -35,8 +35,8 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/riley817.github.io\/page-6-6\/"
-        },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Spring Framework, Spring Security","wordcount":  765 ,
-        "url": "https:\/\/riley817.github.io\/page-6-6\/","datePublished": "2018-12-09T17:53:39+09:00","dateModified": "2024-06-24T22:08:26+09:00","publisher": {
+        },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Spring Framework, Spring Security","wordcount":  774 ,
+        "url": "https:\/\/riley817.github.io\/page-6-6\/","datePublished": "2018-12-17T23:52:36+09:00","dateModified": "2024-06-29T23:59:44+09:00","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/riley817.github.io\/images\/avatar.png"},"author": {
                 "@type": "Person",
@@ -44,12 +44,12 @@
             },"description": ""
     }
     </script></head>
-    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('light' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'light' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
 
         <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
     <div class="header-wrapper">
         <div class="header-title">
-            <a href="/" title="라일리의 개발 기록장"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i>&nbsp;</span>라일리의 개발 기록장</a>
+            <a href="/" title="🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i>&nbsp;</span>Riley&#39;s CodeCrumbs</a>
         </div>
         <div class="menu">
             <div class="menu-inner"><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
@@ -73,7 +73,7 @@
     <div class="header-container">
         <div class="header-wrapper">
             <div class="header-title">
-                <a href="/" title="라일리의 개발 기록장"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i>&nbsp;</span>라일리의 개발 기록장</a>
+                <a href="/" title="🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i>&nbsp;</span>Riley&#39;s CodeCrumbs</a>
             </div>
             <div class="menu-toggle" id="menu-toggle-mobile">
                 <span></span><span></span><span></span>
@@ -110,15 +110,23 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">[Mastering Spring 5.0] 6.6 Spring Security - OAuth 2.0</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://github.com/riley817" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-category">included in <a href="/categories/mastering-spring-5.0/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Mastering Spring 5.0</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2018-12-09">2018-12-09</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;765 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2018-12-17">2018-12-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;774 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;4 minutes&nbsp;</div>
-        </div><div class="details toc" id="toc-static"  data-kept="">
+        </div><div class="featured-image"><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/posts/images/spring/mastering-spring5-thumbnail.png"
+        data-srcset="/posts/images/spring/mastering-spring5-thumbnail.png, /posts/images/spring/mastering-spring5-thumbnail.png 1.5x, /posts/images/spring/mastering-spring5-thumbnail.png 2x"
+        data-sizes="auto"
+        alt="/posts/images/spring/mastering-spring5-thumbnail.png"
+        title="/posts/images/spring/mastering-spring5-thumbnail.png" /></div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
                     <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
+    <li><a href="#oauth2-인증">OAuth2 인증</a></li>
     <li><a href="#springboot-oauth-2-인증-구현하기">Springboot OAuth 2 인증 구현하기</a>
       <ul>
         <li><a href="#의존성-추가">의존성 추가</a></li>
@@ -133,12 +141,19 @@
         <li><a href="#통합테스트">통합테스트</a></li>
       </ul>
     </li>
+    <li><a href="#참고">참고</a></li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><h1 id="oauth2-인증">OAuth2 인증</h1>
-<ul>
-<li>OAuth 2는 어플리케이션과 Facebook, GitHub 및 DigitalOcean 과 같은 <strong>HTTP 서비스의사용자 계정에 대한 제한된 액세스 권한을 얻을 수있게 해주는 인증 프레임 워크</strong>이다. 이는 사용자 계정을 호스팅하는 서비스에 사용자 인증을 위임하고 타사 응용 프로그램에 사용자 계정에 대한 액세스 권한을 부여하여 작동하게 된다. OAuth 2는 웹 및 데스크톱 응용 프로그램 및 모바일 장치에 대한 인증 흐름을 제공하게 된다.</li>
-</ul>
+            </div><div class="content" id="content"><div class="details admonition note open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-pencil-alt fa-fw" aria-hidden="true"></i>스프링 5.0 마스터 스터디<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">스프링 5.0 마스터 스터디 학습 내용 정리입니다.</div>
+        </div>
+    </div>
+<h2 id="oauth2-인증">OAuth2 인증</h2>
+<p>OAuth 2는 어플리케이션과 Facebook, GitHub 및 DigitalOcean 과 같은 <strong>HTTP 서비스의사용자 계정에 대한 제한된 액세스 권한을 얻을 수있게 해주는 인증 프레임 워크</strong>이다. 이는 사용자 계정을 호스팅하는 서비스에 사용자 인증을 위임하고 타사 응용 프로그램에 사용자 계정에 대한 액세스 권한을 부여하여 작동하게 된다. OAuth 2는 웹 및 데스크톱 응용 프로그램 및 모바일 장치에 대한 인증 흐름을 제공하게 된다.</p>
 <div class="details admonition tip open">
         <div class="details-summary admonition-title">
             <i class="icon fas fa-lightbulb fa-fw" aria-hidden="true"></i>OAuth2 주체<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
@@ -167,7 +182,7 @@
 <h2 id="springboot-oauth-2-인증-구현하기">Springboot OAuth 2 인증 구현하기</h2>
 <h3 id="의존성-추가">의존성 추가</h3>
 <p><code>spring-security-oauth2</code> 는 스프링 시큐리티에 OAuth2 지원을 제공하기 위한 모듈이다. <code>pom.xml</code> 또는 <code>build.gradle</code> 에 추가한다.</p>
-<p><code>pom.xml</code></p>
+<p><strong>pom.xml</strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -182,7 +197,7 @@
 </span></span><span class="line"><span class="cl"><span class="nt">&lt;/dependency&gt;</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><code>build.gradle</code></p>
+</div><p><strong>build.gradle</strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -216,20 +231,16 @@
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
-<li><code>@EnableResourceServer</code> : 들어오는 OAuth 2 토큰을 통해 요청을 인증하는 스프링 시큐리티를 사용하는 OAuth2 리소스 서버에 대한 어노테이션이다.</li>
-<li><code>@EnableAuthorizationServer</code> : <code>DispatcherServlet</code> 콘텍스트인 현재 어플리케이션 콘텍스트에서 <code>AuthorizationEndpoint</code> 및 <code>TokenEndPoint</code> 를 사용해 권한 부여 서버를 사용할 수 있도록 하는 어노테이션이다.</li>
+<li><strong>@EnableResourceServer</strong> : 들어오는 OAuth 2 토큰을 통해 요청을 인증하는 스프링 시큐리티를 사용하는 OAuth2 리소스 서버에 대한 어노테이션이다.</li>
+<li><strong>@EnableAuthorizationServer</strong> : <code>DispatcherServlet</code> 콘텍스트인 현재 어플리케이션 콘텍스트에서 <code>AuthorizationEndpoint</code> 및 <code>TokenEndPoint</code> 를 사용해 권한 부여 서버를 사용할 수 있도록 하는 어노테이션이다.</li>
 </ul>
 <h3 id="권한-서버-세부-정보-구성하기">권한 서버 세부 정보 구성하기</h3>
 <p>예제 소스에는 <code>application.properties</code> 를 통해 세부 구성을 설정을 하였지만, 자동구성 설정이 잘 되지 않아 <code>@Configuration</code> 을 통하여 수동 구성으로 작성하였다.</p>
 <ul>
-<li>
-<p>Spring Boot 2.x 버전에서 OAuth2가 안될때 - <a href="https://hue9010.github.io/spring/OAuth2/" target="_blank" rel="noopener noreffer">https://hue9010.github.io/spring/OAuth2/</a></p>
-</li>
-<li>
-<p><code>AuthorizationServerConfigurerAdapter</code> 를 상속받아 권한서버의 세부 사항을 구성한다.</p>
-</li>
+<li><a href="https://hue9010.github.io/spring/OAuth2/" target="_blank" rel="noopener noreffer">Spring Boot 2.x 버전에서 OAuth2가 안될때</a></li>
+<li><code>AuthorizationServerConfigurerAdapter</code> 를 상속받아 권한서버의 세부 사항을 구성한다.</li>
 </ul>
-<p><code>/src/main/java/com/mastering/spring/springboot/config/OAuthConfiguration.java</code></p>
+<p><strong>/src/main/java/com/mastering/spring/springboot/config/OAuthConfiguration.java</strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -305,21 +316,13 @@
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
-<li>
-<p><code>void configure(ClientDetailsServiceConfigurer configurer)</code> :
-클라이언트 ID 와 Secret 자격증명 정보를 메모리에 설정한다. <em>Spring Security 5.0.0.RC1</em> 이후 암호변환정책이 변경되었으므로, 기본값인 <code>DelegatingPasswordEncoder</code> 에는 패드워드 암호화 메소드 접두어가 필요하다. <strong>(bcrypt/noop/pbkdf2/scrypt/sha256)</strong> 중 하나를 사용할 수 있으며, 예제는 따로 인코딩을 지정하지 않았기 때문에 {noop} 접두어를 설정함.</p>
-</li>
-<li>
-<p><code>void configure(AuthorizationServerEndpointsConfigurer endpoints)</code> : /oauth/token 엔드포인트에 대한 상세 서비스를 지정할 수 있다.</p>
-</li>
-<li>
-<p><a href="https://java.ihoney.pe.kr/498" target="_blank" rel="noopener noreffer">spring-security 5.0 에서 달라진 암호변환정책, DelegatingPasswordEncoder</a></p>
-</li>
-<li>
-<p><a href="https://spring.io/blog/2017/11/01/spring-security-5-0-0-rc1-released#password-encoding" target="_blank" rel="noopener noreffer">Password Encoding</a></p>
-</li>
+<li><code>void configure(ClientDetailsServiceConfigurer configurer)</code> :
+클라이언트 ID 와 Secret 자격증명 정보를 메모리에 설정한다. <em>Spring Security 5.0.0.RC1</em> 이후 암호변환정책이 변경되었으므로, 기본값인 <code>DelegatingPasswordEncoder</code> 에는 패드워드 암호화 메소드 접두어가 필요하다. <strong>(bcrypt/noop/pbkdf2/scrypt/sha256)</strong> 중 하나를 사용할 수 있으며, 예제는 따로 인코딩을 지정하지 않았기 때문에 {noop} 접두어를 설정함.</li>
+<li><code>void configure(AuthorizationServerEndpointsConfigurer endpoints)</code> : /oauth/token 엔드포인트에 대한 상세 서비스를 지정할 수 있다.</li>
+<li><a href="https://java.ihoney.pe.kr/498" target="_blank" rel="noopener noreffer">spring-security 5.0 에서 달라진 암호변환정책, DelegatingPasswordEncoder</a></li>
+<li><a href="https://spring.io/blog/2017/11/01/spring-security-5-0-0-rc1-released#password-encoding" target="_blank" rel="noopener noreffer">Password Encoding</a></li>
 </ul>
-<p><strong><code>/src/main/java/com/mastering/spring/springboot/config/WebSecurityConfigurer.java</code></strong></p>
+<p><strong>/src/main/java/com/mastering/spring/springboot/config/WebSecurityConfigurer.java</strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -342,7 +345,7 @@
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><p><strong><code>/src/main/java/com/mastering/spring/springboot/service/TestUserDetailService.java</code></strong></p>
+</div><p><strong>/src/main/java/com/mastering/spring/springboot/service/TestUserDetailService.java</strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -481,8 +484,7 @@
 <code>OAuth2RestTemplate</code> 은 OAuth2 프로토콜을 지원하는 <code>Resttemplate</code> 의 확장이다.</p>
 </li>
 </ul>
-<hr>
-<p><strong>[참고]</strong></p>
+<h2 id="참고">참고</h2>
 <ul>
 <li><a href="https://oauth.net/2/" target="_blank" rel="noopener noreffer">https://oauth.net/2/</a></li>
 <li><a href="https://www.digitalocean.com/community/tutorials/an-introduction-to-oauth-2" target="_blank" rel="noopener noreffer">https://www.digitalocean.com/community/tutorials/an-introduction-to-oauth-2</a></li>
@@ -491,8 +493,8 @@
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 2024-06-24&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/23c45c8708c6ff29696def98046311196cf3bb44" target="_blank" title="commit by riley(41636282&#43;riley817@users.noreply.github.com) 23c45c8708c6ff29696def98046311196cf3bb44: Update main.yml">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>23c45c8</a></span>
+                <span>Updated on 2024-06-29&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/b7aad3025e10b4e333b45c35ce1386d01ceab0d3" target="_blank" title="commit by riley817(riley0422@icloud.com) b7aad3025e10b4e333b45c35ce1386d01ceab0d3: Merge branch &#39;develop&#39;">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>b7aad30</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>
@@ -509,8 +511,8 @@
         </section>
     </div>
 
-    <div class="post-nav"><a href="/page-6-7/" class="prev" rel="prev" title="[Mastering Spring 5.0] 6.7 국제화"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>[Mastering Spring 5.0] 6.7 국제화</a>
-            <a href="/page-6-5/" class="next" rel="next" title="[Mastering Spring 5.0] 6.5 Spring Security - Basic authentication">[Mastering Spring 5.0] 6.5 Spring Security - Basic authentication<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+    <div class="post-nav"><a href="/jpa-programming3-1/" class="prev" rel="prev" title="[자바 ORM 표준 JPA 프로그래밍] 3장 영속성 관리 - EntityManagerFactory, EntityManager, 영속성컨텍스트, 엔티티 생명주기, 영속성컨텍스트의 특징"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>[자바 ORM 표준 JPA 프로그래밍] 3장 영속성 관리 - EntityManagerFactory, EntityManager, 영속성컨텍스트, 엔티티 생명주기, 영속성컨텍스트의 특징</a>
+            <a href="/jpa-programming3-2/" class="next" rel="next" title="[자바 ORM 표준 JPA 프로그래밍] 3장 영속성 관리 - 플러시, 준영속">[자바 ORM 표준 JPA 프로그래밍] 3장 영속성 관리 - 플러시, 준영속<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
 </div>
 <div id="comments"><script src="https://utteranc.es/client.js"
             repo="riley817/blog-comment"
@@ -522,7 +524,7 @@
         </script>
     </div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.127.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.128.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
                 </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/riley817" target="_blank">Riley</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

@@ -4,24 +4,28 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>[Elasticsearch 검색 엔진 구축 강의] 3.5 그 외 설정 - 라일리의 개발 기록장</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:url" content="https://riley817.github.io/elasticsearch-lecture3-5/">
-  <meta property="og:site_name" content="라일리의 개발 기록장">
-  <meta property="og:title" content="[Elasticsearch 검색 엔진 구축 강의] 3.5 그 외 설정">
-  <meta property="og:description" content="Other Settings /etc/security/limits.conf Elasticsearch 는 많은 파일을 쓰거나 핸들링하게 된다. 열 수 있는 File descriptor가 부족하면 데이터의 손실로 이어질 수 있으며 실행할 수 있는 최대 File Descriptor 를 65,536 개 이상으로 설정하도록 한다.
-vi /etc/security/limits.conf 1 2 elasticsearch soft nofile 65536 elasticsearch hard nofile 65536 Thread 수 Elasticsearch 는 여러 유형의 작업에 대해 많은 Thread Pool을 사용하게 된다.. Elasticsearch 사용자가 만들 수 있는 Thread 가 4096 개 이상인지 확인한다. 1 2 elasticsearch soft noproc 4096 elasticsearch hard noproc 4096 Sysconfig file RPM 또는 Debian 패키지를 사용하여 시스템 설정 및 환경 변수를 지정할 수 있다.">
+        <title>[Elasticsearch 검색 엔진 구축 강의] 그 외 설정 - 🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:url" content="https://riley817.github.io/elasticsearch-lecture3-5/">
+  <meta property="og:site_name" content="🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖">
+  <meta property="og:title" content="[Elasticsearch 검색 엔진 구축 강의] 그 외 설정">
+  <meta property="og:description" content="limits.conf Elasticsearch 는 많은 파일을 쓰거나 핸들링하게 된다. 열 수 있는 File descriptor가 부족하면 데이터의 손실로 이어질 수 있으며 실행할 수 있는 최대 File Descriptor 를 65,536 개 이상으로 설정하도록 한다.
+vi /etc/security/limits.conf
+1 2 elasticsearch soft nofile 65536 elasticsearch hard nofile 65536 Thread 수 Elasticsearch 는 여러 유형의 작업에 대해 많은 Thread Pool을 사용하게 된다. Elasticsearch 사용자가 만들 수 있는 Thread 가 4096 개 이상인지 확인한다.
+1 2 elasticsearch soft noproc 4096 elasticsearch hard noproc 4096 Sysconfig file RPM 또는 Debian 패키지를 사용하여 시스템 설정 및 환경 변수를 지정할 수 있다.">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2018-11-05T23:38:01+09:00">
-    <meta property="article:modified_time" content="2024-06-24T22:08:26+09:00">
+    <meta property="article:modified_time" content="2024-06-29T23:59:44+09:00">
     <meta property="article:tag" content="Elasticsearch">
     <meta property="og:image" content="https://riley817.github.io/icon.png">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://riley817.github.io/icon.png">
-  <meta name="twitter:title" content="[Elasticsearch 검색 엔진 구축 강의] 3.5 그 외 설정">
-  <meta name="twitter:description" content="Other Settings /etc/security/limits.conf Elasticsearch 는 많은 파일을 쓰거나 핸들링하게 된다. 열 수 있는 File descriptor가 부족하면 데이터의 손실로 이어질 수 있으며 실행할 수 있는 최대 File Descriptor 를 65,536 개 이상으로 설정하도록 한다.
-vi /etc/security/limits.conf 1 2 elasticsearch soft nofile 65536 elasticsearch hard nofile 65536 Thread 수 Elasticsearch 는 여러 유형의 작업에 대해 많은 Thread Pool을 사용하게 된다.. Elasticsearch 사용자가 만들 수 있는 Thread 가 4096 개 이상인지 확인한다. 1 2 elasticsearch soft noproc 4096 elasticsearch hard noproc 4096 Sysconfig file RPM 또는 Debian 패키지를 사용하여 시스템 설정 및 환경 변수를 지정할 수 있다.">
+  <meta name="twitter:title" content="[Elasticsearch 검색 엔진 구축 강의] 그 외 설정">
+  <meta name="twitter:description" content="limits.conf Elasticsearch 는 많은 파일을 쓰거나 핸들링하게 된다. 열 수 있는 File descriptor가 부족하면 데이터의 손실로 이어질 수 있으며 실행할 수 있는 최대 File Descriptor 를 65,536 개 이상으로 설정하도록 한다.
+vi /etc/security/limits.conf
+1 2 elasticsearch soft nofile 65536 elasticsearch hard nofile 65536 Thread 수 Elasticsearch 는 여러 유형의 작업에 대해 많은 Thread Pool을 사용하게 된다. Elasticsearch 사용자가 만들 수 있는 Thread 가 4096 개 이상인지 확인한다.
+1 2 elasticsearch soft noproc 4096 elasticsearch hard noproc 4096 Sysconfig file RPM 또는 Debian 패키지를 사용하여 시스템 설정 및 환경 변수를 지정할 수 있다.">
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -31,13 +35,13 @@ vi /etc/security/limits.conf 1 2 elasticsearch soft nofile 65536 elasticsearch h
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "[Elasticsearch 검색 엔진 구축 강의] 3.5 그 외 설정",
+        "headline": "[Elasticsearch 검색 엔진 구축 강의] 그 외 설정",
         "inLanguage": "en",
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/riley817.github.io\/elasticsearch-lecture3-5\/"
-        },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "elasticsearch","wordcount":  169 ,
-        "url": "https:\/\/riley817.github.io\/elasticsearch-lecture3-5\/","datePublished": "2018-11-05T23:38:01+09:00","dateModified": "2024-06-24T22:08:26+09:00","publisher": {
+        },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "elasticsearch","wordcount":  172 ,
+        "url": "https:\/\/riley817.github.io\/elasticsearch-lecture3-5\/","datePublished": "2018-11-05T23:38:01+09:00","dateModified": "2024-06-29T23:59:44+09:00","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/riley817.github.io\/images\/avatar.png"},"author": {
                 "@type": "Person",
@@ -45,12 +49,12 @@ vi /etc/security/limits.conf 1 2 elasticsearch soft nofile 65536 elasticsearch h
             },"description": ""
     }
     </script></head>
-    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('light' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'light' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
 
         <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
     <div class="header-wrapper">
         <div class="header-title">
-            <a href="/" title="라일리의 개발 기록장"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i>&nbsp;</span>라일리의 개발 기록장</a>
+            <a href="/" title="🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i>&nbsp;</span>Riley&#39;s CodeCrumbs</a>
         </div>
         <div class="menu">
             <div class="menu-inner"><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
@@ -74,7 +78,7 @@ vi /etc/security/limits.conf 1 2 elasticsearch soft nofile 65536 elasticsearch h
     <div class="header-container">
         <div class="header-wrapper">
             <div class="header-title">
-                <a href="/" title="라일리의 개발 기록장"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i>&nbsp;</span>라일리의 개발 기록장</a>
+                <a href="/" title="🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i>&nbsp;</span>Riley&#39;s CodeCrumbs</a>
             </div>
             <div class="menu-toggle" id="menu-toggle-mobile">
                 <span></span><span></span><span></span>
@@ -109,116 +113,112 @@ vi /etc/security/limits.conf 1 2 elasticsearch soft nofile 65536 elasticsearch h
                 <div class="container"><div class="toc" id="toc-auto">
             <h2 class="toc-title">Contents</h2>
             <div class="toc-content always-active" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">[Elasticsearch 검색 엔진 구축 강의] 3.5 그 외 설정</h1><h2 class="single-subtitle">Elasticsearch 검색 엔진 구축 강의</h2><div class="post-meta">
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">[Elasticsearch 검색 엔진 구축 강의] 그 외 설정</h1><h2 class="single-subtitle">Elasticsearch 검색 엔진 구축 강의</h2><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://github.com/riley817" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-category">included in <a href="/categories/elasticsearch-%EA%B2%80%EC%83%89-%EC%97%94%EC%A7%84-%EA%B5%AC%EC%B6%95-%EA%B0%95%EC%9D%98/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Elasticsearch 검색 엔진 구축 강의</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2018-11-05">2018-11-05</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;169 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2018-11-05">2018-11-05</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;172 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;One minute&nbsp;</div>
         </div><div class="featured-image"><img
         class="lazyload"
         src="/svg/loading.min.svg"
-        data-src="/posts/images/elastic/9SyGqYLhMmYxEJyNUf.png"
-        data-srcset="/posts/images/elastic/9SyGqYLhMmYxEJyNUf.png, /posts/images/elastic/9SyGqYLhMmYxEJyNUf.png 1.5x, /posts/images/elastic/9SyGqYLhMmYxEJyNUf.png 2x"
+        data-src="/posts/images/elastic/elasticsearch-lecture.png"
+        data-srcset="/posts/images/elastic/elasticsearch-lecture.png, /posts/images/elastic/elasticsearch-lecture.png 1.5x, /posts/images/elastic/elasticsearch-lecture.png 2x"
         data-sizes="auto"
-        alt="/posts/images/elastic/9SyGqYLhMmYxEJyNUf.png"
-        title="/posts/images/elastic/9SyGqYLhMmYxEJyNUf.png" /></div><div class="details toc" id="toc-static"  data-kept="">
+        alt="/posts/images/elastic/elasticsearch-lecture.png"
+        title="/posts/images/elastic/elasticsearch-lecture.png" /></div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
                     <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
-    <li>
-      <ul>
-        <li><a href="#other-settings">Other Settings</a>
-          <ul>
-            <li><a href="#etcsecuritylimitsconf">/etc/security/limits.conf</a></li>
-            <li><a href="#thread-수">Thread 수</a></li>
-            <li><a href="#sysconfig-file">Sysconfig file</a></li>
-            <li><a href="#virtual-memory">Virtual Memory</a></li>
-            <li><a href="#swap-disabling">Swap disabling</a></li>
-            <li><a href="#swappiness-configuration">swappiness configuration</a></li>
-          </ul>
-        </li>
-      </ul>
-    </li>
+    <li><a href="#limitsconf">limits.conf</a></li>
+    <li><a href="#thread-수">Thread 수</a></li>
+    <li><a href="#sysconfig-file">Sysconfig file</a></li>
+    <li><a href="#virtual-memory">Virtual Memory</a></li>
+    <li><a href="#swap-disabling">Swap disabling</a></li>
+    <li><a href="#swappiness-configuration">swappiness configuration</a></li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><h3 id="other-settings">Other Settings</h3>
-<h4 id="etcsecuritylimitsconf">/etc/security/limits.conf</h4>
+            </div><div class="content" id="content"><h2 id="limitsconf">limits.conf</h2>
 <p>Elasticsearch 는 많은 파일을 쓰거나 핸들링하게 된다. 열 수 있는 File <code>descriptor</code>가 부족하면 데이터의 손실로 이어질 수 있으며 실행할 수 있는 최대 File Descriptor 를 65,536 개 이상으로 설정하도록 한다.</p>
-<p><code>vi /etc/security/limits.conf</code>
+<p><strong>vi /etc/security/limits.conf</strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">elasticsearch soft nofile <span class="m">65536</span>
-</span></span><span class="line"><span class="cl">elasticsearch hard nofile <span class="m">65536</span></span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">elasticsearch soft nofile <span class="m">65536</span>
+</span></span><span class="line"><span class="cl">elasticsearch hard nofile <span class="m">65536</span>
+</span></span></code></pre></td></tr></table>
 </div>
-</div></p>
-<h4 id="thread-수">Thread 수</h4>
-<p>Elasticsearch 는 여러 유형의 작업에 대해 많은 Thread Pool을 사용하게 된다.. Elasticsearch 사용자가 만들 수 있는 Thread 가 4096 개 이상인지 확인한다.
+</div><h2 id="thread-수">Thread 수</h2>
+<p>Elasticsearch 는 여러 유형의 작업에 대해 많은 Thread Pool을 사용하게 된다. Elasticsearch 사용자가 만들 수 있는 Thread 가 4096 개 이상인지 확인한다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">elasticsearch soft noproc <span class="m">4096</span>
-</span></span><span class="line"><span class="cl">elasticsearch hard noproc <span class="m">4096</span></span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">elasticsearch soft noproc <span class="m">4096</span>
+</span></span><span class="line"><span class="cl">elasticsearch hard noproc <span class="m">4096</span>
+</span></span></code></pre></td></tr></table>
 </div>
-</div></p>
-<h4 id="sysconfig-file">Sysconfig file</h4>
+</div><h2 id="sysconfig-file">Sysconfig file</h2>
 <p>RPM 또는 Debian 패키지를 사용하여 시스템 설정 및 환경 변수를 지정할 수 있다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">/etc/sysconfig/elasticsearch
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">/etc/sysconfig/elasticsearch
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h4 id="virtual-memory">Virtual Memory</h4>
+</div><h2 id="virtual-memory">Virtual Memory</h2>
 <p>Elasticsearch 는 기본적으로 Index 를 저장하기 위해 <code>FileSystem</code>을 사용하기 위한 <code>mmmap</code>을 사용한다.
 <code>mmap</code>의 개수는 기본 운영체제의 제한이 너무 낮아 메모리 부족 예외를 발생시키기도 한다.</p>
-<p>sudo vi /etc/sysctl.conf
 <div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo vi /etc/sysctl.conf
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># /etc/sysctl.conf</span>
+</span></span><span class="line"><span class="cl">vm.max_map_count<span class="o">=</span><span class="m">22144</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">vm.max_map_count<span class="o">=</span><span class="m">22144</span></span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo sysstl -p
+</span></span></code></pre></td></tr></table>
 </div>
-</div></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo sysstl -p</span></span></code></pre></td></tr></table>
-</div>
-</div>
-<h4 id="swap-disabling">Swap disabling</h4>
-<p>일반적으로 JVM 옵션에서 메모리 사용이 제어되므로 Swap을 활성시킬 필요는 없다.
+</div><h2 id="swap-disabling">Swap disabling</h2>
+<p>일반적으로 JVM 옵션에서 메모리 사용이 제어되므로 Swap을 활성시킬 필요는 없다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 일시적으로 swap을 비활성화</span>
-</span></span><span class="line"><span class="cl">sudo swapoff -a</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 일시적으로 swap을 비활성화</span>
+</span></span><span class="line"><span class="cl">sudo swapoff -a
+</span></span></code></pre></td></tr></table>
 </div>
-</div></p>
-<h4 id="swappiness-configuration">swappiness configuration</h4>
+</div><h2 id="swappiness-configuration">swappiness configuration</h2>
 <p><code>m.swappiness</code>가 1로 설정되어 있는지 확인한다. 이렇게 하면 swap되는 경우가 줄어들고 일반적인 상황에서는 swapping으로 이어지지 않는다.</p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 2024-06-24&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/23c45c8708c6ff29696def98046311196cf3bb44" target="_blank" title="commit by riley(41636282&#43;riley817@users.noreply.github.com) 23c45c8708c6ff29696def98046311196cf3bb44: Update main.yml">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>23c45c8</a></span>
+                <span>Updated on 2024-06-29&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/b7aad3025e10b4e333b45c35ce1386d01ceab0d3" target="_blank" title="commit by riley817(riley0422@icloud.com) b7aad3025e10b4e333b45c35ce1386d01ceab0d3: Merge branch &#39;develop&#39;">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>b7aad30</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>
@@ -235,8 +235,8 @@ vi /etc/security/limits.conf 1 2 elasticsearch soft nofile 65536 elasticsearch h
         </section>
     </div>
 
-    <div class="post-nav"><a href="/elasticsearch-lecture3-4/" class="prev" rel="prev" title="[Elasticsearch 검색 엔진 구축 강의] 3.4 log4j2.properties"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>[Elasticsearch 검색 엔진 구축 강의] 3.4 log4j2.properties</a>
-            <a href="/elasticsearch-lecture4/" class="next" rel="next" title="[Elasticsearch 검색 엔진 구축 강의] 4. Elasticsearch 기본 동작">[Elasticsearch 검색 엔진 구축 강의] 4. Elasticsearch 기본 동작<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+    <div class="post-nav"><a href="/elasticsearch-lecture3-4/" class="prev" rel="prev" title="[Elasticsearch 검색 엔진 구축 강의] log4j2.properties"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>[Elasticsearch 검색 엔진 구축 강의] log4j2.properties</a>
+            <a href="/elasticsearch-lecture4/" class="next" rel="next" title="[Elasticsearch 검색 엔진 구축 강의] Elasticsearch 기본 동작">[Elasticsearch 검색 엔진 구축 강의] Elasticsearch 기본 동작<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
 </div>
 <div id="comments"><script src="https://utteranc.es/client.js"
             repo="riley817/blog-comment"
@@ -248,7 +248,7 @@ vi /etc/security/limits.conf 1 2 elasticsearch soft nofile 65536 elasticsearch h
         </script>
     </div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.127.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.128.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
                 </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/riley817" target="_blank">Riley</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

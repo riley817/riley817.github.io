@@ -4,16 +4,16 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>[자바 ORM 표준 JPA 프로그래밍] 5장 연관관계 매핑 기초 - 단방향 연관관계 - 라일리의 개발 기록장</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:url" content="https://riley817.github.io/jpa-programming5-1/">
-  <meta property="og:site_name" content="라일리의 개발 기록장">
+        <title>[자바 ORM 표준 JPA 프로그래밍] 5장 연관관계 매핑 기초 - 단방향 연관관계 - 🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:url" content="https://riley817.github.io/jpa-programming5-1/">
+  <meta property="og:site_name" content="🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖">
   <meta property="og:title" content="[자바 ORM 표준 JPA 프로그래밍] 5장 연관관계 매핑 기초 - 단방향 연관관계">
-  <meta property="og:description" content="자바 ORM 표준 JPA 프로그래밍 학습 내용 정리
-단방향 연관관계 객체는 참조(주소) 를 사용해서 관계를 맺고, 테이블을 외래 키를 사용해서 관계를 맺는다. 방향(Direction) : 단방향과 양방향이 있으며 방향은 객체관계에만 존재하고 테이블 관계는 항상 양방향 이다. 다중성(Multiplicity) : 다대일(N:1), 일대다(1:N), 일대일(1:1), 다대다 (N:N) 연관관계 주인 (owner) : 객체를 양방향 연관관계로 만들면 연관관계의 주인을 정해야 한다. 5.1 단방향 연관관계 객체 연관관계 회원 객체와 팀 객체는 단방향 관계 다. 회원은 Member.team 필드를 통해서 팀을 알 수 있지만 반대로 팀은 회원을 알 수 없다.">
+  <meta property="og:description" content="자바 ORM 표준 JPA 프로그래밍 학습 내용 정리한 포스팅 입니다.
+객체는 참조(주소)를 사용해서 관계를 맺고 테이블을 외래 키를 사용해서 관계를 맺는다. 방향(Direction) : 단방향과 양방향이 있으며 방향은 객체관계에만 존재하고 테이블 관계는 항상 양방향 이다. 다중성(Multiplicity) : 다대일(N:1), 일대다(1:N), 일대일(1:1), 다대다 (N:N) 연관관계 주인 (owner) : 객체를 양방향 연관관계로 만들면 연관관계의 주인을 정해야 한다. 단방향 연관관계 객체 연관관계 회원 객체와 팀 객체는 단방향 관계 다. 회원은 Member.team 필드를 통해서 팀을 알 수 있지만 반대로 팀은 회원을 알 수 없다.">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2018-12-26T10:37:22+09:00">
-    <meta property="article:modified_time" content="2024-06-24T22:08:26+09:00">
+    <meta property="article:modified_time" content="2024-06-29T23:59:44+09:00">
     <meta property="article:tag" content="JPA">
     <meta property="article:tag" content="ORM">
     <meta property="og:image" content="https://riley817.github.io/icon.png">
@@ -21,8 +21,8 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://riley817.github.io/icon.png">
   <meta name="twitter:title" content="[자바 ORM 표준 JPA 프로그래밍] 5장 연관관계 매핑 기초 - 단방향 연관관계">
-  <meta name="twitter:description" content="자바 ORM 표준 JPA 프로그래밍 학습 내용 정리
-단방향 연관관계 객체는 참조(주소) 를 사용해서 관계를 맺고, 테이블을 외래 키를 사용해서 관계를 맺는다. 방향(Direction) : 단방향과 양방향이 있으며 방향은 객체관계에만 존재하고 테이블 관계는 항상 양방향 이다. 다중성(Multiplicity) : 다대일(N:1), 일대다(1:N), 일대일(1:1), 다대다 (N:N) 연관관계 주인 (owner) : 객체를 양방향 연관관계로 만들면 연관관계의 주인을 정해야 한다. 5.1 단방향 연관관계 객체 연관관계 회원 객체와 팀 객체는 단방향 관계 다. 회원은 Member.team 필드를 통해서 팀을 알 수 있지만 반대로 팀은 회원을 알 수 없다.">
+  <meta name="twitter:description" content="자바 ORM 표준 JPA 프로그래밍 학습 내용 정리한 포스팅 입니다.
+객체는 참조(주소)를 사용해서 관계를 맺고 테이블을 외래 키를 사용해서 관계를 맺는다. 방향(Direction) : 단방향과 양방향이 있으며 방향은 객체관계에만 존재하고 테이블 관계는 항상 양방향 이다. 다중성(Multiplicity) : 다대일(N:1), 일대다(1:N), 일대일(1:1), 다대다 (N:N) 연관관계 주인 (owner) : 객체를 양방향 연관관계로 만들면 연관관계의 주인을 정해야 한다. 단방향 연관관계 객체 연관관계 회원 객체와 팀 객체는 단방향 관계 다. 회원은 Member.team 필드를 통해서 팀을 알 수 있지만 반대로 팀은 회원을 알 수 없다.">
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -37,8 +37,8 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/riley817.github.io\/jpa-programming5-1\/"
-        },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "JPA, ORM","wordcount":  873 ,
-        "url": "https:\/\/riley817.github.io\/jpa-programming5-1\/","datePublished": "2018-12-26T10:37:22+09:00","dateModified": "2024-06-24T22:08:26+09:00","publisher": {
+        },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "JPA, ORM","wordcount":  865 ,
+        "url": "https:\/\/riley817.github.io\/jpa-programming5-1\/","datePublished": "2018-12-26T10:37:22+09:00","dateModified": "2024-06-29T23:59:44+09:00","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/riley817.github.io\/images\/avatar.png"},"author": {
                 "@type": "Person",
@@ -46,12 +46,12 @@
             },"description": ""
     }
     </script></head>
-    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('light' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'light' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
 
         <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
     <div class="header-wrapper">
         <div class="header-title">
-            <a href="/" title="라일리의 개발 기록장"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i>&nbsp;</span>라일리의 개발 기록장</a>
+            <a href="/" title="🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i>&nbsp;</span>Riley&#39;s CodeCrumbs</a>
         </div>
         <div class="menu">
             <div class="menu-inner"><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
@@ -75,7 +75,7 @@
     <div class="header-container">
         <div class="header-wrapper">
             <div class="header-title">
-                <a href="/" title="라일리의 개발 기록장"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i>&nbsp;</span>라일리의 개발 기록장</a>
+                <a href="/" title="🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i>&nbsp;</span>Riley&#39;s CodeCrumbs</a>
             </div>
             <div class="menu-toggle" id="menu-toggle-mobile">
                 <span></span><span></span><span></span>
@@ -112,71 +112,74 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">[자바 ORM 표준 JPA 프로그래밍] 5장 연관관계 매핑 기초 - 단방향 연관관계</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://github.com/riley817" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%EC%9E%90%EB%B0%94-orm-%ED%91%9C%EC%A4%80-jpa-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>자바 ORM 표준 JPA 프로그래밍</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2018-12-26">2018-12-26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;873 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2018-12-26">2018-12-26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;865 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;5 minutes&nbsp;</div>
-        </div><div class="details toc" id="toc-static"  data-kept="">
+        </div><div class="featured-image"><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/posts/images/jpa/jpa-thumbnail.png"
+        data-srcset="/posts/images/jpa/jpa-thumbnail.png, /posts/images/jpa/jpa-thumbnail.png 1.5x, /posts/images/jpa/jpa-thumbnail.png 2x"
+        data-sizes="auto"
+        alt="/posts/images/jpa/jpa-thumbnail.png"
+        title="/posts/images/jpa/jpa-thumbnail.png" /></div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
                     <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
-    <li><a href="#51-단방향-연관관계">5.1 단방향 연관관계</a>
+    <li><a href="#단방향-연관관계">단방향 연관관계</a>
       <ul>
         <li><a href="#객체-연관관계">객체 연관관계</a></li>
         <li><a href="#테이블-연관관계">테이블 연관관계</a></li>
-        <li><a href="#정리">정리</a></li>
-        <li><a href="#511-순수한-객체-연관관계">5.1.1 순수한 객체 연관관계</a></li>
-        <li><a href="#512-테이블-연관관계">5.1.2 테이블 연관관계</a></li>
-        <li><a href="#테이블-생성">테이블 생성</a>
+        <li><a href="#순수한-객체-연관관계">순수한 객체 연관관계</a></li>
+        <li><a href="#테이블-연관관계-1">테이블 연관관계</a>
           <ul>
+            <li><a href="#테이블-생성">테이블 생성</a></li>
             <li><a href="#sql-을-통하여-연관관계를-정의하기">SQL 을 통하여 연관관계를 정의하기</a></li>
           </ul>
         </li>
-        <li><a href="#513-jpa-로-객체-관계매핑">5.1.3 JPA 로 객체 관계매핑</a>
-          <ul>
-            <li><a href="#memberjava">Member.java</a></li>
-            <li><a href="#teamjava">Team.java</a></li>
-          </ul>
-        </li>
-        <li><a href="#514-joincolumn">5.1.4 @JoinColumn</a></li>
-        <li><a href="#515--manytoone">5.1.5 @ ManyToOne</a></li>
+        <li><a href="#객체-관계-매핑">객체 관계 매핑</a></li>
+        <li><a href="#joincolumn">@JoinColumn</a></li>
+        <li><a href="#manytoone">@ManyToOne</a></li>
       </ul>
     </li>
-    <li><a href="#52-연관관계-사용">5.2 연관관계 사용</a>
+    <li><a href="#연관관계-사용">연관관계 사용</a>
       <ul>
-        <li><a href="#521-저장">5.2.1 저장</a></li>
-        <li><a href="#522-조회">5.2.2 조회</a>
+        <li><a href="#저장">저장</a></li>
+        <li><a href="#조회">조회</a>
           <ul>
             <li><a href="#연관관계가-있는-엔티티를-조회하는-방법">연관관계가 있는 엔티티를 조회하는 방법</a></li>
-            <li><a href="#객체그래프-탐색">객체그래프 탐색</a></li>
+          </ul>
+        </li>
+        <li><a href="#객체그래프-탐색">객체그래프 탐색</a>
+          <ul>
             <li><a href="#객체지향-쿼리-사용">객체지향 쿼리 사용</a></li>
           </ul>
         </li>
-        <li><a href="#523-수정">5.2.3 수정</a></li>
-        <li><a href="#524-연관관계-제거">5.2.4 연관관계 제거</a></li>
-        <li><a href="#525-연관된-엔티티-삭제">5.2.5 연관된 엔티티 삭제</a></li>
+        <li><a href="#수정">수정</a></li>
+        <li><a href="#연관관계-제거">연관관계 제거</a></li>
+        <li><a href="#연관된-엔티티-삭제">연관된 엔티티 삭제</a></li>
       </ul>
     </li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><blockquote>
-<p>자바 ORM 표준 JPA 프로그래밍 학습 내용 정리</p>
+<p>자바 ORM 표준 JPA 프로그래밍 학습 내용 정리한 포스팅 입니다.</p>
 </blockquote>
 <script src="https://gist.github.com/riley817/e1a4f8c19ec50637e9363bbf76b59450.js"></script>
 
-<h1 id="단방향-연관관계">단방향 연관관계</h1>
 <ul>
-<li>객체는 참조(주소) 를 사용해서 관계를 맺고, 테이블을 외래 키를 사용해서 관계를 맺는다.</li>
+<li>객체는 참조(주소)를 사용해서 관계를 맺고 테이블을 외래 키를 사용해서 관계를 맺는다.</li>
 <li>방향(<code>Direction</code>) : 단방향과 양방향이 있으며 <strong>방향은 객체관계에만 존재하고 테이블 관계는 항상 양방향</strong> 이다.</li>
 <li>다중성(<code>Multiplicity</code>) : 다대일(N:1), 일대다(1:N), 일대일(1:1), 다대다 (N:N)</li>
 <li>연관관계 주인 (<code>owner</code>) : 객체를 양방향 연관관계로 만들면 연관관계의 주인을 정해야 한다.</li>
 </ul>
-<h2 id="51-단방향-연관관계">5.1 단방향 연관관계</h2>
+<h2 id="단방향-연관관계">단방향 연관관계</h2>
 <h3 id="객체-연관관계">객체 연관관계</h3>
 <ul>
 <li>회원 객체와 팀 객체는 <strong>단방향 관계</strong> 다.</li>
-<li>회원은 Member.team 필드를 통해서 팀을 알 수 있지만 반대로 팀은 회원을 알 수 없다.</li>
+<li>회원은 <code>Member.team</code> 필드를 통해서 팀을 알 수 있지만 반대로 팀은 회원을 알 수 없다.</li>
 </ul>
 <h3 id="테이블-연관관계">테이블 연관관계</h3>
 <ul>
@@ -193,8 +196,12 @@
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">TEAM</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">MEMBER</span><span class="w"> </span><span class="n">M</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">T</span><span class="p">.</span><span class="n">ID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">M</span><span class="p">.</span><span class="n">TEAM_ID</span><span class="p">;</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="정리">정리</h3>
-<ul>
+</div><div class="details admonition success open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-check-circle fa-fw" aria-hidden="true"></i>정리<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><ul>
 <li>참조를 사용하는 객체의 연관관계는 단방향이다. <code>A -&gt; B (a.b)</code></li>
 <li>외래키를 사용하는 테이블의 연관관계는 양방향이다. <code>A JOIN B</code> 도 가능 하고 <code>B JOIN A</code> 도 가능하다.</li>
 <li>객체를 양항뱡으로 참조하려면 단방향 연관관계를 2개 만들어야 한다.
@@ -204,10 +211,11 @@
 </ul>
 </li>
 </ul>
-<h3 id="511-순수한-객체-연관관계">5.1.1 순수한 객체 연관관계</h3>
-<ul>
-<li><strong>객체그래프</strong> : 객체는 참조를 사용해서 연관관계를 탐색할 수 있다.</li>
-</ul>
+</div>
+        </div>
+    </div>
+<h3 id="순수한-객체-연관관계">순수한 객체 연관관계</h3>
+<p>객체는 참조를 사용해서 연관관계를 탐색할 수 있고 이것을 <strong>객체 그래프 탐색</strong>이라고 한다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -240,11 +248,9 @@
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="512-테이블-연관관계">5.1.2 테이블 연관관계</h3>
-<ul>
-<li><strong>조인</strong> : 데이터베이스는 외래 키를 사용해서 연관관계를 탐색할 수 있다.</li>
-</ul>
-<h3 id="테이블-생성">테이블 생성</h3>
+</div><h3 id="테이블-연관관계-1">테이블 연관관계</h3>
+<p>데이터베이스는 외래 키를 사용하여 연관관계를 탐색할 수 있으며 이것을 <strong>조인</strong>이라고 한다.</p>
+<h4 id="테이블-생성">테이블 생성</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -302,8 +308,8 @@
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">MEMBER</span><span class="w"> </span><span class="p">(</span><span class="n">MEMBER_ID</span><span class="p">,</span><span class="w"> </span><span class="n">TEAM_ID</span><span class="p">,</span><span class="w"> </span><span class="n">USERNAME</span><span class="p">)</span><span class="w"> </span><span class="n">VALUSE</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;member2&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;team1&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;회원2&#39;</span><span class="p">);</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="513-jpa-로-객체-관계매핑">5.1.3 JPA 로 객체 관계매핑</h3>
-<h4 id="memberjava">Member.java</h4>
+</div><h3 id="객체-관계-매핑">객체 관계 매핑</h3>
+<p><strong>회원 Entity(Member.java)</strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -350,7 +356,7 @@
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h4 id="teamjava">Team.java</h4>
+</div><p><strong>매핑한 팀 엔티티(Team.java)</strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -381,7 +387,7 @@
 <li><code>@ManyToOne</code> : <strong>다대일(N:1) 관계 매핑 정보를 나타낸다.</strong> 회원객체를 기준으로 팀객체와는 다대일 관계.</li>
 <li><code>@JoinColumn(name = &quot;TEAM_ID&quot;)</code> : 조인 컬럼은 외래키를 매핑할 때 사용.</li>
 </ul>
-<h3 id="514-joincolumn">5.1.4 @JoinColumn</h3>
+<h3 id="joincolumn">@JoinColumn</h3>
 <table>
 <thead>
 <tr>
@@ -392,28 +398,28 @@
 </thead>
 <tbody>
 <tr>
-<td>name</td>
+<td><strong>name</strong></td>
 <td>매핑할 외래 키 이름</td>
 <td>필드명 + _ + 참조하는 테이블의 기본키 컬럼명</td>
 </tr>
 <tr>
-<td>referencedColumnName</td>
+<td><strong>referencedColumnName</strong></td>
 <td>외래 키가 참조하는 대상 테이블의 컬럼명</td>
 <td>참조하는 테이블의 키 컬럼명</td>
 </tr>
 <tr>
-<td>foreignKey(DDL)</td>
+<td><strong>foreignKey(DDL)</strong></td>
 <td>테이블 생성시 사용. 외래키를 직접 지정 가능</td>
 <td></td>
 </tr>
 <tr>
-<td>unique, nullable, inserable, updateable, columnDefinition, table</td>
+<td><strong>unique, nullable, inserable, updateable, columnDefinition, table</strong></td>
 <td>@Column 속성과 동일</td>
 <td></td>
 </tr>
 </tbody>
 </table>
-<h3 id="515--manytoone">5.1.5 @ ManyToOne</h3>
+<h3 id="manytoone">@ManyToOne</h3>
 <table>
 <thead>
 <tr>
@@ -424,22 +430,22 @@
 </thead>
 <tbody>
 <tr>
-<td>optional</td>
+<td><strong>optional</strong></td>
 <td>false 로 설정시 연관된 엔티티가 항상 있어야 한다.</td>
 <td>true</td>
 </tr>
 <tr>
-<td>fetch</td>
+<td><strong>fetch</strong></td>
 <td>글로벌 페치 전략</td>
 <td>@ManytoOne = FetchType.EAGER, @OneToMany=FetchType.LAZY</td>
 </tr>
 <tr>
-<td>cascade</td>
+<td><strong>cascade</strong></td>
 <td>영속성 전이 기능 사용</td>
 <td></td>
 </tr>
 <tr>
-<td>targetEntity</td>
+<td><strong>targetEntity</strong></td>
 <td>연관된 엔티티 타입 정보를 설정. (이 기능은 거의 사용 안함)</td>
 <td></td>
 </tr>
@@ -455,8 +461,8 @@
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">private</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Member</span><span class="o">&gt;</span><span class="w"> </span><span class="n">members</span><span class="p">;</span><span class="w"> </span><span class="c1">// 제네릭타입으로 정보를 알 수 있다.</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="52-연관관계-사용">5.2 연관관계 사용</h2>
-<h3 id="521-저장">5.2.1 저장</h3>
+</div><h2 id="연관관계-사용">연관관계 사용</h2>
+<h3 id="저장">저장</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -495,24 +501,23 @@
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><ul>
-<li>JPA 는 참조한 팀의 식별자 (<code>Team.id</code>) 를 외래 키로 사용해서 적절한 등록 쿼리를 생성</li>
-</ul>
-<p><img
-        class="lazyload"
-        src="/svg/loading.min.svg"
-        data-src="/posts/images/jpa/5/20190721213200.png"
-        data-srcset="/posts/images/jpa/5/20190721213200.png, /posts/images/jpa/5/20190721213200.png 1.5x, /posts/images/jpa/5/20190721213200.png 2x"
-        data-sizes="auto"
-        alt="/posts/images/jpa/5/20190721213200.png"
-        title="image5" /></p>
-<h3 id="522-조회">5.2.2 조회</h3>
+</div><p>JPA 는 참조한 팀의 식별자 (<code>Team.id</code>) 를 외래 키로 사용해서 적절한 등록 쿼리를 생성</p>
+<a class="lightgallery" href="/posts/images/jpa/5/20190721213200.png" title="/posts/images/jpa/5/20190721213200.png" data-thumbnail="/posts/images/jpa/5/20190721213200.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/posts/images/jpa/5/20190721213200.png"
+            data-srcset="/posts/images/jpa/5/20190721213200.png, /posts/images/jpa/5/20190721213200.png 1.5x, /posts/images/jpa/5/20190721213200.png 2x"
+            data-sizes="auto"
+            alt="/posts/images/jpa/5/20190721213200.png" width="100%" />
+    </a>
+<h3 id="조회">조회</h3>
 <h4 id="연관관계가-있는-엔티티를-조회하는-방법">연관관계가 있는 엔티티를 조회하는 방법</h4>
 <ul>
 <li>객체 그래프 탐색 (객체 연관관계를 사용한 조회)</li>
 <li>객체 지향 쿼리 사용 (<code>JPQL</code>)</li>
 </ul>
-<h4 id="객체그래프-탐색">객체그래프 탐색</h4>
+<h3 id="객체그래프-탐색">객체그래프 탐색</h3>
 <ul>
 <li><code>member.getTeam()</code> 을 사용하여 Member 와 연관된 Team 객체를 조회할 수 있다.</li>
 </ul>
@@ -555,7 +560,7 @@
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="523-수정">5.2.3 수정</h3>
+</div><h3 id="수정">수정</h3>
 <ul>
 <li>트랜잭션을 커밋할 때 플러시가 일어나면서 변경 감지 기능이 작동한다. 이것은 연관관계를 수정할 때도 동일하며, 참조하는 대상만 변경하면 나머지는 JPA 에서 자동으로 처리한다.</li>
 </ul>
@@ -583,7 +588,7 @@
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="524-연관관계-제거">5.2.4 연관관계 제거</h3>
+</div><h3 id="연관관계-제거">연관관계 제거</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -598,7 +603,7 @@
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="525-연관된-엔티티-삭제">5.2.5 연관된 엔티티 삭제</h3>
+</div><h3 id="연관된-엔티티-삭제">연관된 엔티티 삭제</h3>
 <ul>
 <li>연관된 엔티티를 삭제하려면 기존에 있던 연관관계를 먼저 제거하고 삭제해야 한다.</li>
 </ul>
@@ -618,8 +623,8 @@
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 2024-06-24&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/23c45c8708c6ff29696def98046311196cf3bb44" target="_blank" title="commit by riley(41636282&#43;riley817@users.noreply.github.com) 23c45c8708c6ff29696def98046311196cf3bb44: Update main.yml">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>23c45c8</a></span>
+                <span>Updated on 2024-06-29&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/b7aad3025e10b4e333b45c35ce1386d01ceab0d3" target="_blank" title="commit by riley817(riley0422@icloud.com) b7aad3025e10b4e333b45c35ce1386d01ceab0d3: Merge branch &#39;develop&#39;">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>b7aad30</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>
@@ -649,7 +654,7 @@
         </script>
     </div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.127.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.128.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
                 </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/riley817" target="_blank">Riley</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

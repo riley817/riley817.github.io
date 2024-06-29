@@ -1,6 +1,10 @@
 # [Mastering Spring 5.0] 6.2 HATEOAS
 
 
+{{<admonition type="note" title="스프링 5.0 마스터 스터디">}}
+스프링 5.0 마스터 스터디 학습 내용 정리입니다.
+{{</admonition>}}
+
 ## REST 성숙도 모델 (Richardson Maturity Model)
 Richardson Maturity Model 에서는 Restful Web Service 를 다음의 단계로 나누어 성숙도를 정의하고 있다.
 {{<figure src="/posts/images/spring/overview.png">}}
@@ -15,15 +19,14 @@ Richardson Maturity Model 에서는 Restful Web Service 를 다음의 단계로 
 
 + **Level 3** : HATEOAS. 요청한 정보 뿐만 아니라 요청한 정보에 관련한 URI 를 포함함으로써, 서비스 소비자가 할 수 있는 다음 조치에 대해서도 제공한다. 
 
----
 
 ## HATEOAS
-**HATEOAS (Hypermedia as the Engine of Application State)** 는 RESTful 아키텍쳐를 고유하게 유지하는 REST 응용 프로그램 아키텍쳐의 제약 사항이다. 
+**HATEOAS (Hypermedia as the Engine of Application State)** 는 RESTful 아키텍쳐를 고유하게 유지하는 REST 응용 프로그램 아키텍쳐의 제약 사항이다.
+**Hypermedia** 라는 용어는 이미지, 텍스트, 동영상 등 다른 형식의 미디어에 대한 링크가 포함된 것을 의미한다.
+<br/> Hypermedia 의 유사한 개념을 RESTful 서비스에도 적용하여, 요청한 리소스에 대한 데이터 뿐만 아니라 **관련 리소스 또는 의존 리소스의 URI 링크** 를 응답에 포함시켜 서비스 소비자에게 제공하는 형태라고 볼 수 있다.
 
-**Hypermedia** 라는 용어는 이미지, 텍스트, 동영상 등 다른 형식의 미디어에 대한 링크가 포함된 것을 의미한다. Hypermedia 의 유사한 개념을 RESTful 서비스에도 적용하여, 요청한 리소스에 대한 데이터 뿐만 아니라 **관련 리소스 또는 의존 리소스의 URI 링크** 를 응답에 포함시켜 서비스 소비자에게 제공하는 형태라고 볼 수 있다.
 
-
-### _기존 RESTful API 의 단점_ 
+### 기존 RESTful API 의 단점
 
 + API 의 엔드포인트가 정해지면 이를 쉽게 변경하기가 어렵다. API 가 변경됨에 따라 이를 사용하는 모든 클라이언트 들이 함께 수정되어야 한다.
 + API 가 수정되어야 하는 경우 API URL 에 버전명을 추가하거나 다른 API 를 지속적으로 추가하게 된다. 그렇게 되면 API URL 관리가 어려워진다.
@@ -33,7 +36,7 @@ Richardson Maturity Model 에서는 Restful Web Service 를 다음의 단계로 
 ### 1. 의존성 추가하기
 스프링 부트에는 `spring-boot-starter-hateoas` 라는 **HATEOAS** 를 위한 스타터를 제공한다. 따라서 관련 종속성을 `pom.xml` 또는 `build.gradle` 에 추가한다.
 
-#### pom.xml
+**pom.xml**
 ```xml
 <dependency>
     <groupId>org.springframework.boot</groupId>
@@ -41,7 +44,7 @@ Richardson Maturity Model 에서는 Restful Web Service 를 다음의 단계로 
 </dependency>
 ```
 
-#### build.gradle
+**build.gradle**
 ```groovy
 implementation ('org.springframework.boot:spring-boot-starter-hateoas')
 ```
@@ -70,10 +73,12 @@ implementation ('org.springframework.boot:spring-boot-starter-hateoas')
     </dependency>
   </dependencies>
 ```
+
 ### 2. 리소스 링크를 반환하는 컨트롤러 구성
 Response 값에 **{name}** 에 관련된 모든 응답을 검색하기 위한 링크를 반환하도록 설정한다. 기존 `ResponseEntity` 대신 `Resource<Todo>` 객체를 리턴하도록 소스를 수정한다.
 
-#### `Resource` class 로 도메인 객체를 wrapping 해주고 link 를 추가할 수 있다.
+**Resource class로 도메인 객체를 wrapping 해주고 link를 추가할 수 있다.**
+
 ```java
 @GetMapping("/users/{name}/todos/{id}")
 public Resource<Todo> retrieveTodo(@PathVariable String name, @PathVariable int id) {
@@ -112,8 +117,7 @@ curl http://localhost:8080/users/Jack/todos/1
 ```
 해당 URL 을 요청하면 ``_links`` 키 값에 모든 할일을 조회할 수 있는 링크가 포함된다.
 
----
-**[참고]**
+## 참고
 
 + Building a Hypermedia-Driven RESTful Web Service - https://spring.io/guides/gs/rest-hateoas/
 + Hypermedia-driven REST API : https://m.blog.naver.com/tmondev/220391644590

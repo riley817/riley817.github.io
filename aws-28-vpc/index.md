@@ -91,7 +91,7 @@ Subnet Mask 사용하면 기본적으로 기본IP에서 다음 값을 추가로 
 {{</admonition>}}
 
 ### NAT Instance (outdated, 시험에는 나옴)
-{{<image src="/posts/images/aws/nat-instance.jpg" >}}
+{{<figure src="/posts/images/aws/nat-instance.jpg" >}}
 
 - **NAT (Network Address Translation)**
 - private 서브넷의 EC2 인스턴스를 인터넷에 연결하게 할 수 있다.
@@ -114,7 +114,7 @@ Subnet Mask 사용하면 기본적으로 기본IP에서 다음 값을 추가로 
 
 
 ### NAT Gateway
-{{<image src="/posts/images/aws/nat-gateway.jpg" >}}
+{{<figure src="/posts/images/aws/nat-gateway.jpg" >}}
 
 - AWS에서 관리되며 높은 대역폭, 높은 가용성, 관리가 필요없음
 - 사용량 및 대역폭에 따라 시간당 비용지불
@@ -125,7 +125,7 @@ Subnet Mask 사용하면 기본적으로 기본IP에서 다음 값을 추가로 
 - Security Groups 관리가 필요 없음
 
 #### NAT Gateway with High Availability
-{{<image src="/posts/images/aws/nat-gateway-ha.jpg" >}}
+{{<figure src="/posts/images/aws/nat-gateway-ha.jpg" >}}
 - **NAT Gateway는 단일 AZ내에서 탄력적임**
 - **`fault-tolerance`을 위해 multiple AZ에 multiple NAT Gateways를 구성**
 - AZ가 중단될 경우 NAT가 필요하지 않으므로 AZ failover가 필요하지 않음
@@ -145,7 +145,7 @@ Subnet Mask 사용하면 기본적으로 기본IP에서 다음 값을 추가로 
 ## DNS Resolution in VPC
 
 ### DNS Resolution (enableDnsSupport)
-{{<image src="/posts/images/aws/dns-resolution.png" >}}
+{{<figure src="/posts/images/aws/dns-resolution.png" >}}
 - VPC에 대해 Route 53 Resolver server의 DNS 확인(DNS Resolution)이 지원되는지 여부를 결정
 - 기본값 : True
     - Amazon이 제공하는 DNS 서버(169.254.169.253) 또는 VPC IPv4 reserved IP (x.x.x.2)를 쿼리하게 된다.

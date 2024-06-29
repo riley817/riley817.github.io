@@ -1,37 +1,95 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>Mastering Spring 5.0 - Category - 라일리의 개발 기록장</title>
+        <title>Mastering Spring 5.0 - Category - 🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖</title>
         <link>https://riley817.github.io/categories/mastering-spring-5.0/</link>
-        <description>Mastering Spring 5.0 - Category - 라일리의 개발 기록장</description>
+        <description>Mastering Spring 5.0 - Category - 🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
-            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Sun, 09 Dec 2018 17:53:39 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/categories/mastering-spring-5.0/" rel="self" type="application/rss+xml" /><item>
-    <title>[Mastering Spring 5.0] 11.1 Reactive Programming</title>
-    <link>https://riley817.github.io/page-11-1/</link>
-    <pubDate>Sun, 09 Dec 2018 17:53:39 &#43;0900</pubDate>
-    <author>riley</author>
-    <guid>https://riley817.github.io/page-11-1/</guid>
-    <description><![CDATA[리액티브 시스템 새로운 디바이스 (모바일, 태블릿 등) real-time data 에 대한 수요 증가
-대량의 프로세스 처리 로드 발생 데이터 볼륨이 기하급수적으로 증가 인프라 유지 보수 비용 증가 Reactive 시스템 특징 Reactive manifesto : https://www.reactivemanifesto.org/ko
-Reative Manifesto 는 다음 네 가지 핵심 원칙에 따라 Reactive System 의 특성을 개략적으로 설명하고 있다.
-반응성 (Responsive) : 모든 응답은 적시에 빠르고 일관된 대응을 제공하며 신뢰할수 있으며 일관된 서비스 품질을 제공한다.
-회복력 (Resilient) : 각각의 구성요소 들이 분리되어 있기 때문에 구성요소 중 하나에 문제가 발생하더라도 전체 시스템이 다운되는 것을 방지하고 복구 할 수 있도록 보장한다.]]></description>
-</item>
-<item>
+            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Fri, 21 Dec 2018 21:28:29 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/categories/mastering-spring-5.0/" rel="self" type="application/rss+xml" /><item>
     <title>[Mastering Spring 5.0] 11.2 Spring Reactive - 1</title>
     <link>https://riley817.github.io/page-11-2/</link>
-    <pubDate>Sun, 09 Dec 2018 17:53:39 &#43;0900</pubDate>
+    <pubDate>Fri, 21 Dec 2018 21:28:29 &#43;0900</pubDate>
     <author>riley</author>
     <guid>https://riley817.github.io/page-11-2/</guid>
-    <description><![CDATA[리액티브 스트림 의존성 추가 1 2 implementation (&#39;org.reactivestreams:reactive-streams:1.0.2&#39;) implementation (&#39;org.reactivestreams:reactive-streams-tck:1.0.2&#39;) 리액티브 스트림의 구성요소 Publisher : 데이터 제공자. 구독한 구독자들에게 구독 정보를 토대로 데이터를 제공한다. Subscriber : 데이터 소모자. 제공자로부터 데이터를 받아 소모한다. Subscription : 구독 정보. Subscriber 는 Publisher 를 구독하여 데이터(n) 요청할 수 있다. 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 // Publisher package org.]]></description>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/posts/images/spring/mastering-spring5-thumbnail.png" referrerpolicy="no-referrer">
+            </div>스프링 5.0 마스터 스터디 스프링 5.0 마스터 스터디 학습 내용 정리입니다. 리액티브 스트림 의존성 추가 1 2 implementation (&#39;org.reactivestreams:reactive-streams:1.0.2&#39;) implementation (&#39;org.reactivestreams:reactive-streams-tck:1.0.2&#39;) 리액티브 스트림의 구성요소 Publisher : 데이터 제공자. 구독한 구독자들에게 구독 정보를 토대로 데이터를 제공한다. Subscriber : 데이터 소모자. 제공자로부터 데이터를 받아 소모한다. Subscription : 구독 정보. Subscriber 는 Publisher 를 구독하여 데이터(n) 요청할 수 있다. 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 // Publisher package org.]]></description>
 </item>
 <item>
-    <title>[Mastering Spring 5.0] 6.1 예외처리</title>
-    <link>https://riley817.github.io/page-6-1/</link>
-    <pubDate>Sun, 09 Dec 2018 17:53:39 &#43;0900</pubDate>
+    <title>[Mastering Spring 5.0] 11.1 Reactive Programming</title>
+    <link>https://riley817.github.io/page-11-1/</link>
+    <pubDate>Thu, 20 Dec 2018 18:32:49 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/page-6-1/</guid>
-    <description><![CDATA[스프링 5.0 마스터 스터디 학습 내용 정리입니다.
-1. 스프링 부트의 기본 예외처리 스프링부트의 기본 예외 형식은 throw 된 예외 메세지 와 함께 JSON 형태로 에러를 리턴한다. 브라우저경우 기본 오류 페이지 (Whilelabel Error Page) 를 출력한다. 1 2 3 4 5 6 7 { &#34;timestamp&#34;: &#34;2018-12-25T05:01:26.483+0000&#34;, &#34;status&#34;: 500, &#34;error&#34;: &#34;Internal Server Error&#34;, &#34;message&#34;: &#34;Some Exception Occurred&#34;, &#34;path&#34;: &#34;/users/dummy-service&#34; } 2. 스프링 사용자 정의 예외처리 스프링에서는 오류에 대한 응답을 사용자가 정의하는 여러 옵션을 제공한다.]]></description>
+    <guid>https://riley817.github.io/page-11-1/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/posts/images/spring/mastering-spring5-thumbnail.png" referrerpolicy="no-referrer">
+            </div>스프링 5.0 마스터 스터디 스프링 5.0 마스터 스터디 학습 내용 정리입니다. 리액티브 시스템 새로운 디바이스 (모바일, 태블릿 등) real-time data 에 대한 수요 증가
+대량의 프로세스 처리 로드 발생 데이터 볼륨이 기하급수적으로 증가 인프라 유지 보수 비용 증가 Reactive 시스템 특징 Reactive manifesto : https://www.reactivemanifesto.org/ko
+Reative Manifesto 는 다음 네 가지 핵심 원칙에 따라 Reactive System 의 특성을 개략적으로 설명하고 있다.
+반응성 (Responsive) : 모든 응답은 적시에 빠르고 일관된 대응을 제공하며 신뢰할수 있으며 일관된 서비스 품질을 제공한다.]]></description>
+</item>
+<item>
+    <title>[Mastering Spring 5.0] 6.8 캐싱</title>
+    <link>https://riley817.github.io/page-6-8/</link>
+    <pubDate>Wed, 19 Dec 2018 21:59:01 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/page-6-8/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/posts/images/spring/mastering-spring5-thumbnail.png" referrerpolicy="no-referrer">
+            </div>스프링 5.0 마스터 스터디 스프링 5.0 마스터 스터디 학습 내용 정리입니다. 캐싱 캐싱은 많은 시간이나 연산이 필요한 일데 대한 결과를 저장해 두는 것 이라고 할 수 있다. 서비스의 데이터 캐싱은 어플리케이션의 성능과 확장성을 향상시키는데 중요한 역할을 한다. 스프링은 어노테이션에 기반을 둔 캐싱 추상화를 제공한다. JSR-107(JCahce) 구현체 들은 모두 지원한다. EhCache, Hazelcast, Infinispan, Couchbase, Redis 등이 기본적으로 자동설정에 포함되어 있다. 스프링 부트 프로젝트에 캐싱 적용하기 의존성 추가 spring-boot-starter-cache 를 pom.xml 또는 build.]]></description>
+</item>
+<item>
+    <title>[Mastering Spring 5.0] 6.7 국제화</title>
+    <link>https://riley817.github.io/page-6-7/</link>
+    <pubDate>Wed, 19 Dec 2018 20:20:11 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/page-6-7/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/posts/images/spring/mastering-spring5-thumbnail.png" referrerpolicy="no-referrer">
+            </div>스프링 5.0 마스터 스터디 스프링 5.0 마스터 스터디 학습 내용 정리입니다. 국제화 국제화는 다양한 언어 및 문화권에 에서 사용할 수 있는 컨텐츠를 제공할 수 있도록 어플리케이션을 작성하는 것을 의미한다. 국제화(internationalization) 를 I18N이나 i18n으로, 현지화 localization를 L10N이나 l10n 등으로 표기하기도 한다. 스프링 부트는 국제화를 위한 지원 기능을 내장하고 있다.
+스프링부트프로젝트에서 국제화 지원설정하기 Application.java 에 LocaleResolver 추가한다.
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 @Bean public SessionLocaleResolver localResolver() { SessionLocaleResolver sessionLocaleResolver = new SessionLocaleResolver(); sessionLocaleResolver.]]></description>
+</item>
+<item>
+    <title>[Mastering Spring 5.0] 6.6 Spring Security - OAuth 2.0</title>
+    <link>https://riley817.github.io/page-6-6/</link>
+    <pubDate>Mon, 17 Dec 2018 23:52:36 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/page-6-6/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/posts/images/spring/mastering-spring5-thumbnail.png" referrerpolicy="no-referrer">
+            </div>스프링 5.0 마스터 스터디 스프링 5.0 마스터 스터디 학습 내용 정리입니다. OAuth2 인증 OAuth 2는 어플리케이션과 Facebook, GitHub 및 DigitalOcean 과 같은 HTTP 서비스의사용자 계정에 대한 제한된 액세스 권한을 얻을 수있게 해주는 인증 프레임 워크이다. 이는 사용자 계정을 호스팅하는 서비스에 사용자 인증을 위임하고 타사 응용 프로그램에 사용자 계정에 대한 액세스 권한을 부여하여 작동하게 된다. OAuth 2는 웹 및 데스크톱 응용 프로그램 및 모바일 장치에 대한 인증 흐름을 제공하게 된다.]]></description>
+</item>
+<item>
+    <title>[Mastering Spring 5.0] 6.5 Spring Security - Basic authentication</title>
+    <link>https://riley817.github.io/page-6-5/</link>
+    <pubDate>Wed, 12 Dec 2018 22:32:09 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/page-6-5/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/posts/images/spring/mastering-spring5-thumbnail.png" referrerpolicy="no-referrer">
+            </div>스프링 5.0 마스터 스터디 스프링 5.0 마스터 스터디 학습 내용 정리입니다. 스프링 시큐리티로 REST 서비스 보호 최근에는 서비스 시스템들끼리 REST API 기반의 통신이 많이 이루어지고 있다. 네이티브 앱과 서버 간 통신뿐만 아니라 자바스크립트 웹 클라이언트 와 서버간에도 REST API 통신을 많이 사용하기 때문에 REST 서비스(리소스) 에 대한 보안이 중요해 지고 있다.
+인증(Authentication) 과 권한 (Authorization) 인증(Authentication): 소비자(클라이언트) 가 서비스(리소스) 에 접근이 가능한 소비자인지 인가/권한부여(Authorization) : 접근이 가능하지만 해당 작업을 소비자(클라이언트) 에게 허용할것인지 인증방식은 다양하며, 전통적인 인증방식으로는 사용자명(Principle)과 비밀번호(Credential)로 인증하는 Credential 기반 인증 방식 과 OTP 등과 같이 추가적인 인증방식을 도입해 2가지 방법으로 인증하는 이중 인증 방식 과 최근에는 OAuth2 인증방식 도 필수적으로 사용되고 있다.]]></description>
+</item>
+<item>
+    <title>[Mastering Spring 5.0] 6.4 Swagger</title>
+    <link>https://riley817.github.io/page-6-4/</link>
+    <pubDate>Tue, 11 Dec 2018 13:10:11 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/page-6-4/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/posts/images/spring/mastering-spring5-thumbnail.png" referrerpolicy="no-referrer">
+            </div>스프링 5.0 마스터 스터디 스프링 5.0 마스터 스터디 학습 내용 정리입니다. REST 서비스 문서의 자동화 REST API 심플하게 설계되면 좋겠지만, 소비자의 요구사항 또는 서비스가 커짐에 따라 API 가 점점 복잡해지고 관리해야할 API 개수도 점점 늘게 된다. 협업을 위해서는 API 는 반드시 문서화 되어야 하는데, 소스 변경사항과 동기화 시키기가 매번 번거롭다. 이러한 문제를 해결하기 위해 REST API 서비스 문서(스펙)을 자동화 하는 툴이 등장하게 되었다. 주요 API Spec 자동화 라이브러리 SLATE : https://github.]]></description>
+</item>
+<item>
+    <title>[Mastering Spring 5.0] 6.3 Bean Validation</title>
+    <link>https://riley817.github.io/page-6-3/</link>
+    <pubDate>Sun, 09 Dec 2018 20:53:39 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/page-6-3/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/posts/images/spring/mastering-spring5-thumbnail.png" referrerpolicy="no-referrer">
+            </div>스프링 5.0 마스터 스터디 스프링 5.0 마스터 스터디 학습 내용 정리입니다. Bean Validation 데이터 유효성 검증 (Validation) 은 모든계층에서 공통적으로 발생하는 작업이다. 만약 모든 계층에서 동일한 내용의 Validation 로직이 각각의 레이어별로 구현되어 있다면 코드 중복과 함께 각 계층별로 중구난방으로 구현된 검증로직간 불일치로 인하여 오류가 발생하기도 쉽다.
+[출처] https://docs.jboss.org/hibernate/stable/validator/reference/en-US/html_single/images/application-layers.png 이러한 Validation 중복을 피하기 위해 도메인의 검증 로직을 도메인 모델 자체에 묶어서 정의하기도 한다. 하지만 도메인 모델에 실제 코드로 Validation 로직을 표현한다면 도메인 모델 자체가 장황하지고 복잡해지게 된다.]]></description>
 </item>
 <item>
     <title>[Mastering Spring 5.0] 6.2 HATEOAS</title>
@@ -39,62 +97,20 @@ Reative Manifesto 는 다음 네 가지 핵심 원칙에 따라 Reactive System 
     <pubDate>Sun, 09 Dec 2018 17:53:39 &#43;0900</pubDate>
     <author>riley</author>
     <guid>https://riley817.github.io/page-6-2/</guid>
-    <description><![CDATA[REST 성숙도 모델 (Richardson Maturity Model) Richardson Maturity Model 에서는 Restful Web Service 를 다음의 단계로 나누어 성숙도를 정의하고 있다. Level 0 : 원격 프로시저 호출 (Remote Procedure Invocation) 에 기반한 형태로 resource 구분 없이 설계된 HTTP API (http://server/getPosts, http://server/deletePosts, http://server/doThis, http://server/doThat 등)
-Level 1 : resource를 URI 통해 나타낸다. (명사 사용) 그러나, HTTP METHOD(GET,POST,PUT,DELETE 등) 사용하지 않는다. (http://server/accounts, http://server/accounts/10)
-Level 2 : resource를 URI + HTTP Method 를 사용하여 접근한다.]]></description>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/posts/images/spring/mastering-spring5-thumbnail.png" referrerpolicy="no-referrer">
+            </div>스프링 5.0 마스터 스터디 스프링 5.0 마스터 스터디 학습 내용 정리입니다. REST 성숙도 모델 (Richardson Maturity Model) Richardson Maturity Model 에서는 Restful Web Service 를 다음의 단계로 나누어 성숙도를 정의하고 있다. Level 0 : 원격 프로시저 호출 (Remote Procedure Invocation) 에 기반한 형태로 resource 구분 없이 설계된 HTTP API (http://server/getPosts, http://server/deletePosts, http://server/doThis, http://server/doThat 등)
+Level 1 : resource를 URI 통해 나타낸다. (명사 사용) 그러나, HTTP METHOD(GET,POST,PUT,DELETE 등) 사용하지 않는다. (http://server/accounts, http://server/accounts/10)]]></description>
 </item>
 <item>
-    <title>[Mastering Spring 5.0] 6.3 Bean Validation</title>
-    <link>https://riley817.github.io/page-6-3/</link>
-    <pubDate>Sun, 09 Dec 2018 17:53:39 &#43;0900</pubDate>
+    <title>[Mastering Spring 5.0] 6.1 예외처리</title>
+    <link>https://riley817.github.io/page-6-1/</link>
+    <pubDate>Sat, 08 Dec 2018 17:53:39 &#43;0900</pubDate>
     <author>riley</author>
-    <guid>https://riley817.github.io/page-6-3/</guid>
-    <description><![CDATA[Bean Validation 데이터 유효성 검증 (Validation) 은 모든계층에서 공통적으로 발생하는 작업이다. 만약 모든 계층에서 동일한 내용의 Validation 로직이 각각의 레이어별로 구현되어 있다면 코드 중복과 함께 각 계층별로 중구난방으로 구현된 검증로직간 불일치로 인하여 오류가 발생하기도 쉽다.
-[출처] https://docs.jboss.org/hibernate/stable/validator/reference/en-US/html_single/images/application-layers.png
-이러한 Validation 중복을 피하기 위해 도메인의 검증 로직을 도메인 모델 자체에 묶어서 정의하기도 한다. 하지만 도메인 모델에 실제 코드로 Validation 로직을 표현한다면 도메인 모델 자체가 장황하지고 복잡해지게 된다. [출처] https://docs.jboss.org/hibernate/stable/validator/reference/en-US/html_single/images/application-layers2.png
-Java 에서는 위와 같은 문제를 해결하기 위해 어노테이션을 통한 Entity 와 Method 를 검증하기 위한 API 를 제공하고 있다.]]></description>
-</item>
-<item>
-    <title>[Mastering Spring 5.0] 6.4 Swagger</title>
-    <link>https://riley817.github.io/page-6-4/</link>
-    <pubDate>Sun, 09 Dec 2018 17:53:39 &#43;0900</pubDate>
-    <author>riley</author>
-    <guid>https://riley817.github.io/page-6-4/</guid>
-    <description><![CDATA[REST 서비스 문서의 자동화 REST API 심플하게 설계되면 좋겠지만, 소비자의 요구사항 또는 서비스가 커짐에 따라 API 가 점점 복잡해지고 관리해야할 API 개수도 점점 늘게 된다. 협업을 위해서는 API 는 반드시 문서화 되어야 하는데, 소스 변경사항과 동기화 시키기가 매번 번거롭다. 이러한 문제를 해결하기 위해 REST API 서비스 문서(스펙)을 자동화 하는 툴이 등장하게 되었다. 주요 API Spec 자동화 라이브러리 SLATE : https://github.com/lord/slate Swagger : https://swagger.io/ API Blueprint : https://apiblueprint.org/ Swagger2 Swagger 2 는 RESTful API 를 설명하고 문서화하는데 사용되는 오픈소스 라이브러리이다.]]></description>
-</item>
-<item>
-    <title>[Mastering Spring 5.0] 6.5 Spring Security - Basic authentication</title>
-    <link>https://riley817.github.io/page-6-5/</link>
-    <pubDate>Sun, 09 Dec 2018 17:53:39 &#43;0900</pubDate>
-    <author>riley</author>
-    <guid>https://riley817.github.io/page-6-5/</guid>
-    <description><![CDATA[스프링 시큐리티로 REST 서비스 보호 최근에는 서비스 시스템들끼리 REST API 기반의 통신이 많이 이루어지고 있다. 네이티브 앱과 서버 간 통신뿐만 아니라 자바스크립트 웹 클라이언트 와 서버간에도 REST API 통신을 많이 사용하기 때문에 REST 서비스(리소스) 에 대한 보안이 중요해 지고 있다.
-인증(Authentication) 과 권한 (Authorization) 인증(Authentication): 소비자(클라이언트) 가 서비스(리소스) 에 접근이 가능한 소비자인지 인가/권한부여(Authorization) : 접근이 가능하지만 해당 작업을 소비자(클라이언트) 에게 허용할것인지 인증방식은 다양하며, 전통적인 인증방식으로는 사용자명Principle과 비밀번호Credential 로 인증하는 Credential 기반 인증 방식 과 OTP 등과 같이 추가적인 인증방식을 도입해 2가지 방법으로 인증하는 이중 인증 방식 과 최근에는 OAuth2 인증방식 도 필수적으로 사용되고 있다.]]></description>
-</item>
-<item>
-    <title>[Mastering Spring 5.0] 6.6 Spring Security - OAuth 2.0</title>
-    <link>https://riley817.github.io/page-6-6/</link>
-    <pubDate>Sun, 09 Dec 2018 17:53:39 &#43;0900</pubDate>
-    <author>riley</author>
-    <guid>https://riley817.github.io/page-6-6/</guid>
-    <description><![CDATA[OAuth2 인증 OAuth 2는 어플리케이션과 Facebook, GitHub 및 DigitalOcean 과 같은 HTTP 서비스의사용자 계정에 대한 제한된 액세스 권한을 얻을 수있게 해주는 인증 프레임 워크이다. 이는 사용자 계정을 호스팅하는 서비스에 사용자 인증을 위임하고 타사 응용 프로그램에 사용자 계정에 대한 액세스 권한을 부여하여 작동하게 된다. OAuth 2는 웹 및 데스크톱 응용 프로그램 및 모바일 장치에 대한 인증 흐름을 제공하게 된다. OAuth2 주체 리소스 소유자 (사용자) : 리소스 소유자는 자신의 계정에 액세스하기 위해 어플리케이션 을 인증하는 사용자 이다.]]></description>
-</item>
-<item>
-    <title>[Mastering Spring 5.0] 6.7 국제화</title>
-    <link>https://riley817.github.io/page-6-7/</link>
-    <pubDate>Sun, 09 Dec 2018 17:53:39 &#43;0900</pubDate>
-    <author>riley</author>
-    <guid>https://riley817.github.io/page-6-7/</guid>
-    <description><![CDATA[국제화 국제화는 다양한 언어 및 문화권에 에서 사용할 수 있는 컨텐츠를 제공할 수 있도록 어플리케이션을 작성하는 것을 의미한다. 국제화(internationalization) 를 I18N이나 i18n으로, 현지화 localization를 L10N이나 l10n 등으로 표기하기도 한다. 스프링 부트는 국제화를 위한 지원 기능을 내장하고 있다.
-스프링부트프로젝트에서 국제화 지원설정하기 Application.java 에 LocaleResolver 추가 1 2 3 4 5 6 7 8 9 10 11 12 13 14 @Bean public SessionLocaleResolver localResolver() { SessionLocaleResolver sessionLocaleResolver = new SessionLocaleResolver(); sessionLocaleResolver.setDefaultLocale(Locale.US); return sessionLocaleResolver; } @Bean public ResourceBundleMessageSource messageSource (){ ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource(); messageSource.]]></description>
-</item>
-<item>
-    <title>[Mastering Spring 5.0] 6.8 캐싱</title>
-    <link>https://riley817.github.io/page-6-8/</link>
-    <pubDate>Sun, 09 Dec 2018 17:53:39 &#43;0900</pubDate>
-    <author>riley</author>
-    <guid>https://riley817.github.io/page-6-8/</guid>
-    <description><![CDATA[캐싱 캐싱은 많은 시간이나 연산이 필요한 일데 대한 결과를 저장해 두는 것 이라고 할 수 있다. 서비스의 데이터 캐싱은 어플리케이션의 성능과 확장성을 향상시키는데 중요한 역할을 한다. 스프링은 어노테이션에 기반을 둔 캐싱 추상화를 제공한다. JSR-107(JCahce) 구현체 들은 모두 지원한다. EhCache, Hazelcast, Infinispan, Couchbase, Redis 등이 기본적으로 자동설정에 포함되어 있다. 스프링 부트 프로젝트에 캐싱 적용하기 의존성 추가 spring-boot-starter-cache 를 pom.xml 또는 build.gradle 에 추가한다. 이 의존모듈을 추가하면 JSR-107 및 스프링 캐싱 어노테이션을 사용하는데 필요한 의존성이 생긴다.]]></description>
+    <guid>https://riley817.github.io/page-6-1/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/posts/images/spring/mastering-spring5-thumbnail.png" referrerpolicy="no-referrer">
+            </div>스프링 5.0 마스터 스터디 스프링 5.0 마스터 스터디 학습 내용 정리입니다. 1. 스프링 부트의 기본 예외처리 스프링부트의 기본 예외 형식은 throw 된 예외 메세지 와 함께 JSON 형태로 에러를 리턴한다. 브라우저경우 기본 오류 페이지 (Whilelabel Error Page) 를 출력한다. 1 2 3 4 5 6 7 { &#34;timestamp&#34;: &#34;2018-12-07T05:01:26.483+0000&#34;, &#34;status&#34;: 500, &#34;error&#34;: &#34;Internal Server Error&#34;, &#34;message&#34;: &#34;Some Exception Occurred&#34;, &#34;path&#34;: &#34;/users/dummy-service&#34; } 2. 스프링 사용자 정의 예외처리 스프링에서는 오류에 대한 응답을 사용자가 정의하는 여러 옵션을 제공한다.]]></description>
 </item>
 </channel>
 </rss>

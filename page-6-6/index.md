@@ -1,8 +1,12 @@
 # [Mastering Spring 5.0] 6.6 Spring Security - OAuth 2.0
 
 
-# OAuth2 인증
-+ OAuth 2는 어플리케이션과 Facebook, GitHub 및 DigitalOcean 과 같은 **HTTP 서비스의사용자 계정에 대한 제한된 액세스 권한을 얻을 수있게 해주는 인증 프레임 워크**이다. 이는 사용자 계정을 호스팅하는 서비스에 사용자 인증을 위임하고 타사 응용 프로그램에 사용자 계정에 대한 액세스 권한을 부여하여 작동하게 된다. OAuth 2는 웹 및 데스크톱 응용 프로그램 및 모바일 장치에 대한 인증 흐름을 제공하게 된다.
+{{<admonition type="note" title="스프링 5.0 마스터 스터디">}}
+스프링 5.0 마스터 스터디 학습 내용 정리입니다.
+{{</admonition>}}
+
+## OAuth2 인증
+OAuth 2는 어플리케이션과 Facebook, GitHub 및 DigitalOcean 과 같은 **HTTP 서비스의사용자 계정에 대한 제한된 액세스 권한을 얻을 수있게 해주는 인증 프레임 워크**이다. 이는 사용자 계정을 호스팅하는 서비스에 사용자 인증을 위임하고 타사 응용 프로그램에 사용자 계정에 대한 액세스 권한을 부여하여 작동하게 된다. OAuth 2는 웹 및 데스크톱 응용 프로그램 및 모바일 장치에 대한 인증 흐름을 제공하게 된다.
 
 {{<admonition tip "OAuth2 주체">}}
 + **리소스 소유자 (사용자)** : 리소스 소유자는 자신의 계정에 액세스하기 위해 어플리케이션 을 인증하는 사용자 이다. 응용 프로그램의 사용자 계정의 액세스 권한은 부여 된 권한 (예 : 읽기 또는 쓰기 권한) 의 "범위"로 제한된다.
@@ -24,7 +28,7 @@
 ### 의존성 추가
 `spring-security-oauth2` 는 스프링 시큐리티에 OAuth2 지원을 제공하기 위한 모듈이다. `pom.xml` 또는 `build.gradle` 에 추가한다.
 
-`pom.xml`
+**pom.xml**
 ```xml
 <dependency>
     <groupId>org.springframework.security.oauth</groupId>
@@ -33,7 +37,7 @@
 
 ```
 
-`build.gradle`
+**build.gradle**
 ```groovy
 implementation('org.springframework.security.oauth:spring-security-oauth2:2.3.4.RELEASE')
 ```
@@ -51,17 +55,17 @@ public class Chapter06Application {
 	}
 }
 ```
-+ `@EnableResourceServer` : 들어오는 OAuth 2 토큰을 통해 요청을 인증하는 스프링 시큐리티를 사용하는 OAuth2 리소스 서버에 대한 어노테이션이다.
-+ `@EnableAuthorizationServer` : `DispatcherServlet` 콘텍스트인 현재 어플리케이션 콘텍스트에서 `AuthorizationEndpoint` 및 `TokenEndPoint` 를 사용해 권한 부여 서버를 사용할 수 있도록 하는 어노테이션이다.
+- **@EnableResourceServer** : 들어오는 OAuth 2 토큰을 통해 요청을 인증하는 스프링 시큐리티를 사용하는 OAuth2 리소스 서버에 대한 어노테이션이다.
+- **@EnableAuthorizationServer** : `DispatcherServlet` 콘텍스트인 현재 어플리케이션 콘텍스트에서 `AuthorizationEndpoint` 및 `TokenEndPoint` 를 사용해 권한 부여 서버를 사용할 수 있도록 하는 어노테이션이다.
 
 ### 권한 서버 세부 정보 구성하기
 예제 소스에는 `application.properties` 를 통해 세부 구성을 설정을 하였지만, 자동구성 설정이 잘 되지 않아 `@Configuration` 을 통하여 수동 구성으로 작성하였다.
 
-+ Spring Boot 2.x 버전에서 OAuth2가 안될때 - https://hue9010.github.io/spring/OAuth2/
-
++ [Spring Boot 2.x 버전에서 OAuth2가 안될때](https://hue9010.github.io/spring/OAuth2/)
 + `AuthorizationServerConfigurerAdapter` 를 상속받아 권한서버의 세부 사항을 구성한다.
 
-`/src/main/java/com/mastering/spring/springboot/config/OAuthConfiguration.java`
+
+**/src/main/java/com/mastering/spring/springboot/config/OAuthConfiguration.java**
 ```java
 @Configuration
 public class OAuthConfiguration extends AuthorizationServerConfigurerAdapter {
@@ -101,12 +105,11 @@ public class OAuthConfiguration extends AuthorizationServerConfigurerAdapter {
 
 + `void configure(ClientDetailsServiceConfigurer configurer)` : 
 클라이언트 ID 와 Secret 자격증명 정보를 메모리에 설정한다. _Spring Security 5.0.0.RC1_ 이후 암호변환정책이 변경되었으므로, 기본값인 `DelegatingPasswordEncoder` 에는 패드워드 암호화 메소드 접두어가 필요하다. **(bcrypt/noop/pbkdf2/scrypt/sha256)** 중 하나를 사용할 수 있으며, 예제는 따로 인코딩을 지정하지 않았기 때문에 {noop} 접두어를 설정함. 
-
 +  `void configure(AuthorizationServerEndpointsConfigurer endpoints)` : /oauth/token 엔드포인트에 대한 상세 서비스를 지정할 수 있다.
 + [spring-security 5.0 에서 달라진 암호변환정책, DelegatingPasswordEncoder](https://java.ihoney.pe.kr/498)
 + [Password Encoding](https://spring.io/blog/2017/11/01/spring-security-5-0-0-rc1-released#password-encoding)
 
-**`/src/main/java/com/mastering/spring/springboot/config/WebSecurityConfigurer.java`**
+**/src/main/java/com/mastering/spring/springboot/config/WebSecurityConfigurer.java**
 ```java
 @Configuration
 public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
@@ -118,7 +121,7 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
 }
 ```
 
-**`/src/main/java/com/mastering/spring/springboot/service/TestUserDetailService.java`**
+**/src/main/java/com/mastering/spring/springboot/service/TestUserDetailService.java**
 ```java
 public class TestUserDetailService implements UserDetailsService {
     @Value("${spring.security.user.name}")
@@ -191,9 +194,8 @@ public void retrieveTodo() throws Exception {
 `OAuth2RestTemplate` 은 OAuth2 프로토콜을 지원하는 `Resttemplate` 의 확장이다.
 
 
----
-**[참고]**
 
+## 참고
 + https://oauth.net/2/
 + https://www.digitalocean.com/community/tutorials/an-introduction-to-oauth-2
 

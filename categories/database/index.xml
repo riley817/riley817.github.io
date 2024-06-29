@@ -1,16 +1,29 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>Database - Category - 라일리의 개발 기록장</title>
+        <title>Database - Category - 🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖</title>
         <link>https://riley817.github.io/categories/database/</link>
-        <description>Database - Category - 라일리의 개발 기록장</description>
+        <description>Database - Category - 🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
-            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Wed, 15 Feb 2023 15:17:26 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/categories/database/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Fri, 24 Nov 2023 11:40:17 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/categories/database/" rel="self" type="application/rss+xml" /><item>
+    <title>구글 빅쿼리(BigQuery) 시작하기 및 DataGrip 연동</title>
+    <link>https://riley817.github.io/bigquery-datagrip/</link>
+    <pubDate>Fri, 24 Nov 2023 11:40:17 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/bigquery-datagrip/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/posts/images/dbms/bigquery-datagrip/google-bigquery-logo.png" referrerpolicy="no-referrer">
+            </div>구글 계정 생성 기본 90일 동안 $300 크레딧으로 무료 평가판을 사용할 수 있다. 무료 체험 기간이 지나면 무료 체험 중 생성한 리소스는 모두 중지 되며 유료 계정으로 업그레이드 하지 않으면 요금이 부과되지 않는다. 새 프로젝트 버튼을 클릭하여 프로젝트 생성하기 데이터 세트 생성하기 데이터 세트는 테이블과 뷰에 대한 액세스를 구성 및 제어하는 최상위 컨테이너이다. 테이블이나 뷰는 반드시 데이터 세트에 속해야 하므로 최소 한 개 이상의 데이터 세트를 구성해야 한다.
+Google Cloud Platform 콘솔 메뉴에서 BigQuery 메뉴를 선택]]></description>
+</item>
+<item>
     <title>Graph Database 리서치 - Follow, Tag 기능을 고도화 해보자! (2)</title>
     <link>https://riley817.github.io/graph-database-2/</link>
     <pubDate>Wed, 15 Feb 2023 15:17:26 &#43;0900</pubDate>
     <author>riley</author>
     <guid>https://riley817.github.io/graph-database-2/</guid>
-    <description><![CDATA[기존 Amazon Aurora(postgreSQL) 의 데이터를 필요한 데이터만 추출하여 옮겨 보자. go 언어를 이용하여 user, follow 의 필요한 부분을 추출하여 AWS Neptune 으로 옮기는 코드를 작성한다.
+    <description><![CDATA[<div class="featured-image">
+                <img src="/posts/images/dbms/graphdatabase/graph-database-thumbnail.jpeg" referrerpolicy="no-referrer">
+            </div>기존 Amazon Aurora(postgreSQL) 의 데이터를 필요한 데이터만 추출하여 옮겨 보자. go 언어를 이용하여 user, follow 의 필요한 부분을 추출하여 AWS Neptune 으로 옮기는 코드를 작성한다.
 1. 라이브러리 세팅 gremlin-go 라이브러리를 사용하였다.
 https://github.com/apache/tinkerpop/tree/master/gremlin-go 2. Neptune 연결 설정 1 2 3 4 5 6 7 8 9 10 // 연결 설정 remoteConn, err = gremlingo.NewDriverRemoteConnection(fmt.Sprintf(&#34;wss://%s:8182/gremlin&#34;, neptuneEndpoint), func(settings *gremlingo.DriverRemoteConnectionSettings) { settings.TraversalSource = &#34;g&#34; settings.TlsConfig = &amp;tls.Config{InsecureSkipVerify: true} } ) // 그래프 탐색을 위한 리모트 연결 g = gremlingo.]]></description>
 </item>
@@ -20,16 +33,10 @@ https://github.com/apache/tinkerpop/tree/master/gremlin-go 2. Neptune 연결 설
     <pubDate>Wed, 18 Jan 2023 11:21:26 &#43;0900</pubDate>
     <author>riley</author>
     <guid>https://riley817.github.io/graph-database/</guid>
-    <description><![CDATA[개요 현재 회사에서는 SNS 서비스를 개발하고 있다. 인스타그램 처럼 특정 사용자를 팔로우 할 수 있는 기능이 있는데 관계형 데이터베이스인 postgresql 데이터베이스로 유저 간 팔로우 관계를 관리하고 있다.
+    <description><![CDATA[<div class="featured-image">
+                <img src="/posts/images/dbms/graphdatabase/graph-database-thumbnail.jpeg" referrerpolicy="no-referrer">
+            </div>개요 현재 회사에서는 SNS 서비스를 개발하고 있다. 인스타그램 처럼 특정 사용자를 팔로우 할 수 있는 기능이 있는데 관계형 데이터베이스인 postgresql 데이터베이스로 유저 간 팔로우 관계를 관리하고 있다.
 유저에게 알 수도 있는 친구를 추천하기 위한 기능이 구현하게 되었는데 팔로우 관계를 나타내는 테이블이 하나로 구성되어 있다 보니 유저의 팔로워, 팔로잉 조회를 위해 with 절, union 등과 같은 문법을 사용했고 나의 팔로우의 팔로우 중 나와 팔로우 관계가 없는 친구만 불러오기 위해 복잡하게 서브 쿼리로 작성하게 되었다.]]></description>
-</item>
-<item>
-    <title>구글 빅쿼리(BigQuery) 시작하기 및 DataGrip 연동</title>
-    <link>https://riley817.github.io/bigquery-datagrip/</link>
-    <pubDate>Thu, 24 Nov 2022 11:40:17 &#43;0900</pubDate>
-    <author>riley</author>
-    <guid>https://riley817.github.io/bigquery-datagrip/</guid>
-    <description><![CDATA[구글 빅쿼리 시작하기 및 DataGrip 연동하기 구글 클라우드 프로젝트 생성 구글 계정 생성 기본 90일 동안 $300 크레딧으로 무료 평가판을 사용할 수 있다. 무료 체험 기간이 지나면 무료 체험 중 생성한 리소스는 모두 중지 되며 유료 계정으로 업그레이드 하지 않으면 요금이 부과되지 않는다. 새 프로젝트 버튼을 클릭하여 프로젝트 생성하기 데이터 세트 생성하기 데이터 세트는 테이블과 뷰에 대한 액세스를 구성 및 제어하는 최상위 컨테이너이다. 테이블이나 뷰는 반드시 데이터 세트에 속해야 하므로 최소 한 개 이상의 데이터 세트를 구성해야 한다.]]></description>
 </item>
 <item>
     <title>Oracle Scheduler DBMS_SCHEDULER 개념 및 사용법</title>

@@ -4,40 +4,40 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>데이터 분석을 위한 SQL 레시피 - 5장 사용자를 파악하기 위한 데이터 추출 - 라일리의 개발 기록장</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:url" content="https://riley817.github.io/sql-recipe-5-2/">
-  <meta property="og:site_name" content="라일리의 개발 기록장">
-  <meta property="og:title" content="데이터 분석을 위한 SQL 레시피 - 5장 사용자를 파악하기 위한 데이터 추출">
+        <title>데이터 분석을 위한 SQL 레시피 - 5장 사용자를 파악하기 위한 데이터 추출 (2) - 🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:url" content="https://riley817.github.io/sql-recipe-5-2/">
+  <meta property="og:site_name" content="🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖">
+  <meta property="og:title" content="데이터 분석을 위한 SQL 레시피 - 5장 사용자를 파악하기 위한 데이터 추출 (2)">
   <meta property="og:description" content="🗄️ 데이터분석을 위한 SQL 레시피 책을 읽고 정리 / 요약 한 내용입니다.
 시계열에 따른 사용자 전체의 상태 변화 찾기 사용자는 서비스 사용 시작일부터 시간이 지나면서 ‘충성도 높은 사용자’, ‘사용을 중지’, ‘휴면’ 등으로 상태가 변화 사용자가 계속해서 사용(리피트) 사용자가 사용을 중단(탈퇴/휴면) 서비스 제공자는 사용자가 어느 정도에서 계속 사용하고 있는지 파악하고 목표와의 괴리를 어떻게 좁힐 것 인지 방안을 검토 휴면 사용자를 어떻게 다시 사용하게 만들지도 생각 완전 탈퇴의 경우 복귀는 어려우나 휴면 사용자는 메일 매거진/CM/광고 등을 활용하여 다시 사용하게 유도 샘플 데이터 SNS 사용자 마스터 테이블 SNS 액션 로그 테이블 사용자 마스터 테이블과 액션 로그 테이블 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 DROP TABLE IF EXISTS mst_users; CREATE TABLE mst_users( user_id varchar(255) , sex varchar(255) , birth_date varchar(255) , register_date varchar(255) , register_device varchar(255) , withdraw_date varchar(255) ); INSERT INTO mst_users VALUES (&#39;U001&#39;, &#39;M&#39;, &#39;1977-06-17&#39;, &#39;2016-10-01&#39;, &#39;pc&#39; , NULL ) , (&#39;U002&#39;, &#39;F&#39;, &#39;1953-06-12&#39;, &#39;2016-10-01&#39;, &#39;sp&#39; , &#39;2016-10-10&#39;) , (&#39;U003&#39;, &#39;M&#39;, &#39;1965-01-06&#39;, &#39;2016-10-01&#39;, &#39;pc&#39; , NULL ) , (&#39;U004&#39;, &#39;F&#39;, &#39;1954-05-21&#39;, &#39;2016-10-05&#39;, &#39;pc&#39; , NULL ) , (&#39;U005&#39;, &#39;M&#39;, &#39;1987-11-23&#39;, &#39;2016-10-05&#39;, &#39;sp&#39; , NULL ) , (&#39;U006&#39;, &#39;F&#39;, &#39;1950-01-21&#39;, &#39;2016-10-10&#39;, &#39;pc&#39; , &#39;2016-10-10&#39;) , (&#39;U007&#39;, &#39;F&#39;, &#39;1950-07-18&#39;, &#39;2016-10-10&#39;, &#39;app&#39;, NULL ) , (&#39;U008&#39;, &#39;F&#39;, &#39;2006-12-09&#39;, &#39;2016-10-10&#39;, &#39;sp&#39; , NULL ) , (&#39;U009&#39;, &#39;M&#39;, &#39;2004-10-23&#39;, &#39;2016-10-15&#39;, &#39;pc&#39; , NULL ) , (&#39;U010&#39;, &#39;F&#39;, &#39;1987-03-18&#39;, &#39;2016-10-16&#39;, &#39;pc&#39; , NULL ) , (&#39;U011&#39;, &#39;F&#39;, &#39;1993-10-21&#39;, &#39;2016-10-18&#39;, &#39;pc&#39; , NULL ) , (&#39;U012&#39;, &#39;M&#39;, &#39;1993-12-22&#39;, &#39;2016-10-18&#39;, &#39;app&#39;, NULL ) , (&#39;U013&#39;, &#39;M&#39;, &#39;1988-02-09&#39;, &#39;2016-10-20&#39;, &#39;app&#39;, NULL ) , (&#39;U014&#39;, &#39;F&#39;, &#39;1994-04-07&#39;, &#39;2016-10-25&#39;, &#39;sp&#39; , NULL ) , (&#39;U015&#39;, &#39;F&#39;, &#39;1994-03-01&#39;, &#39;2016-11-01&#39;, &#39;app&#39;, NULL ) , (&#39;U016&#39;, &#39;F&#39;, &#39;1991-09-02&#39;, &#39;2016-11-01&#39;, &#39;pc&#39; , NULL ) , (&#39;U017&#39;, &#39;F&#39;, &#39;1972-05-21&#39;, &#39;2016-11-01&#39;, &#39;app&#39;, NULL ) , (&#39;U018&#39;, &#39;M&#39;, &#39;2009-10-12&#39;, &#39;2016-11-01&#39;, &#39;app&#39;, NULL ) , (&#39;U019&#39;, &#39;M&#39;, &#39;1957-05-18&#39;, &#39;2016-11-01&#39;, &#39;pc&#39; , NULL ) , (&#39;U020&#39;, &#39;F&#39;, &#39;1954-04-17&#39;, &#39;2016-11-03&#39;, &#39;app&#39;, NULL ) , (&#39;U021&#39;, &#39;M&#39;, &#39;2002-08-14&#39;, &#39;2016-11-03&#39;, &#39;sp&#39; , NULL ) , (&#39;U022&#39;, &#39;M&#39;, &#39;1979-12-09&#39;, &#39;2016-11-03&#39;, &#39;app&#39;, NULL ) , (&#39;U023&#39;, &#39;M&#39;, &#39;1992-01-12&#39;, &#39;2016-11-04&#39;, &#39;sp&#39; , NULL ) , (&#39;U024&#39;, &#39;F&#39;, &#39;1962-10-16&#39;, &#39;2016-11-05&#39;, &#39;app&#39;, NULL ) , (&#39;U025&#39;, &#39;F&#39;, &#39;1958-06-26&#39;, &#39;2016-11-05&#39;, &#39;app&#39;, NULL ) , (&#39;U026&#39;, &#39;M&#39;, &#39;1969-02-21&#39;, &#39;2016-11-10&#39;, &#39;sp&#39; , NULL ) , (&#39;U027&#39;, &#39;F&#39;, &#39;2001-07-10&#39;, &#39;2016-11-10&#39;, &#39;pc&#39; , NULL ) , (&#39;U028&#39;, &#39;M&#39;, &#39;1976-05-26&#39;, &#39;2016-11-15&#39;, &#39;app&#39;, NULL ) , (&#39;U029&#39;, &#39;M&#39;, &#39;1964-04-06&#39;, &#39;2016-11-28&#39;, &#39;pc&#39; , NULL ) , (&#39;U030&#39;, &#39;M&#39;, &#39;1959-10-07&#39;, &#39;2016-11-28&#39;, &#39;sp&#39; , NULL ) ; 12.">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2022-11-24T21:39:17+09:00">
-    <meta property="article:modified_time" content="2024-06-24T22:08:26+09:00">
+    <meta property="article:published_time" content="2023-11-24T21:39:17+09:00">
+    <meta property="article:modified_time" content="2024-06-29T23:59:44+09:00">
     <meta property="article:tag" content="Data">
     <meta property="og:image" content="https://riley817.github.io/icon.png">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://riley817.github.io/icon.png">
-  <meta name="twitter:title" content="데이터 분석을 위한 SQL 레시피 - 5장 사용자를 파악하기 위한 데이터 추출">
+  <meta name="twitter:title" content="데이터 분석을 위한 SQL 레시피 - 5장 사용자를 파악하기 위한 데이터 추출 (2)">
   <meta name="twitter:description" content="🗄️ 데이터분석을 위한 SQL 레시피 책을 읽고 정리 / 요약 한 내용입니다.
 시계열에 따른 사용자 전체의 상태 변화 찾기 사용자는 서비스 사용 시작일부터 시간이 지나면서 ‘충성도 높은 사용자’, ‘사용을 중지’, ‘휴면’ 등으로 상태가 변화 사용자가 계속해서 사용(리피트) 사용자가 사용을 중단(탈퇴/휴면) 서비스 제공자는 사용자가 어느 정도에서 계속 사용하고 있는지 파악하고 목표와의 괴리를 어떻게 좁힐 것 인지 방안을 검토 휴면 사용자를 어떻게 다시 사용하게 만들지도 생각 완전 탈퇴의 경우 복귀는 어려우나 휴면 사용자는 메일 매거진/CM/광고 등을 활용하여 다시 사용하게 유도 샘플 데이터 SNS 사용자 마스터 테이블 SNS 액션 로그 테이블 사용자 마스터 테이블과 액션 로그 테이블 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 DROP TABLE IF EXISTS mst_users; CREATE TABLE mst_users( user_id varchar(255) , sex varchar(255) , birth_date varchar(255) , register_date varchar(255) , register_device varchar(255) , withdraw_date varchar(255) ); INSERT INTO mst_users VALUES (&#39;U001&#39;, &#39;M&#39;, &#39;1977-06-17&#39;, &#39;2016-10-01&#39;, &#39;pc&#39; , NULL ) , (&#39;U002&#39;, &#39;F&#39;, &#39;1953-06-12&#39;, &#39;2016-10-01&#39;, &#39;sp&#39; , &#39;2016-10-10&#39;) , (&#39;U003&#39;, &#39;M&#39;, &#39;1965-01-06&#39;, &#39;2016-10-01&#39;, &#39;pc&#39; , NULL ) , (&#39;U004&#39;, &#39;F&#39;, &#39;1954-05-21&#39;, &#39;2016-10-05&#39;, &#39;pc&#39; , NULL ) , (&#39;U005&#39;, &#39;M&#39;, &#39;1987-11-23&#39;, &#39;2016-10-05&#39;, &#39;sp&#39; , NULL ) , (&#39;U006&#39;, &#39;F&#39;, &#39;1950-01-21&#39;, &#39;2016-10-10&#39;, &#39;pc&#39; , &#39;2016-10-10&#39;) , (&#39;U007&#39;, &#39;F&#39;, &#39;1950-07-18&#39;, &#39;2016-10-10&#39;, &#39;app&#39;, NULL ) , (&#39;U008&#39;, &#39;F&#39;, &#39;2006-12-09&#39;, &#39;2016-10-10&#39;, &#39;sp&#39; , NULL ) , (&#39;U009&#39;, &#39;M&#39;, &#39;2004-10-23&#39;, &#39;2016-10-15&#39;, &#39;pc&#39; , NULL ) , (&#39;U010&#39;, &#39;F&#39;, &#39;1987-03-18&#39;, &#39;2016-10-16&#39;, &#39;pc&#39; , NULL ) , (&#39;U011&#39;, &#39;F&#39;, &#39;1993-10-21&#39;, &#39;2016-10-18&#39;, &#39;pc&#39; , NULL ) , (&#39;U012&#39;, &#39;M&#39;, &#39;1993-12-22&#39;, &#39;2016-10-18&#39;, &#39;app&#39;, NULL ) , (&#39;U013&#39;, &#39;M&#39;, &#39;1988-02-09&#39;, &#39;2016-10-20&#39;, &#39;app&#39;, NULL ) , (&#39;U014&#39;, &#39;F&#39;, &#39;1994-04-07&#39;, &#39;2016-10-25&#39;, &#39;sp&#39; , NULL ) , (&#39;U015&#39;, &#39;F&#39;, &#39;1994-03-01&#39;, &#39;2016-11-01&#39;, &#39;app&#39;, NULL ) , (&#39;U016&#39;, &#39;F&#39;, &#39;1991-09-02&#39;, &#39;2016-11-01&#39;, &#39;pc&#39; , NULL ) , (&#39;U017&#39;, &#39;F&#39;, &#39;1972-05-21&#39;, &#39;2016-11-01&#39;, &#39;app&#39;, NULL ) , (&#39;U018&#39;, &#39;M&#39;, &#39;2009-10-12&#39;, &#39;2016-11-01&#39;, &#39;app&#39;, NULL ) , (&#39;U019&#39;, &#39;M&#39;, &#39;1957-05-18&#39;, &#39;2016-11-01&#39;, &#39;pc&#39; , NULL ) , (&#39;U020&#39;, &#39;F&#39;, &#39;1954-04-17&#39;, &#39;2016-11-03&#39;, &#39;app&#39;, NULL ) , (&#39;U021&#39;, &#39;M&#39;, &#39;2002-08-14&#39;, &#39;2016-11-03&#39;, &#39;sp&#39; , NULL ) , (&#39;U022&#39;, &#39;M&#39;, &#39;1979-12-09&#39;, &#39;2016-11-03&#39;, &#39;app&#39;, NULL ) , (&#39;U023&#39;, &#39;M&#39;, &#39;1992-01-12&#39;, &#39;2016-11-04&#39;, &#39;sp&#39; , NULL ) , (&#39;U024&#39;, &#39;F&#39;, &#39;1962-10-16&#39;, &#39;2016-11-05&#39;, &#39;app&#39;, NULL ) , (&#39;U025&#39;, &#39;F&#39;, &#39;1958-06-26&#39;, &#39;2016-11-05&#39;, &#39;app&#39;, NULL ) , (&#39;U026&#39;, &#39;M&#39;, &#39;1969-02-21&#39;, &#39;2016-11-10&#39;, &#39;sp&#39; , NULL ) , (&#39;U027&#39;, &#39;F&#39;, &#39;2001-07-10&#39;, &#39;2016-11-10&#39;, &#39;pc&#39; , NULL ) , (&#39;U028&#39;, &#39;M&#39;, &#39;1976-05-26&#39;, &#39;2016-11-15&#39;, &#39;app&#39;, NULL ) , (&#39;U029&#39;, &#39;M&#39;, &#39;1964-04-06&#39;, &#39;2016-11-28&#39;, &#39;pc&#39; , NULL ) , (&#39;U030&#39;, &#39;M&#39;, &#39;1959-10-07&#39;, &#39;2016-11-28&#39;, &#39;sp&#39; , NULL ) ; 12.">
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://riley817.github.io/sql-recipe-5-2/" /><link rel="prev" href="https://riley817.github.io/sql-recipe-5-1/" /><link rel="next" href="https://riley817.github.io/graph-database/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://riley817.github.io/sql-recipe-5-2/" /><link rel="prev" href="https://riley817.github.io/sql-recipe-5-1/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "데이터 분석을 위한 SQL 레시피 - 5장 사용자를 파악하기 위한 데이터 추출",
+        "headline": "데이터 분석을 위한 SQL 레시피 - 5장 사용자를 파악하기 위한 데이터 추출 (2)",
         "inLanguage": "en",
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/riley817.github.io\/sql-recipe-5-2\/"
         },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "data","wordcount":  6253 ,
-        "url": "https:\/\/riley817.github.io\/sql-recipe-5-2\/","datePublished": "2022-11-24T21:39:17+09:00","dateModified": "2024-06-24T22:08:26+09:00","publisher": {
+        "url": "https:\/\/riley817.github.io\/sql-recipe-5-2\/","datePublished": "2023-11-24T21:39:17+09:00","dateModified": "2024-06-29T23:59:44+09:00","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/riley817.github.io\/images\/avatar.png"},"author": {
                 "@type": "Person",
@@ -45,12 +45,12 @@
             },"description": ""
     }
     </script></head>
-    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('light' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'light' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
 
         <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
     <div class="header-wrapper">
         <div class="header-title">
-            <a href="/" title="라일리의 개발 기록장"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i>&nbsp;</span>라일리의 개발 기록장</a>
+            <a href="/" title="🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i>&nbsp;</span>Riley&#39;s CodeCrumbs</a>
         </div>
         <div class="menu">
             <div class="menu-inner"><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
@@ -74,7 +74,7 @@
     <div class="header-container">
         <div class="header-wrapper">
             <div class="header-title">
-                <a href="/" title="라일리의 개발 기록장"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i>&nbsp;</span>라일리의 개발 기록장</a>
+                <a href="/" title="🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i>&nbsp;</span>Riley&#39;s CodeCrumbs</a>
             </div>
             <div class="menu-toggle" id="menu-toggle-mobile">
                 <span></span><span></span><span></span>
@@ -109,11 +109,18 @@
                 <div class="container"><div class="toc" id="toc-auto">
             <h2 class="toc-title">Contents</h2>
             <div class="toc-content always-active" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">데이터 분석을 위한 SQL 레시피 - 5장 사용자를 파악하기 위한 데이터 추출</h1><h2 class="single-subtitle">12. 시계열에 따른 사용자 전체의 상태 변화 찾기</h2><div class="post-meta">
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">데이터 분석을 위한 SQL 레시피 - 5장 사용자를 파악하기 위한 데이터 추출 (2)</h1><h2 class="single-subtitle">12. 시계열에 따른 사용자 전체의 상태 변화 찾기</h2><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://github.com/riley817" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%EB%8D%B0%EC%9D%B4%ED%84%B0-%EB%B6%84%EC%84%9D%EC%9D%84-%EC%9C%84%ED%95%9C-sql-%EB%A0%88%EC%8B%9C%ED%94%BC/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>데이터 분석을 위한 SQL 레시피</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-11-24">2022-11-24</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;6253 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-11-24">2023-11-24</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;6253 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;30 minutes&nbsp;</div>
-        </div><div class="details toc" id="toc-static"  data-kept="">
+        </div><div class="featured-image"><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/posts/images/sql-recipe/sql-recipe-thumbnail.png"
+        data-srcset="/posts/images/sql-recipe/sql-recipe-thumbnail.png, /posts/images/sql-recipe/sql-recipe-thumbnail.png 1.5x, /posts/images/sql-recipe/sql-recipe-thumbnail.png 2x"
+        data-sizes="auto"
+        alt="/posts/images/sql-recipe/sql-recipe-thumbnail.png"
+        title="/posts/images/sql-recipe/sql-recipe-thumbnail.png" /></div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
                     <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
@@ -2244,8 +2251,8 @@
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 2024-06-24&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/23c45c8708c6ff29696def98046311196cf3bb44" target="_blank" title="commit by riley(41636282&#43;riley817@users.noreply.github.com) 23c45c8708c6ff29696def98046311196cf3bb44: Update main.yml">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>23c45c8</a></span>
+                <span>Updated on 2024-06-29&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/b7aad3025e10b4e333b45c35ce1386d01ceab0d3" target="_blank" title="commit by riley817(riley0422@icloud.com) b7aad3025e10b4e333b45c35ce1386d01ceab0d3: Merge branch &#39;develop&#39;">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>b7aad30</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>
@@ -2262,8 +2269,7 @@
         </section>
     </div>
 
-    <div class="post-nav"><a href="/sql-recipe-5-1/" class="prev" rel="prev" title="데이터 분석을 위한 SQL 레시피 - 5장 사용자를 파악하기 위한 데이터 추출"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>데이터 분석을 위한 SQL 레시피 - 5장 사용자를 파악하기 위한 데이터 추출</a>
-            <a href="/graph-database/" class="next" rel="next" title="Graph Database 리서치 - Follow, Tag 기능을 고도화 해보자! (1)">Graph Database 리서치 - Follow, Tag 기능을 고도화 해보자! (1)<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+    <div class="post-nav"><a href="/sql-recipe-5-1/" class="prev" rel="prev" title="데이터 분석을 위한 SQL 레시피 - 5장 사용자를 파악하기 위한 데이터 추출 (1)"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>데이터 분석을 위한 SQL 레시피 - 5장 사용자를 파악하기 위한 데이터 추출 (1)</a></div>
 </div>
 <div id="comments"><script src="https://utteranc.es/client.js"
             repo="riley817/blog-comment"
@@ -2275,7 +2281,7 @@
         </script>
     </div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.127.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.128.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
                 </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/riley817" target="_blank">Riley</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

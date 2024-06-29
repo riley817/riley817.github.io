@@ -1,19 +1,19 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>Kibana - Tag - 라일리의 개발 기록장</title>
+        <title>Kibana - Tag - 🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖</title>
         <link>https://riley817.github.io/tags/kibana/</link>
-        <description>Kibana - Tag - 라일리의 개발 기록장</description>
+        <description>Kibana - Tag - 🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
             <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Sun, 21 Oct 2018 19:20:11 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/tags/kibana/" rel="self" type="application/rss+xml" /><item>
-    <title>[Elasticsearch 검색 엔진 구축 강의] 3. Elasticsearch 및 Kibana 설치</title>
+    <title>[Elasticsearch 검색 엔진 구축 강의] Elasticsearch 및 Kibana 설치</title>
     <link>https://riley817.github.io/elasticsearch-lecture3/</link>
     <pubDate>Sun, 21 Oct 2018 19:20:11 &#43;0900</pubDate>
     <author>riley</author>
     <guid>https://riley817.github.io/elasticsearch-lecture3/</guid>
     <description><![CDATA[<div class="featured-image">
-                <img src="/posts/images/elastic/9SyGqYLhMmYxEJyNUf.png" referrerpolicy="no-referrer">
-            </div>Elasticsearch 설치하기 Elasticsearch 는 Java 언어로 이루어진 아파치 Lucene 기반으로 이루어져 있다. 그러므로 설치를 위해서는 Java 가 먼저 설치되어 있어야 한다.
-1. yum 으로 설치하기 RPM Repository 등록하기 /etc/yum.repos.d/elasticsearch.repo elastic 저장소를 수동으로 추가 한다.
+                <img src="/posts/images/elastic/elasticsearch-lecture.png" referrerpolicy="no-referrer">
+            </div>1. Elasticsearch 설치하기 Elasticsearch는 Java 언어로 이루어진 아파치 Lucene 기반으로 이루어져 있다. 그러므로 설치를 위해서는 Java 가 먼저 설치되어 있어야 한다.
+1.1 yum 으로 설치하기 RPM Repository 등록하기 /etc/yum.repos.d/elasticsearch.repo elastic 저장소를 수동으로 추가 한다.
 1 2 3 4 5 6 7 8 9 # /etc/yum.repos.d/elasticsearch.repo [elasticsearch-6.x] name=Elasticsearch repository for 6.x packages baseurl=https://artifacts.elastic.co/packages/6.x/yum gpgcheck=1 gpgkey=https://artifacts.elastic.co/GPG-KEY-elasticsearch enabled=1 autorefresh=1 type=rpm-md 1 sudo yum install elasticsearch RPM Download 하여 설치하기 Elasticsearch RPM 다운로드 후 설치한다.]]></description>
 </item>
 </channel>

@@ -4,8 +4,8 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>[Elasticsearch 검색 엔진 구축 강의] Elasticsearch 시작하기 - 라일리의 개발 기록장</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:url" content="https://riley817.github.io/elasticsearch-lecture0/">
-  <meta property="og:site_name" content="라일리의 개발 기록장">
+        <title>[Elasticsearch 검색 엔진 구축 강의] Elasticsearch 시작하기 - 🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:url" content="https://riley817.github.io/elasticsearch-lecture0/">
+  <meta property="og:site_name" content="🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖">
   <meta property="og:title" content="[Elasticsearch 검색 엔진 구축 강의] Elasticsearch 시작하기">
   <meta property="og:description" content="🔍 Elasticsearch Apache Lucene 기반의 Full-Text 검색엔진이며 분석엔진 고가용성(High Availability)의 확장 가능한 오픈 소스 HTTP 웹 인터페이스와 스키마에서 자유로운 JSON 문서로 제공 1. 검색 엔진으로서의 Elasticsearch Elasticsearch 는 루씬 기반의 대중적인 엔터프라이즈 검색엔진으로 Apach 2.0 License 에 의거 오픈 소스로 출시 되었다. 또한 대부분의 루씬이 제공하는 기능들을 Eleasticsearch 에서도 제공한다. HTTP Web Interface와 Schema에 자유로운 JSON 형태의 도규먼트를 지원하는 준 실시간 분산형 검색엔진이다.
 1.1 Apache Lucene 정보검색 Information Retrieval, IR 소프트웨어 검색 라이브러리 Apahce Software 재단의 검색엔진 상위 프로젝트 자바 언어로 개발되어 있다.">
@@ -13,7 +13,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2018-10-18T14:10:52+09:00">
-    <meta property="article:modified_time" content="2024-06-24T22:08:26+09:00">
+    <meta property="article:modified_time" content="2024-06-29T23:59:44+09:00">
     <meta property="article:tag" content="Elasticsearch">
     <meta property="og:image" content="https://riley817.github.io/icon.png">
 
@@ -36,8 +36,8 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/riley817.github.io\/elasticsearch-lecture0\/"
-        },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Elasticsearch","wordcount":  755 ,
-        "url": "https:\/\/riley817.github.io\/elasticsearch-lecture0\/","datePublished": "2018-10-18T14:10:52+09:00","dateModified": "2024-06-24T22:08:26+09:00","publisher": {
+        },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Elasticsearch","wordcount":  744 ,
+        "url": "https:\/\/riley817.github.io\/elasticsearch-lecture0\/","datePublished": "2018-10-18T14:10:52+09:00","dateModified": "2024-06-29T23:59:44+09:00","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/riley817.github.io\/images\/avatar.png"},"author": {
                 "@type": "Person",
@@ -45,12 +45,12 @@
             },"description": ""
     }
     </script></head>
-    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('light' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'light' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
 
         <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
     <div class="header-wrapper">
         <div class="header-title">
-            <a href="/" title="라일리의 개발 기록장"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i>&nbsp;</span>라일리의 개발 기록장</a>
+            <a href="/" title="🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i>&nbsp;</span>Riley&#39;s CodeCrumbs</a>
         </div>
         <div class="menu">
             <div class="menu-inner"><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
@@ -74,7 +74,7 @@
     <div class="header-container">
         <div class="header-wrapper">
             <div class="header-title">
-                <a href="/" title="라일리의 개발 기록장"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i>&nbsp;</span>라일리의 개발 기록장</a>
+                <a href="/" title="🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i>&nbsp;</span>Riley&#39;s CodeCrumbs</a>
             </div>
             <div class="menu-toggle" id="menu-toggle-mobile">
                 <span></span><span></span><span></span>
@@ -111,16 +111,16 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">[Elasticsearch 검색 엔진 구축 강의] Elasticsearch 시작하기</h1><h2 class="single-subtitle">Elasticsearch 검색 엔진 구축 강의</h2><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://github.com/riley817" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-category">included in <a href="/categories/elasticsearch-%EA%B2%80%EC%83%89-%EC%97%94%EC%A7%84-%EA%B5%AC%EC%B6%95-%EA%B0%95%EC%9D%98/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Elasticsearch 검색 엔진 구축 강의</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2018-10-18">2018-10-18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;755 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2018-10-18">2018-10-18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;744 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;4 minutes&nbsp;</div>
         </div><div class="featured-image"><img
         class="lazyload"
         src="/svg/loading.min.svg"
-        data-src="/posts/images/elastic/9SyGqYLhMmYxEJyNUf.png"
-        data-srcset="/posts/images/elastic/9SyGqYLhMmYxEJyNUf.png, /posts/images/elastic/9SyGqYLhMmYxEJyNUf.png 1.5x, /posts/images/elastic/9SyGqYLhMmYxEJyNUf.png 2x"
+        data-src="/posts/images/elastic/elasticsearch-lecture.png"
+        data-srcset="/posts/images/elastic/elasticsearch-lecture.png, /posts/images/elastic/elasticsearch-lecture.png 1.5x, /posts/images/elastic/elasticsearch-lecture.png 2x"
         data-sizes="auto"
-        alt="/posts/images/elastic/9SyGqYLhMmYxEJyNUf.png"
-        title="/posts/images/elastic/9SyGqYLhMmYxEJyNUf.png" /></div><div class="details toc" id="toc-static"  data-kept="">
+        alt="/posts/images/elastic/elasticsearch-lecture.png"
+        title="/posts/images/elastic/elasticsearch-lecture.png" /></div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
                     <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
@@ -141,17 +141,17 @@
       <ul>
         <li><a href="#31-document">3.1 Document</a></li>
         <li><a href="#32-index">3.2 Index</a></li>
-        <li><a href="#type">Type</a></li>
-        <li><a href="#cluster">Cluster</a></li>
-        <li><a href="#node">Node</a>
+        <li><a href="#33-type">3.3 Type</a></li>
+        <li><a href="#34-cluster">3.4 Cluster</a></li>
+        <li><a href="#35-node">3.5 Node</a>
           <ul>
-            <li><a href="#node-종류">Node 종류</a></li>
+            <li><a href="#351-node의-종류">3.5.1 Node의 종류</a></li>
           </ul>
         </li>
-        <li><a href="#shard">Shard</a>
+        <li><a href="#36-shard">3.6 Shard</a>
           <ul>
-            <li><a href="#샤딩의-특징">샤딩의 특징</a></li>
-            <li><a href="#shard-의-종류">Shard 의 종류</a>
+            <li><a href="#361-샤딩의-특징">3.6.1 샤딩의 특징</a></li>
+            <li><a href="#362-shard-의-종류">3.6.2 Shard 의 종류</a>
               <ul>
                 <li><a href="#primary-shard">Primary Shard</a></li>
                 <li><a href="#replica-shard">Replica Shard</a></li>
@@ -231,10 +231,10 @@
 <li>인덱스는 사전에 정의되어야 할 데이터 타입이나 특정한 구조가 필요하지 않다면 최초 데이터가 인입될 때 생성 된다.
 (고객정보, 제품카탈로그, 주문정보 등&hellip;)</li>
 </ul>
-<h3 id="type">Type</h3>
+<h3 id="33-type">3.3 Type</h3>
 <ul>
-<li>관계형 데이터 베이스의 <code>Table</code> 과 비슷한 개념으로 볼 수 있다.</li>
-<li>타입은 인덱스의 파티션으로 사용 된다.</li>
+<li>관계형 데이터베이스의 <code>Table</code> 과 비슷한 개념으로 볼 수 있다.</li>
+<li>타입은 인덱스의 파티션으로 사용된다.</li>
 <li>하나의 인덱스에 도큐먼트를 저장할때 타입을 분리해서 인덱싱이 가능하다.</li>
 </ul>
 <div class="details admonition tip open">
@@ -245,15 +245,15 @@
             <div class="admonition-content">ES 6.0.0 버전 부터는 Multi Type 을 지정이 <code>deprecated</code> 되었으며, 하나의 인덱스에는 단일 타입으로만 지정하도록 권고하고 있다.</div>
         </div>
     </div>
-<h3 id="cluster">Cluster</h3>
+<h3 id="34-cluster">3.4 Cluster</h3>
 <ul>
 <li><strong>Elasticsearch는 클러스터로 구성</strong>되어 있다.</li>
-<li>클러스터는 전체 데이터 (모든 노드) 간 통합 인덱싱 및 검색이 가능한 1개 이상의 노드(서버) 의 집합이다.</li>
+<li>클러스터는 전체 데이터 (모든 노드) 간 통합 인덱싱 및 검색이 가능한 1개 이상의 노드(서버)의 집합이다.</li>
 <li>사용자는 이 클러스터를 통해 데이터를 저장하고 검색 요청을 할 수 있다.</li>
 <li>클러스터는 고유의 <code>cluster_name</code> 과 <code>cluster_uuid</code> 를 갖는다.</li>
 <li>클러스터 이름은 따로 지정하지 않으면 유니크한 이름으로 생성된다.</li>
 </ul>
-<h3 id="node">Node</h3>
+<h3 id="35-node">3.5 Node</h3>
 <ul>
 <li>노드는 클러스터를 구성하는 단일 서버로써, 서로 헬스 체크를 하거나 실제 데이터를 저장하고 클러스터에 참여하여 인덱싱과 검색 역할을 수행한다.</li>
 <li>노드는 각자의 노드 이름을 갖으며 노드가 기동될때 랜덤 UUID 를 갖는다.</li>
@@ -267,7 +267,7 @@
             <div class="admonition-content">모든 노드는 클러스터의 다른 모든 노드에 대해 알고 있으며, 클라이언트 요청을 해당 노드로 전달할 수 있다.</div>
         </div>
     </div>
-<h4 id="node-종류">Node 종류</h4>
+<h4 id="351-node의-종류">3.5.1 Node의 종류</h4>
 <table>
 <thead>
 <tr>
@@ -294,7 +294,7 @@
 </tr>
 </tbody>
 </table>
-<h3 id="shard">Shard</h3>
+<h3 id="36-shard">3.6 Shard</h3>
 <p><code>shard</code>는 <strong>인덱스 데이터를 나누는 단위</strong> 이다.</p>
 <p>인덱스는 무한한 데이터 저장이 가능하며</p>
 <ul>
@@ -302,28 +302,30 @@
 <li>CPU, 메모리 자원 초과로 인덱싱이나 검색 성능의 저하가 발생하는 문제가 발생</li>
 </ul>
 <p>이와 같은 문제를 해결하기위해 ES에 도입된 개념이다.</p>
-<h4 id="샤딩의-특징">샤딩의 특징</h4>
+<h4 id="361-샤딩의-특징">3.6.1 샤딩의 특징</h4>
 <ul>
 <li>콘텐츠 볼륨의 <strong>수평(Horizontal) 분할 및 확장</strong>이 가능하다. 관계형 데이터베이스처럼 컬럼별로 나누는 것이 아닌 횡별로 나누어 샤드에 저장.</li>
 <li>여러 샤드에 분산 배치하여 병렬화 함으로써 성능 및 처리량을 늘릴 수 있다.</li>
 <li>I/O 가 두배로 발생하여 인덱싱 성능이 저하된다.</li>
 <li>디스크 볼륨 또한 실제 도큐먼트 용량의 두배가 필요하다.</li>
 </ul>
-<h4 id="shard-의-종류">Shard 의 종류</h4>
+<h4 id="362-shard-의-종류">3.6.2 Shard 의 종류</h4>
 <h5 id="primary-shard">Primary Shard</h5>
 <ul>
-<li><code>Primary Shard</code> 는 Indexing 되어 들어온 Document 의 <strong>원본 Shard</strong> 를 의미한다.</li>
-<li>Primary Shard 는 각 인덱스 별로 <strong>최소 1개 이상 존재</strong> 해야 한다.</li>
-<li>ElasticSearch 에 Document 가 인덱싱 될 때 가장 처음에 생성되는 샤드이다.</li>
+<li><code>Primary Shard</code>는 인덱싱되어 들어온 Document의 <strong>원본 Shard</strong>를 의미한다.</li>
+<li>Primary Shard는 각 인덱스 별로 <strong>최소 1개 이상 존재</strong> 해야한다.</li>
+<li>ElasticSearch에 Document가 인덱싱 될 때 가장 처음에 생성되는 샤드이다.</li>
 <li>샤드 개수를 지정하지 않는다면 기본으로 <code>5 개</code>로 지정된다.</li>
 </ul>
 <h5 id="replica-shard">Replica Shard</h5>
 <p>Network / Cloud 환경의 샤드 노드가 오프라인 상태가 되거나 혹은 사라지게 될 경우를 대비하여 인덱스 샤드에 대해 하나 이상의 복사본을 생성할 수 있다. 이를 <code>Replica Shard</code> 라고 한다.</p>
 <ul>
-<li>ElasticSearch 에서 Primary Shard 가 인덱싱 된 후, Primary Shard 가 저장된 데이터 노드와는 다른 곳에 복제된다.</li>
-<li>Replica Shard 에도 넘버링을 하며, 어떤 Primary Shard 의 복제본인지 식별이 가능하다.</li>
-<li>replica 의 <code>기본값은 1</code></li>
-<li>인덱싱 시 Primary Shard 의 복제를 하는 과정이 추가된다.</li>
+<li>ElasticSearch에서 Primary Shard가 인덱싱 된 후, Primary Shard가 저장된 데이터 노드와는 다른 곳에 복제된다.</li>
+</ul>
+<ul>
+<li>Replica Shard에도 넘버링을 하며, 어떤 Primary Shard의 복제본인지 식별이 가능하다.</li>
+<li>replica의 <code>기본값은 1</code> 이다.</li>
+<li>인덱싱 시 Primary Shard의 복제하는 과정이 추가된다.</li>
 </ul>
 <figure><a class="lightgallery" href="/posts/images/eshaed.png" title="/posts/images/eshaed.png" data-thumbnail="/posts/images/eshaed.png" data-sub-html="<h2>ES 플러그인 인 Head 로 각 노드에 샤드 dashboard를 확인 할 수 있다.</h2>">
         <img
@@ -341,8 +343,7 @@
         </div>
         <div class="details-content">
             <div class="admonition-content"><ul>
-<li>Elasticsearch의 샤드는
-<strong>Lucene 의 인덱스이며, 단일 Lucene 인덱스가 포함할 수 있는 도큐먼트의 최대 개수는 2,147,483,519</strong> 개 이다</li>
+<li>Elasticsearch의 샤드는 <strong>Lucene 의 인덱스이며, 단일 Lucene 인덱스가 포함할 수 있는 도큐먼트의 최대 개수는 2,147,483,519</strong> 개 이다</li>
 <li>Replica Shard 가 있기 때문에 샤드 혹은 노드의 오류가 발생하더라도 Elasticsearch 클러스터의 고가용성이 유지된다.</li>
 <li>모든 Replica Shard에서 병렬 방식으로 검색을 실행할 수 있으므로 검색 처리량 확장 가능하다.</li>
 </ul>
@@ -353,8 +354,8 @@
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 2024-06-24&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/23c45c8708c6ff29696def98046311196cf3bb44" target="_blank" title="commit by riley(41636282&#43;riley817@users.noreply.github.com) 23c45c8708c6ff29696def98046311196cf3bb44: Update main.yml">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>23c45c8</a></span>
+                <span>Updated on 2024-06-29&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/b7aad3025e10b4e333b45c35ce1386d01ceab0d3" target="_blank" title="commit by riley817(riley0422@icloud.com) b7aad3025e10b4e333b45c35ce1386d01ceab0d3: Merge branch &#39;develop&#39;">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>b7aad30</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>
@@ -384,7 +385,7 @@
         </script>
     </div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.127.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.128.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
                 </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/riley817" target="_blank">Riley</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

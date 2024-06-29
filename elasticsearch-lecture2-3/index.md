@@ -1,8 +1,9 @@
-# [Elasticsearch 검색 엔진 구축 강의] 2.3 Head 소개
+# [Elasticsearch 검색 엔진 구축 강의] Head 소개
 
 
-# Elasticsearch Head
+{{<admonition type=success title="🔍 Elasticsearch Head">}}
 클러스트들을 한눈에 보기 위한 도구. 직접 서버를 구성하여 설치할 수도 있고 크롬의 브라우저 익스텐션으로도 제공한다.
+{{</admonition>}}
 
 ## Installation
 **[ES Head git repository](https://github.com/mobz/elasticsearch-head)** 에서 클론 혹은 다운로드한다.

@@ -4,38 +4,38 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>[Elasticsearch 검색 엔진 구축 강의] 4. Elasticsearch 기본 동작 - 라일리의 개발 기록장</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:url" content="https://riley817.github.io/elasticsearch-lecture4/">
-  <meta property="og:site_name" content="라일리의 개발 기록장">
-  <meta property="og:title" content="[Elasticsearch 검색 엔진 구축 강의] 4. Elasticsearch 기본 동작">
-  <meta property="og:description" content="인덱스 생성, 삭제 및 조회하기 1. 인덱스 생성하기 인덱스는 문서document의 모음이다. 인덱스를 생성하는 방법 Index Settings를 정의한다. Index Mappings를 정의한다. 사용자 정의된 도큐먼트를 인덱싱한다. 2. 인덱스의 settings Static Index Settings index.number_of_shards : 인덱스가 가져야 하는 Primary 샤드의 개수 설정. 기본값 5 Dynamic Index Settings index.number_of_replicas : 각 기본 샤드의 복제본 (Replica 샤드 개수 설정). 기본값은 1 index.refresh_interval : 검색 commit point 를 만드는 refresh interval 설정 (새로 고침 작업수행 빈도). -1 비활성화.">
+        <title>[Elasticsearch 검색 엔진 구축 강의] Elasticsearch 기본 동작 - 🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:url" content="https://riley817.github.io/elasticsearch-lecture4/">
+  <meta property="og:site_name" content="🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖">
+  <meta property="og:title" content="[Elasticsearch 검색 엔진 구축 강의] Elasticsearch 기본 동작">
+  <meta property="og:description" content="1. 인덱스 생성하기 인덱스는 문서document의 모음이다. 인덱스를 생성하는 방법 Index Settings를 정의한다. Index Mappings를 정의한다. 사용자 정의된 도큐먼트를 인덱싱한다. 2. 인덱스의 settings Static Index Settings index.number_of_shards : 인덱스가 가져야 하는 Primary 샤드의 개수 설정. 기본값 5 Dynamic Index Settings index.number_of_replicas : 각 기본 샤드의 복제본 (Replica 샤드 개수 설정). 기본값은 1 index.refresh_interval : 검색 commit point 를 만드는 refresh interval 설정 (새로 고침 작업수행 빈도). -1 비활성화. 기본값 1s index.routing.allocation.enable : 인덱스의 샤드들의 라우팅 허용 설정 Other Settings Analysis, Mapping, Slowlog … 3.">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2018-11-27T13:11:45+09:00">
-    <meta property="article:modified_time" content="2024-06-24T22:08:26+09:00">
+    <meta property="article:modified_time" content="2024-06-29T23:59:44+09:00">
     <meta property="article:tag" content="Elasticsearch">
     <meta property="og:image" content="https://riley817.github.io/icon.png">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://riley817.github.io/icon.png">
-  <meta name="twitter:title" content="[Elasticsearch 검색 엔진 구축 강의] 4. Elasticsearch 기본 동작">
-  <meta name="twitter:description" content="인덱스 생성, 삭제 및 조회하기 1. 인덱스 생성하기 인덱스는 문서document의 모음이다. 인덱스를 생성하는 방법 Index Settings를 정의한다. Index Mappings를 정의한다. 사용자 정의된 도큐먼트를 인덱싱한다. 2. 인덱스의 settings Static Index Settings index.number_of_shards : 인덱스가 가져야 하는 Primary 샤드의 개수 설정. 기본값 5 Dynamic Index Settings index.number_of_replicas : 각 기본 샤드의 복제본 (Replica 샤드 개수 설정). 기본값은 1 index.refresh_interval : 검색 commit point 를 만드는 refresh interval 설정 (새로 고침 작업수행 빈도). -1 비활성화.">
+  <meta name="twitter:title" content="[Elasticsearch 검색 엔진 구축 강의] Elasticsearch 기본 동작">
+  <meta name="twitter:description" content="1. 인덱스 생성하기 인덱스는 문서document의 모음이다. 인덱스를 생성하는 방법 Index Settings를 정의한다. Index Mappings를 정의한다. 사용자 정의된 도큐먼트를 인덱싱한다. 2. 인덱스의 settings Static Index Settings index.number_of_shards : 인덱스가 가져야 하는 Primary 샤드의 개수 설정. 기본값 5 Dynamic Index Settings index.number_of_replicas : 각 기본 샤드의 복제본 (Replica 샤드 개수 설정). 기본값은 1 index.refresh_interval : 검색 commit point 를 만드는 refresh interval 설정 (새로 고침 작업수행 빈도). -1 비활성화. 기본값 1s index.routing.allocation.enable : 인덱스의 샤드들의 라우팅 허용 설정 Other Settings Analysis, Mapping, Slowlog … 3.">
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://riley817.github.io/elasticsearch-lecture4/" /><link rel="prev" href="https://riley817.github.io/elasticsearch-lecture3-5/" /><link rel="next" href="https://riley817.github.io/jpa-programming1/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://riley817.github.io/elasticsearch-lecture4/" /><link rel="prev" href="https://riley817.github.io/elasticsearch-lecture3-5/" /><link rel="next" href="https://riley817.github.io/page-6-1/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "[Elasticsearch 검색 엔진 구축 강의] 4. Elasticsearch 기본 동작",
+        "headline": "[Elasticsearch 검색 엔진 구축 강의] Elasticsearch 기본 동작",
         "inLanguage": "en",
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/riley817.github.io\/elasticsearch-lecture4\/"
-        },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "elasticsearch","wordcount":  358 ,
-        "url": "https:\/\/riley817.github.io\/elasticsearch-lecture4\/","datePublished": "2018-11-27T13:11:45+09:00","dateModified": "2024-06-24T22:08:26+09:00","publisher": {
+        },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "elasticsearch","wordcount":  306 ,
+        "url": "https:\/\/riley817.github.io\/elasticsearch-lecture4\/","datePublished": "2018-11-27T13:11:45+09:00","dateModified": "2024-06-29T23:59:44+09:00","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/riley817.github.io\/images\/avatar.png"},"author": {
                 "@type": "Person",
@@ -43,12 +43,12 @@
             },"description": ""
     }
     </script></head>
-    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('light' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'light' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
 
         <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
     <div class="header-wrapper">
         <div class="header-title">
-            <a href="/" title="라일리의 개발 기록장"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i>&nbsp;</span>라일리의 개발 기록장</a>
+            <a href="/" title="🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i>&nbsp;</span>Riley&#39;s CodeCrumbs</a>
         </div>
         <div class="menu">
             <div class="menu-inner"><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
@@ -72,7 +72,7 @@
     <div class="header-container">
         <div class="header-wrapper">
             <div class="header-title">
-                <a href="/" title="라일리의 개발 기록장"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i>&nbsp;</span>라일리의 개발 기록장</a>
+                <a href="/" title="🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i>&nbsp;</span>Riley&#39;s CodeCrumbs</a>
             </div>
             <div class="menu-toggle" id="menu-toggle-mobile">
                 <span></span><span></span><span></span>
@@ -107,66 +107,56 @@
                 <div class="container"><div class="toc" id="toc-auto">
             <h2 class="toc-title">Contents</h2>
             <div class="toc-content" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">[Elasticsearch 검색 엔진 구축 강의] 4. Elasticsearch 기본 동작</h1><h2 class="single-subtitle">Elasticsearch 검색 엔진 구축 강의 정리</h2><div class="post-meta">
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">[Elasticsearch 검색 엔진 구축 강의] Elasticsearch 기본 동작</h1><h2 class="single-subtitle">Elasticsearch 검색 엔진 구축 강의 정리</h2><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://github.com/riley817" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-category">included in <a href="/categories/elasticsearch-%EA%B2%80%EC%83%89-%EC%97%94%EC%A7%84-%EA%B5%AC%EC%B6%95-%EA%B0%95%EC%9D%98/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Elasticsearch 검색 엔진 구축 강의</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2018-11-27">2018-11-27</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;358 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2018-11-27">2018-11-27</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;306 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;2 minutes&nbsp;</div>
         </div><div class="featured-image"><img
         class="lazyload"
         src="/svg/loading.min.svg"
-        data-src="/posts/images/elastic/9SyGqYLhMmYxEJyNUf.png"
-        data-srcset="/posts/images/elastic/9SyGqYLhMmYxEJyNUf.png, /posts/images/elastic/9SyGqYLhMmYxEJyNUf.png 1.5x, /posts/images/elastic/9SyGqYLhMmYxEJyNUf.png 2x"
+        data-src="/posts/images/elastic/elasticsearch-lecture.png"
+        data-srcset="/posts/images/elastic/elasticsearch-lecture.png, /posts/images/elastic/elasticsearch-lecture.png 1.5x, /posts/images/elastic/elasticsearch-lecture.png 2x"
         data-sizes="auto"
-        alt="/posts/images/elastic/9SyGqYLhMmYxEJyNUf.png"
-        title="/posts/images/elastic/9SyGqYLhMmYxEJyNUf.png" /></div><div class="details toc" id="toc-static"  data-kept="">
+        alt="/posts/images/elastic/elasticsearch-lecture.png"
+        title="/posts/images/elastic/elasticsearch-lecture.png" /></div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
                     <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
-    <li><a href="#인덱스-생성-삭제-및-조회하기">인덱스 생성, 삭제 및 조회하기</a>
+    <li><a href="#1-인덱스-생성하기">1. 인덱스 생성하기</a></li>
+    <li><a href="#2-인덱스의-settings">2. 인덱스의 settings</a>
       <ul>
-        <li><a href="#1-인덱스-생성하기">1. 인덱스 생성하기</a></li>
-        <li><a href="#2-인덱스의-settings">2. 인덱스의 settings</a>
-          <ul>
-            <li><a href="#static-index-settings">Static Index Settings</a></li>
-            <li><a href="#dynamic-index-settings">Dynamic Index Settings</a></li>
-            <li><a href="#other-settings">Other Settings</a></li>
-          </ul>
-        </li>
-        <li><a href="#3-인덱스-생성">3. 인덱스 생성</a>
-          <ul>
-            <li><a href="#인덱스-settings로-인덱싱-하기">인덱스 Settings로 인덱싱 하기</a></li>
-            <li><a href="#cli-사용">CLI 사용</a></li>
-          </ul>
-        </li>
-        <li><a href="#4-인덱스-삭제하기">4. 인덱스 삭제하기</a>
-          <ul>
-            <li><a href="#read-only로-삭제-방지-truenull로-설정해제">Read only로 삭제 방지, true/null로 설정/해제</a></li>
-          </ul>
-        </li>
-        <li><a href="#5-인덱스-조회">5. 인덱스 조회</a>
-          <ul>
-            <li><a href="#인덱스-세팅-확인하기">인덱스 세팅 확인하기</a></li>
-            <li><a href="#인덱스-상태를-확인">인덱스 상태를 확인</a></li>
-            <li><a href="#인덱스-샤드-및-세그먼트-정보-확인">인덱스 샤드 및 세그먼트 정보 확인</a></li>
-            <li><a href="#인덱스-요약-정보">인덱스 요약 정보</a></li>
-          </ul>
-        </li>
-        <li><a href="#문서-색인-및-조회">문서 색인 및 조회</a>
-          <ul>
-            <li><a href="#인덱싱의-필수-조건">인덱싱의 필수 조건</a></li>
-            <li><a href="#인덱스-api">인덱스 API</a></li>
-          </ul>
-        </li>
+        <li><a href="#static-index-settings">Static Index Settings</a></li>
+        <li><a href="#dynamic-index-settings">Dynamic Index Settings</a></li>
+        <li><a href="#other-settings">Other Settings</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-인덱스-생성">3. 인덱스 생성</a>
+      <ul>
+        <li><a href="#인덱스-settings로-인덱싱-하기">인덱스 Settings로 인덱싱 하기</a></li>
+      </ul>
+    </li>
+    <li><a href="#4-인덱스-삭제하기">4. 인덱스 삭제하기</a>
+      <ul>
+        <li><a href="#read-only로-삭제-방지-truenull로-설정해제">Read only로 삭제 방지, true/null로 설정/해제</a></li>
+      </ul>
+    </li>
+    <li><a href="#5-인덱스-조회">5. 인덱스 조회</a>
+      <ul>
+        <li><a href="#인덱스-세팅-확인하기">인덱스 세팅 확인하기</a></li>
+        <li><a href="#인덱스-상태-확인">인덱스 상태 확인</a></li>
+        <li><a href="#인덱스-샤드-및-세그먼트-정보-확인">인덱스 샤드 및 세그먼트 정보 확인</a></li>
+        <li><a href="#인덱스-요약-정보">인덱스 요약 정보</a></li>
+        <li><a href="#문서-색인-및-조회">문서 색인 및 조회</a></li>
+        <li><a href="#인덱싱의-필수-조건">인덱싱의 필수 조건</a></li>
       </ul>
     </li>
     <li><a href="#참고">참고</a></li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><h2 id="인덱스-생성-삭제-및-조회하기">인덱스 생성, 삭제 및 조회하기</h2>
-<h3 id="1-인덱스-생성하기">1. 인덱스 생성하기</h3>
+            </div><div class="content" id="content"><h2 id="1-인덱스-생성하기">1. 인덱스 생성하기</h2>
 <ul>
 <li>인덱스는 문서<code>document</code>의 모음이다.</li>
 </ul>
@@ -183,23 +173,23 @@
 </div>
         </div>
     </div>
-<h3 id="2-인덱스의-settings">2. 인덱스의 settings</h3>
-<h4 id="static-index-settings">Static Index Settings</h4>
+<h2 id="2-인덱스의-settings">2. 인덱스의 settings</h2>
+<h3 id="static-index-settings">Static Index Settings</h3>
 <ul>
 <li><code>index.number_of_shards</code> : 인덱스가 가져야 하는 Primary 샤드의 개수 설정. 기본값 5</li>
 </ul>
-<h4 id="dynamic-index-settings">Dynamic Index Settings</h4>
+<h3 id="dynamic-index-settings">Dynamic Index Settings</h3>
 <ul>
 <li><code>index.number_of_replicas</code> : 각 기본 샤드의 복제본 (Replica 샤드 개수 설정). 기본값은 1</li>
 <li><code>index.refresh_interval</code> : 검색 commit point 를 만드는 refresh interval 설정 (새로 고침 작업수행 빈도). -1 비활성화. 기본값 1s</li>
 <li><code>index.routing.allocation.enable</code> : 인덱스의 샤드들의 라우팅 허용 설정</li>
 </ul>
-<h4 id="other-settings">Other Settings</h4>
+<h3 id="other-settings">Other Settings</h3>
 <ul>
 <li>Analysis, Mapping, Slowlog &hellip;</li>
 </ul>
-<h3 id="3-인덱스-생성">3. 인덱스 생성</h3>
-<h4 id="인덱스-settings로-인덱싱-하기">인덱스 Settings로 인덱싱 하기</h4>
+<h2 id="3-인덱스-생성">3. 인덱스 생성</h2>
+<h3 id="인덱스-settings로-인덱싱-하기">인덱스 Settings로 인덱싱 하기</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -226,16 +216,7 @@
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h4 id="cli-사용">CLI 사용</h4>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">curl -X PUT -H <span class="s2">&#34;Content-Type:application/json&#34;</span> -d <span class="s1">&#39;{&#34;settings&#34; : {&#34;index&#34; : {&#34;number_of_shards&#34; : 3,&#34;number_of_replicas&#34; : 1}}}&#39;</span> http://localhost:9200/twitter2
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h3 id="4-인덱스-삭제하기">4. 인덱스 삭제하기</h3>
+</div><h2 id="4-인덱스-삭제하기">4. 인덱스 삭제하기</h2>
 <p>DELETE 메소드를 사용한다. 인덱스 삭제시는 조심해서 삭제해야 한다. 주로 nginx와 같은 웹서버를 앞단에 두어 특정 IP 에서만 DELETE Method를 요청할 수 있도록 설정하거나 혹은 Index의 Read only 설정을 사용하여 아예 삭제 할 수 없도록 설정하는 것이 좋다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -245,7 +226,7 @@
 <pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">curl -X DELETE -H <span class="s1">&#39;Content-Type: application/json&#39;</span> http://<span class="o">{</span>ES_URL<span class="o">}</span>:9200/<span class="o">{</span>index<span class="o">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h4 id="read-only로-삭제-방지-truenull로-설정해제">Read only로 삭제 방지, true/null로 설정/해제</h4>
+</div><h3 id="read-only로-삭제-방지-truenull로-설정해제">Read only로 삭제 방지, true/null로 설정/해제</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -260,8 +241,8 @@
 </span></span><span class="line"><span class="cl">}
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="5-인덱스-조회">5. 인덱스 조회</h3>
-<h4 id="인덱스-세팅-확인하기">인덱스 세팅 확인하기</h4>
+</div><h2 id="5-인덱스-조회">5. 인덱스 조회</h2>
+<h3 id="인덱스-세팅-확인하기">인덱스 세팅 확인하기</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -270,7 +251,7 @@
 <pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">GET twitter/_settings
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h4 id="인덱스-상태를-확인">인덱스 상태를 확인</h4>
+</div><h3 id="인덱스-상태-확인">인덱스 상태 확인</h3>
 <ul>
 <li>인덱스의 사이즈, Document 개수, 실행된 명령 정보들 확인하기</li>
 </ul>
@@ -282,7 +263,7 @@
 <pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">GET twitter/_stats
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h4 id="인덱스-샤드-및-세그먼트-정보-확인">인덱스 샤드 및 세그먼트 정보 확인</h4>
+</div><h3 id="인덱스-샤드-및-세그먼트-정보-확인">인덱스 샤드 및 세그먼트 정보 확인</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -291,7 +272,7 @@
 <pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">GET twitter/_segments
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h4 id="인덱스-요약-정보">인덱스 요약 정보</h4>
+</div><h3 id="인덱스-요약-정보">인덱스 요약 정보</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -320,41 +301,11 @@
 </div>
         </div>
     </div>
-<h4 id="인덱싱의-필수-조건">인덱싱의 필수 조건</h4>
+<h3 id="인덱싱의-필수-조건">인덱싱의 필수 조건</h3>
 <ul>
 <li>primary shard가 항상 제일 먼저 <code>writing</code>되어야 한다.</li>
 <li>primary shard가 <code>writing</code>이 전부 완료된 이후에 replica shard로 복제한다.</li>
 </ul>
-<h4 id="인덱스-api">인덱스 API</h4>
-<div class="details admonition tip open">
-        <div class="details-summary admonition-title">
-            <i class="icon fas fa-lightbulb fa-fw" aria-hidden="true"></i>샤드 할당 알고리즘<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
-        </div>
-        <div class="details-content">
-            <div class="admonition-content"><ul>
-<li>PUT /&lt;target&gt;/_doc/&lt;_id&gt;</li>
-</ul>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">PUT twitter/_doc/1 
-</span></span><span class="line"><span class="cl">{
-</span></span><span class="line"><span class="cl">    &#34;user&#34; : &#34;kimchy&#34;,
-</span></span><span class="line"><span class="cl">    &#34;post_date&#34; : &#34;2009-11-15T14:12:12&#34;, 
-</span></span><span class="line"><span class="cl">    &#34;message&#34; : &#34;trying out Elasticsearch&#34;
-</span></span><span class="line"><span class="cl">}
-</span></span></code></pre></td></tr></table>
-</div>
-</div></div>
-        </div>
-    </div>
 <h2 id="참고">참고</h2>
 <ul>
 <li><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/index-modules.html#index-modules-settings" target="_blank" rel="noopener noreffer">Elasticsearch Reference - index modules</a></li>
@@ -363,8 +314,8 @@
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 2024-06-24&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/23c45c8708c6ff29696def98046311196cf3bb44" target="_blank" title="commit by riley(41636282&#43;riley817@users.noreply.github.com) 23c45c8708c6ff29696def98046311196cf3bb44: Update main.yml">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>23c45c8</a></span>
+                <span>Updated on 2024-06-29&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/b7aad3025e10b4e333b45c35ce1386d01ceab0d3" target="_blank" title="commit by riley817(riley0422@icloud.com) b7aad3025e10b4e333b45c35ce1386d01ceab0d3: Merge branch &#39;develop&#39;">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>b7aad30</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>
@@ -381,8 +332,8 @@
         </section>
     </div>
 
-    <div class="post-nav"><a href="/elasticsearch-lecture3-5/" class="prev" rel="prev" title="[Elasticsearch 검색 엔진 구축 강의] 3.5 그 외 설정"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>[Elasticsearch 검색 엔진 구축 강의] 3.5 그 외 설정</a>
-            <a href="/jpa-programming1/" class="next" rel="next" title="[자바 ORM 표준 JPA 프로그래밍] 1장 JPA 소개">[자바 ORM 표준 JPA 프로그래밍] 1장 JPA 소개<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+    <div class="post-nav"><a href="/elasticsearch-lecture3-5/" class="prev" rel="prev" title="[Elasticsearch 검색 엔진 구축 강의] 그 외 설정"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>[Elasticsearch 검색 엔진 구축 강의] 그 외 설정</a>
+            <a href="/page-6-1/" class="next" rel="next" title="[Mastering Spring 5.0] 6.1 예외처리">[Mastering Spring 5.0] 6.1 예외처리<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
 </div>
 <div id="comments"><script src="https://utteranc.es/client.js"
             repo="riley817/blog-comment"
@@ -394,7 +345,7 @@
         </script>
     </div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.127.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.128.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
                 </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/riley817" target="_blank">Riley</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

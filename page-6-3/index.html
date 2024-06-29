@@ -4,18 +4,16 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>[Mastering Spring 5.0] 6.3 Bean Validation - 라일리의 개발 기록장</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:url" content="https://riley817.github.io/page-6-3/">
-  <meta property="og:site_name" content="라일리의 개발 기록장">
+        <title>[Mastering Spring 5.0] 6.3 Bean Validation - 🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:url" content="https://riley817.github.io/page-6-3/">
+  <meta property="og:site_name" content="🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖">
   <meta property="og:title" content="[Mastering Spring 5.0] 6.3 Bean Validation">
-  <meta property="og:description" content="Bean Validation 데이터 유효성 검증 (Validation) 은 모든계층에서 공통적으로 발생하는 작업이다. 만약 모든 계층에서 동일한 내용의 Validation 로직이 각각의 레이어별로 구현되어 있다면 코드 중복과 함께 각 계층별로 중구난방으로 구현된 검증로직간 불일치로 인하여 오류가 발생하기도 쉽다.
-[출처] https://docs.jboss.org/hibernate/stable/validator/reference/en-US/html_single/images/application-layers.png
-이러한 Validation 중복을 피하기 위해 도메인의 검증 로직을 도메인 모델 자체에 묶어서 정의하기도 한다. 하지만 도메인 모델에 실제 코드로 Validation 로직을 표현한다면 도메인 모델 자체가 장황하지고 복잡해지게 된다. [출처] https://docs.jboss.org/hibernate/stable/validator/reference/en-US/html_single/images/application-layers2.png
-Java 에서는 위와 같은 문제를 해결하기 위해 어노테이션을 통한 Entity 와 Method 를 검증하기 위한 API 를 제공하고 있다.">
+  <meta property="og:description" content="스프링 5.0 마스터 스터디 스프링 5.0 마스터 스터디 학습 내용 정리입니다. Bean Validation 데이터 유효성 검증 (Validation) 은 모든계층에서 공통적으로 발생하는 작업이다. 만약 모든 계층에서 동일한 내용의 Validation 로직이 각각의 레이어별로 구현되어 있다면 코드 중복과 함께 각 계층별로 중구난방으로 구현된 검증로직간 불일치로 인하여 오류가 발생하기도 쉽다.
+[출처] https://docs.jboss.org/hibernate/stable/validator/reference/en-US/html_single/images/application-layers.png 이러한 Validation 중복을 피하기 위해 도메인의 검증 로직을 도메인 모델 자체에 묶어서 정의하기도 한다. 하지만 도메인 모델에 실제 코드로 Validation 로직을 표현한다면 도메인 모델 자체가 장황하지고 복잡해지게 된다.">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2018-12-09T17:53:39+09:00">
-    <meta property="article:modified_time" content="2024-06-24T22:08:26+09:00">
+    <meta property="article:published_time" content="2018-12-09T20:53:39+09:00">
+    <meta property="article:modified_time" content="2024-06-29T23:59:44+09:00">
     <meta property="article:tag" content="Spring Framework">
     <meta property="article:tag" content="Bean Validation">
     <meta property="og:image" content="https://riley817.github.io/icon.png">
@@ -23,14 +21,12 @@ Java 에서는 위와 같은 문제를 해결하기 위해 어노테이션을 �
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://riley817.github.io/icon.png">
   <meta name="twitter:title" content="[Mastering Spring 5.0] 6.3 Bean Validation">
-  <meta name="twitter:description" content="Bean Validation 데이터 유효성 검증 (Validation) 은 모든계층에서 공통적으로 발생하는 작업이다. 만약 모든 계층에서 동일한 내용의 Validation 로직이 각각의 레이어별로 구현되어 있다면 코드 중복과 함께 각 계층별로 중구난방으로 구현된 검증로직간 불일치로 인하여 오류가 발생하기도 쉽다.
-[출처] https://docs.jboss.org/hibernate/stable/validator/reference/en-US/html_single/images/application-layers.png
-이러한 Validation 중복을 피하기 위해 도메인의 검증 로직을 도메인 모델 자체에 묶어서 정의하기도 한다. 하지만 도메인 모델에 실제 코드로 Validation 로직을 표현한다면 도메인 모델 자체가 장황하지고 복잡해지게 된다. [출처] https://docs.jboss.org/hibernate/stable/validator/reference/en-US/html_single/images/application-layers2.png
-Java 에서는 위와 같은 문제를 해결하기 위해 어노테이션을 통한 Entity 와 Method 를 검증하기 위한 API 를 제공하고 있다.">
+  <meta name="twitter:description" content="스프링 5.0 마스터 스터디 스프링 5.0 마스터 스터디 학습 내용 정리입니다. Bean Validation 데이터 유효성 검증 (Validation) 은 모든계층에서 공통적으로 발생하는 작업이다. 만약 모든 계층에서 동일한 내용의 Validation 로직이 각각의 레이어별로 구현되어 있다면 코드 중복과 함께 각 계층별로 중구난방으로 구현된 검증로직간 불일치로 인하여 오류가 발생하기도 쉽다.
+[출처] https://docs.jboss.org/hibernate/stable/validator/reference/en-US/html_single/images/application-layers.png 이러한 Validation 중복을 피하기 위해 도메인의 검증 로직을 도메인 모델 자체에 묶어서 정의하기도 한다. 하지만 도메인 모델에 실제 코드로 Validation 로직을 표현한다면 도메인 모델 자체가 장황하지고 복잡해지게 된다.">
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://riley817.github.io/page-6-3/" /><link rel="prev" href="https://riley817.github.io/page-6-4/" /><link rel="next" href="https://riley817.github.io/page-6-2/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://riley817.github.io/page-6-3/" /><link rel="prev" href="https://riley817.github.io/page-6-2/" /><link rel="next" href="https://riley817.github.io/page-6-4/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
     {
@@ -41,8 +37,8 @@ Java 에서는 위와 같은 문제를 해결하기 위해 어노테이션을 �
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/riley817.github.io\/page-6-3\/"
-        },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Spring Framework, Bean Validation","wordcount":  456 ,
-        "url": "https:\/\/riley817.github.io\/page-6-3\/","datePublished": "2018-12-09T17:53:39+09:00","dateModified": "2024-06-24T22:08:26+09:00","publisher": {
+        },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Spring Framework, Bean Validation","wordcount":  467 ,
+        "url": "https:\/\/riley817.github.io\/page-6-3\/","datePublished": "2018-12-09T20:53:39+09:00","dateModified": "2024-06-29T23:59:44+09:00","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/riley817.github.io\/images\/avatar.png"},"author": {
                 "@type": "Person",
@@ -50,12 +46,12 @@ Java 에서는 위와 같은 문제를 해결하기 위해 어노테이션을 �
             },"description": ""
     }
     </script></head>
-    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('light' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'light' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
 
         <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
     <div class="header-wrapper">
         <div class="header-title">
-            <a href="/" title="라일리의 개발 기록장"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i>&nbsp;</span>라일리의 개발 기록장</a>
+            <a href="/" title="🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i>&nbsp;</span>Riley&#39;s CodeCrumbs</a>
         </div>
         <div class="menu">
             <div class="menu-inner"><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
@@ -79,7 +75,7 @@ Java 에서는 위와 같은 문제를 해결하기 위해 어노테이션을 �
     <div class="header-container">
         <div class="header-wrapper">
             <div class="header-title">
-                <a href="/" title="라일리의 개발 기록장"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i>&nbsp;</span>라일리의 개발 기록장</a>
+                <a href="/" title="🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i>&nbsp;</span>Riley&#39;s CodeCrumbs</a>
             </div>
             <div class="menu-toggle" id="menu-toggle-mobile">
                 <span></span><span></span><span></span>
@@ -116,9 +112,16 @@ Java 에서는 위와 같은 문제를 해결하기 위해 어노테이션을 �
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">[Mastering Spring 5.0] 6.3 Bean Validation</h1><h2 class="single-subtitle">Mastering Spring 5.0 스터디</h2><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://github.com/riley817" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-category">included in <a href="/categories/mastering-spring-5.0/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Mastering Spring 5.0</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2018-12-09">2018-12-09</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;456 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2018-12-09">2018-12-09</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;467 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;3 minutes&nbsp;</div>
-        </div><div class="details toc" id="toc-static"  data-kept="">
+        </div><div class="featured-image"><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/posts/images/spring/mastering-spring5-thumbnail.png"
+        data-srcset="/posts/images/spring/mastering-spring5-thumbnail.png, /posts/images/spring/mastering-spring5-thumbnail.png 1.5x, /posts/images/spring/mastering-spring5-thumbnail.png 2x"
+        data-sizes="auto"
+        alt="/posts/images/spring/mastering-spring5-thumbnail.png"
+        title="/posts/images/spring/mastering-spring5-thumbnail.png" /></div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
                     <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
@@ -138,23 +141,40 @@ Java 에서는 위와 같은 문제를 해결하기 위해 어노테이션을 �
         <li><a href="#도메인-객체에-bean-validation-정의">도메인 객체에 Bean Validation 정의</a></li>
       </ul>
     </li>
+    <li><a href="#참고">참고</a></li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><h2 id="bean-validation">Bean Validation</h2>
+            </div><div class="content" id="content"><div class="details admonition note open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-pencil-alt fa-fw" aria-hidden="true"></i>스프링 5.0 마스터 스터디<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">스프링 5.0 마스터 스터디 학습 내용 정리입니다.</div>
+        </div>
+    </div>
+<h2 id="bean-validation">Bean Validation</h2>
 <p><strong>데이터 유효성 검증 (Validation)</strong> 은 모든계층에서 공통적으로 발생하는 작업이다. 만약 모든 계층에서 동일한 내용의 Validation 로직이 각각의 레이어별로 구현되어 있다면 코드 중복과 함께 각 계층별로 중구난방으로 구현된 검증로직간 불일치로 인하여 오류가 발생하기도 쉽다.</p>
-<figure><img src="/posts/images/spring/application-layers.png#center"
-    alt="[출처] https://docs.jboss.org/hibernate/stable/validator/reference/en-US/html_single/images/application-layers.png"><figcaption>
-      <p>[출처] <a href="https://docs.jboss.org/hibernate/stable/validator/reference/en-US/html_single/images/application-layers.png" target="_blank" rel="noopener noreffer">https://docs.jboss.org/hibernate/stable/validator/reference/en-US/html_single/images/application-layers.png</a></p>
-    </figcaption>
-</figure>
-
+<figure><a class="lightgallery" href="/posts/images/spring/application-layers.png#center" title="/posts/images/spring/application-layers.png#center" data-thumbnail="/posts/images/spring/application-layers.png#center" data-sub-html="<h2>[출처] https://docs.jboss.org/hibernate/stable/validator/reference/en-US/html_single/images/application-layers.png</h2>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/posts/images/spring/application-layers.png#center"
+            data-srcset="/posts/images/spring/application-layers.png#center, /posts/images/spring/application-layers.png#center 1.5x, /posts/images/spring/application-layers.png#center 2x"
+            data-sizes="auto"
+            alt="/posts/images/spring/application-layers.png#center" width="100%" />
+    </a><figcaption class="image-caption">[출처] <a href="https://docs.jboss.org/hibernate/stable/validator/reference/en-US/html_single/images/application-layers.png" target="_blank" rel="noopener noreffer">https://docs.jboss.org/hibernate/stable/validator/reference/en-US/html_single/images/application-layers.png</a></figcaption>
+    </figure>
 <p>이러한 Validation 중복을 피하기 위해 도메인의 검증 로직을 도메인 모델 자체에 묶어서 정의하기도 한다. 하지만 도메인 모델에 실제 코드로 Validation 로직을 표현한다면 도메인 모델 자체가 장황하지고 복잡해지게 된다.
-<figure><img src="/posts/images/spring/application-layers2.png#center"
-    alt="[출처] https://docs.jboss.org/hibernate/stable/validator/reference/en-US/html_single/images/application-layers2.png"><figcaption>
-      <p>[출처] <a href="https://docs.jboss.org/hibernate/stable/validator/reference/en-US/html_single/images/application-layers2.png" target="_blank" rel="noopener noreffer">https://docs.jboss.org/hibernate/stable/validator/reference/en-US/html_single/images/application-layers2.png</a></p>
-    </figcaption>
-</figure>
-</p>
+<figure><a class="lightgallery" href="/posts/images/spring/application-layers2.png#center" title="/posts/images/spring/application-layers2.png#center" data-thumbnail="/posts/images/spring/application-layers2.png#center" data-sub-html="<h2>[출처] https://docs.jboss.org/hibernate/stable/validator/reference/en-US/html_single/images/application-layers2.png</h2>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/posts/images/spring/application-layers2.png#center"
+            data-srcset="/posts/images/spring/application-layers2.png#center, /posts/images/spring/application-layers2.png#center 1.5x, /posts/images/spring/application-layers2.png#center 2x"
+            data-sizes="auto"
+            alt="/posts/images/spring/application-layers2.png#center" width="100%" />
+    </a><figcaption class="image-caption">[출처] <a href="https://docs.jboss.org/hibernate/stable/validator/reference/en-US/html_single/images/application-layers2.png" target="_blank" rel="noopener noreffer">https://docs.jboss.org/hibernate/stable/validator/reference/en-US/html_single/images/application-layers2.png</a></figcaption>
+    </figure></p>
 <p>Java 에서는 위와 같은 문제를 해결하기 위해 어노테이션을 통한 Entity 와 Method 를 검증하기 위한 API 를 제공하고 있다.</p>
 <h3 id="bean-validation-1">Bean Validation</h3>
 <ul>
@@ -243,7 +263,7 @@ Java 에서는 위와 같은 문제를 해결하기 위해 어노테이션을 �
 <li><strong>@Pattern</strong> - 어노테이션 정의 필드 값의 <code>{@code CharSequence}</code> 요소는 지정된 정규 표현식과 일치해야 한다. 정규표현식은 자바 정규 표현식 규칙을 따른다.</li>
 <li><strong>@Size</strong> - 어노테이션 정의 필드 값의 크기는 지정된 범위 내에 있어야 한다.</li>
 </ul>
-<p><strong>[참고]</strong></p>
+<h2 id="참고">참고</h2>
 <ul>
 <li>beanvalidation.org - <a href="https://beanvalidation.org/" target="_blank" rel="noopener noreffer">https://beanvalidation.org/</a></li>
 </ul>
@@ -251,8 +271,8 @@ Java 에서는 위와 같은 문제를 해결하기 위해 어노테이션을 �
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 2024-06-24&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/23c45c8708c6ff29696def98046311196cf3bb44" target="_blank" title="commit by riley(41636282&#43;riley817@users.noreply.github.com) 23c45c8708c6ff29696def98046311196cf3bb44: Update main.yml">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>23c45c8</a></span>
+                <span>Updated on 2024-06-29&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/b7aad3025e10b4e333b45c35ce1386d01ceab0d3" target="_blank" title="commit by riley817(riley0422@icloud.com) b7aad3025e10b4e333b45c35ce1386d01ceab0d3: Merge branch &#39;develop&#39;">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>b7aad30</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>
@@ -269,8 +289,8 @@ Java 에서는 위와 같은 문제를 해결하기 위해 어노테이션을 �
         </section>
     </div>
 
-    <div class="post-nav"><a href="/page-6-4/" class="prev" rel="prev" title="[Mastering Spring 5.0] 6.4 Swagger"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>[Mastering Spring 5.0] 6.4 Swagger</a>
-            <a href="/page-6-2/" class="next" rel="next" title="[Mastering Spring 5.0] 6.2 HATEOAS">[Mastering Spring 5.0] 6.2 HATEOAS<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+    <div class="post-nav"><a href="/page-6-2/" class="prev" rel="prev" title="[Mastering Spring 5.0] 6.2 HATEOAS"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>[Mastering Spring 5.0] 6.2 HATEOAS</a>
+            <a href="/page-6-4/" class="next" rel="next" title="[Mastering Spring 5.0] 6.4 Swagger">[Mastering Spring 5.0] 6.4 Swagger<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
 </div>
 <div id="comments"><script src="https://utteranc.es/client.js"
             repo="riley817/blog-comment"
@@ -282,7 +302,7 @@ Java 에서는 위와 같은 문제를 해결하기 위해 어노테이션을 �
         </script>
     </div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.127.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.128.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
                 </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/riley817" target="_blank">Riley</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

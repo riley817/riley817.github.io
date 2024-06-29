@@ -4,22 +4,22 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>[Elasticsearch 검색 엔진 구축 강의] 3.2 elasticsearch.yml - 라일리의 개발 기록장</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:url" content="https://riley817.github.io/elasticsearch-lecture3-2/">
-  <meta property="og:site_name" content="라일리의 개발 기록장">
-  <meta property="og:title" content="[Elasticsearch 검색 엔진 구축 강의] 3.2 elasticsearch.yml">
+        <title>[Elasticsearch 검색 엔진 구축 강의] elasticsearch.yml - 🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:url" content="https://riley817.github.io/elasticsearch-lecture3-2/">
+  <meta property="og:site_name" content="🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖">
+  <meta property="og:title" content="[Elasticsearch 검색 엔진 구축 강의] elasticsearch.yml">
   <meta property="og:description" content="elasticsearch.yml elasticsearch.yml 은 데이터 파일 위치, 로그파일 위치 등 클러스터의 핵심적인 설정을 할 수 있는 구성 파일이다. 파일 포맷은 YAML 로 되어있다.
 1 2 3 4 5 6 7 8 9 10 11 12 13 14 # path.data : 데이터파일의 위치를 설정 # path.logs : ES 의 로그 파일이 저장될 위치를 설정 path: data: /var/lib/elasticsearch logs: /var/log/elasticsearch # 클러스터를 고유하게 식별할 수 있는 이름 설정 cluster: name: es-cluster # 노드를 고유하게 식별할 수 있는 이름설정 # 보통 호스트명 기준으로 설정하는 것이 운영에 용이 node: name: es-master01 path.">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2018-11-02T18:20:19+09:00">
-    <meta property="article:modified_time" content="2024-06-24T22:08:26+09:00">
+    <meta property="article:modified_time" content="2024-06-29T23:59:44+09:00">
     <meta property="article:tag" content="Elasticsearch">
     <meta property="og:image" content="https://riley817.github.io/icon.png">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://riley817.github.io/icon.png">
-  <meta name="twitter:title" content="[Elasticsearch 검색 엔진 구축 강의] 3.2 elasticsearch.yml">
+  <meta name="twitter:title" content="[Elasticsearch 검색 엔진 구축 강의] elasticsearch.yml">
   <meta name="twitter:description" content="elasticsearch.yml elasticsearch.yml 은 데이터 파일 위치, 로그파일 위치 등 클러스터의 핵심적인 설정을 할 수 있는 구성 파일이다. 파일 포맷은 YAML 로 되어있다.
 1 2 3 4 5 6 7 8 9 10 11 12 13 14 # path.data : 데이터파일의 위치를 설정 # path.logs : ES 의 로그 파일이 저장될 위치를 설정 path: data: /var/lib/elasticsearch logs: /var/log/elasticsearch # 클러스터를 고유하게 식별할 수 있는 이름 설정 cluster: name: es-cluster # 노드를 고유하게 식별할 수 있는 이름설정 # 보통 호스트명 기준으로 설정하는 것이 운영에 용이 node: name: es-master01 path.">
 <meta name="application-name" content="LoveIt">
@@ -31,13 +31,13 @@
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "[Elasticsearch 검색 엔진 구축 강의] 3.2 elasticsearch.yml",
+        "headline": "[Elasticsearch 검색 엔진 구축 강의] elasticsearch.yml",
         "inLanguage": "en",
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/riley817.github.io\/elasticsearch-lecture3-2\/"
-        },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "elasticsearch","wordcount":  589 ,
-        "url": "https:\/\/riley817.github.io\/elasticsearch-lecture3-2\/","datePublished": "2018-11-02T18:20:19+09:00","dateModified": "2024-06-24T22:08:26+09:00","publisher": {
+        },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "elasticsearch","wordcount":  567 ,
+        "url": "https:\/\/riley817.github.io\/elasticsearch-lecture3-2\/","datePublished": "2018-11-02T18:20:19+09:00","dateModified": "2024-06-29T23:59:44+09:00","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/riley817.github.io\/images\/avatar.png"},"author": {
                 "@type": "Person",
@@ -45,12 +45,12 @@
             },"description": ""
     }
     </script></head>
-    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('light' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'light' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
 
         <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
     <div class="header-wrapper">
         <div class="header-title">
-            <a href="/" title="라일리의 개발 기록장"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i>&nbsp;</span>라일리의 개발 기록장</a>
+            <a href="/" title="🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i>&nbsp;</span>Riley&#39;s CodeCrumbs</a>
         </div>
         <div class="menu">
             <div class="menu-inner"><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
@@ -74,7 +74,7 @@
     <div class="header-container">
         <div class="header-wrapper">
             <div class="header-title">
-                <a href="/" title="라일리의 개발 기록장"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i>&nbsp;</span>라일리의 개발 기록장</a>
+                <a href="/" title="🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i>&nbsp;</span>Riley&#39;s CodeCrumbs</a>
             </div>
             <div class="menu-toggle" id="menu-toggle-mobile">
                 <span></span><span></span><span></span>
@@ -109,18 +109,18 @@
                 <div class="container"><div class="toc" id="toc-auto">
             <h2 class="toc-title">Contents</h2>
             <div class="toc-content always-active" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">[Elasticsearch 검색 엔진 구축 강의] 3.2 elasticsearch.yml</h1><h2 class="single-subtitle">Elasticsearch 검색 엔진 구축 강의</h2><div class="post-meta">
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">[Elasticsearch 검색 엔진 구축 강의] elasticsearch.yml</h1><h2 class="single-subtitle">Elasticsearch 검색 엔진 구축 강의</h2><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://github.com/riley817" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-category">included in <a href="/categories/elasticsearch-%EA%B2%80%EC%83%89-%EC%97%94%EC%A7%84-%EA%B5%AC%EC%B6%95-%EA%B0%95%EC%9D%98/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Elasticsearch 검색 엔진 구축 강의</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2018-11-02">2018-11-02</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;589 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2018-11-02">2018-11-02</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;567 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;3 minutes&nbsp;</div>
         </div><div class="featured-image"><img
         class="lazyload"
         src="/svg/loading.min.svg"
-        data-src="/posts/images/elastic/9SyGqYLhMmYxEJyNUf.png"
-        data-srcset="/posts/images/elastic/9SyGqYLhMmYxEJyNUf.png, /posts/images/elastic/9SyGqYLhMmYxEJyNUf.png 1.5x, /posts/images/elastic/9SyGqYLhMmYxEJyNUf.png 2x"
+        data-src="/posts/images/elastic/elasticsearch-lecture.png"
+        data-srcset="/posts/images/elastic/elasticsearch-lecture.png, /posts/images/elastic/elasticsearch-lecture.png 1.5x, /posts/images/elastic/elasticsearch-lecture.png 2x"
         data-sizes="auto"
-        alt="/posts/images/elastic/9SyGqYLhMmYxEJyNUf.png"
-        title="/posts/images/elastic/9SyGqYLhMmYxEJyNUf.png" /></div><div class="details toc" id="toc-static"  data-kept="">
+        alt="/posts/images/elastic/elasticsearch-lecture.png"
+        title="/posts/images/elastic/elasticsearch-lecture.png" /></div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
                     <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
@@ -129,61 +129,37 @@
   <ul>
     <li><a href="#elasticsearchyml">elasticsearch.yml</a>
       <ul>
-        <li>
-          <ul>
-            <li><a href="#pathdata">path.data</a></li>
-            <li><a href="#pathlogs">path.logs</a></li>
-          </ul>
-        </li>
+        <li><a href="#pathdata">path.data</a></li>
+        <li><a href="#pathlogs">path.logs</a></li>
       </ul>
     </li>
     <li><a href="#discovery">Discovery</a>
       <ul>
-        <li>
-          <ul>
-            <li><a href="#discoveryzenpingunicasthosts">discovery.zen.ping.unicast.hosts</a></li>
-            <li><a href="#discoveryzenminimum_master_nodes">discovery.zen.minimum_master_nodes</a>
-              <ul>
-                <li><a href="#마스터-노드의-최소-갯수">마스터 노드의 최소 갯수</a></li>
-              </ul>
-            </li>
-          </ul>
-        </li>
+        <li><a href="#discoveryzenpingunicasthosts">discovery.zen.ping.unicast.hosts</a></li>
+        <li><a href="#discoveryzenminimum_master_nodes">discovery.zen.minimum_master_nodes</a></li>
       </ul>
     </li>
     <li><a href="#network-설정">Network 설정</a>
       <ul>
-        <li>
-          <ul>
-            <li><a href="#networkhost">network.host</a></li>
-            <li><a href="#networkbind_host">network.bind_host</a></li>
-            <li><a href="#networkpublish_host">network.publish_host</a></li>
-            <li><a href="#httpport">http.port</a></li>
-            <li><a href="#transporttcpport">transport.tcp.port</a></li>
-          </ul>
-        </li>
+        <li><a href="#networkhost">network.host</a></li>
+        <li><a href="#networkbind_host">network.bind_host</a></li>
+        <li><a href="#networkpublish_host">network.publish_host</a></li>
+        <li><a href="#httpport">http.port</a></li>
+        <li><a href="#transporttcpport">transport.tcp.port</a></li>
       </ul>
     </li>
     <li><a href="#node-role-설정">Node Role 설정</a>
       <ul>
-        <li>
-          <ul>
-            <li><a href="#master-eligible-node">Master-eligible Node</a></li>
-            <li><a href="#data-node">Data Node</a></li>
-            <li><a href="#ingest-node">Ingest Node</a></li>
-            <li><a href="#coordinate-node">Coordinate Node</a></li>
-          </ul>
-        </li>
+        <li><a href="#master-eligible-node">Master-eligible Node</a></li>
+        <li><a href="#data-node">Data Node</a></li>
+        <li><a href="#ingest-node">Ingest Node</a></li>
+        <li><a href="#coordinate-node">Coordinate Node</a></li>
       </ul>
     </li>
     <li><a href="#그외-설정">그외 설정</a>
       <ul>
-        <li>
-          <ul>
-            <li><a href="#httpcorsenabled-true">http.cors.enabled: true</a></li>
-            <li><a href="#httpcorsallow-origin-">http.cors.allow-origin: &ldquo;*&rdquo;</a></li>
-          </ul>
-        </li>
+        <li><a href="#httpcorsenabled-true">http.cors.enabled: true</a></li>
+        <li><a href="#httpcorsallow-origin-">http.cors.allow-origin: &ldquo;*&rdquo;</a></li>
       </ul>
     </li>
     <li><a href="#참고">참고</a></li>
@@ -225,7 +201,7 @@
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">es-master01</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h4 id="pathdata">path.data</h4>
+</div><h3 id="pathdata">path.data</h3>
 <p><code>path.data</code> 는 Index 의 데이터를 저장할 경로를 지정할 수 있으며 경로는 하나 혹은 여러개로도 지정이 가능하다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -247,15 +223,13 @@
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">data</span><span class="p">:</span><span class="w"> </span><span class="l">/data1, /data2</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h4 id="pathlogs">path.logs</h4>
-<p><code>path.logs</code> 는 Elasticsearch 의 로그를 저장할 경로할 수 있으며, 어플리케이션 운영 로그와 Elasticsearch Deprecated 로그, Indexing, Searching Slow 로그 등이 저장됩니다.</p>
+</div><h3 id="pathlogs">path.logs</h3>
+<p><code>path.logs</code> 는 Elasticsearch의 로그를 저장할 경로를 지정 할 수 있으며 어플리케이션 운영 로그와 Elasticsearch Deprecated 로그, Indexing, Searching Slow 로그 등이 저장된다.</p>
 <h2 id="discovery">Discovery</h2>
-<p><code>discovery</code> 모듈은 클러스터 내의 노드를 발견하고 마스터 노드를 찾아내는 방식을 의미한다. Elasticsearch 는 P2P 기반의 시스템이며, 노드간 통신은 ping 을 기반으로 동작한다.
-( 노드간 작업의 위임 broadcast ) 이 discovery 모듈에는 Zen discovery, EC2 discovery, GCE(Google Computer Engine) discovery 등을 지원한다.
-<br/><br/>
-  Elasticsearch 는 노드간 클러스터링 및 마스터 선출을 위해 <code>Zen Discovery</code> 라는 사용자 정의 검색 구현을 설정할 수 있다.</p>
-<h4 id="discoveryzenpingunicasthosts">discovery.zen.ping.unicast.hosts</h4>
-<p>동일한 클러스터 명을 전제로 설정된 호스트들 가운데 Master 를 선출할 수 있다. 이 설정에는 다른 노드 들에게 마스터 노드의 목록을 제공할 수 있다.</p>
+<p>discovery 모듈은 클러스터 내의 노드를 발견하고 마스터 노드를 찾아내는 방식을 의미한다. Elasticsearch 는 P2P 기반의 시스템이며 노드간 통신은 ping 을 기반으로 동작한다.
+이 discovery 모듈에는 <code>Zen discovery</code>와 클라우드 플랫폼에 따라 <code>EC2 discovery</code>, <code>GCE(Google Computer Engine) discovery</code> 등을 지원한다.</p>
+<h3 id="discoveryzenpingunicasthosts">discovery.zen.ping.unicast.hosts</h3>
+<p>동일한 클러스터 명을 전제로 설정된 호스트들 가운데 Master를 선출할 수 있다. 이 설정에는 다른 노드 들에게 마스터 노드의 목록을 제공할 수 있다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -266,21 +240,25 @@
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">discovery.zen.ping.unicast.hosts</span><span class="p">:</span><span class="w">  </span><span class="p">[</span><span class="w"> </span><span class="s2">&#34;1.1.1.1:9300&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;1.1.1.2:9300&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;2.2.2.1:9300&#34;</span><span class="p">,</span><span class="w"> </span><span class="p">]</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h4 id="discoveryzenminimum_master_nodes">discovery.zen.minimum_master_nodes</h4>
+</div><h3 id="discoveryzenminimum_master_nodes">discovery.zen.minimum_master_nodes</h3>
 <p>적합한 마스터 노드의 최소 갯수를 설정 할 수 있다.
 이 설정을 통하여 네트워크 장애등으로 인한 동일 클러스트 내에 마스터들이 최소 갯수만큼 내려가면 데이터 무결성을 위해 클러스터가 중지처리 된다. ( Split Brain 피하기 위함.)</p>
-<h5 id="마스터-노드의-최소-갯수">마스터 노드의 최소 갯수</h5>
-<blockquote>
-<p>(master_eligible_nodes / 2) + 1</p>
-</blockquote>
+<div class="details admonition success open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-check-circle fa-fw" aria-hidden="true"></i>마스터 노드의 최소 갯수<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><strong>master_eligible_nodes / 2 + 1</strong></div>
+        </div>
+    </div>
 <h2 id="network-설정">Network 설정</h2>
-<h4 id="networkhost">network.host</h4>
+<h3 id="networkhost">network.host</h3>
 <ul>
 <li>노드가 응답 할 수 있는 IP 또는 호스트를 설정한다.</li>
 <li>기본적으로 <code>Elasticsearch</code>는 루프백 주소에만 바인드 한다. (ex 127.0.0.1 ) 이는 단일 노드에서는 문제 없으나 여러 노드가 운용되는 클러스트 구성을 위해서는 비 루프백 주소를 바인드 해 주어야 한다.</li>
 </ul>
-<h4 id="networkbind_host">network.bind_host</h4>
-<p>notework.host 설정에서 외부의 데이터 호출을 받는 부분만 분리 할 수 있다.
+<h3 id="networkbind_host">network.bind_host</h3>
+<p>notework.host 설정에서 외부의 데이터 호출을 받는 부분만 분리 할 수 있다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -288,11 +266,11 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># ex) network.bind_host</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">network.bind_host</span><span class="p">:</span><span class="w"> </span><span class="m">0.0.0.0</span><span class="w"> </span></span></span></code></pre></td></tr></table>
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">network.bind_host</span><span class="p">:</span><span class="w"> </span><span class="m">0.0.0.0</span><span class="w"> 
+</span></span></span></code></pre></td></tr></table>
 </div>
-</div></p>
-<h4 id="networkpublish_host">network.publish_host</h4>
-<p>클러스트 내 다른 노드들과 통신 하는 부분만 분리 할 수 있다.
+</div><h3 id="networkpublish_host">network.publish_host</h3>
+<p>클러스트 내 다른 노드들과 통신 하는 부분만 분리 할 수 있다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -300,11 +278,11 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># ex) network.bind_host</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"> </span><span class="nt">network.publish_host</span><span class="p">:</span><span class="w"> </span><span class="m">10.190.5.5</span></span></span></code></pre></td></tr></table>
+</span></span></span><span class="line"><span class="cl"><span class="w"> </span><span class="nt">network.publish_host</span><span class="p">:</span><span class="w"> </span><span class="m">10.190.5.5</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
 </div>
-</div></p>
-<h4 id="httpport">http.port</h4>
-<p>HTTP 프로토콜을 통해 Elasticsearch 의 API 를 전달할 때 사용할 포트를 지정할 수 있다.
+</div><h3 id="httpport">http.port</h3>
+<p>HTTP 프로토콜을 통해 Elasticsearch 의 API 를 전달할 때 사용할 포트를 지정할 수 있다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -312,10 +290,10 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># ex) http.port</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">http.port</span><span class="p">:</span><span class="w"> </span><span class="m">9200</span></span></span></code></pre></td></tr></table>
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">http.port</span><span class="p">:</span><span class="w"> </span><span class="m">9200</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
 </div>
-</div></p>
-<h4 id="transporttcpport">transport.tcp.port</h4>
+</div><h3 id="transporttcpport">transport.tcp.port</h3>
 <p>클러스터 내에 노드들이 서로 통신할 때 사용할 포트를 설정한다. 노드들은 서로의 용량과 샤드들의 상태를 알아야 하기 때문에 TCP 통신을 한다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -324,15 +302,15 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># ex) transport.tcp.port</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">transport.tcp.port</span><span class="p">:</span><span class="w"> </span><span class="m">9300</span></span></span></code></pre></td></tr></table>
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">transport.tcp.port</span><span class="p">:</span><span class="w"> </span><span class="m">9300</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
 </div>
-</div>
-<h2 id="node-role-설정">Node Role 설정</h2>
+</div><h2 id="node-role-설정">Node Role 설정</h2>
 <ul>
-<li>Node Role 로는 <code>master-eligible</code>, <code>data</code>, <code>ingest node</code>, <code>coordinate node</code> 가 있다.</li>
+<li>Node Role에는 <code>master-eligible</code>, <code>data</code>, <code>ingest node</code>, <code>coordinate node</code> 가 있다.</li>
 <li>elasticsearch.yml 설정을 통하여 각 노드의 역할을 부여할 수 있다.</li>
 </ul>
-<h4 id="master-eligible-node">Master-eligible Node</h4>
+<h3 id="master-eligible-node">Master-eligible Node</h3>
 <p>마스터 노드로서의 역할을 할 수 있는 노드를 의미</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -345,11 +323,11 @@
 <pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># ex) master node role</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">node.master</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">node.data</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">node.ingest</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w"> </span></span></span></code></pre></td></tr></table>
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">node.ingest</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w"> 
+</span></span></span></code></pre></td></tr></table>
 </div>
-</div>
-<h4 id="data-node">Data Node</h4>
-<p>데이터를 저장되는 역할을 할 수 있는 노드를 의미
+</div><h3 id="data-node">Data Node</h3>
+<p>데이터를 저장되는 역할을 할 수 있는 노드를 의미</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -361,10 +339,10 @@
 <pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># ex) data node role</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">master.node</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">node.data</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">node.ingest</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w"> </span></span></span></code></pre></td></tr></table>
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">node.ingest</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w"> 
+</span></span></span></code></pre></td></tr></table>
 </div>
-</div></p>
-<h4 id="ingest-node">Ingest Node</h4>
+</div><h3 id="ingest-node">Ingest Node</h3>
 <p>문서가 인덱싱 되기 전에 파이프라인을 통해 사전처리를 할 수 있는 역할이 부여된 노드. 기본값은 true이며 보통 client node 를 세팅할 때 사용한다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -377,10 +355,10 @@
 <pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># ex) ingest node role</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">master.node</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">node.data</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">node.ingest</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span></span></span></code></pre></td></tr></table>
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">node.ingest</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> 
+</span></span></span></code></pre></td></tr></table>
 </div>
-</div>
-<h4 id="coordinate-node">Coordinate Node</h4>
+</div><h3 id="coordinate-node">Coordinate Node</h3>
 <p>클라이언트의 요청을 받고 라우팅 및 분산처리만 할 수 있는 역할이 부여된 노드.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -393,23 +371,25 @@
 <pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># ex) Coordinate node role</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">master.node</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">node.data</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">node.ingest</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w"> </span></span></span></code></pre></td></tr></table>
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">node.ingest</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w"> 
+</span></span></span></code></pre></td></tr></table>
 </div>
-</div>
-<h2 id="그외-설정">그외 설정</h2>
-<h4 id="httpcorsenabled-true">http.cors.enabled: true</h4>
+</div><h2 id="그외-설정">그외 설정</h2>
+<h3 id="httpcorsenabled-true">http.cors.enabled: true</h3>
 <p>웹 브라우저나 Elasticsearch 에서 접근할 수 있도록 설정. Head / HQ 플러그인 사용시 설정할 수 있다.</p>
-<h4 id="httpcorsallow-origin-">http.cors.allow-origin: &ldquo;*&rdquo;</h4>
+<h3 id="httpcorsallow-origin-">http.cors.allow-origin: &ldquo;*&rdquo;</h3>
 <p>웹 브라우저로 접근할 수 있는 IP ACL 설정</p>
 <h2 id="참고">참고</h2>
-<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/6.4/discovery-settings.html#minimum_master_nodes" target="_blank" rel="noopener noreffer">https://www.elastic.co/guide/en/elasticsearch/reference/6.4/discovery-settings.html#minimum_master_nodes</a>
-<a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-node.html#node-ingest-node" target="_blank" rel="noopener noreffer">https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-node.html#node-ingest-node</a></p>
+<ul>
+<li><a href="https://www.elastic.co/guide/en/elasticsearch/reference/6.4/discovery-settings.html#minimum_master_nodes" target="_blank" rel="noopener noreffer">discovery.zen.minimum_master_nodes</a></li>
+<li><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-node.html#node-ingest-node" target="_blank" rel="noopener noreffer">node-ingest-node</a></li>
+</ul>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 2024-06-24&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/23c45c8708c6ff29696def98046311196cf3bb44" target="_blank" title="commit by riley(41636282&#43;riley817@users.noreply.github.com) 23c45c8708c6ff29696def98046311196cf3bb44: Update main.yml">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>23c45c8</a></span>
+                <span>Updated on 2024-06-29&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/b7aad3025e10b4e333b45c35ce1386d01ceab0d3" target="_blank" title="commit by riley817(riley0422@icloud.com) b7aad3025e10b4e333b45c35ce1386d01ceab0d3: Merge branch &#39;develop&#39;">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>b7aad30</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>
@@ -426,8 +406,8 @@
         </section>
     </div>
 
-    <div class="post-nav"><a href="/elasticsearch-lecture3-1/" class="prev" rel="prev" title="[Elasticsearch 검색 엔진 구축 강의] 3.1 Elasticsearch 구성하기"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>[Elasticsearch 검색 엔진 구축 강의] 3.1 Elasticsearch 구성하기</a>
-            <a href="/elasticsearch-lecture3-3/" class="next" rel="next" title="[Elasticsearch 검색 엔진 구축 강의] 3.3 jvm.options">[Elasticsearch 검색 엔진 구축 강의] 3.3 jvm.options<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+    <div class="post-nav"><a href="/elasticsearch-lecture3-1/" class="prev" rel="prev" title="[Elasticsearch 검색 엔진 구축 강의] Elasticsearch 구성하기"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>[Elasticsearch 검색 엔진 구축 강의] Elasticsearch 구성하기</a>
+            <a href="/elasticsearch-lecture3-3/" class="next" rel="next" title="[Elasticsearch 검색 엔진 구축 강의] jvm.options">[Elasticsearch 검색 엔진 구축 강의] jvm.options<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
 </div>
 <div id="comments"><script src="https://utteranc.es/client.js"
             repo="riley817/blog-comment"
@@ -439,7 +419,7 @@
         </script>
     </div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.127.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.128.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
                 </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/riley817" target="_blank">Riley</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

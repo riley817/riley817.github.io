@@ -1,8 +1,8 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>Graph Database - Tag - 라일리의 개발 기록장</title>
+        <title>Graph Database - Tag - 🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖</title>
         <link>https://riley817.github.io/tags/graph-database/</link>
-        <description>Graph Database - Tag - 라일리의 개발 기록장</description>
+        <description>Graph Database - Tag - 🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
             <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Wed, 15 Feb 2023 15:17:26 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/tags/graph-database/" rel="self" type="application/rss+xml" /><item>
     <title>Graph Database 리서치 - Follow, Tag 기능을 고도화 해보자! (2)</title>
@@ -10,7 +10,9 @@
     <pubDate>Wed, 15 Feb 2023 15:17:26 &#43;0900</pubDate>
     <author>riley</author>
     <guid>https://riley817.github.io/graph-database-2/</guid>
-    <description><![CDATA[기존 Amazon Aurora(postgreSQL) 의 데이터를 필요한 데이터만 추출하여 옮겨 보자. go 언어를 이용하여 user, follow 의 필요한 부분을 추출하여 AWS Neptune 으로 옮기는 코드를 작성한다.
+    <description><![CDATA[<div class="featured-image">
+                <img src="/posts/images/dbms/graphdatabase/graph-database-thumbnail.jpeg" referrerpolicy="no-referrer">
+            </div>기존 Amazon Aurora(postgreSQL) 의 데이터를 필요한 데이터만 추출하여 옮겨 보자. go 언어를 이용하여 user, follow 의 필요한 부분을 추출하여 AWS Neptune 으로 옮기는 코드를 작성한다.
 1. 라이브러리 세팅 gremlin-go 라이브러리를 사용하였다.
 https://github.com/apache/tinkerpop/tree/master/gremlin-go 2. Neptune 연결 설정 1 2 3 4 5 6 7 8 9 10 // 연결 설정 remoteConn, err = gremlingo.NewDriverRemoteConnection(fmt.Sprintf(&#34;wss://%s:8182/gremlin&#34;, neptuneEndpoint), func(settings *gremlingo.DriverRemoteConnectionSettings) { settings.TraversalSource = &#34;g&#34; settings.TlsConfig = &amp;tls.Config{InsecureSkipVerify: true} } ) // 그래프 탐색을 위한 리모트 연결 g = gremlingo.]]></description>
 </item>
@@ -20,7 +22,9 @@ https://github.com/apache/tinkerpop/tree/master/gremlin-go 2. Neptune 연결 설
     <pubDate>Wed, 18 Jan 2023 11:21:26 &#43;0900</pubDate>
     <author>riley</author>
     <guid>https://riley817.github.io/graph-database/</guid>
-    <description><![CDATA[개요 현재 회사에서는 SNS 서비스를 개발하고 있다. 인스타그램 처럼 특정 사용자를 팔로우 할 수 있는 기능이 있는데 관계형 데이터베이스인 postgresql 데이터베이스로 유저 간 팔로우 관계를 관리하고 있다.
+    <description><![CDATA[<div class="featured-image">
+                <img src="/posts/images/dbms/graphdatabase/graph-database-thumbnail.jpeg" referrerpolicy="no-referrer">
+            </div>개요 현재 회사에서는 SNS 서비스를 개발하고 있다. 인스타그램 처럼 특정 사용자를 팔로우 할 수 있는 기능이 있는데 관계형 데이터베이스인 postgresql 데이터베이스로 유저 간 팔로우 관계를 관리하고 있다.
 유저에게 알 수도 있는 친구를 추천하기 위한 기능이 구현하게 되었는데 팔로우 관계를 나타내는 테이블이 하나로 구성되어 있다 보니 유저의 팔로워, 팔로잉 조회를 위해 with 절, union 등과 같은 문법을 사용했고 나의 팔로우의 팔로우 중 나와 팔로우 관계가 없는 친구만 불러오기 위해 복잡하게 서브 쿼리로 작성하게 되었다.]]></description>
 </item>
 </channel>

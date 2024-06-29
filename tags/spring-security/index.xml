@@ -1,25 +1,29 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>Spring Security - Tag - 라일리의 개발 기록장</title>
+        <title>Spring Security - Tag - 🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖</title>
         <link>https://riley817.github.io/tags/spring-security/</link>
-        <description>Spring Security - Tag - 라일리의 개발 기록장</description>
+        <description>Spring Security - Tag - 🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
-            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Sun, 09 Dec 2018 17:53:39 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/tags/spring-security/" rel="self" type="application/rss+xml" /><item>
-    <title>[Mastering Spring 5.0] 6.5 Spring Security - Basic authentication</title>
-    <link>https://riley817.github.io/page-6-5/</link>
-    <pubDate>Sun, 09 Dec 2018 17:53:39 &#43;0900</pubDate>
-    <author>riley</author>
-    <guid>https://riley817.github.io/page-6-5/</guid>
-    <description><![CDATA[스프링 시큐리티로 REST 서비스 보호 최근에는 서비스 시스템들끼리 REST API 기반의 통신이 많이 이루어지고 있다. 네이티브 앱과 서버 간 통신뿐만 아니라 자바스크립트 웹 클라이언트 와 서버간에도 REST API 통신을 많이 사용하기 때문에 REST 서비스(리소스) 에 대한 보안이 중요해 지고 있다.
-인증(Authentication) 과 권한 (Authorization) 인증(Authentication): 소비자(클라이언트) 가 서비스(리소스) 에 접근이 가능한 소비자인지 인가/권한부여(Authorization) : 접근이 가능하지만 해당 작업을 소비자(클라이언트) 에게 허용할것인지 인증방식은 다양하며, 전통적인 인증방식으로는 사용자명Principle과 비밀번호Credential 로 인증하는 Credential 기반 인증 방식 과 OTP 등과 같이 추가적인 인증방식을 도입해 2가지 방법으로 인증하는 이중 인증 방식 과 최근에는 OAuth2 인증방식 도 필수적으로 사용되고 있다.]]></description>
-</item>
-<item>
+            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Mon, 17 Dec 2018 23:52:36 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/tags/spring-security/" rel="self" type="application/rss+xml" /><item>
     <title>[Mastering Spring 5.0] 6.6 Spring Security - OAuth 2.0</title>
     <link>https://riley817.github.io/page-6-6/</link>
-    <pubDate>Sun, 09 Dec 2018 17:53:39 &#43;0900</pubDate>
+    <pubDate>Mon, 17 Dec 2018 23:52:36 &#43;0900</pubDate>
     <author>riley</author>
     <guid>https://riley817.github.io/page-6-6/</guid>
-    <description><![CDATA[OAuth2 인증 OAuth 2는 어플리케이션과 Facebook, GitHub 및 DigitalOcean 과 같은 HTTP 서비스의사용자 계정에 대한 제한된 액세스 권한을 얻을 수있게 해주는 인증 프레임 워크이다. 이는 사용자 계정을 호스팅하는 서비스에 사용자 인증을 위임하고 타사 응용 프로그램에 사용자 계정에 대한 액세스 권한을 부여하여 작동하게 된다. OAuth 2는 웹 및 데스크톱 응용 프로그램 및 모바일 장치에 대한 인증 흐름을 제공하게 된다. OAuth2 주체 리소스 소유자 (사용자) : 리소스 소유자는 자신의 계정에 액세스하기 위해 어플리케이션 을 인증하는 사용자 이다.]]></description>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/posts/images/spring/mastering-spring5-thumbnail.png" referrerpolicy="no-referrer">
+            </div>스프링 5.0 마스터 스터디 스프링 5.0 마스터 스터디 학습 내용 정리입니다. OAuth2 인증 OAuth 2는 어플리케이션과 Facebook, GitHub 및 DigitalOcean 과 같은 HTTP 서비스의사용자 계정에 대한 제한된 액세스 권한을 얻을 수있게 해주는 인증 프레임 워크이다. 이는 사용자 계정을 호스팅하는 서비스에 사용자 인증을 위임하고 타사 응용 프로그램에 사용자 계정에 대한 액세스 권한을 부여하여 작동하게 된다. OAuth 2는 웹 및 데스크톱 응용 프로그램 및 모바일 장치에 대한 인증 흐름을 제공하게 된다.]]></description>
+</item>
+<item>
+    <title>[Mastering Spring 5.0] 6.5 Spring Security - Basic authentication</title>
+    <link>https://riley817.github.io/page-6-5/</link>
+    <pubDate>Wed, 12 Dec 2018 22:32:09 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/page-6-5/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/posts/images/spring/mastering-spring5-thumbnail.png" referrerpolicy="no-referrer">
+            </div>스프링 5.0 마스터 스터디 스프링 5.0 마스터 스터디 학습 내용 정리입니다. 스프링 시큐리티로 REST 서비스 보호 최근에는 서비스 시스템들끼리 REST API 기반의 통신이 많이 이루어지고 있다. 네이티브 앱과 서버 간 통신뿐만 아니라 자바스크립트 웹 클라이언트 와 서버간에도 REST API 통신을 많이 사용하기 때문에 REST 서비스(리소스) 에 대한 보안이 중요해 지고 있다.
+인증(Authentication) 과 권한 (Authorization) 인증(Authentication): 소비자(클라이언트) 가 서비스(리소스) 에 접근이 가능한 소비자인지 인가/권한부여(Authorization) : 접근이 가능하지만 해당 작업을 소비자(클라이언트) 에게 허용할것인지 인증방식은 다양하며, 전통적인 인증방식으로는 사용자명(Principle)과 비밀번호(Credential)로 인증하는 Credential 기반 인증 방식 과 OTP 등과 같이 추가적인 인증방식을 도입해 2가지 방법으로 인증하는 이중 인증 방식 과 최근에는 OAuth2 인증방식 도 필수적으로 사용되고 있다.]]></description>
 </item>
 </channel>
 </rss>

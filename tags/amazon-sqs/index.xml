@@ -1,8 +1,8 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>Amazon SQS - Tag - 라일리의 개발 기록장</title>
+        <title>Amazon SQS - Tag - 🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖</title>
         <link>https://riley817.github.io/tags/amazon-sqs/</link>
-        <description>Amazon SQS - Tag - 라일리의 개발 기록장</description>
+        <description>Amazon SQS - Tag - 🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
             <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Tue, 02 Aug 2022 09:16:41 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/tags/amazon-sqs/" rel="self" type="application/rss+xml" /><item>
     <title>18. AWS Integration &amp; Messaging</title>
@@ -10,7 +10,9 @@
     <pubDate>Tue, 02 Aug 2022 09:16:41 &#43;0900</pubDate>
     <author>riley</author>
     <guid>https://riley817.github.io/aws-18-integration-messaging/</guid>
-    <description><![CDATA[Application communication Application communication 두 가지 패턴 Synchronous communications (application to application) Synchronous는 요청량이 급증하면 애플리케이션간 여러 문제를 유발시킬 수 있다. Asynchronous / Event based (application to queue to application) 애플리케이션 의존관계decouple를 낮추는 사례 아래 서비스들을 사용하여 즉각적으로 애플리케이션을 확장가능 하다.
+    <description><![CDATA[<div class="featured-image">
+                <img src="/posts/images/aws/cloud-service-thumbnail.png" referrerpolicy="no-referrer">
+            </div>Application communication Application communication 두 가지 패턴 Synchronous communications (application to application) Synchronous는 요청량이 급증하면 애플리케이션간 여러 문제를 유발시킬 수 있다. Asynchronous / Event based (application to queue to application) 애플리케이션 의존관계decouple를 낮추는 사례 아래 서비스들을 사용하여 즉각적으로 애플리케이션을 확장가능 하다.
 SQS 사용 : Queue 모델 SNS 사용 : pub/sub 모델 Kinesis : 실시간 스트리밍 모델 Amazon SQS Amazon SQS - Standard Queue AWS에서 가장 오래된 서비스. 애플리케이션을 decoupling하기 위해 서비스를 관리 중복 메세지를 갖을 수 있다.]]></description>
 </item>
 </channel>

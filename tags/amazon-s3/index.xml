@@ -1,8 +1,8 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>Amazon S3 - Tag - 라일리의 개발 기록장</title>
+        <title>Amazon S3 - Tag - 🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖</title>
         <link>https://riley817.github.io/tags/amazon-s3/</link>
-        <description>Amazon S3 - Tag - 라일리의 개발 기록장</description>
+        <description>Amazon S3 - Tag - 🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
             <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Mon, 01 Aug 2022 22:26:38 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/tags/amazon-s3/" rel="self" type="application/rss+xml" /><item>
     <title>14. S3 Storage and Data Management</title>
@@ -10,7 +10,9 @@
     <pubDate>Mon, 01 Aug 2022 22:26:38 &#43;0900</pubDate>
     <author>riley</author>
     <guid>https://riley817.github.io/aws-14-s3/</guid>
-    <description><![CDATA[Amazon S3 Amazon S3은 AWS의 주요한 서비스 중 하나이다. 무한 확장infinitely scaling 가능한 storage 많은 웹사이트에서 Amazon S3을 backbone으로 사용한다. AWS의 다수의 서비스에서도 Amazon S3 통합하여 사용할 수 있다. Amazon S3 Overview Buckets Amazon S3에서는 object(files) 을 buckets(directories) 에 저장할 수 있다. 버켓은 반드시 전역적으로 유일globally unique name 해야 한다. 버켓은 region level 정의된다. (S3는 전역서비스지만 버켓은 리전리소스) Naming convention 대문자 불가 _ 불가 길이는 3~63 자리 IP 주소가 아닐 것 반드시 소문자로 또는 숫자로 시작 Objects Object는 파일이며 키를 가짐 key는 전체경로full path를 나타낸다 s3://my-bucket/my_file.]]></description>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/posts/images/aws/cloud-service-thumbnail.png" referrerpolicy="no-referrer">
+            </div>Amazon S3 Amazon S3은 AWS의 주요한 서비스 중 하나이다. 무한 확장infinitely scaling 가능한 storage 많은 웹사이트에서 Amazon S3을 backbone으로 사용한다. AWS의 다수의 서비스에서도 Amazon S3 통합하여 사용할 수 있다. Amazon S3 Overview Buckets Amazon S3에서는 object(files) 을 buckets(directories) 에 저장할 수 있다. 버켓은 반드시 전역적으로 유일globally unique name 해야 한다. 버켓은 region level 정의된다. (S3는 전역서비스지만 버켓은 리전리소스) Naming convention 대문자 불가 _ 불가 길이는 3~63 자리 IP 주소가 아닐 것 반드시 소문자로 또는 숫자로 시작 Objects Object는 파일이며 키를 가짐 key는 전체경로full path를 나타낸다 s3://my-bucket/my_file.]]></description>
 </item>
 </channel>
 </rss>

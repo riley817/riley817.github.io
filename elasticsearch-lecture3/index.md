@@ -1,11 +1,12 @@
-# [Elasticsearch 검색 엔진 구축 강의] 3. Elasticsearch 및 Kibana 설치
+# [Elasticsearch 검색 엔진 구축 강의] Elasticsearch 및 Kibana 설치
 
 
-## Elasticsearch 설치하기
-Elasticsearch 는 Java 언어로 이루어진 아파치 Lucene 기반으로 이루어져 있다. 그러므로 설치를 위해서는 **Java 가 먼저 설치되어 있어야 한다.** 
 
 
-### 1. yum 으로 설치하기
+## 1. Elasticsearch 설치하기
+Elasticsearch는 Java 언어로 이루어진 아파치 Lucene 기반으로 이루어져 있다. 그러므로 설치를 위해서는 **Java 가 먼저 설치되어 있어야 한다.** 
+
+### 1.1 yum 으로 설치하기
 #### RPM Repository 등록하기
 `/etc/yum.repos.d/elasticsearch.repo` elastic 저장소를 수동으로 추가 한다.
 

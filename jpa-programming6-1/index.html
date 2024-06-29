@@ -4,16 +4,16 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>[자바 ORM 표준 JPA 프로그래밍] 6장 다양한 연관관계 매핑 - 다대일 - 라일리의 개발 기록장</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:url" content="https://riley817.github.io/jpa-programming6-1/">
-  <meta property="og:site_name" content="라일리의 개발 기록장">
+        <title>[자바 ORM 표준 JPA 프로그래밍] 6장 다양한 연관관계 매핑 - 다대일 - 🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:url" content="https://riley817.github.io/jpa-programming6-1/">
+  <meta property="og:site_name" content="🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖">
   <meta property="og:title" content="[자바 ORM 표준 JPA 프로그래밍] 6장 다양한 연관관계 매핑 - 다대일">
-  <meta property="og:description" content="자바 ORM 표준 JPA 프로그래밍 학습 내용 정리
+  <meta property="og:description" content="자바 ORM 표준 JPA 프로그래밍 학습 내용 정리한 포스팅 입니다.
 다양한 연관관계 다루기 엔티티의 연관관계를 매핑할때 고려할점 다중성 단방향, 양방향 연관관계의 주인 다중성 다대일(@ManyToOne), 일대다(@OneToMany), 일대일(@OneToOne), 다대다(@ManyToMany) 다중성을 판단하기 어려울 때는 반대방향을 생각해보자. 보통 다대일과 일대다 관계를 가장 많이 사용하고 다대다 관계는 실무에서는 거의 사용하지 않음. 단방향, 양방향 객체 관계에서 한쪽만 참고하는 것을 단방향 관계라고하며, 양쪽이 서로 참조하는 것을 양방향 관계라 한다. 연관관계의 주인 외래 키를 가진 테이블과 매핑한 엔티티가 외래키를 관리하는게 효율적이므로 보통 이곳을 연관관계의 주인으로 선택한다.">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2019-01-10T16:20:24+09:00">
-    <meta property="article:modified_time" content="2024-06-24T22:08:26+09:00">
+    <meta property="article:modified_time" content="2024-06-29T23:59:44+09:00">
     <meta property="article:tag" content="JPA">
     <meta property="article:tag" content="ORM">
     <meta property="og:image" content="https://riley817.github.io/icon.png">
@@ -21,7 +21,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://riley817.github.io/icon.png">
   <meta name="twitter:title" content="[자바 ORM 표준 JPA 프로그래밍] 6장 다양한 연관관계 매핑 - 다대일">
-  <meta name="twitter:description" content="자바 ORM 표준 JPA 프로그래밍 학습 내용 정리
+  <meta name="twitter:description" content="자바 ORM 표준 JPA 프로그래밍 학습 내용 정리한 포스팅 입니다.
 다양한 연관관계 다루기 엔티티의 연관관계를 매핑할때 고려할점 다중성 단방향, 양방향 연관관계의 주인 다중성 다대일(@ManyToOne), 일대다(@OneToMany), 일대일(@OneToOne), 다대다(@ManyToMany) 다중성을 판단하기 어려울 때는 반대방향을 생각해보자. 보통 다대일과 일대다 관계를 가장 많이 사용하고 다대다 관계는 실무에서는 거의 사용하지 않음. 단방향, 양방향 객체 관계에서 한쪽만 참고하는 것을 단방향 관계라고하며, 양쪽이 서로 참조하는 것을 양방향 관계라 한다. 연관관계의 주인 외래 키를 가진 테이블과 매핑한 엔티티가 외래키를 관리하는게 효율적이므로 보통 이곳을 연관관계의 주인으로 선택한다.">
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
@@ -37,8 +37,8 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/riley817.github.io\/jpa-programming6-1\/"
-        },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "JPA, ORM","wordcount":  392 ,
-        "url": "https:\/\/riley817.github.io\/jpa-programming6-1\/","datePublished": "2019-01-10T16:20:24+09:00","dateModified": "2024-06-24T22:08:26+09:00","publisher": {
+        },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "JPA, ORM","wordcount":  393 ,
+        "url": "https:\/\/riley817.github.io\/jpa-programming6-1\/","datePublished": "2019-01-10T16:20:24+09:00","dateModified": "2024-06-29T23:59:44+09:00","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/riley817.github.io\/images\/avatar.png"},"author": {
                 "@type": "Person",
@@ -46,12 +46,12 @@
             },"description": ""
     }
     </script></head>
-    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('light' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'light' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
 
         <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
     <div class="header-wrapper">
         <div class="header-title">
-            <a href="/" title="라일리의 개발 기록장"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i>&nbsp;</span>라일리의 개발 기록장</a>
+            <a href="/" title="🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i>&nbsp;</span>Riley&#39;s CodeCrumbs</a>
         </div>
         <div class="menu">
             <div class="menu-inner"><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
@@ -75,7 +75,7 @@
     <div class="header-container">
         <div class="header-wrapper">
             <div class="header-title">
-                <a href="/" title="라일리의 개발 기록장"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i>&nbsp;</span>라일리의 개발 기록장</a>
+                <a href="/" title="🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i>&nbsp;</span>Riley&#39;s CodeCrumbs</a>
             </div>
             <div class="menu-toggle" id="menu-toggle-mobile">
                 <span></span><span></span><span></span>
@@ -112,9 +112,16 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">[자바 ORM 표준 JPA 프로그래밍] 6장 다양한 연관관계 매핑 - 다대일</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://github.com/riley817" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%EC%9E%90%EB%B0%94-orm-%ED%91%9C%EC%A4%80-jpa-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>자바 ORM 표준 JPA 프로그래밍</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2019-01-10">2019-01-10</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;392 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2019-01-10">2019-01-10</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;393 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;2 minutes&nbsp;</div>
-        </div><div class="details toc" id="toc-static"  data-kept="">
+        </div><div class="featured-image"><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/posts/images/jpa/jpa-thumbnail.png"
+        data-srcset="/posts/images/jpa/jpa-thumbnail.png, /posts/images/jpa/jpa-thumbnail.png 1.5x, /posts/images/jpa/jpa-thumbnail.png 2x"
+        data-sizes="auto"
+        alt="/posts/images/jpa/jpa-thumbnail.png"
+        title="/posts/images/jpa/jpa-thumbnail.png" /></div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
                     <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
@@ -129,24 +136,16 @@
         <li><a href="#연관관계의-주인">연관관계의 주인</a></li>
       </ul>
     </li>
-    <li><a href="#61-다대일">6.1 다대일</a>
+    <li><a href="#다대일">다대일</a>
       <ul>
-        <li><a href="#611-다대일-단방향-n1">6.1.1 다대일 단방향 [N:1]</a>
-          <ul>
-            <li><a href="#teamjava">Team.java</a></li>
-          </ul>
-        </li>
-        <li><a href="#612-다대일-양방향-n1-1n">6.1.2 다대일 양방향 [N:1, 1:N]</a>
-          <ul>
-            <li><a href="#teamjava-1">Team.java</a></li>
-          </ul>
-        </li>
+        <li><a href="#다대일-단방향-n1">다대일 단방향 [N:1]</a></li>
+        <li><a href="#다대일-양방향-n1-1n">다대일 양방향 [N:1, 1:N]</a></li>
       </ul>
     </li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><blockquote>
-<p>자바 ORM 표준 JPA 프로그래밍 학습 내용 정리</p>
+<p>자바 ORM 표준 JPA 프로그래밍 학습 내용 정리한 포스팅 입니다.</p>
 </blockquote>
 <h2 id="다양한-연관관계-다루기">다양한 연관관계 다루기</h2>
 <h3 id="엔티티의-연관관계를-매핑할때-고려할점">엔티티의 연관관계를 매핑할때 고려할점</h3>
@@ -170,12 +169,17 @@
 <li>외래 키를 가진 테이블과 매핑한 엔티티가 외래키를 관리하는게 효율적이므로 보통 이곳을 연관관계의 주인으로 선택한다.</li>
 <li>연관관계의 주인이 아니면 <code>mappedBy</code> 속성을 사용하며, 연관관계 주인의 필드 이름을 값으로 입력한다.</li>
 </ul>
-<h2 id="61-다대일">6.1 다대일</h2>
+<h2 id="다대일">다대일</h2>
 <ul>
 <li>다대일 관계에서 <strong>외래키는 항상 다(N) 쪽</strong>에 있다.</li>
 <li>객체 양방향 관계에서 연관관계의 주인은 항상 다쪽이다.</li>
 </ul>
-<h3 id="611-다대일-단방향-n1">6.1.1 다대일 단방향 [N:1]</h3>
+<h3 id="다대일-단방향-n1">다대일 단방향 [N:1]</h3>
+<ul>
+<li>회원은 Member.team 으로 팀 엔티티를 참조할 수 있다. (반대로 팀에는 회원을 참조하는 필드가 없다.)</li>
+<li><code>@JoinColumn(name = &quot;TEAM_ID&quot;)</code> : TEAM_ID 외래키와 매핑했다.</li>
+</ul>
+<p><strong>Member.java</strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -214,7 +218,7 @@
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h4 id="teamjava">Team.java</h4>
+</div><p><strong>Team.java</strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -243,11 +247,13 @@
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><ul>
-<li>회원은 Member.team 으로 팀 엔티티를 참조할 수 있다. (반대로 팀에는 회원을 참조하는 필드가 없다.)</li>
-<li><code>@JoinColumn(name = &quot;TEAM_ID&quot;)</code> : TEAM_ID 외래키와 매핑했다.</li>
+</div><h3 id="다대일-양방향-n1-1n">다대일 양방향 [N:1, 1:N]</h3>
+<ul>
+<li>양방향은 외래 키가 있는 쪽이 연관관계의 주인</li>
+<li>양방향 연관관계를 항상 서로를 참조해야 한다.</li>
+<li>항상 서로를 참조하게 하려면 연관관계 편의 메소드를 작성하는 것이 좋다. (양쪽에 다 작성할 경우 무한루프에 빠지므로 주의. 또한 양쪽에 다 작성한 경우 둘 중 하나만 호출해도 된다.)</li>
 </ul>
-<h3 id="612-다대일-양방향-n1-1n">6.1.2 다대일 양방향 [N:1, 1:N]</h3>
+<p><strong>Member.java</strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -306,7 +312,7 @@
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h4 id="teamjava-1">Team.java</h4>
+</div><p><strong>Team.java</strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -351,17 +357,12 @@
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><ul>
-<li>양방향은 외래 키가 있는 쪽이 연관관계의 주인</li>
-<li>양방향 연관관계를 항상 서로를 참조해야 한다.</li>
-<li>항상 서로를 참조하게 하려면 연관관계 편의 메소드를 작성하는 것이 좋다. (양쪽에 다 작성할 경우 무한루프에 빠지므로 주의. 또한 양쪽에 다 작성한 경우 둘 중 하나만 호출해도 된다.)</li>
-</ul>
-</div><div class="post-footer" id="post-footer">
+</div></div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 2024-06-24&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/23c45c8708c6ff29696def98046311196cf3bb44" target="_blank" title="commit by riley(41636282&#43;riley817@users.noreply.github.com) 23c45c8708c6ff29696def98046311196cf3bb44: Update main.yml">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>23c45c8</a></span>
+                <span>Updated on 2024-06-29&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/b7aad3025e10b4e333b45c35ce1386d01ceab0d3" target="_blank" title="commit by riley817(riley0422@icloud.com) b7aad3025e10b4e333b45c35ce1386d01ceab0d3: Merge branch &#39;develop&#39;">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>b7aad30</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>
@@ -391,7 +392,7 @@
         </script>
     </div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.127.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.128.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
                 </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/riley817" target="_blank">Riley</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

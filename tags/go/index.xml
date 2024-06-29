@@ -1,25 +1,18 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>GO - Tag - 라일리의 개발 기록장</title>
+        <title>GO - Tag - 🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖</title>
         <link>https://riley817.github.io/tags/go/</link>
-        <description>GO - Tag - 라일리의 개발 기록장</description>
+        <description>GO - Tag - 🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
-            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Mon, 10 Apr 2023 23:24:37 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/tags/go/" rel="self" type="application/rss+xml" /><item>
-    <title>[Go 언어를 활용한 네트워크 프로그래밍] 3. 신뢰성 있는 TCP 데이터 스트림</title>
-    <link>https://riley817.github.io/network-programming-with-go-copy/</link>
-    <pubDate>Mon, 10 Apr 2023 23:24:37 &#43;0900</pubDate>
-    <author>riley</author>
-    <guid>https://riley817.github.io/network-programming-with-go-copy/</guid>
-    <description><![CDATA[Go 언어를 활용한 네트워크 프로그래밍 책 정리
-TCP를 신뢰성 있게 만드는 것 패킷손실packet loss : 무선 네트워크 간섭이나 네트워크 정체 등의 이유로 데이터가 전송에 실패하여 목적지까지 도달하지 못한 경우 발생 네트워크 정체network congestion : 네트워크의 연결상 처리할 수 있는 양 이상의 데이터를 전송하려 할 때 발생 TCP는 흐름제어 flow control 절차를 통해 데이터의 전송 속도를 조정하여 네트워크의 상태가 변경되더라도 손실된 패킷을 최소로 유지하면서 데이터를 빠르게 전송할 수 있다. TCP는 수신한 패킷을 추적하고, 승인되지 않은 패킷은 필요에 따라 재전송 한다.]]></description>
-</item>
-<item>
+            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Tue, 07 Mar 2023 21:27:33 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/tags/go/" rel="self" type="application/rss+xml" /><item>
     <title>[Go 언어를 활용한 네트워크 프로그래밍] 1. 네트워크 시스템 개요</title>
     <link>https://riley817.github.io/network-programming-with-go/</link>
     <pubDate>Tue, 07 Mar 2023 21:27:33 &#43;0900</pubDate>
     <author>riley</author>
     <guid>https://riley817.github.io/network-programming-with-go/</guid>
-    <description><![CDATA[Go 언어를 활용한 네트워크 프로그래밍 책 정리
+    <description><![CDATA[<div class="featured-image">
+                <img src="/posts/images/go/network-programming-thumbnail.png" referrerpolicy="no-referrer">
+            </div>Go 언어를 활용한 네트워크 프로그래밍 책 정리
 컴퓨터 네트워크(coumputer network) 란 두 개 이상의 장치 또는 노드간의 연결을 말한다.
 네트워크 토폴로지 유형 네트워크 토폴로지topology 란 네트워크상의 노드의 구성을 말한다. 토폴로지의 유형은 점대점 연결형, 데이지 체인형, 버스형, 링형, 스타형, 그물형의 6가지 기본 범주로 나뉜다.
 1. 점대점 point-to-point 연결형 두 노드가 하나의 연결을 공유 한다. 이러한 유형의 네트워크 연결을 드물지만 두 노드 간에 직접 통신이 필요할 때 매우 유용하다. 2. 데이지 체인 daisy chain 연결형 일련의 점대점 연결 출발지 노드와 목적지 노드 사이의 중간 노드를 일반적으로 홉이라고 한다.]]></description>
@@ -100,6 +93,16 @@ string 구조 string 타입은 Go 언어에서 제공하는 내장 타입으로 
     <description><![CDATA[인프런 쉽고 빠르게 끝내는 GO언어 프로그래밍 핵심 기초 입문 과정 강의 정리
 11.1 파일 입출력 11.1.1 os 패키지 - 파일 읽기, 쓰기 Go에서 파일을 읽고 쓰기 위해 Go 표준 패키지인 os 패키지를 사용할 수 있다.
 os.Open() : 기존 파일 열기 os.Create() : 새 파일을 생성 os.Close() : 파일 리소스 닫기 파일 읽기 및 탐색 예제 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 package main import ( &#34;fmt&#34; &#34;os&#34; ) // 에러 체크 방식 1 func errCheck1(e error) { if e !]]></description>
+</item>
+<item>
+    <title>[쉽고 빠르게 끝내는 GO언어 프로그래밍 핵심 기초 입문 과정] Section 10 : 에러 처리</title>
+    <link>https://riley817.github.io/easy-golang-section10/</link>
+    <pubDate>Fri, 23 Apr 2021 13:11:20 &#43;0900</pubDate>
+    <author>riley</author>
+    <guid>https://riley817.github.io/easy-golang-section10/</guid>
+    <description><![CDATA[인프런 쉽고 빠르게 끝내는 GO언어 프로그래밍 핵심 기초 입문 과정 강의 정리
+10.1 에러처리 10.1.1 Go 에러 소프트웨어의 품질 향상에 가장 중요한 것 → 유형코드 및 에러 정보 등을 남기는 것
+Go 에서는 기본적으로 error 라는 인터페이스 타입을 갖고 있다. 개발자는 이 인터페이스를 구현하는 커스텀 에러 타입을 만들 수 있다. 1 2 3 type error interface { Error() string } 10.1.2 Go 에러처리 Go 함수의 경우 기본적으로 리턴 타입을 두개 갖고 있다.]]></description>
 </item>
 </channel>
 </rss>

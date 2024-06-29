@@ -1,25 +1,18 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>Go 언어를 활용한 네트워크 프로그래밍 - Category - 라일리의 개발 기록장</title>
+        <title>Go 언어를 활용한 네트워크 프로그래밍 - Category - 🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖</title>
         <link>https://riley817.github.io/categories/go-%EC%96%B8%EC%96%B4%EB%A5%BC-%ED%99%9C%EC%9A%A9%ED%95%9C-%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/</link>
-        <description>Go 언어를 활용한 네트워크 프로그래밍 - Category - 라일리의 개발 기록장</description>
+        <description>Go 언어를 활용한 네트워크 프로그래밍 - Category - 🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
-            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Mon, 10 Apr 2023 23:24:37 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/categories/go-%EC%96%B8%EC%96%B4%EB%A5%BC-%ED%99%9C%EC%9A%A9%ED%95%9C-%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/" rel="self" type="application/rss+xml" /><item>
-    <title>[Go 언어를 활용한 네트워크 프로그래밍] 3. 신뢰성 있는 TCP 데이터 스트림</title>
-    <link>https://riley817.github.io/network-programming-with-go-copy/</link>
-    <pubDate>Mon, 10 Apr 2023 23:24:37 &#43;0900</pubDate>
-    <author>riley</author>
-    <guid>https://riley817.github.io/network-programming-with-go-copy/</guid>
-    <description><![CDATA[Go 언어를 활용한 네트워크 프로그래밍 책 정리
-TCP를 신뢰성 있게 만드는 것 패킷손실packet loss : 무선 네트워크 간섭이나 네트워크 정체 등의 이유로 데이터가 전송에 실패하여 목적지까지 도달하지 못한 경우 발생 네트워크 정체network congestion : 네트워크의 연결상 처리할 수 있는 양 이상의 데이터를 전송하려 할 때 발생 TCP는 흐름제어 flow control 절차를 통해 데이터의 전송 속도를 조정하여 네트워크의 상태가 변경되더라도 손실된 패킷을 최소로 유지하면서 데이터를 빠르게 전송할 수 있다. TCP는 수신한 패킷을 추적하고, 승인되지 않은 패킷은 필요에 따라 재전송 한다.]]></description>
-</item>
-<item>
+            <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Tue, 07 Mar 2023 21:27:33 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/categories/go-%EC%96%B8%EC%96%B4%EB%A5%BC-%ED%99%9C%EC%9A%A9%ED%95%9C-%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/" rel="self" type="application/rss+xml" /><item>
     <title>[Go 언어를 활용한 네트워크 프로그래밍] 1. 네트워크 시스템 개요</title>
     <link>https://riley817.github.io/network-programming-with-go/</link>
     <pubDate>Tue, 07 Mar 2023 21:27:33 &#43;0900</pubDate>
     <author>riley</author>
     <guid>https://riley817.github.io/network-programming-with-go/</guid>
-    <description><![CDATA[Go 언어를 활용한 네트워크 프로그래밍 책 정리
+    <description><![CDATA[<div class="featured-image">
+                <img src="/posts/images/go/network-programming-thumbnail.png" referrerpolicy="no-referrer">
+            </div>Go 언어를 활용한 네트워크 프로그래밍 책 정리
 컴퓨터 네트워크(coumputer network) 란 두 개 이상의 장치 또는 노드간의 연결을 말한다.
 네트워크 토폴로지 유형 네트워크 토폴로지topology 란 네트워크상의 노드의 구성을 말한다. 토폴로지의 유형은 점대점 연결형, 데이지 체인형, 버스형, 링형, 스타형, 그물형의 6가지 기본 범주로 나뉜다.
 1. 점대점 point-to-point 연결형 두 노드가 하나의 연결을 공유 한다. 이러한 유형의 네트워크 연결을 드물지만 두 노드 간에 직접 통신이 필요할 때 매우 유용하다. 2. 데이지 체인 daisy chain 연결형 일련의 점대점 연결 출발지 노드와 목적지 노드 사이의 중간 노드를 일반적으로 홉이라고 한다.]]></description>

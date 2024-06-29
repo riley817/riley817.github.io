@@ -4,28 +4,28 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>[Elasticsearch 검색 엔진 구축 강의] Elasticsearch 클러스터 분산구성 시나리오 - 라일리의 개발 기록장</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:url" content="https://riley817.github.io/elasticsearch-lecture1/">
-  <meta property="og:site_name" content="라일리의 개발 기록장">
+        <title>[Elasticsearch 검색 엔진 구축 강의] Elasticsearch 클러스터 분산구성 시나리오 - 🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖</title><meta name="Description" content="Riley&#39;s DevLog"><meta property="og:url" content="https://riley817.github.io/elasticsearch-lecture1/">
+  <meta property="og:site_name" content="🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖">
   <meta property="og:title" content="[Elasticsearch 검색 엔진 구축 강의] Elasticsearch 클러스터 분산구성 시나리오">
-  <meta property="og:description" content="Elasticsearch 클러스터 분산구성 시나리오 단일 노드에 3개의 샤드로 클러스터 구성하기 blogs라는 인덱스에 3개의 primary 샤드와 1개의 replica 샤드가 운용되도록 할당한다.
+  <meta property="og:description" content="Elasticsearch 클러스터 분산구성 시나리오 1. 단일 노드에 3개의 샤드로 클러스터 구성하기 blogs라는 인덱스에 3개의 primary 샤드와 1개의 replica 샤드가 운용되도록 할당한다.
 1 2 3 4 5 6 7 curl -X PUT &#34;localhost:9200/blogs&#34; -H &#39;Content-Type: application/json&#39; -d { &#34;settings&#34; : { &#34;number_of_shards&#34; : 3, &#34;number_of_replicas&#34; : 1 } } [그림1] 샤드의 개수는 3이고 레플리카 개수는 1개인 단일 노드 클러스터는 정상적으로 작동되나 하드웨어의 오류가 발생할 경우 데이터 손실의 위험이 있다. 데이터 적재량이 많을 경우 싱글노드가 허용하는 볼륨을 모두 소진할 수도 있어 더이상 적재가 불가능 할 수도 있다.">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2018-10-20T19:00:11+09:00">
-    <meta property="article:modified_time" content="2024-06-24T22:08:26+09:00">
+    <meta property="article:modified_time" content="2024-06-29T23:59:44+09:00">
     <meta property="article:tag" content="Elasticsearch">
     <meta property="og:image" content="https://riley817.github.io/icon.png">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://riley817.github.io/icon.png">
   <meta name="twitter:title" content="[Elasticsearch 검색 엔진 구축 강의] Elasticsearch 클러스터 분산구성 시나리오">
-  <meta name="twitter:description" content="Elasticsearch 클러스터 분산구성 시나리오 단일 노드에 3개의 샤드로 클러스터 구성하기 blogs라는 인덱스에 3개의 primary 샤드와 1개의 replica 샤드가 운용되도록 할당한다.
+  <meta name="twitter:description" content="Elasticsearch 클러스터 분산구성 시나리오 1. 단일 노드에 3개의 샤드로 클러스터 구성하기 blogs라는 인덱스에 3개의 primary 샤드와 1개의 replica 샤드가 운용되도록 할당한다.
 1 2 3 4 5 6 7 curl -X PUT &#34;localhost:9200/blogs&#34; -H &#39;Content-Type: application/json&#39; -d { &#34;settings&#34; : { &#34;number_of_shards&#34; : 3, &#34;number_of_replicas&#34; : 1 } } [그림1] 샤드의 개수는 3이고 레플리카 개수는 1개인 단일 노드 클러스터는 정상적으로 작동되나 하드웨어의 오류가 발생할 경우 데이터 손실의 위험이 있다. 데이터 적재량이 많을 경우 싱글노드가 허용하는 볼륨을 모두 소진할 수도 있어 더이상 적재가 불가능 할 수도 있다.">
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://riley817.github.io/elasticsearch-lecture1/" /><link rel="prev" href="https://riley817.github.io/elasticsearch-lecture0/" /><link rel="next" href="https://riley817.github.io/elasticsearch-lecture2/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://riley817.github.io/elasticsearch-lecture1/" /><link rel="prev" href="https://riley817.github.io/elasticsearch-lecture0/" /><link rel="next" href="https://riley817.github.io/elasticsearch-lecture2-1/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
     {
@@ -36,8 +36,8 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/riley817.github.io\/elasticsearch-lecture1\/"
-        },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "elasticsearch","wordcount":  343 ,
-        "url": "https:\/\/riley817.github.io\/elasticsearch-lecture1\/","datePublished": "2018-10-20T19:00:11+09:00","dateModified": "2024-06-24T22:08:26+09:00","publisher": {
+        },"image": ["https:\/\/riley817.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "elasticsearch","wordcount":  348 ,
+        "url": "https:\/\/riley817.github.io\/elasticsearch-lecture1\/","datePublished": "2018-10-20T19:00:11+09:00","dateModified": "2024-06-29T23:59:44+09:00","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/riley817.github.io\/images\/avatar.png"},"author": {
                 "@type": "Person",
@@ -45,12 +45,12 @@
             },"description": ""
     }
     </script></head>
-    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('light' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'light' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
 
         <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
     <div class="header-wrapper">
         <div class="header-title">
-            <a href="/" title="라일리의 개발 기록장"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i>&nbsp;</span>라일리의 개발 기록장</a>
+            <a href="/" title="🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i>&nbsp;</span>Riley&#39;s CodeCrumbs</a>
         </div>
         <div class="menu">
             <div class="menu-inner"><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
@@ -74,7 +74,7 @@
     <div class="header-container">
         <div class="header-wrapper">
             <div class="header-title">
-                <a href="/" title="라일리의 개발 기록장"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i>&nbsp;</span>라일리의 개발 기록장</a>
+                <a href="/" title="🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖"><span class="header-title-pre"><i class='fa-brands fa-github-alt'></i>&nbsp;</span>Riley&#39;s CodeCrumbs</a>
             </div>
             <div class="menu-toggle" id="menu-toggle-mobile">
                 <span></span><span></span><span></span>
@@ -111,30 +111,30 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">[Elasticsearch 검색 엔진 구축 강의] Elasticsearch 클러스터 분산구성 시나리오</h1><h2 class="single-subtitle">Elasticsearch 검색 엔진 구축 강의</h2><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://github.com/riley817" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>riley</a></span>&nbsp;<span class="post-category">included in <a href="/categories/elasticsearch-%EA%B2%80%EC%83%89-%EC%97%94%EC%A7%84-%EA%B5%AC%EC%B6%95-%EA%B0%95%EC%9D%98/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Elasticsearch 검색 엔진 구축 강의</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2018-10-20">2018-10-20</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;343 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2018-10-20">2018-10-20</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;348 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;2 minutes&nbsp;</div>
         </div><div class="featured-image"><img
         class="lazyload"
         src="/svg/loading.min.svg"
-        data-src="/posts/images/elastic/9SyGqYLhMmYxEJyNUf.png"
-        data-srcset="/posts/images/elastic/9SyGqYLhMmYxEJyNUf.png, /posts/images/elastic/9SyGqYLhMmYxEJyNUf.png 1.5x, /posts/images/elastic/9SyGqYLhMmYxEJyNUf.png 2x"
+        data-src="/posts/images/elastic/elasticsearch-lecture.png"
+        data-srcset="/posts/images/elastic/elasticsearch-lecture.png, /posts/images/elastic/elasticsearch-lecture.png 1.5x, /posts/images/elastic/elasticsearch-lecture.png 2x"
         data-sizes="auto"
-        alt="/posts/images/elastic/9SyGqYLhMmYxEJyNUf.png"
-        title="/posts/images/elastic/9SyGqYLhMmYxEJyNUf.png" /></div><div class="details toc" id="toc-static"  data-kept="">
+        alt="/posts/images/elastic/elasticsearch-lecture.png"
+        title="/posts/images/elastic/elasticsearch-lecture.png" /></div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
                     <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
-    <li><a href="#단일-노드에-3개의-샤드로-클러스터-구성하기">단일 노드에 3개의 샤드로 클러스터 구성하기</a>
+    <li><a href="#1-단일-노드에-3개의-샤드로-클러스터-구성하기">1. 단일 노드에 3개의 샤드로 클러스터 구성하기</a>
       <ul>
-        <li><a href="#모든-기본-노드에-복제본-샤드-할당">모든 기본 노드에 복제본 샤드 할당</a></li>
-        <li><a href="#수평-확장">수평 확장</a></li>
-        <li><a href="#좀-더-확장하기">좀 더 확장하기</a></li>
-        <li><a href="#실패에-대처하기">실패에 대처하기</a>
+        <li><a href="#11-모든-기본-노드에-복제본-샤드-할당">1.1 모든 기본 노드에 복제본 샤드 할당</a></li>
+        <li><a href="#12-수평-확장">1.2 수평 확장</a></li>
+        <li><a href="#13-좀-더-확장하기">1.3 좀 더 확장하기</a></li>
+        <li><a href="#14-실패에-대처하기">1.4 실패에 대처하기</a>
           <ul>
-            <li><a href="#한대의-노드가-fail-발생했을-경우">한대의 노드가 fail 발생했을 경우</a></li>
+            <li><a href="#141-한대의-노드가-fail-발생했을-경우">1.4.1 한대의 노드가 fail 발생했을 경우</a></li>
           </ul>
         </li>
       </ul>
@@ -143,7 +143,7 @@
   </ul>
 </nav></div>
             </div><div class="content" id="content"><h1 id="elasticsearch-클러스터-분산구성-시나리오">Elasticsearch 클러스터 분산구성 시나리오</h1>
-<h2 id="단일-노드에-3개의-샤드로-클러스터-구성하기">단일 노드에 3개의 샤드로 클러스터 구성하기</h2>
+<h2 id="1-단일-노드에-3개의-샤드로-클러스터-구성하기">1. 단일 노드에 3개의 샤드로 클러스터 구성하기</h2>
 <p><code>blogs</code>라는 인덱스에 3개의 <code>primary</code> 샤드와 1개의 <code>replica</code> 샤드가 운용되도록 할당한다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -179,11 +179,11 @@
 <li>클러스터는 정상적으로 작동되나 하드웨어의 오류가 발생할 경우 데이터 손실의 위험이 있다.</li>
 <li>데이터 적재량이 많을 경우 싱글노드가 허용하는 볼륨을 모두 소진할 수도 있어 더이상 적재가 불가능 할 수도 있다.</li>
 </ul>
-<h3 id="모든-기본-노드에-복제본-샤드-할당">모든 기본 노드에 복제본 샤드 할당</h3>
+<h3 id="11-모든-기본-노드에-복제본-샤드-할당">1.1 모든 기본 노드에 복제본 샤드 할당</h3>
 <ul>
 <li>클러스터에 동일한 설정의 노드를 한대 더 투입한다.</li>
 <li>두 번째 노드가 클러스터에 추가되면 각 기본 샤드에 대해 하나씩 3개의 <code>Replica shard</code>가 생성된다.</li>
-<li>각 샤드에 대해 레플리카 샤드가 존재하기 때문에 모든 데이터는 손상되지 않는다.</li>
+<li>각 샤드에 대해 <code>Replica shard</code>가 존재하기 때문에 모든 데이터는 손상되지 않는다.</li>
 <li>새로 인덱싱 된 문서는 먼저 기본 샤드에 저장 된 다음 연결된 복제본 샤드에 병렬로 복제된다.</li>
 </ul>
 <figure><a class="lightgallery" href="/posts/images/elastic/cluster-scenario_02.png" title="/posts/images/elastic/cluster-scenario_02.png" data-thumbnail="/posts/images/elastic/cluster-scenario_02.png" data-sub-html="<h2>[그림2] 모든 기본 노드에 replica shard 할당</h2>">
@@ -196,10 +196,10 @@
             alt="/posts/images/elastic/cluster-scenario_02.png" />
     </a><figcaption class="image-caption">[그림2] 모든 기본 노드에 replica shard 할당</figcaption>
     </figure>
-<h3 id="수평-확장">수평 확장</h3>
+<h3 id="12-수평-확장">1.2 수평 확장</h3>
 <ul>
-<li>애플리케이션 수요 증가에 따라 노드를 확장해야할 경우가 발생한다.</li>
-<li><code>Node3</code>을 시작하게 되면 2개의 샤드가 <code>Node3</code>으로 이동되었으며, 각 하드웨어의 리소스 <strong>(CPU, RAM, I/O)</strong> 가 더 적은 수의 샤드에 공유되므로 각 샤드의 성능이 향상된다.</li>
+<li>애플리케이션 수요 증가에 따라 노드를 확장해야 할 경우가 발생한다.</li>
+<li><code>Node3</code>을 시작하게 되면 2개의 샤드가 <code>Node3</code>으로 이동되었으며, 각 하드웨어의 리소스(CPU, RAM, I/O)가 더 적은 수의 샤드에 공유되므로 각 샤드의 성능이 향상된다.</li>
 </ul>
 <figure><a class="lightgallery" href="/posts/images/elastic/cluster-scenario_03.png" title="/posts/images/elastic/cluster-scenario_03.png" data-thumbnail="/posts/images/elastic/cluster-scenario_03.png" data-sub-html="<h2>[그림3] 부하 분산을 위한 샤드 재할당</h2>">
         <img
@@ -211,7 +211,7 @@
             alt="/posts/images/elastic/cluster-scenario_03.png" />
     </a><figcaption class="image-caption">[그림3] 부하 분산을 위한 샤드 재할당</figcaption>
     </figure>
-<h3 id="좀-더-확장하기">좀 더 확장하기</h3>
+<h3 id="13-좀-더-확장하기">1.3 좀 더 확장하기</h3>
 <ul>
 <li>기본 샤드의 수는 인덱스 생성되는 순간 고정된다. 이 숫자는 인덱스에 저장할 수 있는 최대 데이터 양을 정의한다.</li>
 <li>그러나 읽기 요청은 기본 샤드나 레플리카 샤드에서 처리할 수 있으므로 더 많은 레플리카가 있을 수록 더 많은 검색량 처리가 가능하다.</li>
@@ -247,8 +247,8 @@
 <li>총 9개의 노드로 구성되어 있으며 3개의 <code>primary shard</code>와 6개의 <code>replica shard</code>가 존재하게 되었다.</li>
 <li>위의 노드 구성을 통해 Node 2 개가 Fail 이 발생하여도 데이터의 손실은 막을 수 있다.</li>
 </ul>
-<h3 id="실패에-대처하기">실패에 대처하기</h3>
-<h4 id="한대의-노드가-fail-발생했을-경우">한대의 노드가 fail 발생했을 경우</h4>
+<h3 id="14-실패에-대처하기">1.4 실패에 대처하기</h3>
+<h4 id="141-한대의-노드가-fail-발생했을-경우">1.4.1 한대의 노드가 fail 발생했을 경우</h4>
 <figure><a class="lightgallery" href="/posts/images/elastic/cluster-scenario_05.png" title="/posts/images/elastic/cluster-scenario_05.png" data-thumbnail="/posts/images/elastic/cluster-scenario_05.png" data-sub-html="<h2>[그림5] 한대의 노드가 fail이 발생했을 때</h2>">
         <img
             class="lazyload"
@@ -292,8 +292,8 @@
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 2024-06-24&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/23c45c8708c6ff29696def98046311196cf3bb44" target="_blank" title="commit by riley(41636282&#43;riley817@users.noreply.github.com) 23c45c8708c6ff29696def98046311196cf3bb44: Update main.yml">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>23c45c8</a></span>
+                <span>Updated on 2024-06-29&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/b7aad3025e10b4e333b45c35ce1386d01ceab0d3" target="_blank" title="commit by riley817(riley0422@icloud.com) b7aad3025e10b4e333b45c35ce1386d01ceab0d3: Merge branch &#39;develop&#39;">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>b7aad30</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>
@@ -311,7 +311,7 @@
     </div>
 
     <div class="post-nav"><a href="/elasticsearch-lecture0/" class="prev" rel="prev" title="[Elasticsearch 검색 엔진 구축 강의] Elasticsearch 시작하기"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>[Elasticsearch 검색 엔진 구축 강의] Elasticsearch 시작하기</a>
-            <a href="/elasticsearch-lecture2/" class="next" rel="next" title="[Elasticsearch 검색 엔진 구축 강의] 2. Elasticsearch 개념 및 용어정리 - Inverted Index, Segment">[Elasticsearch 검색 엔진 구축 강의] 2. Elasticsearch 개념 및 용어정리 - Inverted Index, Segment<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+            <a href="/elasticsearch-lecture2-1/" class="next" rel="next" title="[Elasticsearch 검색 엔진 구축 강의] Elasticsearch 개념 및 용어정리 - Inverted Index, Segment">[Elasticsearch 검색 엔진 구축 강의] Elasticsearch 개념 및 용어정리 - Inverted Index, Segment<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
 </div>
 <div id="comments"><script src="https://utteranc.es/client.js"
             repo="riley817/blog-comment"
@@ -323,7 +323,7 @@
         </script>
     </div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.127.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.128.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
                 </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/riley817" target="_blank">Riley</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

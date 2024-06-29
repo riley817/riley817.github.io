@@ -1,8 +1,8 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>Amazone Elastic Network Interfaces(ENI) - Tag - 라일리의 개발 기록장</title>
+        <title>Amazone Elastic Network Interfaces(ENI) - Tag - 🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖</title>
         <link>https://riley817.github.io/tags/amazone-elastic-network-interfaceseni/</link>
-        <description>Amazone Elastic Network Interfaces(ENI) - Tag - 라일리의 개발 기록장</description>
+        <description>Amazone Elastic Network Interfaces(ENI) - Tag - 🍞🥐🥖 라일리의 코드 부스러기 🍞🥐🥖</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>riley0422@icloud.com (Riley)</managingEditor>
             <webMaster>riley0422@icloud.com (Riley)</webMaster><lastBuildDate>Thu, 14 Jul 2022 08:19:49 &#43;0900</lastBuildDate><atom:link href="https://riley817.github.io/tags/amazone-elastic-network-interfaceseni/" rel="self" type="application/rss+xml" /><item>
     <title>6. AWS Elastic Compute Cloud (EC2) - Associate</title>
@@ -10,7 +10,9 @@
     <pubDate>Thu, 14 Jul 2022 08:19:49 &#43;0900</pubDate>
     <author>riley</author>
     <guid>https://riley817.github.io/aws-06-ec2-associate/</guid>
-    <description><![CDATA[Private vs Public IP (IPv4) 네트워크는 IPv4, IPv6 두 가지로 분류 할 수 있다. IPv4 : 1.160.10.240 IPv6 : 3ffe:1900:4545:3:200:f8ff:fe21:67cf 대부분의 온라인에서는 IPv4를 범용적으로 사용 IPv6 사물인터넷(IoT) 문제를 해결하기 위해 새로 등장함 IPv4는 퍼블릭 영역에서 37억개의 서로 다른 주소를 허용 IPv4:[0-255].[0-255].[0-255].[0-255] Private vs Public IP 차이점 Public IP Public IP는 컴퓨터가 인터넷상(WWW)에서 식별될 수 있음을 의미 전체 웹에서 고유해야 한다. (두 개의 머신이 같은 public IP를 갖을 수 없다) 쉽게 지리적 위치를 찾을 수 있음 Private IP Private IP는 컴퓨터가 사설 네트워크망에서만 식별될 수 있음을 의미 IP는 사설 네트워크에서 고유해야 한다.]]></description>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/posts/images/aws/cloud-service-thumbnail.png" referrerpolicy="no-referrer">
+            </div>Private vs Public IP (IPv4) 네트워크는 IPv4, IPv6 두 가지로 분류 할 수 있다. IPv4 : 1.160.10.240 IPv6 : 3ffe:1900:4545:3:200:f8ff:fe21:67cf 대부분의 온라인에서는 IPv4를 범용적으로 사용 IPv6 사물인터넷(IoT) 문제를 해결하기 위해 새로 등장함 IPv4는 퍼블릭 영역에서 37억개의 서로 다른 주소를 허용 IPv4:[0-255].[0-255].[0-255].[0-255] Private vs Public IP 차이점 Public IP Public IP는 컴퓨터가 인터넷상(WWW)에서 식별될 수 있음을 의미 전체 웹에서 고유해야 한다. (두 개의 머신이 같은 public IP를 갖을 수 없다) 쉽게 지리적 위치를 찾을 수 있음 Private IP Private IP는 컴퓨터가 사설 네트워크망에서만 식별될 수 있음을 의미 IP는 사설 네트워크에서 고유해야 한다.]]></description>
 </item>
 </channel>
 </rss>
